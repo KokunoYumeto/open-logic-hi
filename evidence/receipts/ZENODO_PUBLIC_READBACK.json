@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "release_id": "HI-OLP-PUB-0002",
+  "status": "PASS_PUBLIC_ANONYMOUS_READBACK",
+  "record_id": 21921856,
+  "doi": "10.5281/zenodo.21921856",
+  "concept_doi": "10.5281/zenodo.21920511",
+  "record_url": "https://zenodo.org/records/21921856",
+  "title": "Open Logic Project: Hindi Cumulative Working Edition through HI-OLP-0011",
+  "publication_date": "2026-08-13",
+  "version": "2026-08-13 cumulative working edition through HI-OLP-0011",
+  "license": "cc-by-4.0",
+  "language": "hin",
+  "file_count": 4,
+  "total_bytes": 56831455,
+  "default_preview": "00_OpenLogic_hi-Deva-IN_CUMULATIVE_READER.pdf",
+  "files": [
+    {
+      "name": "00_OpenLogic_hi-Deva-IN_CUMULATIVE_READER.pdf",
+      "recorded_bytes": 212719,
+      "readback_bytes": 212719,
+      "sha256": "BC7D4F6280D2E3DA427715B7CA2DF5335E8057AD0C0DCBCADEF8C18E27360468",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "01_OpenLogic_hi-Deva-IN_EDITABLE_SOURCES.zip",
+      "recorded_bytes": 454544,
+      "readback_bytes": 454544,
+      "sha256": "926239A5C94E2252F1D4398746FCF148C4A8E6DF74D05F120CC99E58CC988C8A",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "02_OpenLogic_hi-Deva-IN_EVIDENCE_AND_PROVENANCE.zip",
+      "recorded_bytes": 56163581,
+      "readback_bytes": 56163581,
+      "sha256": "7ECF57040B1AF3272077976CDE1356E9CDE272752ADFD709DE25BBBBC940B1D0",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "03_OpenLogic_hi-Deva-IN_SHA256_MANIFEST.txt",
+      "recorded_bytes": 611,
+      "readback_bytes": 611,
+      "sha256": "FE1CD890469DAC09860C38E0AA01783266B9C1D2148698ACBEAA9E7CF78CD456",
+      "anonymous_readback": "PASS"
+    }
+  ],
+  "github_release": "https://github.com/KokunoYumeto/open-logic-hi/releases/tag/HI-OLP-PUB-0002",
+  "source_commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "caveats": {
+    "complete_open_logic": false,
+    "human_reviewed": false,
+    "pdf_ua_certified": false,
+    "next_cursor": "content/sets-functions-relations/relations/trees.tex"
+  }
+}

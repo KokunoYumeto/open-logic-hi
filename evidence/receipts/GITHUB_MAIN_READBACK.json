@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "release_id": "HI-OLP-PUB-0002",
+  "status": "PASS_PUBLIC_ANONYMOUS_READBACK_BEFORE_RELEASE_ASSETS",
+  "checked_utc": "2026-08-13T15:30:00Z",
+  "repository": "https://github.com/KokunoYumeto/open-logic-hi",
+  "public": true,
+  "default_branch": "main",
+  "payload_commit": "773713fa4da8781e5ec3b73f49c541337a838409",
+  "raw_readback": {
+    "README.md": {
+      "http_status": 200,
+      "bytes": 2585,
+      "sha256": "201F8C38D6A8EC0AC5D206FE329D7995C6059C673947345BF3926F1B741D59CA"
+    },
+    "reader/00_OpenLogic_hi-Deva-IN_CUMULATIVE_READER.pdf": {
+      "http_status": 200,
+      "bytes": 212719,
+      "sha256": "BC7D4F6280D2E3DA427715B7CA2DF5335E8057AD0C0DCBCADEF8C18E27360468"
+    },
+    "evidence/SOURCE_AUTHORITY.json": {
+      "http_status": 200,
+      "bytes": 6900,
+      "sha256": "C0401C908F80E0C015FB67A5B8962A599E3373C5BDE2F734B600EA9906737106"
+    }
+  },
+  "release_tag_planned": "HI-OLP-PUB-0002",
+  "release_assets_status": "PENDING_PACKAGE_BUILD"
+}
