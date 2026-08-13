@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "release_id": "HI-OLP-PUB-0002",
+  "source_repository": "https://github.com/OpenLogicProject/OpenLogic",
+  "source_commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "source_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
+  "source_license": "CC BY 4.0",
+  "target_locale": "hi-Deva-IN",
+  "translation_status": "machine-assisted cumulative working edition",
+  "complete_work_claim": false,
+  "units": [
+    {
+      "batch": "HI-OLP-0001",
+      "stable_id": "sfr/set/bas",
+      "source_path": "content/sets-functions-relations/sets/basics.tex",
+      "source_bytes": 3922,
+      "source_texcount": 515,
+      "source_sha256": "8BC9151AF0985E6E20C374AA38CDDD1ADD7A8DFFBABCCC94B89F324F62C40F8C",
+      "target_path": "locale/hi/content/sets-functions-relations/sets/basics.tex",
+      "target_bytes": 8378,
+      "target_texcount": 713,
+      "target_sha256": "EF15CF3906AC6D28C1EFB646967C0B24BD78C6F7389D92577E1C045D084B8C19"
+    },
+    {
+      "batch": "HI-OLP-0002",
+      "stable_id": "sfr/set/sub",
+      "source_path": "content/sets-functions-relations/sets/subsets.tex",
+      "source_bytes": 3618,
+      "source_texcount": 452,
+      "source_sha256": "5D982F62C40325CF75DA4517ADD45CA073E23FB9463CFB3ADFB9AAFBB8582E46",
+      "target_path": "locale/hi/content/sets-functions-relations/sets/subsets.tex",
+      "target_bytes": 7072,
+      "target_texcount": 583,
+      "target_sha256": "4EDFE1DE4EED4A0B8048F6729A3692EBC0607B20B28697F3A7FE56DE3A9EA94C"
+    },
+    {
+      "batch": "HI-OLP-0003",
+      "stable_id": "sfr/set/imp",
+      "source_path": "content/sets-functions-relations/sets/important-sets.tex",
+      "source_bytes": 2720,
+      "source_texcount": 311,
+      "source_sha256": "B1B998CAD3FA5AEF48670F755245F86EFE00B239D332A50E764147602405FB32",
+      "target_path": "locale/hi/content/sets-functions-relations/sets/important-sets.tex",
+      "target_bytes": 5354,
+      "target_texcount": 421,
+      "target_sha256": "3FCCFD5670287EA687669C8EF4D6D1A5DFFA7AB3F193B2D178E6294E04E49C65"
+    },
+    {
+      "batch": "HI-OLP-0004",
+      "stable_id": "sfr/set/uni",
+      "source_path": "content/sets-functions-relations/sets/unions-and-intersections.tex",
+      "source_bytes": 6075,
+      "source_texcount": 650,
+      "source_sha256": "2AD0EEC70308CEEFF2A4158B2DEE60E59A9B1CF9268FC95C4BB1DA05F65AD60D",
+      "target_path": "locale/hi/content/sets-functions-relations/sets/unions-and-intersections.tex",
+      "target_bytes": 11379,
+      "target_texcount": 837,
+      "target_sha256": "0A4CDDE4A164F5436920ECE895AC1BC60D2D4BF853B09C27390A53177406C260"
+    },
+    {
+      "batch": "HI-OLP-0005",
+      "stable_id": "sfr/set/pai",
+      "source_path": "content/sets-functions-relations/sets/pairs-and-products.tex",
+      "source_bytes": 4645,
+      "source_texcount": 472,
+      "source_sha256": "3DB7F0241D387B49488F70E78062C24192B813873618F761565D97BD7249431C",
+      "target_path": "locale/hi/content/sets-functions-relations/sets/pairs-and-products.tex",
+      "target_bytes": 8935,
+      "target_texcount": 680,
+      "target_sha256": "8094D15AE1B66D570FBBCAE5BF59581E452B64DFE5481D118CE71881F4006EE3"
+    },
+    {
+      "batch": "HI-OLP-0006",
+      "stable_id": "sfr/set/rus",
+      "source_path": "content/sets-functions-relations/sets/russells-paradox.tex",
+      "source_bytes": 3761,
+      "source_texcount": 535,
+      "source_sha256": "9A76315CD0D9CF89D27E90A9B87138B1C95AEA98E0D26DE3FE12D897B8C4D10D",
+      "target_path": "locale/hi/content/sets-functions-relations/sets/russells-paradox.tex",
+      "target_bytes": 8676,
+      "target_texcount": 748,
+      "target_sha256": "7B8B95FCFED81252E839450532A2D7DF0853182F18E6B248555E87270D387682"
+    },
+    {
+      "batch": "HI-OLP-0007",
+      "stable_id": "sfr/rel/set",
+      "source_path": "content/sets-functions-relations/relations/relations-as-sets.tex",
+      "source_bytes": 5376,
+      "source_texcount": 624,
+      "source_sha256": "412C6FA44EAD94F076DFEA7CD23F9E3CD748B08C1882DCB129B15F8EFCF5C29C",
+      "target_path": "locale/hi/content/sets-functions-relations/relations/relations-as-sets.tex",
+      "target_bytes": 10665,
+      "target_texcount": 856,
+      "target_sha256": "D058B0700F3137B7F67F35E3A96F4EC85092D0C1FCC85EFC2BC1B46C16886495"
+    },
+    {
+      "batch": "HI-OLP-0008",
+      "stable_id": "sfr/rel/prp",
+      "source_path": "content/sets-functions-relations/relations/special-properties.tex",
+      "source_bytes": 3165,
+      "source_texcount": 378,
+      "source_sha256": "F9BDFCB4C680EA58FDB209F0347C2F8055DE96558CAF69A26EC3CE8E1E7CE6A1",
+      "target_path": "locale/hi/content/sets-functions-relations/relations/special-properties.tex",
+      "target_bytes": 6617,
+      "target_texcount": 537,
+      "target_sha256": "7E2F28A89715B368745ED74A494356EB7D20978669CCFAF7876D749927C79684"
+    },
+    {
+      "batch": "HI-OLP-0009",
+      "stable_id": "sfr/rel/eqv",
+      "source_path": "content/sets-functions-relations/relations/equivalence-relations.tex",
+      "source_bytes": 3470,
+      "source_texcount": 384,
+      "source_sha256": "0B2167D0A9633938FD173D396F9E92B795826821471FF111483F7C7088A4BE46",
+      "target_path": "locale/hi/content/sets-functions-relations/relations/equivalence-relations.tex",
+      "target_bytes": 6407,
+      "target_texcount": 516,
+      "target_sha256": "F34349BB446B43149C1688095F46F3F0D530C85F22967BE240F31955A100A628"
+    },
+    {
+      "batch": "HI-OLP-0010",
+      "stable_id": "sfr/rel/ord",
+      "source_path": "content/sets-functions-relations/relations/orders.tex",
+      "source_bytes": 6476,
+      "source_texcount": 770,
+      "source_sha256": "C6B7F7F49379F9CAC28D844270639EAE141152978EF8AD68065D0CFD83CCBD38",
+      "target_path": "locale/hi/content/sets-functions-relations/relations/orders.tex",
+      "target_bytes": 12196,
+      "target_texcount": 1030,
+      "target_sha256": "6846E9CE065F6B7B9B8327E1A222FA092DC9277A5C179070B16943B18BCB0634"
+    },
+    {
+      "batch": "HI-OLP-0011",
+      "stable_id": "sfr/rel/grp",
+      "source_path": "content/sets-functions-relations/relations/graphs.tex",
+      "source_bytes": 3016,
+      "source_texcount": 278,
+      "source_sha256": "A538018608CE97D0B371A392912C3D6825D8F3B17719BCECA5744A77ACE26351",
+      "target_path": "locale/hi/content/sets-functions-relations/relations/graphs.tex",
+      "target_bytes": 5440,
+      "target_texcount": 355,
+      "target_sha256": "D7197AE6425C67138F067A8DF5D32CE1CD8A894DFEB6B0ABFA456ED0CF345191"
+    }
+  ],
+  "totals": {
+    "unit_count": 11,
+    "source_texcount": 5369,
+    "target_texcount": 7276
+  },
+  "next_cursor": {
+    "batch": "HI-OLP-0012",
+    "stable_id": "sfr/rel/tre",
+    "source_path": "content/sets-functions-relations/relations/trees.tex",
+    "source_bytes": 5232,
+    "source_texcount": 685,
+    "source_sha256": "57CC56EE55506AA19E7BE6129D2CAD6B8635FD2D6407399D4F774782F2CDD588"
+  }
+}

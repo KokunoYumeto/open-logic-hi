@@ -1,0 +1,45 @@
+{
+  "title": "Open Logic Project: Hindi cumulative working edition through HI-OLP-0011",
+  "upload_type": "dataset",
+  "description": "Hindi (hi-Deva-IN) cumulative machine-assisted translation of eleven accepted Open Logic Project sections, with a 17-page compiled and visually checked reader, editable TeX, exact frozen source authority, terminology and complete relevant provenance/QA evidence. This release does not claim whole-work completion, human review, peer review, or PDF/UA certification.",
+  "creators": [
+    {
+      "name": "Manuscript Typesetting Project",
+      "affiliation": "Independent"
+    }
+  ],
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "hin",
+  "version": "2026.08.13.2 working edition through HI-OLP-0011",
+  "keywords": [
+    "Open Logic Project",
+    "Hindi",
+    "hi-Deva-IN",
+    "logic",
+    "set theory",
+    "relations",
+    "mathematics education",
+    "LaTeX",
+    "working translation",
+    "open textbook",
+    "CC BY 4.0"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.20393488",
+      "relation": "isPartOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/KokunoYumeto/open-logic-hi",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/OpenLogicProject/OpenLogic/tree/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+      "relation": "isDerivedFrom",
+      "scheme": "url"
+    }
+  ]
+}

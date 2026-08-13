@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "release_id": "HI-OLP-PUB-0002",
+  "status": "PASS_MACHINE_ASSISTED_CUMULATIVE_WORKING_EDITION",
+  "source_units_admitted": 11,
+  "unit_pdfs_compiled": 11,
+  "unit_render_pages_checked": 18,
+  "cumulative_pdf": {
+    "pages": 17,
+    "sha256": "BC7D4F6280D2E3DA427715B7CA2DF5335E8057AD0C0DCBCADEF8C18E27360468",
+    "build": "PASS",
+    "hard_log_scan_hits": 0,
+    "poppler_positive_hindi_probes": "11/11",
+    "source_english_titles_absent": "11/11",
+    "fonts_embedded_subset_unicode": "18/18",
+    "devanagari_fonts_unicode": "5/5",
+    "all_pages_visual_qa": "PASS_ORIGINAL_DETAIL_300_DPI"
+  },
+  "literal_math_and_structure_invariance": "PASS_PER_UNIT",
+  "independent_ai_replay": "PASS_PER_UNIT",
+  "human_reviewed": false,
+  "pdf_ua_certified": false,
+  "whole_work_complete": false,
+  "full_evidence_path": "02_OpenLogic_hi-Deva-IN_EVIDENCE_AND_PROVENANCE.zip"
+}

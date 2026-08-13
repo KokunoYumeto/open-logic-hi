@@ -1,0 +1,80 @@
+% Curated cumulative working-reader wrapper through HI-OLP-0011.
+% Source authority: OpenLogicProject/OpenLogic commit
+% 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+% This wrapper adds only Hindi title/status/navigation matter; each translated
+% section remains an independently hashed source-preserving subfile.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{flafter}
+\usepackage{float}
+
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\contentsname}{विषय-सूची}
+% The generated job name is intentionally descriptive on disk, but it is too
+% long for the running footer.  Keep the linked work name and licence visible
+% while using a compact display label that cannot collide with the page number.
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{OpenLogic-hi}}
+  \ifgitinfo\ 
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\floatplacement{figure}{H}
+\setlength{\emergencystretch}{2em}
+
+\hypersetup{
+  pdftitle={ओपन लॉजिक परियोजना: हिन्दी संचयी अनुवाद},
+  pdfauthor={Interlanguage Hindi translation programme},
+  pdfsubject={समुच्चयों और संबंधों पर ग्यारह अनूदित खंड},
+  pdfkeywords={तर्कशास्त्र, समुच्चय, संबंध, आलेख, हिन्दी, Open Logic Project}
+}
+
+\begin{document}
+
+\begingroup
+\thispagestyle{empty}
+\centering
+\vspace*{0.11\textheight}
+{\Huge\bfseries ओपन लॉजिक परियोजना\par}
+\vspace{0.8cm}
+{\LARGE हिन्दी संचयी अनुवाद\par}
+\vspace{1.0cm}
+{\Large समुच्चय और संबंध\par}
+\vspace{0.4cm}
+{\large ग्यारह आरम्भिक खंड\par}
+\vfill
+{\normalsize स्रोत: Open Logic Project, संशोधन
+\texttt{9620cc73f9c8e0ad003c514a5d3748f29611c4c0}\par}
+\vspace{0.35cm}
+{\normalsize स्थायी हिन्दी संस्करण DOI:
+\href{https://doi.org/10.5281/zenodo.21920511}{10.5281/zenodo.21920511}\par}
+\vspace{0.35cm}
+{\small यह मशीन-सहायित संचयी अनुवाद है। प्रत्येक सम्मिलित खंड का
+गणितीय विन्यास जाँचा गया है, PDF सफलतापूर्वक बनाया गया है और प्रत्येक
+पृष्ठ का दृश्य परीक्षण किया गया है। यह पूर्ण पुस्तक, मानवीय समीक्षा,
+आलोचनात्मक संस्करण अथवा PDF/UA सुगम्यता का दावा नहीं है। अगला अनुवाद
+खंड \texttt{trees.tex} है।\par}
+\vspace*{0.06\textheight}
+\par
+\endgroup
+\clearpage
+\raggedbottom
+
+\tableofcontents*
+\clearpage
+
+\subfile{basics}
+\subfile{subsets}
+\subfile{important-sets}
+\subfile{unions-and-intersections}
+\subfile{pairs-and-products}
+\subfile{russells-paradox}
+\subfile{../relations/relations-as-sets}
+\subfile{../relations/special-properties}
+\subfile{../relations/equivalence-relations}
+\begin{sloppypar}
+\subfile{../relations/orders}
+\end{sloppypar}
+\subfile{../relations/graphs}
+
+\end{document}

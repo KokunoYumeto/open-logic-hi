@@ -1,0 +1,9 @@
+% Hindi localization overrides for Open Logic.
+% The upstream open-logic-config.sty is loaded first; this file must contain
+% overrides only, not a second copy of the base configuration.
+
+% Hindi has no indefinite article and the controlled plural of "अवयव" is
+% unchanged in these token positions.
+\settexttoken{element}{अवयव}{अवयव}[अवयव][अवयव]
+\definetoken{a}{element}{}
+\definetoken{A}{element}{}

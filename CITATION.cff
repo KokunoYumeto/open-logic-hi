@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "Please cite this exact Hindi cumulative release using the metadata below."
+title: "Open Logic Project: Hindi cumulative working edition through HI-OLP-0011"
+type: dataset
+authors:
+  - name: "Manuscript Typesetting Project"
+    affiliation: "Independent"
+version: "2026.08.13.2"
+date-released: 2026-08-13
+doi: 10.5281/zenodo.21921856
+license: CC-BY-4.0
+repository-code: "https://github.com/KokunoYumeto/open-logic-hi"
+url: "https://doi.org/10.5281/zenodo.21920511"
+abstract: >-
+  Machine-assisted Hindi (hi-Deva-IN) cumulative working edition of eleven
+  accepted Open Logic Project sections, built and visually checked as a
+  17-page reader. This release does not claim whole-work completion or human
+  review.
+keywords:
+  - Hindi
+  - hi-Deva-IN
+  - Open Logic Project
+  - logic
+  - set theory
+  - relations
+  - LaTeX
+  - open textbook
+references:
+  - type: software
+    title: "Open Logic Project source authority"
+    repository-code: "https://github.com/OpenLogicProject/OpenLogic"
+    version: "commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0"

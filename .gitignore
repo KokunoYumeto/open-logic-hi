@@ -1,0 +1,11 @@
+build/out/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.thm
+*.toc
+*.xdv
