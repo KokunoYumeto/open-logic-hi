@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "release_id": "HI-OLP-PUB-0002",
+  "status": "PASS_PUBLIC_COMMIT_ARCHIVE_MANIFEST_VALIDATION",
+  "checked_utc": "2026-08-13T18:10:00Z",
+  "repository": "https://github.com/KokunoYumeto/open-logic-hi",
+  "commit": "36560b9e875028b0a28d17d42b95eadf217aa918",
+  "commit_archive_url": "https://codeload.github.com/KokunoYumeto/open-logic-hi/zip/36560b9e875028b0a28d17d42b95eadf217aa918",
+  "commit_archive_bytes": 684255,
+  "manifest_path": "evidence/ARTIFACT_SHA256.tsv",
+  "manifest_rows": 48,
+  "manifest_bytes": 5850,
+  "manifest_sha256": "41FEB25809275C8624727E6B5D040211A20F9DBF20A123E22EAA042E8F75A7FB",
+  "missing_rows": 0,
+  "size_mismatches": 0,
+  "hash_mismatches": 0,
+  "github_contents_api": {
+    "blob_sha1": "ef0c63bb2866ebe088cbff7ea21c1d15f2f43e99",
+    "bytes": 5850,
+    "sha256": "41FEB25809275C8624727E6B5D040211A20F9DBF20A123E22EAA042E8F75A7FB"
+  },
+  "raw_cdn_observation": {
+    "status": "STALE_CACHE_NOT_USED_AS_AUTHORITY",
+    "observed_bytes": 5850,
+    "observed_sha256": "0C9D46F9C5A96B120BACCFB4B4C1FB690AE3ABDDEDC6BB57ABCBCE1E89D2D691",
+    "reason": "The branch-tip raw CDN response still exposed the pre-correction manifest while Git ref resolution, the GitHub contents API at the exact commit, and the exact commit archive all exposed the corrected committed blob. Acceptance is pinned to the immutable commit archive and verified row by row."
+  }
+}
