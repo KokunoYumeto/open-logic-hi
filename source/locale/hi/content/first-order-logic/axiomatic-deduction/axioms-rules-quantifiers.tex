@@ -1,0 +1,34 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: axioms-rules-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{axd}{qua}
+
+\olsection{परिमाणकों के अभिगृहीत और नियम}
+
+\begin{defn}[परिमाणकों के अभिगृहीत]
+परिमाणकों को नियंत्रित करने वाले \emph{अभिगृहीत} निम्न के सभी
+प्रतिस्थापन-दृष्टान्त हैं:
+\begin{align}
+\ollabel{ax:q1} & \lforall[x][!B] \lif !B(t), \\
+\ollabel{ax:q2} & {}!B(t) \lif \lexists[x][!B].
+\end{align}
+किसी भी बंद पद~$t$ के लिए।
+\end{defn}
+
+\begin{defn}[परिमाणकों के नियम]
+\item यदि $!B \lif !A(a)$ पहले ही !!{derivation} में आ चुका हो और $a$,
+  ~$\Gamma$ अथवा~$!B$ में न आता हो, तो $!B \lif
+  \lforall[x][!A(x)]$ एक सही अनुमान-चरण है।
+\item यदि $!A(a) \lif !B$ पहले ही !!{derivation} में आ चुका हो और $a$,
+  ~$\Gamma$ अथवा~$!B$ में न आता हो, तो $\lexists[x][!A(x)] \lif
+  !B$ एक सही अनुमान-चरण है।
+\end{defn}
+
+इन दोनों में से किसी भी नियम को संक्षेप में ``\QR'' लिखेंगे।
+
+\end{document}

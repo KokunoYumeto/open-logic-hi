@@ -1,0 +1,94 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{rul}}
+      {\olfileid[hi]{pl}{axd}{rul}}
+
+\olsection{नियम और \usetoken{P}{derivation}}
+
+\begin{explain}
+  अभिगृहीतीय !!{derivation}s संभवतः तर्कशास्त्र के सबसे सरल
+  !!{derivation} तंत्र हैं। !!^a{derivation}, !!{formula}s का केवल एक अनुक्रम
+  है। !!a{derivation} माने जाने के लिए अनुक्रम का प्रत्येक !!{formula} या तो
+  किसी अभिगृहीत का दृष्टान्त होना चाहिए, या किसी अनुमान-नियम द्वारा अनुक्रम में
+  उससे पहले आए एक अथवा अधिक !!{formula}s से प्राप्त होना चाहिए।
+  !!^a{derivation} !!{derive} करती है अपने अंतिम !!{formula} को।
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+यदि $\Gamma$, $\Lang L$ के !!{formula}s का समुच्चय है, तो~$\Gamma$ से
+\emph{!!{derivation}}, !!{formula}s का परिमित अनुक्रम $!A_1$,
+\dots,~$!A_n$ है, जिसमें प्रत्येक $i \le n$ के लिए निम्न में से कोई एक
+शर्त सत्य होती है:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; अथवा
+\item $!A_i$ एक अभिगृहीत है; अथवा
+\item $!A_i$ किसी अनुमान-नियम द्वारा किसी $!A_j$ (और $!A_k$) से प्राप्त
+  होता है, जहाँ $j < i$ (और $k < i$)।
+\end{enumerate}
+\end{defn}
+
+किसे सही !!{derivation} माना जाए, यह इस पर निर्भर है कि हम किन अनुमान-नियमों
+की अनुमति देते हैं (और निस्संदेह किन्हें अभिगृहीत मानते हैं)। अनुमान-नियम एक
+यदि-तो कथन है जो बताता है कि कुछ शर्तों के अधीन !!a{derivation} का
+चरण~$A_i$ सही अनुमान-चरण है।
+
+\begin{defn}[अनुमान-नियम]
+\emph{अनुमान-नियम} इस बात की पर्याप्त शर्त देता है कि~$\Gamma$ से
+!!a{derivation} में कौन-सा चरण सही अनुमान-चरण माना जाएगा।
+\end{defn}
+
+उदाहरणार्थ, क्योंकि किसी एक-अवयवी अनुक्रम $!A$ को, जब $!A \in \Gamma$ हो,
+तुच्छतः !!a{derivation} माना जाता है, इसलिए निम्न एक अत्यंत सरल अनुमान-नियम
+हो सकता है:
+\begin{quote}
+  यदि $!A \in \Gamma$, तो $!A$ सदा सही अनुमान-चरण है, किसी भी
+  !!{derivation} में, जो~$\Gamma$ से हो।
+\end{quote}
+इसी प्रकार, यदि $!A$ अभिगृहीतों में से एक है, तो अकेला $!A$ ही
+!!a{derivation} है; इसलिए यह भी एक अनुमान-नियम है:
+\begin{quote}
+  यदि $!A$ कोई अभिगृहीत है, तो $!A$ सही अनुमान-चरण है।
+\end{quote}
+अनुमान-नियम विचाराधीन चरण से पहले आए !!{formula}s का सहारा ले, तो बात अधिक
+रोचक होती है। निम्न नियम को \emph{पूर्वपक्ष-स्थापन} कहते हैं:
+\begin{quote}
+  यदि $!B \lif !A$ और $!B$,~!!{derivation} में ऊपर आ चुके हों, तो~$!A$
+  सही अनुमान-चरण है।
+\end{quote}
+यदि यही एकमात्र अनुमान-नियम है, तो ऊपर दी गई !!{derivation} की परिभाषा का
+अर्थ यह है: $!A_1$, \dots,~$!A_n$ !!a{derivation} तभी और केवल तभी है जब
+प्रत्येक $i \le n$ के लिए निम्न में से कोई एक शर्त सत्य हो:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; अथवा
+\item $!A_i$ कोई अभिगृहीत है; अथवा
+\item किसी $j < i$ के लिए $!A_j$, $!B \lif !A_i$ है, और किसी $k < i$ के
+  लिए $!A_k$,~$!B$ है।
+\end{enumerate}
+अंतिम उपवाक्य कहता है कि $!A_i$,~$!A_j$ ($!B \lif !A_i$) और $!A_k$
+($!B$) से पूर्वपक्ष-स्थापन द्वारा प्राप्त होता है। यदि हम $1$ से~$n$ तक
+जा सकें और हर बार ऐसा !!a{formula}~$!A_i$ पाएँ जो या तो~$\Gamma$ में हो,
+कोई अभिगृहीत हो, अथवा जिसे अनुमान-नियम सही अनुमान-चरण बताए, तो पूरा अनुक्रम
+सही !!{derivation} माना जाता है।
+
+\begin{defn}[!!^{derivability}]
+!!{formula}~$!A$, $\Gamma$ से \emph{!!{derivable}} है, जिसे
+$\Gamma \Proves !A$ लिखते हैं, यदि~$\Gamma$ से ऐसी !!a{derivation} हो जो
+$!A$ पर समाप्त होती है।
+\end{defn}
+
+\begin{defn}[प्रमेय]
+!!^a{formula}~$!A$ \emph{प्रमेय} है यदि रिक्त समुच्चय से~$!A$ की कोई
+!!a{derivation} हो। हम $\Proves !A$ लिखते हैं यदि $!A$ प्रमेय है, और यदि
+नहीं है तो
+$\Proves/ !A$ लिखते हैं।
+\end{defn}
+
+
+\end{document}

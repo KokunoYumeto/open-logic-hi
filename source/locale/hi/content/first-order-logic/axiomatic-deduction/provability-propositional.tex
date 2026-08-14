@@ -1,0 +1,85 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-propositional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{ppr}}
+      {\olfileid[hi]{pl}{axd}{ppr}}
+
+\olsection{\usetoken{S}{derivability} और प्रतिज्ञप्ति-संयोजक}
+
+\begin{explain}
+  हम स्थापित करते हैं कि अभिगृहीतीय निगमन का !!{derivability}
+  संबंध~$\Proves$ इतना प्रबल है कि प्रतिज्ञप्ति-संयोजकों से जुड़े कुछ
+  आधारभूत तथ्य सिद्ध कर सके, जैसे $!A \land !B
+  \Proves !A$ और $!A, !A \lif !B \Proves !B$ (पूर्वपक्ष-स्थापन)। पूर्णता
+  प्रमेय के प्रमाण के लिए
+  ये तथ्य आवश्यक हैं।
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} दोनों $!A \land !B \Proves
+    !A$ और $!A \land !B \Proves !B$ सत्य हैं।
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item \olref[prp]{ax:land1} और \olref[prp]{ax:land1} से
+      पूर्वपक्ष-स्थापन द्वारा।
+  \item \olref[prp]{ax:land3} से पूर्वपक्ष-स्थापन के दो प्रयोगों द्वारा।
+  \end{enumerate}
+\end{proof}
+
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ असंगत है।
+  \item दोनों $!A \Proves !A \lor !B$ और $!B \Proves !A \lor !B$ सत्य हैं।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item \olref[prp]{ax:lnot1} से $\Proves \lnot !A \lif (!A
+    \lif \lfalse)$ और $\Proves \lnot !B \lif (!B \lif \lfalse)$ मिलते हैं।
+    अतः निगमन प्रमेय से $\{\lnot !A\} \Proves !A \lif
+    \lfalse$ और
+    $\{\lnot !B\} \Proves !B \lif \lfalse$। \olref[prp]{ax:lor3} से
+    $\{\lnot !A, \lnot !B\} \Proves (!A
+    \lor !B) \lif \lfalse$। निगमन प्रमेय से $\{!A \lor !B,
+    \lnot !A, \lnot !B\} \Proves \lfalse$।
+  \item \olref[prp]{ax:lor1} और \olref[prp]{ax:lor2} से
+    पूर्वपक्ष-स्थापन द्वारा।
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    दोनों $\lnot !A \Proves !A \lif !B$ और $!B \Proves !A \lif !B$ सत्य हैं।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item हम इसे !!{derive} कर सकते हैं:
+    \begin{derivation}
+      1. & $!A$ & \Hyp\\
+      2. & $!A \lif !B$ & \Hyp\\
+      3. & $!B$ & 1, 2, \MP
+    \end{derivation}
+    
+  \item क्रमशः \olref[prp]{ax:lnot2}, \olref[prp]{ax:lif1}, और निगमन
+    प्रमेय से।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

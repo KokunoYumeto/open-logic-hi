@@ -1,0 +1,124 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{infinite}{dedekind}
+\olsection{डेडेकिंड बीजगणित}
+
+हम केवल यह नहीं चाहते कि प्राकृत संख्याएँ अनंत हों; हम यह भी चाहते हैं कि
+उनमें कुछ (बीजीय) गुण हों: योग, गुणन आदि के अधीन उनका व्यवहार सुव्यवस्थित होना
+चाहिए।
+
+डेडेकिंड का विचार \emph{उत्तरवर्ती फलन} की धारणा को मूल मानना और फिर संख्याओं
+का लक्षण निम्नलिखित गुणों वाली वस्तुओं के रूप में देना था:
+\begin{enumerate}
+	\item एक संख्या $0$ है, जो किसी भी संख्या की उत्तरवर्ती नहीं है
+	\\अर्थात्, $0 \notin \ran{s}$
+	\\अर्थात्, $\forall x\ s(x) \neq 0$
+	\item भिन्न संख्याओं की उत्तरवर्ती संख्याएँ भिन्न होती हैं
+	\\अर्थात्, $s$ कोई !!a{injection} है
+	\\अर्थात्, $\forall x \forall y (s(x) = s(y) \lif x = y)$
+	\item\ollabel{repeatedapplication} प्रत्येक संख्या उत्तरवर्ती फलन को
+	$0$ पर बार-बार लगाने से प्राप्त होती है।
+\end{enumerate}
+प्रथम-कोटि तर्कशास्त्र से पहली दो शर्तों को संभालना सरल है (ऊपर देखें)। किन्तु
+केवल प्रथम-कोटि तर्कशास्त्र से \olref{repeatedapplication} को नहीं संभाला जा
+सकता। डेडेकिंड की निर्णायक प्रगति यह थी कि उन्होंने शर्त
+\olref{repeatedapplication} को समुच्चय-सैद्धांतिक रूप में इस प्रकार पुनः
+सूत्रबद्ध किया:
+\begin{enumerate}
+	\item[3$'$.] प्राकृत संख्याएँ वह लघुतम समुच्चय हैं जो \emph{उत्तरवर्ती
+	फलन के अधीन संवृत} है: अर्थात समुच्चय के किसी भी !!{element} पर $s$ लगाने
+	से उसी समुच्चय का एक !!{element} प्राप्त होता है।
+\end{enumerate}
+किन्तु हमें इसे धीरे-धीरे खोलकर लिखना होगा।
+
+\begin{defn}\ollabel{Closure}
+	किसी भी फलन $f$ के लिए समुच्चय $X$, $f$-\emph{संवृत} है तभी और केवल तभी
+	जब $(\forall x \in X)f(x) \in X$। अब किसी भी $o$ के लिए परिभाषित करें:
+	$$\closureofunder{f}{o} = \bigcap\Setabs{X}{o \in X\text{ और }X
+\text{ $f$-संवृत है}}$$
+\end{defn}
+
+अतः $\closureofunder{f}{o}$ उन सभी $f$-संवृत समुच्चयों का सर्वनिष्ठ है जिनमें
+$o$ कोई !!a{element} है। इसलिए सहजतः $\closureofunder{f}{o}$ वह
+\emph{लघुतम} $f$-संवृत समुच्चय है जिसमें $o$ कोई !!a{element} है। अगला परिणाम
+इस सहज विचार को यथार्थ रूप देता है:
+\begin{lem}\ollabel{closureproperties}
+	किसी भी फलन $f$ और किसी भी $o \in A$ के लिए:
+	\begin{enumerate}
+		\item\ollabel{closurehaselem} $o \in \closureofunder{f}{o}$; और
+		\item\ollabel{closureclosed} $\closureofunder{f}{o}$, $f$-संवृत है; और
+		\item\ollabel{closuresmallest} यदि $X$, $f$-संवृत है और $o \in
+		X$, तो $\closureofunder{f}{o} \subseteq X$।
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+ध्यान दें कि कम-से-कम एक $f$-संवृत समुच्चय ऐसा है जिसमें $o$ कोई
+!!a{element} है, अर्थात $\ran{f}\cup
+\{o\}$। इसलिए ऐसे \emph{सभी} समुच्चयों
+का सर्वनिष्ठ $\closureofunder{f}{o}$ अस्तित्व में है। अब हमें
+\olref{closurehaselem}--\olref{closuresmallest} की जाँच करनी है।
+
+\olref{closurehaselem} के लिए: $o \in \closureofunder{f}{o}$, क्योंकि यह उन
+समुच्चयों का सर्वनिष्ठ है जिनमें से हर एक में $o$ कोई !!a{element} है।
+
+\olref{closureclosed} के लिए: मान लें $x \in \closureofunder{f}{o}$। अतः यदि
+$o \in X$ और $X$, $f$-संवृत है, तो $x \in X$; और अब $f(x) \in X$, क्योंकि
+$X$, $f$-संवृत है। इसलिए $f(x) \in \closureofunder{f}{o}$।
+
+\olref{closuresmallest} के लिए: सामान्यतः, यदि $X
+\in C$ तो $\bigcap C \subseteq X$।
+\end{proof}
+
+इसका उपयोग करके हम कह सकते हैं:
+
+\begin{defn}
+एक \emph{डेडेकिंड बीजगणित} ऐसा समुच्चय $A$ है जिसके साथ कोई फलन $f
+\colon A \to A$ और कोई $o \in A$ इस प्रकार दिए हों कि:
+	\begin{enumerate}
+		\item \ollabel{ded:proper} $o \notin \ran{f}$
+		\item \ollabel{ded:injection} $f$ कोई !!a{injection} है
+		\item \ollabel{ded:closure} $A = \closureofunder{f}{o}$
+	\end{enumerate}
+\end{defn}
+
+चूँकि $A = \closureofunder{f}{o}$, हमारा पिछला परिणाम बताता है कि $A$ वह
+लघुतम $f$-संवृत समुच्चय है जिसमें $o$ कोई !!a{element} है। स्पष्ट है कि
+डेडेकिंड बीजगणित डेडेकिंड-अनंत होता है; परिभाषा की शर्तें
+\olref{ded:proper} और \olref{ded:injection} देखें। किन्तु अधिक रोचक तथ्य यह है
+कि किसी भी डेडेकिंड-अनंत समुच्चय को डेडेकिंड बीजगणित में बदला जा सकता है।
+
+\begin{thm}\ollabel{thm:DedekindInfiniteAlgebra}
+यदि कोई डेडेकिंड-अनंत समुच्चय है, तो कोई डेडेकिंड बीजगणित है।
+\end{thm}
+
+\begin{proof}
+मान लें कि $D$ डेडेकिंड-अनंत है। अतः कोई एकैकी प्रतिचित्रण $g \colon D \to
+D$ और कोई अवयव $o  \in D \setminus \ran{g}$ है। अब $A =
+\closureofunder{g}{o}$ रखें; \olref{closureproperties} के अनुसार $A$ अस्तित्व
+में है और $o \in A$। $f =
+\funrestrictionto{g}{A}$ रखें। हम दिखाएँगे कि $A, f, o$ मिलकर डेडेकिंड
+बीजगणित बनाते हैं।
+
+\olref{ded:proper} के लिए: $o \notin \ran{g}$ और $\ran{f}
+\subseteq \ran{g}$, इसलिए $o\notin \ran{f}$।
+
+\olref{ded:injection} के लिए: $g$, $D$ पर एकैकी प्रतिचित्रण है; इसलिए $f
+\subseteq g$ भी एकैकी प्रतिचित्रण होना चाहिए।
+
+\olref{ded:closure} के लिए: \olref{closureproperties} के अनुसार $A$,
+$g$-संवृत है; अतः $A$, $f$-संवृत भी है। इसलिए
+\olref{closureproperties} से $\closureofunder{f}{o} \subseteq A$। चूँकि
+$\closureofunder{f}{o}$ भी $f$-संवृत है और $f = \funrestrictionto{g}{A}$,
+इसलिए $\closureofunder{f}{o}$, $g$-संवृत है। अतः
+\olref{closureproperties} से $A \subseteq \closureofunder{f}{o}$।
+\end{proof}
+
+\end{document}

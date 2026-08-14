@@ -1,0 +1,73 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: operations
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{rel}{ops}
+\olsection{संबंधों पर संक्रियाएँ}
+
+संबंधों को बदलना या संयोजित करना प्रायः उपयोगी होता है।
+\olref[sfr][rel][ord]{prop:stricttopartial} में हमने संबंधों के
+\emph{सम्मिलन} पर विचार किया था, जो युग्मों के समुच्चयों के रूप में माने गए
+दो संबंधों का सम्मिलन ही है। इसी प्रकार,
+\olref[sfr][rel][ord]{prop:partialtostrict} में हमने संबंधों के सापेक्ष अंतर
+पर विचार किया था। संबंधों पर की जा सकने वाली कुछ अन्य संक्रियाएँ ये हैं।
+
+\begin{defn}\ollabel{relationoperations} 
+मान लीजिए कि $R$, $S$ संबंध हैं और $A$ कोई समुच्चय है।
+
+संबंध $R$ का \emph{प्रतिलोम} $R^{-1} = \Setabs{\tuple{y, x}}{\tuple{x,
+    y} \in R}$ है।
+
+संबंधों $R$ और $S$ का \emph{सापेक्ष गुणनफल} $(R \mid S) =
+\{\tuple{x, z} : \exists y(Rxy \land Syz)\}$ है।
+
+$R$ का समुच्चय $A$ पर \emph{प्रतिबंधन} $\funrestrictionto{R}{A}= R
+\cap A^2$ है।
+
+$R$ का समुच्चय $A$ पर \emph{अनुप्रयोग} $\funimage{R}{A} = \{y :
+(\exists x \in A)Rxy\}$ है।
+\end{defn}
+
+\begin{ex}
+मान लीजिए कि $S \subseteq \Int^2$,~$\Int$ पर उत्तरवर्ती संबंध है, अर्थात
+$S = \Setabs{\tuple{x, y} \in \Int^2}{x + 1 = y}$, ताकि $Sxy$ तभी और केवल तभी जब $x + 1 = y$।
+
+$S^{-1}$, $\Int$ पर पूर्ववर्ती संबंध है, अर्थात
+$\Setabs{\tuple{x,y}\in\Int^2}{x -1 =y}$।
+
+$S\mid S$ है
+$ \Setabs{\tuple{x,y}\in\Int^2}{x + 2 =y}$
+
+$\funrestrictionto{S}{\Nat}$,~$\Nat$ पर उत्तरवर्ती संबंध है।
+
+$\funimage{S}{\{1,2,3\}}$, $\{2, 3, 4\}$ है।
+\end{ex}
+
+\begin{defn}[संक्रामक संवरक]मान लीजिए कि $R \subseteq A^2$ एक द्विआधारी संबंध है।
+	
+संबंध~$R$ का \emph{संक्रामक संवरक} $R^+ = \bigcup_{0 < n \in
+\Nat} R^n$ है, जहाँ हम पुनरावर्ती रूप से $R^1 = R$ और $R^{n+1} = R^n
+\mid R$ परिभाषित करते हैं।
+
+संबंध $R$ का \emph{स्वतुल्य संक्रामक संवरक} $R^* = R^+ \cup
+\Id{A}$ है।
+\end{defn}
+
+\begin{ex}
+उत्तरवर्ती संबंध $S \subseteq \Int^2$ लीजिए। $S^2xy$ तभी और केवल तभी जब $x + 2 =
+y$, $S^3xy$ तभी और केवल तभी जब $x + 3 = y$, इत्यादि। अतः $S^+xy$ तभी और केवल तभी जब
+समीकरण $x + n = y$ किसी
+$n \geq 1$ के लिए सत्य हो। दूसरे शब्दों में, $S^+xy$ तभी और केवल तभी जब $x < y$, और $S^*xy$ तभी और केवल तभी जब $x \le
+y$।
+\end{ex}
+
+\begin{prob}
+सिद्ध कीजिए कि $R$ का संक्रामक संवरक वास्तव में संक्रामक है।
+\end{prob}
+
+\end{document}

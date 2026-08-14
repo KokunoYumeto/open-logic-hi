@@ -1,0 +1,100 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: main-operator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{mai}
+
+\olsection{किसी सूत्र का \printtoken{S}{main operator}}
+
+\begin{explain}
+किसी !!a{formula}~$!A$ के निर्माण में सबसे अंत में प्रयुक्त संक्रियक की
+चर्चा करना प्रायः उपयोगी होता है। इस संक्रियक को~$!A$ का \emph{मुख्य
+संक्रियक} कहते हैं। सहज रूप से यह $!A$ का ``सबसे बाहरी'' संक्रियक है।
+उदाहरणतः $\lnot !A$ का मुख्य संक्रियक $\lnot$ है, $(!A \lor !B)$ का मुख्य
+संक्रियक $\lor$ है, इत्यादि।
+\end{explain}
+
+
+\begin{defn}[!!^{main operator}]
+\ollabel{def:main-op}
+किसी !!a{formula}~$!A$ का \emph{!!{main operator}} निम्न प्रकार परिभाषित है:
+\begin{enumerate}
+\item \indcase*{!A}{!A}{$\indfrm$ का कोई !!{main operator} नहीं है।}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ का !!{main operator}
+  ~ $\lnot$ है।}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\indfrm$ का
+  !!{main operator}~$\land$ है।}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\indfrm$ का
+  !!{main operator}~$\lor$ है।}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\indfrm$ का
+  !!{main operator}~$\lif$ है।}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\indfrm$ का
+  !!{main operator}~$\liff$ है।}}{}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ का
+  !!{main operator}~$\lforall$ है।}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ का
+  !!{main operator}~$\lexists$ है।}}{}
+\end{enumerate}
+\end{defn}
+
+हर स्थिति में हमारा आशय सूत्र में !!{main operator} की दर्शाई गई विशिष्ट
+\emph{उपस्थिति} से है। उदाहरणतः सूत्र $((!D \lif !E) \lif (!E \lif !D))$,
+$(!B \lif !C)$ के रूप में है, जहाँ $!B$, $(!D \lif !E)$ है और $!C$,
+$(!E \lif !D)$ है; इसलिए $\lif$ की दूसरी उपस्थिति !!{main operator} है।
+
+\begin{explain}
+यह उस फलन की \emph{पुनरावर्ती} परिभाषा है जो सभी अपरमाण्विक !!{formula}s
+को उनके !!{main operator} की उपस्थिति पर प्रतिचित्रित करता है। !!{formula}s
+जिस ढंग से आगमनात्मक रूप से परिभाषित हैं, उसके कारण प्रत्येक
+!!{formula}~$!A$, \olref{def:main-op} के मामलों में से किसी एक को संतुष्ट
+करता है। इससे प्रत्येक अपरमाण्विक !!{formula}~$!A$ के लिए !!a{main
+  operator} का अस्तित्व सुनिश्चित होता है। चूँकि प्रत्येक !!{formula} इन
+शर्तों में से केवल एक को संतुष्ट करता है, और हर स्थिति में जिन छोटे
+!!{formula}s से $!A$ बना है वे अद्वितीय रूप से निर्धारित हैं, इसलिए
+!!{main
+  operator} की~$!A$ में उपस्थिति अद्वितीय है और हमने सचमुच एक फलन परिभाषित
+किया है।
+\end{explain}
+
+किसी !!{formula} के !!{main operator} का प्रतीक कौन-सा है, इसके अनुसार हम
+उसे \olref{tab:main-op} में दिए नाम से बुलाते हैं।
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+{ किंतु याद रहे कि परिभाषित संक्रियक औपचारिक रूप से !!{formula}s में नहीं
+आते। वे केवल संक्षेप हैं, इसलिए औपचारिक रूप से किसी सूत्र के मुख्य संक्रियक
+नहीं हो सकते। अतः सभी !!{formula}s के बारे में प्रमाणों में उन्हें अलग से
+संभालने की आवश्यकता नहीं है।}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c | c | c}
+!!^{main operator} & !!{formula} का प्रकार & उदाहरण\\
+\hline
+कोई नहीं & परमाण्विक (!!{formula}) &
+\iftag{prvFalse}{$\lfalse$,}{}
+\iftag{prvTrue}{$\ltrue$,}{}
+$\Atom{R}{t_1, \dots, t_n}$,
+$\eq[t_1][t_2]$\\
+$\lnot$ & निषेध & $\lnot !A$ \\
+$\land$ & संयोजन & $(!A \land !B$) \\
+$\lor$ & वियोजन & $(!A \lor !B$) \\
+$\lif$ & !!{conditional} & $(!A \lif !B$) \\
+$\liff$ & !!{biconditional} & $(!A \liff !B)$ \\
+$\lforall[][]$ & सार्वत्रिक (!!{formula})& $\lforall[x][!A]$ \\
+$\lexists[][]$ & अस्तित्वपरक (!!{formula})& $\lexists[x][!A]$
+\end{tabular}
+\caption{!!{formula}s के मुख्य संक्रियक और नाम}
+\ollabel{tab:main-op}
+\end{table}
+
+\end{document}

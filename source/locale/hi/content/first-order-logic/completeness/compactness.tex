@@ -1,0 +1,201 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{com}{com}}
+      {\olfileid[hi]{pl}{com}{com}}
+
+\olsection{संहतता प्रमेय}
+
+पूर्णता प्रमेय का एक महत्त्वपूर्ण परिणाम संहतता प्रमेय है। संहतता प्रमेय
+कहता है कि यदि !!{sentence}s के किसी समुच्चय का प्रत्येक \emph{परिमित}
+उपसमुच्चय संतुष्टनीय है, तो पूरा समुच्चय संतुष्टनीय है---भले ही समुच्चय
+स्वयं अनंत हो। यह बात तनिक भी स्पष्ट नहीं है। कम-से-कम पहली दृष्टि में ऐसा
+कुछ नहीं दिखता जो !!{sentence}s के ऐसे अनंत समुच्चयों की संभावना को रोकता
+हो जो विरोधाभासी हों, पर जिनमें विरोधाभास मानो उनकी अनंत संख्या से ही
+उत्पन्न होता हो। संहतता प्रमेय कहता है कि ऐसी स्थिति असंभव है: ऐसा कोई
+असंतुष्टनीय अनंत !!{sentence}s-समुच्चय नहीं है जिसका प्रत्येक परिमित
+उपसमुच्चय संतुष्टनीय हो। पूर्णता प्रमेय की तरह इसका भी निष्पत्ति से जुड़ा
+एक रूप है: यदि !!{sentence}s का कोई अनंत समुच्चय किसी बात को निष्पन्न करता
+है, तो उसका कोई परिमित उपसमुच्चय पहले ही वह बात निष्पन्न करता है।
+
+\begin{defn}
+  !!{formula}s का समुच्चय $\Gamma$ \emph{परिमिततः संतुष्टनीय} तभी और केवल
+  तभी है जब प्रत्येक परिमित $\Gamma_0 \subseteq \Gamma$ संतुष्टनीय हो।
+\end{defn}
+
+\begin{thm}[संहतता प्रमेय]
+\ollabel{thm:compactness}
+किन्हीं भी वाक्यों $\Gamma$ और $!A$ के लिए निम्न कथन सत्य हैं:
+\begin{enumerate}
+  \item $\Gamma \Entails !A$ तभी और केवल तभी जब कोई परिमित $\Gamma_0
+    \subseteq \Gamma$ ऐसा हो कि $\Gamma_0 \Entails !A$।
+  \item $\Gamma$ संतुष्टनीय तभी और केवल तभी है जब वह परिमिततः संतुष्टनीय
+    हो।
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+हम (2) सिद्ध करते हैं। यदि $\Gamma$ संतुष्टनीय है, तो ऐसी
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$} है कि
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ सभी $!A \in
+\Gamma$ के लिए। निस्संदेह, यह
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ भी~$\Gamma$ के प्रत्येक परिमित
+उपसमुच्चय को संतुष्ट करती है, अतः $\Gamma$ परिमिततः संतुष्टनीय है।
+
+अब मान लें कि $\Gamma$ परिमिततः संतुष्टनीय है। तब प्रत्येक परिमित
+उपसमुच्चय~$\Gamma_0 \subseteq \Gamma$ संतुष्टनीय है। सुदृढ़ता से
+(\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+    prfSC/{fol:seq:sou:cor:consistency-soundness},
+    prfND/{fol:ntd:sou:cor:consistency-soundness},
+    prfTab/{fol:tab:sou:cor:consistency-soundness}}}{%
+  \tagrefs{prfAX/{pl:axd:sou:cor:consistency-soundness},
+    prfSC/{pl:seq:sou:cor:consistency-soundness},
+    prfND/{pl:ntd:sou:cor:consistency-soundness},
+    prfTab/{pl:tab:sou:cor:consistency-soundness}}}),
+प्रत्येक परिमित उपसमुच्चय संगत है। तब
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}} से $\Gamma$ स्वयं संगत होना
+चाहिए। पूर्णता (\olref[cth]{thm:completeness}) से, क्योंकि $\Gamma$ संगत
+है, वह संतुष्टनीय है।
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][com]{thm:compactness} का (1) सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][com]{thm:compactness} का (1) सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{ex}
+प्रत्येक प्रतिरूप~$\Struct{M}$ में, जो किसी सिद्धांत~$\Gamma$ का है, प्रत्येक
+पद~$t$ निस्संदेह~$\Domain{M}$ के किसी !!a{element} को निर्दिष्ट करता है।
+क्या हम यह गारंटी दे सकते हैं कि~$\Domain{M}$ के प्रत्येक !!{element} को भी
+कोई-न-कोई पद निर्दिष्ट करता है? दूसरे शब्दों में, क्या ऐसे
+सिद्धांत~$\Gamma$ हैं जिनके सभी प्रतिरूप आच्छादित हों? संहतता प्रमेय दिखाता
+है कि यदि $\Gamma$ के अनंत प्रतिरूप हों, तो ऐसा नहीं है। इसे इस प्रकार
+देखें: कोई अनंत प्रतिरूप $\Struct{M}$ लें जो~$\Gamma$ का हो, और $c$ को ऐसा
+!!a{constant} मानें जो~$\Gamma$ की भाषा में न हो। $\Delta$ को उन सभी वाक्यों
+$\eq/[c][t]$ का समुच्चय मानें जिनमें $t$, भाषा~$\Lang{L}$ का कोई पद है,
+और यह~$\Gamma$ की भाषा है; अर्थात्
+  \[
+  \Delta = \Setabs{\eq/[c][t]}{t \in \Trm[L]}.
+  \]
+$\Gamma \cup \Delta$ के किसी परिमित उपसमुच्चय को $\Gamma'
+\cup \Delta'$ के रूप में लिखा जा सकता है, जहाँ $\Gamma' \subseteq \Gamma$
+और $\Delta' \subseteq
+\Delta$। चूँकि $\Delta'$ परिमित है, उसमें केवल परिमिततः अनेक पद हो सकते
+हैं। $a \in \Domain{M}$ को~$\Domain{M}$ का ऐसा !!a{element} मानें जिसे उनमें
+से कोई निर्दिष्ट नहीं करता, और $\Struct{M'}$ को ऐसी !!{structure} मानें जो
+$\Struct{M}$ जैसी ही है, पर जिसमें $\Assign{c}{M'} = a$ भी है। चूँकि
+$a \neq \Value{t}{M}$ उन सभी~$t$ के लिए जो~$\Delta'$ में आते हैं,
+$\Sat{M'}{\Delta'}$। चूँकि $\Sat{M}{\Gamma}$, $\Gamma' \subseteq
+\Gamma$, और $c$,~$\Gamma$ में नहीं आता, इसलिए
+$\Sat{M'}{\Gamma'}$ भी। कुल मिलाकर, $\Sat{M'}{\Gamma' \cup \Delta'}$
+प्रत्येक परिमित उपसमुच्चय $\Gamma' \cup \Delta'$ के लिए, जो
+$\Gamma \cup \Delta$ का है। अतः $\Gamma \cup \Delta$ का प्रत्येक
+परिमित उपसमुच्चय संतुष्टनीय है। संहतता से $\Gamma \cup \Delta$ स्वयं
+संतुष्टनीय है। इसलिए ऐसे प्रतिरूप~$\Sat{M}{\Gamma \cup \Delta}$ हैं। ऐसी
+प्रत्येक $\Struct{M}$,~$\Gamma$ का प्रतिरूप है, पर आच्छादित नहीं है, क्योंकि
+$\Value{c}{M} \neq
+\Value{t}{M}$ सभी पदों~$t$ के लिए जो~$\Lang{L}$ के हैं।
+\end{ex}
+
+\begin{ex}
+ऐसी !!a{language} $\Lang{L}$ पर विचार करें जिसमें !!{predicate}~$<$,
+!!{constant}s $\Obj{0}$, $\Obj{1}$, और !!{function}s $+$, $\times$, तथा
+$-$ हों। $\Gamma$ को उन सभी !!{sentence}s का समुच्चय मानें जो इस
+!!{language} की !!{structure}~$\Struct{Q}$ में सत्य हैं, जिसका प्रांत~$\Rat$
+है और जिसकी व्याख्याएँ स्वाभाविक हैं। $\Gamma$,~$\Lang{L}$ के उन सभी !!{sentence}s का समुच्चय है
+जो परिमेय संख्याओं के बारे में सत्य हैं। निस्संदेह,~$\Rat$ में (और~$\Real$
+में भी) ऐसी कोई संख्या~$r$ नहीं है जो~$0$ से बड़ी, पर $1/k$ से छोटी हो,
+सभी $k \in \PosInt$ के लिए। यदि ऐसी संख्या होती, तो वह
+\emph{अतिसूक्ष्म} होती: शून्येतर, पर अनंततः छोटी। संहतता प्रमेय से दिखाया
+जा सकता है कि~$\Gamma$ के ऐसे प्रतिरूप हैं जिनमें अतिसूक्ष्म संख्याएँ हैं।
+हमारी भाषा में भाग का कोई !!a{function} नहीं है (शून्य से भाग अपरिभाषित है,
+और !!{function}s की व्याख्या संपूर्ण फलनों से होनी चाहिए)। फिर भी हम
+$r < 1/k$ व्यक्त कर सकते हैं, क्योंकि यह तभी और केवल तभी है जब
+$r \cdot k < 1$। अब $c$ को नया !!a{constant} मानें और $\Delta$ रखें:
+\[
+\{\Obj{0} < c\}
+\cup \Setabs{ c \times \num k < \Obj{1} }{k \in \PosInt}
+\]
+(जहाँ $\num{k} = (\Obj{1} + (\Obj{1} + \dots + (\Obj{1} +
+\Obj{1})\dots))$, जिसमें $k$ बार~$\Obj{1}$ है)। किसी परिमित
+उपसमुच्चय~$\Delta_0$ के लिए, जो~$\Delta$ का है, कोई~$K$ ऐसा है कि सभी
+!!{sentence}s $c \times \num{k} < \Obj{1}$ जो~$\Delta_0$ में हैं, उनके
+लिए $k < K$। यदि हम
+$\Struct{Q}$ को~$\Struct{Q'}$ तक इस प्रकार विस्तारित करें कि
+$\Assign{c}{Q'} = 1/K$, तो $\Sat{Q'}{\Gamma_0 \cup \Delta_0}$ किसी भी
+परिमित $\Gamma_0 \subseteq \Gamma$ के लिए, और इसलिए $\Gamma \cup \Delta$
+परिमिततः संतुष्टनीय है (अभ्यास: इसे विस्तार से सिद्ध कीजिए)। संहतता से
+$\Gamma
+\cup \Delta$ संतुष्टनीय है। किसी भी प्रतिरूप~$\Struct{S}$ में, जो
+$\Gamma \cup
+\Delta$ का है, एक अतिसूक्ष्म संख्या है,
+अर्थात्~$\Assign{c}{S}$।
+\end{ex}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+अंकगणित के मानक प्रतिरूप~$\Struct{N}$ में ऐसा कोई !!{element}~$k \in \Domain{N}$
+नहीं है जो प्रत्येक सूत्र~$\num{n}
+< x$ को संतुष्ट करता हो (जहाँ $\num{n}$ वह $\Obj{0}^{\prime\dots\prime}$ है
+जिसमें $n$ बार $\prime$ आता है)। संहतता प्रमेय का उपयोग करके दिखाइए कि
+अंकगणित की भाषा के वे !!{sentence}s जो मानक प्रतिरूप~$\Struct{N}$ में सत्य
+हैं, ऐसी !!a{structure}~$\Struct{N'}$ में भी सत्य हैं जिसमें ऐसा
+!!a{element} है जो प्रत्येक सूत्र $\num{n} < x$ को \emph{वास्तव में}
+संतुष्ट करता है।
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{ex}
+हम जानते हैं कि !!{identity} वाला प्रथम-क्रम तर्क व्यक्त कर सकता है कि
+!!{domain} का आकार किसी न्यूनतम आकार का होना चाहिए: वाक्य~$!A_{\ge n}$ (जो
+कहता है ``कम-से-कम $n$ भिन्न वस्तुएँ हैं'') केवल उन्हीं संरचनाओं में सत्य
+है जहाँ $\Domain{M}$ में कम-से-कम~$n$ वस्तुएँ हों। अतः यदि हम
+  \[
+  \Delta = \Setabs{!A_{\ge n}}{n \ge 1}
+  \]
+लें, तो $\Delta$ का प्रत्येक प्रतिरूप अनंत होना चाहिए। इस प्रकार हम किसी
+सिद्धांत में~$\Delta$ जोड़कर गारंटी दे सकते हैं कि उसके केवल अनंत प्रतिरूप
+हों: $\Gamma \cup \Delta$ के प्रतिरूप ठीक~$\Gamma$ के अनंत प्रतिरूप हैं।
+
+अतः प्रथम-क्रम तर्क अनंतता व्यक्त कर सकता है। किंतु संहतता प्रमेय दिखाता है
+कि वह परिमितता व्यक्त नहीं कर सकता। मान लें कि वाक्यों के किसी समुच्चय
+$\Lambda$ को संतुष्ट करने वाली !!{structure}s ठीक सभी परिमित संरचनाएँ हों। तब
+$\Delta \cup \Lambda$ परिमिततः संतुष्टनीय है। क्यों? मान लें कि
+$\Delta' \cup \Lambda' \subseteq \Delta \cup
+\Lambda$ परिमित है, जहाँ $\Delta' \subseteq \Delta$ और $\Lambda'
+\subseteq \Lambda$। $n$ को वह सबसे बड़ी संख्या मानें जिसके लिए $!A_{\ge n}
+\in \Delta'$। चूँकि सभी परिमित संरचनाएँ $\Lambda$ को संतुष्ट करती हैं,
+इसलिए कोई प्रतिरूप~$\Struct{M}$ ऐसा है जिसमें परिमिततः अनेक किंतु $\ge n$ !!{element}s
+हैं। पर तब $\Sat{M}{\Delta' \cup \Lambda'}$। संहतता से
+$\Delta \cup
+\Lambda$ का कोई अनंत प्रतिरूप है, जो इस धारणा का खंडन करता है कि $\Lambda$
+को संतुष्ट करने वाली !!{structure}s केवल परिमित हों।
+\end{ex}
+}{}
+
+\end{document}

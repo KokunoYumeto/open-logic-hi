@@ -1,0 +1,58 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter{fol}{axd}{अभिगृहीतीय \usetoken{P}{derivation}}}
+      {\olchapter{pl}{axd}{अभिगृहीतीय \usetoken{P}{derivation}}}
+
+\begin{editorial}
+  अभी यह सुनिश्चित करने का कोई प्रयास नहीं किया गया है कि इस अध्याय की
+  सामग्री उन विभिन्न टैगों का पालन करे जो बताते हैं कि कौन-से संयोजक और
+  परिमाणक आदिम हैं और कौन-से परिभाषित। सभी को आदिम माना गया है; केवल
+  $\liff$ को परिभाषित माना गया है। यदि FOL टैग सत्य हो, तो परिमाणकों
+  वाला संस्करण बनता है; अन्यथा परिमाणकों के बिना।
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{axioms-rules-propositional}
+
+\iftag{FOL}{%
+  \olimport{axioms-rules-quantifiers}
+}{}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{deduction-theorem}
+
+\iftag{FOL}{%
+  \olimport{deduction-theorem-quantifiers}
+}{}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{
+  \olimport{identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

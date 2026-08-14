@@ -1,0 +1,239 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: soundness.tex
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{tab}{sou}}
+      {\olfileid[hi]{pl}{tab}{sou}}
+      
+\olsection{सुदृढ़ता}
+
+\begin{explain}
+सत्य-वृक्ष जैसा !!^a{derivation} तंत्र \emph{सुदृढ़} है यदि वह ऐसी बातें
+!!{derive} नहीं कर सकता जो वास्तव में सत्य नहीं हैं। इस प्रकार सुदृढ़ता,
+!!{derivation} तंत्रों के लिए एक प्रकार का सुनिश्चित सुरक्षा-गुण है। जिस
+प्रमाण-सैद्धांतिक गुण पर विचार हो, उसके अनुसार हम उदाहरणार्थ यह जानना चाहेंगे
+कि
+\begin{enumerate}
+\item हर !!{derivable}~$!A$ \iftag{FOL}{वैध}{सर्वसत्य} है;
+\item यदि !!a{sentence} कुछ अन्य वाक्यों से !!{derivable} है, तो वह उनसे
+  तार्किकतः निष्पन्न भी होता है;
+\item यदि !!{sentence}s का कोई समुच्चय असंगत है, तो वह असंतुष्टनीय है।
+\end{enumerate}
+ये !!a{derivation} तंत्र के महत्त्वपूर्ण गुण हैं। यदि इनमें से कोई गुण न हो,
+तो !!{derivation} तंत्र दोषपूर्ण होगा---वह आवश्यकता से अधिक बातें !!{derive}
+करेगा। इसलिए !!a{derivation} तंत्र की सुदृढ़ता स्थापित करना अत्यंत
+महत्त्वपूर्ण है।
+
+चूँकि ये सभी प्रमाण-सैद्धांतिक गुण किसी-न-किसी प्रकार के बंद !!{tableau}s
+द्वारा परिभाषित होते हैं, इसलिए ऊपर के (1)--(3) को सिद्ध करने के लिए बंद
+!!{tableau}s के अर्थवैज्ञानिक गुणों के बारे में कुछ सिद्ध करना होगा। पहले हम
+परिभाषित करेंगे कि किसी !!a{signed
+  formula} को किसी संरचना में संतुष्ट किया
+जाना क्या है, और फिर दिखाएँगे कि यदि कोई !!{tableau} बंद है, तो कोई संरचना
+उसकी सभी मान्यताओं को संतुष्ट नहीं करती। तब (1)--(3) इस परिणाम के उपप्रमेयों
+के रूप में मिलेंगे।
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}}{!!^a{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+!!a{signed formula} $\sFmla{\True}{!A}$ को \emph{संतुष्ट करता है} तभी और
+केवल तभी जब $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, और वह
+$\sFmla{\False}{!A}$ को तभी और केवल तभी संतुष्ट करता है जब
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$।
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, !!{signed formula}s के समुच्चय
+~$\Gamma$ को तभी और केवल तभी संतुष्ट करता है जब वह प्रत्येक
+$\sFmla{S}{!A} \in \Gamma$ को संतुष्ट करे। $\Gamma$~\emph{संतुष्टनीय} है
+यदि उसे संतुष्ट करने वाली कोई \iftag{FOL}{!!a{structure}}{!!a{valuation}}
+हो; अन्यथा वह \emph{असंतुष्टनीय} है।
+\end{defn}
+
+\begin{thm}[सुदृढ़ता]
+  \ollabel{thm:tableau-soundness}
+  यदि $\Gamma$ के लिए कोई बंद !!{tableau} है, तो $\Gamma$ असंतुष्टनीय है।
+\end{thm}
+
+\begin{proof}
+!!a{tableau} की किसी शाखा को संतुष्टनीय तभी और केवल तभी कहें जब उस पर के
+!!{signed formula}s का समुच्चय संतुष्टनीय हो; और किसी !!a{tableau} को
+संतुष्टनीय तब कहें जब उसमें कम-से-कम एक संतुष्टनीय शाखा हो।
+
+हम यह दिखाते हैं: अनुमान-नियमों में से किसी एक द्वारा संतुष्टनीय
+!!{tableau} का विस्तार करने पर सदा संतुष्टनीय !!{tableau} ही मिलता है। इससे
+प्रमेय सिद्ध होगा: हर बंद !!{tableau}, केवल~$\Gamma$ की मान्यताओं से बने
+!!{tableau} पर अनुमान-नियम लगाकर प्राप्त होता है। अतः यदि $\Gamma$
+संतुष्टनीय होता, तो उसके लिए बना प्रत्येक !!{tableau} संतुष्टनीय होता। किंतु
+बंद !!{tableau} स्पष्टतः संतुष्टनीय नहीं है: प्रत्येक शाखा में
+$\sFmla{\True}{!A}$ और $\sFmla{\False}{!A}$ दोनों होते हैं, और कोई संरचना
+~$!A$ को संतुष्ट तथा असंतुष्ट दोनों नहीं कर सकती।
+
+मान लें हमारे पास संतुष्टनीय !!{tableau} है, अर्थात् ऐसा !!a{tableau} जिसकी
+कम-से-कम एक शाखा संतुष्टनीय है। अनुमान-नियम लगाने पर या तो किसी शाखा में
+!!{signed formula}s जुड़ते हैं, या शाखा दो भागों में बँटती है। यदि
+!!{tableau} में ऐसी संतुष्टनीय शाखा है जिसका संबद्ध नियम-प्रयोग विस्तार नहीं
+करता, तो वह विस्तृत !!{tableau} में भी संतुष्टनीय शाखा रहती है; अतः विस्तृत
+सत्य-वृक्ष संतुष्टनीय है। इसलिए केवल उस प्रसंग पर विचार करना है जिसमें नियम
+किसी संतुष्टनीय शाखा पर लगाया जाता है।
+
+उस शाखा के !!{signed formula}s का समुच्चय $\Gamma$ मानें और जिस
+!!{signed formula} पर नियम लगाया जाता है उसे
+$\sFmla{S}{!A} \in \Gamma$ मानें। यदि नियम से शाखा का विभाजन नहीं होता, तो
+दिखाना होगा कि विस्तृत शाखा, अर्थात् नियम के निष्कर्षों सहित $\Gamma$, अब भी
+संतुष्टनीय है। यदि नियम से शाखा विभाजित होती है, तो दिखाना होगा कि परिणामी
+दो शाखाओं में से कम-से-कम एक संतुष्टनीय है।
+  
+पहले उन संभावित अनुमानों पर विचार करते हैं जिनसे शाखा विभाजित नहीं होती।
+\begin{enumerate}
+\item शाखा का विस्तार $\TRule{\True}{\lnot}$ को
+  $\sFmla{\True}{\lnot !B} \in \Gamma$ पर लगाकर किया जाता है। तब विस्तृत
+  शाखा में !!{signed formula}s $\Gamma \cup
+  \{\sFmla{\False}{!B}\}$ होते हैं।
+  मान लें $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$। विशेषतः
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$। अतः
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$; अर्थात्
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\False}{!B}$ को
+  संतुष्ट करता है।
+\item शाखा का विस्तार $\TRule{\False}{\lnot}$ को
+  $\sFmla{\False}{\lnot !B} \in \Gamma$ पर लगाकर किया जाता है: अभ्यास।
+\item शाखा का विस्तार $\TRule{\True}{\land}$ को
+  $\sFmla{\True}{!B \land !C} \in \Gamma$ पर लगाकर किया जाता है, जिससे शाखा पर दो
+  नए !!{signed formula}s मिलते हैं: $\sFmla{\True}{!B}$ और
+  $\sFmla{\True}{!C}$। मान लें
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, विशेषतः
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B \land !C}$। तब
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ और
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$। इसका अर्थ है कि
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\True}{!B}$ और
+  $\sFmla{\True}{!C}$ दोनों को संतुष्ट करता है।
+\item शाखा का विस्तार $\TRule{\False}{\lor}$ को
+  $\sFmla{\False}{!B \lor !C} \in \Gamma$ पर लगाकर किया जाता है: अभ्यास।
+\item शाखा का विस्तार $\TRule{\False}{\lif}$ को
+  $\sFmla{\False}{!B \lif !C} \in \Gamma$ पर लगाकर किया जाता है। इससे शाखा पर दो
+  नए !!{signed formula}s मिलते हैं: $\sFmla{\True}{!B}$ और
+  $\sFmla{\False}{!C}$। मान लें
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, विशेषतः
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \lif !C}$। तब
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ और
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$। इसका अर्थ है कि
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\True}{!B}$ और
+  $\sFmla{\False}{!C}$ दोनों को संतुष्ट करता है।
+
+\iftag{FOL}{%
+\item शाखा का विस्तार $\TRule{\True}{\lforall}$ को
+  $\sFmla{\True}{\lforall[x][!B(x)]} \in \Gamma$ पर लगाकर किया जाता है। इससे शाखा पर
+  नया !!{signed formula}~$\sFmla{\True}{!A(t)}$ मिलता है। मान लें
+  $\Sat{M}{\Gamma}$, विशेषतः $\Sat{M}{\lforall[x][!A(x)]}$।
+  \olref[syn][sem]{prop:quant-terms} से $\Sat{M}{!A(t)}$। अतः
+  $\Struct{M}$, $\sFmla{\True}{!A(t)}$ को संतुष्ट करती है।
+
+\item शाखा का विस्तार $\TRule{\False}{\lforall}$ को
+  $\sFmla{\False}{\lforall[x][!B(x)]} \in \Gamma$ पर लगाकर किया जाता है। इससे शाखा पर
+  नया !!{signed formula}~$\sFmla{\False}{!A(a)}$ मिलता है, जहाँ $a$ ऐसा
+  !!a{constant} है जो~$\Gamma$ में नहीं आता। चूँकि $\Gamma$ संतुष्टनीय है,
+  कोई $\Struct{M}$ ऐसी है कि $\Sat{M}{\Gamma}$, विशेषतः
+  $\Sat/{M}{\lforall[x][!B(x)]}$। हमें दिखाना है कि
+  $\Gamma \cup \{\sFmla{\False}{!A(a)}\}$ संतुष्टनीय है। इसके लिए उपयुक्त
+  ~$\Struct{M'}$ को इस प्रकार परिभाषित करते हैं।
+
+  \olref[syn][ass]{prop:sat-quant} से
+  $\Sat/{M}{\lforall[x][!B(x)]}$ तभी और केवल तभी जब किसी $s$ के लिए
+  $\Sat/{M}{!B(x)}[s]$। अब $\Struct{M'}$ को $\Struct{M}$ जैसा ही मानें,
+  केवल $\Assign{a}{M'} = s(x)$।
+  \olref[syn][ext]{cor:extensionality-sent} से प्रत्येक
+  $\sFmla{\True}{!C} \in \Gamma$ के लिए $\Sat{M'}{!C}$ और प्रत्येक
+  $\sFmla{\False}{!C} \in \Gamma$ के लिए $\Sat/{M'}{!C}$, क्योंकि $a$,
+  ~ $\Gamma$ में नहीं आता।
+
+  \olref[syn][ext]{prop:extensionality} से $\Sat/{M'}{!A(x)}[s]$।
+  \olref[syn][ext]{prop:ext-formulas} से $\Sat/{M'}{!A(a)}[s]$। चूँकि
+  $!A(a)$ !!a{sentence} है,
+  \olref[syn][ass]{prop:sentence-sat-true} से $\Sat/{M'}{!A(a)}$;
+  अर्थात् $\Struct{M'}$, $\sFmla{\False}{!A(a)}$ को संतुष्ट करती है।
+\item शाखा का विस्तार $\TRule{\True}{\lexists}$ को
+  $\sFmla{\True}{\lexists[x][!B(x)]} \in \Gamma$ पर लगाकर किया जाता है: अभ्यास।
+\item शाखा का विस्तार $\TRule{\False}{\lexists}$ को
+  $\sFmla{\False}{\lexists[x][!B(x)]} \in \Gamma$ पर लगाकर किया जाता है: अभ्यास।}{}
+\end{enumerate}
+अब उन संभावित अनुमानों पर विचार करें जिनसे शाखा विभाजित होती है।
+\begin{enumerate}
+\item शाखा का विस्तार $\TRule{\False}{\land}$ को
+  $\sFmla{\False}{!B \land !C} \in \Gamma$ पर लगाकर किया जाता है, जिससे दो शाखाएँ
+  मिलती हैं: बाईं शाखा $\sFmla{\False}{!B}$ से और दाईं शाखा
+  $\sFmla{\False}{!C}$ से आगे बढ़ती है। मान लें
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, विशेषतः
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \land !C}$। तब या तो
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ अथवा
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$। पहले प्रसंग में
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\False}{!B}$ को संतुष्ट
+  करता है, अर्थात् $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ बाईं शाखा के
+  सूत्रों को संतुष्ट करता है। दूसरे प्रसंग
+  में $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\False}{!C}$ को
+  संतुष्ट करता है, अर्थात् $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ दाईं शाखा
+  के सूत्रों को संतुष्ट करता है।
+\item शाखा का विस्तार $\TRule{\True}{\lor}$ को
+  $\sFmla{\True}{!B \lor !C} \in \Gamma$ पर लगाकर किया जाता है: अभ्यास।
+\item शाखा का विस्तार $\TRule{\True}{\lif}$ को
+  $\sFmla{\True}{!B \lif !C} \in \Gamma$ पर लगाकर किया जाता है: अभ्यास।
+\item शाखा को \Cut से विस्तृत किया जाता है। इससे दो शाखाएँ मिलती हैं:
+  एक में $\sFmla{\True}{!B}$ और दूसरी में $\sFmla{\False}{!B}$ है। चूँकि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ और या तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ अथवा
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, इसलिए
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ बाईं या दाईं शाखा में से एक को
+  संतुष्ट करता है।
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][tab][sou]{thm:tableau-soundness} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][tab][sou]{thm:tableau-soundness} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+यदि $\Proves !A$, तो $!A$ \iftag{FOL}{वैध}{सर्वसत्य} है।
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+यदि $\Gamma \Proves !A$, तो $\Gamma \Entails !A$।
+\end{cor}
+
+\begin{proof}
+  यदि $\Gamma \Proves !A$, तो किन्हीं $!B_1$, \dots, $!B_n \in
+  \Gamma$ के लिए $\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}\}$ का कोई बंद !!{tableau} है।
+  \olref{thm:tableau-soundness} से प्रत्येक
+  \iftag{FOL}{!!{structure}}{!!{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  या तो किसी $!B_i$ को असत्य बनाता है, या $!A$ को सत्य बनाता है। अतः यदि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ भी।
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+यदि $\Gamma$ संतुष्टनीय है, तो वह संगत है।
+\end{cor}
+
+\begin{proof}
+हम प्रतिधन कथन सिद्ध करते हैं। मान लें कि $\Gamma$ संगत नहीं है। तब
+$!B_1$, \dots, $!B_n \in \Gamma$ ऐसे हैं और
+$\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}$ के लिए कोई बंद
+!!{tableau} है। \olref{thm:tableau-soundness} से ऐसा कोई
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ नहीं है जिसके लिए
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B_i}$ सभी $i=1$, \dots,~$n$ पर हो। अतः
+$\Gamma$ संतुष्टनीय नहीं है।
+\end{proof}
+
+\end{document}

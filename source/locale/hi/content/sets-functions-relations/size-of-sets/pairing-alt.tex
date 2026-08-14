@@ -1,0 +1,112 @@
+% Part: sets-functions-relations
+% Chapter: size-of-sets
+% Section: pairing-alt
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{siz}{pai-alt}
+
+\olsection{एक वैकल्पिक युग्मन फलन}
+
+\begin{explain}
+$\Nat^2$ की कुछ अन्य गणनाएँ ऐसी हैं जिनके प्रतिलोम ज्ञात करना अधिक सरल है।
+उनमें से एक यह है। गणना को सरणी में देखने के स्थान पर, आरंभ में रिक्त स्थानों
+से संबद्ध धन पूर्णांकों की सूची से आरंभ कीजिए। कल्पना कीजिए कि हम इन स्थानों
+को क्रमशः $\tuple{n,m}$ युग्मों से इस प्रकार भरते हैं। पहले उन युग्मों को लें
+जिनके पहले स्थान पर~$0$ है (अर्थात $\tuple{0,m}$ रूप के युग्म)। पहले युग्म
+(अर्थात $\tuple{0,0}$) को पहले रिक्त स्थान में रखिए, फिर एक रिक्त स्थान छोड़िए,
+दूसरे युग्म (अर्थात $\tuple{0,1}$) को अगले रिक्त स्थान में रखिए, फिर एक स्थान
+छोड़िए, और इसी प्रकार आगे बढ़ते जाइए। अब हमारी गणना का (अधूरा) आरंभ ऐसा
+दिखता है:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} &  & \tuple{0,1} &  & \tuple{0,2} &  & \tuple{0,3} & & \tuple{0,4} &  & \dots \\
+\end{array}
+\]
+अब भी रिक्त बचे स्थानों में $\tuple{1,m}$ युग्मों के साथ यही प्रक्रिया
+दोहराइए और फिर प्रत्येक दूसरे रिक्त स्थान को छोड़ते जाइए:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} &  & \tuple{0,2} & \tuple{1,1} & 
+\tuple{0,3} & & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+इसी प्रकार $\tuple{2,m}$, $\tuple{3,m}$ इत्यादि युग्म भरिए। इस प्रकार हमारी
+पूर्ण गणना का आरंभ ऐसा होता है:
+\[\small
+\begin{array}{@{}cc c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} & \tuple{2,0}  & \tuple{0,2} & 
+\tuple{1,1} & \tuple{0,3} & \tuple{3,0}  & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+यदि हम ऊपर की सरणी के खानों को इस गणना के अनुसार क्रमांक दें, तो हमें कोई
+सुव्यवस्थित आड़ी-तिरछी रेखा नहीं, बल्कि यह विन्यास मिलेगा:
+\[
+\begin{array}{ c | c | c | c | c | c | c | c }
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \dots \\
+\hline
+\mathbf 0 & 1 & 3 & 5 & 7 & 9 & 11 & \dots \\
+\hline
+\mathbf 1 & 2 & 6 & 10 & 14 & 18 & \dots & \dots \\
+\hline
+\mathbf 2 & 4 & 12 & 20 & 28 & \dots & \dots & \dots \\
+\hline
+\mathbf 3 & 8 & 24 & 40 & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 4 & 16 & 48 & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 5 & 32 & \dots & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+हम देख सकते हैं कि पंक्ति~$0$ के युग्म हमारी गणना में विषम क्रमांक वाले
+स्थानों पर हैं, अर्थात युग्म $\tuple{0,m}$ स्थान $2m+1$ पर है। दूसरी पंक्ति
+के युग्म $\tuple{1,m}$ ऐसे स्थानों पर हैं जिनके क्रमांक किसी विषम संख्या के
+दुगुने हैं, विशेष रूप से $2 \cdot (2m+1)$। तीसरी पंक्ति के युग्म
+$\tuple{2,m}$ ऐसे स्थानों पर हैं जिनके क्रमांक किसी विषम संख्या के चार गुने
+हैं, अर्थात $4 \cdot (2m+1)$; और इसी प्रकार आगे। प्रत्येक पंक्ति में
+$(2m+1)$ के गुणक $1$, $2$, $4$, $8$, \dots, ठीक~$2$ की घातें हैं:
+$1= 2^0$, $2 = 2^1$, $4 = 2^2$, $8 = 2^3$, \dots\@ वस्तुतः, संबंधित
+घातांक सदा विचाराधीन युग्म का पहला अवयव होता है। अतः युग्म $\tuple{n,m}$ के
+लिए गुणक $2^n$ है। इससे हमें सामान्य सूत्र $2^n \cdot (2m+1)$ मिलता है।
+लेकिन यह युग्मों का \emph{धन} पूर्णांकों में प्रतिचित्रण है, अर्थात
+$\tuple{0,0}$ का स्थान~$1$ है। यदि हम स्थान~$0$ से आरंभ करना चाहें, तो हमें
+परिणाम में से~$1$ घटाना होगा। इससे हमें निम्नलिखित मिलता है:
+\end{explain}
+
+\begin{ex}
+निम्नलिखित रूप से दिया गया फलन $h\colon \Nat^2 \to \Nat$,
+\[
+h(n,m) = 2^n (2m+1) - 1
+\]
+प्राकृत संख्याओं के युग्मों के समुच्चय~$\Nat^2$ का युग्मन फलन है।
+\end{ex}
+
+\begin{explain}
+तदनुसार, $\Nat^2$ की हमारी दूसरी गणना में युग्म $\tuple{0,0}$ का कूट
+$h(0,0) = 2^0(2\cdot 0+1) - 1 = 0$ है; $\tuple{1,2}$ का कूट
+$2^{1} \cdot (2 \cdot 2 + 1) - 1 = 2
+\cdot 5 - 1 = 9$ है; और $\tuple{2,6}$ का कूट $2^{2} \cdot (2
+\cdot 6 + 1) - 1 = 51$ है।
+\end{explain}
+
+कभी-कभी प्राकृत संख्याओं के युग्मों~$\Nat^2$ को इस शर्त के बिना कूटित करना
+ही पर्याप्त होता है कि कूटन आच्छादक हो। ऐसे कूटनों के प्रतिलोम केवल आंशिक
+फलन होते हैं।
+
+\begin{ex}
+निम्नलिखित रूप से दिया गया फलन $j\colon \Nat^2 \to \Nat^+$,
+\[
+j(n,m) = 2^n3^m
+\]
+एक !!a{injective} फलन $\Nat^2 \to \Nat$ है।
+\end{ex}
+
+\end{document}

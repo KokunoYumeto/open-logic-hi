@@ -1,0 +1,120 @@
+% Part: propositional-logic
+% Chapter: propositional-logic
+% Section: preliminaries
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{syn}{pre}
+
+\olsection{प्रारंभिक तथ्य}
+
+\begin{thm}[\emph{!!{formula}s पर आगमन का सिद्धांत}]
+  \ollabel{thm:induction}  
+  यदि कोई गुणधर्म~$P$ सभी परमाणु !!{formula}s के लिए सत्य है और ऐसा है कि
+  \begin{enumerate}
+    \tagitem{prvNot}{वह $\lnot !A$ के लिए सत्य हो, जब भी वह
+      $!A$ के लिए सत्य हो;}{}
+    \tagitem{prvAnd}{वह $(!A \land !B)$ के लिए सत्य हो,
+      जब भी वह $!A$ और~$!B$ के लिए सत्य हो;}{}
+    \tagitem{prvOr}{वह $(!A \lor !B)$ के लिए सत्य हो,
+      जब भी वह $!A$ और~$!B$ के लिए सत्य हो;}{}
+    \tagitem{prvIf}{वह $(!A \lif !B)$ के लिए सत्य हो,
+      जब भी वह $!A$ और~$!B$ के लिए सत्य हो;}{}
+    \tagitem{prvIff}{वह $(!A \liff !B)$ के लिए सत्य हो,
+      जब भी वह $!A$ और~$!B$ के लिए सत्य हो;}{}
+  \end{enumerate}
+  तो $P$ सभी !!{formula}s के लिए सत्य है।
+\end{thm}
+
+\begin{proof}
+  $S$ उन सभी !!{formula}s का संग्रह हो जिनमें गुणधर्म~$P$ है। स्पष्टतः
+  $S \subseteq \Frm[L_0]$। $S$~\olref[fml]{defn:formulas} की सभी शर्तें
+  पूरी करता है: उसमें सभी परमाणु !!{formula}s हैं और वह !!{operator}s के
+  अंतर्गत संवृत है। $\Frm[L_0]$ ऐसा सबसे छोटा वर्ग है, इसलिए
+  $\Frm[L_0] \subseteq S$। अतः $\Frm[L_0] = S$, और प्रत्येक सूत्र में
+  गुणधर्म~$P$ है।
+\end{proof}
+
+\begin{prop}\ollabel{prop:balanced}
+   प्रत्येक !!{formula}, जो~$\Frm[L_0]$ में हो, \emph{संतुलित} है: उसमें
+   बाएँ और दाएँ कोष्ठकों की संख्या समान है।
+\end{prop}
+
+\begin{prob}
+\olref[pl][syn][pre]{prop:balanced} सिद्ध करें।
+\end{prob}
+
+\begin{prop} \ollabel{prop:noinit}
+!!a{formula} का कोई उचित आरंभिक खंड स्वयं !!a{formula} नहीं है।
+\end{prop}
+
+\begin{prob}
+  \olref[pl][syn][pre]{prop:noinit} सिद्ध करें।
+\end{prob}
+
+\begin{prop}[अद्वितीय पठनीयता]
+किसी भी !!{formula}~$!A$ का, जो $ \Frm[L_0]$ में हो, निम्नलिखित रूपों में
+ठीक एक वाक्यविन्यास-विश्लेषण होता है:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$।}{}
+
+\tagitem{prvTrue}{$\ltrue$।}{}
+
+\item $\Obj p_n$, जहाँ कोई $\Obj p_n \in  \PVar$ लिया गया हो।
+  
+\tagitem{prvNot}{$\lnot !B$, जहाँ कोई !!{formula}~$!B$ लिया गया हो।}{}
+
+\tagitem{prvAnd}{$(!B \land !C)$, जहाँ !!{formula}s में से $!B$ और~$!C$ लिए गए हों।}{}
+
+\tagitem{prvOr}{$(!B \lor !C)$, जहाँ !!{formula}s में से $!B$ और~$!C$ लिए गए हों।}{}
+
+\tagitem{prvIf}{$(!B \lif !C)$, जहाँ !!{formula}s में से $!B$ और~$!C$ लिए गए हों।}{}
+
+\tagitem{prvIff}{$(!B \liff !C)$, जहाँ !!{formula}s में से $!B$ और~$!C$ लिए गए हों।}{}
+\end{enumerate}
+इसके अतिरिक्त यह विश्लेषण \emph{अद्वितीय} है।
+\end{prop}
+
+\begin{proof}
+$!A$ पर आगमन द्वारा। उदाहरण के लिए, मानें कि $!A$ के दो भिन्न विश्लेषण
+$(!B \lif !C)$ और $(!B' \lif !C')$ हैं। तब $!B$ और $!B'$ समान होने चाहिए
+(अन्यथा उनमें से एक दूसरे का उचित आरंभिक खंड होगा); अतः यदि $!A$ के दोनों
+विश्लेषण भिन्न हों, तो इसका कारण यही होगा कि $!C$ और $!C'$ एक ही
+प्रतीक-शृंखला के भिन्न विश्लेषण हैं, जो आगमनात्मक परिकल्पना से असंभव है।
+\end{proof}
+
+
+\begin{defn}[एकसमान प्रतिस्थापन]
+यदि $!A$ और $!B$ !!{formula}s में से हों, और $\Obj p_i$ कोई !!{propositional
+variable} हो, तो $\Subst{!A}{!B}{\Obj p_i}$ उस परिणाम को निरूपित करता है जो
+$\Obj p_i$ की प्रत्येक उपस्थिति को $!B$ की एक उपस्थिति से $!A$ में बदलने पर
+मिलता है; इसी प्रकार $\Obj p_1$, \dots,~$\Obj p_n$ का प्रतिस्थापन करने के लिए
+!!{formula}s में से क्रमशः $!B_1$, \dots,~$!B_n$ लेकर युगपत परिणाम इस प्रकार
+निरूपित किया जाता है:
+$\SSubst{!A}{\subst{!B_1}{\Obj p_1},\dots,\subst{!B_n}{\Obj p_n}}$.
+\end{defn}
+
+\begin{prob} नीचे दिए पाँच !!{formula}s में से प्रत्येक के लिए निर्धारित करें
+कि क्या वह !!{formula} किसी प्रतिस्थापन \( \Subst{!A}{!B}{\Obj p_i} \) के रूप
+में व्यक्त किया जा सकता है, जहाँ \( !A \) क्रमशः (i) \( \Obj p_0 \);
+(ii) \( ( \lnot \Obj p_0 \land \Obj
+ p_1) \); और (iii) \( ( ( \lnot \Obj p_0 \lif \Obj p_1 ) \land \Obj
+ p_2 ) \) है। प्रत्येक
+स्थिति में उपयुक्त प्रतिस्थापन बताएँ।
+  \begin{enumerate}
+    \item \( \Obj p_1 \) 
+    \item \( ( \lnot \Obj p_0 \land \Obj p_0 ) \)
+    \item \( ( ( \Obj p_0 \lor \Obj p_1 ) \land \Obj p_2 )  \)
+    \item \( \lnot ( ( \Obj p_0 \lif \Obj p_1 ) \land \Obj p_2 ) \)
+    \item \( (( \lnot ( \Obj p_0 \lif \Obj p_1 ) \lif ( \Obj p_0 \lor \Obj p_1 )) \land \lnot ( \Obj p_0 \land \Obj p_1 )) \)
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+$\Subst{!A}{!B}{p}$ की आगमन द्वारा गणितीय रूप से कठोर परिभाषा दें।
+\end{prob}
+
+\end{document}
+

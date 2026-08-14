@@ -1,0 +1,284 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: construction-of-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{com}{mod}}
+      {\olfileid[hi]{pl}{com}{mod}}
+
+\olsection{प्रतिरूप का निर्माण}
+
+\begin{explain}
+\iftag{FOL}{अभी हमें~$\eq$ की चिंता नहीं है; अर्थात् हम केवल यह दिखाना
+  चाहते हैं कि !!{sentence}s का ऐसा संगत समुच्चय~$\Gamma$ जिसमें~$\eq$ न
+  हो, संतुष्टनीय है। पहले हम~$\Gamma$ को किसी संगत, !!{complete} और संतृप्त
+  समुच्चय~$\Gamma^*$ तक विस्तारित करते हैं। इस स्थिति में
+  प्रतिरूप~$\Struct{M(\Gamma^*)}$ की परिभाषा सरल है: हम~$\Lang{L'}$ के बंद
+  पदों के समुच्चय को प्रांत मानते हैं। प्रत्येक !!{constant} को स्वयं उसी को
+  निर्दिष्ट करते हैं, और अधिक सामान्यतः यह सुनिश्चित करते हैं कि प्रत्येक
+  बंद पद~$t$ के लिए $\Value{t}{M(\Gamma^*)} = t$। !!{predicate}s को विस्तार
+  इस प्रकार दिए जाते हैं कि कोई परमाण्विक !!{sentence},
+  $\Struct{M(\Gamma^*)}$ में तभी और केवल तभी सत्य हो जब वह~$\Gamma^*$ में
+  हो। इससे~$\Gamma^*$ के सभी परमाण्विक !!{sentence}s स्पष्टतः
+  $\Struct{M(\Gamma^*)}$ में सत्य होंगे। शेष तब सत्य होते हैं जब आरंभिक
+  $\Gamma^*$ संगत, पूर्ण और संतृप्त हो।}{अब हम ऐसी !!a{valuation} परिभाषित
+  करने को तैयार हैं जो सभी $!A \in \Gamma$ को सत्य बनाती है। इसके लिए पहले
+  लिंडेनबाउम उपपत्ति लगाएँ: हमें पूर्ण संगत $\Gamma^* \supseteq
+  \Gamma$ मिलता है।~$\Gamma^*$ के !!{propositional variable}s को
+  $\pAssign v(\Gamma^*)$ निर्धारित करने दें।}
+\end{explain}
+
+\iftag{FOL}{%
+\begin{defn}[पद-प्रतिरूप]
+\ollabel{defn:termmodel}
+मान लें कि $\Gamma^*$ कोई !!a{complete}, संगत और संतृप्त समुच्चय है,
+भाषा~$\Lang L$ में !!{sentence}s का। \emph{पद-प्रतिरूप}
+$\Struct M(\Gamma^*)$,~$\Gamma^*$ का, निम्न प्रकार परिभाषित !!{structure} है:
+\begin{enumerate}
+\item !!{domain}~$\Domain{M(\Gamma^*)}$,~$\Lang L$ के सभी बंद पदों का
+  समुच्चय है।
+\item !!a{constant} $c$ की व्याख्या स्वयं $c$ है:
+  $\Assign{c}{M(\Gamma^*)} = c$।
+\item !!{function}~$f$ को वह फलन निर्दिष्ट किया जाता है जो बंद पदों
+  $t_1$, \dots, $t_n$ को तर्कों के रूप में लेकर बंद पद
+  $f(t_1, \dots, t_n)$ को मान के रूप में देता है:
+\[
+\Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) = f(t_1,\dots, t_n)
+\]
+\item यदि $R$ कोई $n$-स्थानीय !!{predicate} है, तो
+  \[
+  \tuple{t_1, \dots,
+  t_n} \in \Assign{R}{M(\Gamma^*)} \text{ तभी और केवल तभी } \Atom{R}{t_1, \dots,
+    t_n} \in \Gamma^*.
+  \]
+\end{enumerate}
+\end{defn}
+}{%
+\begin{defn}
+\ollabel{defn:termmodel}
+मान लें कि $\Gamma^*$, !!{formula}s का पूर्ण संगत समुच्चय है। तब हम रखते हैं
+\[
+\pAssign v(\Gamma^*)(p) = \begin{cases}
+  \True & \text{यदि $p \in \Gamma^*$}\\
+  \False & \text{यदि $p \notin \Gamma^*$}
+  \end{cases}
+\]
+\end{defn}
+}
+
+\iftag{FOL}{%
+अब हम जाँचेंगे कि वास्तव में $\Value{t}{M(\Gamma^*)} = t$ है।
+
+\begin{lem} 
+\ollabel{lem:val-in-termmodel} मान लें कि $\Struct M(\Gamma^*)$ वही
+पद-प्रतिरूप है जो \olref{defn:termmodel} में परिभाषित है। तब
+$\Value{t}{M(\Gamma^*)} = t$।
+\end{lem}
+\begin{proof} 
+ प्रमाण $t$ पर आगमन से है। आधार स्थिति, जहाँ $t$ कोई !!a{constant} है,
+ पद-प्रतिरूप की परिभाषा से सीधे मिलती है। आगमन-चरण के लिए मान लें कि
+ $t_1, \ldots, t_n$ ऐसे बंद पद हैं कि $\Value{t_i}{M(\Gamma^*)} = t_i$,
+ और $f$ कोई $n$-स्थानीय !!{function} है। तब
+\begin{align*}
+\Value{f(t_1,\ldots,t_n)}{M(\Gamma^*)} &= \Assign{f}{M(\Gamma^*)}(\Value{t_1}
+ {M(\Gamma^*)}, 
+\ldots, \Value{t_n}{M(\Gamma^*)}) \\
+&= \Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) \\
+&= f(t_1,\dots, t_n),
+\end{align*} 
+और इसलिए आगमन से यह प्रत्येक बंद पद~$t$ के लिए सत्य है।
+\end{proof}
+}
+
+\iftag{FOL}{%
+\begin{explain}
+  \iftag{prvEx}{कोई !!^a{structure}~$\Struct{M}$ किसी अस्तित्ववाची परिमाणित
+    !!{sentence}~$\lexists[x][!A(x)]$ को तब भी सत्य बना सकती है जब ऐसा कोई
+    निदर्श~$!A(t)$ न हो जिसे वह सत्य बनाती हो।}{}
+  \iftag{prvAll}{कोई !!^a{structure}~$\Struct{M}$ सभी निदर्शों~$!A(t)$ को,
+    किसी सार्ववाची परिमाणित !!{sentence}~$\lforall[x][!A(x)]$ के, सत्य बना
+    सकती है, पर स्वयं~$\lforall[x][!A(x)]$ को सत्य न बनाए।}{} कारण यह है कि
+  सामान्यतः~$\Domain{M}$ का प्रत्येक !!{element} किसी बंद पद का मान नहीं
+  होता ($\Struct{M}$ संभवतः आच्छादित न हो)। इसी कारण संतुष्टि-संबंध को
+  चर-निर्धारणाओं द्वारा परिभाषित किया जाता है। किंतु हमारे
+  पद-प्रतिरूप~$\Struct{M(\Gamma^*)}$ के लिए यह आवश्यक नहीं होगा---क्योंकि वह
+  आच्छादित है। यही अगले परिणाम का विषय है।
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:quant-termmodel}
+मान लें कि $\Struct M(\Gamma^*)$, \olref{defn:termmodel} का पद-प्रतिरूप है।
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ तभी और केवल तभी जब
+  $\Sat{M(\Gamma^*)}{!A(t)}$ कम-से-कम एक बंद पद~$t$ के लिए हो।}{}
+\tagitem{prvAll}{$\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ तभी और केवल तभी जब
+  $\Sat{M(\Gamma^*)}{!A(t)}$ सभी बंद पदों~$t$ के लिए हो।}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{%
+  \iftag{probEx}{अभ्यास।}{\olref[syn][ass]{prop:sat-quant} से
+    $\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ तभी और केवल तभी जब कम-से-कम एक
+    चर-निर्धारणा~$s$ के लिए $\Sat{M(\Gamma^*)}{!A(x)}[s]$। चूँकि
+    $\Domain{M(\Gamma^*)}$ में~$\Lang{L}$ के बंद पद होते हैं, यह तभी और केवल
+    तभी सत्य है जब कोई कम-से-कम एक बंद पद~$t$ ऐसा हो कि $s(x) = t$ और
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$।
+    \olref[fol][syn][ext]{prop:ext-formulas} से
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$ तभी और केवल तभी जब
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$, जहाँ $s(x) = t$।
+    \olref[fol][syn][ass]{prop:sentence-sat-true} से
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ तभी और केवल तभी जब
+    $\Sat{M(\Gamma^*)}{!A(t)}$, क्योंकि $!A(t)$ एक वाक्य है।}}{}
+\tagitem{prvAll}{%
+  \iftag{probAll}{अभ्यास।}{\olref[syn][ass]{prop:sat-quant} से
+    $\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ तभी और केवल तभी जब प्रत्येक
+    चर-निर्धारणा $s$ के लिए $\Sat{M(\Gamma^*)}{!A(x)}[s]$। याद करें कि
+    $\Domain{M(\Gamma^*)}$ में~$\Lang{L}$ के बंद पद होते हैं, अतः प्रत्येक
+    बंद पद~$t$ के लिए $s(x) = t$ ऐसी चर-निर्धारणा है, और किसी भी
+    चर-निर्धारणा के लिए $s(x)$ कोई बंद पद~$t$ है।
+    \olref[fol][syn][ext]{prop:ext-formulas} से
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$ तभी और केवल तभी जब
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$, जहाँ $s(x) = t$।
+    \olref[fol][syn][ass]{prop:sentence-sat-true} से
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ तभी और केवल तभी जब
+    $\Sat{M(\Gamma^*)}{!A(t)}$, क्योंकि $!A(t)$ एक वाक्य है।}}{}
+\end{tagenumerate}
+\end{proof}
+}{}
+
+\tagprob[FOL]{probEx,probAll}
+\begin{prob}
+\olref[fol][com][mod]{prop:quant-termmodel} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{lem}[सत्यता उपपत्ति]
+\ollabel{lem:truth} \iftag{FOL}{मान लें कि $!A$ में~$\eq$ नहीं है। तब}{}
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ तभी और केवल तभी जब
+$!A \in \Gamma^*$।
+\end{lem}
+
+\begin{proof}
+हम दोनों दिशाओं को एक साथ और $!A$ पर आगमन द्वारा सिद्ध करते हैं।
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}
+  {$\iftag{FOL}{\Sat/{M(\Gamma^*)}{\lfalse}}{\pSat/{v(\Gamma^*)}{\lfalse}}$
+    संतुष्टि की परिभाषा से। दूसरी ओर, $\lfalse \notin
+    \Gamma^*$, क्योंकि $\Gamma^*$ संगत है।}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}
+  {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\ltrue}$
+    संतुष्टि की परिभाषा से। दूसरी ओर, $\ltrue \in
+    \Gamma^*$, क्योंकि $\Gamma^*$ संगत और !!{complete} है, और
+    $\Gamma^* \Proves \ltrue$।}}{}
+
+\tagitem{FOL}{\indcase{!A}{R(t_1, \dots, t_n)}
+  {$\Sat{M(\Gamma^*)}{\Atom{R}{t_1, \dots, t_n}}$ तभी और केवल तभी जब
+    $\tuple{t_1,
+      \dots, t_n} \in \Assign{R}{M(\Gamma^*)}$ (संतुष्टि की परिभाषा से),
+    और यह तभी और केवल तभी जब $R(t_1, \dots, t_n) \in \Gamma^*$
+    ($\Struct
+    M(\Gamma^*)$ के निर्माण से)।}}{\indcase{!A}{p}{$\pSat{v(\Gamma^*)}{p}$
+    तभी और केवल तभी जब $\pAssign v(\Gamma^*)(p) = \True$ (संतुष्टि की
+    परिभाषा से), और यह तभी और केवल तभी जब $p \in \Gamma^*$
+    ($\pAssign v(\Gamma^*)$ के निर्माण से)।}}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$ तभी और
+    केवल तभी जब
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$
+    (संतुष्टि की परिभाषा से)। आगमन-परिकल्पना से,
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$ तभी और
+    केवल तभी जब $!B \notin \Gamma^*$। चूँकि $\Gamma^*$ संगत और
+    !!{complete} है, $!B
+    \notin \Gamma^*$ तभी और केवल तभी जब $\lnot !B \in \Gamma^*$।}}{}
+
+\tagitem{prvAnd}{%
+\iftag{probAnd}{%
+  \indcase!{!A}{!B \land !C}{}}{%
+  \indcase{!A}{!B \land
+    !C}{$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    तभी और केवल तभी जब दोनों
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$ और
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ हों
+    (संतुष्टि की परिभाषा से), और यह तभी और केवल तभी जब $!B \in \Gamma^*$
+    और $!C \in
+    \Gamma^*$ दोनों हों (आगमन-परिकल्पना से)।
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-and} से यह तभी और केवल तभी जब
+    $(!B \land !C) \in \Gamma^*$।}}}{}
+
+\tagitem{prvOr}{%
+\iftag{probOr}{%
+  \indcase!{!A}{!B \lor !C}{}}{%
+  \indcase{!A}{!B \lor !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    तभी और केवल तभी जब $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$
+    या $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ हो
+    (संतुष्टि की परिभाषा से), और यह तभी और केवल तभी जब $!B \in \Gamma^*$
+    या $!C \in
+    \Gamma^*$ हो (आगमन-परिकल्पना से)। यह तभी और केवल तभी जब $(!B
+    \lor !C) \in \Gamma^*$
+    (\olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-or} से)।}}}{}
+  
+\tagitem{prvIf}{%
+\iftag{probIf}{%
+  \indcase!{!A}{!B \lif !C}{}}{%
+  \indcase{!A}{!B \lif !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    तभी और केवल तभी जब $\iftag{FOL}{\Sat/{M(\Gamma^*)}}{\pSat/{v(\Gamma^*)}}{!B}$
+    या $\iftag{FOL}{\Sat{M (\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ हो
+    (संतुष्टि की परिभाषा से), और यह तभी और केवल तभी जब
+    $!B \notin \Gamma^*$ या $!C \in
+    \Gamma^*$ हो (आगमन-परिकल्पना से)। यह तभी और केवल तभी जब $(!B
+    \lif !C) \in \Gamma^*$
+    (\olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-if} से)।}}}{}
+
+\iftag{FOL}{%
+\tagitem{prvAll}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B(x)]}{}}{%
+    \indcase{!A}{\lforall[x][!B(x)]}{$\Sat{M(\Gamma^*)}{\indfrm}$ तभी और
+      केवल तभी जब $\Sat{M(\Gamma^*)}{!B(t)}$ सभी पदों~$t$ के लिए हो
+      (\olref{prop:quant-termmodel})। आगमन-परिकल्पना से यह तभी और केवल तभी
+      जब $!B(t) \in \Gamma^*$ सभी पदों~$t$ के लिए हो; और
+      \olref[hen]{prop:saturated-instances} से यह आगे तभी और केवल तभी जब
+      $\lforall[x][!A(x)] \in \Gamma^*$।}}}{}
+
+\tagitem{prvEx}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B(x)]}{}}{%
+    \indcase{!A}{\lexists[x][!B(x)]}{$\Sat{M(\Gamma^*)}{\indfrm}$ तभी और
+      केवल तभी जब $\Sat{M(\Gamma^*)}{!B(t)}$ कम-से-कम एक पद~$t$ के लिए हो
+      (\olref{prop:quant-termmodel})। आगमन-परिकल्पना से यह तभी और केवल तभी
+      जब $!B(t) \in \Gamma^*$ कम-से-कम एक पद~$t$ के लिए हो।
+      \olref[hen]{prop:saturated-instances} से यह आगे तभी और केवल तभी जब
+      $\lexists[x][!B(x)] \in \Gamma^*$।}}}{}
+}{}
+\end{enumerate}
+\end{proof}
+
+
+\tagprob[FOL]{probOr,probAnd,probIf,probEx,probAll}
+
+\begin{prob}
+\olref[fol][com][mod]{lem:truth} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\tagendprob
+
+\tagprob[notFOL]{probOr,probAnd,probIf}
+
+\begin{prob}
+\olref[pl][com][mod]{lem:truth} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\tagendprob
+
+\end{document}

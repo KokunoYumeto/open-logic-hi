@@ -1,0 +1,43 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{seq}{sid}
+
+\olsection{\usetoken{S}{identity} सहित सुदृढ़ता}
+
+\begin{prop}
+$\Log{LK}$ में तादात्म्य के प्रारंभिक अनुक्रम और नियम जोड़ने पर भी वह सुदृढ़ है।
+\end{prop}
+
+\begin{proof}
+${} \Sequent \eq[t][t]$ रूप के प्रारंभिक अनुक्रम वैध हैं, क्योंकि हर
+!!{structure}~$\Struct M$ के लिए $\Sat{M}{\eq[t][t]}$। (ध्यान दें कि पद~$t$
+को हम बंद मानते हैं; अर्थात् उसमें कोई चर नहीं आता, इसलिए चर-नियतन अप्रासंगिक
+हैं।)
+
+मानें कि किसी !!a{derivation} का अंतिम अनुमान $=$ है। तब पूर्वाधार
+$\eq[t_1][t_2], \Gamma \Sequent \Delta, !A(t_1)$ और निष्कर्ष
+$\eq[t_1][t_2], \Gamma \Sequent \Delta, !A(t_2)$ है। किसी
+!!a{structure}~$\Struct M$ पर विचार करें। हमें दिखाना है कि निष्कर्ष वैध है;
+अर्थात् यदि $\Sat{M}{\eq[t_1][t_2]}$ और $\Sat{M}{\Gamma}$, तो या तो
+$\Sat{M}{!C}$ किसी $!C \in \Delta$ के लिए, या $\Sat{M}{!A(t_2)}$।
+
+आगमन-परिकल्पना से पूर्वाधार वैध है। इसका अर्थ है कि यदि
+$\Sat{M}{\eq[t_1][t_2]}$ और $\Sat{M}{\Gamma}$, तो या तो (a) किसी $!C
+\in \Delta$ के लिए $\Sat{M}{!C}$, या (b) $\Sat{M}{!A(t_1)}$। प्रकरण (a)
+में काम पूरा हुआ। प्रकरण (b) पर विचार करें। $s$ को ऐसा चर-नियतन मानें कि
+$s(x) = \Value{t_1}{M}$। \olref[syn][ass]{prop:sentence-sat-true} से
+$\Sat{M}{!A(t_1)}[s]$। चूँकि $\varAssign{s}{s}{x}$,
+\olref[syn][ext]{prop:ext-formulas} से $\Sat{M}{!A(x)}[s]$। चूँकि
+$\Sat{M}{\eq[t_1][t_2]}$, हमारे पास $\Value{t_1}{M} = \Value{t_2}{M}$ है,
+और इसलिए $s(x) = \Value{t_2}{M}$। \olref[syn][ext]{prop:ext-formulas} को
+फिर लागू करने पर $\Sat{M}{!A(t_2)}[s]$ भी मिलता है।
+\olref[syn][ass]{prop:sentence-sat-true} से $\Sat{M}{!A(t_2)}$।
+\end{proof}
+
+\end{document}

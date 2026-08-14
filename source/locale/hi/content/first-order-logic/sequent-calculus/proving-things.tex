@@ -1,0 +1,336 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{seq}{pro}}
+      {\olfileid[hi]{pl}{seq}{pro}}
+
+\olsection{\usetoken{p}{derivation} बनाने के उदाहरण}
+
+\begin{ex}
+एक $\Log{LK}$-!!{derivation} दीजिए जिसका अंतिम अनुक्रम
+$!A \land !B \Sequent !A$ हो।
+
+आरंभ में वांछित अंतिम अनुक्रम को !!{derivation} के सबसे नीचे लिखते हैं।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+अब निर्धारित करना है कि किस प्रकार के अनुमान का निचला अनुक्रम इस रूप का
+हो सकता है। यह कोई संरचनात्मक नियम हो सकता है, पर आरंभ किसी तार्किक नियम
+को खोजने से करना उचित है। निचले अनुक्रम में आने वाला एकमात्र तार्किक संयोजक
+$\land$ है, इसलिए हमें $\land$-नियम चाहिए; और चूँकि $\land$ चिह्न पूर्वपक्ष
+में है, हमें \LeftR{\land} नियम देखना है।
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+\LeftR{\land} अनुमान का ऊपरी अनुक्रम क्या रहा होगा, इसके दो विकल्प हैं:
+ऊपरी अनुक्रम $!A
+\Sequent !A$ हो सकता है, या $!B \Sequent !A$। स्पष्ट है
+कि $!A \Sequent !A$ प्रारंभिक अनुक्रम है (जो हमारे लिए अच्छा है), जबकि
+$!B \Sequent !A$ सामान्यतः व्युत्पन्न नहीं है। अब ऊपरी अनुक्रम भर देते हैं:
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+अब हमारे पास सही $\Log{LK}$-!!{derivation} है, जिसका अंतिम अनुक्रम $!A
+\land !B \Sequent !A$ है।
+\end{ex}
+
+\begin{ex}
+एक $\Log{LK}$-!!{derivation} दीजिए जिसका अंतिम अनुक्रम $\lnot !A \lor !B
+\Sequent !A \lif !B$ हो।
+
+वांछित अंतिम अनुक्रम को !!{derivation} के सबसे नीचे लिखकर आरंभ कीजिए।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A \lor !B \fCenter !A \lif !B$
+\end{prooftree}
+इस अंतिम अनुक्रम को देने वाला तार्किक नियम खोजने के लिए इसमें आए तार्किक
+संयोजक देखते हैं: $\lnot$, $\lor$, और $\lif$। अभी हमारा ध्यान केवल $\lor$
+और $\lif$ पर है, क्योंकि अभी हमें !!{main operator}s से काम है और ये अंतिम
+अनुक्रम के !!{sentence}s में बाहर से लागू होते हैं; $\lnot$ किसी दूसरे
+संयोजक के परास के भीतर है, इसलिए उसे बाद में सँभालेंगे। अतः अंतिम अनुमान के
+लिए तार्किक नियमों के विकल्प \LeftR{\lor} नियम और \RightR{\lif} नियम हैं।
+वास्तव में दोनों में से कोई भी चुन सकते हैं, पर \RightR{\lif} नियम चुनते हैं
+(यदि और कोई कारण न हो, तो इसलिए कि इससे दो शाखाओं में विभाजन कुछ देर टलता
+है)। निचला अनुक्रम देने वाले \RightR{\lif} अनुमानों के रूप के अनुसार यह ऐसा
+दिखना चाहिए:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}} \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+
+यदि पूर्वपक्ष में $\lnot !A \lor !B$ को बाहर की ओर ले आएँ, तो
+\LeftR{\lor} नियम लगा सकते हैं। नियम-रूप के अनुसार इसे निम्न प्रकार दो ऊपरी
+अनुक्रमों में बँटना चाहिए:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\AxiomC{}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$ \lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+याद रखें कि हम ऊपर की ओर रास्ता बनाते हुए प्रारंभिक अनुक्रमों तक पहुँचने का
+प्रयत्न कर रहे हैं; हम लगभग पहुँच गए हैं!{} दाहिनी शाखा प्रारंभिक अनुक्रम से
+केवल एक दुर्बलीकरण और एक विनिमय दूर है; इनके बाद वह पूरी हो जाती है:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+
+अब बाईं शाखा देखें। यहाँ किसी !!{sentence} में मिलने वाला एकमात्र तार्किक
+संयोजक $\lnot$ है, और वह पूर्वपक्ष के !!{sentence}s में आता है; इसलिए हमें
+\LeftR{\lnot} नियम का एक प्रयोग चाहिए।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ !A \fCenter !B, !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+जिस प्रकार दाहिनी शाखा पूरी की थी, उसी प्रकार इस बाईं शाखा को पूरा करने के
+लिए भी केवल एक दुर्बलीकरण और एक विनिमय चाहिए।
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ !A \fCenter !A, !B$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A \fCenter !B, !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+\end{ex}
+
+\begin{ex}
+एक $\Log{LK}$-!!{derivation} दीजिए जिसका अंतिम अनुक्रम $\lnot !A \lor \lnot !B
+\Sequent \lnot (!A \land !B)$ हो।
+
+ऊपर की विधियों का प्रयोग करते हुए वांछित अंतिम अनुक्रम को सबसे नीचे लिखकर
+आरंभ करते हैं।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B) $
+\end{prooftree}
+अंतिम अनुक्रम के !!{sentence}s में उपलब्ध प्रधान संक्रियक $\lor$ चिह्न और
+$\lnot$ चिह्न हैं। यहाँ \LeftR{\lor} या \RightR{\lnot}, दोनों में से कोई
+नियम लगाया जा सकता है; पर हम \RightR{\lnot} से आरंभ करते हैं, क्योंकि इससे
+कुछ देर तक दो शाखाओं में बँटना टल जाता है:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+अब \LeftR{\land} और \LeftR{\lor} में से किस नियम को देखें, यह चुनना है।
+पहले देखें कि \LeftR{\land} नियम लगाने पर क्या होता है: ऊपरी अनुक्रम के
+लिए $!A,
+\lnot !A \lor !B \Sequent \quad$ और $!B, \lnot !A
+\lor !B \Sequent \quad$ में से कोई एक चुन सकते हैं। चूँकि !!{derivation}, $!A$ और
+$!B$ के संबंध में सममित है, पहला विकल्प लेते हैं:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+!!{derivation} को आगे भरने पर एक समस्या सामने आती है:
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$ \lnot !A, !A \fCenter$
+\AxiomC{}
+\RightLabel{?}
+\UnaryInf$!A \fCenter !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$ \lnot !B, !A \fCenter$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+दाहिनी शाखा के शीर्ष को और घटाया नहीं जा सकता, और संरचनात्मक अनुमानों द्वारा
+उसे प्रारंभिक अनुक्रम तक भी नहीं लाया जा सकता; इसलिए यह सही रास्ता नहीं है।
+अर्थात् ऊपर \LeftR{\land} नियम लगाना भूल थी। पहले वाली स्थिति पर लौटकर उसके
+बदले \LeftR{\lor} नियम लगाने पर मिलता है:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \land !B \fCenter $
+
+\AxiomC{}
+\UnaryInf$\lnot !B, !A \land !B \fCenter $
+
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \land !B \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+हर शाखा को पहले की तरह पूरा करने पर मिलता है:
+\begin{prooftree}
+\Axiom$ !A \fCenter!A$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B \fCenter !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \land !B \fCenter $
+
+\Axiom$ !B \fCenter !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B \fCenter !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B, !A \land !B \fCenter $
+
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \land !B \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+(इन चरणों में $\land$ नियमों को $\lnot$ नियमों से नीचे भी लगा सकते थे और तब
+भी सही !!{derivation} मिलती।)
+\end{ex}
+
+\begin{ex}
+अब तक हमने संकुचन नियम का प्रयोग नहीं किया, पर कभी-कभी वह आवश्यक होता है।
+यह उसका एक उदाहरण है। मान लें कि हमें $\quad \Sequent !A \lor \lnot !A$
+सिद्ध करना है। $\RightR{\lor}$ को उल्टी दिशा में लगाने पर इन दो
+!!{derivation}s में से कोई एक मिलेगी:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \fCenter !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\DisplayProof\qquad\bottomAlignProof
+\AxiomC{}
+\UnaryInf$!A \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \fCenter \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+निस्संदेह इनमें से कोई भी प्रारंभिक अनुक्रम पर समाप्त नहीं होती। युक्ति यह
+समझना है कि संकुचन नियम !!a{sentence} की दो प्रतियों को एक में मिला देता
+है---और प्रमाण खोजते समय, अर्थात् नीचे से ऊपर जाते हुए, पूर्वाधार में $!A \lor \lnot
+!A$ की एक प्रति रख सकते हैं; जैसे:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+अब $\RightR{\lor}$ को दूसरी बार लगा सकते हैं और साथ ही~$\lnot
+!A$ पा सकते हैं; इससे पूरी !!{derivation} मिल जाती है।
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !A, \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+निम्नलिखित अनुक्रमों की !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $!A \land (!B \land !C) \Sequent (!A \land !B) \land !C$.
+\item $!A \lor (!B \lor !C) \Sequent (!A \lor !B) \lor !C$.
+\item $!A \lif (!B \lif !C) \Sequent !B \lif (!A \lif !C)$.
+\item $!A \Sequent \lnot\lnot !A$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+निम्नलिखित अनुक्रमों की !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $(!A \lor !B) \lif !C \Sequent !A \lif !C$.
+\item $(!A \lif !C) \land (!B \lif !C) \Sequent (!A \lor !B) \lif !C$.
+\item $\Sequent \lnot(!A \land \lnot !A)$.
+\item $!B \lif !A \Sequent \lnot !A \lif \lnot !B$.
+\item $\Sequent (!A \lif \lnot !A) \lif \lnot !A$.
+\item $\Sequent \lnot(!A \lif !B) \lif \lnot !B$.
+\item $!A \lif !C \Sequent \lnot (!A \land \lnot !C)$.
+\item $!A \land \lnot !C \Sequent \lnot (!A \lif !C)$.
+\item $!A \lor !B, \lnot !B \Sequent !A$.
+\item $\lnot !A \lor \lnot !B \Sequent \lnot(!A \land !B)$.
+\item $\Sequent (\lnot !A \land \lnot !B) \lif\lnot(!A \lor !B)$.
+\item $\Sequent \lnot(!A \lor !B) \lif (\lnot !A \land \lnot !B)$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+निम्नलिखित अनुक्रमों की !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $\lnot(!A \lif !B) \Sequent !A$.
+\item $\lnot(!A \land !B) \Sequent \lnot !A \lor \lnot !B$.
+\item $!A \lif !B \Sequent \lnot !A \lor !B$.
+\item $\Sequent \lnot \lnot !A \lif !A$.
+\item $!A \lif !B, \lnot !A \lif !B \Sequent !B$.
+\item $(!A \land !B) \lif !C \Sequent (!A \lif !C) \lor (!B \lif !C)$.
+\item $(!A \lif !B) \lif !A \Sequent !A$.
+\item $\Sequent (!A \lif !B) \lor (!B \lif !C)$.
+\end{enumerate}
+(इन सभी में $\RightR{\Contraction}$~नियम आवश्यक है।)
+\end{prob}
+\end{document}

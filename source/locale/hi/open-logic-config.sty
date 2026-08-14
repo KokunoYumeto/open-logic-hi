@@ -7,3 +7,152 @@
 \settexttoken{element}{अवयव}{अवयव}[अवयव][अवयव]
 \definetoken{a}{element}{}
 \definetoken{A}{element}{}
+
+% Reader-facing tokens required by the tree unit.  The plural and oblique
+% surfaces are explicit so generated prose remains grammatical in Hindi.
+\settexttoken{formula}{सूत्र}{सूत्रों}[सूत्र][सूत्रों]
+\settexttoken{subformula}{उपसूत्र}{उपसूत्रों}[उपसूत्र][उपसूत्रों]
+\settexttoken{constant}{अचर}{अचरों}[अचर][अचरों]
+\settexttoken{variable}{चर}{चरों}[चर][चरों]
+\settexttoken{free for}{मुक्त}{मुक्त}[मुक्त][मुक्त]
+\settexttoken{derivation}{व्युत्पत्ति}{व्युत्पत्तियाँ}[व्युत्पत्ति][व्युत्पत्तियाँ]
+\settexttoken{identity}{तादात्म्य}{तादात्म्य}[तादात्म्य][तादात्म्य]
+\settexttoken{sentence}{वाक्य}{वाक्यों}[वाक्य][वाक्यों]
+\settexttoken{derive}{व्युत्पन्न}{व्युत्पन्न}[व्युत्पन्न][व्युत्पन्न]
+\settexttoken{derivable}{व्युत्पन्न}{व्युत्पन्न}[व्युत्पन्न][व्युत्पन्न]
+\settexttoken{derivability}{व्युत्पन्नता}{व्युत्पन्नताओं}[व्युत्पन्नता][व्युत्पन्नताओं]
+\settexttoken{nonderivability}{अव्युत्पन्नता}{अव्युत्पन्नताएँ}[अव्युत्पन्नता][अव्युत्पन्नताएँ]
+\settexttoken{discharge}{मुक्त}{मुक्त}[मुक्त][मुक्त]
+\settexttoken{discharged}{मुक्त}{मुक्त}[मुक्त][मुक्त]
+\settexttoken{undischarged}{अमुक्त}{अमुक्त}[अमुक्त][अमुक्त]
+\settexttoken{tableau}{सत्य-वृक्ष}{सत्य-वृक्ष}[सत्य-वृक्ष][सत्य-वृक्ष]
+\settexttoken{signed formula}{चिह्नित सूत्र}{चिह्नित सूत्रों}[चिह्नित सूत्र][चिह्नित सूत्रों]
+\settexttoken{structure}{संरचना}{संरचनाएँ}[संरचना][संरचनाएँ]
+\settexttoken{complete}{पूर्ण}{पूर्ण}[पूर्ण][पूर्ण]
+\settexttoken{function}{फलन-चिह्न}{फलन-चिह्नों}[फलन-चिह्न][फलन-चिह्नों]
+\settexttoken{predicate}{विधेय-चिह्न}{विधेय-चिह्नों}[विधेय-चिह्न][विधेय-चिह्नों]
+\settexttoken{domain}{प्रांत}{प्रांतों}[प्रांत][प्रांतों]
+\settexttoken{language}{भाषा}{भाषाओं}[भाषा][भाषाओं]
+\settexttoken{value}{मान}{मानों}[मान][मानों]
+\definetoken{a}{formula}{}
+\definetoken{A}{formula}{}
+\definetoken{a}{subformula}{}
+\definetoken{A}{subformula}{}
+\definetoken{a}{constant}{}
+\definetoken{A}{constant}{}
+\definetoken{a}{variable}{}
+\definetoken{A}{variable}{}
+\definetoken{a}{derivation}{}
+\definetoken{A}{derivation}{}
+\definetoken{a}{identity}{}
+\definetoken{A}{identity}{}
+\definetoken{a}{sentence}{}
+\definetoken{A}{sentence}{}
+\definetoken{a}{derive}{}
+\definetoken{A}{derive}{}
+\definetoken{a}{derivable}{}
+\definetoken{A}{derivable}{}
+\definetoken{a}{derivability}{}
+\definetoken{A}{derivability}{}
+\definetoken{a}{nonderivability}{}
+\definetoken{A}{nonderivability}{}
+\definetoken{a}{tableau}{}
+\definetoken{A}{tableau}{}
+\definetoken{a}{signed formula}{}
+\definetoken{A}{signed formula}{}
+\definetoken{a}{structure}{}
+\definetoken{A}{structure}{}
+\definetoken{a}{complete}{}
+\definetoken{A}{complete}{}
+\definetoken{a}{function}{}
+\definetoken{A}{function}{}
+\definetoken{a}{predicate}{}
+\definetoken{A}{predicate}{}
+\definetoken{a}{domain}{}
+\definetoken{A}{domain}{}
+\definetoken{a}{language}{}
+\definetoken{A}{language}{}
+\definetoken{a}{value}{}
+\definetoken{A}{value}{}
+
+% Reader label used inside tableau diagrams.
+\renewcommand*{\TAss}{मान्यता}
+
+% The base induction-case helper contains two reader-facing English strings.
+% Keep its formal arguments and output structure unchanged while localizing the
+% atomic-case label and the exercise placeholder for every Hindi chapter.
+\RenewDocumentCommand \indcase { s t{!} m m +m }{%
+  \DeclareDocumentMacro \indfrm {#3}%
+  \DeclareDocumentMacro \indfrmp {#3}%
+  \DeclareDocumentMacro \indcomplex {#4}%
+  \IfBooleanTF{#1}
+     {$#3$ परमाण्विक है: }{$#3 \ident #4$: }
+  \IfBooleanTF{#2}
+     {अभ्यास।}
+     {#5}}
+
+% Propositional-logic register. IGNOU's Hindi logic materials use
+% "प्रतिज्ञप्ति" for proposition; the compounds below keep the object-language
+% variable distinct from a whole proposition and make the truth-value role of
+% a valuation explicit for first-time readers.
+\settexttoken{propositional variable}{प्रतिज्ञप्ति चर}{प्रतिज्ञप्ति चरों}[प्रतिज्ञप्ति चर][प्रतिज्ञप्ति चरों]
+\settexttoken{valuation}{सत्य-मूल्यांकन}{सत्य-मूल्यांकनों}[सत्य-मूल्यांकन][सत्य-मूल्यांकनों]
+\definetoken{a}{propositional variable}{}
+\definetoken{A}{propositional variable}{}
+\definetoken{a}{valuation}{}
+\definetoken{A}{valuation}{}
+
+% Propositional-language vocabulary.  The connective names follow the
+% established Hindi logic register; "गणनीय अनंत" distinguishes denumerable
+% from the broader enumerable/countable term used in the set-size chapter.
+\settexttoken{denumerable}{गणनीय अनंत}{गणनीय अनंत}[गणनीय अनंत][गणनीय अनंत]
+\settexttoken{falsity}{असत्यता}{असत्यताओं}[असत्यता][असत्यताओं]
+\settexttoken{truth}{सत्यता}{सत्यताओं}[सत्यता][सत्यताओं]
+\settexttoken{conditional}{आपादन}{आपादनों}[आपादन][आपादनों]
+\settexttoken{biconditional}{द्विशर्त}{द्विशर्तों}[द्विशर्त][द्विशर्तों]
+\settexttoken{operator}{संक्रियक}{संक्रियकों}[संक्रियक][संक्रियकों]
+\settexttoken{main operator}{प्रधान संक्रियक}{प्रधान संक्रियकों}[प्रधान संक्रियक][प्रधान संक्रियकों]
+\definetoken{a}{denumerable}{}
+\definetoken{A}{denumerable}{}
+\definetoken{a}{falsity}{}
+\definetoken{A}{falsity}{}
+\definetoken{a}{truth}{}
+\definetoken{A}{truth}{}
+\definetoken{a}{conditional}{}
+\definetoken{A}{conditional}{}
+\definetoken{a}{biconditional}{}
+\definetoken{A}{biconditional}{}
+\definetoken{a}{operator}{}
+\definetoken{A}{operator}{}
+\definetoken{a}{main operator}{}
+\definetoken{A}{main operator}{}
+
+% NCERT Class XII relations-and-functions register. Hindi has no indefinite
+% article, so every token form used through !!a / !!^a suppresses it.
+\settexttoken{surjective}{आच्छादक}{आच्छादक}[आच्छादक][आच्छादक]
+\settexttoken{surjection}{आच्छादक प्रतिचित्रण}{आच्छादक प्रतिचित्रण}[आच्छादक प्रतिचित्रण][आच्छादक प्रतिचित्रण]
+\settexttoken{injective}{एकैकी}{एकैकी}[एकैकी][एकैकी]
+\settexttoken{injection}{एकैकी प्रतिचित्रण}{एकैकी प्रतिचित्रण}[एकैकी प्रतिचित्रण][एकैकी प्रतिचित्रण]
+\settexttoken{bijective}{एकैकी आच्छादक}{एकैकी आच्छादक}[एकैकी आच्छादक][एकैकी आच्छादक]
+\settexttoken{bijection}{एकैकी आच्छादक प्रतिचित्रण}{एकैकी आच्छादक प्रतिचित्रण}[एकैकी आच्छादक प्रतिचित्रण][एकैकी आच्छादक प्रतिचित्रण]
+\definetoken{a}{surjective}{}
+\definetoken{A}{surjective}{}
+\definetoken{a}{surjection}{}
+\definetoken{A}{surjection}{}
+\definetoken{a}{injective}{}
+\definetoken{A}{injective}{}
+\definetoken{a}{injection}{}
+\definetoken{A}{injection}{}
+\definetoken{a}{bijective}{}
+\definetoken{A}{bijective}{}
+\definetoken{a}{bijection}{}
+\definetoken{A}{bijection}{}
+
+% Set-size register. CSTT gives गणन for enumeration and गणनीय समुच्चय
+% for enumerable/countable set; the adjective has no inflection here.
+\settexttoken{enumerable}{गणनीय}{गणनीय}[गणनीय][गणनीय]
+\settexttoken{nonenumerable}{अगणनीय}{अगणनीय}[अगणनीय][अगणनीय]
+\definetoken{a}{enumerable}{}
+\definetoken{A}{enumerable}{}
+\definetoken{a}{nonenumerable}{}
+\definetoken{A}{nonenumerable}{}

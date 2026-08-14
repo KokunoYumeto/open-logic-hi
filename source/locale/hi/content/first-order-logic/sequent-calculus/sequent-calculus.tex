@@ -1,0 +1,56 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter{fol}{seq}{अनुक्रम-कलन}}
+      {\olchapter{pl}{seq}{अनुक्रम-कलन}}
+
+\begin{editorial}
+  यह अध्याय शास्त्रीय प्रथम-कोटि तर्कशास्त्र के लिए गेंट्सेन का मानक
+  अनुक्रम-कलन LK प्रस्तुत करता है। इसमें और उदाहरण तथा अभ्यास जोड़े जा सकते
+  हैं। प्रमाण-तंत्र के रूप में अनुक्रम-कलन से संबद्ध सामग्री को शामिल या
+  बहिष्कृत करने के लिए ``prfLK'' टैग का उपयोग करें।
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{structural-rules}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

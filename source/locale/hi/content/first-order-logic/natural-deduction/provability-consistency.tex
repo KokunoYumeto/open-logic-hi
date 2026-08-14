@@ -1,0 +1,127 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{ntd}{prv}}
+      {\olfileid[hi]{pl}{ntd}{prv}}
+      
+\olsection{\usetoken{S}{derivability} और संगतता}
+
+अब !!{derivability} संबंध के कई गुण स्थापित करेंगे। वे अपने-आप में रोचक हैं,
+पर उनमें से प्रत्येक पूर्णता प्रमेय के प्रमाण में भूमिका निभाएगा।
+
+\begin{prop}\ollabel{prop:provability-contr}
+  यदि $\Gamma \Proves !A$ और $\Gamma \cup \{!A\}$ असंगत है, तो
+  $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+!!{derivation}—~$!A$ की~$\Gamma$ से—~$\delta_1$ हो, और
+!!{derivation}—~$\lfalse$ की $\Gamma \cup \{!A\}$ से—~$\delta_2$ हो। तब
+यह !!{derive} कर सकते हैं:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\AxiomC{$\Gamma$}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+नई !!{derivation} में मान्यता~$!A$ !!{discharged} है, इसलिए यह
+!!a{derivation}~$\Gamma$ से है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ तभी और केवल तभी जब $\Gamma \cup \{\lnot !A\}$ असंगत हो।
+\end{prop}
+
+\begin{proof}
+पहले मान लें $\Gamma \Proves !A$; अर्थात् कोई !!a{derivation}~$\delta_0$
+ऐसी है जो~$!A$ की !!{undischarged} मान्यताओं~$\Gamma$ से है। इससे
+!!a{derivation} मिलती है—$\lfalse$ की $\Gamma \cup \{\lnot !A\}$ से—इस प्रकार:
+\begin{prooftree}
+  \AxiomC{$\lnot !A$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+\end{prooftree}
+
+अब मान लें $\Gamma \cup \{\lnot !A\}$ असंगत है, और $\delta_1$ उस तदनुरूप
+!!{derivation} को निरूपित करे जो~$\lfalse$ की,~$\Gamma \cup \{\lnot !A\}$
+में उपस्थित !!{undischarged} मान्यताओं से है।~$!A$ की केवल~$\Gamma$ से
+!!a{derivation},~$\FalseCl$ का प्रयोग करके इस प्रकार मिलती है:
+\begin{prooftree}
+  \AxiomC{$\Gamma, \Discharge{\lnot !A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\lfalse$}
+  \RightLabel{\FalseCl}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A$}
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+सिद्ध कीजिए कि $\Gamma \Proves \lnot !A$ तभी और केवल तभी जब
+$\Gamma \cup \{!A\}$ असंगत हो।
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  यदि $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$, तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+  मान लें $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$। तब कोई
+  !!a{derivation}~$\delta$ ऐसी है जो~$!A$ की~$\Gamma$ से है।
+  $\Elim{\lnot}$ नियम के इस सरल प्रयोग पर विचार करें:
+  \begin{prooftree}
+    \AxiomC{$\lnot !A$}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lnot}}
+    \BinaryInfC{$\lfalse$}
+  \end{prooftree}
+  चूँकि $\lnot !A \in \Gamma$, सभी !!{undischarged} मान्यताएँ~$\Gamma$ में
+  हैं; इससे $\Gamma \Proves \lfalse$ सिद्ध होता है।
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  यदि $\Gamma \cup \{!A\}$ और $\Gamma \cup \{\lnot !A\}$ दोनों असंगत हैं,
+  तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+!!{derivation}s $\delta_1$ और $\delta_2$ हैं: पहली~$\lfalse$ की
+  $\Gamma \cup \{ !A \}$ से, और दूसरी~$\lfalse$ की $\Gamma \cup \{ \lnot !A
+  \}$ से। तब यह !!{derive} कर सकते हैं:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{\lnot !A}{2}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{2}
+\UnaryInfC{$\lnot \lnot !A$}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_1$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+चूँकि मान्यताएँ $!A$ और $\lnot !A$ !!{discharged} हैं, यह
+!!a{derivation} है—~$\lfalse$ की केवल~$\Gamma$ से। अतः $\Gamma$ असंगत है।
+\end{proof}
+
+\end{document}

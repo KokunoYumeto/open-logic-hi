@@ -1,0 +1,125 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{ntd}{ide}
+
+\olsection{\usetoken{P}{derivation}: \usetoken{S}{identity} सहित}
+
+!!^{derivation}s, जिनमें !!{identity} हो, अतिरिक्त अनुमान-नियम मांगती हैं।
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{\Intro{\eq}}
+\UnaryInfC{$\eq[t][t]$}
+\DisplayProof
+\hfill
+\begin{tabular}{r}
+\AxiomC{$\eq[t_1][t_2]$}
+\AxiomC{$!A(t_1)$}
+\RightLabel{\Elim{\eq}}
+\BinaryInfC{$!A(t_2)$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$\eq[t_1][t_2]$}
+\AxiomC{$!A(t_2)$}
+\RightLabel{\Elim{\eq}}
+\BinaryInfC{$!A(t_1)$}
+\DisplayProof
+\end{tabular}
+\end{defish}
+
+उपर्युक्त नियमों में $t$, $t_1$, और $t_2$ बंद पद हैं। \Intro{\eq} नियम
+$\eq[t][t]$ रूप के किसी भी तादात्म्य-कथन को बिना किसी मान्यता के सीधे
+!!{derive} करने देता है।
+
+\begin{ex}
+यदि $s$ और $t$ बंद पद हैं, तो $!A(s), \eq[s][t] \Proves !A(t)$:
+\begin{prooftree}
+\AxiomC{$\eq[s][t]$}
+\AxiomC{$!A(s)$}
+\RightLabel{$\Elim{\eq}$}
+\BinaryInfC{$!A(t)$}
+\end{prooftree}
+इसे ``अभिन्न वस्तुओं की प्रतिस्थापनीयता का सिद्धांत'' अथवा ``लाइबनित्स का
+नियम'' भी कहते हैं।
+\end{ex}
+
+\begin{prob}
+सिद्ध कीजिए कि $=$ सममित और संक्रामी दोनों है; अर्थात्
+$\lforall[x][\lforall[y][(\eq[x][y] \lif
+    \eq[y][x])]]$ और $\lforall[x][\lforall[y][\lforall[z]((\eq[x][y]
+    \land \eq[y][z]) \lif \eq[x][z])]]$
+की !!{derivation}s दीजिए।
+\end{prob}
+
+\begin{ex}
+!!{derive} किया जाने वाला !!{sentence} है
+\begin{align*}
+& \lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]
+\intertext{और जिस !!{sentence} से इसे व्युत्पन्न करते हैं, वह है:}
+& \lexists[x][\lforall[y][(!A(y) \lif \eq[y][x])]]
+\end{align*}
+हम !!{derivation} को पीछे की ओर निर्मित करते हैं:
+\begin{prooftree}
+\AxiomC{$\lexists[x][\lforall[y][(!A(y) \lif \eq[y][x])]]
+\quad \Discharge{!A(a) \land !A(b)}{1}$}
+\DeduceC{$\eq[a][b]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$((!A(a) \land !A(b)) \lif \eq[a][b])$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[y][((!A(a) \land !A(y)) \lif \eq[a][y])]$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]$}
+\end{prooftree}
+अब मुख्य मान्यता का उपयोग करना होगा: वह एक अस्तित्वपरक !!{formula} है, इसलिए
+मध्यवर्ती निष्कर्ष $\eq[a][b]$ को !!{derive} करने के लिए हम
+\Elim{\lexists} का उपयोग करते हैं।
+\begin{prooftree}
+\AxiomC{$\lexists[x][\lforall[y][(!A(y) \lif \eq[y][x])]]$}
+\AxiomC{$\Discharge{\lforall[y][(!A(y) \lif \eq[y][c]])}{2}$}
+\noLine
+\UnaryInfC{$\Discharge{!A(a) \land !A(b)}{1}$}
+\DeduceC{$\eq[a][b]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\eq[a][b]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$((!A(a) \land !A(b)) \lif \eq[a][b])$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[y][((!A(a) \land !A(y)) \lif \eq[a][y])]$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]$}
+\end{prooftree}
+ऊपर दाईं ओर की उप-!!{derivation} अपनी मान्यताओं से $\eq[a][c]$ और
+$\eq[b][c]$ दिखाकर पूरी होती है। इसके लिए दो अलग-अलग !!{derivation}s चाहिए।
+$\eq[a][c]$ की !!{derivation} इस प्रकार है:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lforall[y][(!A(y) \lif \eq[y][c]])}{2}$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(a) \lif \eq[a][c]$}
+\AxiomC{$\Discharge{!A(a) \land !A(b)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\eq[a][c]$}
+\end{prooftree}
+$\eq[a][c]$ और $\eq[b][c]$ से हम \Elim{\eq} द्वारा $\eq[a][b]$
+!!{derive} करते हैं।
+\end{ex}
+
+\begin{prob}
+ऐसी !!{derivation}s दीजिए कि इनमें से प्रत्येक का निष्कर्ष निम्नलिखित
+!!{formula}s में से एक हो:
+\begin{enumerate}
+\item $\lforall[x][\lforall[y][((\eq[x][y] \land !A(x)) \lif !A(y))]]$
+\item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land
+    !A(z)) \lif \eq[y][z])]] \lif \lexists[x][(!A(x) \land
+  \lforall[y][(!A(y) \lif \eq[y][x])])]$
+\end{enumerate}
+\end{prob}
+
+\end{document}

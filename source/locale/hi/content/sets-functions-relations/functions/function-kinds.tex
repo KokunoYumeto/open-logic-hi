@@ -1,0 +1,116 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: kinds
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{fun}{kin}
+\olsection{फलनों के प्रकार}
+
+\begin{explain}
+जिन फलनों के प्रकारों से हमारा सबसे अधिक सामना होता है, उनमें से कुछ का
+वर्गीकरण प्रस्तुत करना उपयोगी होगा।
+
+आरंभ में हम ऐसे फलनों पर विचार कर सकते हैं जिनमें सहप्रांत का प्रत्येक अवयव
+फलन का कोई मान होता है। ऐसे फलन !!{surjective} कहलाते हैं और उन्हें
+\olref{fig:surjective} की तरह चित्रित किया जा सकता है।
+
+\begin{figure}[H]
+  \olasset{assets/diagrams/surjective.tikz}
+  \caption{!!^a{surjective} फलन में सहप्रांत का प्रत्येक !!{element} कोई
+    मान होता है।}
+  \ollabel{fig:surjective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{surjective} फलन]
+फलन $f \colon A \rightarrow B$ \emph{!!{surjective}} है यदि और केवल यदि $B$
+भी~$f$ का परिसर है, अर्थात् प्रत्येक $y \in B$ के लिए कम-से-कम एक
+$x \in A$ ऐसा है कि~$f(x) = y$; प्रतीकों में:
+\[
+  (\forall y \in B)(\exists x \in A)f(x) = y.
+\]
+ऐसे फलन को $A$ से $B$ तक का !!a{surjection} कहते हैं।
+\end{defn}
+
+\begin{explain}
+यदि आप यह दिखाना चाहते हैं कि $f$ !!a{surjection} है, तो आपको दिखाना होगा
+कि~$f$ के सहप्रांत की प्रत्येक वस्तु $f(x)$ का मान है, किसी निवेश $x$ के लिए।
+
+ध्यान दें कि प्रत्येक फलन एक !!a{surjection} \emph{प्रेरित करता है}। वास्तव
+में, फलन $f \colon A \to B$ दिए जाने पर $f' \colon A \to \ran{f}$ को
+$f'(x) = f(x)$ द्वारा परिभाषित करें। चूँकि $\ran{f}$ को
+$\Setabs{f(x) \in B}{x \in A}$ के रूप में \emph{परिभाषित} किया गया है,
+इसलिए यह फलन $f'$ निश्चित रूप से !!a{surjection} है।
+\end{explain}
+
+\begin{explain}
+हर फलन प्रत्येक संभावित निवेश को एक अद्वितीय निर्गम पर प्रतिचित्रित करता है।
+पर ऐसे फलन भी होते हैं जो अलग-अलग निवेशों को कभी एक ही निर्गम पर प्रतिचित्रित
+नहीं करते। ऐसे फलन !!{injective} कहलाते हैं और उन्हें
+\olref{fig:injective} की तरह चित्रित किया जा सकता है।
+\begin{figure}[H]
+  \olasset{assets/diagrams/injective.tikz}
+  \caption{!!^a{injective} फलन दो अलग-अलग फलन-कोणांकों को कभी एक ही मान पर
+    प्रतिचित्रित नहीं करता।}
+  \ollabel{fig:injective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{injective} फलन]
+फलन $f \colon A \rightarrow B$ \emph{!!{injective}} है यदि और केवल यदि
+प्रत्येक $y \in B$ के लिए अधिक-से-अधिक एक $x \in A$ ऐसा है कि~$f(x) = y$।
+ऐसे फलन को $A$ से~$B$ तक का !!a{injection} कहते हैं।
+\end{defn}
+
+\begin{explain}
+यदि आप यह दिखाना चाहते हैं कि $f$ !!a{injection} है, तो आपको दिखाना होगा कि
+किन्हीं !!{element}ों $x$ और $y$ के लिए, जो $f$ के प्रांत में हों, यदि
+$f(x)=f(y)$, तो $x=y$।
+\end{explain}
+
+\begin{ex}
+$f\colon \Nat \to \Nat$ अचर फलन, जो $f(x) = 1$ द्वारा दिया गया है, न तो
+!!{injective} है, न !!{surjective}।
+
+$f\colon \Nat \to \Nat$ तत्समक फलन, जो $f(x) = x$ द्वारा दिया गया है,
+!!{injective} और !!{surjective} दोनों है।
+
+$f \colon \Nat \to \Nat$ परवर्ती फलन, जो $f(x) = x+1$ द्वारा दिया गया है,
+!!{injective} है, पर !!{surjective} नहीं।
+
+निम्न प्रकार से परिभाषित फलन $f \colon \Nat \to \Nat$:
+\[
+  f(x) =
+  \begin{cases}
+    \frac{x}{2} & \text{यदि $x$ सम है} \\
+    \frac{x+1}{2} & \text{यदि $x$ विषम है।}
+  \end{cases}
+\]
+!!{surjective} है, पर !!{injective} नहीं।
+\end{ex}
+
+\begin{explain}
+प्रायः हम ऐसे फलनों पर विचार करना चाहते हैं जो !!{injective} और
+!!{surjective} दोनों हों। ऐसे फलनों को हम !!{bijective} कहते हैं। वे
+\olref{fig:bijective} में चित्रित फलन जैसे दिखते हैं। !!^{bijection}s ऐसे
+प्रतिचित्रण हैं जिन्हें कभी-कभी \emph{एकैकी संगतियाँ} भी कहते हैं, क्योंकि वे सहप्रांत के अवयवों को
+प्रांत के अवयवों के साथ अद्वितीय रूप से युग्मित करते हैं।
+\begin{figure}[H]
+  \olasset{assets/diagrams/bijective.tikz}
+  \caption{!!^a{bijective} फलन सहप्रांत के अवयवों को प्रांत के अवयवों के साथ
+    अद्वितीय रूप से युग्मित करता है।}
+  \ollabel{fig:bijective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{bijection}]
+फलन $f \colon A \to B$ \emph{!!{bijective}} है यदि और केवल यदि वह
+!!{surjective} और !!{injective} दोनों है। ऐसे फलन को $A$ से~$B$ तक (या
+$A$ और~$B$ के बीच) !!a{bijection} कहते हैं।
+\end{defn}
+
+\end{document}

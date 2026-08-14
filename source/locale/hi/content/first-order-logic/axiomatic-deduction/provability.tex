@@ -1,0 +1,310 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: provability
+
+% verification of properties of provability needed for maximally 
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{prv}}
+      {\olfileid[hi]{pl}{axd}{prv}}
+
+\olsection{\usetoken{S}{derivability} के गुण}
+
+\begin{prop}[एकदिष्टता] यदि $\Gamma \subseteq \Delta$ और $\Gamma \Proves !A$,
+तो $\Delta \Proves !A$ भी। \end{prop}
+
+\begin{proof} प्रत्येक परिमित $\Gamma_0 \subseteq \Gamma$,~$\Delta$ का भी
+परिमित उपसमुच्चय है; अतः $\Gamma_0 \Proves !A$ की !!a{derivation},
+$\Delta \Proves !A$ भी दिखाती है। \end{proof}
+
+\begin{prop}\ollabel{prop:provability} $\Gamma \Proves !A$ तभी और केवल तभी जब
+$\Gamma\cup \{\lnot!A \}$ असंगत हो। \end{prop}
+
+\begin{prop} \begin{enumerate}
+\item \ollabel{prop:provability-contr} यदि $\Gamma \Proves !A$ और $\Gamma
+\cup \{ !A\} \Proves \lfalse$, तो $\Gamma$ असंगत है।
+
+\item \ollabel{prop:provability-lnot} यदि $\Gamma \cup \{!A\}
+\Proves \lfalse$, तो $\Gamma \Proves \lnot !A$।
+
+\item \ollabel{prop:provability-exhaustive} यदि $\Gamma \cup \{!A\}
+\Proves \lfalse$ और $\Gamma \cup \{\lnot !A\} \Proves
+\lfalse$, तो $\Gamma \Proves \lfalse$।
+
+\tagitem{prvOr}{\ollabel{prop:provability-lor-left} यदि $\Gamma \cup \{!A\}
+\Proves \lfalse$ और $\Gamma \cup \{!B\} \Proves
+\lfalse$, तो $\Gamma \cup \{!A \lor !B\} \Proves \lfalse$।}{}
+
+\tagitem{prvOr}{\ollabel{prop:provability-lor-right} यदि $\Gamma
+\Proves !A$ अथवा $\Gamma \Proves !B$, तो $\Gamma
+\Proves !A \lor !B$।}{}
+
+\tagitem{prvAnd}{\ollabel{prop:provability-land-left} यदि $\Gamma
+\Proves !A \land !B$, तो $\Gamma \Proves !A$ और
+$\Gamma \Proves !B$।}{}
+
+\tagitem{prvAnd}{\ollabel{prop:provability-land-right} यदि $\Gamma
+\Proves !A$ और $\Gamma \Proves !B$, तो $\Gamma
+\Proves !A \land !B$।}{}
+
+\tagitem{prvIf}{\ollabel{prop:provability-mp} यदि $\Gamma \Proves
+!A$ और $\Gamma \Proves !A \lif !B$, तो $\Gamma
+\Proves !B$।}{}
+
+\tagitem{prvIf}{\ollabel{prop:provability-lif} यदि $\Gamma \Proves
+\lnot !A$ अथवा $\Gamma \Proves !B$, तो $\Gamma \Proves
+!A \lif !B$।}{} \end{enumerate} \end{prop}
+
+\begin{proof} 
+\begin{enumerate}
+\item मान लें $\Gamma_0 \cup \{!A\} \Proves \lfalse$।
+
+\begin{derivation} 
+1. & $\Gamma_0 \cup \{!A\} \Proves \lfalse$ & मान्यता \\
+2. & $\Gamma_1 \Proves !A$ & मान्यता\\ 
+3. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & छेदन \\ 
+\end{derivation}
+
+चूँकि $\Gamma_0 \subseteq \Gamma$ और $\Gamma_1 \subseteq \Gamma$,
+इसलिए $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$; अतः $\Gamma \Proves \lfalse$।
+
+\item मान लें $\Gamma_0 \cup\{\lnot !A\} \Proves \lfalse$।
+
+\begin{derivation} 
+1. & $\Gamma_0 \cup\{\lnot !A\} \Proves \lfalse$ & मान्यता \\ 
+2. & $\Gamma_0 \Proves \lnot !A \lif \lfalse$ & निगमन प्रमेय\\
+3. & $\Gamma_0 \Proves (\lnot !A \lif \lfalse) \lif !A$ & Ax0\\ 
+4. & $\Gamma_0 \Proves !A$ & MP 2, 3 \\ 
+\end{derivation}
+
+\item मान लें $\Gamma \cup \{ !A \} \Proves \lfalse$ और
+$\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$।
+
+\begin{derivation} 
+1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & मान्यता \\
+2. & $\Gamma_0 \Proves !A \lif \lfalse$ & निगमन प्रमेय \\ 
+3. & $\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$ & मान्यता\\ 
+4. & $\Gamma_0 \Proves (!A \lif \lfalse) \lif \lnot !A$ & Ax0\\ 
+5. & $\Gamma_0 \Proves \lnot !A$ & MP 2, 4\\ 
+6. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & छेदन 3, 5 \\
+\end{derivation}
+
+चूँकि $\Gamma_0 \subseteq \Gamma$ और $\Gamma_1 \subseteq \Gamma$,
+इसलिए $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$। अतः $\Gamma \Proves \lfalse$।
+
+% prop:provability-lor-left 
+\tagitem{defOr}{}{
+\iftag{probOr}{अभ्यास।}{अभ्यास।}}
+
+% prop:provability-lor-right 
+\tagitem{defOr}{}{ \iftag{probOr}{अभ्यास।}{
+मान लें $\Gamma_0 \Proves !A$।
+
+\begin{derivation} 
+1. & $\Gamma_0 \Proves !A$ & मान्यता \\ 
+2. & $\Gamma_0 \Proves !A \lif (!A \lor !B)$ & Ax0\\ 
+3. & $\Gamma_0 \Proves !A \lor !B$ & MP 1, 2 \\
+\end{derivation}
+
+अतः $\Gamma \Proves !A \lor !B$। $\Gamma \Proves
+!B$ वाला प्रमाण इसी
+प्रकार है।}}
+
+% prop:provability-land-left 
+\tagitem{defAnd}{}{ \iftag{probAnd}{अभ्यास}{
+मान लें $\Gamma_0 \Proves !A \land !B$।
+
+\begin{derivation} 
+1. & $\Gamma_0 \Proves !A \land !B$ & मान्यता \\ 
+2. & $\Gamma_0 \Proves (!A\land !B) \lif !A $ & Ax0\\ 
+3. & $\Gamma_0 \Proves !A \lor !B$ & MP 1, 2 \\
+\end{derivation}
+
+अतः $\Gamma \Proves !A$। इसी प्रकार आरंभ होने वाली !!{derivation} दिखाती
+है कि $\Gamma \Proves !B$।}}
+
+% prop:provability-land-right
+\tagitem{defAnd}{}{\iftag{probAnd}{अभ्यास।}{अभ्यास।}}
+
+% prop:provability-mp 
+\tagitem{defIf}{}{ \iftag{probIf}{अभ्यास।}{ मान लें $\Gamma_0 \Proves !A$
+और $\Gamma_0 \Proves !A \lif !B $ दोनों।
+
+\begin{derivation} 
+1. & $\Gamma_0 \Proves !A$ & मान्यता \\ 
+2. & $\Gamma_0 \Proves !A \lif !B $ & मान्यता\\ 
+3. & $\Gamma_0 \Proves !B$ & MP 1, 2\\
+\end{derivation}
+
+चूँकि $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$, इसका अर्थ है कि $\Gamma
+\Proves !B$।}}
+
+% prop:provability-lif 
+\tagitem{defIf}{}{\iftag{probIf}{अभ्यास।}{पहले मान लें
+$\Gamma \Proves \lnot !A$।
+    
+\begin{derivation} 
+1. & $\Gamma_0 \Proves \lnot !A$ & मान्यता \\ 
+2. & $\Gamma_0 \Proves \lnot !A \lif (!A \lif !B) $ & Ax0\\ 
+3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1,
+2\\ \end{derivation}
+
+$\Gamma \Proves !B$ का प्रमाण इसी प्रकार है:
+
+\begin{derivation} 
+1. & $\Gamma_0 \Proves !B$ & मान्यता \\ 
+2. & $\Gamma_0 \Proves !B \lif (!A \lif !B) $ & Ax0\\ 
+3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1, 2\\
+\end{derivation}}}
+
+\end{enumerate} 
+\end{proof}
+
+\begin{probtag}{probOr,probAnd,probIf}
+\olref[fol][axd][prv]{prop:provability} का प्रमाण पूरा कीजिए।
+\end{probtag}
+
+\begin{thm}[सामान्यीकरण] \ollabel{thm:Generalization} यदि $\Gamma \Proves
+!A$ और $x$,~$\Gamma$ के किसी भी !!{formula} में मुक्त नहीं है, तो $\Gamma
+\Proves \lforall[x][!A]$।
+\end{thm}
+
+\begin{proof} $\mathsf{Thm}_\Gamma$ पर आगमन करें। यदि $!A$ कोई अभिगृहीत
+है, तो $\lforall[x][!A]$ भी। यदि $!A\in \Gamma$, तो $x$,~$!A$ में मुक्त
+नहीं है; अतः $!A \lif \lforall[x][!A]$ एक अभिगृहीत (\textbf{Ax3}) है और
+MP से $\Gamma
+\Proves \lforall[x][!A]$। अब मान लें कि $!A$, MP से मिलता
+है क्योंकि $\Gamma \Proves !B$ और $\Gamma \Proves !B \lif !A$।
+आगमन-परिकल्पना से $\Gamma \Proves \lforall[x][!B]$ और $\Gamma \Proves
+\lforall[x][( !B \lif !A)]$। पर \textbf{Ax2} से यह भी है:
+\[ \Gamma \Proves
+\lforall[x][( !B \lif !A)] \lif (\lforall[x][ !B] \lif \lforall[x][!A]), \]
+और MP के दो प्रयोग अपेक्षित $\Gamma \Proves \lforall[x][!A]$ देते हैं।
+\end{proof}
+
+\begin{thm}\ollabel{thm:WeakGen} (\emph{अचरों पर दुर्बल सामान्यीकरण})
+यदि $\Gamma \Proves !A$ और $c$ ऐसा !!a{constant} है जो $\Gamma$ में नहीं
+आता, तो कोई चर $x$ ऐसा है जो $!A$ में नहीं आता और जिसके लिए $\Gamma
+\Proves \lforall[x][\Subst{!A}{x}{c}]$; तथा प्रमाण में $c$ नहीं आता।
+\end{thm}
+
+\begin{proof} $!A_1,\ldots,!A_n$ को $!A$ का,~$\Gamma$ से, प्रमाण मानें,
+जिसमें $!A=!A_n$। ऐसा चर $x$ चुनें जो $!A_1,\ldots,!A_n$ में नहीं आता और
+नए अनुक्रम पर विचार करें:
+$\Subst{!A_1}{x}{c},\ldots,\Subst{!A_n}{x}{c}.$ यह अनुक्रम
+$\Subst{!A}{x}{c}$ का,~$\Gamma$ से, प्रमाण है। वास्तव में, प्रत्येक
+$i=1,\ldots,n$ के
+लिए: \begin{itemize} \item यदि $!A$ कोई अभिगृहीत है, तो
+$\Subst{!A_i}{x}{c}$ भी; \item यदि $!A_i \in \Gamma$, तो क्योंकि $c$,
+$\Gamma$ में नहीं है, $\Subst{!A_i}{x}{c} = !A_i \in \Gamma$; \item यदि
+$!A_i$, $!A_j$ और $!A_j \lif !A_i$ से मिलता है, तो $\Subst{!A_i}{x}{c}$,
+$\Subst{!A_j}{x}{c}$ और $\Subst{(!A_j \lif !A_i)}{x}{c}
+= \Subst{!A_j}{x}{c} \lif \Subst{!A_i}{x}{c}$ से MP द्वारा मिलता है।
+\end{itemize} स्पष्ट है कि नए अनुक्रम में !!{constant}~$c$ अब नहीं आता। अब
+$\Gamma'$ को~$\Gamma$ के उन !!{formula}s का समुच्चय मानें जो
+$\Subst{!A}{x}{c}$ की !!{derivation} में आते हैं। तब $x$,~$\Gamma'$ के किसी
+भी !!{formula} में मुक्त नहीं है और $\Gamma' \Proves \Subst{!A}{x}{c}$।
+सामान्यीकरण (\olref{thm:Generalization}) से $\Gamma'
+\Proves \lforall[x][\Subst{!A}{x}{c}]$; अतः एकदिष्टता से $\Gamma \Proves
+\lforall[x][\Subst{!A}{x}{c}]$, जैसा अपेक्षित था।
+\end{proof}
+
+\begin{explain}
+हमारा लक्ष्य \olref{thm:WeakGen} की इस अपेक्षा को—कि $x$,~$!A$ में कहीं भी
+नहीं आता—इन दुर्बल अपेक्षाओं से बदलना है कि $x$,~$!A$ में मुक्त नहीं है और
+$c$,~$!A$ में उसके लिए !!{free for} है। स्पष्टतः इसे आबद्ध !!{variable} बदलकर
+किया जा सकता है; इसलिए पहले हम यही सिद्ध करेंगे।
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:free-for} 
+यदि $x$, $c$ के लिए,~$!A$ में मुक्त है और $y$,~$!A$ में मुक्त नहीं है, तो
+$x$, $y$ के लिए,~$\Subst{!A}{y}{c}$ में !!{free for} है।
+\end{lem}
+
+\begin{proof} यदि $x$, $y$ के लिए,~$\Subst{!A}{y}{x}$ में !!{free for} नहीं
+है, तो $y$ का कोई मुक्त आविर्भाव, $\Subst{!A}{y}{c}$ में, किसी परिमाणक
+$\lforall[x]$ के क्षेत्र में आता है। पर परिकल्पना से $y$,~$!A$ में मुक्त
+नहीं है; अतः ऐसे सभी आविर्भाव प्रतिस्थापन $\Subst{}{y}{c}$ से आते हैं। तब
+$c$ का कोई आविर्भाव $\lforall[x]$ के क्षेत्र में आता है और $x$, $c$ के
+लिए,~$!A$ में !!{free for} नहीं है।
+\end{proof}
+
+\begin{lem}[आबद्ध चर का परिवर्तन]
+\ollabel{lem:ChangeBdVar} 
+यदि $x$ और $y$,~$!A$ में मुक्त नहीं हैं और दोनों $c$ के लिए,~$!A$ में,
+!!{free for} हैं, तो $\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$ (और प्रमाण में $c$ नहीं आता)।
+\end{lem}
+
+\begin{proof} 
+परिकल्पनाओं से $y$, $c$ के लिए,~$!A$ में !!{free for} है और $x$,~$!A$ में
+मुक्त नहीं है; अतः पिछले \olref{lem:free-for} से $y$, $x$ के लिए,
+~$\Subst{!A}{x}{c}$ में !!{free for} है। इससे
+$\lforall[x][\Subst{!A}{x}{c} \lif \Subst{!A}{x}{c} \Subst{}{y}{x}]$
+एक अभिगृहीत (\textbf{Ax1}) है। चूँकि $x$,~$!A$ में मुक्त नहीं है, इसलिए
+$\Subst{!A}{x}{c} \Subst{}{y}{x} = \Subst{!A}{y}{c}$; अतः
+\[
+\Proves \lforall[x][\Subst{!A}{x}{c}] \lif \Subst{!A}{y}{c}, 
+\] 
+और निगमन प्रमेय से $\lforall[x][\Subst{!A}{x}{c}] \Proves
+\Subst{!A}{y}{c}$। चूँकि $y$,~$!A$ में मुक्त नहीं है, वह
+$\lforall[x][\Subst{!A}{x}{c}]$ में भी मुक्त नहीं है; अतः सामान्यीकरण से
+$\lforall[x][\Subst{!A}{x}{c}] \Proves \lforall[y][\Subst{!A}{y}{c}]$,
+और निगमन प्रमेय से फिर $\Proves
+\lforall[x][\Subst{!A}{x}{c}] \lif \lforall[y][\Subst{!A}{y}{c}]$।
+$\Proves \lforall[y][\Subst{!A}{y}{c}] \lif \lforall[x]
+[\Subst{!A}{x}{c}]$ का प्रमाण पूर्णतः सममित है; अतः निष्कर्ष Taut से मिलता है।
+\end{proof}
+
+\begin{thm}[अचरों पर प्रबल सामान्यीकरण]
+\ollabel{thm:StrongGen} 
+यदि $\Gamma \Proves !A$, !!{constant}~$c$,~$\Gamma$ में नहीं आता, और $x$,
+~$!A$ में मुक्त नहीं है पर $c$ उसके लिए~$!A$ में !!{free for} है, तो
+$\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$।
+\end{thm}
+
+\begin{proof} 
+चूँकि $\Gamma \Proves !A$ और $c$,~$\Gamma$ में नहीं है, दुर्बल सामान्यीकरण
+से कोई !!a{variable}~$y$ ऐसा है जो $!A$ में नहीं आता और जिसके लिए
+$\Gamma \Proves \lforall[y][\Subst{!A}{y}{c}]$। चूँकि $y$,~$!A$ में कहीं
+भी नहीं है, इसलिए वह~$!A$ में मुक्त नहीं है और $c$ उसके लिए~$!A$ में
+!!{free for} भी है। यदि इसके अतिरिक्त परिकल्पना से $x$,~$!A$ में मुक्त नहीं
+है और $c$ उसके लिए~$!A$ में !!{free for} है, तो आबद्ध !!{variable} बदलने की
+शर्तें पूरी होती हैं; अतः
+$\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$; फलतः $\Gamma \Proves
+\lforall[x][\Subst{!A}{x}{c}]$।
+\end{proof}
+
+\begin{thm} 
+\ollabel{thm:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll} 
+\tagitem{prvEx}{यदि $\Gamma \Proves !A(t)$, तो $\Gamma \Proves
+  \lexists[x][!A(x)]$।}{} 
+\tagitem{prvAll}{यदि $\Gamma \Proves \lforall[x][!A(x)]$, तो $\Gamma
+  \Proves !A(t)$।}{}
+\end{tagenumerate} 
+\end{thm}
+
+\begin{proof} 
+\begin{tagenumerate}{prvEx,prvAll} 
+%%Need axioms for exists
+\tagitem{prvEx}{अभ्यास।}{}
+\tagitem{prvAll} {मान लें $\Gamma_0 \Proves \lforall[x][!A(x)]$।
+
+\begin{derivation} 
+1. & $\Gamma_0 \Proves \lforall[x][!A(x)]$ & मान्यता \\
+2. & $\Gamma_0 \Proves \lforall[x][!A(x)] \lif \Subst{!A}{t}{x}$ & Ax1 \\ 
+3. & $\Gamma_0 \Proves \Subst{!A}{t}{x}$ & MP 1, 2 \\ 
+\end{derivation}}{}
+
+\end{tagenumerate} 
+\end{proof}
+
+\end{document}

@@ -1,0 +1,170 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: maximally-consistent-sets
+
+% Definition of maximally consistent sets. Properties of mcs required
+% for completeness proved are in maximally-consistent-sets.tex in the
+% chapter on the proof system used.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{com}{mcs}
+\olsection{\usetoken{P}{sentence} के अधिकतम संगत समुच्चय}
+
+\begin{defn}[अधिकतम संगत समुच्चय]
+\ollabel{mcs}
+!!{sentence}s का समुच्चय~$\Gamma$ \emph{अधिकतम संगत} तभी और केवल तभी है जब
+\begin{enumerate}
+\item $\Gamma$ संगत है, और
+\item यदि $\Gamma \subsetneq \Gamma'$, तो $\Gamma'$ असंगत है।
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+ऊपर वाली परिभाषा के समतुल्य एक वैकल्पिक परिभाषा यह है: वाक्यों का समुच्चय
+$\Gamma$ \emph{अधिकतम संगत} तभी और केवल तभी है जब
+\begin{enumerate}
+\item $\Gamma$ संगत है, और
+\item यदि $\Gamma \cup \{ !A \}$ संगत है, तो $!A \in \Gamma$।
+\end{enumerate}
+दूसरे शब्दों में, किसी अधिकतम संगत समुच्चय~$\Gamma$ में पहले से न आने वाले
+!!{sentence}s को~$\Gamma$ में जोड़े बिना परिणामी बड़े समुच्चय को असंगत
+बनाना संभव नहीं है।
+\end{explain}
+
+\begin{explain}
+पूर्णता के प्रमाण में अधिकतम संगत समुच्चय महत्त्वपूर्ण हैं, क्योंकि हम
+गारंटी दे सकते हैं कि !!{sentence}s का प्रत्येक संगत समुच्चय~$\Gamma$ किसी
+अधिकतम संगत समुच्चय~$\Gamma^*$ में समाहित है, और अधिकतम संगत समुच्चय में
+प्रत्येक !!{sentence}~$!A$ के लिए या तो $!A$ या उसका निषेध $\lnot !A$ होता
+है। विशेषतः यह परमाण्विक !!{sentence}s के लिए सत्य है; अतः ऐसी भाषा में
+जिसे !!{constant}s से उपयुक्त रूप से विस्तारित किया गया हो, किसी अधिकतम
+संगत समुच्चय से हम ऐसी !!a{structure} बना सकते हैं जिसमें !!{predicate}s
+की व्याख्या इस आधार पर परिभाषित होती है कि कौन-से परमाण्विक !!{sentence}s
+समुच्चय~$\Gamma^*$ में हैं। फिर दिखाया जा सकता है कि यह !!{structure},
+~$\Gamma^*$ के सभी !!{sentence}s को (और इसलिए $\Gamma$ में आने वाले सभी को
+भी) सत्य बनाती है। इस अंतिम तथ्य के प्रमाण के लिए यह आवश्यक है कि
+$\lnot !A \in
+\Gamma^*$ तभी और केवल तभी जब $!A \notin \Gamma^*$, $(!A \lor !B) \in \Gamma^*$
+तभी और केवल तभी जब $!A
+\in \Gamma^*$ या $!B \in \Gamma^*$, इत्यादि।
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:mcs}
+मान लें कि $\Gamma$ अधिकतम संगत है। तब:
+\begin{enumerate}
+\item \ollabel{prop:mcs-prov-in} यदि $\Gamma \Proves !A$, तो $!A \in
+  \Gamma$।
+
+\item \ollabel{prop:mcs-either-or} किसी भी $!A$ के लिए या तो $!A \in
+  \Gamma$ या $\lnot !A \in \Gamma$।
+
+\tagitem{prvAnd}{\ollabel{prop:mcs-and} $(!A \land !B) \in \Gamma$
+  तभी और केवल तभी जब $!A \in \Gamma$ और $!B \in \Gamma$ दोनों हों।}{}
+
+\tagitem{prvOr}{\ollabel{prop:mcs-or} $(!A \lor !B) \in \Gamma$ तभी और
+  केवल तभी जब या तो $!A \in \Gamma$ या $!B \in \Gamma$ हो।}{}
+
+\tagitem{prvIf}{\ollabel{prop:mcs-if} $(!A \lif !B) \in \Gamma$ तभी और
+  केवल तभी जब या तो $!A \notin \Gamma$ या $!B \in \Gamma$ हो।}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+निम्न सभी बातों के लिए मान लें कि $\Gamma$ अधिकतम संगत है।
+\begin{enumerate}
+\item यदि $\Gamma \Proves !A$, तो $!A \in \Gamma$।
+
+मान लें कि $\Gamma \Proves !A$। इसके विपरीत मान लें कि $!A
+\notin \Gamma$: तब $\Gamma$ के अधिकतम संगत होने से $\Gamma
+\cup \{!A\}$ असंगत है, अतः $\Gamma \cup \{!A\} \Proves
+\lfalse$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-contr},prfND/{fol:ntd:prv:prop:provability-contr}} से
+$\Gamma$ असंगत है। यह इस धारणा का खंडन करता है कि $\Gamma$ संगत है। अतः
+$!A \notin
+\Gamma$ नहीं हो सकता, इसलिए $!A \in \Gamma$।
+
+\item किसी भी $!A$ के लिए या तो $!A \in \Gamma$ या $\lnot !A \in \Gamma$।
+
+इसके विपरीत मान लें कि किसी~$!A$ के लिए $!A \notin \Gamma$ और
+$\lnot !A \notin \Gamma$ दोनों हैं। चूँकि $\Gamma$ अधिकतम संगत है,
+$\Gamma \cup \{!A\}$ और $\Gamma \cup \{\lnot !A\}$ दोनों असंगत हैं, अतः
+$\Gamma \cup \{!A\} \Proves \lfalse$ और $\Gamma \cup
+\{\lnot !A\} \Proves \lfalse$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-exhaustive},prfND/{fol:ntd:prv:prop:provability-exhaustive}} से
+$\Gamma$ असंगत है, जो विरोधाभास है। अतः ऐसा कोई !!a{sentence}~$!A$ नहीं हो
+सकता और प्रत्येक $!A$ के लिए $!A \in \Gamma$ या $\lnot !A
+\in \Gamma$।
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{अभ्यास।}{%
+$(!A \land !B) \in \Gamma$ तभी और केवल तभी जब $!A \in \Gamma$ और $!B \in \Gamma$
+दोनों हों:
+
+अग्र दिशा के लिए मान लें कि $(!A \land !B) \in \Gamma$। तब
+$\Gamma \Proves !A \land !B$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-left},prfND/{fol:ntd:prv:prop:provability-land-left}} से
+$\Gamma \Proves !A$ और $\Gamma \Proves !B$।
+\olref{prop:mcs-prov-in} से $!A \in \Gamma$ और $!B \in \Gamma$, जैसा
+अपेक्षित था।
+
+विपरीत दिशा के लिए $!A \in \Gamma$ और $!B \in
+\Gamma$ मान लें। तब $\Gamma \Proves !A$ और $\Gamma \Proves !B$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-right},prfND/{fol:ntd:prv:prop:provability-land-right}} से
+$\Gamma \Proves !A \land !B$। \olref{prop:mcs-prov-in} से $(!A \land
+!B) \in \Gamma$।}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{अभ्यास।}{%
+$(!A \lor !B) \in \Gamma$ तभी और केवल तभी जब या तो $!A \in \Gamma$ या
+$!B \in \Gamma$ हो।
+
+अग्र दिशा के प्रतिपक्ष के लिए मान लें कि $!A
+\notin \Gamma$ और $!B \notin \Gamma$। हमें दिखाना है कि $(!A \lor
+!B) \notin \Gamma$। चूँकि $\Gamma$ अधिकतम संगत है, $\Gamma
+\cup \{!A\} \Proves \lfalse$ और $\Gamma \cup \{!B\} \Proves \lfalse$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-left},prfND/{fol:ntd:prv:prop:provability-lor-left}} से
+$\Gamma \cup \{(!A \lor !B)\}$ असंगत है। अतः $(!A \lor !B)
+\notin \Gamma$, जैसा अपेक्षित था।
+
+विपरीत दिशा के लिए मान लें कि $!A \in \Gamma$ या $!B \in
+\Gamma$। तब $\Gamma \Proves !A$ या $\Gamma \Proves !B$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-right},prfND/{fol:ntd:prv:prop:provability-lor-right}} से
+$\Gamma \Proves !A \lor !B$। \olref{prop:mcs-prov-in} से $(!A \lor
+!B) \in \Gamma$, जैसा अपेक्षित था।}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{अभ्यास।}{%
+$(!A \lif !B) \in \Gamma$ तभी और केवल तभी जब या तो $!A \notin \Gamma$ या
+$!B \in \Gamma$ हो:
+
+अग्र दिशा के लिए $(!A \lif !B) \in \Gamma$ मान लें, और इसके विपरीत मान
+लें कि $!A \in \Gamma$ तथा $!B \notin \Gamma$। इन धारणाओं पर
+$\Gamma \Proves !A \lif !B$ और $\Gamma \Proves !A$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-mp},prfND/{fol:ntd:prv:prop:provability-mp}} से
+$\Gamma \Proves !B$। किंतु तब \olref{prop:mcs-prov-in} से $!B \in
+\Gamma$, जो $!B \notin \Gamma$ वाली धारणा का खंडन करता है।
+
+विपरीत दिशा के लिए पहले उस स्थिति पर विचार करें जिसमें $!A \notin
+\Gamma$। \olref{prop:mcs-either-or} से $\lnot !A \in \Gamma$ और इसलिए
+$\Gamma \Proves \lnot !A$।
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}} से
+$\Gamma \Proves !A \lif !B$। पुनः \olref{prop:mcs-prov-in} से
+$(!A \lif !B) \in \Gamma$ मिलता है, जैसा अपेक्षित था।
+
+अब उस स्थिति पर विचार करें जिसमें $!B \in \Gamma$। तब
+$\Gamma \Proves !B$ और
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}} से
+$\Gamma \Proves !A \lif !B$। \olref{prop:mcs-prov-in} से $(!A \lif
+!B) \in \Gamma$।}}
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref[fol][com][mcs]{prop:mcs} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\end{document}

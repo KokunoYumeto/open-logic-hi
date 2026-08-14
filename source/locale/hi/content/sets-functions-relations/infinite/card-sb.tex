@@ -1,0 +1,103 @@
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{infinite}{card-sb}
+
+\olsection{परिशिष्ट: श्रोडर--बर्नस्टीन का प्रमाण}
+
+सरल समुच्चय-सिद्धांत से विदा लेने से पहले हमें एक अंतिम सरल (पर परिष्कृत!)
+प्रमाण पर विचार करना है। यह श्रोडर--बर्नस्टीन
+(\olref[sfr][siz][sb]{thm:schroder-bernstein}) का प्रमाण है: यदि
+$\cardle{A}{B}$ और $\cardle{B}{A}$, तो $\cardeq{A}{B}$; अर्थात् !!{injection}
+$f \colon A \to B$ और $g \colon B \to A$ दिए जाने पर कोई !!a{bijection}
+$h \colon A \to B$ होता है।
+
+इस अध्याय में हमने डेडेकिंड की \emph{संवृतियों} की धारणा अपनाई। वास्तव में
+डेडेकिंड ने इसी धारणा के सहारे श्रोडर--बर्नस्टीन का एक सुंदर प्रमाण दिया था,
+जिसे हम यहाँ प्रस्तुत करेंगे। यदि आप कुछ भिन्न किंतु मूलतः समान विवेचन चाहते
+हैं, तो यह प्रमाण \citet[पृ.~157--8]{Potter2004} का निकटता से अनुसरण करता है।
+थोड़ी-सी ऑनलाइन खोज भी आपको विश्वास दिला देगी कि यह ऐसा प्रमेय है---कुछ-कुछ
+$\sqrt{2}$ की अपरिमेयता जैसा---जिसके \emph{अनेक} रोचक और भिन्न प्रमाण हैं।
+
+\olref[sfr][infinite][dedekind]{Closure} जैसी संकेतन-पद्धति का उपयोग करते हुए,
+रखें
+\[
+\Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X 
+\text{ और $X$, $f$-संवृत है}}
+\]
+प्रत्येक समुच्चय~$B$ और फलन~$f$ के लिए। इस प्रकार परिभाषित
+$\Closureofunder{f}{B}$ लघुतम $f$-संवृत समुच्चय है जो~$B$ को समाविष्ट करता
+है, इस अर्थ में कि:
+
+\begin{lem}\ollabel{Closureprops}
+	किसी भी फलन $f$ और किसी भी $B$ के लिए:
+	\begin{enumerate}
+		\item\ollabel{Closurehaselem} $B \subseteq \Closureofunder{f}{B}$; और
+		\item\ollabel{Closureclosed} $\Closureofunder{f}{B}$, $f$-संवृत है; और
+		\item\ollabel{Closuresmallest} यदि $X$, $f$-संवृत है और $B
+		\subseteq X$, तो $\Closureofunder{f}{B} \subseteq X$।
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+ठीक \olref[sfr][infinite][dedekind]{closureproperties} के प्रमाण की तरह।
+\end{proof}
+
+श्रोडर--बर्नस्टीन तक पहुँचने के लिए हमें एक अंतिम तथ्य चाहिए:
+
+\begin{prop}\ollabel{sbhelper}
+यदि $A \subseteq B \subseteq C$ और $A \approx C$, तो $\cardeq{\cardeq{A}{B}}{C}$।
+\end{prop}
+
+\begin{proof}
+कोई !!a{bijection} $f \colon C \to A$ दिए जाने पर $F =
+\Closureofunder{f}{C \setminus B}$ रखें और फलन $g$, जिसका प्रांत $C$ है, इस
+प्रकार परिभाषित करें:
+\[
+	g(x) = 
+	\begin{cases}
+			f(x) &\text{यदि $x \in F$}\\
+			x & \text{अन्यथा}
+		\end{cases}
+\]
+हम दिखाएँगे कि $g$, $C \to B$ से कोई !!a{bijection} है; इससे यह निष्कर्ष
+निकलेगा कि $\comp{f^{-1}}{g} \colon A \to B$ कोई !!a{bijection} है और प्रमाण
+पूरा हो जाएगा।
+
+पहले हमारा दावा है कि यदि $x \in F$ किंतु $y\notin F$, तो $g(x) \neq
+g(y)$। प्रति-विरोध के लिए इसका उलटा मान लें, जिससे $y = g(y) = g(x) =
+f(x)$। चूँकि $x \in F$ और \olref{Closureprops} के अनुसार $F$, $f$-संवृत है,
+इसलिए $y = f(x) \in F$; यह विरोधाभास है।
+
+अब मान लें $g(x) = g(y)$। अतः ऊपर के अनुसार $x \in F$ तभी और केवल तभी जब
+$y \in F$। यदि $x, y \in F$, तो $f(x) = g (x) = g(y) = f(y)$, अतः $x = y$,
+क्योंकि $f$ कोई !!a{bijection} है। यदि $x, y \notin F$, तो $x = g(x) =
+g(y) = y$। अतः $g$ कोई !!a{injection} है।
+
+केवल यह दिखाना शेष है कि $\ran{g} = B$। अतः कोई $x \in B \subseteq C$ लें।
+यदि $x \notin F$, तो $g(x) = x$। यदि $x \in F$, तो $x = f(y)$ किसी ऐसे
+$y \in F$ के लिए; अन्यथा $F \setminus \{x\}$, $f$-संवृत होता और $C\setminus B$
+को समाविष्ट करता, जो \olref{Closureprops} के अनुसार असंभव है। अब $g(y) = f(y) = x$।
+\end{proof}
+
+अंततः मुख्य परिणाम का प्रमाण प्रस्तुत है। याद रखें कि किसी फलन $h$ और समुच्चय
+$D$ के लिए हम $\funimage{h}{D} = \Setabs{h(x)}{x
+\in D}$ परिभाषित करते हैं।
+
+\begin{proof}[श्रोडर--बर्नस्टीन का प्रमाण] मान लें $f \colon A \to B$
+और $g \colon B \to A$, !!{injection} हैं। चूँकि $\funimage{f}{A}
+\subseteq B$, इसलिए $\funimage{g}{\funimage{f}{A}} \subseteq
+g[B] \subseteq A$। साथ ही $\comp{f}{g} \colon A \to
+\funimage{g}{\funimage{f}{A}}$, !!{injection} है, क्योंकि $g$ और
+$f$ दोनों ऐसे हैं; और वास्तव में $\comp{f}{g}$ कोई !!a{bijection} है, केवल
+उस ढंग से जिसके अनुसार हमने इसका सहप्रांत परिभाषित किया है। अतः
+$\cardeq{\funimage{g}{\funimage{f}{A}}}{A}$, और इसलिए \olref{sbhelper} से कोई
+!!a{bijection} $h \colon A \to
+\funimage{g}{B}$ है। इसके अतिरिक्त $g^{-1}$ कोई !!a{bijection}
+$\funimage{g}{B} \to B$ है। अतः $\comp{h}{g^{-1}} \colon A \to B$ कोई
+!!a{bijection} है।
+\end{proof}
+
+\end{document}

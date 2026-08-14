@@ -1,0 +1,132 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{pro}}
+      {\olfileid[hi]{pl}{axd}{pro}}
+
+\olsection{\usetoken{P}{derivation} के उदाहरण}
+
+
+\begin{ex}
+मान लें हम $(\lnot !D \lor !E) \lif (!D \lif
+!E)$ सिद्ध करना चाहते हैं। स्पष्टतः यह हमारे किसी अभिगृहीत का दृष्टान्त नहीं
+है, इसलिए इसे !!{derive} करने के लिए \MP{} नियम का उपयोग करना होगा। हमारा
+एकमात्र नियम~MP है, जो $!A$ और $!A \lif !B$ दिए होने पर~$!B$ को उचित
+ठहराने देता है। एक युक्ति यह होगी कि \olref[prp]{ax:lor3} में $!A$ को
+$\lnot
+!D$, $!B$ को $!E$, और $!C$ को $!D \lif !E$ मानें; अर्थात् यह
+दृष्टान्त लें:
+\[
+(\lnot !D \lif (!D \lif !E)) \lif ((!E \lif (!D \lif !E)) \lif ((\lnot
+!D \lor !E) \lif (!D \lif !E))).
+\]
+क्यों? MP के दो प्रयोग अंतिम भाग देते हैं, और हमें वही चाहिए। यह भी सरलता से
+दिखता है कि $\lnot !D \lif (!D \lif !E)$, \olref[prp]{ax:lnot2} का
+दृष्टान्त है और $!E \lif (!D \lif !E)$, \olref[prp]{ax:lif1} का
+दृष्टान्त है। अतः हमारी !!{derivation} है:
+\begin{derivation}
+  1. &  $\lnot !D \lif (!D \lif !E)$ & \olref[prp]{ax:lnot2} \\
+  2. & $(\lnot !D \lif (!D \lif !E)) \lif {}$\\
+  &\qquad $((!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E)))$ & \olref[prp]{ax:lor3}\\
+  3. & $(!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E))$ & 1, 2, \MP\\
+  4. & $!E \lif (!D \lif !E)$ & \olref[prp]{ax:lif1}\\
+  5. & $(\lnot !D \lor !E) \lif (!D \lif !E)$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:identity}
+$!D \lif !D$ की !!a{derivation} खोजने का प्रयास करें। यह किसी अभिगृहीत का
+दृष्टान्त नहीं है, इसलिए इसे !!{derive} करने के लिए \MP{} का उपयोग करना
+होगा। \olref[prp]{ax:lif1},~$!A \lif !B$ रूप का अभिगृहीत है, जिस पर हम
+~\MP{} लगा सकते हैं। उपयोगी होने के लिए इस प्रसंग में \MP{} द्वारा सही चरण
+ठहराया जाने वाला $!B$,~$!D \lif !D$ ही होना चाहिए, क्योंकि हमें यही
+!!{derive} करना है। इसका अर्थ है कि $!A$ भी $!D$ होना चाहिए; अर्थात् हम
+\olref[prp]{ax:lif1} के इस दृष्टान्त पर विचार कर सकते हैं:
+\[
+!D \lif (!D \lif !D)
+\]
+\MP{} लगाने के लिए हमें तदनुरूप दूसरे पूर्वाधार, अर्थात्~$!A$, को भी उचित
+ठहराना होगा। हमारे प्रसंग में वह~$!D$ होगा, और अकेले~$!D$ को हम
+!!{derive} नहीं कर पाएँगे। इसलिए दूसरी युक्ति चाहिए।
+
+केवल~$\lif$ वाला दूसरा अभिगृहीत \olref[prp]{ax:lif2} है, अर्थात्
+\[
+(!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C))
+\]
+\MP{} को दो बार लगाकर हम अंतिम अंतर्निहित सापेक्ष तक पहुँच सकते हैं। इसका
+फिर वही अर्थ है कि हमें \olref[prp]{ax:lif2} का ऐसा दृष्टान्त चाहिए जिसमें
+$!A \lif !C$, हमारे लक्ष्य !!{formula}~$!D \lif !D$ के समान हो। तब
+निस्संदेह $!A$ और $!C$ दोनों~$!D$ हैं। अब~$!B$ कैसे चुनें कि
+$!A \lif (!B \lif !C)$ और $!A \lif
+!B$, अर्थात् हमारे प्रसंग में $!D \lif (!B \lif !D)$ और $!D \lif !B$,
+भी !!{derivable} हों? पहला तो हम $!B$ को जो भी मानें,
+\olref[prp]{ax:lif1} का दृष्टान्त है। और $!D \lif !B$ भी
+\olref[prp]{ax:lif1} का एक और दृष्टान्त होगा यदि $!B$ को
+$(!D \lif !D)$ माना जाए। अतः
+हमारी !!{derivation} है:
+\begin{derivation}
+  1. & $!D \lif ((!D \lif !D) \lif !D)$ & \olref[prp]{ax:lif1}\\
+  2. & $(!D \lif ((!D \lif !D) \lif !D)) \lif {}$\\
+  & \qquad $((!D \lif (!D \lif !D)) \lif (!D \lif !D))$ & \olref[prp]{ax:lif2}\\
+  3. & $(!D \lif (!D \lif !D)) \lif (!D \lif !D)$ & 1, 2, \MP\\
+  4. & $!D \lif (!D \lif !D)$ & \olref[prp]{ax:lif1}\\
+  5. & $!D \lif !D$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:chain}
+कभी-कभी हम दिखाना चाहते हैं कि कोई !!a{derivation}, किसी !!{formula} की,
+कुछ अन्य !!{formula}s~$\Gamma$ से, मौजूद है। उदाहरणार्थ, दिखाएँ कि हम
+!!{derive} करके $!A \lif !C$ को $\Gamma = \{!A \lif !B,
+!B \lif !C\}$ से प्राप्त कर सकते हैं।
+\begin{derivation}
+  1. & $!A \lif !B$ & \Hyp\\
+  2. & $!B \lif !C$ & \Hyp\\
+  3. & $(!B \lif !C) \lif (!A \lif (!B \lif !C))$ & \olref[prp]{ax:lif1} \\
+  4. & $!A \lif (!B \lif !C)$ & 2, 3, \MP\\
+  5. & $(!A \lif (!B \lif !C)) \lif {}$\\
+  & \qquad $((!A \lif !B) \lif (!A \lif !C))$ & \olref[prp]{ax:lif2}\\
+  6. & $((!A \lif !B) \lif (!A \lif !C))$ & 4, 5, \MP\\
+  7. & $!A \lif !C$ & 1, 6, \MP
+\end{derivation}
+``\Hyp'' (मान्यता) अंकित पंक्तियाँ बताती हैं कि उस पंक्ति का !!{formula},
+~$\Gamma$ का !!a{element} है।
+\end{ex}
+
+\begin{prop}
+  \ollabel{prop:chain} यदि $\Gamma \Proves !A \lif !B$ और $\Gamma
+  \Proves !B \lif !C$, तो $\Gamma \Proves !A \lif !C$।
+\end{prop}
+
+\begin{proof}
+  मान लें $\Gamma \Proves !A \lif !B$ और $\Gamma \Proves !B \lif
+  !C$। तब कोई !!a{derivation}, $!A \lif !B$ की,~$\Gamma$ से है; और कोई
+  !!a{derivation},~$!B \lif !C$ की,~$\Gamma$ से भी है। उन्हें क्रमशः जोड़कर एक ही
+  !!{derivation} बनाएँ। अब पिछले उदाहरण की !!{derivation} की पंक्तियाँ
+  3--7 जोड़ दें। यह !!a{derivation}, $!A \lif !C$ की---जो नई
+  !!{derivation} की अंतिम पंक्ति है---~$\Gamma$ से है। ध्यान दें कि पंक्ति~4
+  और~7 के औचित्य तब भी वैध रहते हैं जब पंक्ति संख्या~1 के निर्देश को $!A
+  \lif !B$
+  की !!{derivation} की अंतिम पंक्ति के निर्देश से, और पंक्ति संख्या~2 के
+  निर्देश को $!B \lif !C$ की !!{derivation} की अंतिम पंक्ति के निर्देश से
+  बदल दिया जाए।
+\end{proof}
+
+\begin{prob} 
+अभिगृहीतों से !!{derivation}s देकर दिखाइए कि निम्न सत्य हैं:
+\begin{enumerate} 
+\item $(!A \land !B) \lif (!B \land !A)$
+\item $((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
+\item $\lnot(!A \lor !B) \lif \lnot !A$
+\end{enumerate} 
+\end{prob}
+
+
+
+\end{document}

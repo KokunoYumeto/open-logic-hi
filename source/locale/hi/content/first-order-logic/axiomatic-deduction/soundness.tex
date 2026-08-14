@@ -1,0 +1,142 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{sou}}
+      {\olfileid[hi]{pl}{axd}{sou}}
+      
+\olsection{सुदृढ़ता}
+
+\begin{explain}
+अभिगृहीतीय निगमन जैसा !!^a{derivation} तंत्र \emph{सुदृढ़} है यदि वह ऐसी
+बातें !!{derive} नहीं कर सकता जो वास्तव में सत्य नहीं हैं। इस प्रकार
+सुदृढ़ता, !!{derivation} तंत्रों का एक प्रकार का सुनिश्चित सुरक्षा-गुण है।
+जिस प्रमाण-सैद्धांतिक गुण पर विचार हो, उसके अनुसार हम उदाहरणार्थ यह जानना
+चाहेंगे कि
+\begin{enumerate}
+\item प्रत्येक !!{derivable}~$!A$ वैध है;
+\item यदि $!A$ कुछ अन्य~$\Gamma$ से !!{derivable} है, तो वह उनका तार्किक
+  परिणाम भी है;
+\item यदि !!{formula}s का समुच्चय~$\Gamma$ असंगत है, तो वह असंतुष्टनीय है।
+\end{enumerate}
+ये !!a{derivation} तंत्र के महत्त्वपूर्ण गुण हैं। यदि इनमें से कोई गुण सत्य
+न हो, तो !!{derivation} तंत्र दोषपूर्ण होगा---वह आवश्यकता से अधिक बातें
+!!{derive} करेगा। इसलिए !!a{derivation} तंत्र की सुदृढ़ता स्थापित करना अत्यंत
+महत्त्वपूर्ण है।
+\end{explain}
+
+\begin{prop}
+  यदि $!A$ कोई अभिगृहीत है, तो
+  \iftag{FOL}
+    {$\Sat{M}{!A}[s]$, प्रत्येक !!{structure}~$\Struct{M}$ और नियतन~$s$ के लिए।}
+    {$\pSat{v}{!A}$, प्रत्येक !!{valuation}~$\pAssign{v}$ के लिए।}
+\end{prop}
+
+\begin{proof}
+\iftag{FOL}{हमें सत्यापित करना है कि सभी अभिगृहीत वैध हैं। उदाहरण के लिए
+  \olref[qua]{ax:q1} का प्रसंग लें: मान लें $t$,~$x$ के लिए $!A$ में
+  !!{free for} है और $\Sat{M}{\lforall[x][!A]}[s]$। तब संतुष्टि की परिभाषा
+  से प्रत्येक $\varAssign{s'}{s}{x}$ के लिए $\Sat{M}{!A}[s']$ भी; विशेषतः
+  तब जब $s'(x) = \Value{t}{M}[s]$। \olref[syn][ext]{prop:ext-formulas} से
+  $\Sat{M}{\Subst{!A}{t}{x}}[s]$। इससे
+  $\Sat{M}{(\lforall[x][!A] \lif \Subst{!A}{t}{x})}[s]$ सिद्ध होता है।}{हर
+  अभिगृहीत की सत्यता-सारणी बनाकर सत्यापित कीजिए कि वह सर्वसत्य है।}
+\end{proof}
+
+\begin{thm}[सुदृढ़ता]
+\ollabel{thm:soundness}
+यदि $\Gamma \Proves !A$, तो $\Gamma \Entails !A$।
+\end{thm}
+
+\begin{proof}
+हम उस !!{derivation} की लंबाई पर आगमन करते हैं जिसमें $!A$ की व्युत्पत्ति
+$\Gamma$ से है। यदि किसी अनुमान से उचित ठहराया गया कोई चरण नहीं है, तो सभी
+!!{formula}s, जो !!{derivation} में हैं, या तो अभिगृहीतों के दृष्टान्त हैं
+अथवा~$\Gamma$ में हैं। पिछले
+प्रतिज्ञान से सभी अभिगृहीत \iftag{FOL}{वैध}{सर्वसत्य} हैं; अतः यदि $!A$
+कोई अभिगृहीत है, तो $\Gamma \Entails !A$। यदि $!A \in \Gamma$, तो तुच्छतः
+$\Gamma
+\Entails !A$।
+
+यदि~$!A$ की !!{derivation} के अंतिम चरण को पूर्वपक्ष-स्थापन उचित ठहराता है,
+तो !!{formula}s $!B$ और $!B \lif !A$ उस !!{derivation} में हैं; और उस
+!!{derivation} के उन भागों पर, जो इन !!{formula}s पर समाप्त होते हैं,
+आगमन-परिकल्पना
+लागू होती है (क्योंकि उनमें अनुमान से उचित ठहराया गया कम-से-कम एक चरण कम
+है)। अतः आगमन-परिकल्पना से $\Gamma \Entails !B$ और
+$\Gamma \Entails !B \lif
+!A$। तब
+\iftag{FOL}
+      {\olref[syn][sem]{thm:sem-deduction}}
+      {\olref[pl][syn][sem]{thm:sem-deduction}} से $\Gamma \Entails !A$।
+
+\iftag{FOL}{अब मान लें कि अंतिम चरण को \QR उचित ठहराता है। तब वह चरण
+$!C \lif \lforall[x][B(x)]$ रूप का है और उससे पहले $!C \lif !B(c)$ चरण
+है, जहाँ $c$,~$\Gamma$, $!C$, या $\lforall[x][B(x)]$ में नहीं आता।
+आगमन-परिकल्पना से $\Gamma
+\Entails !C \lif !B(c)$।
+\olref[syn][sem]{thm:sem-deduction} से $\Gamma \cup \{!C\} \Entails
+!B(c)$।
+
+ऐसी किसी संरचना~$\Struct{M}$ पर विचार करें कि $\Sat{M}{\Gamma \cup
+  \{!C\}}$। हमें $\Sat{M}{\lforall[x][!B(x)]}$ दिखाना है। चूँकि
+$\lforall[x][!B(x)]$ !!a{sentence} है, इसका अर्थ है कि प्रत्येक चर-नियतन
+~$s$ के लिए $\Sat{M}{!B(x)}[s]$ दिखाना होगा
+(\olref[syn][ass]{prop:sat-quant})। चूँकि $\Gamma \cup \{!C\}$ केवल वाक्यों
+से बना है, इसलिए \olref[syn][sat]{defn:satisfaction} से $\Sat{M}{!D}[s]$,
+हर $!D \in
+\Gamma$ के लिए। संरचना~$\Struct{M'}$ को $\Struct{M}$ जैसा
+ही मानें, सिवाय इसके कि $\Assign{c}{M'} = s(x)$। चूँकि $c$,~$\Gamma$ या
+~$!C$ में नहीं आता, \olref[syn][ext]{cor:extensionality-sent} से
+$\Sat{M'}{\Gamma \cup \{!C\}}$। चूँकि $\Gamma \cup \{!C\}
+\Entails !B(c)$, इसलिए $\Sat{M'}{B(c)}$। चूँकि $!B(c)$ !!a{sentence} है,
+\olref[syn][ass]{prop:sentence-sat-true} से $\Sat{M'}{!B(c)}[s]$।
+\olref[syn][ext]{prop:ext-formulas} से $\Sat{M'}{!B(x)}[s]$ तभी और केवल
+तभी जब $\Sat{M'}{!B(c)}[s]$ (याद रखें कि $!B(c)$ केवल
+$\Subst{!B(x)}{c}{x}$ है)। इसलिए $\Sat{M'}{!B(x)}[s]$। चूँकि $c$,
+~$!B(x)$ में नहीं आता, \olref[syn][ext]{prop:extensionality} से
+$\Sat{M}{!B(x)}[s]$। पर $s$ एक स्वेच्छ चर-नियतन था, अतः
+$\Sat{M}{\lforall[x][!B(x)]}$। फलतः $\Gamma \cup \{!C\} \Entails
+\lforall[x][!B(x)]$। \olref[syn][sem]{thm:sem-deduction} से $\Gamma
+\Entails !C \lif \lforall[x][!B(x)]$।
+
+जिस प्रसंग में $!A$ को \QR{} उचित ठहराता है, पर वह
+$\lexists[x][!B(x)] \lif !C$ रूप का है, उसे अभ्यास के लिए छोड़ते हैं।}{}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  \olref[fol][axd][sou]{thm:soundness} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+यदि $\Proves !A$, तो $!A$ \iftag{FOL}{वैध}{सर्वसत्य} है।
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+यदि $\Gamma$ संतुष्टनीय है, तो वह संगत है।
+\end{cor}
+
+\begin{proof}
+हम प्रतिधन कथन सिद्ध करते हैं। मान लें कि $\Gamma$ संगत नहीं है। तब
+$\Gamma \Proves \lfalse$, अर्थात्~$\lfalse$ की कोई !!a{derivation},
+~$\Gamma$ से, है। \olref{thm:soundness} से प्रत्येक
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+जो $\Gamma$ को संतुष्ट करती है, उसे~$\lfalse$ को भी संतुष्ट करना होगा। चूँकि
+\iftag{FOL}{$\Sat/{M}{\lfalse}$, प्रत्येक
+  !!{structure}~$\Struct{M}$ के लिए}{$\pSat/{v}{\lfalse}$, प्रत्येक
+  !!{valuation}~$\pAssign{v}$ के लिए}, कोई
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$},~$\Gamma$ को संतुष्ट नहीं कर सकती;
+अर्थात् $\Gamma$ संतुष्टनीय नहीं है।
+\end{proof}
+
+
+\end{document}

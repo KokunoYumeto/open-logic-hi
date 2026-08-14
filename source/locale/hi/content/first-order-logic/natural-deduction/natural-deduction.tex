@@ -1,0 +1,55 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter{fol}{ntd}{स्वाभाविक निगमन}}
+      {\olchapter{pl}{ntd}{स्वाभाविक निगमन}}
+
+\begin{editorial}
+यह अध्याय गेंटज़ेन/प्रावित्स की शैली का स्वाभाविक निगमन तंत्र प्रस्तुत करता
+है।
+  
+स्वाभाविक निगमन से प्रमाण-तंत्र के रूप में संबंधित सामग्री को सम्मिलित या
+अपवर्जित करने के लिए ``prfND'' टैग का उपयोग करें।
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

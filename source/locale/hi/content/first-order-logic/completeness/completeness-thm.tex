@@ -1,0 +1,124 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: completeness-theorem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{com}{cth}}
+      {\olfileid[hi]{pl}{com}{cth}}
+
+\olsection{पूर्णता प्रमेय}
+
+\begin{explain}
+अब अपने परिणामों को एक साथ रखें: हम पूर्णता प्रमेय पर पहुँचते हैं।
+\end{explain}
+
+\begin{thm}[पूर्णता प्रमेय]
+\ollabel{thm:completeness}
+मान लें कि $\Gamma$, !!{sentence}s का समुच्चय है। यदि $\Gamma$ संगत है, तो
+वह संतुष्टनीय है।
+\end{thm}
+
+\begin{proof}
+मान लें कि $\Gamma$ संगत है।\iftag{FOL}{ \olref[hen]{lem:henkin} से कोई
+  संतृप्त संगत समुच्चय $\Gamma' \supseteq \Gamma$ है।}{}
+\olref[lin]{lem:lindenbaum} से कोई $\Gamma^* \supseteq \iftag{FOL}{\Gamma'}{\Gamma}$
+है जो संगत और !!{complete} है।
+\iftag{FOL}{
+  चूँकि $\Gamma' \subseteq \Gamma^*$, प्रत्येक
+  !!{formula}~$!A(x)$ के लिए $\Gamma^*$ में इस रूप का !!a{sentence} है:
+  \iftag{prvEx}
+        {$\lexists[x][!A(x)] \lif !A(c)$}
+        {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$}।
+  इसलिए $\Gamma^*$ संतृप्त है। यदि $\Gamma$ में~$\eq$ नहीं है, तो}{तब}
+\olref[mod]{lem:truth} से
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ तभी और केवल तभी जब
+$!A \in
+\Gamma^*$। इससे विशेषतः निकलता है कि सभी $!A \in
+\Gamma$ के लिए $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$,
+अतः $\Gamma$ संतुष्टनीय है।\iftag{FOL}{
+  यदि $\Gamma$ में~$\eq$ है, तो \olref[ide]{lem:truth} से सभी
+  !!{sentence}s~$!A$ के लिए
+  $\Sat{\equivclass{M}{\approx}}{!A}$ तभी और केवल तभी जब $!A \in \Gamma^*$।
+  विशेषतः, $\Sat{\equivclass{M}{\approx}}{!A}$ सभी $!A \in
+  \Gamma$ के लिए, अतः $\Gamma$
+  संतुष्टनीय है।}{}
+\end{proof}
+
+\begin{cor}[पूर्णता प्रमेय, दूसरा रूप]
+\ollabel{cor:completeness}
+सभी $\Gamma$ और !!{sentence}s~$!A$ के लिए: यदि $\Gamma \Entails !A$, तो
+$\Gamma \Proves !A$।
+\end{cor}
+
+\begin{proof}
+ध्यान दें कि \olref{cor:completeness} और \olref{thm:completeness} में आने
+वाले $\Gamma$ सार्वत्रिक रूप से परिमाणित हैं। भ्रम से बचने के लिए
+\olref{thm:completeness} को किसी दूसरे चर से फिर कहें: !!{sentence}s के किसी
+भी समुच्चय~$\Delta$ के लिए, यदि $\Delta$ संगत है, तो वह संतुष्टनीय है।
+प्रतिपक्ष से, यदि $\Delta$ संतुष्टनीय नहीं है, तो $\Delta$ असंगत है। हम इसी
+से उपप्रमेय सिद्ध करेंगे।
+
+मान लें कि $\Gamma \Entails !A$। तब \olref[syn][sem]{prop:entails-unsat} से
+$\Gamma \cup \{\lnot !A\}$ असंतुष्टनीय है। $\Gamma
+\cup \{\lnot !A\}$ को अपना $\Delta$ मानने पर
+\olref{thm:completeness} का पिछला रूप देता है कि $\Gamma \cup \{\lnot !A\}$
+असंगत है।
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:prov-incons},
+    prfSC/{fol:seq:prv:prop:prov-incons},
+    prfND/{fol:ntd:prv:prop:prov-incons},
+    prfTab/{fol:tab:prv:prop:prov-incons}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:prov-incons},
+    prfSC/{pl:seq:prv:prop:prov-incons},
+    prfND/{pl:ntd:prv:prop:prov-incons},
+    prfTab/{pl:tab:prv:prop:prov-incons}}} से
+$\Gamma \Proves !A$।
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cth]{cor:completeness} से
+\olref[fol][com][cth]{thm:completeness} को सिद्ध कीजिए और इस प्रकार दिखाइए
+कि पूर्णता प्रमेय के दोनों रूप समतुल्य हैं।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][cth]{cor:completeness} से
+\olref[pl][com][cth]{thm:completeness} को सिद्ध कीजिए और इस प्रकार दिखाइए
+कि पूर्णता प्रमेय के दोनों रूप समतुल्य हैं।
+\end{prob}
+\tagendprob
+
+\tagprob{FOL}
+\begin{prob}
+किसी !!a{derivation} प्रणाली के पूर्ण होने के लिए उसके नियम इतने प्रबल होने
+चाहिए कि वे प्रत्येक असंतुष्टनीय समुच्चय को असंगत सिद्ध कर सकें। पूर्णता को
+सिद्ध करने के लिए !!{derivation} के कौन-से नियम आवश्यक थे? क्या इनमें से
+कोई नियम प्रमाण में कहीं प्रयुक्त नहीं हुआ? इन प्रश्नों के उत्तर के लिए ऐसी
+सूची या आरेख बनाइए जो दिखाए कि पूर्णता के प्रमाण तक ले जाने वाले किन
+परिणामों में !!{derivation} के कौन-से नियम प्रयुक्त हुए। इन प्रमाणों में
+नियमों के प्रत्येक निःशब्द उपयोग को भी अवश्य अंकित कीजिए।
+\olref[fol][com][cth]{thm:completeness}।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+किसी !!a{derivation} प्रणाली के पूर्ण होने के लिए उसके नियम इतने प्रबल होने
+चाहिए कि वे प्रत्येक असंतुष्टनीय समुच्चय को असंगत सिद्ध कर सकें। पूर्णता को
+सिद्ध करने के लिए !!{derivation} के कौन-से नियम आवश्यक थे? क्या इनमें से
+कोई नियम प्रमाण में कहीं प्रयुक्त नहीं हुआ? इन प्रश्नों के उत्तर के लिए ऐसी
+सूची या आरेख बनाइए जो दिखाए कि पूर्णता के प्रमाण तक ले जाने वाले किन
+परिणामों में !!{derivation} के कौन-से नियम प्रयुक्त हुए। इन प्रमाणों में
+नियमों के प्रत्येक निःशब्द उपयोग को भी अवश्य अंकित कीजिए।
+\olref[pl][com][cth]{thm:completeness}।
+\end{prob}
+\tagendprob
+
+\end{document}

@@ -1,0 +1,87 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{int}{fml}
+
+\section{\usetoken{P}{formula}}
+
+प्रथम-क्रम तर्क के !!{sentence}s को कठोरता से निर्दिष्ट करने और !!{variable}s
+के उपयोग से उठने वाली समस्याओं को सँभालने के लिए हम निम्न पद्धति अपनाएँगे।
+पहले व्यंजकों के एक \emph{अलग} समुच्चय, अर्थात् !!{formula}s के समुच्चय, को परिभाषित
+करेंगे। इसके बाद हम उनमें !!{variable}s की भूमिका पर विचार कर सकेंगे और कुछ
+अन्य धारणाओं---अर्थात् ``मुक्त'' और ``बद्ध'' !!{variable}s---के आधार पर
+परिभाषित कर सकेंगे कि !!a{sentence} क्या है (अर्थात् ऐसा !!a{formula} जिसमें
+कोई मुक्त !!{variable} न हो)। हम ऐसा केवल इसलिए नहीं करते कि इससे
+``!!{sentence}'' की परिभाषा अधिक सुगम हो जाती है, बल्कि इसलिए भी कि संतुष्टि
+की अर्थवैज्ञानिक धारणा को परिभाषित करने की हमारी विधि में यह निर्णायक होगा।
+
+अब किसी सरल प्रथम-क्रम भाषा के लिए ``!!{formula}'' परिभाषित करें। इस भाषा
+में केवल एक !!{predicate}~$\Obj P$, एक !!{constant}~$\Obj a$ और तार्किक
+चिह्न $\lnot$, $\land$ तथा~$\lexists$ हैं। हमारी पूरी परिभाषाएँ कहीं अधिक
+सामान्य होंगी: उनमें अनंततः अनेक !!{predicate}s और !!{constant}s की अनुमति
+होगी। वास्तव में हम ऐसे !!{function}s पर भी विचार करेंगे जिन्हें
+!!{constant}s और !!{variable}s के साथ जोड़कर ``पद'' बनाए जा सकते हैं। अभी
+$\Obj a$ और चर ही हमारे पद होंगे। हमें अनंततः अनेक !!{variable}s की आवश्यकता है।
+औपचारिक रूप से हम $\Obj v_0$, $\Obj
+v_1$, \dots, चिह्नों को चर मानेंगे।
+
+\begin{defn}
+\emph{!!{formula}s} के समुच्चय~$\Frm$ को निम्न प्रकार परिभाषित किया जाता है:
+\begin{enumerate}
+\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ और $\Atom{\Obj
+  P}{\Obj v_i}$ को !!{formula}s में गिना जाता है ($i \in \Nat$)।
+
+\tagitem{prvNot}{\ollabel{fmls-not}यदि $!A$ कोई !!a{formula} है, तो $\lnot !A$
+  भी !!a{formula} है।}{}
+
+\tagitem{prvAnd}{यदि $!A$ और $!B$ को !!{formula}s में गिना जाता है, तो $(!A \land
+  !B)$ कोई !!a{formula} है।}{}
+
+\tagitem{prvEx}{\ollabel{fmls-ex}यदि $!A$ कोई !!a{formula} और $x$ कोई
+  !!a{variable} है, तो $\lexists[x][!A]$ कोई !!a{formula} है।}{}
+
+\tagitem{limitClause}{\ollabel{fmls-limit}इसके अतिरिक्त कुछ भी !!a{formula} नहीं है।}{}
+\end{enumerate}
+\end{defn}
+
+\olref{fmls-atom} बताती है कि $\Atom{\Obj P}{\Obj a}$ और
+$\Atom{\Obj P}{\Obj v_i}$ को, किसी भी $i \in
+\Nat$ के लिए, !!{formula}s में गिना जाता है। इन्हें तथाकथित
+\emph{परमाण्विक} !!{formula}s के वर्ग में रखा जाता है और ये हमें आरंभ-बिंदु
+देते हैं। अन्य खंड पहले से बने सूत्रों से नए !!{formula}s के निर्माण की विधियाँ देते हैं। उदाहरणार्थ,
+\olref{fmls-not} से $\lnot \Atom{\Obj P}{\Obj v_2}$ कोई !!a{formula} है,
+क्योंकि \olref{fmls-atom} के अनुसार $\Atom{\Obj P}{\Obj v_2}$ पहले ही
+!!a{formula} है। फिर \olref{fmls-ex} से
+$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ भी !!a{formula} है,
+और यह क्रम आगे चलता है।
+\olref{fmls-limit} बताती है कि \emph{केवल} इसी ढंग से बनाई जा सकने वाली
+शृंखलाओं को !!{formula}s की श्रेणी में रखा जाता है। विशेषतः,
+$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]$ और $\lexists[\Obj
+  v_0][\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]]$ को !!{formula}s की श्रेणी में
+\emph{रखा जाता है}, जबकि अनावश्यक बाहरी कोष्ठकों के
+कारण $(\lnot \Atom{\Obj P}{\Obj a})$ को नहीं।
+
+!!{formula}s को इस प्रकार परिभाषित करना \emph{आगमनात्मक परिभाषा} कहलाता है।
+इससे हम आगमन द्वारा प्रमाण के एक रूप, \emph{संरचनात्मक आगमन}, का उपयोग करके
+!!{formula}s के बारे में बातें सिद्ध कर सकते हैं। इनकी सामान्य चर्चा
+\olref[mth][ind][idf]{sec} और \olref[mth][ind][sti]{sec} में है; आगे के
+प्रमाणों में जाने से पहले आपको उन्हें दोहरा लेना चाहिए। मूल विचार यह है कि
+यदि आप कोई बात सभी !!{formula}s के लिए सिद्ध करना चाहते हैं, तो पहले दिखाते
+हैं कि वह परमाण्विक !!{formula}s के लिए सत्य है; फिर दिखाते हैं कि वह किसी
+!!{formula}~$!A$ (और~$!B$) के लिए सत्य \emph{हो}, तो $\lnot !A$,
+$(!A \land !B)$ और $\lexists[x][!A]$ के लिए \emph{भी} सत्य है। उदाहरणार्थ,
+इससे वह बात
+$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ के लिए सिद्ध होती है:
+पहले भाग से वह परमाण्विक !!{formula}~$\Atom{\Obj
+P}{\Obj v_2}$ के लिए सत्य है। फिर दूसरे भाग से वह $\lnot \Atom{\Obj
+P}{\Obj v_2}$ के लिए और पुनः
+$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ के लिए सत्य है। चूँकि
+!!{formula}s का पूरा वर्ग परमाण्विक !!{formula}s से आगमनात्मक रूप से उत्पन्न होता है,
+यह विधि उनमें से प्रत्येक के लिए काम करती है।
+
+\end{document}

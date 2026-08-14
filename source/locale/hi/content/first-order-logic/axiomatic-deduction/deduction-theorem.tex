@@ -1,0 +1,134 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: deduction-theorem
+
+% verification of properties of provability needed for maximally 
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{ded}}
+      {\olfileid[hi]{pl}{axd}{ded}}
+
+\olsection{निगमन प्रमेय}
+
+जैसा हमने देखा है, किसी अभिगृहीतीय तंत्र में !!{derivation}s देना श्रमसाध्य
+है और !!{derivation}s को खोजना कठिन हो सकता है। !!{formula}s की लंबी सूचियाँ
+वास्तव में लिखने के बजाय, कुछ सरल परिणामों का उपयोग करके यह तर्क देना
+सामान्यतः आसान होता है कि ऐसी !!{derivation}s अस्तित्व में हैं। ऐसे तीन
+परिणाम हम पहले ही स्थापित कर चुके हैं। \olref[ptn]{prop:reflexivity} कहता है
+कि हम सदा $\Gamma
+\Proves !A$ कह सकते हैं, यदि हमें $!A \in
+\Gamma$ ज्ञात हो।
+\olref[ptn]{prop:monotonicity} कहता है कि यदि $\Gamma \Proves !A$, तो
+$\Gamma \cup \{!B\} \Proves !A$ भी। और \olref[ptn]{prop:transitivity}
+से मिलता है कि यदि $\Gamma \Proves !A$ और $!A \Proves !B$, तो
+$\Gamma \Proves !B$। यह एक और सरल परिणाम है—पूर्वपक्ष-स्थापन का ``अधि''-रूप:
+
+\begin{prop}
+  \ollabel{prop:mp} यदि $\Gamma \Proves !A$ और $\Gamma \Proves !A \lif
+  !B$, तो $\Gamma \Proves !B$।
+\end{prop}
+
+\begin{proof}
+  हमारे पास $\{!A, !A \lif !B\} \Proves !B$ है:
+  \begin{derivation}
+    1. & $!A$ & मान्यता\\
+    2. & $!A \lif !B$ & मान्यता\\
+    3. & $!B$ & 1, 2, MP
+  \end{derivation}
+  \olref[ptn]{prop:transitivity} से $\Gamma \Proves !B$।
+\end{proof}
+
+इस प्रसंग में हमारा सबसे महत्त्वपूर्ण परिणाम निगमन प्रमेय है:
+
+\begin{thm}[निगमन प्रमेय]
+\ollabel{thm:deduction-thm} $\Gamma \cup \{!A\} \Proves !B$ तभी और केवल
+तभी जब $\Gamma \Proves !A \lif !B$।
+\end{thm}
+
+\begin{proof}
+``यदि'' दिशा तात्कालिक है। यदि $\Gamma \Proves !A \lif !B$, तो
+\olref[ptn]{prop:monotonicity} से
+$\Gamma \cup \{!A\} \Proves !A \lif !B$ भी। और
+\olref[ptn]{prop:reflexivity} से
+$\Gamma \cup \{!A\} \Proves !A$। अतः \olref{prop:mp} से $\Gamma \cup
+\{!A\} \Proves !B$।
+
+``केवल तभी'' दिशा के लिए हम $!B$ की, $\Gamma \cup \{!A\}$ से,
+!!{derivation} की लंबाई पर आगमन करते हैं।
+
+आगमन-आधार में लंबाई~$1$ की हर !!{derivation} के लिए कथन सिद्ध करते हैं।
+!!^a{derivation} में, जो~$!B$ की $\Gamma \cup \{!A\}$ से व्युत्पत्ति है और
+जिसकी लंबाई~$1$ है, अकेला $!B$ होता है; और यदि वह सही है, तो $!B$ या तो
+$\in \Gamma \cup \{!A\}$ होता है या कोई अभिगृहीत है। यदि $!B \in \Gamma$
+अथवा वह कोई अभिगृहीत है,
+तो $\Gamma \Proves !B$। \olref[prp]{ax:lif1} से हमारे पास $\Gamma
+\Proves !B \lif (!A \lif !B)$ भी है; अतः \olref{prop:mp} से
+$\Gamma \Proves !A \lif !B$। यदि $!B \in \{ !A\}$, तो
+$\Gamma \Proves !A \lif !B$, क्योंकि अंतिम !!{sentence}~$!A
+\lif !B$, $!A \lif !A$ के समान
+है और इसे हम \olref[pro]{ex:identity} में !!{derive} कर चुके हैं।
+
+आगमन-चरण में मान लें कि !!a{derivation} में~$!B$ की व्युत्पत्ति
+$\Gamma \cup \{!A\}$ से होती है और वह ऐसे चरण~$!B$ पर समाप्त होती है जिसे
+पूर्वपक्ष-स्थापन उचित ठहराता है। (यदि उसे पूर्वपक्ष-स्थापन उचित नहीं ठहराता,
+तो $!B \in \Gamma$, $!B
+\ident !A$, अथवा $!B$ कोई अभिगृहीत है; तब आगमन-आधार वाला ही तर्क लागू होता
+है।) तब !!{derivation} के पहले के कुछ चरण $!C \lif !B$ और $!C$ हैं, जहाँ
+!!{formula}~$!C$ कोई सूत्र है; अर्थात्
+$\Gamma \cup \{!A\} \Proves !C \lif !B$ और $\Gamma \cup \{!A\}
+\Proves !C$। उनकी संबंधित !!{derivation}s छोटी हैं, इसलिए
+आगमन-परिकल्पना उन पर लागू होती है। अतः हमारे पास दोनों हैं:
+\begin{align*}
+  & \Gamma \Proves !A \lif (!C \lif !B); \\
+  & \Gamma \Proves !A \lif !C.
+\end{align*}
+पर हमारे पास यह भी है:
+\[
+\Gamma \Proves (!A \lif (!C \lif !B)) \lif
+((!A\lif !C)  \lif (!A \lif !B)),
+\]
+\olref[prp]{ax:lif2} से; और \olref{prop:mp} के दो प्रयोग अपेक्षित
+$\Gamma \Proves !A \lif !B$ देते हैं।
+\end{proof}
+
+ध्यान दें कि \olref[prp]{ax:lif1} और \olref[prp]{ax:lif2} ठीक इसलिए चुने
+गए हैं कि निगमन प्रमेय सत्य हो।
+
+निम्न !!{derivability} से संबंधित कुछ उपयोगी तथ्य हैं, जिन्हें हम अभ्यास के
+लिए छोड़ते हैं।
+
+\begin{prop}
+  \ollabel{prop:derivfacts}
+\begin{enumerate}
+\item $\Proves (!A \lif !B) \lif ((!B \lif !C)
+  \lif (!A \lif !C)$; \ollabel{derivfacts:a}
+\item यदि $\Gamma \cup \{ \lnot !A\}
+  \Proves \lnot !B$, तो $\Gamma \cup \{ !B\} \Proves
+  !A$ (प्रतिधन); \ollabel{derivfacts:b}
+\item  $\{ !A, \lnot!A\} \Proves
+    !B$ (असत्य से कुछ भी, विस्फोट); \ollabel{derivfacts:c}
+\item  $\{ \lnot\lnot!A\} \Proves
+  !A$ (द्विनिषेध-विलोपन);\ollabel{derivfacts:d}
+\item यदि $\Gamma \Proves \lnot\lnot!A$, तो $\Gamma \Proves
+  !A$;\ollabel{derivfacts:e}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+  \olref[fol][axd][ded]{prop:derivfacts} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  \olref[pl][axd][ded]{prop:derivfacts} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\end{document}

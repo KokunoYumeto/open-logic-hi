@@ -1,0 +1,58 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: deduction-theorem-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{axd}{ddq}
+
+\olsection{परिमाणकों सहित निगमन प्रमेय}
+
+\begin{thm}[निगमन प्रमेय]
+\ollabel{thm:deduction-thm-q} यदि $\Gamma \cup \{!A\} \Proves !B$,
+तो $\Gamma \Proves !A \lif !B$।
+\end{thm}
+
+\begin{proof}
+हम फिर $!B$ की, $\Gamma \cup \{!A\}$ से, !!{derivation} की लंबाई पर आगमन
+करते हैं।
+
+आगमन-आधार का प्रमाण~\olref[ded]{thm:deduction-thm} के प्रमाण वाले आधार के
+समान है।
+
+आगमन-चरण में फिर मान लें कि $!B$ की, $\Gamma \cup \{!A\}$ से,
+!!{derivation} ऐसे चरण~$!B$ पर समाप्त होती है जिसे कोई अनुमान-नियम उचित
+ठहराता है। यदि अनुमान-नियम पूर्वपक्ष-स्थापन है, तो
+\olref[ded]{thm:deduction-thm} के प्रमाण की तरह आगे बढ़ते हैं। यदि
+अनुमान-नियम \QR है, तो हम जानते हैं कि $!B \ident !C \lif \lforall[x][!D(x)]$ और
+$!C \lif !D(a)$ रूप का !!a{formula},~!!{derivation}
+में पहले आता है, जहाँ $a$,~$!C$, $!A$, या $\Gamma$ में नहीं आता। अतः हमारे
+पास है:
+\begin{align*}
+  \Gamma \cup \{!A\} & \Proves !C \lif !D(a),\\
+  \intertext{और आगमन-परिकल्पना लागू होती है; अर्थात् हमारे पास है}
+    \Gamma & \Proves !A \lif (!C \lif !D(a)).\\
+  \intertext{इससे}
+  & \Proves (!A \lif (!C \lif !D(a))) \lif ((!A \land !C) \lif !D(a))\\
+  \intertext{और पूर्वपक्ष-स्थापन द्वारा मिलता है}
+  \Gamma & \Proves (!A \land !C) \lif !D(a).\\
+  \intertext{क्योंकि अभिलाक्षणिक-चर शर्त अब भी लागू है, इसलिए इस !!{derivation} में \QR से उचित ठहराया गया चरण जोड़कर मिलता है}
+    \Gamma & \Proves (!A \land !C) \lif \lforall[x][!D(x)].\\
+    \intertext{हमारे पास यह भी है}
+    & \Proves ((!A \land !C) \lif \lforall[x][!D(x)]) \lif (!A \lif (!C \lif \lforall[x][!D(x)]),\\
+    \intertext{अतः पूर्वपक्ष-स्थापन से}
+    \Gamma & \Proves !A \lif (!C \lif \lforall[x][!D(x)]),
+\end{align*}
+अर्थात् $\Gamma \Proves !B$।
+
+जिस प्रसंग में $!B$ को \QR नियम उचित ठहराता है, पर वह
+$\lexists[x][!D(x)] \lif !C$ रूप का है, उसे अभ्यास के लिए छोड़ते हैं।
+\end{proof}
+
+\begin{prob}
+  \olref[fol][axd][ddq]{thm:deduction-thm-q} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\end{document}

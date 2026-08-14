@@ -1,0 +1,160 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{ntd}{ptn}}
+      {\olfileid[hi]{pl}{ntd}{ptn}}
+
+\olsection{प्रमाण-सैद्धांतिक धारणाएँ}
+
+\begin{editorial}
+यह अनुभाग स्वाभाविक निगमन के सिद्धता-संबंध और संगतता की परिभाषाएँ एकत्र
+करता है।
+\end{editorial}
+
+\begin{explain}
+जिस प्रकार हमने कई महत्त्वपूर्ण अर्थवैज्ञानिक धारणाएँ (वैधता, तार्किक
+निष्पत्ति, संतुष्टनीयता) परिभाषित की हैं, उसी प्रकार अब उनकी संगत
+\emph{प्रमाण-सैद्धांतिक धारणाएँ} परिभाषित करते हैं। इनकी परिभाषा में
+!!{sentence}s की !!{structure}s में संतुष्टि का सहारा नहीं लिया जाता, बल्कि
+!!{derivability} या !!{nonderivability} का—कुछ !!{sentence}s की अन्य वाक्यों
+से व्युत्पन्नता या अव्युत्पन्नता का—सहारा लिया जाता है। इन धारणाओं का एक-दूसरे से मेल खाना एक महत्त्वपूर्ण
+खोज थी। यह मेल \emph{सुदृढ़ता} और \emph{पूर्णता प्रमेयों} का विषय है।
+\end{explain}
+
+
+\begin{defn}[प्रमेय]
+कोई !!{sentence}~$!A$ \emph{प्रमेय} है यदि स्वाभाविक निगमन में~$!A$ की ऐसी
+!!a{derivation} हो जिसमें सभी मान्यताएँ !!{discharged} हों। यदि $\Proves !A$
+हो तो $!A$ प्रमेय है, और यदि नहीं तो $\Proves/ !A$ लिखते हैं।
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence} $!A$ किसी समुच्चय से \emph{!!{derivable}} है; यदि वह
+!!{sentence}s का समुच्चय~$\Gamma$ हो, तो इसे $\Gamma \Proves !A$ लिखते हैं,
+और यह तब होता है जब ऐसी
+!!{derivation} हो जिसका निष्कर्ष~$!A$ हो और जिसमें हर मान्यता या तो
+!!{discharged} हो अथवा~$\Gamma$ में हो। यदि $!A$, $\Gamma$ से
+!!{derivable} नहीं है, तो $\Gamma \Proves/ !A$ लिखते हैं।
+\end{defn}
+
+\begin{defn}[संगतता]
+!!{sentence}s का समुच्चय~$\Gamma$ \emph{असंगत} है तभी और केवल तभी जब $\Gamma
+\Proves \lfalse$। यदि $\Gamma$ असंगत नहीं है, अर्थात् यदि
+$\Gamma \Proves/ \lfalse$, तो उसे \emph{संगत} कहते हैं।
+\end{defn}
+
+\begin{prop}[स्वतुल्यता]
+\ollabel{prop:reflexivity}
+यदि $!A \in \Gamma$, तो $\Gamma \Proves !A$।
+\end{prop}
+
+\begin{proof}
+मान्यता $!A$ अकेली ही~$!A$ की !!a{derivation} है, जिसमें हर
+!!{undischarged} मान्यता (अर्थात् $!A$)~$\Gamma$ में है।
+\end{proof}
+  
+
+\begin{prop}[एकदिष्टता]
+\ollabel{prop:monotonicity}
+यदि $\Gamma \subseteq \Delta$ और $\Gamma \Proves !A$, तो $\Delta
+\Proves !A$।
+\end{prop}
+
+\begin{proof}
+$!A$ की $\Gamma$ से कोई भी !!{derivation},~$!A$ की $\Delta$ से
+!!a{derivation} भी है।
+\end{proof}
+
+\begin{prop}[संक्रामकता]
+\ollabel{prop:transitivity}
+यदि $\Gamma \Proves !A$ और $\{!A\} \cup \Delta \Proves
+!B$, तो $\Gamma \cup \Delta \Proves !B$।
+\end{prop}
+
+\begin{proof}
+यदि $\Gamma \Proves !A$, तो कोई !!a{derivation}~$\delta_0$ ऐसी है जिसका
+निष्कर्ष~$!A$ है और जिसकी सभी !!{undischarged} मान्यताएँ~$\Gamma$ में हैं।
+यदि $\{!A\} \cup
+\Delta \Proves !B$, तो कोई !!a{derivation}~$\delta_1$
+ऐसी है जिसका निष्कर्ष~$!B$ है और जिसकी सभी !!{undischarged} मान्यताएँ
+~$\{!A\} \cup \Delta$ में हैं। अब इस पर विचार करें:
+\begin{prooftree}
+  \AxiomC{$\Delta, \Discharge{!A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lif}}
+  \BinaryInfC{$!B$}
+\end{prooftree}
+अब सभी !!{undischarged} मान्यताएँ $\Gamma \cup
+\Delta$ में हैं; अतः इससे $\Gamma \cup \Delta \Proves !B$ सिद्ध होता है।
+\end{proof}
+
+जब $\Gamma = \{!A_1, !A_2, \ldots, !A_k\}$ कोई परिमित समुच्चय हो, तब
+सरल संकेतन $!A_1,!A_2,\ldots,!A_k \Proves !B$ को $\Gamma \Proves !B$ के
+स्थान पर लिख सकते हैं; विशेषतः $!A \Proves !B$ का अर्थ $\{!A\} \Proves !B$ है।
+
+ध्यान दें कि यदि $\Gamma \Proves !A$ और $!A
+\Proves !B$, तो $\Gamma \Proves !B$। इससे यह भी मिलता है कि यदि $!A_1,
+\dots, !A_n \Proves !B$ और $\Gamma \Proves !A_i$ प्रत्येक~$i$ के लिए हो,
+तो $\Gamma \Proves !B$।
+
+\begin{prop}
+\ollabel{prop:incons}
+निम्नलिखित कथन तुल्य हैं।
+    \begin{enumerate}
+      \item \( \Gamma \) असंगत है।
+      \item \( \Gamma \Proves {!A} \) प्रत्येक !!{sentence}~\( {!A} \) के लिए सत्य है।
+      \item \( \Gamma \Proves {!A} \) और \( \Gamma \Proves \lnot {!A} \) किसी !!{sentence}~\( {!A} \) के लिए सत्य हैं।
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][ntd][ptn]{prop:incons} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][ntd][ptn]{prop:incons} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prop}[संहतता]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय $\Gamma_0
+    \subseteq \Gamma$ ऐसा है कि $\Gamma_0 \Proves !A$।
+  \item यदि~$\Gamma$ का हर परिमित उपसमुच्चय संगत है, तो $\Gamma$ संगत है।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item यदि $\Gamma \Proves !A$, तो कोई !!a{derivation}~$\delta$ ऐसी है
+      जो~$!A$ की~$\Gamma$ से है। $\Gamma_0$ को~$\delta$ की
+      !!{undischarged} मान्यताओं का समुच्चय मानें। चूँकि कोई भी
+      !!{derivation} परिमित होती है, $\Gamma_0$ में केवल परिमित रूप से अनेक
+      !!{sentence}s हो सकते हैं। अतः $\delta$,~$!A$ की परिमित
+      ~$\Gamma_0 \subseteq \Gamma$ से !!a{derivation} है।
+    \item यह (1) का प्रतिलोम है—विशेष दशा $!A
+      \ident \lfalse$ के लिए।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

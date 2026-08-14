@@ -1,0 +1,87 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{tab}{qpr}
+\olsection{\usetoken{S}{derivability} और परिमाणक}
+
+\begin{explain}
+  पूर्णता प्रमेय के लिए यह भी आवश्यक है कि सत्य-वृक्ष के नियम इस अनुभाग में
+  स्थापित~$\Proves$ से संबंधित तथ्य प्रदान करें।
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} यदि $c$ ऐसा अचर है जो $\Gamma$ या
+$!A(x)$ में नहीं आता, और $\Gamma \Proves !A(c)$, तो $\Gamma
+\Proves \lforall[x][!A(x)]$।
+\end{thm}
+
+\begin{proof}
+मान लें $\Gamma \Proves !A(c)$; अर्थात् $!B_1$, \dots, $!B_n
+\in \Gamma$ ऐसे हैं और निम्न के लिए कोई बंद !!{tableau} है:
+\begin{align*}
+\{ \sFmla{\False}{!A(c)}, &
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n} \}.
+\intertext{हमें दिखाना है कि निम्न के लिए भी कोई बंद !!{tableau} है:}
+\{ \sFmla{\False}{\lforall[x][!A(x)]}, &
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n} \}.
+\end{align*}
+बंद !!{tableau} में पहली मान्यता को
+$\sFmla{\False}{\lforall[x][!A(x)]}$ से बदलें और मान्यताओं के बाद
+$\sFmla{\False}{!A(c)}$ जोड़ें।
+\begin{center}
+\begin{tableau}{not line numbering}
+  [\sFmla{\False}{\formula{A}(c)}
+    [\sFmla{\True}{\formula{B}_1}
+      [\vdots
+      [\sFmla{\True}{\formula{B}_n}, 
+        [][][]]]]]
+\end{tableau}\qquad
+\begin{tableau}{not line numbering}
+  [\sFmla{\False}{\lforall[x][\formula{A}(x)]}
+    [\sFmla{\True}{\formula{B}_1}
+      [\vdots
+        [\sFmla{\True}{\formula{B}_n},
+          [\sFmla{\False}{\formula{A}(c)}
+        [][][]]]]]]
+\end{tableau}
+\end{center}
+सत्य-वृक्ष अब भी बंद है, क्योंकि पहले मान्यताओं के रूप में उपलब्ध सभी
+!!{sentence}s नए !!{tableau} के शीर्ष पर अब भी उपलब्ध हैं। जोड़ी गई पंक्ति
+$\TRule{\False}{\lforall}$ के सही प्रयोग का परिणाम है, क्योंकि
+!!{constant}~$c$, $!B_1$, \dots, $!B_n$ या $\lforall[x][!A(x)]$ में नहीं
+आता; अर्थात् नए !!{tableau} में जोड़ी गई पंक्ति के ऊपर वह कहीं नहीं आता।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$।}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$।}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\sFmla{\False}{\lexists[x][!A(x)]}, \sFmla{\True}{!A(t)}$
+  के लिए बंद !!{tableau} है:
+  \begin{oltableau}
+    [\sFmla{\False}{\lexists[x][\formula{A}(x)]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(t)}, just = \TAss
+        [\sFmla{\False}{\formula{A}(t)}, just = {\TRule{\False}{\lexists}[1]}, close]]]
+    \end{oltableau}}{}
+\tagitem{prvAll}{$\sFmla{\False}{\formula{A}(t)}, \sFmla{\True}{\lforall[x][!A(x)]}, $
+  के लिए बंद !!{tableau} है:
+  \begin{oltableau}
+    [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+      [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just = {\TRule{\True}{\lforall}[2]}, close]]]
+    \end{oltableau}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

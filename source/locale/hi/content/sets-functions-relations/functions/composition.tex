@@ -1,0 +1,69 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: composition
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{fun}{cmp}
+\olsection{फलनों का संयोजन}
+
+\begin{explain}
+\oliflabeldef{sfr:fun:inv:sec}{हमने \olref[inv]{sec} में देखा कि
+!!a{bijection} का प्रतिलोम~$f^{-1}$, अर्थात~$f$ का प्रतिलोम, स्वयं एक फलन होता है। फलनों पर
+एक अन्य संक्रिया संयोजन है:}{} हम दो फलनों, $f$ और~$g$, का संयोजन करके
+एक नया फलन परिभाषित कर सकते हैं; अर्थात पहले $f$ और फिर~$g$ लगाते हैं।
+निस्संदेह, यह तभी संभव है जब परिसर और प्रांत मेल खाते हों; अर्थात~$f$ का
+परिसर~$g$ के प्रांत का उपसमुच्चय होना चाहिए।
+\oliflabeldef{sfr:rel:ops:sec}{फलनों पर यह संक्रिया,
+\olref[rel][ops]{sec} में संबंधों पर दी गई सापेक्ष गुणनफल की संक्रिया की
+समरूप संक्रिया है।}{}
+
+संयोजन की धारणा समझाने में एक आरेख सहायक हो सकता है।
+\olref{fig:composition} में हम दो फलन $f \colon A \to B$
+और $g \colon B \to C$ तथा उनका संयोजन~$(\comp{f}{g})$ दिखाते हैं। फलन
+$(\comp{f}{g}) \colon A \to C$,~$A$ के प्रत्येक !!{element} को~$C$ के
+!!a{element} के साथ जोड़ता है।~$C$ के किस !!{element} के साथ~$A$ के
+!!a{element} को जोड़ा जाता है, यह इस प्रकार निर्धारित करते हैं: कोई निवेश
+$x \in
+A$ दिया हो, तो पहले फलन $f$ को~$x$ पर लगाते हैं, जिससे कोई निर्गत $f(x)
+= y \in B$ मिलता है; फिर फलन $g$ को~$y$ पर लगाते हैं, जिससे कोई निर्गत
+$g(f(x)) = g(y) = z \in C$ मिलता है।
+\begin{figure}[H]
+  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \caption{संयोजन $g \circ f$, जिसे दो फलनों $f$ और~$g$ से बनाया गया है।}
+  \ollabel{fig:composition}
+\end{figure}
+\end{explain}
+
+\begin{defn}[संयोजन]
+मान लीजिए कि $f\colon A \to B$ और $g\colon B \to C$ फलन हैं।~$f$ का~$g$
+के साथ \emph{संयोजन} $\comp{f}{g} \colon A \to C$ है, जहाँ
+$(\comp{f}{g})(x) = g(f(x))$।
+\end{defn}
+
+\begin{ex}
+फलनों $f(x) = x + 1$ और $g(x) = 2x$ पर विचार कीजिए। चूँकि
+$(\comp{f}{g})(x) = g(f(x))$, प्रत्येक निवेश~$x$ के लिए पहले उसका
+उत्तराधिकारी लेना और फिर परिणाम को दो से गुणा करना होगा। अतः उनका संयोजन
+$(\comp{f}{g})(x) = 2(x+1)$ द्वारा दिया जाता है।
+\end{ex}
+
+\begin{prob}
+दिखाइए कि यदि $f \colon A \to B$ और $g \colon B \to C$, दोनों
+!!{injective} हैं, तो $\comp{f}{g}\colon A \to C$ भी !!{injective} है।
+\end{prob}
+
+\begin{prob}
+दिखाइए कि यदि $f \colon A \to B$ और $g \colon B \to C$, दोनों
+!!{surjective} हैं, तो $\comp{f}{g}\colon A \to C$ भी !!{surjective} है।
+\end{prob}
+
+\begin{prob}
+मान लीजिए कि $f \colon A \to B$ और $g \colon B \to C$ हैं। दिखाइए कि
+$\comp{f}{g}$ का आलेख $R_f \mid R_g$ है।
+\end{prob}
+
+\end{document}

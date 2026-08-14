@@ -1,20 +1,23 @@
 # Evidence map
 
-This directory keeps the concise, machine-readable release state above fold.
+Start with these small files:
+
+- `RELEASE_METADATA.json`: exact identity, DOI, scope, and reader hash
+- `ACCEPTED_FILES.csv`: all 158 source/target pairs, sizes, and hashes
+- `READER_COMPONENT_MANIFEST.json`: 18 components and physical page ranges
+- `QA_STATE.json` and `QA_REPORT.md`: cumulative build/render QA summary
+- `CUMULATIVE_READER_QA.json` and `MANUAL_VISUAL_REVIEW.md`: machine and direct
+  visual-review receipts
+- `COVERAGE_AND_CURSOR.md`: honest boundary and next chapter
+- `SOURCE_AUTHORITY.json`: frozen source authority
+
 The complete evidence payload is the numbered
-`02_OpenLogic_hi-Deva-IN_EVIDENCE_AND_PROVENANCE.zip` asset attached to the
-`HI-OLP-PUB-0002` release and exact Zenodo version DOI
-`10.5281/zenodo.21921856`.
+`02_OpenLogic_hi-Deva-IN_PROVENANCE_AND_QA_158-of-722.zip` asset attached to
+the `HI-OLP-PUB-0003` release and Zenodo version DOI
+`10.5281/zenodo.21940471`. It contains the relevant append-only decisions,
+rejections, source ledger, task history, terminology web, accepted QA,
+diagnostic failures and corrections, build products, 300-dpi renders,
+publication method, and scripts. Credentials and unrelated corpora are absent.
 
-That ZIP contains the complete relevant append-only lane decisions, rejections,
-source ledger, task registry, logbook, terminology web and source notes; all
-11 unit QA directories; all OLP failure and diagnostic evidence; both final
-and rejected cumulative-reader renders; frozen source witnesses and licences;
-the publication method; and prior GitHub/Zenodo receipts. Credential files,
-caches, unrelated archives, and temporary worktrees are excluded.
-
-`receipts/` records the post-publication anonymous readback of the GitHub main
-payload, all four tagged release assets, and all four Zenodo files. These
-receipts necessarily postdate the immutable archives whose identities they
-verify; retaining them beside the release avoids pretending a self-verifying
-receipt could have existed inside its own published byte stream.
+Prior release receipts remain in `receipts/` as version history; they do not
+describe the current 158-file payload.

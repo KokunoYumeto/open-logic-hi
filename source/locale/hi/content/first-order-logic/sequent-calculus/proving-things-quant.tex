@@ -1,0 +1,102 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{seq}{prq}
+
+\olsection{परिमाणकों वाली \usetoken{p}{derivation}}
+
+\begin{ex}
+एक $\Log{LK}$-!!{derivation} दीजिए जिसका अंतिम अनुक्रम $\lexists[x][\lnot !A(x)]
+\Sequent \lnot \lforall[x][!A(x)]$ हो।
+
+परिमाणकों के साथ काम करते समय यह सुनिश्चित करना होता है कि अभिलाक्षणिक-चर
+शर्त का उल्लंघन न हो। इसके लिए कभी-कभी कुछ अनुमानों को लगाने का क्रम बदलकर
+देखना पड़ता है। सामान्यतः अभिलाक्षणिक-चर शर्त के अधीन नियमों को पहले सँभालना
+सहायक होता है (पूरे प्रमाण में वे नीचे आएँगे)। साथ ही आगे देखकर यह अनुमान
+लगाना उपयोगी है कि प्रारंभिक अनुक्रम कैसा होगा। हमारे मामले में वह
+$!A(a) \Sequent !A(a)$ जैसा होना चाहिए। इसका अर्थ है कि परिमाणक-नियमों को
+``उल्टी दिशा'' में लगाते समय वही पद---जिसे हम $a$ कहेंगे---$\lforall$ और
+$\lexists$, दोनों नियमों के लिए चुनना होगा। हर नियम के लिए अलग पद चुनने पर
+$!A(a) \Sequent !A(b)$ जैसा अनुक्रम मिलता, जो निस्संदेह व्युत्पन्न नहीं है।
+
+सामान्य रीति से आरंभ करते हुए लिखते हैं:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+हम \LeftR{\exists} नियम या \RightR{\lnot} नियम, दोनों में से कोई भी लगा सकते
+हैं। चूँकि \LeftR{\exists} नियम अभिलाक्षणिक-चर शर्त के अधीन है, इसलिए उसे
+बाद के बजाय अभी सँभालना उचित है; अतः पहले वही लगाते हैं।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+\LeftR{\lnot} और \RightR{\lnot} नियमों को उल्टी दिशा में लगाने पर मिलता है:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x] !A(x)$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x] \lnot !A(x) \fCenter \lnot \lforall[x] !A(x)$
+\end{prooftree}
+अब हमारा एकमात्र विकल्प \LeftR{\forall} नियम लगाना है। यह नियम
+अभिलाक्षणिक-चर प्रतिबंध के अधीन नहीं है, इसलिए यहाँ कोई बाधा नहीं है। याद
+रखें, हम $!A(a) \Sequent !A(a)$ के रूप का प्रारंभिक अनुक्रम पाना चाहते हैं;
+अतः नियम लगाते समय $a$ को $!A$ का तर्क चुनना चाहिए।
+\begin{prooftree}
+\Axiom$!A(a) \fCenter !A(a)$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][ \lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+विशेषतः परिमाणकों के साथ काम करते समय इस बिंदु पर दोबारा जाँचना आवश्यक है
+कि अभिलाक्षणिक-चर शर्त का उल्लंघन तो नहीं हुआ। हमने इस शर्त के अधीन केवल
+\LeftR{\exists} नियम लगाया है, और अभिलाक्षणिक चर~$a$ उसके निचले अनुक्रम
+(अंतिम अनुक्रम) में नहीं आता; अतः यह सही !!{derivation} है।
+\end{ex}
+
+\begin{prob}
+निम्नलिखित अनुक्रमों की !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $\Sequent (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Sequent (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Sequent \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Sequent \lnot\lexists[x][!A(x)]$.
+\item $\Sequent \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Sequent \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+निम्नलिखित अनुक्रमों की !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $\Sequent \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Sequent \lexists[y][(!A(y) \lif !B)]$.
+\item $\Sequent \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(इन सभी में $\RightR{\Contraction}$~नियम आवश्यक है।)
+\end{prob}
+
+\end{document}

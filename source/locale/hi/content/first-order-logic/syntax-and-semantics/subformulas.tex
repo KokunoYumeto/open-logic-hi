@@ -1,0 +1,104 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: subformulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{sbf}
+
+\olsection{\printtoken{P}{subformula} की धारणा}
+
+\begin{explain}
+किसी दिए हुए !!{formula} को ``बनाने वाले'' !!{formula}s की चर्चा करना
+प्रायः उपयोगी होता है। इन्हें हम उसके \emph{!!{subformula}} कहते हैं। हर
+!!{formula} स्वयं अपना !!a{subformula} माना जाता है; $!A$ का ऐसा उपसूत्र जो
+स्वयं $!A$ न हो, \emph{उचित !!{subformula}} कहलाता है।
+\end{explain}
+
+\begin{defn}[तात्कालिक !!^{subformula}]
+यदि $!A$ !!a{formula} है, तो $!A$ के \emph{तात्कालिक !!{subformula}}
+निम्न प्रकार आगमनात्मक रूप से परिभाषित हैं:
+\begin{enumerate}
+\item परमाण्विक !!{formula}s के कोई तात्कालिक !!{subformula} नहीं होते।
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ का एकमात्र तात्कालिक
+    !!{subformula}~$!B$ है।}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$ के तात्कालिक
+  !!{subformula} $!B$ और $!C$ हैं ($\ast$ दो-स्थानी संयोजकों में से कोई
+  एक है)।}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ का एकमात्र
+    तात्कालिक !!{subformula}~$!B$ है।}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ का एकमात्र
+    तात्कालिक !!{subformula}~$!B$ है।}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[उचित !!^{subformula}]
+यदि $!A$ !!a{formula} है, तो $!A$ के \emph{उचित !!{subformula}}
+निम्न प्रकार पुनरावर्ती रूप से परिभाषित हैं:
+\begin{enumerate}
+\item परमाण्विक !!{formula}s के कोई उचित !!{subformula} नहीं होते।
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ के उचित
+    !!{subformula}s में~$!B$ और~$!B$ के सभी उचित !!{subformula} आते हैं।}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$ के उचित !!{subformula}s में
+  $!B$, $!C$, तथा $!B$ और~$!C$ के सभी उचित !!{subformula} आते हैं।}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ के उचित
+    !!{subformula}s में~$!B$ और~$!B$ के सभी उचित !!{subformula} आते हैं।}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ के उचित
+    !!{subformula}s में~$!B$ और~$!B$ के सभी उचित !!{subformula} आते हैं।}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!^{subformula}]
+$!A$ के !!{subformula}s में स्वयं $!A$ और उसके सभी उचित !!{subformula} आते
+हैं।
+\end{defn}
+
+\begin{explain}
+तात्कालिक !!{subformula}s और उचित !!{subformula}s की परिभाषाओं में सूक्ष्म
+अंतर पर ध्यान दें। पहली स्थिति में हमने~$!A$ के प्रत्येक संभव रूप के लिए
+सूत्र~$!A$ के तात्कालिक !!{subformula} सीधे परिभाषित किए हैं। यह मामलों
+द्वारा दी गई स्पष्ट परिभाषा है, और ये मामले !!{formula}s के समुच्चय की
+आगमनात्मक परिभाषा का अनुसरण करते हैं। दूसरी स्थिति में भी हमने सभी
+!!{formula}s के समुच्चय की परिभाषा का अनुसरण किया है, किंतु हर मामले में
+छोटे !!{formula}s $!B$, $!C$ के साथ-साथ इन !!{formula}s के उचित
+!!{subformula} भी सम्मिलित किए हैं। इससे परिभाषा \emph{पुनरावर्ती} बनती है। सामान्यतः किसी
+आगमनात्मक रूप से परिभाषित समुच्चय (हमारे मामले में !!{formula}s) पर फलन की
+परिभाषा तब पुनरावर्ती होती है जब फलन की परिभाषा के मामले स्वयं उसी फलन का
+उपयोग करें। किंतु परिभाषा सुपरिभाषित होने के लिए यह सुनिश्चित करना आवश्यक है
+कि हम फलन के मान केवल उन तर्कों के लिए उपयोग करें जो परिभाषित किए जा रहे तर्क
+से ``पहले'' आते हैं---हमारे मामले में $(!B \ast !C)$ के लिए ``उचित
+!!{subformula}'' परिभाषित करते समय हम केवल ``पहले के'' !!{formula}s $!B$ और
+$!C$ के उचित !!{subformula}s का उपयोग करते हैं।
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:subfrm-trans}
+मान लें कि $!B$, $!A$ का उपसूत्र है और $!C$, $!B$ का उपसूत्र है। तब $!C$,
+$!A$ का उपसूत्र है। दूसरे शब्दों में, उपसूत्र-संबंध संक्रामक है।
+\end{prop}
+
+\begin{prob}
+\olref[fol][syn][sbf]{prop:subfrm-trans} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:count-subfrms}
+मान लें कि $!A$ ऐसा सूत्र है जिसमें $n$ संयोजक और परिमाणक हैं। तब $!A$ के
+अधिक-से-अधिक $2n+1$ उपसूत्र हैं।
+\end{prop}
+
+\begin{prob}
+\olref[fol][syn][sbf]{prop:count-subfrms} सिद्ध कीजिए।
+\end{prob}
+
+\end{document}

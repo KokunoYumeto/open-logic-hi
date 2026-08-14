@@ -1,0 +1,151 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: first-order-languages
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{fol}
+
+\olsection{प्रथम-क्रम भाषाएँ}
+
+
+प्रथम-क्रम तर्क की अभिव्यक्तियाँ उस मूल शब्दावली से निर्मित होती हैं जिसमें
+\emph{!!{variable}s}, \emph{!!{constant}s}, \emph{!!{predicate}s} और कभी-कभी
+\emph{!!{function}s} होते हैं। इनसे, तथा तार्किक संयोजकों, परिमाणकों और
+कोष्ठक एवं अल्पविराम जैसे विराम-चिह्नों से, \emph{पद} और
+\emph{!!{formula}s} बनते हैं।
+
+\begin{explain}
+अनौपचारिक रूप से, !!{predicate}s गुणधर्मों और संबंधों के नाम हैं,
+!!{constant}s अलग-अलग वस्तुओं के नाम हैं और !!{function}s प्रतिचित्रणों के
+नाम हैं। !!{identity}~$\eq$ को छोड़कर ये \emph{अतार्किक प्रतीक} हैं और
+मिलकर एक भाषा बनाते हैं। कोई भी प्रथम-क्रम भाषा~$\Lang L$ अपने अतार्किक
+प्रतीकों से निर्धारित होती है। सबसे सामान्य स्थिति में~$\Lang L$ में हर
+प्रकार के अनंततः अनेक प्रतीक होते हैं।
+\end{explain}
+
+सामान्य स्थिति में प्रथम-क्रम तर्क में हम निम्न प्रतीकों का उपयोग करते हैं:
+
+\begin{enumerate}
+\item तार्किक प्रतीक
+\begin{enumerate}
+\item तार्किक संयोजक:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{prvAll}{\ycomma $\lforall$ (सार्वत्रिक परिमाणक)}{}%
+  \iftag{prvEx}{\ycomma $\lexists$ (अस्तित्वपरक परिमाणक)}{}।
+\tagitem{prvFalse}{!!{falsity} के लिए प्रतिज्ञप्ति नियतांक~$\lfalse$।}{}
+\tagitem{prvTrue}{!!{truth} के लिए प्रतिज्ञप्ति नियतांक~$\ltrue$।}{}
+\item दो-स्थानी !!{identity}~$\eq$।
+\item !!{variable}s का एक !!{denumerable}s समुच्चय: $\Obj v_0$, $\Obj v_1$, $\Obj
+  v_2$, \dots
+\end{enumerate}
+\item प्रथम-क्रम तर्क की \emph{मानक भाषा} बनाने वाले अतार्किक प्रतीक
+\begin{enumerate}
+\item $n$-स्थानी !!{predicate}s का एक !!{denumerable}s समुच्चय, प्रत्येक $n>0$ के लिए: $\Obj
+  A^n_0$, $\Obj A^n_1$, $\Obj A^n_2$, \dots
+\item !!{constant}s का एक !!{denumerable}s समुच्चय: $\Obj c_0$, $\Obj c_1$, $\Obj
+  c_2$, \dots.
+\item $n$-स्थानी !!{function}s का एक !!{denumerable}s समुच्चय, प्रत्येक $n>0$ के लिए:
+  $\Obj f^n_0$, $\Obj f^n_1$, $\Obj f^n_2$, \dots
+\end{enumerate}
+\item विराम-चिह्न: (, ), और अल्पविराम।
+\end{enumerate}
+
+हमारी अधिकांश परिभाषाएँ और परिणाम प्रथम-क्रम तर्क की पूरी मानक भाषा के लिए
+दिए जाएँगे। किंतु अनुप्रयोग के अनुसार हम भाषा को केवल कुछ !!{predicate}s,
+!!{constant}s और !!{function}s तक सीमित भी कर सकते हैं।
+
+\begin{ex}
+अंकगणित की भाषा~$\Lang L_A$ में एक दो-स्थानी !!{predicate}~$<$, एक
+!!{constant}~$\Obj 0$, एक एक-स्थानी !!{function}~$\prime$, और दो दो-स्थानी
+!!{function}s~$+$ तथा~$\times$ होते हैं।
+\end{ex}
+
+\begin{ex}
+समुच्चय सिद्धांत की भाषा~$\Lang L_Z$ में केवल एक दो-स्थानी
+!!{predicate}~$\in$ होता है।
+\end{ex}
+
+\begin{ex}
+क्रमों की भाषा~$\Lang L_\le$ में केवल दो-स्थानी !!{predicate}~$\le$ होता है।
+\end{ex}
+
+ये भी रूढ़ियाँ ही हैं: औपचारिक रूप से ये केवल उपनाम हैं। उदाहरणतः $<$,
+$\in$ और $\le$, $\Obj A^2_0$ के उपनाम हैं; $\Obj 0$, $\Obj c_0$ का;
+$\prime$, $\Obj f^1_0$ का; $+$, $\Obj f^2_0$ का; और $\times$,
+$\Obj f^2_1$ का उपनाम है।
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+ऊपर प्रस्तुत आदिम संयोजकों और
+\iftag{notprvEx,notprvAll}{परिमाणक}{परिमाणकों} के अतिरिक्त हम निम्नलिखित
+\emph{परिभाषित} प्रतीकों का भी उपयोग करते हैं:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defAll}{\ycomma $\lforall$ (सार्वत्रिक परिमाणक)}{}%
+  \iftag{defEx}{\ycomma $\lexists$ (अस्तित्वपरक परिमाणक)}{}%
+  \iftag{defFalse}{\ycomma !!{falsity}~$\lfalse$}{}%
+  \iftag{defTrue}{\ycomma !!{truth}~$\ltrue$}}{}.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+परिभाषित प्रतीक औपचारिक रूप से भाषा का भाग नहीं होता, बल्कि उसे अनौपचारिक
+संक्षेप के रूप में प्रस्तुत किया जाता है: उससे हम उन सूत्रों को संक्षिप्त लिख
+सकते हैं जो केवल आदिम प्रतीकों के प्रयोग पर बहुत लंबे हो जाते। यह स्पष्टतः
+लाभदायक है। किंतु बड़ा लाभ यह है कि प्रमाण छोटे हो जाते हैं। यदि कोई प्रतीक
+आदिम हो, तो प्रमाणों में उसे अलग से संभालना पड़ता है। अतः आदिम प्रतीक जितने
+अधिक होंगे, हमारे प्रमाण उतने ही लंबे होंगे।
+\end{explain}
+\end{tagblock}
+
+% Alternate symbols
+
+\begin{intro}
+हो सकता है कि आप ऊपर प्रयुक्त पदावली और प्रतीकों से भिन्न रूपों से परिचित
+हों। तर्कशास्त्र की पुस्तकों (और शिक्षकों) में ``निषेध'' के लिए प्रायः
+$\sim$, $\neg$, और~!\ तथा ``संयोजन'' के लिए $\wedge$, $\cdot$, और $\&$
+प्रयुक्त होते हैं। ``आपादन'' या ``निहितार्थ'' के लिए सामान्यतः
+$\rightarrow$, $\Rightarrow$, और $\supset$ प्रतीक प्रयुक्त होते हैं।
+\iftag{prvIff,defIff}{``द्विशर्त,'' ``द्वि-आपादन,'' या ``(शाब्दिक)
+  तुल्यता'' के प्रतीक $\leftrightarrow$,
+  $\Leftrightarrow$, और $\equiv$ हैं।}{}
+\iftag{prvFalse,defFalse}{$\lfalse$ प्रतीक को अलग-अलग प्रसंगों में
+  ``असत्यता,'' ``असत्य,'' ``असंगति,'' या ``तल'' कहा जाता है।}{}
+\iftag{prvTrue,defTrue}{$\ltrue$ प्रतीक को अलग-अलग प्रसंगों में
+  ``सत्यता,'' ``सत्य,'' या ``शीर्ष'' कहा जाता है।}{}
+
+रूढ़ि के अनुसार !!{constant}s (जिन्हें कभी-कभी नाम कहा जाता है) के लिए
+लैटिन वर्णमाला के आरंभ के छोटे अक्षर (जैसे $a$, $b$, $c$) और !!{variable}s
+के लिए अंत के छोटे अक्षर (जैसे $x$, $y$, $z$) प्रयुक्त होते हैं। परिमाणक
+!!{variable}s, जैसे $x$, के साथ जुड़ते हैं। सार्वत्रिक परिमाणक के संकेतन के
+रूपांतरों में $\forall x$, $(\forall x)$, $(x)$, $\Pi x$, $\bigwedge_x$ और
+अस्तित्वपरक परिमाणक के रूपांतरों में $\exists x$, $(\exists
+x)$, $(Ex)$,
+$\Sigma x$, $\bigvee_x$ सम्मिलित हैं।
+\end{intro}
+
+\begin{explain}
+हम सभी प्रतिज्ञप्ति संक्रियकों और दोनों परिमाणकों को भाषा के आदिम प्रतीक मान
+सकते हैं। इसके बजाय हम आदिम प्रतीकों का छोटा भंडार चुनकर शेष !!{operator}s
+को परिभाषित भी मान सकते हैं। बूल संक्रियकों के ``सत्य-फलनीय रूप से पूर्ण''
+समुच्चयों में $\{ \lnot, \lor \}$, $\{ \lnot, \land \}$, और $\{ \lnot,
+\lif\}$ सम्मिलित हैं---अभिव्यंजक रूप से पूर्ण प्रथम-क्रम भाषा पाने के लिए
+इनमें से किसी को किसी भी एक परिमाणक के साथ जोड़ा जा सकता है।
+
+आप दो अन्य !!{operator}s से भी परिचित हो सकते हैं: हेनरी शेफ़र के नाम पर
+रखा गया शेफ़र स्ट्रोक~$|$, और पियर्स तीर~$\downarrow$, जिसे क्वाइन का डैगर
+भी कहते हैं। क्रमशः ``नैन्ड'' और ``नॉर'' के अपने सामान्य पाठ के साथ ये
+संक्रियक अपने-आप में सत्य-फलनीय रूप से पूर्ण हैं।
+\end{explain}
+
+\end{document}

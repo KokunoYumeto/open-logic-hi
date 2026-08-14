@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{ntd}{sid}
+
+\olsection{\usetoken{S}{identity} सहित सुदृढ़ता}
+
+\begin{prop}
+$\eq$ के नियमों वाला स्वाभाविक निगमन सुदृढ़ है।
+\end{prop}
+
+\begin{proof}
+$\eq[t][t]$ रूप का प्रत्येक !!{formula} वैध है, क्योंकि हर
+!!{structure}~$\Struct M$ के लिए $\Sat{M}{\eq[t][t]}$। (ध्यान दें कि पद
+$t$ को हम बंद मानते हैं; अर्थात् उसमें कोई चर नहीं है, इसलिए चर-नियतन
+अप्रासंगिक हैं।)
+
+मान लें कि !!a{derivation} में अंतिम अनुमान \Elim{\eq} है; अर्थात्
+!!{derivation} का रूप निम्नलिखित है:
+\begin{prooftree}
+  \AxiomC{$\Gamma_1$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\eq[t_1][t_2]$}
+  \AxiomC{$\Gamma_2$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A(t_1)$}
+  \RightLabel{\Elim{\eq}}
+  \BinaryInfC{$!A(t_2)$}
+\end{prooftree}
+पूर्वाधार $\eq[t_1][t_2]$ और $!A(t_1)$ क्रमशः $\Gamma_1$ और $\Gamma_2$ से
+!!{derive} होते हैं; ये मान्यताएँ !!{undischarged} हैं। हमें दिखाना है कि
+$!A(t_2)$, $\Gamma_1 \cup \Gamma_2$ से तार्किकतः निष्पन्न होता है। ऐसी
+!!a{structure}~$\Struct{M}$ पर विचार करें कि $\Sat{M}{\Gamma_1 \cup
+  \Gamma_2}$। आगमन-परिकल्पना से $\Sat{M}{!A(t_1)}$ और
+$\Sat{M}{\eq[t_1][t_2]}$ दोनों सत्य हैं। अतः
+$\Value{t_1}{M} = \Value{t_2}{M}$। $s$ को कोई
+भी चर-नियतन मानें और $m = \Value{t_1}{M} = \Value{t_2}{M}$।
+\olref[fol][syn][ext]{prop:ext-formulas} के अनुसार,
+$\Sat{M}{!A(t_1)}[s]$ तभी और केवल तभी जब
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$; और यह तभी और केवल तभी जब
+$\Sat{M}{!A(t_2)}[s]$। चूँकि $\Sat{M}{!A(t_1)}$, इसलिए
+$\Sat{M}{!A(t_2)}$।
+\end{proof}
+
+\end{document}

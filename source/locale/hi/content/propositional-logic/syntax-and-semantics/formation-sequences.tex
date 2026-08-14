@@ -1,0 +1,140 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{syn}{fseq}
+
+\olsection{निर्माण अनुक्रम}
+
+!!{formula}s को आगमनात्मक परिभाषा से परिभाषित करना, और उसकी पूरक विधि के
+रूप में आगमन द्वारा !!{formula}s के गुणधर्म सिद्ध करना, सुरुचिपूर्ण और कुशल
+दृष्टिकोण है। किंतु !!{formula}s के निर्माण को मूल अवयवों से चरण-दर-चरण
+देखना भी उपयोगी हो सकता है; यहाँ हम इसके लिए \emph{निर्माण अनुक्रम} की
+धारणा का उपयोग करेंगे।
+
+\begin{defn}[सूत्रों के निर्माण अनुक्रम]
+\ollabel{defn:fseq-frm}
+परिमित अनुक्रम $\tuple{!A_0,\dotsc,!A_n}$ में प्रत्येक पद भाषा~$\Lang L_0$
+के प्रतीकों की शृंखला हो। यह $!A$ का \emph{निर्माण अनुक्रम} है यदि
+$!A \ident !A_n$ और प्रत्येक $i \leq n$ के लिए या तो $!A_i$ परमाणु सूत्र
+हो, अथवा ऐसे $j,k < i$ हों कि निम्नलिखित में से कोई एक शर्त पूरी हो:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$।}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$।}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$।}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$।}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$।}{}%
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    (\Obj p_1 \land \Obj p_0),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}
+\]
+यह $\lnot (\Obj p_1 \land \Obj p_0)$ का एक निर्माण अनुक्रम है, और यह भी:
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    \Obj p_0,
+    (\Obj p_1 \land \Obj p_0),
+    (\Obj p_0 \lif \Obj p_1),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}.
+\]
+%
+दूसरे उदाहरण से स्पष्ट है कि निर्माण अनुक्रमों में ``अनावश्यक अंश'' हो सकते
+हैं: ऐसे सूत्र जो अतिरिक्त हों या निर्माण में कोई योगदान न दें।
+\end{ex}
+
+\begin{prop}
+\ollabel{prop:formed}
+जो भी !!{formula}~$!A$, $\Frm[L_0]$ में हो, उसका एक निर्माण अनुक्रम है।
+\end{prop}
+
+\begin{proof}
+मानें कि $!A$ परमाणु है। तब अनुक्रम~$\tuple{!A}$, $!A$ का निर्माण अनुक्रम है।
+%
+अब मानें कि $!B$ और~$!C$ के निर्माण अनुक्रम क्रमशः
+$\tuple{!B_0,\dotsc,!B_n}$ और $\tuple{!C_0,\dotsc,!C_m}$ हैं।
+%
+\begin{enumerate}
+  \tagitem{prvNot}{यदि $!A \ident \lnot !B$ हो, तो
+      $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$, $!A$ का निर्माण अनुक्रम है।}{}
+  \tagitem{prvAnd}{यदि $!A \ident (!B \land !C)$ हो, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$,
+      $!A$ का निर्माण अनुक्रम है।}{}
+  \tagitem{prvOr}{यदि $!A \ident (!B \lor !C)$ हो, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$,
+      $!A$ का निर्माण अनुक्रम है।}{}
+  \tagitem{prvIf}{यदि $!A \ident (!B \lif !C)$ हो, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$,
+      $!A$ का निर्माण अनुक्रम है।}{}
+  \tagitem{prvIff}{यदि $!A \ident (!B \liff !C)$ हो, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$,
+      $!A$ का निर्माण अनुक्रम है।}{}
+\end{enumerate}
+!!{formula}s पर आगमन के सिद्धांत से प्रत्येक !!{formula} का एक निर्माण
+अनुक्रम है।
+\end{proof}
+
+हम इसका विलोम भी सिद्ध कर सकते हैं। यह महत्त्वपूर्ण है, क्योंकि इससे पता चलता
+है कि सूत्रों को परिभाषित करने की हमारी दोनों विधियाँ समतुल्य हैं: वे समान
+परिणाम देती हैं। इसका यह भी अर्थ है कि हम निर्माण अनुक्रमों की लंबाई पर साधारण
+आगमन का उपयोग करके सूत्रों के विषय में प्रमेय सिद्ध कर सकते हैं।
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+मानें कि $\tuple{!A_0,\dotsc,!A_n}$, $!A_n$ का निर्माण अनुक्रम है और
+$k \leq n$। तब $\tuple{!A_0,\dotsc,!A_k}$, $!A_k$ का निर्माण अनुक्रम है।
+\end{lem}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L_0]$ भाषा~$\Lang L_0$ की उन सभी प्रतीक-शृंखलाओं का समुच्चय है
+जिनका कोई निर्माण अनुक्रम है।
+\end{thm}
+
+\begin{proof}
+$F$ भाषा~$\Lang L_0$ की उन सभी प्रतीक-शृंखलाओं का समुच्चय हो जिनका कोई
+निर्माण अनुक्रम है। \olref[pl][syn][fseq]{prop:formed} में हम देख चुके हैं
+कि $\Frm[L_0] \subseteq F$, इसलिए अब हम विलोम सिद्ध करते हैं।
+
+मानें कि $!A$ का निर्माण अनुक्रम $\tuple{!A_0,\dotsc,!A_n}$ है। हम सिद्ध
+करते हैं कि $!A \in \Frm[L_0]$; इसके लिए~$n$ पर प्रबल आगमन करते हैं। हमारी आगमनात्मक
+परिकल्पना है कि लंबाई $m < n$ वाला निर्माण अनुक्रम रखने वाली प्रत्येक
+प्रतीक-शृंखला~$\Frm[L_0]$ में है। निर्माण अनुक्रम की परिभाषा से या तो
+$!A_n$ परमाणु है, अथवा ऐसे $j,k < n$ अवश्य हैं कि निम्नलिखित में से कोई
+एक स्थिति हो:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_n \ident \lnot !A_j$।}{}%
+    \tagitem{prvAnd}{$!A_n \ident (!A_j \land !A_k)$।}{}%
+    \tagitem{prvOr}{$!A_n \ident (!A_j \lor !A_k)$।}{}%
+    \tagitem{prvIf}{$!A_n \ident (!A_j \lif !A_k)$।}{}%
+    \tagitem{prvIff}{$!A_n \ident (!A_j \liff !A_k)$।}{}%
+\end{enumerate}
+अब हम स्थितियों के अनुसार तर्क करते हैं। यदि $!A_n$ परमाणु है, तो
+$!A_n \in \Frm[L_0]$। अन्यथा मानें कि $!A \equiv
+(!A_j \land !A_k)$। \olref[pl][syn][fseq]{lem:fseq-init} से
+$\tuple{!A_0,\dotsc,!A_j}$ और $\tuple{!A_0,\dotsc,!A_k}$ क्रमशः $!A_j$
+और~$!A_k$ के निर्माण अनुक्रम हैं। चूँकि ये $!A$ के निर्माण अनुक्रम के
+उचित आरंभिक उप-अनुक्रम हैं, इन दोनों की लंबाई~$n$ से कम है। अतः आगमनात्मक
+परिकल्पना से $!A_j$ और~$!A_k$, $\Frm[L_0]$ में हैं; इसलिए !!a{formula}
+की परिभाषा से $(!A_j \land !A_k)$ भी उसमें है। अन्य स्थितियाँ समानांतर
+तर्क से सिद्ध होती हैं।
+\end{proof}
+
+\end{document}

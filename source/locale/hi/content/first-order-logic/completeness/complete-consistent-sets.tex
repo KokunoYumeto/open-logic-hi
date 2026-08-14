@@ -1,0 +1,222 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: complete-sets
+
+% Definition of complete consistent sets. Properties of complete sets required
+% for completeness proved are in provability.tex in the
+% chapter on the proof system used.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{com}{ccs}}
+      {\olfileid[hi]{pl}{com}{ccs}}
+      
+\olsection{\usetoken{P}{sentence} के पूर्ण संगत समुच्चय}
+
+\begin{defn}[पूर्ण समुच्चय]
+\ollabel{def:complete-set} !!{sentence}s का समुच्चय~$\Gamma$
+\emph{!!{complete}} तभी और केवल तभी है जब किसी भी !!{sentence}~$!A$ के लिए
+या तो $!A \in
+\Gamma$ हो या $\lnot !A \in \Gamma$ हो।
+\end{defn}
+
+\begin{explain}
+वाक्यों के !!^{complete} समुच्चय किसी प्रश्न को अनुत्तरित नहीं छोड़ते। किसी
+भी !!{sentence}~$!A$ के लिए $\Gamma$ यह ``कहता'' है कि $!A$ सत्य है या
+असत्य। !!{complete} समुच्चयों का महत्त्व पूर्णता प्रमेय के प्रमाण से आगे तक
+जाता है। उदाहरण के लिए, कोई सिद्धांत जो !!{complete} और अभिगृहीतीकरणीय हो,
+सदा निर्णेय होता है।
+\end{explain}
+
+\begin{explain}
+पूर्णता के प्रमाण में !!^{complete} संगत समुच्चय महत्त्वपूर्ण हैं, क्योंकि
+हम गारंटी दे सकते हैं कि !!{sentence}s का प्रत्येक संगत समुच्चय~$\Gamma$
+किसी !!a{complete} संगत समुच्चय~$\Gamma^*$ में समाहित है। प्रत्येक
+!!^a{complete} संगत समुच्चय में, हर !!{sentence}~$!A$ के लिए, या तो $!A$ या
+उसका निषेध $\lnot !A$ होता है, पर दोनों नहीं। विशेषतः यह
+\iftag{FOL}{परमाण्विक !!{sentence}s}{प्रतिज्ञप्ति चरों} के लिए सत्य है; अतः
+!!a{complete} संगत समुच्चय\iftag{FOL}{ से, ऐसी भाषा में जिसे
+!!{constant}s द्वारा उपयुक्त रूप से विस्तारित किया गया हो}{}, हम ऐसी
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} बना सकते हैं जिसमें
+\iftag{FOL}{!!{predicate}s की व्याख्या}{प्रतिज्ञप्ति चरों को दिया गया
+सत्य-मूल्य} इस आधार पर परिभाषित होता है कि कौन-से
+\iftag{FOL}{परमाण्विक !!{sentence}s}{!!{propositional variable}s}
+समुच्चय~$\Gamma^*$ में हैं। फिर दिखाया जा सकता है कि यह
+\iftag{FOL}{!!{structure}}{!!{valuation}},~$\Gamma^*$ के सभी !!{sentence}s
+को (और इसलिए~$\Gamma$ के सभी वाक्यों को भी) सत्य बनाती है। इस अंतिम तथ्य के
+प्रमाण के लिए यह आवश्यक है कि $\lnot !A \in \Gamma^*$ तभी और केवल तभी जब
+$!A \notin \Gamma^*$ हो, $(!A \lor !B) \in
+\Gamma^*$ तभी और केवल तभी जब $!A \in \Gamma^*$ या $!B \in \Gamma^*$ हो,
+इत्यादि।
+\end{explain}
+
+आगे हम प्रायः $\Proves$ की स्वतुल्यता, एकदिष्टता और संक्रामकता के गुणों का
+निःशब्द उपयोग करेंगे (देखें
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ptn:sec},prfND/{fol:ntd:ptn:sec},prfAX/{fol:axd:ptn:sec},prfTab/{fol:tab:ptn:sec}}}{%
+  \tagrefs{prfSC/{pl:seq:ptn:sec},prfND/{pl:ntd:ptn:sec},prfAX/{pl:axd:ptn:sec},prfTab/{pl:tab:ptn:sec}}})।
+
+\begin{prop}
+\ollabel{prop:ccs}
+मान लें कि $\Gamma$ !!{complete} और संगत है। तब:
+\begin{enumerate}
+\item \ollabel{prop:ccs-prov-in} यदि $\Gamma \Proves !A$, तो $!A \in
+  \Gamma$।
+
+\tagitem{prvAnd}{\ollabel{prop:ccs-and} $!A \land !B \in \Gamma$
+  तभी और केवल तभी जब $!A \in \Gamma$ और $!B \in \Gamma$ दोनों हों।}{}
+
+\tagitem{prvOr}{\ollabel{prop:ccs-or} $!A \lor !B \in \Gamma$ तभी और केवल
+  तभी जब या तो $!A \in \Gamma$ या $!B \in \Gamma$ हो।}{}
+
+\tagitem{prvIf}{\ollabel{prop:ccs-if} $!A \lif !B \in \Gamma$ तभी और केवल
+  तभी जब या तो $!A \notin \Gamma$ या $!B \in \Gamma$ हो।}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+निम्न सभी बातों के लिए मान लें कि $\Gamma$ !!{complete} और संगत है।
+\begin{enumerate}
+\item यदि $\Gamma \Proves !A$, तो $!A \in \Gamma$।
+
+मान लें कि $\Gamma \Proves !A$। इसके विपरीत मान लें कि $!A
+\notin \Gamma$। चूँकि $\Gamma$ !!{complete} है, $\lnot !A \in \Gamma$।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:prv:prop:explicit-inc},
+    prfND/{fol:ntd:prv:prop:explicit-inc},
+    prfAX/{fol:axd:prv:prop:explicit-inc},
+    prfTab/{fol:tab:prv:prop:explicit-inc}}}{%
+  \tagrefs{prfSC/{pl:seq:prv:prop:explicit-inc},
+    prfND/{pl:ntd:prv:prop:explicit-inc},
+    prfAX/{pl:axd:prv:prop:explicit-inc},
+    prfTab/{pl:tab:prv:prop:explicit-inc}}} के अनुसार
+$\Gamma$ असंगत है। यह इस धारणा का खंडन करता है कि $\Gamma$ संगत है। अतः
+$!A \notin
+\Gamma$ नहीं हो सकता, इसलिए $!A \in \Gamma$।
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{अभ्यास।}{%
+$!A \land !B \in \Gamma$ तभी और केवल तभी जब $!A \in \Gamma$ और $!B \in \Gamma$
+दोनों हों:
+
+अग्र दिशा के लिए मान लें कि $!A \land !B \in \Gamma$। तब
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}} के पद~(1) से
+$\Gamma \Proves !A$ और $\Gamma \Proves !B$। \olref{prop:ccs-prov-in} से
+$!A \in \Gamma$ और $!B \in \Gamma$ मिलते हैं, जैसा अपेक्षित था।
+
+विपरीत दिशा के लिए $!A \in \Gamma$ और $!B \in
+\Gamma$ मान लें।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}} के पद~(2) से
+$\Gamma \Proves !A \land !B$। \olref{prop:ccs-prov-in} से $!A \land
+!B \in \Gamma$।}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{अभ्यास।}{%
+पहले हम दिखाते हैं कि यदि $!A \lor !B \in \Gamma$, तो या तो $!A \in
+\Gamma$ या $!B \in \Gamma$। मान लें कि $!A \lor !B \in \Gamma$ पर $!A
+\notin \Gamma$ और $!B \notin \Gamma$। चूँकि $\Gamma$
+!!{complete} है, $\lnot !A \in \Gamma$ और $\lnot !B \in \Gamma$।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}} के पद (1) से $\Gamma$ असंगत
+है, जो विरोधाभास है। अतः या तो $!A
+\in \Gamma$ या $!B \in \Gamma$।
+
+विपरीत दिशा के लिए मान लें कि $!A \in \Gamma$ या $!B \in
+\Gamma$।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}} के पद (2) से
+$\Gamma \Proves !A \lor !B$। \olref{prop:ccs-prov-in} से $!A \lor
+!B \in \Gamma$, जैसा अपेक्षित था।}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{अभ्यास।}{%
+अग्र दिशा के लिए मान लें कि $!A \lif !B \in \Gamma$, और इसके विपरीत मान
+लें कि $!A \in \Gamma$ तथा $!B \notin \Gamma$। इन धारणाओं पर
+$!A \lif !B \in \Gamma$ और $!A \in \Gamma$।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}} के पद (1) से
+$\Gamma \Proves !B$। किंतु तब \olref{prop:ccs-prov-in} से $!B \in
+\Gamma$, जो $!B \notin \Gamma$ वाली धारणा का खंडन करता है।
+
+विपरीत दिशा के लिए पहले उस स्थिति पर विचार करें जिसमें $!A \notin
+\Gamma$। चूँकि $\Gamma$ !!{complete} है, $\lnot !A \in \Gamma$।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}} के पद (2) से
+$\Gamma \Proves !A \lif !B$। पुनः \olref{prop:ccs-prov-in} से
+$!A \lif !B \in \Gamma$ मिलता है, जैसा अपेक्षित था।
+
+अब उस स्थिति पर विचार करें जिसमें $!B \in \Gamma$।
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif}}} के पद (2) से फिर
+$\Gamma \Proves !A \lif !B$। \olref{prop:ccs-prov-in} से
+$!A \lif !B \in \Gamma$।}}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][ccs]{prop:ccs} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][ccs]{prop:ccs} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\end{document}

@@ -1,0 +1,97 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{com}{lin}}
+      {\olfileid[hi]{pl}{com}{lin}}
+
+\olsection{लिंडेनबाउम उपपत्ति}
+
+\begin{explain}
+अब हम एक ऐसी उपपत्ति सिद्ध करते हैं जो दिखाती है कि !!{sentence}s का कोई भी
+संगत समुच्चय वाक्यों के ऐसे समुच्चय में समाहित है जो केवल संगत ही नहीं,
+बल्कि !!{complete} भी है। प्रमाण एक बार में एक !!{sentence} जोड़ता है और
+प्रत्येक चरण पर गारंटी देता है कि समुच्चय संगत बना रहे। हम ऐसा इसलिए करते
+हैं कि प्रत्येक $!A$ के लिए किसी चरण पर या तो $!A$ या $\lnot
+!A$ जोड़ दिया जाए। तब इस रचना के सभी चरणों के संघ में या तो $!A$ या उसका
+निषेध~$\lnot !A$ होता है, और इसलिए वह पूर्ण है। वह संगत भी है, क्योंकि हर
+चरण पर हम सुनिश्चित करते हैं कि असंगति न आए।
+\end{explain}
+
+\begin{lem}[लिंडेनबाउम उपपत्ति]
+\ollabel{lem:lindenbaum} प्रत्येक संगत समुच्चय~$\Gamma$ को, भाषा~$\Lang{L}$
+में, !!a{complete} और संगत समुच्चय~$\Gamma^*$ तक विस्तारित
+किया जा सकता है।
+\end{lem}
+
+\begin{proof}
+मान लें कि $\Gamma$ संगत है। $!A_0$, $!A_1$, \dots{} को~$\Lang L$ के सभी
+!!{sentence}s का एक गणन मानें। $\Gamma_0 = \Gamma$ परिभाषित करें, और
+\[
+\Gamma_{n+1} =
+\begin{cases}
+\Gamma_n \cup \{ !A_n \} & \textrm{यदि $\Gamma_n \cup \{!A_n\}$ संगत
+  है;} \\
+\Gamma_n \cup \{ \lnot !A_n \} & \textrm{अन्यथा।}
+\end{cases}
+\]
+रखें। $\Gamma^* = \bigcup_{n \geq 0} \Gamma_n$।
+
+प्रत्येक $\Gamma_n$ संगत है: परिभाषा से $\Gamma_0$ संगत है। यदि
+$\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$ है, तो इसका कारण यही है कि अंतिम
+समुच्चय संगत है। यदि वह संगत नहीं है, तो $\Gamma_{n+1} = \Gamma_n \cup \{\lnot
+!A_n\}$। हमें सत्यापित करना है कि $\Gamma_n \cup \{\lnot !A_n\}$ संगत है।
+मान लें कि वह संगत नहीं है। तब $\Gamma_n \cup
+\{!A_n\}$ और $\Gamma_n \cup \{\lnot !A_n\}$ \emph{दोनों} असंगत हैं। इसका
+अर्थ होगा कि
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:provability-exhaustive},
+    prfSC/{fol:seq:prv:prop:provability-exhaustive},
+    prfND/{fol:ntd:prv:prop:provability-exhaustive},
+    prfTab/{fol:tab:prv:prop:provability-exhaustive}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:provability-exhaustive},
+    prfSC/{pl:seq:prv:prop:provability-exhaustive},
+    prfND/{pl:ntd:prv:prop:provability-exhaustive},
+    prfTab/{pl:tab:prv:prop:provability-exhaustive}}} से $\Gamma_n$ असंगत
+है, जो आगमन-परिकल्पना के विरुद्ध है।
+
+प्रत्येक~$n$ और प्रत्येक $i < n$ के लिए $\Gamma_i \subseteq \Gamma_n$। यह
+बात~$n$ पर सरल आगमन से निकलती है। $n=0$ के लिए कोई $i < 0$ नहीं है, इसलिए
+कथन स्वतः सत्य है। आगमन-चरण के लिए मान लें कि यह~$n$ के लिए सत्य है। हम
+दिखाते हैं कि यदि $i < n+1$ तो $\Gamma_i \subseteq
+\Gamma_{n+1}$। रचना से हमारे पास $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$ या $=
+\Gamma_n \cup \{\lnot !A_n\}$ है। अतः $\Gamma_n \subseteq
+\Gamma_{n+1}$। यदि $i < n+1$, तो आगमन-परिकल्पना से $\Gamma_i \subseteq \Gamma_n$
+(यदि $i < n$), अथवा इस तुच्छ तथ्य से कि $\Gamma_n
+\subseteq \Gamma_n$ (यदि $i = n$)। हमें $\Gamma_i \subseteq
+\Gamma_{n+1}$ मिलता है,~$\subseteq$ की संक्रामकता से।
+
+इससे निकलता है कि $\Gamma^*$ संगत है। कारण यह है: मान लें कि
+$\Gamma' \subseteq \Gamma^*$ परिमित है। प्रत्येक $!B \in \Gamma'$
+का~$\Gamma_i$ में होना भी सत्य है, किसी~$i$ के लिए। इन सूचकांकों में सबसे
+बड़ा $n$ मानें। चूँकि $\Gamma_i \subseteq \Gamma_n$ यदि $i \le n$, प्रत्येक $!B \in \Gamma'$
+का $\in \Gamma_n$ होना भी सत्य है; अर्थात् $\Gamma' \subseteq \Gamma_n$, और
+$\Gamma_n$ संगत है। इसलिए प्रत्येक परिमित उपसमुच्चय $\Gamma' \subseteq
+\Gamma^*$ संगत है।
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}} से $\Gamma^*$ संगत है।
+
+$\Frm[L]$ का प्रत्येक !!{sentence},~$\Gamma^*$ को परिभाषित करने में प्रयुक्त
+सूची में आता है। यदि $!A_n \notin \Gamma^*$ है, तो उसका कारण यह है कि
+$\Gamma_n \cup \{!A_n\}$ असंगत था। किंतु तब $\lnot !A_n
+\in \Gamma^*$, इसलिए $\Gamma^*$ !!{complete} है।
+\end{proof}
+
+\end{document}

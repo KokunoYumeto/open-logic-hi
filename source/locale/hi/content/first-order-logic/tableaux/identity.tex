@@ -1,0 +1,106 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{tab}{ide}
+
+\olsection{\usetoken{S}{identity} सहित \usetoken{P}{tableau}}
+
+!!{identity} वाले !!^{tableau}s के लिए अतिरिक्त अनुमान-नियम चाहिए। $\eq$ के
+नियम ये हैं (यहाँ $t$, $t_1$ और $t_2$ बंद पद हैं):
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{$\eq$}
+\UnaryInfC{\sFmla{\True}{\eq[t][t]}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\True}{!A(t_1)}}
+\RightLabel{$\TRule{\True}{\eq}$}
+\UnaryInfC{\sFmla{\True}{!A(t_2)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!A(t_1)}}
+\RightLabel{$\TRule{\False}{\eq}$}
+\UnaryInfC{\sFmla{\False}{!A(t_2)}}
+\DisplayProof
+\end{defish}
+ध्यान दें कि अन्य सभी नियमों के विपरीत, $\TRule{\True}{\eq}$ और
+$\TRule{\False}{\eq}$ के लिए शाखा पर \emph{दो} चिह्नित !!{formula}s पहले
+से उपस्थित होने चाहिए, अर्थात् $\sFmla{\True}{\eq[t_1][t_2]}$ और
+$\sFmla{S}{!A(t_1)}$ दोनों।
+
+\begin{ex}
+यदि $s$ और $t$ बंद पद हैं, तो $\eq[s][t], !A(s)
+\Proves !A(t)$:
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+    [\sFmla{\True}{\eq[s][t]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(s)}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just={\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+इसे समान वस्तुओं की प्रतिस्थापनीयता का सिद्धांत, अथवा लाइबनित्स का नियम,
+कहा जाता है।
+
+!!^{tableau}s सिद्ध करते हैं कि $\eq$ सममित है, अर्थात्
+$\eq[s_1][s_2]
+\Proves \eq[s_2][s_1]$:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_2][s_1]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_1][s_1]}, just = {$\eq$}
+        [\sFmla{\True}{\eq[s_2][s_1]}, just = {\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+यहाँ पंक्ति~$2$ पहला अपेक्षित
+!!{formula}~$\sFmla{\True}{\eq[s_1][s_2]}$ है, जिसकी आवश्यकता
+$\TRule{\True}{\eq}$ को है। पंक्ति~$3$ दूसरा है, जो
+$\sFmla{\True}{!A(s_2)}$ के रूप का है---$!A(x)$ को $\eq[x][s_1]$ समझें;
+तब $!A(s_1)$, $\eq[s_1][s_1]$ और $!A(s_2)$, $\eq[s_2][s_1]$ है।
+
+वे यह भी सिद्ध करते हैं कि $\eq$ संक्रामक है, अर्थात्
+$\eq[s_1][s_2],
+\eq[s_2][s_3] \Proves \eq[s_1][s_3]$:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_1][s_3]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_2][s_3]}, just = \TAss
+        [\sFmla{\True}{\eq[s_1][s_3]}, just = {\TRule{\True}{\eq}[3, 2]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+इस !!{tableau} में $\TRule{\True}{\eq}$ का पहला अपेक्षित !!{formula}
+पंक्ति~$3$, $\sFmla{\True}{\eq[s_2][s_3]}$ है ($s_2$,~$t_1$ की भूमिका
+और $s_3$,~$t_2$ की भूमिका निभाता है)। दूसरा अपेक्षित सूत्र, जो
+$\sFmla{\True}{!A(s_2)}$ के रूप का है, पंक्ति~$2$ है। यहाँ $!A(x)$ को
+$\eq[s_1][x]$ समझें; तब $!A(s_2)$, $\eq[t_1][t_2]$ (अर्थात् पंक्ति~$2$)
+और $!A(s_3)$, निष्कर्ष का !!{formula}~$\eq[s_1][s_3]$ बनता है।
+\end{ex}
+
+\begin{prob}
+निम्न के लिए बंद !!{tableau}s दीजिए:
+\begin{enumerate}
+\item $\sFmla{\False}{\lforall[x][\lforall[y][((x = y \land !A(x))
+      \lif !A(y))]]}$
+\item $\sFmla{\False}{\lexists[x][(!A(x) \land
+    \lforall[y][(!A(y) \lif y = x)])]}$,\\
+  $\sFmla{\True}{\lexists[x][!A(x)] \land
+    \lforall[y][\lforall[z][((!A(y) \land !A(z)) \lif y = z)]]}$
+\end{enumerate}
+\end{prob}
+
+\end{document}

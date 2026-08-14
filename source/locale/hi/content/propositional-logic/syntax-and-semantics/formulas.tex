@@ -1,0 +1,175 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{syn}{fml}
+
+\olsection{प्रतिज्ञप्ति \usetoken{S}{formula}}
+
+प्रतिज्ञप्ति तर्कशास्त्र में !!^{formula}s का निर्माण \emph{!!{propositional
+    variable}s}\iftag{prvFalse}{\iftag{prvTrue}{,}{ तथा} प्रतिज्ञप्ति
+  नियतांक~$\lfalse$}{}\iftag{prvTrue}{\iftag{prvFalse}{ तथा}{} प्रतिज्ञप्ति
+  नियतांक~$\ltrue$}{} और \emph{तार्किक संयोजकों} से होता है।
+
+\begin{enumerate}
+\item !!^a{denumerable} समुच्चय~$\PVar$, जिसमें !!{propositional variable}s
+  $\Obj p_0$, $\Obj p_1$, \dots हैं।
+\tagitem{prvFalse}{!!{falsity} के लिए प्रतिज्ञप्ति नियतांक~$\lfalse$।}{}
+\tagitem{prvTrue}{!!{truth} के लिए प्रतिज्ञप्ति नियतांक~$\ltrue$।}{}
+\item तार्किक संयोजक:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\item विराम-चिह्न: (, ), और अल्पविराम।
+\end{enumerate}
+
+प्रतिज्ञप्ति तर्कशास्त्र की इस भाषा को हम $\Lang L_0$ से निरूपित करते हैं।
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+ऊपर प्रस्तुत आदिम संयोजकों के अतिरिक्त हम निम्नलिखित \emph{परिभाषित}
+प्रतीकों का भी उपयोग करते हैं:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}{}.}{}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+परिभाषित प्रतीक औपचारिक रूप से भाषा का भाग नहीं होता, बल्कि उसे अनौपचारिक
+संक्षेप के रूप में प्रस्तुत किया जाता है: उससे हम उन सूत्रों को संक्षिप्त लिख
+सकते हैं जो केवल आदिम प्रतीकों के प्रयोग पर बहुत लंबे हो जाते। यह स्पष्टतः
+लाभदायक है। किंतु बड़ा लाभ यह है कि प्रमाण छोटे हो जाते हैं। यदि कोई प्रतीक
+आदिम हो, तो प्रमाणों में उसे अलग से संभालना पड़ता है। अतः आदिम प्रतीक जितने
+अधिक होंगे, हमारे प्रमाण उतने ही लंबे होंगे।
+\end{explain}
+\end{tagblock}
+
+% Alternate symbols
+
+\begin{intro}
+हो सकता है कि आप ऊपर प्रयुक्त पदावली और प्रतीकों से भिन्न रूपों से परिचित
+हों। तर्कशास्त्र की पुस्तकों (और शिक्षकों) में ``निषेध'' के लिए प्रायः
+$\sim$, $\neg$, और~!\ तथा ``संयोजन'' के लिए $\wedge$, $\cdot$, और $\&$
+प्रयुक्त होते हैं। ``आपादन'' या ``निहितार्थ'' के लिए सामान्यतः
+$\rightarrow$, $\Rightarrow$, और $\supset$ प्रतीक प्रयुक्त होते हैं।
+\iftag{prvIff,defIff}{``द्विशर्त,'' ``द्वि-आपादन,'' या ``(शाब्दिक)
+  तुल्यता'' के प्रतीक $\leftrightarrow$,
+  $\Leftrightarrow$, और $\equiv$ हैं।}{}
+\iftag{prvFalse,defFalse}{$\lfalse$ प्रतीक को अलग-अलग प्रसंगों में
+  ``असत्यता,'' ``असत्य,'' ``असंगति,'' या ``तल'' कहा जाता है।}{}
+\iftag{prvTrue,defTrue}{$\ltrue$ प्रतीक को अलग-अलग प्रसंगों में
+  ``सत्यता,'' ``सत्य,'' या ``शीर्ष'' कहा जाता है।}{}
+\end{intro}
+
+\begin{defn}[सूत्र]
+\ollabel{defn:formulas}
+प्रतिज्ञप्ति तर्कशास्त्र के \emph{!!{formula}s} का समुच्चय~$\Frm[L_0]$
+निम्न प्रकार आगमनात्मक रूप से परिभाषित है:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ एक परमाणु !!{formula} है।}{}
+
+\tagitem{prvTrue}{$\ltrue$ एक परमाणु !!{formula} है।}{}
+
+\item प्रत्येक !!{propositional variable}~$\Obj p_i$ एक परमाणु
+  !!{formula} है।
+
+\tagitem{prvNot}{यदि $!A$ !!a{formula} है, तो $\lnot !A$ भी
+  !!a{formula} है।}{}
+
+\tagitem{prvAnd}{यदि $!A$ और $!B$ !!{formula}s में से हों, तो $(!A \land
+  !B)$ भी !!a{formula} है।}{}
+
+\tagitem{prvOr}{यदि $!A$ और $!B$ !!{formula}s में से हों, तो $(!A \lor !B)$
+  भी !!a{formula} है।}{}
+
+\tagitem{prvIf}{यदि $!A$ और $!B$ !!{formula}s में से हों, तो $(!A \lif !B)$
+  भी !!a{formula} है।}{}
+
+\tagitem{prvIff}{यदि $!A$ और $!B$ !!{formula}s में से हों, तो $(!A \liff !B)$
+  भी !!a{formula} है।}{}
+
+\tagitem{limitClause}{इसके अतिरिक्त कुछ भी !!a{formula} नहीं है।}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+!!{formula}s की यह परिभाषा एक \emph{आगमनात्मक परिभाषा} है। मूलतः हम
+!!{formula}s का समुच्चय अनंत चरणों में बनाते हैं। आरंभिक चरण में हम सभी
+परमाणु सूत्रों को सूत्र घोषित करते हैं; यह परिभाषा के आरंभिक मामलों—अर्थात्
+इनके लिए दिए मामलों—के अनुरूप है:
+\iftag{prvTrue}{$\ltrue$, }{}%
+\iftag{prvFalse}{$\lfalse$, }{}%
+$\Obj p_i$. अतः ``परमाण्विक !!{formula}'' का अर्थ इस रूप का कोई भी
+!!{formula} है।
+
+परिभाषा के अन्य मामले नए !!{formula}s के निर्माण के नियम देते हैं, जिनमें
+पहले से निर्मित !!{formula}s का उपयोग होता है। दूसरे चरण में हम इन नियमों
+से !!{formula}s का निर्माण परमाणु !!{formula}s से कर सकते हैं। तीसरे चरण में हम परमाणु
+सूत्रों और दूसरे चरण में प्राप्त सूत्रों से नए सूत्र बनाते हैं, और यह क्रम
+आगे चलता है। !!{formula} वही और केवल वही है जो अंततः ऐसे किसी चरण में
+बनाया जाता है।
+\end{explain}
+
+सूत्र $(!B \ast !C)$ को लिखते समय, जो $!B$, $!C$ से दो-स्थानी
+संयोजक~$\ast$ का उपयोग करके बना है, हम प्रायः सबसे बाहरी कोष्ठक-युग्म
+छोड़कर केवल~$!B \ast !C$ लिखेंगे।
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{defn}
+परिभाषित संक्रियकों से बने सूत्रों को इस प्रकार समझना है:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
+
+\tagitem{defTrue}{$\ltrue$ इसका संक्षेप है:
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$, जहाँ कोई
+    नियत परमाणु !!{formula}~$!A$ लिया गया है।}.}{}
+
+\tagitem{defFalse}{$\lfalse$ इसका संक्षेप है:
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$, जहाँ कोई
+    नियत परमाणु !!{formula}~$!A$ लिया गया है।}.}{}
+
+\tagitem{defNot}{$\lnot !A$, $!A \lif \lfalse$ का संक्षेप है।}{}
+
+\tagitem{defOr}{$!A \lor !B$ इसका संक्षेप है:
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$।}.}{}
+
+\tagitem{defAnd}{$!A \land !B$ इसका संक्षेप है:
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$।}.}{}
+
+\tagitem{defIf}{$!A \lif !B$ इसका संक्षेप है:
+  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$}.}{}
+
+\tagitem{defIff}{$!A \liff !B$, $(!A \lif !B) \land (!B
+  \lif !A)$ का संक्षेप है।}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+\begin{defn}[वाक्यविन्यासगत समानता]
+प्रतीक $\ident$ बताता है कि दो प्रतीक-शृंखलाएँ विन्यास में समान हैं;
+अर्थात् $!A \ident !B$ तभी और केवल तभी, जब $!A$ और $!B$ समान लंबाई की
+प्रतीक-शृंखलाएँ हों और प्रत्येक स्थान पर उनमें एक ही प्रतीक हो।
+\end{defn}
+
+प्रतीक $\ident$ के दोनों ओर संयोजन से प्राप्त शृंखलाएँ रखी जा सकती हैं।
+उदाहरणतः, $!A \ident (!B \lor !C)$ का अर्थ है: प्रतीक-शृंखला~$!A$ वही
+शृंखला है जो इसी क्रम में आरंभिक कोष्ठक, शृंखला $!B$, प्रतीक $\lor$,
+शृंखला~$!C$, और अंतिम कोष्ठक को जोड़ने से प्राप्त होती है। यदि ऐसा है, तो
+हम जानते हैं कि $!A$ का पहला प्रतीक आरंभिक कोष्ठक है, $!A$ में $!B$ एक
+उपशृंखला के रूप में (दूसरे प्रतीक से आरंभ होकर) आता है, उसके बाद $\lor$
+आता है, आदि।
+
+\end{document}

@@ -1,0 +1,54 @@
+% Part: first-order-logic
+% Chapter: tableaux
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter{fol}{tab}{सत्य-वृक्ष}}
+      {\olchapter{pl}{tab}{सत्य-वृक्ष}}
+
+\begin{editorial}
+यह अध्याय चिह्नित विश्लेषणात्मक सत्य-वृक्ष तंत्र प्रस्तुत करता है।
+  
+प्रमाण-तंत्र के रूप में सत्य-वृक्ष से संबद्ध सामग्री को शामिल या बहिष्कृत
+करने के लिए ``prfTab'' टैग का उपयोग करें।
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

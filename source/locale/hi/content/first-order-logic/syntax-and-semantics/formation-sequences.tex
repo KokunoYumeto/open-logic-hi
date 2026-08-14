@@ -1,0 +1,261 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{fseq}
+
+\olsection{निर्माण-अनुक्रम}
+
+!!{formula}s को आगमनात्मक परिभाषा द्वारा परिभाषित करना और उसकी पूरक तकनीक,
+अर्थात् !!{formula}s के गुणधर्म आगमन द्वारा सिद्ध करना, सुरुचिपूर्ण और दक्ष
+दृष्टिकोण है। फिर भी !!{formula}s के निर्माण के अधिक आधारोन्मुख, चरण-दर-चरण
+दृष्टिकोण पर विचार करना भी उपयोगी हो सकता है। यहाँ हम \emph{निर्माण-अनुक्रम}
+की धारणा से ऐसा करेंगे।
+%
+यह दिखाने के लिए कि पदों और !!{formula}s को उनकी आगमनात्मक परिभाषाओं का
+उल्लेख किए बिना इस ढंग से कैसे प्रस्तुत किया जा सकता है, हम पहले किसी
+भाषा~$\Lang L$ से लिए प्रतीकों की मनमानी शृंखला की धारणा प्रस्तुत करते हैं।
+
+\begin{defn}[शृंखलाएँ]
+\ollabel{defn:string}
+मान लें कि $\Lang L$ कोई प्रथम-क्रम भाषा है। \emph{$\Lang
+L$-शृंखला},
+~$\Lang L$ के प्रतीकों का कोई परिमित अनुक्रम है। जहाँ भाषा~$\Lang L$ संदर्भ
+से स्पष्टतः नियत हो, वहाँ हम $\Lang L$-शृंखला को प्रायः केवल \emph{शृंखला}
+कहेंगे।
+\end{defn}
+
+\begin{ex}
+किसी भी प्रथम-क्रम भाषा $\Lang L$ के लिए सभी $\Lang L$-!!{formula}s,
+$\Lang L$-शृंखलाएँ हैं, किंतु इसका विलोम सत्य नहीं है। उदाहरणतः
+\[)(\Obj v_0\lif\lexists\] एक $\Lang L$-शृंखला है, पर $\Lang L$-!!{formula}
+नहीं है।
+\end{ex}
+
+\begin{defn}[पदों के निर्माण-अनुक्रम]
+\ollabel{defn:fseq-trm}
+$\Lang L$-शृंखलाओं का कोई परिमित अनुक्रम $\tuple{t_0,\dotsc,t_n}$ किसी
+पद $t$ का \emph{निर्माण-अनुक्रम} है, यदि $t \ident t_n$ और प्रत्येक $i \leq n$
+के लिए या तो $t_i$ !!a{variable} अथवा !!a{constant} है, या~$\Lang
+L$
+में कोई $k$-स्थानी !!{function}~$f$ है और ऐसे $m_0,\dotsc,m_k < i$ हैं कि
+$t_i \ident f(t_{m_0},\dotsc,t_{m_k})$। जहाँ भेद करना आवश्यक हो, वहाँ पदों
+के निर्माण-अनुक्रमों को हम \emph{पद-निर्माण-अनुक्रम} कहेंगे।
+\end{defn}
+
+\begin{ex}
+अनुक्रम
+\[
+    \tuple{\Obj c_0, \Obj v_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}
+\]
+पद $\Atom{\Obj f^1_0}{\Atom{\Obj
+f^2_0}{\Obj c_0, \Obj v_0}}$ का एक
+निर्माण-अनुक्रम है; इसी प्रकार यह भी है:
+\[
+    \tuple{\Obj v_0, \Obj c_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}.
+\]
+\end{ex}
+
+\begin{defn}[सूत्रों के निर्माण-अनुक्रम]
+\ollabel{defn:fseq-frm}
+$\Lang L$-शृंखलाओं का कोई परिमित अनुक्रम $\tuple{!A_0,\dotsc,!A_n}$,
+~$!A$ का \emph{निर्माण-अनुक्रम} है, यदि $!A \ident !A_n$ और प्रत्येक $i \leq n$
+के लिए या तो $!A_i$ कोई परमाण्विक !!{formula} है, अथवा ऐसे $j,k < i$
+और कोई !!a{variable}~$x$ हैं कि निम्न में से कोई एक लागू हो:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A_i \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A_i \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+जहाँ भेद करना आवश्यक हो, वहाँ सूत्रों के निर्माण-अनुक्रमों को हम
+\emph{सूत्र-निर्माण-अनुक्रम} कहेंगे।
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}
+\]
+$\lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj
+c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]$ का एक निर्माण-अनुक्रम है; इसी प्रकार यह भी है:
+\begin{multline*}
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \Atom{\Obj A^1_1}{\Obj c_1},\\
+    \lforall[\Obj v_1][\Atom{\Obj A^1_0}{\Obj v_0}],
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}.
+\end{multline*}
+%
+दूसरे उदाहरण से स्पष्ट है कि निर्माण-अनुक्रम में ``अनुपयोगी सामग्री'' आ सकती
+है: ऐसे !!{formula}s जो अनावश्यक हों अथवा निर्माण में कोई योगदान न दें।
+\end{ex}
+
+\begin{prop}\ollabel{prop:formed}
+प्रत्येक !!{formula}~$!A$, जो~$\Frm[L]$ में है, का कोई निर्माण-अनुक्रम होता है।
+\end{prop}
+
+\begin{proof}
+मान लें कि $!A$ परमाण्विक है। तब अनुक्रम $\tuple{!A}$,~$!A$ का
+निर्माण-अनुक्रम है।
+%
+अब मान लें कि $!B$ और~$!C$ के निर्माण-अनुक्रम क्रमशः
+$\tuple{!B_0,\dotsc,!B_n}$ और $\tuple{!C_0,\dotsc,!C_m}$ हैं।
+%
+\begin{enumerate}
+  \tagitem{prvNot}{यदि $!A \ident \lnot !B$, तो
+      $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$,~$!A$ का निर्माण-अनुक्रम है।}{}
+  \tagitem{prvAnd}{यदि $!A \ident (!B \land !C)$, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$,
+      ~ $!A$ का निर्माण-अनुक्रम है।}{}
+  \tagitem{prvOr}{यदि $!A \ident (!B \lor !C)$, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$,
+      ~ $!A$ का निर्माण-अनुक्रम है।}{}
+  \tagitem{prvIf}{यदि $!A \ident (!B \lif !C)$, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$,
+      ~ $!A$ का निर्माण-अनुक्रम है।}{}
+  \tagitem{prvIff}{यदि $!A \ident (!B \liff !C)$, तो
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$,
+      ~ $!A$ का निर्माण-अनुक्रम है।}{}
+  \tagitem{prvAll}{यदि $!A \ident \lforall[x][!B]$, तो
+      $\tuple{!B_0,\dotsc,!B_n,\lforall[x][!B_n]}$,~$!A$ का
+      निर्माण-अनुक्रम है।}{}
+  \tagitem{prvEx}{यदि $!A \ident \lexists[x][!B]$, तो
+      $\tuple{!B_0,\dotsc,!B_n,\lexists[x][!B_n]}$,~$!A$ का
+      निर्माण-अनुक्रम है।}{}
+\end{enumerate}
+!!{formula}s पर आगमन के सिद्धांत से प्रत्येक !!{formula} का कोई
+निर्माण-अनुक्रम है।
+\end{proof}
+
+हम इसका विलोम भी सिद्ध कर सकते हैं। यह महत्त्वपूर्ण है, क्योंकि इससे पता
+चलता है कि सूत्रों को परिभाषित करने के हमारे दोनों ढंग तुल्य हैं: वे एक ही
+परिणाम देते हैं। इसका यह अर्थ भी है कि निर्माण-अनुक्रमों की लंबाई पर साधारण
+आगमन का उपयोग करके हम सूत्रों के बारे में प्रमेय सिद्ध कर सकते हैं।
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+मान लें कि $\tuple{!A_0,\dotsc,!A_n}$,~$!A_n$ का निर्माण-अनुक्रम है और $k \leq n$।
+तब $\tuple{!A_0,\dotsc,!A_k}$,~$!A_k$ का निर्माण-अनुक्रम है।
+\end{lem}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][fseq]{lem:fseq-init} सिद्ध कीजिए।
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L]$ उन सभी $\Lang L$-शृंखलाओं~$!A$ का समुच्चय है जिनके लिए~$!A$ का
+कोई सूत्र-निर्माण-अनुक्रम अस्तित्व रखता है।
+\end{thm}
+
+\begin{proof}
+मान लें कि $F$, भाषा~$\Lang L$ की उन सभी प्रतीक-शृंखलाओं का समुच्चय है जिनका
+कोई निर्माण-अनुक्रम है। \olref[fol][syn][fseq]{prop:formed} में हम देख चुके
+हैं कि $\Frm[L] \subseteq F$, अतः अब हम विलोम सिद्ध करते हैं।
+
+मान लें कि $!A$ का निर्माण-अनुक्रम $\tuple{!A_0,\dotsc,!A_n}$ है। हम सिद्ध
+करते हैं कि $!A \in \Frm[L]$; प्रमाण~$n$ पर प्रबल आगमन द्वारा है। हमारी आगमनात्मक
+परिकल्पना है कि लंबाई $m < n$ का निर्माण-अनुक्रम रखने वाली प्रत्येक
+प्रतीक-शृंखला $\Frm[L]$ में है। निर्माण-अनुक्रम की परिभाषा से या तो $!A \ident !A_n$
+परमाण्विक है, या ऐसे $j,k < n$ होने चाहिए जिनके लिए निम्न में
+से कोई एक स्थिति लागू हो:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+अब हम मामलों के अनुसार तर्क करते हैं। यदि $!A$ परमाण्विक है, तो $!A_n \in \Frm[L_0]$।
+इसके बजाय मान लें कि $!A \equiv (!A_j \land !A_k)$।
+\olref[fol][syn][fseq]{lem:fseq-init} से $\tuple{!A_0,\dotsc,!A_j}$ और
+$\tuple{!A_0,\dotsc,!A_k}$ क्रमशः $!A_j$ और~$!A_k$ के निर्माण-अनुक्रम हैं।
+चूँकि ये~$!A$ के निर्माण-अनुक्रम के उचित आरंभिक उपानुक्रम हैं, दोनों की लंबाई
+~$n$ से कम है। अतः आगमनात्मक परिकल्पना से $!A_j$ और~$!A_k$,
+~$\Frm[L_0]$ में हैं और !!a{formula} की परिभाषा से $(!A_j \land !A_k)$ भी
+उसी में है। अन्य मामले समानांतर तर्क से प्राप्त होते हैं।
+\end{proof}
+
+पदों के निर्माण-अनुक्रमों के गुण !!{formula}s के निर्माण-अनुक्रमों के गुणों
+के समान हैं।
+
+\begin{prop}
+\ollabel{prop:fseq-trm-equiv}
+$\Trm[L]$ उन सभी $\Lang L$-शृंखलाओं $t$ का समुच्चय है जिनके लिए~$t$ का
+कोई पद-निर्माण-अनुक्रम अस्तित्व रखता है।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][fseq]{prop:fseq-trm-equiv} सिद्ध कीजिए। संकेत:
+\olref[fol][syn][fseq]{thm:fseq-frm-equiv} के प्रमाण में प्रयुक्त रणनीति के
+समान रणनीति अपनाइए।
+\end{prob}
+
+निर्माण-अनुक्रमों में दो प्रकार की ``अनुपयोगी सामग्री'' आ सकती है: दोहराए गए
+अवयव, और ऐसे अवयव जो सूत्र या पद के निर्माण से असंबद्ध हों। न्यूनतम
+निर्माण-अनुक्रमों पर विचार करके हम दोनों को हटा सकते हैं।
+
+\begin{defn}[न्यूनतम निर्माण-अनुक्रम]
+\ollabel{defn:minimal-fseq}
+कोई निर्माण-अनुक्रम $\tuple{!A_0, \ldots, !A_n}$ किसी सूत्र~$!A$ का है। वह
+~$!A$ का \emph{न्यूनतम निर्माण-अनुक्रम} है, यदि प्रत्येक अन्य निर्माण-अनुक्रम~$s$,
+जो~$!A$ का हो, के लिए~$s$ की लंबाई~$n+1$ से अधिक या उसके बराबर हो।
+
+इसी प्रकार, कोई निर्माण-अनुक्रम $\tuple{t_0, \ldots, t_n}$ किसी पद~$t$ का है।
+वह~$t$ का \emph{न्यूनतम निर्माण-अनुक्रम} है, यदि प्रत्येक अन्य निर्माण-अनुक्रम~$s$,
+जो~$t$ का हो, के लिए~$s$ की लंबाई~$n+1$ से अधिक या उसके बराबर हो।
+\end{defn}
+
+ध्यान दें कि किसी सूत्र या पद के एक से अधिक न्यूनतम निर्माण-अनुक्रम हो सकते
+हैं, किंतु उनमें ठीक वही शृंखलाएँ होंगी।
+
+\begin{prop}
+\ollabel{prop:subformula-equivs}
+निम्न कथन तुल्य हैं:
+\begin{enumerate}
+    \item $!B$,~$!A$ का उप-!!{formula} है।
+    \item $!B$,~$!A$ के प्रत्येक निर्माण-अनुक्रम में आता है।
+    \item $!B$,~$!A$ के किसी न्यूनतम निर्माण-अनुक्रम में आता है।
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][fseq]{prop:subformula-equivs} सिद्ध कीजिए।
+\end{prob}
+
+\begin{history}
+निर्माण-अनुक्रमों को रेमंड स्मलियन ने अपनी पाठ्यपुस्तक \emph{First-Order
+Logic} \citep{Smullyan1968} में प्रस्तुत किया था। निर्माण-अनुक्रमों के
+अतिरिक्त गुणधर्मों के प्रमाण \citet{Zuckerman1973} में मिलते हैं।
+\end{history}
+
+\end{document}

@@ -1,6 +1,5 @@
 id	status	item	continuation
-HI-OLP-UNRES-0001	OPEN_EXPECTED	Open Logic Hindi whole-work translation is incomplete.	Continue exactly at HI-OLP-0012 trees.tex and then source order.
+HI-OLP-UNRES-0001	OPEN_EXPECTED	Open Logic Hindi whole-work translation is incomplete at 158/722 accepted source files.	Continue with HI-OLP-SEM-CHAPTER-0001 and then the next frozen chapter.
 HI-OLP-UNRES-0002	DISCLOSED	No human linguistic review is claimed.	Optional later review may add evidence but is not a production gate.
-HI-OLP-UNRES-0003	DISCLOSED	The cumulative PDF is untagged and not PDF/UA certified.	Retain Poppler search/copy evidence; improve tagging only as a separately tested change.
-HI-OLP-UNRES-0004	DISCLOSED	pypdf splits many Devanagari clusters although Poppler extraction passes.	Preserve tool divergence; do not misstate pypdf exact-probe results.
-HI-OLP-UNRES-0005	PENDING_RECIPROCAL_METADATA	The frozen upstream repository and global hub may not yet expose reciprocal HasTranslation/HasPart metadata.	Preserve intended DataCite relations locally and route reciprocal updates to the publication maintainer.
+HI-OLP-UNRES-0003	DISCLOSED	The cumulative PDF is not PDF/UA certified.	Retain search/copy and font evidence; make no full-accessibility claim.
+HI-OLP-UNRES-0004	PENDING_RECIPROCAL_METADATA	The frozen upstream repository and global hub may not expose reciprocal translation relations.	Preserve intended DataCite relations locally and route reciprocal changes separately.

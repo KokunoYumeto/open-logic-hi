@@ -1,0 +1,77 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: equality
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{seq}{ide}
+
+\olsection{\usetoken{P}{derivation}: \usetoken{S}{identity} सहित}
+
+!!^{derivation}s में !!{identity} के लिए अतिरिक्त प्रारंभिक अनुक्रम और
+अनुमान-नियम चाहिए।
+
+\begin{defn}[$\eq$ के लिए प्रारंभिक अनुक्रम]
+यदि $t$ कोई बंद पद है, तो ${} \Sequent \eq[t][t]$ एक प्रारंभिक अनुक्रम है।
+\end{defn}
+
+$\eq$ के नियम निम्न हैं ($t_1$ और $t_2$ बंद पद हैं):
+
+\begin{defish}
+\Axiom$ \eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_1) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2)$
+\DisplayProof
+\hfill
+\Axiom$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma  \fCenter \Delta, !A(t_1)$
+\DisplayProof
+\end{defish}
+
+\begin{ex}
+यदि $s$ और $t$ बंद पद हैं, तो $\eq[s][t], !A(s)
+\Proves !A(t)$:
+\begin{prooftree}
+\Axiom$ !A(s) \fCenter !A(s)$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(s)$
+\RightLabel{$\eq$}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(t)$
+\end{prooftree}
+इसे अभिन्नों की प्रतिस्थापनीयता के सिद्धांत अथवा लाइबनित्स के नियम के रूप में
+जाना जाता है।
+
+$\Log{LK}$ सिद्ध करता है कि $\eq$ सममित और संक्रामक है:
+\begin{prooftree}
+\Axiom$ \fCenter \eq[t_1][t_1] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_1][t_1] $
+\RightLabel{$\eq$}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_2][t_1]$
+\DisplayProof\qquad\bottomAlignProof
+\Axiom$ \eq[t_1][t_2] \fCenter \eq[t_1][t_2] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_2] $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_3]$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\eq[t_1][t_2], \eq[t_2][t_3]  \fCenter \eq[t_1][t_3]$
+\end{prooftree}
+बाईं !!{derivation} में !!{formula}~$\eq[x][t_1]$ हमारा
+$!A(x)$ है। दाईं ओर हम $!A(x)$ को~$\eq[t_1][x]$ लेते हैं।
+\end{ex}
+
+\begin{prob}
+निम्न अनुक्रमों की !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $\Sequent \lforall[x][\lforall[y][((x = y \land !A(x)) \lif !A(y))]]$
+\item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land
+    !A(z)) \lif y = z)]] \Sequent 
+\lexists[x][(!A(x) \land \lforall[y][(!A(y) \lif y = x)])]$
+\end{enumerate}
+\end{prob}
+
+\end{document}

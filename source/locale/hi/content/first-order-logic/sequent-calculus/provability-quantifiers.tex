@@ -1,0 +1,59 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{seq}{qpr}
+\olsection{\usetoken{S}{derivability} और परिमाणक}
+
+\begin{explain}
+  पूर्णता प्रमेय के लिए यह भी आवश्यक है कि अनुक्रम-कलन के नियम इस अनुभाग में
+  स्थापित~$\Proves$ से संबंधित तथ्य प्रदान करें।
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} यदि $c$ ऐसा अचर है जो $\Gamma$ या
+$!A(x)$ में नहीं आता, और $\Gamma \Proves !A(c)$, तो $\Gamma
+\Proves \lforall[x][!A(x)]$।
+\end{thm}
+
+\begin{proof}
+$\pi_0$ को $\Log{LK}$ की ऐसी !!{derivation} मानें जिसका अंतिम अनुक्रम
+$\Gamma_0 \Sequent !A(c)$ है, जहाँ कोई परिमित $\Gamma_0 \subseteq \Gamma$
+है। $\RightR{\lforall}$ अनुमान जोड़कर हमें !!a{derivation} मिलती है जिसका
+अंतिम अनुक्रम $\Gamma_0 \Sequent
+\lforall[x][!A(x)]$ है। ऐसा इसलिए कि $c$, $\Gamma$ या $!A(x)$ में नहीं आता;
+अतः अभिलाक्षणिक-चर शर्त पूरी होती है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{अनुक्रम $!A(t) \Sequent \lexists[x][!A(x)]$
+  !!{derivable} है:
+  \begin{prooftree}
+    \Axiom$!A(t) \fCenter !A(t)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$!A(t) \fCenter \lexists[x][!A(x)]$
+    \end{prooftree}}{}
+\tagitem{prvAll}{अनुक्रम $\lforall[x][!A(x)] \Sequent !A(t)$
+  !!{derivable} है:
+  \begin{prooftree}
+    \Axiom$!A(t) \fCenter !A(t)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x)] \fCenter !A(t)$
+    \end{prooftree}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

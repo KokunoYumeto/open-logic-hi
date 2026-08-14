@@ -1,0 +1,101 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{ntd}{der}}
+      {\olfileid[hi]{pl}{ntd}{der}}
+
+\olsection{\usetoken{p}{derivation}}
+
+\begin{explain}
+हम बता चुके हैं कि मान्यता क्या है और अनुमान-नियम भी दे चुके हैं। स्वाभाविक
+निगमन की !!^{derivation}s इन्हीं से आगमनात्मक रूप से बनती हैं: हर
+!!{derivation} या तो अकेली मान्यता है, या उसमें एक, दो अथवा तीन
+!!{derivation}s के बाद एक सही अनुमान होता है।
+\end{explain}
+
+\begin{defn}[!!^{derivation}]
+\Article{derivation} \emph{!!{derivation}}, !!a{sentence}~$!A$ को
+मान्यताओं~$\Gamma$ से देने वाला !!{sentence}s का ऐसा परिमित वृक्ष है जो
+निम्नलिखित शर्तें पूरी करे:
+\begin{enumerate}
+\item वृक्ष के शीर्षस्थ !!{sentence}s या तो $\Gamma$ में हैं या वृक्ष के किसी
+  अनुमान द्वारा !!{discharged} किए जाते हैं।
+\item वृक्ष का सबसे निचला !!{sentence}~$!A$ है।
+\item वृक्ष का हर !!{sentence}, सबसे नीचे के~$!A$ को छोड़कर, किसी अनुमान-नियम
+  के सही प्रयोग का पूर्वाधार है; उस प्रयोग का निष्कर्ष वृक्ष में उस
+  !!{sentence} के ठीक नीचे स्थित है।
+\end{enumerate}
+तब $!A$ को !!{derivation} का \emph{निष्कर्ष} और $\Gamma$ को उसकी
+!!{undischarged} मान्यताएँ कहते हैं।
+
+यदि !!a{derivation} ऐसी हो जो $!A$ को~$\Gamma$ से देती हो, तो कहते हैं कि
+$!A$,~$\Gamma$ से \emph{!!{derivable}} है, या प्रतीकों में: $\Gamma \Proves
+!A$। यदि ऐसी !!a{derivation} हो जिसमें~$!A$ निष्कर्ष हो और हर मान्यता
+!!{discharged} हो, तो~$\Proves !A$ लिखते हैं।
+\end{defn}
+
+\begin{ex}
+हर मान्यता स्वयं !!a{derivation} है; अतः $!A$ स्वयं !!a{derivation} है और
+$!B$ भी। इन पर $\Intro{\land}$ नियम लगाने से नई !!{derivation} मिलती है:
+\begin{prooftree}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\end{prooftree}
+ये नियम सामान्य हैं: इनमें $!A$ और~$!B$ को किन्हीं भी !!{sentence}s, जैसे $!C$
+और~$!D$, से बदल सकते हैं। तब निष्कर्ष $!C \land !D$ होगा; अतः
+\begin{prooftree}
+\AxiomC{$!C$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\end{prooftree}
+सही !!{derivation} है। मान्यताएँ उलटकर $!D$ को~$!A$ और $!C$ को~$!B$ की
+भूमिका भी दे सकते हैं। अतः
+\begin{prooftree}
+\AxiomC{$!D$}
+\AxiomC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!D \land !C$}
+\end{prooftree}
+भी सही !!{derivation} है।
+
+अब $\Intro{\lif}$ जैसा दूसरा नियम लगा सकते हैं। यह आपादन निष्कर्षित करने और
+उसके पूर्वपद के समान किसी भी मान्यता को !!{discharge} करने देता है। अतः निम्न
+दोनों सही !!{derivation}s हैं:
+\begin{prooftree}
+\AxiomC{$\Discharge{!C}{1}$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!C \lif (!C \land !D)$}
+\DisplayProof\bottomAlignProof
+\AxiomC{$!C$}
+\AxiomC{$\Discharge{!D}{1}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!D \lif (!C \land !D)$}
+\end{prooftree}
+ये क्रमशः दिखाती हैं कि $!D \Proves !C \lif (!C \land !D)$ और
+$!C \Proves !D \lif (!C \land !D)$।
+
+याद रखें: मान्यताओं को मुक्त करना अनुमति है, अनिवार्यता नहीं। विशेषतः,
+मान्यताएँ !!{derivation} में मौजूद न हों, तब भी नियम लगा सकते हैं। निम्नलिखित
+अनुमत है, यद्यपि कोई मान्यता~$!A$ नहीं है जिसे !!{discharged} किया जाए:
+\begin{prooftree}
+  \AxiomC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+\end{prooftree}
+\end{ex}
+
+\end{document}

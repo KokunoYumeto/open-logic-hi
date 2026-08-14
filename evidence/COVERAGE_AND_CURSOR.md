@@ -1,40 +1,30 @@
 # Coverage and continuation cursor
 
-Accepted units in source order:
-
-| Batch | Stable ID | Source file |
-|---|---|---|
-| HI-OLP-0001 | `sfr/set/bas` | `sets/basics.tex` |
-| HI-OLP-0002 | `sfr/set/sub` | `sets/subsets.tex` |
-| HI-OLP-0003 | `sfr/set/imp` | `sets/important-sets.tex` |
-| HI-OLP-0004 | `sfr/set/uni` | `sets/unions-and-intersections.tex` |
-| HI-OLP-0005 | `sfr/set/pai` | `sets/pairs-and-products.tex` |
-| HI-OLP-0006 | `sfr/set/rus` | `sets/russells-paradox.tex` |
-| HI-OLP-0007 | `sfr/rel/set` | `relations/relations-as-sets.tex` |
-| HI-OLP-0008 | `sfr/rel/prp` | `relations/special-properties.tex` |
-| HI-OLP-0009 | `sfr/rel/eqv` | `relations/equivalence-relations.tex` |
-| HI-OLP-0010 | `sfr/rel/ord` | `relations/orders.tex` |
-| HI-OLP-0011 | `sfr/rel/grp` | `relations/graphs.tex` |
+This checkpoint contains exactly 158 accepted Hindi TeX files, enumerated with
+source and target byte counts and SHA-256 hashes in `ACCEPTED_FILES.csv`.
 
 Measured cumulative coverage:
 
-- accepted source files: 11
-- source TeXcount: 5,369
-- Hindi target TeXcount: 7,276
-- independently compiled unit PDFs: 11
-- independently rendered/inspected unit pages: 18
-- cumulative reader: 17 pages, compiled and all pages inspected
+- frozen source denominator: 722 content TeX files
+- accepted source files: 158
+- accepted English source words: 59,955
+- cumulative reader: 211 pages, including 207 translated-content pages
 - whole-work completion: **false**
+- remaining source files: 564
 
-Exact continuation cursor:
+The reader covers accepted material in sets, relations, functions, size and
+infinity, arithmetization, propositional syntax and semantics, and first-order
+syntax, proof systems, sequent calculus, natural deduction, tableaux,
+axiomatic deduction, and completeness.
 
-- batch: `HI-OLP-0012`
-- file: `content/sets-functions-relations/relations/trees.tex`
-- stable ID: `sfr/rel/tre`
-- source bytes: 5,232
-- source TeXcount: 685
-- source SHA-256:
-  `57CC56EE55506AA19E7BE6129D2CAD6B8635FD2D6407399D4F774782F2CDD588`
-- import predecessor: `graphs.tex`
+Exact continuation tranche:
 
-No later file is claimed translated or admitted.
+- batch: `HI-OLP-SEM-CHAPTER-0001`
+- driver: `content/first-order-logic/syntax-and-semantics/semantics.tex`
+- import graph: eight TeX files
+- source TeXcount: 4,914
+- acceptance gate: one integrated compiled PDF, literal invariance, extraction,
+  embedded-font checks, 300-dpi rendering, and every-page visual QA
+
+Those eight working files are not present in `ACCEPTED_FILES.csv` and are not
+claimed by this release.

@@ -1,0 +1,126 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{sub}
+
+\olsection{प्रतिस्थापन}
+
+\begin{defn}[किसी पद में प्रतिस्थापन]
+हम $\Subst{s}{t}{x}$ को, अर्थात् $t$ से हर~$x$-उपस्थिति को~$s$ में
+\emph{प्रतिस्थापित} करने के परिणाम को, पुनरावर्ती रूप से परिभाषित करते हैं:
+\begin{enumerate}
+\item \indcase{s}{c}{$\Subst{\indfrm}{t}{x}$ केवल $s$ है।}
+
+\item \indcase{s}{y}{$\Subst{\indfrm}{t}{x}$ भी केवल~$s$ है, बशर्ते $y$
+  कोई चर हो और $y \not\ident x$।}
+
+\item \indcase{s}{x}{$\Subst{\indfrm}{t}{x}$,~$t$ है।}
+
+\item\indcase{s}{\Atom{f}{t_1, \dots, t_n}}{$\Subst{\indfrmp}{t}{x}$,
+  $\Atom{f}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$ है।}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+कोई पद~$t$, $x$ के लिए~$!A$ में \emph{!!{free for}} है, यदि~$x$ की कोई भी
+मुक्त उपस्थिति~$!A$ में ऐसे परिमाणक के परास में न हो जो~$t$ के किसी चर को
+बाँधता हो।
+\end{defn}
+
+\begin{ex} ~
+\begin{enumerate}
+\item $\Obj v_8$, $\Obj v_1$ के लिए $\lexists[\Obj
+  v_3]\Atom{\Obj A^2_4}{\Obj v_3,\Obj v_1}$ में मुक्त है।
+
+\item $\Obj f^2_1(\Obj v_1, \Obj v_2)$, $\Obj
+  v_0$ के लिए $\lforall[\Obj v_2]\Atom{\Obj A^2_4}{\Obj v_0,\Obj v_2}$
+  में मुक्त \emph{नहीं} है।
+\end{enumerate}
+\end{ex}
+
+\begin{defn}[!!a{formula} में प्रतिस्थापन]
+यदि $!A$ !!a{formula} है, $x$~!!a{variable} है, और पद $t$,~$x$ के लिए~$!A$
+में !!{free for} है, तो $\Subst{!A}{t}{x}$ वह परिणाम है जो~$t$ को~$x$
+की सभी मुक्त उपस्थितियों के स्थान पर~$!A$ में प्रतिस्थापित करने से मिलता है।
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\Subst{\indfrm}{t}{x}$,
+    $\lfalse$ है।}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\Subst{\indfrm}{t}{x}$,
+    $\ltrue$ है।}}{}
+
+\item \indcase{!A}{\Atom{P}{t_1,\dots,
+    t_n}}{$\Subst{\indfrm}{t}{x}$,
+    $\Atom{P}{\Subst{t_1}{t}{x},
+    \dots, \Subst{t_n}{t}{x}}$ है।}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Subst{\indfrmp}{t}{x}$,
+  $\Subst{t_1}{t}{x} = \Subst{t_2}{t}{x}$ है।}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\Subst{\indfrmp}{t}{x}$,
+    $\lnot \Subst{!B}{t}{x}$ है।}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land
+    !C)}{$\Subst{\indfrmp}{t}{x}$, $(\Subst{!B}{t}{x} \land
+    \Subst{!C}{t}{x})$ है।}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor
+    !C)}{$\Subst{\indfrmp}{t}{x}$, $(\Subst{!B}{t}{x} \lor
+    \Subst{!C}{t}{x})$ है।}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif
+    !C)}{$\Subst{\indfrmp}{t}{x}$, $(\Subst{!B}{t}{x} \lif
+    \Subst{!C}{t}{x})$ है।}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff
+    !C)}{$\Subst{\indfrmp}{t}{x}$, $(\Subst{!B}{t}{x} \liff
+    \Subst{!C}{t}{x})$ है।}}{}
+
+\tagitem{prvAll}{
+\indcase{!A}{\lforall[y][!B]}{$\Subst{\indfrmp}{t}{x}$
+    $\lforall[y][\Subst{!B}{t}{x}]$ है, बशर्ते $y$, $x$ से भिन्न कोई चर
+    हो; अन्यथा $\Subst{\indfrmp}{t}{x}$ केवल $\indfrm$ है।}}{}
+
+\tagitem{prvEx}{
+\indcase{!A}{\lexists[y][!B]}{$\Subst{\indfrmp}{t}{x}$
+    $\lexists[y][\Subst{!B}{t}{x}]$ है, बशर्ते $y$, $x$ से भिन्न कोई चर
+    हो; अन्यथा $\Subst{\indfrmp}{t}{x}$ केवल $\indfrm$ है।}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+ध्यान दें कि प्रतिस्थापन रिक्त हो सकता है: यदि $x$, $!A$ में कहीं भी नहीं
+आता, तो $\Subst{!A}{t}{x}$ केवल~$!A$ है।
+
+यह प्रतिबंध कि $t$,~$x$ के लिए~$!A$ में !!{free for} हो, निम्न जैसी
+स्थितियाँ हटाने के लिए आवश्यक है। यदि $!A \ident \lexists[y][x < y]$ और
+$t \ident y$, तो $\Subst{!A}{t}{x}$, $\lexists[y][y <
+  y]$ होता। इस स्थिति में
+मुक्त चर $y$ को प्रतिस्थापन के समय परिमाणक $\lexists[y]$ ``बाँध लेता'' है,
+जो अवांछनीय है। उदाहरणतः हम चाहते हैं कि जब भी $\lforall[x][!B]$ लागू हो,
+तब $\Subst{!B}{t}{x}$ भी लागू हो। किंतु $\lforall[x][\lexists[y][x < y]]$
+पर विचार करें (यहाँ $!B$, $\lexists[y][x <
+  y]$ है)। यह ऐसा वाक्य है जो,
+उदाहरणतः, प्राकृतिक संख्याओं के बारे में सत्य है: हर संख्या~$x$ के लिए उससे
+बड़ी कोई संख्या~$y$ है। यदि हम $y$ को~$x$ का संभव प्रतिस्थापन मान लेते, तो
+हमें $\Subst{!B}{y}{x} \ident \lexists[y][y < y]$ मिलता, जो असत्य है। हम
+यह अपेक्षा करके इससे बचते हैं कि~$t$ का कोई भी मुक्त चर अंततः~$!A$ के किसी
+परिमाणक से आबद्ध न हो जाए।
+\end{explain}
+
+भारी संकेतन से बचने के लिए हम प्रायः निम्न रूढ़ि अपनाते हैं: यदि $!A$ कोई
+ऐसा !!a{formula} है जिसमें !!{variable}~$x$ मुक्त आ सकता है, तो यह दर्शाने
+के लिए हम~$!A(x)$ भी लिखते हैं। जब स्पष्ट हो कि हमारा आशय किन $!A$ और~$x$
+से है, और $t$ कोई पद हो (जिसे $x$ के लिए $!A(x)$ में मुक्त माना गया है), तब
+हम $!A(t)$ को $\Subst{!A}{t}{x}$ के संक्षेप के रूप में लिखते हैं। उदाहरणतः हम
+कह सकते हैं, ``$!A(t)$ को~$\lforall[x][!A(x)]$ का एक दृष्टांत कहते हैं।''
+इससे हमारा अर्थ है कि यदि $!A$ कोई भी !!{formula}, $x$ कोई !!a{variable}, और
+$t$ ऐसा पद है जो~$x$ के लिए~$!A$ में मुक्त है, तो $\Subst{!A}{t}{x}$,
+~$\lforall[x][!A]$ का एक दृष्टांत है।
+
+\end{document}

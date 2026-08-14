@@ -1,0 +1,151 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: comparing-sizes
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{siz}{car}
+
+\olsection{भिन्न आकार के समुच्चय और कैंटर का प्रमेय}
+
+\begin{explain}
+हमने इस विचार का यथार्थ कथन दिया है कि दो समुच्चयों का आकार समान है। हम इस
+विचार का भी यथार्थ कथन दे सकते हैं कि एक समुच्चय दूसरे से छोटा है। ``से छोटा
+(या समसंख्यक) है'' की हमारी परिभाषा में समुच्चयों के बीच किसी
+!!a{bijection} के स्थान पर पहले समुच्चय से दूसरे में कोई !!a{injection}
+चाहिए। यदि ऐसा फलन विद्यमान है, तो पहले समुच्चय का आकार दूसरे समुच्चय के आकार
+से कम या उसके बराबर है। सहज रूप में, एक समुच्चय से दूसरे में कोई
+!!a{injection} यह सुनिश्चित करता है कि फलन के परिसर में उसके प्रांत के
+!!{element} जितने तो !!{element} अवश्य हैं, क्योंकि प्रांत के कोई भी दो
+!!{element} परिसर के एक ही अवयव पर नहीं भेजे जाते।
+\end{explain}
+
+\begin{defn}
+$A$,~$B$ से \emph{बड़ा नहीं है}, जिसे $\cardle{A}{B}$ लिखते हैं, यदि और केवल
+यदि कोई !!a{injection} $f \colon A \to B$ हो।
+\end{defn}
+
+स्पष्ट है कि यह संबंध स्वतुल्य और संक्रामक है, पर सममित नहीं है (इसे अभ्यास
+के रूप में छोड़ा गया है)। हम ऐसी धारणा भी दे सकते हैं जो कहती है कि एक
+समुच्चय दूसरे से (वास्तव में) छोटा है।
+
+\begin{defn}
+$A$,~$B$ से \emph{छोटा है}, जिसे $\cardless{A}{B}$ लिखते हैं, यदि और केवल
+यदि कोई !!a{injection}~$f\colon A \to B$ हो, पर कोई !!{bijection}~$g\colon A
+\to B$ न हो; अर्थात $\cardle{A}{B}$ और $\cardneq{A}{B}$।
+\end{defn}
+
+स्पष्ट है कि यह संबंध अस्वतुल्य और संक्रामक है। (इसे अभ्यास के रूप में छोड़ा
+गया है।) इस संकेतन से हम कह सकते हैं कि कोई समुच्चय $A$ !!{enumerable} है
+यदि और केवल यदि $\cardle{A}{\Nat}$, और $A$ !!{nonenumerable} है यदि और केवल
+यदि $\cardless{\Nat}{A}$। इससे हम
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{%
+\olref[sfr][siz][nen-alt]{thm:nonenum-pownat}
+को इस प्रेक्षण के रूप में फिर कह सकते हैं कि
+$\cardless{\Nat}{\Pow{\Nat}}$}{%
+\olref[sfr][siz][nen]{thm:nonenum-pownat}
+को इस प्रेक्षण के रूप में फिर कह सकते हैं कि
+$\cardless{\PosInt}{\Pow{\PosInt}}$}। वास्तव में, \citet{Cantor1892} ने
+सिद्ध किया कि यह अंतिम बात \emph{पूरी तरह सामान्य} है:
+
+\begin{thm}[कैंटर]\ollabel{thm:cantor}
+$\cardless{A}{\Pow{A}}$, किसी भी समुच्चय $A$ के लिए।
+\end{thm}
+
+\begin{proof}
+प्रतिचित्रण $f(x) = \{x\}$ एक !!a{injection} $f \colon A \to \Pow{A}$
+है, क्योंकि यदि $x \neq y$, तो विस्तारिता से $\{x\} \neq \{y\}$ भी, और
+इसलिए $f(x) \neq f(y)$। अतः $\cardle{A}{\Pow{A}}$।
+
+\begin{editorial}
+यदि \olref[nen]{sec} उपस्थित है, तो हम धीमा प्रमाण देते हैं; अन्यथा
+\olref[nen-alt]{sec} से मेल खाने वाला अधिक तीव्र प्रमाण देते हैं।
+\end{editorial}
+
+\oliflabeldef{sfr:siz:nen:sec}{% 
+  अब हम दिखाएँगे कि कोई !!a{surjective} फलन~$g\colon A \to
+  \Pow{A}$ हो ही नहीं सकता, !!a{bijective} फलन तो दूर की बात है; अतः
+  $\cardneq{A}{\Pow{A}}$। मान लीजिए कि $g\colon A \to \Pow{A}$। चूँकि
+  $g$ सर्वत्र परिभाषित है, प्रत्येक $x \in A$ किसी उपसमुच्चय $g(x)
+  \subseteq A$ पर भेजा जाता है। हम दिखा सकते हैं कि $g$ आच्छादक नहीं हो
+  सकता। इसके लिए हम एक उपसमुच्चय~$\overline{A} \subseteq A$ परिभाषित करते
+  हैं जो परिभाषा के कारण~$g$ के परिसर में नहीं हो सकता। मान लें
+  \[
+  \overline{A} = \Setabs{x \in A}{x \notin g(x)}.
+  \]
+  चूँकि $g(x)$ प्रत्येक $x \in A$ के लिए परिभाषित है, इसलिए
+  $\overline{A}$ स्पष्टतः~$A$ का सुव्याख्यायित उपसमुच्चय है। पर वह~$g$ के
+  परिसर में नहीं हो सकता। कोई भी $x \in A$ लें; हम दिखाएँगे कि $\overline{A} \neq
+  g(x)$। यदि $x \in g(x)$, तो वह $x \notin g(x)$ को
+  संतुष्ट नहीं करता, इसलिए~$\overline{A}$ की परिभाषा से $x \notin
+  \overline{A}$। यदि $x \in \overline{A}$, तो उसे~$\overline{A}$ का
+  परिभाषक गुणधर्म संतुष्ट करना होगा; अर्थात $x \in A$ और $x \notin
+  g(x)$। चूँकि $x$ कोई भी था, इससे दिखता है कि प्रत्येक $x \in
+  A$ के लिए $x \in g(x)$ यदि और केवल यदि $x \notin \overline{A}$, इसलिए
+  $g(x) \neq \overline{A}$। दूसरे शब्दों में, $\overline{A}$,~$g$ के
+  परिसर में नहीं हो सकता; यह~$g$ के आच्छादक होने की धारणा का खंडन करता
+  है।}{अब केवल $\cardneq{A}{\Pow{A}}$ दिखाना शेष है। विरोधाभासार्थ मान
+  लीजिए $\cardeq{A}{\Pow{A}}$; अर्थात कोई !!{bijection}
+  $g \colon A \to \Pow{A}$ है। अब इस पर विचार करें:
+  \[
+    D = \Setabs{x \in A}{x \notin g(x)}
+  \]
+  ध्यान दें कि $D \subseteq A$, इसलिए $D \in \Pow{A}$। चूँकि $g$ एक
+  !!a{bijection} है, इसलिए कोई $y \in A$ ऐसा है कि $g(y) = D$। लेकिन
+  अब हमारे पास है:
+  \[
+    y \in g(y) \text{ यदि और केवल यदि } y \in D \text{ यदि और केवल यदि } y \notin g(y).
+  \]
+  यह विरोधाभास है; अतः $\cardneq{A}{\Pow{A}}$।}{}
+\end{proof}
+
+\begin{explain}
+\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{\olref{thm:cantor} के
+  प्रमाण की तुलना \olref[nen]{thm:nonenum-pownat} के प्रमाण से करना
+  उपयोगी है। वहाँ हमने दिखाया था कि किसी भी सूची
+  $Z_1$, $Z_2$, \dots{}, जो~$\PosInt$ के उपसमुच्चयों की हो, के लिए
+  संख्याओं का कोई समुच्चय~$\overline{Z}$ बनाया
+  जा सकता है जिसके सूची में न होने की गारंटी है। उसके सूची में न होने की
+  गारंटी इसलिए थी कि प्रत्येक $n \in
+  \PosInt$ के लिए $n \in Z_n$ यदि और केवल यदि $n \notin \overline{Z}$। इस प्रकार सदैव कोई संख्या होती है जो
+  $Z_n$ या $\overline{Z}$ में से एक की !!a{element} है, पर दूसरे की नहीं।
+  यहाँ हम इसी विचार का अनुसरण करते हैं, अंतर केवल यह है कि अब सूचकांक~$n$,
+  ~$A$ के !!{element},~$\PosInt$ के बजाय हैं। समुच्चय $\overline{A}$ इस
+  प्रकार परिभाषित है कि वह~$g(x)$ से प्रत्येक $x \in A$ के लिए भिन्न है,
+  क्योंकि $x \in g(x)$ यदि और केवल यदि $x \notin \overline{A}$। फिर से,
+  ~$A$ का सदैव कोई !!a{element} होता है जो $g(x)$ और $\overline{A}$ में से
+  एक का !!a{element} है, पर दूसरे का नहीं। और जैसे इस कारण $\overline{Z}$
+  सूची $Z_1$, $Z_2$, \dots{} में नहीं हो सकता, वैसे ही $\overline{A}$,
+  ~$g$ के परिसर में नहीं हो सकता।}{}
+
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{\olref{thm:cantor} के
+  प्रमाण की तुलना \olref[nen-alt]{thm:nonenum-pownat} के प्रमाण से करना
+  उपयोगी है। वहाँ हमने दिखाया था कि किसी भी सूची
+  $N_0$, $N_1$, $N_2$, \dots{}, जो~$\Nat$ के उपसमुच्चयों की हो, के लिए हम
+  संख्याओं का कोई समुच्चय~$D$ बना
+  सकते हैं जिसके सूची में न होने की गारंटी है। उसके सूची में न होने की
+  गारंटी इसलिए थी कि $n \in N_n$ यदि और केवल यदि $n \notin
+  D$, प्रत्येक $n \in \Nat$ के लिए। यहाँ हम इसी विचार का अनुसरण करते हैं, अंतर केवल यह है कि
+  अब सूचकांक~$n$,~$A$ के !!{element},~$\Nat$ के बजाय हैं। समुच्चय $D$ इस
+  प्रकार परिभाषित है कि वह~$g(x)$ से प्रत्येक $x
+  \in A$ के लिए भिन्न है,
+  क्योंकि $x \in g(x)$ यदि और केवल यदि $x \notin D$।}{}
+
+इस प्रमाण की तुलना रसेल के विरोधाभास के प्रमाण,
+\olref[sfr][set][rus]{thm:russells-paradox}, से करना भी उपयोगी है। वास्तव
+में कैंटर का प्रमेय ही रसेल के अपने विरोधाभास की प्रेरणा था।
+\end{explain}
+
+\begin{prob}
+  दिखाइए कि कोई !!a{injection} $g\colon \Pow{A} \to
+  A$ किसी भी समुच्चय~$A$ के लिए हो ही नहीं सकता। संकेत: मान लीजिए
+  $g\colon \Pow{A} \to A$ !!{injective} है।
+  $D = \Setabs{g(B)}{B \subseteq A \text{ और
+  } g(B) \notin B}$ पर विचार कीजिए। मान लें $x = g(D)$। इस तथ्य का उपयोग
+  करके विरोधाभास निकालिए कि $g$ !!{injective} है।
+\end{prob}
+
+\end{document}

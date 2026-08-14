@@ -1,0 +1,97 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{syn}{sem}
+
+\olsection{अर्थवैज्ञानिक धारणाएँ}
+
+हम निम्नलिखित अर्थवैज्ञानिक धारणाएँ परिभाषित करते हैं:
+
+\begin{defn} 
+\begin{enumerate}
+\item !!^a{formula}~$!A$ \emph{संतुष्टनीय} है यदि किसी
+  ऐसे~$\pAssign{v}$ के लिए $\pSat{v}{!A}$ हो; वह
+  \emph{असंतुष्टनीय} है यदि किसी भी $\pAssign{v}$ के लिए $\pSat{v}{!A}$ न हो;
+\item !!^a{formula}~$!A$ \emph{पुनरुक्ति} है यदि $\pSat{v}{!A}$ सभी
+  !!{valuation}s~$\pAssign{v}$ के लिए सत्य हो;
+\item !!^a{formula}~$!A$ \emph{आपातिक} है यदि वह संतुष्टनीय है लेकिन
+  पुनरुक्ति नहीं है;
+\item यदि $\Gamma$ !!{formula}s का कोई समुच्चय है, तो $\Gamma \Entails !A$
+  (``$\Gamma$ से $!A$ तार्किकतः निष्पन्न है'') तभी और केवल तभी, जब
+  $\pSat{v}{!A}$ उन सभी !!{valuation}~$\pAssign{v}$ के लिए सत्य हो जिनके लिए
+  $\pSat{v}{\Gamma}$ हो।
+\item यदि $\Gamma$ !!{formula}s का कोई समुच्चय है, तो $\Gamma$
+  \emph{संतुष्टनीय} है यदि कोई !!a{valuation}~$\pAssign{v}$ ऐसा हो जिसके लिए
+  $\pSat{v}{\Gamma}$ हो; अन्यथा $\Gamma$
+  \emph{असंतुष्टनीय} है।
+\end{enumerate} 
+\end{defn}
+
+\begin{prob} 
+ नीचे दिए चारों !!{formula}s में प्रत्येक के लिए बताएँ कि वह (क)~संतुष्टनीय,
+ (ख)~पुनरुक्ति और (ग)~आपातिक है या नहीं।
+\begin{enumerate}
+  \item \( ( \Obj p_0 \lif ( \lnot \Obj p_1 \lif \lnot \Obj p_0 ) ) \).
+  \item \( ( ( \Obj p_0 \land \lnot \Obj p_1 ) \lif ( \lnot \Obj p_0 \land \Obj p_2 )) \liff ( ( \Obj p_2 \lif \Obj p_0 ) \lif ( \Obj p_0 \lif \Obj p_1 )) \).
+  \item \( ( \Obj p_0 \liff \Obj p_1 ) \lif ( \Obj p_2 \liff \lnot \Obj p_1 ) \).
+  \item \( (( \Obj p_0 \liff ( \lnot \Obj p_1 \land \Obj p_2 )) \lor ( \Obj p_2 \lif ( \Obj p_0 \liff \Obj p_1 ))) \).
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:semanticalfacts} 
+\begin{enumerate} 
+\item $!A$ तभी और केवल तभी पुनरुक्ति है, जब
+  $\emptyset \Entails !A$; 
+\item यदि $\Gamma \Entails !A$ और $\Gamma \Entails !A \lif !B$, तो
+  $\Gamma \Entails !B$;
+\item यदि $\Gamma$ संतुष्टनीय है, तो $\Gamma$ का प्रत्येक परिमित उपसमुच्चय
+  भी संतुष्टनीय है; 
+\item \ollabel{def:monotonicity} एकदिष्टता: यदि $\Gamma \subseteq \Delta$
+  और $\Gamma \Entails !A$, तो $\Delta \Entails !A$ भी;
+\item \ollabel{def:Cut} संक्रामकता: यदि $\Gamma \Entails !A$ और
+  $\Delta \cup \{ !A\} \Entails !B$, तो $\Gamma \cup \Delta \Entails
+  !B$।
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[pl][syn][sem]{prop:semanticalfacts} सिद्ध करें।
+\end{prob}
+
+\begin{prop}\ollabel{prop:entails-unsat}
+  $\Gamma \Entails !A$ तभी और केवल तभी, जब $\Gamma \cup \{\lnot !A\}$
+  असंतुष्टनीय हो।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[pl][syn][sem]{prop:entails-unsat} सिद्ध करें।
+\end{prob}
+
+\begin{thm}[अर्थवैज्ञानिक निगमन प्रमेय]
+  \ollabel{thm:sem-deduction} $\Gamma \Entails !A \lif !B$ तभी और केवल
+  तभी, जब $\Gamma \cup \{!A\} \Entails !B$।
+\end{thm}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[pl][syn][sem]{thm:sem-deduction} सिद्ध करें।
+\end{prob}
+
+\end{document}

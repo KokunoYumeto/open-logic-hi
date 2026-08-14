@@ -1,0 +1,171 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\begin{editorial}
+  यह अनुभाग स्वाभाविक निगमन के सिद्धता-संबंध और संगतता की परिभाषाएँ एकत्र
+  करता है।
+\end{editorial}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{seq}{ptn}}
+      {\olfileid[hi]{pl}{seq}{ptn}}
+
+\olsection{प्रमाण-सैद्धांतिक धारणाएँ}
+
+\begin{explain}
+जिस प्रकार हमने कई महत्त्वपूर्ण अर्थवैज्ञानिक धारणाएँ (वैधता, तार्किक
+निष्पत्ति, संतुष्टनीयता) परिभाषित की हैं, उसी प्रकार अब उनकी संगत
+\emph{प्रमाण-सैद्धांतिक धारणाएँ} परिभाषित करते हैं। इनकी परिभाषा में यह
+सहारा नहीं लिया जाता कि !!{sentence}s के लिए कौन-सी !!{structure}s उन्हें
+संतुष्ट करती हैं, बल्कि कुछ अनुक्रमों की !!{derivability} या
+!!{nonderivability} का सहारा लिया जाता है। इन धारणाओं का एक-दूसरे से मेल
+खाना एक महत्त्वपूर्ण खोज थी। यह मेल \emph{सुदृढ़ता} और \emph{पूर्णता प्रमेय}
+का विषय है।
+\end{explain}
+
+\begin{defn}[प्रमेय]
+!!^a{sentence}~$!A$ \emph{प्रमेय} है यदि~$\Log{LK}$ में अनुक्रम
+$\quad \Sequent !A$ की कोई !!a{derivation} हो। तब $\Proves
+!A$ लिखते हैं; यदि $!A$ प्रमेय नहीं है तो $\Proves/ !A$ लिखते हैं।
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence}~$!A$ को किसी समुच्चय से \emph{!!{derivable}} कहते हैं; यदि वह
+!!{sentence}s का समुच्चय~$\Gamma$ हो, तो इसे $\Gamma \Proves !A$ लिखते हैं।
+यह तभी और केवल तभी होता है जब कोई परिमित उपसमुच्चय
+~$\Gamma_0 \subseteq \Gamma$ और कोई क्रम $\Gamma_0'$ ऐसा हो जो~$\Gamma_0$
+के !!{sentence}s से बना हो, तथा $\Log{LK}$
+$\Gamma_0' \Sequent !A$ को !!{derive} करे। यदि $!A$, $\Gamma$ से
+!!{derivable} नहीं है तो $\Gamma \Proves/ !A$ लिखते हैं।
+\end{defn}
+
+संकुचन, दुर्बलीकरण और विनिमय नियमों के कारण~$\Gamma_0'$ में !!{sentence}s
+का क्रम और संख्या महत्त्व नहीं रखते: यदि अनुक्रम $\Gamma_0' \Sequent !A$
+!!{derivable} है, तो $\Gamma_0'' \Sequent !A$ भी हर ऐसे $\Gamma_0''$ के लिए
+वैसा ही है जिसका निर्माण~$\Gamma_0'$ वाले !!{sentence}s से हुआ हो। उदाहरण के लिए, यदि
+$\Gamma_0 = \{!B, !C\}$ हो, तो $\Gamma_0' = \tuple{!B, !B, !C}$ और $\Gamma_0'' =
+\tuple{!C, !C, !B}$, दोनों ऐसे क्रम हैं जो~$\Gamma_0$ के ही
+!!{sentence}s से बने हैं। यदि इनमें से एक क्रम वाला अनुक्रम !!{derivable} है, तो
+दूसरा भी है; जैसे:
+\begin{prooftree}
+  \AxiomC{}
+  \Deduce$!B, !B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Exchange}}
+  \UnaryInf$!C, !B \fCenter !A$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!C, !C, !B \fCenter !A$
+\end{prooftree}
+अब से, यदि $\Gamma_0$, !!{sentence}s का परिमित समुच्चय है, तो
+$\Gamma_0 \Sequent !A$ से हमारा आशय ऐसे किसी भी अनुक्रम से होगा जिसका
+पूर्वपक्ष~$\Gamma_0$ के !!{sentence}s का क्रम हो; आवश्यकता पड़ने पर संकुचन,
+विनिमय और दुर्बलीकरण को मौन रूप से शामिल मानेंगे।
+
+\begin{defn}[संगतता]
+वाक्यों का समुच्चय~$\Gamma$ \emph{असंगत} है तभी और केवल तभी जब कोई परिमित
+उपसमुच्चय~$\Gamma_0 \subseteq \Gamma$ ऐसा हो कि $\Log{LK}$
+$\Gamma_0 \Sequent \quad$ को !!{derive} करे। यदि $\Gamma$ असंगत नहीं है,
+अर्थात् हर परिमित $\Gamma_0 \subseteq \Gamma$ के लिए $\Log{LK}$
+$\Gamma_0 \Sequent \quad$ को !!{derive} नहीं करता, तो उसे \emph{संगत} कहते
+हैं।
+\end{defn}
+
+\begin{prop}[स्वतुल्यता]
+\ollabel{prop:reflexivity}
+यदि $!A \in \Gamma$, तो $\Gamma \Proves !A$।
+\end{prop}
+
+\begin{proof}
+प्रारंभिक अनुक्रम $!A \Sequent !A$ !!{derivable} है और $\{!A\}
+\subseteq \Gamma$।
+\end{proof}
+  
+\begin{prop}[एकदिष्टता]
+\ollabel{prop:monotonicity}
+यदि $\Gamma \subseteq \Delta$ और $\Gamma \Proves !A$, तो $\Delta
+\Proves !A$।
+\end{prop}
+
+\begin{proof}
+मान लें $\Gamma \Proves !A$; अर्थात् कोई परिमित $\Gamma_0
+\subseteq \Gamma$ ऐसा है कि $\Gamma_0 \Sequent !A$ !!{derivable} है। चूँकि
+$\Gamma \subseteq \Delta$, इसलिए $\Gamma_0$,~$\Delta$ का भी परिमित
+उपसमुच्चय है। अतः $\Gamma_0
+\Sequent !A$ की !!{derivation} यह भी दिखाती है
+कि $\Delta \Proves !A$।
+\end{proof}
+
+\begin{prop}[संक्रामकता]
+\ollabel{prop:transitivity}
+यदि $\Gamma \Proves !A$ और $\{!A\} \cup \Delta \Proves
+!B$, तो $\Gamma \cup \Delta \Proves !B$।
+\end{prop}
+
+\begin{proof}
+यदि $\Gamma \Proves !A$, तो कोई परिमित $\Gamma_0 \subseteq \Gamma$ और कोई
+!!a{derivation}~$\pi_0$ ऐसी है जिसका अंतिम अनुक्रम $\Gamma_0 \Sequent !A$ है। यदि $\{!A\}
+\cup \Delta \Proves !B$, तो किसी परिमित उपसमुच्चय $\Delta_0
+\subseteq \Delta$ के लिए कोई !!a{derivation}~$\pi_1$ ऐसी है जिसका अंतिम अनुक्रम $!A, \Delta_0
+\Sequent !B$ है। निम्नलिखित !!{derivation} पर विचार करें:
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{$\pi_0$}
+  \Deduce$\Gamma_0 \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!A, \Delta_0 \fCenter !B$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_0, \Delta_0 \fCenter !B$
+\end{prooftree}
+चूँकि $\Gamma_0 \cup \Delta_0 \subseteq \Gamma \cup \Delta$, इससे
+$\Gamma \cup \Delta \Proves !B$ सिद्ध होता है।
+\end{proof}
+
+ध्यान दें कि विशेषतः इसका अर्थ है: यदि $\Gamma \Proves !A$ और $!A
+\Proves !B$, तो $\Gamma \Proves !B$। इससे यह भी मिलता है कि यदि $!A_1,
+\dots, !A_n \Proves !B$ और $\Gamma \Proves !A_i$ प्रत्येक~$i$ के लिए, तो
+$\Gamma \Proves !B$।
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ असंगत है तभी और केवल तभी जब $\Gamma \Proves {!A}$ हर
+  वाक्य~$!A$ के लिए सत्य हो।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][seq][ptn]{prop:incons} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}[संहतता]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय $\Gamma_0
+    \subseteq \Gamma$ ऐसा है कि $\Gamma_0 \Proves !A$।
+  \item यदि~$\Gamma$ का हर परिमित उपसमुच्चय संगत है, तो $\Gamma$ संगत है।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय
+      $\Gamma_0 \subseteq \Gamma$ ऐसा है कि अनुक्रम $\Gamma_0
+      \Sequent !A$ की कोई !!a{derivation} है। फलतः $\Gamma_0
+      \Proves !A$।
+    \item यदि $\Gamma$ असंगत है, तो कोई परिमित उपसमुच्चय
+      ~$\Gamma_0 \subseteq \Gamma$ ऐसा है कि $\Log{LK}$, $\Gamma_0 \Sequent \quad$
+      को !!{derive} करता है। किंतु तब $\Gamma_0$,~$\Gamma$ का असंगत परिमित
+      उपसमुच्चय है।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

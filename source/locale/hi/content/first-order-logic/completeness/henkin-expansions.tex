@@ -1,0 +1,209 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: henkin-expansion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{com}{hen}
+
+\olsection{हेंकिन विस्तार}
+
+\begin{explain}
+पूर्णता प्रमेय को सिद्ध करने की एक कठिनाई यह है कि पूर्ण संगत
+समुच्चय~$\Gamma$ से बनाई गई हमारी संरचना को~$\Gamma$ के सभी परिमाणित
+!!{formula}s सत्य बनाने चाहिए। इसकी गारंटी के लिए हम लियोन हेंकिन की एक
+युक्ति का उपयोग करते हैं। मूलतः इस युक्ति में भाषा को अनंततः अनेक
+!!{constant}s से विस्तारित करना और प्रत्येक !!{formula} $!A(x)$, जिसमें एक
+मुक्त !!{variable} हो, के लिए निम्न रूप का सूत्र जोड़ना है:
+\iftag{prvEx}
+      {$\lexists[x][!A(x)] \lif !A(c)$}
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$},
+जहाँ $c$ नए !!{constant}s में से एक है। जब हम~$\Gamma$ को संतुष्ट करने वाली
+!!{structure} बनाएँगे, तो इससे यह गारंटी होगी कि
+\iftag{prvEx}
+{प्रत्येक सत्य अस्तित्ववाची वाक्य का कोई साक्षी}
+{प्रत्येक असत्य सार्ववाची वाक्य का कोई प्रतिदृष्टांत}
+नए अचरों में मौजूद हो।
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:lang-exp}
+यदि $\Gamma$, $\Lang L$ में संगत है और $\Lang L'$ को~$\Lang L$ में
+!!a{denumerable} समुच्चय के नए !!{constant}s $\Obj d_0$,
+$\Obj d_1$, \dots जोड़कर प्राप्त किया गया है, तो $\Gamma$,~$\Lang L'$ में
+संगत है।
+\end{prop}
+
+\begin{defn}[संतृप्त समुच्चय]
+!!{formula}s का समुच्चय $\Gamma$, भाषा $\Lang {L}$ में,
+\emph{संतृप्त} तभी और केवल तभी है जब प्रत्येक
+!!{formula}~$!A(x) \in \Frm[L]$, जिसमें एक मुक्त !!{variable}~$x$ हो, के
+लिए कोई !!a{constant}~$c \in \Lang{L}$ ऐसा हो कि
+\iftag{prvEx}
+      {$\lexists[x][!A(x)] \lif !A(c) \in \Gamma$}
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c) \in \Gamma$}।
+\end{defn}
+
+अगली प्रमेय के प्रमाण में निम्न परिभाषा का उपयोग होगा।
+
+\begin{defn}
+\ollabel{defn:henkin-exp}
+$\Lang L'$ को \olref{prop:lang-exp} जैसा मानें। एक गणन
+$!A_0(x_0)$, $!A_1(x_1)$, \dots नियत करें, जिसमें वे सभी
+!!{formula}s~$!A_i(x_i)$ हों जो~$\Lang L'$ के हैं और जिनमें एक चर ($x_i$)
+मुक्त आता है। हम
+!!{sentence}s~$!D_n$ को~$n$ पर आगमन द्वारा परिभाषित करते हैं।
+
+$c_0$ को उन $\Obj d_i$ में पहला !!{constant} मानें जिन्हें हमने~$\Lang{L}$
+में जोड़ा था और जो~$!A_0(x_0)$ में नहीं आता। यह मानते हुए कि $!D_0$,
+\dots,~$!D_{n-1}$ पहले ही परिभाषित
+हो चुके हैं, $c_n$ को नए !!{constant}s~$\Obj d_i$ में पहला ऐसा अचर मानें जो
+न तो $!D_0$, \dots,~$!D_{n-1}$ में और न~$!A_n(x_n)$ में आता है।
+
+अब $!D_{n}$ को निम्न !!{formula} मानें: \iftag{prvEx}
+{$\lexists[x_{n}][!A_{n}(x_{n})] \lif
+  !A_{n}(c_{n})$}{$\lnot\lforall[x_{n}][!A_{n}(x_{n})] \lif \lnot
+  !A_{n}(c_{n})$}।
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:henkin}
+प्रत्येक संगत समुच्चय~$\Gamma$ को किसी संतृप्त संगत समुच्चय~$\Gamma'$ तक
+विस्तारित किया जा सकता है।
+\end{lem}
+
+\begin{proof}
+वाक्यों का संगत समुच्चय~$\Gamma$, भाषा~$\Lang{L}$ में दिया हो, तो
+!!a{denumerable} समुच्चय के नए !!{constant}s जोड़कर भाषा को~$\Lang{L'}$ में
+विस्तारित करें। \olref{prop:lang-exp} से $\Gamma$ इस समृद्धतर भाषा में भी
+संगत है। आगे, $!D_i$ को \olref{defn:henkin-exp} जैसा मानें। रखें
+\begin{align*}
+\Gamma_0 & = \Gamma \\
+\Gamma_{n+1} & = \Gamma_n \cup \{!D_n \}
+\end{align*}
+अर्थात् $\Gamma_{n+1} = \Gamma \cup \{ !D_0, \dots, !D_n \}$, और
+$\Gamma' = \bigcup_{n} \Gamma_n$ रखें। स्पष्टतः $\Gamma'$ संतृप्त है।
+
+यदि $\Gamma'$ असंगत होता, तो किसी $n$ के लिए $\Gamma_n$ असंगत होता
+(अभ्यास: समझाइए क्यों)। अतः $\Gamma'$ की संगतता दिखाने के लिए~$n$ पर आगमन
+से यह दिखाना पर्याप्त है कि प्रत्येक समुच्चय~$\Gamma_n$ संगत है।
+
+आगमन का आधार केवल यह कथन है कि $\Gamma_0 = \Gamma$ संगत है, जो प्रमेय की
+परिकल्पना है। आगमन-चरण के लिए मान लें कि $\Gamma_{n}$ संगत है, पर
+$\Gamma_{n+1} =
+\Gamma_n \cup \{!D_n\}$ असंगत है। याद करें कि $!D_n$ यह है:
+\iftag{prvEx}
+{$\lexists[x_{n}][!A_{n}(x_n)] \lif !A_{n}(c_{n})$}
+{$\lnot\lforall[x_{n}][!A_{n}(x_n)] \lif \lnot !A_{n}(c_{n})$},
+जहाँ $!A_n(x_n)$, $\Lang{L'}$ का ऐसा !!a{formula} है जिसमें केवल
+चर~$x_n$ मुक्त है। जिस प्रकार हमने~$c_n$ चुना है (देखें
+\olref{defn:henkin-exp}), उससे $c_n$ न तो~$!A_n(x_n)$ में आता है, न
+ही~$\Gamma_n$ में।
+
+यदि $\Gamma_n \cup \{!D_n\}$ असंगत है, तो $\Gamma_n
+\Proves \lnot !D_n$, और इसलिए निम्न दोनों सत्य हैं:
+\iftag{prvEx}{
+\[
+\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves \lnot !A_n(c_n)
+\]}{
+\[
+\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves !A_n(c_n)
+\]}
+चूँकि $c_n$, $\Gamma_n$ या~$!A_n(x_n)$ में नहीं आता,
+\tagrefs{prfAX/{fol:axd:qpr:thm:strong-generalization},prfSC/{fol:seq:qpr:thm:strong-generalization},prfND/{fol:ntd:qpr:thm:strong-generalization},prfTab/{fol:tab:qpr:thm:strong-generalization}} लागू होता है।
+\iftag{prvEx}
+{$\Gamma_n \Proves \lnot !A_n(c_n)$}
+{$\Gamma_n \Proves !A_n(c_n)$}
+से हमें
+\iftag{prvEx}
+{$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}
+मिलता है। अतः हमारे पास निम्न दोनों हैं:
+\iftag{prvEx}
+{$\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]$ और
+$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]$ और
+$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$},
+इसलिए $\Gamma_n$ स्वयं असंगत है।
+\iftag{prvEx}
+{(ध्यान दें कि
+\iftag{prvAll}
+{$\lforall[x_n][\lnot !A_n(x_n)] \Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}
+{$\lforall[x_n][\lnot !A_n]$ को
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]$ के रूप में परिभाषित किया गया
+  है और $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)] \Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}।)}{}
+विरोधाभास: $\Gamma_n$ को संगत माना गया था। अतः
+$\Gamma_n \cup \{ !D_n\}$ संगत है।
+\end{proof}
+
+\begin{explain}
+अब हम दिखाएँगे कि संतृप्त \emph{पूर्ण} संगत समुच्चयों में यह गुण होता है कि
+\iftag{prvAll}{वे किसी सार्ववाची !!{sentence} को तभी और केवल तभी समाहित
+  करते हैं जब वे उसके सभी निदर्शों को समाहित करें}{}\iftag{defAll,defEx}{}{
+  और }\iftag{prvAll}{वे किसी अस्तित्ववाची !!{sentence} को तभी और केवल तभी
+  समाहित करते हैं जब वे कम-से-कम एक निदर्श को समाहित करें}{}। इसका उपयोग हम
+यह दिखाने के लिए करेंगे कि पूर्ण, संगत, संतृप्त समुच्चय से बनाई गई
+!!{structure} उसके सभी परिमाणित वाक्यों को सत्य बनाती है।
+\end{explain}
+
+\begin{prop}\ollabel{prop:saturated-instances}
+मान लें कि $\Gamma$ पूर्ण, संगत और संतृप्त है।
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ तभी और केवल तभी जब
+  $!A(t) \in \Gamma$ कम-से-कम एक बंद पद~$t$ के लिए हो।}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ तभी और केवल तभी जब
+  $!A(t) \in \Gamma$ सभी बंद पदों~$t$ के लिए हो।}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+  \tagitem{prvEx}{%
+    \iftag{probEx}{अभ्यास।}{पहले मान लें कि $\lexists[x][!A(x)]
+      \in \Gamma$। क्योंकि $\Gamma$ संतृप्त है,
+      $(\lexists[x][!A(x)] \lif !A(c)) \in \Gamma$ किसी
+      !!{constant}~$c$ के लिए।
+      \tagrefs{prfAX/{fol:axd:ppr:prop:provability-lif},prfSC/{fol:seq:ppr:prop:provability-lif},prfND/{fol:ntd:ppr:prop:provability-lif},prfTab/{fol:tab:ppr:prop:provability-lif}} के पद~(1)
+      और \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in} से $!A(c)
+      \in \Gamma$।
+
+    दूसरी दिशा में संतृप्ति आवश्यक नहीं है: मान लें कि
+    $!A(t) \in \Gamma$। तब
+    \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}} के पद~(1) से $\Gamma \Proves \lexists[x][!A(x)]$।
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in} से
+    $\lexists[x][!A(x)] \in \Gamma$।}}{}
+  \tagitem{prvAll}{%
+    \iftag{probAll}{अभ्यास।}{मान लें कि $!A(t) \in \Gamma$ सभी बंद
+      पदों~$t$ के लिए। विरोधाभास के लिए मान लें कि
+      $\lforall[x][!A(x)] \notin \Gamma$। चूँकि $\Gamma$ पूर्ण है,
+      $\lnot\lforall[x][!A(x)] \in \Gamma$। संतृप्ति से,
+      \iftag{prvEx}{$(\lexists[x][\lnot !A(x)] \lif \lnot !A(c)) \in
+        \Gamma$}{$(\lnot\lforall[x][!A(x)] \lif \lnot !A(c)) \in
+        \Gamma$} किसी !!{constant}~$c$ के लिए। परिकल्पना से, क्योंकि $c$ बंद पद है,
+      $!A(c) \in \Gamma$। किंतु इससे $\Gamma$ असंगत हो जाता। (अभ्यास: वह
+      !!{derivation} दीजिए जो दिखाती है कि
+      \[
+      \lnot \lforall[x][!A(x)],
+      \iftag{prvEx}{\lexists[x][\lnot !A(x)] \lif \lnot
+        !A(c)}{\lnot\lforall[x][!A(x)] \lif \lnot
+        !A(c)}, !A(c)
+      \]
+      असंगत है।)
+
+      विपरीत दिशा के लिए संतृप्ति की आवश्यकता नहीं है: मान लें कि
+      $\lforall[x][!A(x)] \in \Gamma$। तब
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}
+      के पद~(2) से $\Gamma \Proves !A(t)$। \olref[ccs]{prop:ccs} से हमें
+      $!A(t) \in \Gamma$ मिलता है।}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,71 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{seq}{rul}}
+      {\olfileid[hi]{pl}{seq}{rul}}
+
+\olsection{नियम और \usetoken{p}{derivation}}
+
+आगे $\Gamma, \Delta, \Pi, \Lambda$ को !!{sentence}s के परिमित क्रम मानें।
+
+\begin{defn}[अनुक्रम]
+\emph{अनुक्रम} इस रूप का व्यंजक है:
+\[
+\Gamma \Sequent \Delta
+\]
+जहाँ $\Gamma$ और $\Delta$, भाषा $\Lang L$ के !!{sentence}s के परिमित
+(संभवतः रिक्त) क्रम हैं। $\Gamma$ को \emph{पूर्वपक्ष} और $\Delta$ को
+\emph{उत्तरपक्ष} कहते हैं।
+\end{defn}
+
+\begin{explain}
+अनुक्रम के पीछे सहज विचार यह है: यदि पूर्वपक्ष के सभी !!{sentence}s सत्य हों,
+तो उत्तरपक्ष का कम-से-कम एक !!{sentence} सत्य हो। अर्थात् यदि
+$\Gamma = \tuple{!A_1, \dots, !A_m}$ और
+$\Delta = \tuple{!B_1, \dots, !B_n}$ हों, तो $\Gamma \Sequent \Delta$
+तभी और केवल तभी सत्य है जब
+\[
+(!A_1 \land \cdots \land !A_m) \lif (!B_1 \lor \cdots \lor
+!B_n)
+\]
+सत्य हो। दो विशेष दशाएँ हैं: $\Gamma$ रिक्त हो या $\Delta$~रिक्त हो। जब
+$\Gamma$ रिक्त हो, अर्थात् $m = 0$, तब $\quad
+\Sequent \Delta$ तभी और केवल तभी सत्य है जब $!B_1 \lor \dots \lor !B_n$
+सत्य हो। जब $\Delta$ रिक्त हो, अर्थात् $n = 0$, तब $\Gamma \Sequent \quad$
+तभी और केवल तभी सत्य है जब $\lnot(!A_1 \land \dots \land !A_m)$ सत्य हो।
+अनुक्रम को वैध तभी और केवल तभी कहते हैं जब उससे संबद्ध !!{sentence} वैध हो।
+\end{explain}
+
+यदि $\Gamma$, !!{sentence}s का क्रम है, तो $\Gamma, !A$ उस परिणाम को दर्शाता
+है जो $!A$ को~$\Gamma$ के दाएँ सिरे पर जोड़ने से मिलता है (और $!A,
+\Gamma$ उस परिणाम को, जो $!A$ को~$\Gamma$ के बाएँ सिरे पर जोड़ने से मिलता
+है)। यदि $\Delta$ भी !!{sentence}s का क्रम है, तो $\Gamma,
+\Delta$ दोनों क्रमों का संयोजन है।
+
+\begin{defn}[प्रारंभिक अनुक्रम]
+\emph{प्रारंभिक अनुक्रम} ऐसा अनुक्रम है जो
+\iftag{prvFalse,prvTrue}{इनमें से किसी एक रूप का हो:
+  \begin{enumerate}
+    \item $!A \Sequent !A$
+    \tagitem{prvTrue}{$\quad \Sequent \ltrue$}{}
+    \tagitem{prvFalse}{$\lfalse \Sequent \quad$}{}
+  \end{enumerate}}
+{रूप $!A \Sequent !A$ का हो} जहाँ $!A$ भाषा का कोई भी !!{sentence} है।
+\end{defn}
+
+अनुक्रम-कलन की !!^{derivation}s अनुक्रमों के विशेष वृक्ष हैं। उनके शीर्षस्थ
+अनुक्रम प्रारंभिक अनुक्रम होते हैं; और यदि कोई अनुक्रम एक या दो अन्य अनुक्रमों
+के नीचे हो, तो उसे अनुमान-नियम से ठीक प्रकार निकलना चाहिए। $\Log{LK}$ के नियम
+दो मुख्य प्रकारों में बँटते हैं: \emph{तार्किक} और \emph{संरचनात्मक} नियम।
+तार्किक नियम का नाम उस !!{main
+  operator} पर होता है जो निचले अनुक्रम में $!A$ और/या $!B$ वाले !!{sentence}
+का है। हर नियम के दो रूप हैं: एक में वह !!{sentence}, जिसमें !!{operator} है,
+बाईं ओर और दूसरे में वही !!{sentence} दाईं ओर निष्कर्षित होता है।
+
+\end{document}

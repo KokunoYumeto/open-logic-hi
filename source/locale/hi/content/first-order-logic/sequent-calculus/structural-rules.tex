@@ -1,0 +1,79 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: structural-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{seq}{srl}}
+      {\olfileid[hi]{pl}{seq}{srl}}
+
+\olsection{संरचनात्मक नियम}
+
+हमें कुछ ऐसे नियम भी चाहिए जो अनुक्रम के बाएँ और दाएँ पक्ष के !!{sentence}s
+को पुनः व्यवस्थित करने दें। तार्किक नियम माँगते हैं कि पूर्वाधार के जिन
+!!{sentence}s पर नियम लागू होता है, वे बिल्कुल बाएँ या बिल्कुल दाएँ हों। अतः
+!!{sentence}s को उचित स्थान पर ले जाने वाला ``विनिमय'' नियम चाहिए। कभी-कभी दो
+समान !!{sentence}s को एक करना और किसी भी पक्ष में !!a{sentence} जोड़ना भी
+आवश्यक है।
+
+\subsection{दुर्बलीकरण}
+
+\begin{defish}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{संकुचन}
+
+\begin{defish}
+\Axiom$ !A, !A, \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{विनिमय}
+
+\begin{defish}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !B, \Lambda$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \Gamma \fCenter \Delta, !B, !A, \Lambda$
+\DisplayProof
+\end{defish}
+
+दुर्बलीकरण, संकुचन और विनिमय अनुमानों की शृंखला प्रायः दोहरी अनुमान-रेखाओं से
+दिखाई जाती है।
+
+निम्नलिखित ``छेदन'' नियम अनिवार्य तो नहीं है, पर !!{derivation}s का पुनः उपयोग
+और संयोजन बहुत आसान बनाता है।
+\begin{defish}
+\[
+\Axiom$ \Gamma \fCenter \Delta, !A$
+\Axiom$ !A, \Pi \fCenter \Lambda $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+\end{defish}
+
+\end{document}

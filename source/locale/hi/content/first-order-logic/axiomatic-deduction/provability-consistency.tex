@@ -1,0 +1,96 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{axd}{prv}}
+      {\olfileid[hi]{pl}{axd}{prv}}
+
+\olsection{\usetoken{S}{derivability} और संगतता}
+
+अब !!{derivability} संबंध के अनेक गुण स्थापित करेंगे। वे अपने-आप में रोचक
+हैं, पर उनमें से प्रत्येक पूर्णता प्रमेय के प्रमाण में भूमिका निभाएगा।
+
+\begin{prop}\ollabel{prop:provability-contr}
+  यदि $\Gamma \Proves !A$ और $\Gamma \cup \{!A\}$ असंगत है, तो
+  $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+  यदि $\Gamma \cup \{!A\}$ असंगत है, तो $\Gamma \cup \{!A\}
+  \Proves \lfalse$। \olref[ptn]{prop:reflexivity} से $\Gamma \Proves
+  !B$, प्रत्येक $!B \in \Gamma$ के लिए। परिकल्पना से $\Gamma \Proves !A$
+  भी है, इसलिए $\Gamma \Proves !B$, प्रत्येक $!B \in \Gamma \cup
+  \{!A\}$ के लिए। \olref[ptn]{prop:transitivity} से $\Gamma \Proves
+  \lfalse$; अर्थात् $\Gamma$ असंगत है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ तभी और केवल तभी जब $\Gamma \cup \{\lnot !A\}$
+असंगत हो।
+\end{prop}
+
+\begin{proof}
+पहले मान लें $\Gamma \Proves !A$। तब \olref[ptn]{prop:monotonicity} से
+$\Gamma \cup \{\lnot !A\}
+\Proves !A$। \olref[ptn]{prop:reflexivity} से $\Gamma \cup \{\lnot
+!A\} \Proves \lnot !A$। \olref[prp]{ax:lnot2} से हमारे पास
+$\Proves \lnot !A \lif (!A \lif \lfalse)$ भी है। अतः
+\olref[ded]{prop:mp} के दो प्रयोगों से $\Gamma \cup \{\lnot
+!A\} \Proves \lfalse$।
+
+अब मान लें $\Gamma \cup \{\lnot !A\}$ असंगत है, अर्थात् $\Gamma
+\cup \{\lnot !A\} \Proves \lfalse$। निगमन प्रमेय से $\Gamma
+\Proves \lnot !A \lif \lfalse$। \olref[prp]{ax:lfalse2} से
+$\Gamma \Proves (\lnot !A \lif
+\lfalse) \lif \lnot\lnot !A$, इसलिए \olref[ded]{prop:mp} से $\Gamma
+\Proves \lnot\lnot !A$। चूँकि $\Gamma \Proves
+\lnot\lnot !A \lif !A$ (\olref[prp]{ax:dne}), इसलिए
+\olref[ded]{prop:mp} के फिर प्रयोग से $\Gamma
+\Proves !A$।
+\end{proof}
+
+\begin{prob}
+सिद्ध कीजिए कि $\Gamma \Proves \lnot !A$ तभी और केवल तभी जब
+$\Gamma \cup \{!A\}$ असंगत हो।
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  यदि $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$, तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+  \olref[prp]{ax:lnot2} से
+  $\Gamma \Proves \lnot !A \lif (!A \lif \lfalse)$।
+  \olref[ded]{prop:mp} के दो प्रयोगों से $\Gamma \Proves \lfalse$।
+\end{proof}
+
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  यदि $\Gamma \cup \{!A\}$ और $\Gamma \cup \{\lnot !A\}$ दोनों असंगत
+  हैं, तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  \olref[fol][axd][prv]{prop:provability-exhaustive} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  \olref[pl][axd][prv]{prop:provability-exhaustive} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+
+\end{document}

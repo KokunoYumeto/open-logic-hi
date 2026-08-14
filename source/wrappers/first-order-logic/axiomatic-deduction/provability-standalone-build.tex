@@ -1,0 +1,22 @@
+% Target-only standalone reader wrapper for the frozen unimported source file
+% provability.tex, included in the 158-file Hindi working edition.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{3em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रथम-कोटि तर्कशास्त्र: व्युत्पन्नता के गुण}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\RenewDocumentCommand \Hyp {} {मान्यता}
+\renewcommand*{\theolchapter}{axd}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{provability}
+\end{document}

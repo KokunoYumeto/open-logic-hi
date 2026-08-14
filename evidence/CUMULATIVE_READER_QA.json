@@ -1,0 +1,1325 @@
+{
+  "schema": "openlogic-hi-cumulative-reader-qa-v1",
+  "release_id": "HI-OLP-PUB-0003",
+  "reader": {
+    "path": "08_publication/openlogic_hi_9620cc7/HI-OLP-PUB-0003/00_OpenLogic_hi-Deva-IN_WORKING_READER_158-of-722.pdf",
+    "sha256": "D08E9EA3D8398DB2A8F3CD3FC966A9849B41549A9282780EE1725B36B1716781",
+    "pages": 211,
+    "lang": "hi-IN"
+  },
+  "render": {
+    "dpi": 300,
+    "page_pngs": 211,
+    "all_pages_independently_matched_to_front_or_accepted_component": true,
+    "matches": [
+      {
+        "reader_page": 1,
+        "source_pdf": "08_publication/openlogic_hi_9620cc7/HI-OLP-PUB-0003/build/reader-frontmatter.pdf",
+        "source_page": 1,
+        "render_sha256": "D08E455B9F09C2AAE941FBCBA976511FF4C9E6F46EA7358EBA5A55DDA345440C"
+      },
+      {
+        "reader_page": 2,
+        "source_pdf": "08_publication/openlogic_hi_9620cc7/HI-OLP-PUB-0003/build/reader-frontmatter.pdf",
+        "source_page": 2,
+        "render_sha256": "DD7ADEECFF815F69FAA1050F9CED644CA9056D9BC3DCCF2B70F0CD0985B97446"
+      },
+      {
+        "reader_page": 3,
+        "source_pdf": "08_publication/openlogic_hi_9620cc7/HI-OLP-PUB-0003/build/reader-frontmatter.pdf",
+        "source_page": 3,
+        "render_sha256": "B4A21390ED0E9A46685636073B1E1221B6DCF6C3EEEC4F804EF77D04F71E8C86"
+      },
+      {
+        "reader_page": 4,
+        "source_pdf": "08_publication/openlogic_hi_9620cc7/HI-OLP-PUB-0003/build/reader-frontmatter.pdf",
+        "source_page": 4,
+        "render_sha256": "991FAB676D238649624140D80AB64670590003EB52195CD2745A0A3C40C90271"
+      },
+      {
+        "reader_page": 5,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 1,
+        "render_sha256": "35E41D847A0C2502D318C3413C66EA0355F2F5CB03CCBF71073DEAEA89B6FA6A"
+      },
+      {
+        "reader_page": 6,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 2,
+        "render_sha256": "D23BB54CD90F98C65B428322D7D1971A84D0D33ACEF59845E2D494BC228D7170"
+      },
+      {
+        "reader_page": 7,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 3,
+        "render_sha256": "C2C30C9D7D1E3A4E966ACFE4CE08C1A3173D9A6F1C620E8BDCC6DE68B874C0B6"
+      },
+      {
+        "reader_page": 8,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 4,
+        "render_sha256": "5B331111DA396BDCD55BD171A7B2982579877AE03679AC5D70CDB4956B685185"
+      },
+      {
+        "reader_page": 9,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 5,
+        "render_sha256": "E6EF33A071536AE913A1EA5AEFFB6B10DFDBCD962F0C8CBF23FA17FD4870B218"
+      },
+      {
+        "reader_page": 10,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 6,
+        "render_sha256": "B0DFF32F3D00D01C91543202E743212D1F3A71FB71BB2E4DED67FA8E194B2B8E"
+      },
+      {
+        "reader_page": 11,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 7,
+        "render_sha256": "82D1CDF7375E6E8A95D6121DD1740E68B48C9836354AED3E4E145AEF9642E717"
+      },
+      {
+        "reader_page": 12,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 8,
+        "render_sha256": "53E21E3A14EF6F78ED72ABC5048C6E458573655E4F992E5D4D748962A078F2E8"
+      },
+      {
+        "reader_page": 13,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0047/sets.pdf",
+        "source_page": 9,
+        "render_sha256": "9830019C8B2D9F1F4FBBBFF4B28FE97E7063D1E0E46F7628BC27FBC0FEA303CF"
+      },
+      {
+        "reader_page": 14,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 1,
+        "render_sha256": "8F7CD38689A5CF0B2C084B6AC8E2B1442106D394A7AB3BCB36D03E5EB54EF789"
+      },
+      {
+        "reader_page": 15,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 2,
+        "render_sha256": "2EE810C68AF7665C1EBF60A30BCABED0C3EEC6EFCA46C050966AC5F56004D764"
+      },
+      {
+        "reader_page": 16,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 3,
+        "render_sha256": "FF7979033F02D9C50A2C1FF61B3584A0BA4BCE1A1BCECAF1F7CF9A6ECB9BFF57"
+      },
+      {
+        "reader_page": 17,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 4,
+        "render_sha256": "119F78591F23B1DF4FC7FB1DCBCF065BD28300BA945D3B7B4A2D361CF725672D"
+      },
+      {
+        "reader_page": 18,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 5,
+        "render_sha256": "107A573EAEEF2C4BEB57BB8B28FF8D0C1B4FE3ECD0EA3F5A92940D41435EC8FD"
+      },
+      {
+        "reader_page": 19,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 6,
+        "render_sha256": "9F97FC1A5278DF3948C265E38C99127E55FEA011D17A9FBD4E67A28231A5199A"
+      },
+      {
+        "reader_page": 20,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 7,
+        "render_sha256": "3066A4FBC75353FA48C890DDADFF805A2F197EE0FD23FCBFE7E065ACB970086D"
+      },
+      {
+        "reader_page": 21,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 8,
+        "render_sha256": "A1C08E2D556F65DE7DD49E4F1AD80B4D294DCED298BA3DB8ECD999EBED0590BB"
+      },
+      {
+        "reader_page": 22,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 9,
+        "render_sha256": "E8592A8D38839150D7477F8483239FFB7FA33F50E3004D6782B609F6091F83A6"
+      },
+      {
+        "reader_page": 23,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0049/relations-complete.pdf",
+        "source_page": 10,
+        "render_sha256": "D57CA4E4FC208D31B806233C435EF757B405B2546B05FD5D4481319550C7E54B"
+      },
+      {
+        "reader_page": 24,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 1,
+        "render_sha256": "2A8FCE14109D916AF11A23E8AFEEBECF2C21506DF969FF61BC4DA66CD6DA9D58"
+      },
+      {
+        "reader_page": 25,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 2,
+        "render_sha256": "769232626C363B7244100B24758B5C104EE6DBA535022AEAE4186370B728FBAB"
+      },
+      {
+        "reader_page": 26,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 3,
+        "render_sha256": "DC5082041E7395DB83BD0EB685A35071D1D26ECA7F65E0D8BA6140BFADFDF620"
+      },
+      {
+        "reader_page": 27,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 4,
+        "render_sha256": "2BC549A8FE53D376FE0BBC465D1CA667C2C7772D8A4C234757A82E74B62BC06D"
+      },
+      {
+        "reader_page": 28,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 5,
+        "render_sha256": "DC384834D3FEF8280A34924846CE95FACB492314C20273A2B88A6F268E160F9B"
+      },
+      {
+        "reader_page": 29,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 6,
+        "render_sha256": "E5586724D9DB8F8B9686FECF9608A886DAF573AD01B307268B4B304AFBC5D3EE"
+      },
+      {
+        "reader_page": 30,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 7,
+        "render_sha256": "71F3F62127D7DDD79C3508639E229C98AFAB8BBD94438754729B184494740098"
+      },
+      {
+        "reader_page": 31,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 8,
+        "render_sha256": "BA09E2F7F9CCB2CD8A0EE543C9CC2F8F864DC7A948AD82F2C615F620FA0102E4"
+      },
+      {
+        "reader_page": 32,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0050/functions.pdf",
+        "source_page": 9,
+        "render_sha256": "8AE20F6FDF4261E6E11928B54ACD86EAC9E6F4E42E1BA2EBB7D633C970C82F2B"
+      },
+      {
+        "reader_page": 33,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0051/isomorphic-functions.pdf",
+        "source_page": 1,
+        "render_sha256": "043FDFA949E28034FFCA361875FD4C38A24EE5E4E46B2D1C252812D3B086D165"
+      },
+      {
+        "reader_page": 34,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 1,
+        "render_sha256": "EBC4CDE23A490FD8ACDDE0DDC7E7FB98255B165ADD8773813C048568B39DF068"
+      },
+      {
+        "reader_page": 35,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 2,
+        "render_sha256": "DC0085C98ECB19FE77B13B68AD3869F9F04D8F4AD27D5ECF77C5EB36299B0B88"
+      },
+      {
+        "reader_page": 36,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 3,
+        "render_sha256": "2E8BA0DA2D43A184C773E0C7AB891D7E55726DFD064F290B299EE7129D7A8A73"
+      },
+      {
+        "reader_page": 37,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 4,
+        "render_sha256": "D537CFC8DDB8848CE780C1DA47A2D08765B1DD4FE4F46CC68FF87A4AECDBD186"
+      },
+      {
+        "reader_page": 38,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 5,
+        "render_sha256": "3C4F9B223F8CDF1FE3077C9F315C7AB9C7353ABBC2922D135754011348223C4E"
+      },
+      {
+        "reader_page": 39,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 6,
+        "render_sha256": "BC8B82E23A72D1972316CF32D41E82EBB90740F5CD989CF5D359EA21F7FF2C48"
+      },
+      {
+        "reader_page": 40,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 7,
+        "render_sha256": "8ED4F9AFD79D88BE24F251E762270B589771601FA529A102868FDE122C327BB9"
+      },
+      {
+        "reader_page": 41,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 8,
+        "render_sha256": "D161BC7E80D72A7DF0DA36A632BBB1C796D35511F68C6DFF4504DAC3FD02279E"
+      },
+      {
+        "reader_page": 42,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 9,
+        "render_sha256": "FA245ABD483A76B450B5C77354B938080879D39578D6768880440A1A0BFB3DB4"
+      },
+      {
+        "reader_page": 43,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 10,
+        "render_sha256": "3D75A1008DBF515970185FC6D6A8CEE4DAC21E0721ECEA59378C80575EA33A3B"
+      },
+      {
+        "reader_page": 44,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 11,
+        "render_sha256": "FDCBDB55FBF89F0DC58C17E3139F48BF5E229C34E164C45E0834AAD6AF1283BE"
+      },
+      {
+        "reader_page": 45,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 12,
+        "render_sha256": "222FB4AE56A0507A435CBD6A68AE0C83557156B51591A41928047A6D0BF1EA49"
+      },
+      {
+        "reader_page": 46,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 13,
+        "render_sha256": "561D537EFE1561E99A3A41043B7A6D6C63CB460F6C6F21C7A539FBB56C3D656D"
+      },
+      {
+        "reader_page": 47,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 14,
+        "render_sha256": "FC2134243AB09D7C759759C511AA73377728B92150983C56FE5F5FF833FB989A"
+      },
+      {
+        "reader_page": 48,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 15,
+        "render_sha256": "34059F0284F6803D2AA28A17E3922A347D470D85F5AE15952405BD5C4BF3BEBC"
+      },
+      {
+        "reader_page": 49,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 16,
+        "render_sha256": "38DC1310545320D64C79DB64B975BC70DC3E5C2184EB12D6B951A083F1588D65"
+      },
+      {
+        "reader_page": 50,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 17,
+        "render_sha256": "92F450406B38EDDDF32554F6BA514472F842456A283568A445E47155D6839FD6"
+      },
+      {
+        "reader_page": 51,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 18,
+        "render_sha256": "AC6231C7A32A52F0A36B4E82B5F822D350368C1220B2740AEBCDB2C64F1B9510"
+      },
+      {
+        "reader_page": 52,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 19,
+        "render_sha256": "076F1ADDD902D90E4084711689DACC1241FB72186FC85FE4F5A468B4AB4020C9"
+      },
+      {
+        "reader_page": 53,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 20,
+        "render_sha256": "A7E4D30AC5D068995C82E6BD752900ECD3F30B997003DDF4220F3D1BE0AC5A26"
+      },
+      {
+        "reader_page": 54,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0052/size-of-sets-complete.pdf",
+        "source_page": 21,
+        "render_sha256": "399E9148FF71C23A4D690A9A0111F17BE33BC14454F2FBE688C76309CDAA3D62"
+      },
+      {
+        "reader_page": 55,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 1,
+        "render_sha256": "6F712B3862C1BF0412EA3AE40EBACD67B32D98FE5943D05979A36807E8657991"
+      },
+      {
+        "reader_page": 56,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 2,
+        "render_sha256": "822AC8104AE2260347DEC4E84DB8021AA3E71B2F9ACF6DF09611522C0A36EDC1"
+      },
+      {
+        "reader_page": 57,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 3,
+        "render_sha256": "745A30AE5D45E67DC8D70C44F5486A414F65CE9EF2EA2FAAACE3C494A12F0D18"
+      },
+      {
+        "reader_page": 58,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 4,
+        "render_sha256": "FD715EB01A1EC44F3319709B51966F87A9BADE676D678212C86228B6D942F36C"
+      },
+      {
+        "reader_page": 59,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 5,
+        "render_sha256": "958666FB65B23E4096D41CBAE0F5930ABFD3887AC2062F442F564A3855117EF5"
+      },
+      {
+        "reader_page": 60,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 6,
+        "render_sha256": "7818474191807A184D0F587BD35DDA2023DFF3A1A025BE2F0A4DF00EBE073661"
+      },
+      {
+        "reader_page": 61,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 7,
+        "render_sha256": "0847B6F7C700FA8F3A44D23D2D403D6F9468F7A249ADCA3D8F8DBFEECBAED51F"
+      },
+      {
+        "reader_page": 62,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 8,
+        "render_sha256": "50247E93515430E2524B658D7998C633867E03E592FE42049F4BB90182DED123"
+      },
+      {
+        "reader_page": 63,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 9,
+        "render_sha256": "2AA06063A920802715564CB4728CCA60409E5CCA04BF650A7CCCC4AE759E5604"
+      },
+      {
+        "reader_page": 64,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 10,
+        "render_sha256": "01486F38C8A0E782B1A6E08808FF3DF4F5CC64FC000C26DB16ECF95439C27FF4"
+      },
+      {
+        "reader_page": 65,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 11,
+        "render_sha256": "E96E9460509F87EF1421966CE0E16271A372492D7E7CFD0E6AF34FEEA8880474"
+      },
+      {
+        "reader_page": 66,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 12,
+        "render_sha256": "7F6278C3252C480AC39A3BE8F312F2486552EC6FA2E2F67F571D4A6A61B36844"
+      },
+      {
+        "reader_page": 67,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 13,
+        "render_sha256": "77F207284E775704E1DA70BED5CAC55899DBF25F976D34FD10AD8AEF0E42F41C"
+      },
+      {
+        "reader_page": 68,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0040/arithmetization.pdf",
+        "source_page": 14,
+        "render_sha256": "86466F3BFED9BDD7555E504AFD26D22F7901C84EB88720293C06142E8130AB99"
+      },
+      {
+        "reader_page": 69,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 1,
+        "render_sha256": "88C1FC2BE5F17F3977F8CF4A0B77306A5F8978154678E0D7D9CEE3E90583D979"
+      },
+      {
+        "reader_page": 70,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 2,
+        "render_sha256": "029A8601C3B5AC826CE3769CAD90474DE625D257FFFC2163D5B84BAB9BB34676"
+      },
+      {
+        "reader_page": 71,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 3,
+        "render_sha256": "37B200BD27C0E5F0D80CECE78C371BAFA36E8A2947B7E96EABC341BE22BED761"
+      },
+      {
+        "reader_page": 72,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 4,
+        "render_sha256": "B2FDB41D71889E669C883713A9F9B1DA2AA474AECB914BDE44646F8D3C29F0E6"
+      },
+      {
+        "reader_page": 73,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 5,
+        "render_sha256": "3837CCFD3943AF3411E9D6A9279A6455CE1DC88EA3B9BF6B51F8D6AB93DBED6D"
+      },
+      {
+        "reader_page": 74,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 6,
+        "render_sha256": "F9EB630E078D21D6731C7FCA59B56CB6DA9BA67065E68B601E76872622ADCE59"
+      },
+      {
+        "reader_page": 75,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0046/infinite.pdf",
+        "source_page": 7,
+        "render_sha256": "9F685F59805C7FFCE7F01B618EDC6C51FFFF9E138F5FB22E232C254832E95ED1"
+      },
+      {
+        "reader_page": 76,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 1,
+        "render_sha256": "12C3067FDC6E02AF3C567D132201BFAFD7370EBB6E7D52448C278AEA243171DC"
+      },
+      {
+        "reader_page": 77,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 2,
+        "render_sha256": "4AE861B65D6000DA833D8A5AF0093C975877934D5CED70420593D62CB9E66B64"
+      },
+      {
+        "reader_page": 78,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 3,
+        "render_sha256": "7020D8CBA12F67F069AB03A7D05CB0C6B4691FA24C3C31FDC951BAEAB1463382"
+      },
+      {
+        "reader_page": 79,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 4,
+        "render_sha256": "BC80CE7FBB5DA30EDB7DE91C4BCA6876504BAC5E3A90DE012EAF1255272D6907"
+      },
+      {
+        "reader_page": 80,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 5,
+        "render_sha256": "2F9D2798952DA4CCC0C55445E0AA607BBC62BD3871B80C1BCC998943EF3B3C78"
+      },
+      {
+        "reader_page": 81,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 6,
+        "render_sha256": "26024407E155304F84AADBF0424DB92AA2C3A10B77D8E8E435D5BDC352B85F2C"
+      },
+      {
+        "reader_page": 82,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 7,
+        "render_sha256": "D4B7E71D0A9D37D5CC636269CCC1E71243468D491ACBD8051D3640D866FAC1F3"
+      },
+      {
+        "reader_page": 83,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 8,
+        "render_sha256": "7AA6C6643F111A60FC8408EB2EC98EB7E172F93CA514A0EA51F62D8082C5B476"
+      },
+      {
+        "reader_page": 84,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0061/syntax-and-semantics-build.pdf",
+        "source_page": 9,
+        "render_sha256": "8494FBDB90D687C68B509C5E3A0496BB8A83468B397CCD2398FA5BDDDCEA0669"
+      },
+      {
+        "reader_page": 85,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 1,
+        "render_sha256": "DB1B3F550617EE9C33E19FDE58BC9CE8FF559EFBE8380FC94CDA79230D1FB6B0"
+      },
+      {
+        "reader_page": 86,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 2,
+        "render_sha256": "EE2E7FFD67AC47895931E52FEC2EC92484395FEC7493C6252EFA57593BD357CE"
+      },
+      {
+        "reader_page": 87,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 3,
+        "render_sha256": "EEE452C7B2B0B0D537B2B09867BC86E20FB001AA9F74970730FCC0A434350CDD"
+      },
+      {
+        "reader_page": 88,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 4,
+        "render_sha256": "BF9C12CC03E7D427E302FAD80E433EAEB674A85222BDDB597EB93BEEB208943C"
+      },
+      {
+        "reader_page": 89,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 5,
+        "render_sha256": "8CFB0F3C60AC2F751BB1C2A7D7F728B2C4D8D587D635940353B5D604925E2AFC"
+      },
+      {
+        "reader_page": 90,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 6,
+        "render_sha256": "000F3C5D9856F8C77FF10443DF221F735AB8AF31AA3FDE44C1622634CAFC4D6E"
+      },
+      {
+        "reader_page": 91,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 7,
+        "render_sha256": "DC252444BD9E726E7702BA1692E3F8DC79A7CD524839CB9395D308CF62C25D1D"
+      },
+      {
+        "reader_page": 92,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-INT-CHAPTER-0001/introduction-build.pdf",
+        "source_page": 8,
+        "render_sha256": "EE4E658FA2E75F857BC50D0431622415BAB29521E40317F9D2ED1399CEE1BC94"
+      },
+      {
+        "reader_page": 93,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 1,
+        "render_sha256": "6E3A78E6A89D7F127D8DBBEBDF6DB1969301239DD1CB8BE821F5E643E5779C04"
+      },
+      {
+        "reader_page": 94,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 2,
+        "render_sha256": "6755B25A28B161BE63456166B23E4913C1BD523304A6ECDE3CE8A185D3B032E7"
+      },
+      {
+        "reader_page": 95,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 3,
+        "render_sha256": "E22F8A83954347BCA3FA1B0436ADC9868718E9844E0F4EB3FFCF534C45A2BD67"
+      },
+      {
+        "reader_page": 96,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 4,
+        "render_sha256": "FF27FC58E086EF38311ADAAAD5940CB5B296834061D5C100F317F028002CC190"
+      },
+      {
+        "reader_page": 97,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 5,
+        "render_sha256": "481C6BDCAC41A03E77845385580D399E98620C93712778E503B0623F00CE3C75"
+      },
+      {
+        "reader_page": 98,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 6,
+        "render_sha256": "AAC2D69A441B83D11215F37159E6F3BF97CF97D0C4B24D7D529FE4A1D29DAB74"
+      },
+      {
+        "reader_page": 99,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 7,
+        "render_sha256": "12EC8BAE8A53118F64BE7F33F960B2B4D8BABFE74E95A6A89FAB066EA10DAF55"
+      },
+      {
+        "reader_page": 100,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 8,
+        "render_sha256": "81554BF631188CBCA6738AA8C43B16DC5A6C86572AA0E6F11CDE5C6FF8D434BC"
+      },
+      {
+        "reader_page": 101,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 9,
+        "render_sha256": "DBC452A8C11C88FFF701A07E29DAC9A36C6D73FD629CF8EF0EE4514C79E6BAB4"
+      },
+      {
+        "reader_page": 102,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 10,
+        "render_sha256": "53FCBFCC919DBB6B2124BA778AF69F38C994086369E3C1BB618F56842DD16B3A"
+      },
+      {
+        "reader_page": 103,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 11,
+        "render_sha256": "C15A51215B449E7E73638808755545FAB10D80DFD8E71136519A438A20C908F4"
+      },
+      {
+        "reader_page": 104,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 12,
+        "render_sha256": "0C7D3C73B8EB32283C96E96BEB2B60503D25A2D12837663B549BF69429AFA976"
+      },
+      {
+        "reader_page": 105,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 13,
+        "render_sha256": "ADF78C522EE3578ED0806FA8B199E06F89C221738A728AE2290C2E4A0D52100A"
+      },
+      {
+        "reader_page": 106,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-SYN-CHAPTER-0001/syntax-build.pdf",
+        "source_page": 14,
+        "render_sha256": "91D902C7167AC51ABD88D48491BBBCAB51AB10127C6B769938E8789F8BCE53AD"
+      },
+      {
+        "reader_page": 107,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0067/proof-systems-build.pdf",
+        "source_page": 1,
+        "render_sha256": "C40DA12D22157D3BA53185FB2D293F9074FF145184326C4887070305BDE36ED5"
+      },
+      {
+        "reader_page": 108,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0067/proof-systems-build.pdf",
+        "source_page": 2,
+        "render_sha256": "2BBDC04A34DF5F8C603F839D36B4ADE64DAAB2655B02A81FE37077D866AC142E"
+      },
+      {
+        "reader_page": 109,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0067/proof-systems-build.pdf",
+        "source_page": 3,
+        "render_sha256": "36B88DEBC322FD3D936CD60469D391A86CAB6833D8A346AB9C8E21744B45B7F7"
+      },
+      {
+        "reader_page": 110,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0067/proof-systems-build.pdf",
+        "source_page": 4,
+        "render_sha256": "247BE889F3493220073DADA102650413621BFC1CA16117A6933EFFE5280E4F81"
+      },
+      {
+        "reader_page": 111,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0067/proof-systems-build.pdf",
+        "source_page": 5,
+        "render_sha256": "5A5C45D8DA7B6B2208FA1A305E852FE8867216A526BD1F3C7397F81A54E14CFB"
+      },
+      {
+        "reader_page": 112,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 1,
+        "render_sha256": "8C8C9D4748E4F77DAB6FFB4EAFC7F3285B1430CDCD0AC330D104B783F68C105C"
+      },
+      {
+        "reader_page": 113,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 2,
+        "render_sha256": "0913890C0E98A180E2B96B36DD098A05644D92784F5CC737AEC5DF806EB3F0C5"
+      },
+      {
+        "reader_page": 114,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 3,
+        "render_sha256": "333D004C42AD0DA261CAA7C4D6D68A3BFB08634E02A2533B882E3949FA27BB9B"
+      },
+      {
+        "reader_page": 115,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 4,
+        "render_sha256": "811BA6ABB4E210046C10A99EE1F31FAA6EA028EFB6B04A182C3BF1A7905D1620"
+      },
+      {
+        "reader_page": 116,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 5,
+        "render_sha256": "1D0EFC6DF923485920AF7915BFC6767E47AC01A10CB4C7B6643585AEAAB591D1"
+      },
+      {
+        "reader_page": 117,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 6,
+        "render_sha256": "1B474FF280BEBF3D7EC59B8CD0BA1F8A7F7E71619C109C8F10A21915209368DE"
+      },
+      {
+        "reader_page": 118,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 7,
+        "render_sha256": "A961937C7541801EEED4A021FF2AE3DD05C7DD5D2656C021032745DEB3874CDB"
+      },
+      {
+        "reader_page": 119,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 8,
+        "render_sha256": "C2D696E640654FC0B86921F87E092C45D4309E70210F5B8D60331D724A29FAA1"
+      },
+      {
+        "reader_page": 120,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 9,
+        "render_sha256": "F6E307BE37982A9B0C3E572CA0CD82CAF1DB4727EF34B19E0A096DD8D0CF771B"
+      },
+      {
+        "reader_page": 121,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 10,
+        "render_sha256": "055BA6CAC59590E317B121F3DBD9CC9ED2F3C73EB2A1F5C790D050A41E9C4063"
+      },
+      {
+        "reader_page": 122,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 11,
+        "render_sha256": "77A15A8F349ED29FBC28C8F571EB764E82A51CF24425156535638941CD56B1E8"
+      },
+      {
+        "reader_page": 123,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 12,
+        "render_sha256": "B1A2166713E9B3E080C7C3D5F95BE593825A0F3EF037F0BDD34AE31F4D24430D"
+      },
+      {
+        "reader_page": 124,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 13,
+        "render_sha256": "E94E7CF92D371BE6F49390052F4DACCA624B4D869AE9419D8A1DC3302AE5E068"
+      },
+      {
+        "reader_page": 125,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 14,
+        "render_sha256": "DD7DC670A29AB9DAD35781974CB27DA037DC18EE750FC2F1CF4602141B7011C0"
+      },
+      {
+        "reader_page": 126,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 15,
+        "render_sha256": "1AB658A1AB5A79AEA67E7DABF602EFAA2D57E27B6047C820CE3E703CFEAF3B96"
+      },
+      {
+        "reader_page": 127,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 16,
+        "render_sha256": "935C06149CC5052D2C6762E952CC08DAEA7C41317B77E096FE7306A6D75148F7"
+      },
+      {
+        "reader_page": 128,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 17,
+        "render_sha256": "DF54085C4EA96264FD2DC8D1A5FCC39A3F85A161C6AC9DEB249ADA6D030327CA"
+      },
+      {
+        "reader_page": 129,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 18,
+        "render_sha256": "0F70FAAEA4D6B0DD621342CEAF30D13A159C60024C8A60E1FAA46CD0BB1A8F81"
+      },
+      {
+        "reader_page": 130,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 19,
+        "render_sha256": "AC3C8DEB36C55545E9A99C4E877FB1E34B0D2F16B4CD34724C4AEF90E10D86C5"
+      },
+      {
+        "reader_page": 131,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 20,
+        "render_sha256": "066A3C69E959C959ABBB1E98EC2C3722A7DF3CA4D3EBE985D7104E188E74506A"
+      },
+      {
+        "reader_page": 132,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build.pdf",
+        "source_page": 21,
+        "render_sha256": "26FF5033E4F80143D75225599C4B9D76906455A027141060EB6B22B23F2D363E"
+      },
+      {
+        "reader_page": 133,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 1,
+        "render_sha256": "A1B43F8FB6092BCA04AE51DA98215C3C998C50FE5AE1035DCB597E734B07B546"
+      },
+      {
+        "reader_page": 134,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 2,
+        "render_sha256": "C6A3B3077326576A4B1A1215AE6D0AC22422F35345FAA474C15557E20B5FA5A9"
+      },
+      {
+        "reader_page": 135,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 3,
+        "render_sha256": "494DF1C9503272E44F679FBB9AE625EFE0034FCBB7F4B896E62A2F263649EB9D"
+      },
+      {
+        "reader_page": 136,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 4,
+        "render_sha256": "92918877360BD16CB5869B0719C3CB5A401ED924E96ABDD1576F21DEEE11E3A8"
+      },
+      {
+        "reader_page": 137,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 5,
+        "render_sha256": "758B4B59888FA1D64166B2DAF83D5EA162222C58923DA9C90EF9A07590552414"
+      },
+      {
+        "reader_page": 138,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 6,
+        "render_sha256": "CE69B4C435ECBFD0890E77388ED54643BB280DDFDB136116E780FC5FD105F9A5"
+      },
+      {
+        "reader_page": 139,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 7,
+        "render_sha256": "01307C6A00454B6C572B58897EB39E3DCBD9F5EB0EEA522848507FBB0EFD78DF"
+      },
+      {
+        "reader_page": 140,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 8,
+        "render_sha256": "7CD94867ED2E2618BA1CCC0538B58C96B5652B3E47D678C303B3AF107F6DDED0"
+      },
+      {
+        "reader_page": 141,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 9,
+        "render_sha256": "6872EA1B5E68923500226229BA6CDB064E9F39007D7173BE3FF8B3E77B080D7B"
+      },
+      {
+        "reader_page": 142,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 10,
+        "render_sha256": "92CCC2E6B4D969570C3B57A95955DD9A5F7834DC955854C6F8AA9AC69822C50A"
+      },
+      {
+        "reader_page": 143,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 11,
+        "render_sha256": "3873A27868BBAD4AF94D2CA4291F390EAB6EDB26CB1849896E450A658F5428F7"
+      },
+      {
+        "reader_page": 144,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 12,
+        "render_sha256": "5677E7E8E423019ABA6369315A2C8058BC83AC8EB0C0AAD13EAE935597026B9F"
+      },
+      {
+        "reader_page": 145,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 13,
+        "render_sha256": "B1CC5FFCB682188854F668AA62C31318602153056337FC92FB76D53A99FB42FD"
+      },
+      {
+        "reader_page": 146,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 14,
+        "render_sha256": "CF41E33030767BC1AAEBEF878A3126982C4173DD9D5F7BE8EE81B7EFE93EF5F4"
+      },
+      {
+        "reader_page": 147,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 15,
+        "render_sha256": "ACB4C8F6B181B9656F7F6FCAD695BAC5D498C6EEB8669D7EB19E803B18F62019"
+      },
+      {
+        "reader_page": 148,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 16,
+        "render_sha256": "44E21077D693F6222AAA22D9996E9E18C5062896A6249A132A1A9CDEAADAB125"
+      },
+      {
+        "reader_page": 149,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 17,
+        "render_sha256": "5C159F1747049A122939426F2144794BD5B5E694C5905052F68536854AAF4825"
+      },
+      {
+        "reader_page": 150,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 18,
+        "render_sha256": "911E8A406D64995FFDF2277325112E4C24332A356DC1F375B2B3B86554634AFF"
+      },
+      {
+        "reader_page": 151,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 19,
+        "render_sha256": "821432D24A957298BE4E2F82F7140B0E52E12CC836D3777AFD19C3A926E4AB58"
+      },
+      {
+        "reader_page": 152,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 20,
+        "render_sha256": "06DE63477CB0F2756459BB43EC40D8ACBDAAD67D1D7B4E0D05DCD1AF24A63AE0"
+      },
+      {
+        "reader_page": 153,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 21,
+        "render_sha256": "1331888227185BDE577595441F8540DE48820B05366D350F5127276A3E9EB284"
+      },
+      {
+        "reader_page": 154,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 22,
+        "render_sha256": "9906F857E8CDAC072B7C24DE28DD7255E4159EC52737CCA3BD277B1EDD44B10A"
+      },
+      {
+        "reader_page": 155,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build.pdf",
+        "source_page": 23,
+        "render_sha256": "F933AB3250320F7EEB047C40C2445896B1B39C12B4BF2232511358B25C064155"
+      },
+      {
+        "reader_page": 156,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 1,
+        "render_sha256": "32ED9D8D4436DEFE9578A2BF5F34BB94C7EE4041CDB9792002BEB957D2B5326B"
+      },
+      {
+        "reader_page": 157,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 2,
+        "render_sha256": "BA2C6729C799462556DB18C140D10967B62288550F129C5D10075436B8B1ABE2"
+      },
+      {
+        "reader_page": 158,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 3,
+        "render_sha256": "E3B7726749ADAE1411F7ECA26F3CB1A8E8A38811DCD6F615660ED594776156DC"
+      },
+      {
+        "reader_page": 159,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 4,
+        "render_sha256": "D6E7774CF89102C2A2C0AD03D980C23DD293AAF530A266F35ED93D3EB70131AC"
+      },
+      {
+        "reader_page": 160,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 5,
+        "render_sha256": "5D3BC5F666863BC81821E3EE3B2FA9E06604056785E1CC4AC71E00EA97E61A4A"
+      },
+      {
+        "reader_page": 161,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 6,
+        "render_sha256": "1915E3264B849893942F0AB64BC859A6CFB0BE2F7DE98EDB98521A48F8A04F57"
+      },
+      {
+        "reader_page": 162,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 7,
+        "render_sha256": "6B5978C13652E80DF11346124EF16119FE68B6D66551F74EB0633C1D0DE09D4B"
+      },
+      {
+        "reader_page": 163,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 8,
+        "render_sha256": "34E6E7996F93910CF25DFBD82E59E26CABF98C3ADABC22B7B485EF6F48C05AAC"
+      },
+      {
+        "reader_page": 164,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 9,
+        "render_sha256": "B34E9A0C97759C35C0937D092B104120E72FB03D7786E2B95FA3C24E5CD3646B"
+      },
+      {
+        "reader_page": 165,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 10,
+        "render_sha256": "4BC5FDAB558D9E187E7BF045C203BE3F8315887ACA613DFC85C28F977CA850DC"
+      },
+      {
+        "reader_page": 166,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 11,
+        "render_sha256": "699E907AF8CDFAD82E194166F1F8BDC49BBD958DAD50CB160C34A43263CF58EF"
+      },
+      {
+        "reader_page": 167,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 12,
+        "render_sha256": "9D911CE1BE2F42776251FAAF402D7008D18239EBECC0C524C315F2E7300F2702"
+      },
+      {
+        "reader_page": 168,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 13,
+        "render_sha256": "F914AAE914A4E2B7BC5968A49EF8DF0B32CC908B0ACEAF6EB571661D4080AF8C"
+      },
+      {
+        "reader_page": 169,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 14,
+        "render_sha256": "2798CC33C6F0C7AD0653A3C6A2E0B40C6689F91BE5AFD405082C5DCF65D304CC"
+      },
+      {
+        "reader_page": 170,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 15,
+        "render_sha256": "76A70D6A5A1FE595A3112300403414173D1951863BF966FC09ACAD4817A9C800"
+      },
+      {
+        "reader_page": 171,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 16,
+        "render_sha256": "87A769C8BAA73687ECDAA63DF306E3935D9F51C69C0F17C169D40CA98380BAF1"
+      },
+      {
+        "reader_page": 172,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 17,
+        "render_sha256": "9716714A0FACCF561A2AD6B95DD58CF9EDFB0FE5CA2C87CFF86CECCD6D9AB7B9"
+      },
+      {
+        "reader_page": 173,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 18,
+        "render_sha256": "3A04A25E4F1ED3E6E25D85F7CAEEFA47049D5F290D08872547D37518A4531656"
+      },
+      {
+        "reader_page": 174,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 19,
+        "render_sha256": "0C6144E6EE925D8ED455D781B574AE7BC056BCD056016817F17DA1BE62E76500"
+      },
+      {
+        "reader_page": 175,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 20,
+        "render_sha256": "9083E50676BCBA9BEAD41F61D42AA836DB5730322AD31E94BFD13659596A4A83"
+      },
+      {
+        "reader_page": 176,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 21,
+        "render_sha256": "A4331C5855EA831E4660F1D07E2D6EE9AF25A4CC871BED7904772A6326FB832B"
+      },
+      {
+        "reader_page": 177,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 22,
+        "render_sha256": "A03D7D046CA302B2995689965D43E4FC57D3859F3E84A21DEE8C06A859851BB8"
+      },
+      {
+        "reader_page": 178,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build.pdf",
+        "source_page": 23,
+        "render_sha256": "428583C7C05AA971940F7C267A625F636B746BF2C1BF8043E2363F9B4161BE25"
+      },
+      {
+        "reader_page": 179,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 1,
+        "render_sha256": "EF0075FF31D0B81648F70851C04B7EA38E037D822F6ABD03341F06563D203F3B"
+      },
+      {
+        "reader_page": 180,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 2,
+        "render_sha256": "7A854C91EA7C02E809FBB667F81CC93FC832269B2EADD28F313F63C2E91C1611"
+      },
+      {
+        "reader_page": 181,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 3,
+        "render_sha256": "7838FCBCDF4579552E0D2005407D6FCAECD9BD97C3E3C3CB5CE62D6CBEBA90CD"
+      },
+      {
+        "reader_page": 182,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 4,
+        "render_sha256": "D31F19BEBFCE560F8AD58D57C8AC389E7F565B6846D5A4085CC428FB631BD64E"
+      },
+      {
+        "reader_page": 183,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 5,
+        "render_sha256": "B59E6EBA1E1AEAAD91F0E28F3579FC875E42F4870EE023C3A5A0A9B746056E65"
+      },
+      {
+        "reader_page": 184,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 6,
+        "render_sha256": "AF302C0035E83A807E4D5A2216B0698FD9A8461F94D89C300967B25618530C00"
+      },
+      {
+        "reader_page": 185,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 7,
+        "render_sha256": "DD74E56BA39C6FB3ADF8C707A2D8C011720BB404E45845E6572FA7FC0797F4EA"
+      },
+      {
+        "reader_page": 186,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 8,
+        "render_sha256": "259DCC591691AC6F34B4371CA4207889E58526DA9C27CF32F142DE68DFFE556A"
+      },
+      {
+        "reader_page": 187,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 9,
+        "render_sha256": "CE67A9A5980D88B0C28644C2405894AE20394739BA909EB080D3A24EF5134E4C"
+      },
+      {
+        "reader_page": 188,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 10,
+        "render_sha256": "7C54AE91CF9081E1B9A9E279ECF1AF2E1AC2554F5FA9B46A41A76A35CEC99FEC"
+      },
+      {
+        "reader_page": 189,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 11,
+        "render_sha256": "4CEE132F0B02891ACE6A3AEDFCCD694270028510BAC23AF6E222C98AF133BEE6"
+      },
+      {
+        "reader_page": 190,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build.pdf",
+        "source_page": 12,
+        "render_sha256": "F50D59636C3ECD8E3914F5BC24A45DE2E9E5F2E5C0361EC581305035823120EA"
+      },
+      {
+        "reader_page": 191,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-PUB-0003/extra-provability/provability-standalone-build.pdf",
+        "source_page": 1,
+        "render_sha256": "3485FDD3E792554E07FF7DCF57A372F5631B8CE0CC14158EBD4C62115259A170"
+      },
+      {
+        "reader_page": 192,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-PUB-0003/extra-provability/provability-standalone-build.pdf",
+        "source_page": 2,
+        "render_sha256": "17846D1ED115EC965CF279E8C88AF78861A603B38BDC7854BA86AAC26B191027"
+      },
+      {
+        "reader_page": 193,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-PUB-0003/extra-provability/provability-standalone-build.pdf",
+        "source_page": 3,
+        "render_sha256": "5CF6252CBBBAAAA968AF78804571981201B4B2EF928FC120224E07DCDA957D78"
+      },
+      {
+        "reader_page": 194,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-PUB-0003/extra-provability/provability-standalone-build.pdf",
+        "source_page": 4,
+        "render_sha256": "B9F6FC6B25381173838D2442AB92BBAD6803586608F9C68DF5C83F674679E0AC"
+      },
+      {
+        "reader_page": 195,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 1,
+        "render_sha256": "B0BE4D65C85DA62EE73F066990DC2E354450D09A750ABA9E50AD577001247D74"
+      },
+      {
+        "reader_page": 196,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 2,
+        "render_sha256": "6950C6819BE8709482EDE69A0CAB7B17154B8DAC45CE055FED2AD322BB894000"
+      },
+      {
+        "reader_page": 197,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 3,
+        "render_sha256": "CE053045265B66103967DE4E1F5C3F255A32DC181BEB42A522E3DC3754881469"
+      },
+      {
+        "reader_page": 198,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 4,
+        "render_sha256": "F30CFC00DB54083CB78FD1D9C504394302D40509E21A0F6BF28D0477EF10FF79"
+      },
+      {
+        "reader_page": 199,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 5,
+        "render_sha256": "EA1EF910D14A5AD432A86C9FFECCADED13DA88ED3B2A614FC1065C8FF7CE67BE"
+      },
+      {
+        "reader_page": 200,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 6,
+        "render_sha256": "B940C6B4E450ACE12449D39F548696E3AF04DB31502FCEEAAC1DFC4EA8D2718B"
+      },
+      {
+        "reader_page": 201,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 7,
+        "render_sha256": "762DA3FFA5D4B765EF5DAB3CA24B328A7C8A9356EA680559309A9BCB0D2DAAD3"
+      },
+      {
+        "reader_page": 202,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 8,
+        "render_sha256": "2CA2A8862C5373583F519CF9F7F85DEDEF555BF27D90A475AF13250474F8B742"
+      },
+      {
+        "reader_page": 203,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 9,
+        "render_sha256": "CEAC4A0B1EAF77CE068B7AA80C485A57BC18001585492DE185F38120CD73D48C"
+      },
+      {
+        "reader_page": 204,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 10,
+        "render_sha256": "6069A8E8C14EF5844D21F89AF6BBACEC2D4FF5C79619F4257504776A62581BA2"
+      },
+      {
+        "reader_page": 205,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 11,
+        "render_sha256": "265C0307A431B2A632DAFDE53C4C38571BB62EEE2A191282964BC4CA07BE1EB0"
+      },
+      {
+        "reader_page": 206,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 12,
+        "render_sha256": "8CCFF6A434B9E4667C4BE9DE97BBFCC8549EC6A6492D7B4F6D11A2C33021D209"
+      },
+      {
+        "reader_page": 207,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 13,
+        "render_sha256": "3701B12F64D4E41CE94300882DD960CB69444BCB9CCE1B44D2FFA0327B3E0859"
+      },
+      {
+        "reader_page": 208,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 14,
+        "render_sha256": "44ED96ACBD44B512AE391F25C351F06811A048BC2B055DB077CF4995793CC22C"
+      },
+      {
+        "reader_page": 209,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-COM-CHAPTER-0001/completeness-build.pdf",
+        "source_page": 15,
+        "render_sha256": "085E3989A05D39938AA3C4325302F07E3E9E3618CCF168D7F990AA8B364C616F"
+      },
+      {
+        "reader_page": 210,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-PUB-0003/extra-maximally-consistent-sets/maximally-consistent-sets-standalone-build.pdf",
+        "source_page": 1,
+        "render_sha256": "A539CC769EDBF677A1F44C77D81354ED1CFE015CC755B0560D919D3E1BFB1580"
+      },
+      {
+        "reader_page": 211,
+        "source_pdf": "06_build/openlogic_hi_9620cc7/HI-OLP-PUB-0003/extra-maximally-consistent-sets/maximally-consistent-sets-standalone-build.pdf",
+        "source_page": 2,
+        "render_sha256": "E16AADBE6B32555EC9D9F8FE6D123539E88237BFE1B8E1FFD02F529187BFA5E8"
+      }
+    ]
+  },
+  "annotations": {
+    "pages_compared": 211,
+    "named_destinations": 1116,
+    "unresolved_internal_destinations": 0
+  },
+  "search_and_copy": {
+    "pdftotext_exit_code": 0,
+    "utf8_bytes": 1020834,
+    "required_strings_present": [
+      "मुक्त तर्क परियोजना",
+      "158 / 722",
+      "समुच्चय",
+      "पूर्णता प्रमेय"
+    ],
+    "stale_11_of_722_absent": true,
+    "replacement_character_absent": true
+  },
+  "manual_visual_review": {
+    "front_matter_pages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "new_supplement_pages": [
+      191,
+      192,
+      193,
+      194,
+      210,
+      211
+    ],
+    "status": "PASS_2026-08-15",
+    "reviewed_at_300_dpi": true,
+    "review_findings": [
+      "Front matter is legible, unclipped, correctly shaped, and clearly labels this as a 158-of-722 working reader.",
+      "Provability supplement pages 191-194 are legible with intact formulas, Devanagari shaping, reference colors, footers, and page boundaries.",
+      "Maximally-consistent-sets supplement pages 210-211 are legible with intact formulas and resolved cross-references.",
+      "The initial English cleveref conjunction in pages 210-211 was rejected, repaired to Hindi 'और', rebuilt, rerendered, and reinspected before acceptance."
+    ],
+    "carry_forward_rule": "All other pages raster-match accepted component PDFs with prior every-page visual QA receipts."
+  }
+}

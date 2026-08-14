@@ -1,0 +1,327 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{ntd}{sou}}
+      {\olfileid[hi]{pl}{ntd}{sou}}
+      
+\olsection{सुदृढ़ता}
+
+\begin{explain}
+स्वाभाविक निगमन जैसा !!^a{derivation} तंत्र \emph{सुदृढ़} है यदि वह ऐसी बातें
+!!{derive} नहीं कर सकता जो वास्तव में तार्किकतः निष्पन्न नहीं होतीं। इस प्रकार
+सुदृढ़ता, !!{derivation} तंत्रों के लिए एक प्रकार का सुनिश्चित सुरक्षा-गुण है।
+जिस प्रमाण-सैद्धांतिक गुण पर विचार हो, उसके अनुसार हम उदाहरणार्थ यह जानना
+चाहेंगे कि
+\begin{enumerate}
+\item हर !!{derivable} !!{sentence} \iftag{FOL}{वैध}{सर्वसत्य} है;
+\item यदि !!a{sentence} कुछ अन्य वाक्यों से !!{derivable} है, तो वह उनका
+  तार्किक परिणाम भी है;
+\item यदि !!{sentence}s का कोई समुच्चय असंगत है, तो वह असंतुष्टनीय है।
+\end{enumerate}
+ये !!a{derivation} तंत्र के महत्त्वपूर्ण गुण हैं। यदि इनमें से कोई गुण न हो,
+तो !!{derivation} तंत्र दोषपूर्ण होगा---वह आवश्यकता से अधिक बातें !!{derive}
+करेगा। इसलिए !!a{derivation} तंत्र की सुदृढ़ता स्थापित करना अत्यंत
+महत्त्वपूर्ण है।
+\end{explain}
+
+\begin{thm}[सुदृढ़ता]
+\ollabel{thm:soundness}
+यदि $!A$ !!{derivable} है और इस व्युत्पत्ति की !!{undischarged} मान्यताएँ
+$\Gamma$ हैं, तो $\Gamma \Entails !A$।
+\end{thm}
+
+\begin{proof}
+$\delta$ को $!A$ की !!a{derivation} मानें। हम~$\delta$ में अनुमानों की
+संख्या पर आगमन करते हैं।
+
+आगमन-आधार के लिए, अनुमानों की संख्या~$0$ होने पर कथन सिद्ध करते हैं। इस
+स्थिति में $\delta$ में केवल एक !!{sentence}~$!A$, अर्थात् एक मान्यता, होती
+है। वह मान्यता !!{undischarged} है, क्योंकि मान्यताएँ केवल अनुमानों द्वारा ही
+!!{discharged} हो सकती हैं और यहाँ कोई अनुमान नहीं है। अतः ऐसी प्रत्येक
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+जो प्रमाण की सभी !!{undischarged} मान्यताओं को संतुष्ट करती है,~$!A$ को भी
+संतुष्ट करती है।
+
+अब आगमन-चरण लें। मानें कि $\delta$ में~$n$ अनुमान हैं। सबसे निचले अनुमान के
+पूर्वाधार !!{derive} किए गए हैं; इसके लिए उप-!!{derivation}s का उपयोग हुआ है,
+और इनमें से प्रत्येक में~$n$ से कम अनुमान हैं। हम आगमन-परिकल्पना मानते हैं:
+सबसे निचले अनुमान के पूर्वाधार !!{undischarged} मान्यताओं से तार्किकतः
+निष्पन्न होते हैं; ये उन पूर्वाधारों पर समाप्त होने वाली उप-!!{derivation}s की
+मान्यताएँ हैं। हमें दिखाना है कि
+निष्कर्ष~$!A$ पूरे प्रमाण की !!{undischarged} मान्यताओं से तार्किकतः निष्पन्न
+होता है।
+
+हम सबसे निचले अनुमान के प्रकार के अनुसार प्रकरणों में भेद करते हैं। पहले केवल
+एक पूर्वाधार वाले संभावित अनुमानों पर विचार करते हैं।
+
+\begin{enumerate}
+\item मानें कि अंतिम अनुमान \Intro{\lnot} है। !!{derivation} का रूप है
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \DischargeRule{\Intro{\lnot}}{n}
+    \UnaryInfC{$\lnot !A$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $\lfalse$, !!{undischarged} मान्यताओं
+  $\Gamma \cup \{!A\}$ से तार्किकतः निष्पन्न होता है; ये~$\delta_1$ की
+  मान्यताएँ हैं। किसी
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$} पर
+  विचार करें। हमें दिखाना है कि यदि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$। विरोधाभासार्थ मानें कि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, पर
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$, अर्थात्
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$। तब
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma \cup \{!A\}}$ होगा। यह हमारी
+  आगमन-परिकल्पना के विरुद्ध है। अतः
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$.
+
+\item अंतिम अनुमान \Elim{\land} है। इसके दो रूप हैं: $!A$ या $!B$ को
+  पूर्वाधार $!A \land !B$ से निष्कर्षित किया जा सकता है। पहले प्रकरण पर विचार करें।
+  !!{derivation}~$\delta$ इस प्रकार है:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \land !B$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $!A \land !B$, !!{undischarged} मान्यताओं~$\Gamma$ से
+  तार्किकतः निष्पन्न होता है; ये~$\delta_1$ की मान्यताएँ हैं। किसी
+  !!a{structure}~\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} पर विचार करें। हमें
+  दिखाना है कि यदि $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$। मानें कि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$। हमारी आगमन-परिकल्पना
+  ($\Gamma \Entails !A \land !B$) से हम जानते हैं कि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$। परिभाषा से,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ तभी और केवल तभी जब
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ और
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$। (जिस प्रकरण में $!B$ को
+  $!A \land !B$ से निष्कर्षित किया जाता है, वह इसी प्रकार सँभलता है।)
+  
+\item अंतिम अनुमान \Intro{\lor} है। इसके दो रूप हैं: $!A
+  \lor !B$ को
+  पूर्वाधार~$!A$ या पूर्वाधार~$!B$ से निष्कर्षित किया जा सकता है। पहले प्रकरण
+  पर विचार करें। !!{derivation} का रूप है
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \RightLabel{\Intro{\lor}}
+    \UnaryInfC{$!A \lor !B$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $!A$, !!{undischarged} मान्यताओं~$\Gamma$ से तार्किकतः
+  निष्पन्न होता है; ये~$\delta_1$ की मान्यताएँ हैं। किसी
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$} पर
+  विचार करें। हमें दिखाना है कि यदि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$। मानें कि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$; तब
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, क्योंकि $\Gamma \Entails !A$
+  (आगमन-परिकल्पना)। अतः
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$ भी होना चाहिए। (जिस प्रकरण
+  में $!A
+  \lor !B$ को~$!B$ से निष्कर्षित किया जाता है, वह इसी प्रकार सँभलता है।)
+  
+\item अंतिम अनुमान \Intro{\lif} है। $!A \lif !B$ को मान्यता~$!A$ और
+  निष्कर्ष~$!B$ वाले उपप्रमाण से निष्कर्षित किया जाता है, अर्थात्
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!B$}
+    \DischargeRule{\Intro{\lif}}{n}
+    \UnaryInfC{$!A \lif !B$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $!B$,~$\delta_1$ की !!{undischarged} मान्यताओं से
+  तार्किकतः निष्पन्न होता है, अर्थात् $\Gamma \cup \{!A\} \Entails
+  !B$। किसी
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$} पर
+  विचार करें।~$\delta$ की !!{undischarged} मान्यताएँ केवल $\Gamma$ हैं,
+  क्योंकि अंतिम अनुमान पर $!A$ मुक्त कर दिया गया है। अतः हमें दिखाना है कि
+  $\Gamma \Entails !A \lif !B$। विरोधाभासार्थ मानें कि किसी
+  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$} के लिए
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, पर
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$। तब
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ और
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$। किन्तु परिकल्पना से $!B$,
+  $\Gamma \cup \{!A\}$ का तार्किक परिणाम है, अर्थात्
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, जो विरोधाभास है। अतः
+  $\Gamma \Entails !A \lif !B$.
+
+\item अंतिम अनुमान \FalseInt है। यहाँ $\delta$ का अंत इस प्रकार होता है:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \RightLabel{\FalseInt}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $\Gamma \Entails \lfalse$। हमें दिखाना है कि
+  $\Gamma \Entails !A$। मानें कि ऐसा नहीं है; तब किसी
+  ~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ के लिए
+    $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ और
+    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$। पर हमारे पास सदैव
+    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ है, इसलिए इसका अर्थ
+    $\Gamma \Entails/ \lfalse$ होगा, जो आगमन-परिकल्पना के विरुद्ध है।
+
+\item अंतिम अनुमान \FalseCl है: अभ्यास।
+
+\iftag{FOL}{
+\item अंतिम अनुमान \Intro{\lforall} है। तब $\delta$ का रूप है
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+  \end{prooftree}
+  आगमन-परिकल्पना से पूर्वाधार $!A(a)$, !!{undischarged} मान्यताओं $\Gamma$
+  का तार्किक परिणाम है। ऐसी किसी संरचना~$\Struct{M}$ पर विचार करें कि
+  $\Sat{M}{\Gamma}$। हमें दिखाना है कि
+  $\Sat{M}{\lforall[x][!A(x)]}$। चूँकि $\lforall[x][!A(x)]$ !!a{sentence}
+  है, इसका अर्थ है कि हमें प्रत्येक चर-नियतन~$s$ के लिए
+  $\Sat{M}{!A(x)}[s]$ दिखाना है
+  (\olref[syn][ass]{prop:sat-quant})। चूँकि $\Gamma$ में केवल वाक्य हैं,
+  $\Sat{M}{!B}[s]$ हर $!B \in \Gamma$ के लिए,
+  \olref[syn][sat]{defn:satisfaction} के अनुसार।~$\Struct{M'}$ को
+  $\Struct{M}$ जैसा ही मानें, सिवाय इसके
+  कि $\Assign{a}{M'} = s(x)$। चूँकि $a$,~$\Gamma$ में नहीं आता,
+  \olref[syn][ext]{cor:extensionality-sent} से $\Sat{M'}{\Gamma}$। चूँकि
+  $\Gamma \Entails
+  !A(a)$, इसलिए $\Sat{M'}{!A(a)}$। चूँकि $!A(a)$
+  !!a{sentence} है, \olref[syn][ass]{prop:sentence-sat-true} से
+  $\Sat{M'}{!A(a)}[s]$। \olref[syn][ext]{prop:ext-formulas} से
+  $\Sat{M'}{!A(x)}[s]$ तभी और केवल तभी जब $\Sat{M'}{!A(a)}$ (याद रखें कि
+  $!A(a)$ केवल $\Subst{!A(x)}{a}{x}$ है)। अतः
+  $\Sat{M'}{!A(x)}[s]$। चूँकि $a$,~$!A(x)$ में नहीं आता,
+  \olref[syn][ext]{prop:extensionality} से $\Sat{M}{!A(x)}[s]$। पर $s$ एक
+  स्वेच्छ चर-नियतन था, अतः $\Sat{M}{\lforall[x][!A(x)]}$।
+  
+\item अंतिम अनुमान \Intro{\lexists} है: अभ्यास।
+
+\item अंतिम अनुमान \Elim{\forall} है: अभ्यास।
+}{}
+\end{enumerate}
+
+अब अनेक पूर्वाधारों वाले संभावित अनुमानों पर विचार करें:
+\Elim{\lor}, \Intro{\land}, \iftag{FOL}{\Elim{\lif}, और
+  \Elim{\lexists}}{और \Elim{\lif}}।
+\begin{enumerate}
+
+\item अंतिम अनुमान \Intro{\land} है। $!A \land !B$ को पूर्वाधारों $!A$
+  और $!B$ से निष्कर्षित किया जाता है और $\delta$ का रूप है
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+    \RightLabel{\Intro{\land}}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $!A$, !!{undischarged} मान्यताओं~$\Gamma_1$ से
+  तार्किकतः निष्पन्न होता है; ये~$\delta_1$ की मान्यताएँ हैं। इसी प्रकार
+  $!B$, !!{undischarged} मान्यताओं~$\Gamma_2$ से तार्किकतः निष्पन्न होता है;
+  ये~$\delta_2$ की मान्यताएँ हैं।~$\delta$ की !!{undischarged} मान्यताएँ
+  $\Gamma_1 \cup
+  \Gamma_2$ हैं,
+  इसलिए हमें दिखाना है कि $\Gamma_1 \cup \Gamma_2 \Entails
+  !A \land !B$।
+  ऐसी किसी \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  पर विचार करें जिसके लिए
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$। चूँकि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$, इसलिए
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ होना चाहिए, क्योंकि
+  $\Gamma_1 \Entails !A$; और चूँकि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$, इसलिए
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, क्योंकि $\Gamma_2 \Entails
+  !B$।
+  दोनों को मिलाकर,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$।
+  
+\item अंतिम अनुमान \Elim{\lor} है: अभ्यास।
+
+\item अंतिम अनुमान \Elim{\lif} है। $!B$ को पूर्वाधारों $!A \lif !B$
+  और~$!A$ से निष्कर्षित किया जाता है। !!{derivation}~$\delta$ इस प्रकार है:
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \lif !B$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lif}}
+    \BinaryInfC{$!B$}
+  \end{prooftree}
+  आगमन-परिकल्पना से $!A \lif !B$, !!{undischarged} मान्यताओं~$\Gamma_1$ से
+  तार्किकतः निष्पन्न होता है; ये~$\delta_1$ की मान्यताएँ हैं। इसी प्रकार
+  $!A$, !!{undischarged} मान्यताओं~$\Gamma_2$ से तार्किकतः निष्पन्न होता है;
+  ये~$\delta_2$ की मान्यताएँ हैं। किसी
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$} पर
+  विचार करें। हमें दिखाना है कि यदि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup
+    \Gamma_2}$, तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$। मानें कि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$। चूँकि
+  $\Gamma_1 \Entails !A \lif !B$, इसलिए
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A
+    \lif !B}$। चूँकि
+  $\Gamma_2 \Entails !A$, हमारे पास
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ है। इसका अर्थ है कि
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ (क्योंकि यदि
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, तो
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ होने से
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$ होता, जो
+  ~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$ के विरुद्ध है)।
+
+\item अंतिम अनुमान \Elim{\lnot} है: अभ्यास।
+  
+\tagitem{FOL}{अंतिम अनुमान \Elim{\lexists} है: अभ्यास।}{}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][ntd][sou]{thm:soundness} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][ntd][sou]{thm:soundness} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+यदि $\Proves !A$, तो $!A$ \iftag{FOL}{वैध}{सर्वसत्य} है।
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+यदि $\Gamma$ संतुष्टनीय है, तो वह संगत है।
+\end{cor}
+
+\begin{proof}
+हम प्रतिधन कथन सिद्ध करते हैं। मान लें कि $\Gamma$ संगत नहीं है। तब
+$\Gamma \Proves \lfalse$, अर्थात् $\lfalse$ की ऐसी कोई !!a{derivation} है
+जिसकी !!{undischarged} मान्यताएँ~$\Gamma$ में हैं।
+\olref{thm:soundness} से ऐसी प्रत्येक
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+जो $\Gamma$ को संतुष्ट करती है, उसे $\lfalse$ को भी संतुष्ट करना होगा। चूँकि
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ प्रत्येक
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$} के लिए
+सत्य है, इसलिए कोई
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$},~$\Gamma$ को संतुष्ट नहीं कर सकती;
+अर्थात् $\Gamma$ संतुष्टनीय नहीं है।
+\end{proof}
+
+\end{document}

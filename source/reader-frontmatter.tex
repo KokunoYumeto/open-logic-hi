@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=22mm]{geometry}
+\usepackage{fontspec}
+\usepackage{babel}
+\babelprovide[main,import]{hindi}
+\babelprovide[import]{english}
+\ifdefined\XeTeXgenerateactualtext
+  \XeTeXgenerateactualtext=1
+\fi
+\setmainfont[
+  Path=../../../../05_translation/openlogic_hi_9620cc7/locale/hi/fonts/,
+  BoldFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldFeatures={FakeBold=2},
+  ItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  ItalicFeatures={FakeSlant=0.2},
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+\setsansfont[
+  Path=../../../../05_translation/openlogic_hi_9620cc7/locale/hi/fonts/,
+  BoldFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldFeatures={FakeBold=2},
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\definecolor{ink}{HTML}{17324D}
+\definecolor{accent}{HTML}{B54D32}
+\definecolor{soft}{HTML}{EFF3F6}
+\hypersetup{
+  unicode=true,
+  pdflang={hi-IN},
+  pdftitle={Open Logic Project — Hindi Working Reader (158 of 722 source files)},
+  pdfauthor={Open Logic Project contributors; Hindi translation prepared at the direction of Floris},
+  pdfsubject={A compiled working reader of the accepted Hindi translation},
+  pdfkeywords={Hindi, Devanagari, logic, open textbook, translation},
+  colorlinks=true,
+  linkcolor=ink,
+  urlcolor=accent
+}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\newcommand{\ruleline}{\textcolor{accent}{\rule{\linewidth}{1.4pt}}}
+\newcommand{\module}[4]{%
+  #1 & \textbf{#2}\\[-1pt]
+  & {\small\foreignlanguage{english}{#3}} & #4\\[5pt]
+}
+
+\begin{document}
+\pagecolor{soft}
+\vspace*{16mm}
+{\color{accent}\sffamily\bfseries\large हिंदी • hi-Deva-IN}\par
+\vspace{7mm}
+{\color{ink}\sffamily\bfseries\fontsize{30}{38}\selectfont
+मुक्त तर्क परियोजना}\par
+\vspace{2mm}
+{\color{ink}\sffamily\fontsize{20}{26}\selectfont
+हिंदी कार्यशील पाठक}\par
+\vspace{6mm}
+{\color{ink}\sffamily\bfseries\Large
+\foreignlanguage{english}{Open Logic Project — Hindi Working Reader}}\par
+\vspace{14mm}
+\ruleline
+\vspace{5mm}
+{\sffamily\bfseries\fontsize{22}{28}\selectfont
+158 / 722 स्रोत फ़ाइलें}\par
+{\sffamily\large 59,955 स्रोत-शब्दों का स्वीकृत अनुवाद}\par
+\vfill
+\begin{minipage}{0.84\linewidth}
+यह एक वास्तविक, संकलित पाठक है—केवल प्रगति-सूचना नहीं। इसमें नीचे सूचीबद्ध
+158 स्रोत फ़ाइलों का हिंदी पाठ है। संपूर्ण 722-फ़ाइल परियोजना का अनुवाद अभी
+जारी है।
+\end{minipage}
+\vfill
+{\small\sffamily
+स्थिर स्रोत संशोधन: \texttt{9620cc7}\quad•\quad 15 अगस्त 2026\par
+क्रिएटिव कॉमन्स नामोल्लेख 4.0 अंतरराष्ट्रीय (CC BY 4.0)}
+\clearpage
+\pagecolor{white}
+
+{\color{ink}\sffamily\bfseries\LARGE इस पाठक के बारे में}\par
+\ruleline
+
+यह संस्करण मुक्त तर्क परियोजना के स्थिर अंग्रेज़ी स्रोत संशोधन
+\texttt{9620cc73f9c8e0ad003c514a5d3748f29611c4c0} (वृक्ष
+\texttt{f67757bb9305b173634082ab4cefd5601a707a34}) पर आधारित है। यहाँ शामिल
+158 सामग्री-फ़ाइलों का पाठ देवनागरी हिंदी में अनूदित है; उनका मापा हुआ स्रोत
+पाठ 59,955 शब्द है।
+
+\textbf{क्या पूरा है।} सूचीबद्ध फ़ाइलों के पाठ का अनुवाद, प्रत्येक स्वीकृत
+खंड का XeLaTeX संकलन, खोज/प्रतिलिपि जाँच, तथा प्रस्तुत पृष्ठों की दृश्य जाँच
+की गई है। गणितीय सूत्र, LaTeX आदेश, स्थिर पहचानकर्ता, लेबल और उद्धरण-संरचना
+को स्रोत के अनुरूप रखा गया है।
+
+\textbf{क्या अभी पूरा नहीं है।} यह संपूर्ण मुक्त तर्क परियोजना का हिंदी
+संस्करण नहीं है। कुल 722 सामग्री-फ़ाइलों में से 158 यहाँ सम्मिलित हैं। शेष
+अनुवाद क्रमशः जोड़े जाएँगे। इसे मानव-समीक्षित आलोचनात्मक संस्करण या PDF/UA
+प्रमाणन न माना जाए।
+
+\textbf{श्रेय और परिवर्तन।} मूल सामग्री मुक्त तर्क परियोजना के लेखकों और
+योगदानकर्ताओं की है। हिंदी अनुवाद Floris के निर्देशन में OpenAI 5.6 Sol
+(Ultra mode) द्वारा तैयार किया गया। यह रूपांतरण मूल से परिवर्तन है। स्रोत:
+\href{https://github.com/OpenLogicProject/OpenLogic}{GitHub पर मूल परियोजना}।
+
+मूल और अनूदित सामग्री
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0} के अधीन दी
+गई है। पाठक PDF को पहले रखा गया है; संपादनयोग्य स्रोत, फ़ाइल-स्तरीय हैश,
+निर्णय-पुस्तिका और QA प्रमाण अलग डाउनलोडों में उपलब्ध हैं।
+
+\vfill
+{\color{ink}\sffamily\bfseries\large उपयोग के लिए संक्षिप्त सूचना}\par
+यह कार्यशील संस्करण पढ़ने और प्रतिक्रिया देने के लिए प्रकाशित है। किसी
+विशिष्ट अंश का उल्लेख करते समय इस संस्करण की DOI और पृष्ठ संख्या दें।
+\clearpage
+
+{\color{ink}\sffamily\bfseries\LARGE विषय-सूची}\par
+{\small भौतिक PDF पृष्ठ; कोष्ठक में सम्मिलित स्रोत फ़ाइलें।}\par
+\ruleline
+\vspace{3mm}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\linewidth}{@{}r X r@{}}
+\textbf{क्रम} & \textbf{भाग} & \textbf{पृष्ठ}\\
+\midrule
+\module{1}{समुच्चय}{Sets • 7 files}{5–13}
+\module{2}{संबंध}{Relations • 10 files}{14–23}
+\module{3}{फलन}{Functions • 7 files}{24–32}
+\module{4}{समाकृतिक फलन — पूरक पाठ}{Isomorphic functions • 1 file}{33}
+\module{5}{समुच्चयों का आकार}{Size of sets • 15 files}{34–54}
+\module{6}{अंकगणितीकरण}{Arithmetization • 8 files}{55–68}
+\module{7}{अनंत समुच्चय}{Infinite sets • 6 files}{69–75}
+\module{8}{प्रतिज्ञप्ति तर्क: वाक्यविन्यास और अर्थविज्ञान}{Propositional logic: syntax and semantics • 7 files}{76–84}
+\module{9}{प्रथम-क्रम तर्क का परिचय}{Introduction to first-order logic • 10 files}{85–92}
+\bottomrule
+\end{tabularx}
+\vfill
+{\small “पूरक पाठ” उस स्वीकृत स्रोत-फ़ाइल को दर्शाता है जिसे वर्तमान अध्याय
+ड्राइवर सीधे आयात नहीं करता; उसे पाठक से गायब करने के बजाय अलग संकलित करके
+ठीक स्थान पर जोड़ा गया है।}
+\clearpage
+
+{\color{ink}\sffamily\bfseries\LARGE विषय-सूची — जारी}\par
+\ruleline
+\vspace{3mm}
+\begin{tabularx}{\linewidth}{@{}r X r@{}}
+\textbf{क्रम} & \textbf{भाग} & \textbf{पृष्ठ}\\
+\midrule
+\module{10}{प्रथम-क्रम तर्क: वाक्यविन्यास}{First-order logic: syntax • 10 files}{93–106}
+\module{11}{निष्पादन-तंत्र}{Proof systems • 6 files}{107–111}
+\module{12}{अनुक्रम-कलन}{Sequent calculus • 15 files}{112–132}
+\module{13}{स्वाभाविक निगमन}{Natural deduction • 14 files}{133–155}
+\module{14}{सत्य-वृक्ष}{Tableaux • 14 files}{156–178}
+\module{15}{अभिगृहीतीय निष्पादन}{Axiomatic deduction • 14 files}{179–190}
+\module{16}{सिद्धता — पूरक पाठ}{Provability • 1 file}{191–194}
+\module{17}{पूर्णता प्रमेय}{Completeness theorem • 12 files}{195–209}
+\module{18}{अधिकतम संगत समुच्चय — पूरक पाठ}{Maximally consistent sets • 1 file}{210–211}
+\bottomrule
+\end{tabularx}
+
+\vfill
+\begin{minipage}{\linewidth}
+\colorbox{soft}{\parbox{0.94\linewidth}{\small
+\textbf{कुल:} 158 स्वीकृत स्रोत फ़ाइलें • 207 अनूदित सामग्री-पृष्ठ •
+4 परिचयात्मक पृष्ठ • 211 PDF पृष्ठ।}}
+\end{minipage}
+
+\end{document}

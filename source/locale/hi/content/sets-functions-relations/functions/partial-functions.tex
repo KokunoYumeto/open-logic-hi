@@ -1,0 +1,75 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: partial-functions
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[hi]{sfr}{fun}{par}
+
+\olsection{आंशिक फलन}
+
+\begin{explain}
+कभी-कभी फलन की परिभाषा को इस प्रकार शिथिल करना उपयोगी होता है कि फलन का
+निर्गत सभी संभावित निवेशों के लिए परिभाषित होना आवश्यक न हो। ऐसे
+प्रतिचित्रणों को \emph{आंशिक फलन} कहते हैं।
+\end{explain}
+
+\begin{defn}
+\emph{आंशिक फलन} $f \colon A \pto B$ ऐसा प्रतिचित्रण है जो~$A$ के प्रत्येक
+!!{element} को~$B$ का अधिक-से-अधिक एक !!{element} देता है। यदि $f$,~$B$ का
+कोई अवयव $x \in A$ को देता है, तो हम कहते हैं कि $f(x)$ \emph{परिभाषित} है;
+अन्यथा वह \emph{अपरिभाषित} है। यदि $f(x)$ परिभाषित है, तो हम
+$f(x) \fdefined$ लिखते हैं; अन्यथा $f(x) \fundefined$। आंशिक फलन~$f$ का
+\emph{प्रांत},~$A$ का वह उपसमुच्चय है जहाँ वह परिभाषित है; अर्थात
+$\dom{f} = \Setabs{x \in A}{f(x) \fdefined}$।
+\end{defn}
+
+\begin{ex}
+प्रत्येक फलन $f\colon A \to B$ एक आंशिक फलन भी है। जो आंशिक फलन~$A$ पर
+हर जगह परिभाषित हैं---अर्थात जिन्हें अब तक हम बस फलन कहते आए हैं---उन्हें
+\emph{पूर्ण} फलन भी कहते हैं।
+\end{ex}
+
+\begin{ex}
+$f \colon \Real \pto \Real$ द्वारा दिया गया आंशिक फलन $f(x) = 1/x$,
+$x = 0$ के लिए अपरिभाषित और अन्य सभी स्थानों पर परिभाषित है।
+\end{ex}
+
+\begin{prob}
+$f\colon A \pto B$ दिया हो, तो आंशिक फलन $g\colon B \pto
+A$ को इस प्रकार परिभाषित कीजिए: किसी भी $y \in B$ के लिए, यदि कोई अद्वितीय
+$x \in A$ ऐसा है कि $f(x) = y$, तो $g(y) = x$; अन्यथा
+$g(y) \fundefined$। दिखाइए कि यदि $f$ एकैकी है, तो सभी
+$g(f(x)) = x$, सभी $x \in \dom{f}$ के लिए, और
+$f(g(y)) = y$, सभी $y \in \ran{f}$ के लिए।
+\end{prob}
+
+\begin{defn}[आंशिक फलन का आलेख]
+मान लीजिए कि $f\colon A \pto B$ एक आंशिक फलन है।~$f$ का \emph{आलेख},
+निम्न प्रकार परिभाषित संबंध $R_f \subseteq A \times B$ है:
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{prop}
+मान लीजिए कि $R \subseteq A \times B$ में यह गुण है कि जब भी $Rxy$
+और $Rxy'$ हों, तब $y = y'$। तब $R$ उस आंशिक फलन $f\colon A \pto B$ का
+आलेख है जिसे इस प्रकार परिभाषित किया जाता है: यदि कोई $y$ ऐसा है कि $Rxy$,
+तो $f(x) = y$; अन्यथा $f(x) \fundefined$। यदि $R$ \emph{क्रमिक} भी है,
+अर्थात प्रत्येक $x \in A$ के लिए कोई $y \in B$ ऐसा है कि $Rxy$, तो $f$
+पूर्ण है।
+\end{prop}
+
+\begin{proof}
+मान लीजिए कि कोई $y$ ऐसा है कि $Rxy$। यदि कोई अन्य $y'
+\neq y$ ऐसा होता कि $Rxy'$, तो $R$ पर लगी शर्त का उल्लंघन होता। अतः यदि
+कोई $y$ ऐसा है कि $Rxy$, तो वह $y$ अद्वितीय है; इसलिए $f$ सुपरिभाषित है।
+स्पष्टतः, $R_f = R$ और $f$ पूर्ण है यदि~$R$ क्रमिक है।
+\end{proof}
+
+\end{document}

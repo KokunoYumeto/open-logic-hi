@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{ntd}{rul}}
+      {\olfileid[hi]{pl}{ntd}{rul}}
+
+\olsection{नियम और \usetoken{p}{derivation}}
+
+\begin{explain}
+स्वाभाविक-निगमन तंत्रों का उद्देश्य गणितीय प्रमाण में प्रयुक्त अनौपचारिक
+तर्क-प्रक्रिया के बहुत निकट चलना है (इसीलिए यह कुछ हद तक ``स्वाभाविक'' है)।
+स्वाभाविक-निगमन प्रमाण मान्यताओं से आरम्भ होते हैं। फिर अनुमान-नियम लागू किए
+जाते हैं। मान्यताओं को \Intro{\lnot}, \Intro{\lif}, \iftag{FOL}{\Elim{\lor}
+  और \Elim{\lexists}}{ और \Elim{\lor}} अनुमान-नियमों द्वारा
+``!!{discharged}'' किया जाता है, और स्पष्टता के लिए !!{discharged} मान्यता का
+लेबल अनुमान के पास रखा जाता है।
+\end{explain}
+
+\begin{defn}[मान्यता]
+किसी भी शाखा की सबसे ऊपर की स्थिति में स्थित कोई भी !!{sentence}
+\emph{मान्यता} है।
+\end{defn}
+
+स्वाभाविक निगमन में प्रत्येक !!^{derivation} !!{sentence}s का एक विशेष वृक्ष
+होती है। उसमें सबसे ऊपर के !!{sentence}s को मान्यताएँ कहा जाता है; और यदि !!a{sentence} एक,
+दो या तीन अन्य अनुक्रमों के नीचे स्थित हो, तो उसे किसी अनुमान-नियम के सही
+प्रयोग से निकलना चाहिए। अनुमान के ऊपर स्थित !!{sentence}s को उसके
+\emph{पूर्वाधार} और नीचे स्थित !!{sentence} को अनुमान का \emph{निष्कर्ष} कहते
+हैं। नियम युग्मों में आते हैं—प्रत्येक !!{operator} के लिए एक प्रवेश-नियम और
+एक निरसन-नियम। वे निष्कर्ष में !!a{operator} प्रविष्ट करते हैं या नियम के किसी
+पूर्वाधार से !!a{operator} हटाते हैं। कुछ नियम किसी निश्चित प्रकार की मान्यता
+को \emph{!!{discharged}} करने देते हैं। कौन-सी मान्यता किस अनुमान द्वारा
+!!{discharged} की जाती है, यह दिखाने के लिए हम मान्यता और अनुमान दोनों को
+लेबल भी देते हैं। इसका संकेत मान्यता को ``$\Discharge{!A}{n}$.'' के रूप में
+लिखकर दिया जाता है।
+
+% Only include this sentence is on of \land, lor, lif or lnot is defined.
+
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}%
+	{सभी !!{operator}s $\land$, $\lor$, $\lif$, $\lnot$, और $\lfalse$ के लिए नियमों पर विचार करना प्रचलित है, भले ही उनमें से कुछ परिभाषित हों।}
+
+
+
+\end{document}

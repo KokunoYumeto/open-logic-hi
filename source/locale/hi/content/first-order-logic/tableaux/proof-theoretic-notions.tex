@@ -1,0 +1,190 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{tab}{ptn}}
+      {\olfileid[hi]{pl}{tab}{ptn}}
+      
+\olsection{प्रमाण-सैद्धांतिक धारणाएँ}
+
+\begin{editorial}
+यह अनुभाग सत्य-वृक्षों के लिए सिद्धता-संबंध और संगतता की परिभाषाएँ एकत्र
+करता है।
+\end{editorial}
+
+\begin{explain}
+जिस प्रकार हमने कई महत्त्वपूर्ण अर्थवैज्ञानिक धारणाएँ (वैधता, तार्किक
+निष्पत्ति, संतुष्टनीयता) परिभाषित की हैं, उसी प्रकार अब उनकी संगत
+\emph{प्रमाण-सैद्धांतिक धारणाएँ} परिभाषित करते हैं। इनकी परिभाषा में यह
+सहारा नहीं लिया जाता कि !!{sentence}s को कौन-सी !!{structure}s संतुष्ट करती
+हैं, बल्कि कुछ बंद !!{tableau}ों के अस्तित्व का सहारा लिया जाता है। इन
+धारणाओं का एक-दूसरे से मेल खाना एक महत्त्वपूर्ण खोज थी। यह मेल
+\emph{सुदृढ़ता} और \emph{पूर्णता प्रमेयों} का विषय है।
+\end{explain}
+
+
+\begin{defn}[प्रमेय]
+!!{sentence}~$!A$ \emph{प्रमेय} है यदि
+$\sFmla{\False}{!A}$ के लिए कोई बंद !!{tableau} हो। यदि ऐसा हो तो
+$\Proves !A$ लिखते हैं; यदि $!A$ प्रमेय नहीं है तो $\Proves/ !A$ लिखते हैं।
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence}~$!A$ किसी समुच्चय से \emph{!!{derivable}} है; यदि वह
+!!{sentence}s का समुच्चय~$\Gamma$ हो, तो इसे $\Gamma \Proves !A$ लिखते हैं।
+यह तभी और केवल तभी है जब कोई परिमित समुच्चय
+$\{!B_1, \dots, !B_n\} \subseteq \Gamma$ हो और निम्न समुच्चय के लिए कोई
+बंद !!{tableau} हो:
+\[
+\{
+  \sFmla{\False}{!A},
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}
+  \}.
+\]
+यदि $!A$, $\Gamma$ से !!{derivable} नहीं है तो $\Gamma \Proves/
+!A$ लिखते हैं।
+\end{defn}
+
+\begin{defn}[संगतता]
+!!{sentence}s का समुच्चय~$\Gamma$ \emph{असंगत} है तभी और केवल तभी जब कोई
+परिमित समुच्चय $\{!B_1, \dots, !B_n\} \subseteq \Gamma$ हो और निम्न
+समुच्चय के लिए कोई बंद !!{tableau} हो:
+\[
+\{
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}  
+  \}.
+\]
+यदि $\Gamma$ असंगत नहीं है, तो उसे \emph{संगत} कहते हैं।
+\end{defn}
+
+\begin{prop}[स्वतुल्यता]
+\ollabel{prop:reflexivity}
+यदि $!A \in \Gamma$, तो $\Gamma \Proves !A$।
+\end{prop}
+
+\begin{proof}
+यदि $!A \in \Gamma$, तो $\{!A\}$,~$\Gamma$ का परिमित उपसमुच्चय है और
+निम्न !!{tableau} बंद है:
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A}}, just = \TAss,close]
+  ]
+\end{oltableau}
+\end{proof}
+  
+
+\begin{prop}[एकदिष्टता]
+\ollabel{prop:monotonicity}
+यदि $\Gamma \subseteq \Delta$ और $\Gamma \Proves !A$, तो $\Delta
+\Proves !A$।
+\end{prop}
+
+\begin{proof}
+$\Gamma$ का प्रत्येक परिमित उपसमुच्चय,~$\Delta$ का भी परिमित उपसमुच्चय है।
+\end{proof}
+
+\begin{prop}[संक्रामकता]
+\ollabel{prop:transitivity}
+यदि $\Gamma \Proves !A$ और $\{!A\} \cup
+\Delta \Proves !B$, तो $\Gamma \cup \Delta \Proves !B$।
+\end{prop}
+
+\begin{proof}
+यदि $\{!A\} \cup \Delta \Proves !B$, तो कोई परिमित उपसमुच्चय $\Delta_0 =
+\{!C_1, \dots, !C_n\} \subseteq \Delta$ ऐसा है कि
+\begin{align*}
+\{\sFmla{\False}{!B}, & \sFmla{\True}{!A}, \sFmla{\True}{!C_1},
+\dots, \sFmla{\True}{!C_n}\}
+\intertext{के लिए कोई बंद !!{tableau} है। यदि $\Gamma \Proves !A$, तो
+  $!D_1$, \dots, $!D_m \subseteq \Gamma$ ऐसे हैं कि}
+\{\sFmla{\False}{!A}, & \sFmla{\True}{!D_1},
+\dots, \sFmla{\True}{!D_m}\}
+\end{align*}
+के लिए कोई बंद !!{tableau} है।
+
+अब निम्न मान्यताओं वाले !!{tableau} पर विचार करें:
+\[
+\sFmla{\False}{!B},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n},
+\sFmla{\True}{!D_1}, \dots, \sFmla{\True}{!D_m}.
+\]
+$!A$ पर \Cut{} नियम लगाएँ। इससे दो शाखाएँ बनती हैं: एक में
+$\sFmla{\True}{!A}$ और दूसरी में $\sFmla{\False}{!A}$ है। अतः पहली शाखा
+में निम्न सभी उपलब्ध हैं:
+\[
+\{\sFmla{\False}{!B}, \sFmla{\True}{!A},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n}\}
+\]
+इन मान्यताओं के लिए बंद !!{tableau} होने के कारण हम उसे इस शाखा से जोड़
+सकते हैं; $\sFmla{\True}{!A}$ से होकर जाने वाली प्रत्येक शाखा बंद हो जाती
+है। दूसरी शाखा में निम्न सभी उपलब्ध हैं:
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!D_1}, \dots,
+\sFmla{\True}{!D_m}\}
+\]
+अतः दूसरी ओर को भी पूरा करके बंद !!{tableau} पाया जा सकता है। इससे
+$\Gamma \cup \Delta \Proves !B$ सिद्ध होता है।
+\end{proof}
+
+ध्यान दें कि विशेषतः इसका अर्थ है: यदि $\Gamma \Proves !A$ और $!A
+\Proves !B$, तो $\Gamma \Proves !B$। इससे यह भी मिलता है कि यदि $!A_1,
+\dots, !A_n \Proves !B$ और $\Gamma \Proves !A_i$ प्रत्येक~$i$ के लिए, तो
+$\Gamma \Proves !B$।
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ असंगत है तभी और केवल तभी जब $\Gamma \Proves !A$ प्रत्येक
+!!{sentence}~$!A$ के लिए हो।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][tab][ptn]{prop:incons} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][tab][ptn]{prop:incons} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prop}[संहतता]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय $\Gamma_0
+    \subseteq \Gamma$ ऐसा है कि $\Gamma_0 \Proves !A$।
+  \item यदि~$\Gamma$ का हर परिमित उपसमुच्चय संगत है, तो $\Gamma$ संगत है।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय
+      $\Gamma_0 = \{!B_1, \dots, !B_n\}$ और निम्न के लिए बंद !!{tableau}
+      है:
+      \[
+      \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      यही !!{tableau}, $\Gamma_0 \Proves !A$ भी दिखाता है।
+    \item यदि $\Gamma$ असंगत है, तो किसी परिमित उपसमुच्चय
+      $\Gamma_0 = \{!B_1, \dots, !B_n\}$ के लिए निम्न बंद !!{tableau} है:
+      \[
+      \{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      यह बंद !!{tableau} दिखाता है कि $\Gamma_0$ असंगत है।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

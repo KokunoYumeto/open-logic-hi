@@ -1,0 +1,95 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{tab}{der}}
+      {\olfileid[hi]{pl}{tab}{der}}
+
+\olsection{\usetoken{P}{tableau}}
+
+\begin{explain}
+हम बता चुके हैं कि मान्यता क्या होती है और अनुमान-नियम दे चुके हैं।
+इन्हीं से !!^{tableau}s आगमनात्मक रूप से बनते हैं: प्रत्येक !!{tableau} या
+तो एक अथवा अधिक मान्यताओं से बनी अकेली शाखा होता है, या फिर किसी शाखा पर
+अनुमान-नियमों में से एक लगाने पर किसी !!a{tableau} से प्राप्त होता है।
+\end{explain}
+
+\begin{defn}[!!^{tableau}]
+मान्यताओं $\sFmla{S_1}{!A_1}$, \dots,
+$\sFmla{S_n}{!A_n}$ (जहाँ प्रत्येक $S_i$ या तो $\True$ है या~$\False$) के
+लिए !!^a{tableau}, !!{signed formula}s का ऐसा परिमित वृक्ष है जो निम्न
+शर्तें पूरी करता है:
+\begin{enumerate}
+\item वृक्ष के सबसे ऊपर के $n$~!!{signed formula}s
+  $\sFmla{S_i}{!A_i}$ हैं, एक के नीचे दूसरा।
+\item वृक्ष का प्रत्येक ऐसा !!{signed formula} जो मान्यताओं में से नहीं है,
+  अपने ऊपर की शाखा के किसी !!a{signed formula} पर अनुमान-नियम के सही प्रयोग
+  से प्राप्त होता है।
+\end{enumerate}
+!!a{tableau} की शाखा \emph{बंद} है तभी और केवल तभी जब उसमें
+$\sFmla{\True}{!A}$ और~$\sFmla{\False}{!A}$ दोनों हों; अन्यथा वह
+\emph{खुली} है। ऐसा !!^a{tableau} जिसकी प्रत्येक शाखा बंद है, अपनी
+मान्यताओं के समुच्चय के लिए \emph{बंद !!{tableau}} है। यदि कोई
+!!a{tableau} बंद नहीं है, अर्थात् उसमें कम-से-कम एक खुली शाखा है, तो वह
+\emph{खुला} है।
+\end{defn}
+
+\begin{ex}
+  मान्यताओं का प्रत्येक समुच्चय अपने-आप में !!a{tableau} है, पर सामान्यतः
+  वह बंद नहीं होगा। (स्पष्टतः वह तभी बंद है जब मान्यताओं में पहले से
+  !!{signed formula}s का कोई युग्म $\sFmla{\True}{!A}$ और
+  ~$\sFmla{\False}{!A}$ हो।)
+
+  किसी !!a{tableau} (खुले या बंद) में उपस्थित किसी
+  !!a{signed formula}~$!A$ पर अनुमान-नियमों में से एक लगाकर हम उससे नया,
+  बड़ा सत्य-वृक्ष प्राप्त कर सकते हैं। नियम~$!A$ की उस उपस्थिति वाली हर
+  शाखा के अंत में एक या अधिक !!{signed formula}s जोड़ देगा जिस पर हमने
+  नियम लगाया है।
+
+  उदाहरणार्थ, मान्यता $\sFmla{\True}{!A \land \lnot
+    !A}$ पर विचार करें।
+  केवल इस मान्यता से बना (खुला) !!{tableau} यह है:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss]
+    \end{tableau}{}
+  \end{center}
+  मान्यता पर $\TRule{\True}{\land}$ नियम लगाकर इससे नया !!{tableau}
+  मिलता है। यह नियम हमें !!{tableau} में दो नई पंक्तियाँ,
+  $\sFmla{\True}{!A}$ और $\sFmla{\True}{\lnot !A}$, जोड़ने देता है:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[1]},
+          [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\land}[1]}
+          ]
+        ]
+      ]
+    \end{tableau}{}
+  \end{center}
+  !!{tableau}s लिखते समय हम लगाए गए नियम दाईं ओर दर्ज करते हैं (जैसे,
+  $\TRule{\True}{\land} 1$ का अर्थ है कि उस पंक्ति का !!{signed formula},
+  $\TRule{\True}{\land}$ नियम को पंक्ति~$1$ के !!{signed formula} पर लगाने
+  से प्राप्त हुआ है)। इस नए !!{tableau} में अब अतिरिक्त !!{signed formula}s
+  हैं, किंतु नियम केवल एक पर लगाया जा सकता है
+  ($\sFmla{\True}{\lnot !A}$ पर; यहाँ $\TRule{\True}{\lnot}$ नियम)। इससे
+  निम्न बंद !!{tableau} मिलता है:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[1]}
+          [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\land}[1]}
+            [\sFmla{\False}{\formula{A}}, just={\TRule{\True}{\lnot}[3]}, close]
+          ]
+        ]
+      ]
+    \end{tableau}{}
+  \end{center}
+\end{ex}
+
+\end{document}

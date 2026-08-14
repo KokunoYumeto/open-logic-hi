@@ -1,0 +1,242 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{ntd}{prq}
+
+\olsection{परिमाणकों वाली \usetoken{p}{derivation}}
+
+\begin{ex}
+परिमाणकों के साथ काम करते समय यह सुनिश्चित करना होता है कि अभिलाक्षणिक-चर
+शर्त का उल्लंघन न हो। इसके लिए कभी-कभी कुछ अनुमानों को लगाने का क्रम बदलकर
+देखना पड़ता है। सामान्यतः अभिलाक्षणिक-चर शर्त के अधीन नियमों को पहले सँभालना
+सहायक होता है (पूरे प्रमाण में वे नीचे आएँगे)।
+
+आइए देखें कि !!a{derivation} कैसे दी जा सकती है—इस !!{formula} की:
+$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$.
+सामान्य रीति से आरम्भ करते हुए लिखते हैं:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+सबसे पहले लिखते हैं कि उस अंतिम चरण को \Intro{\lif} नियम से उचित ठहराने के
+लिए क्या चाहिए।
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+चूँकि $\lnot \lforall[x][!A(x)]$ पर लगाने के लिए कोई स्पष्ट नियम नहीं है,
+इसलिए !!{derivation} को इस प्रकार व्यवस्थित करेंगे कि \Elim{\lexists} नियम
+लगा सकें। यहाँ अभिलाक्षणिक-चर शर्त पर ध्यान देकर ऐसा अचर चुनना होगा जो
+$\lexists[x][!A(x)]$ में या उन मान्यताओं में न आए जिन पर वह निर्भर है।
+(फिर भी, चूँकि कोई !!{constant} नहीं आया है, कोई भी चुनाव ठीक रहेगा।)
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+$\lnot \lforall[x][!A(x)]$ को व्युत्पन्न करने के लिए \Intro{\lnot} नियम
+लगाने का प्रयत्न करेंगे। इसके लिए कोई अंतर्विरोध व्युत्पन्न करना होगा, जिसमें
+$\lforall[x][!A(x)]$ को अतिरिक्त मान्यता के रूप में लिया जा सकता है। निस्संदेह
+इस अंतर्विरोध में मान्यता $\lnot !A(a)$ आ सकती है, जिसे \Elim{\lexists} अनुमान
+मुक्त करेगा। इसे इस प्रकार व्यवस्थित कर सकते हैं:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}, \Discharge{\lforall[x][!A(x)]}{3}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+लगता है कि हम अंतर्विरोध पाने के निकट हैं। लगाने के लिए सबसे सरल नियम
+\Elim{\lforall} है, जिस पर अभिलाक्षणिक-चर शर्त लागू नहीं होती। सार्वपरिमाणित
+चर~$x$ के स्थान पर कोई भी इच्छित पद रख सकते हैं; अतः अंतर्विरोध तक पहुँचने के
+लिए~$a$ का ही प्रयोग जारी रखना सबसे उपयुक्त है।
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{3}$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(a)$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+
+विशेषतः परिमाणकों के साथ काम करते समय इस बिंदु पर दोबारा जाँचना आवश्यक है
+कि अभिलाक्षणिक-चर शर्त का उल्लंघन तो नहीं हुआ। हमने इस शर्त के अधीन केवल
+\Elim{\exists} नियम लगाया है, और अभिलाक्षणिक चर~$a$ उन किसी भी मान्यताओं में
+नहीं आता जिन पर वह निर्भर है; अतः यह सही !!{derivation} है।
+\end{ex}
+
+\begin{ex}
+कभी-कभी हम !!a{formula} को अन्य !!{formula}s से व्युत्पन्न करते हैं। ऐसी दशाओं
+में अमुक्त मान्यताएँ रह सकती हैं। इसलिए अंतिम लक्ष्य के साथ-साथ अपनी मान्यताओं
+का भी लेखा रखना आवश्यक है।
+
+आइए देखें कि !!a{derivation} कैसे दी जा सकती है—इस !!{formula} की:
+$\lexists[x][!C(x,b)]$, मान्यताओं $\lexists[x][(!A(x) 
+\land !B(x))]$ और $\lforall[x][(!B(x) \lif !C(x,b))]$ से। सामान्य रीति से
+आरम्भ करते हुए निष्कर्ष को सबसे नीचे लिखते हैं।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+हमारे पास काम करने के लिए दो पूर्वाधार हैं। पहले का उपयोग करने के लिए—अर्थात्
+$\lexists[x][!C(x, b)]$ की !!a{derivation}, $\lexists[x][(!A(x)
+  \land !B(x))]$ से खोजने के लिए—\Elim{\lexists} नियम लगाएँगे। उस पर
+अभिलाक्षणिक-चर शर्त लागू होती है, इसलिए यही नियम पहले लगाएँगे। इससे मिलता है:
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\Discharge{!A(a) \land !B(a)}{1}$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+जिन दो मान्यताओं के साथ हम काम कर रहे हैं, उनमें~$!B$ उभयनिष्ठ है। इस बिंदु
+पर \Elim{\land} लगाकर~$!B(a)$ को अलग निकालना उपयोगी हो सकता है।
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x)])$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+काम के लिए दूसरी मान्यता है~$\lforall[x][(!B(x) \lif
+  !C(x,b))]$। यहाँ अभिलाक्षणिक-चर शर्त नहीं है, इसलिए \Elim{\lforall} लगाकर
+$x$ को !!{constant}~$a$ से उदाहरणित कर सकते हैं और
+$!B(a) \lif !C(a, b)$ पा सकते हैं। अब हमारे पास $!B(a) \lif !C(a,b)$ और
+$!B(a)$, दोनों हैं। अगला चरण \Elim{\lif} नियम का सीधा प्रयोग होना चाहिए।
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+हम लक्ष्य के बहुत निकट हैं!{} \Intro{\lexists} का एक प्रयोग और लक्ष्य मिल
+जाता है।
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+चूँकि हर चरण पर हमने सुनिश्चित किया कि अभिलाक्षणिक-चर शर्तों का उल्लंघन न हो,
+इसलिए विश्वासपूर्वक कह सकते हैं कि यह सही !!{derivation} है।
+\end{ex}
+
+\begin{ex}
+!!a{derivation} दीजिए—इस !!{formula} की:
+$\lnot\lforall[x][!A(x)]$, मान्यताओं $\lforall[x][!A(x)] 
+\lif \lexists[y][!B(y)]$ और $\lnot\lexists[y][!B(y)]$ से। सामान्य रीति से
+आरम्भ करते हुए लक्ष्य !!{formula} को सबसे नीचे लिखते हैं।
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+!!{derivation} की अंतिम पंक्ति निषेध है, इसलिए \Intro{\lnot} लगाने का प्रयत्न
+करते हैं। इसके लिए यह पता लगाना होगा कि अंतर्विरोध को कैसे !!{derive} करें।
+\begin{prooftree}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+यहाँ तक सब ठीक है। \Elim{\lforall} लगा सकते हैं, पर यह स्पष्ट नहीं कि उससे
+लक्ष्य तक पहुँचने में सहायता मिलेगी। इसके बजाय अपनी एक मान्यता का उपयोग करें।
+$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ को
+$\lforall[x][!A(x)]$ के साथ लेने पर \Elim{\lif} नियम लगा सकेंगे।
+\begin{prooftree}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+अब काम के लिए एक अंतिम मान्यता बची है। लगता है कि उसकी सहायता से
+\Elim{\lnot} लगाकर अंतर्विरोध तक पहुँच सकेंगे।
+\begin{prooftree}
+\AxiomC{$\lnot\lexists[y][!B(y)]$}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+निम्नलिखित को दिखाने वाली !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $\Proves (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Proves (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Proves \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Proves \lnot\lexists[x][!A(x)]$.
+\item $\Proves \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Proves \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+निम्नलिखित को दिखाने वाली !!{derivation}s दीजिए:
+\begin{enumerate}
+\item $\Proves \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Proves \lexists[y][(!A(y) \lif !B)]$.
+\item $\Proves \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(इन सभी के लिए $\FalseCl$~नियम आवश्यक है।)
+\end{prob}
+
+\end{document}

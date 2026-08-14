@@ -1,50 +1,18 @@
 {
   "schema_version": "DataCite-4.7-intent",
-  "resource_scope": "Open Logic Project Hindi cumulative working edition; 11 accepted units, not whole-work complete",
+  "resource_scope": "Open Logic Project Hindi working edition; 158 of 722 accepted source files",
   "language": "hi-Deva-IN",
   "global_concept_doi": "10.5281/zenodo.20393488",
   "language_concept_doi": "10.5281/zenodo.21920511",
-  "exact_version_doi": "10.5281/zenodo.21921856",
-  "original_doi": null,
+  "exact_version_doi": "10.5281/zenodo.21940471",
   "original_durable_identifier": "https://github.com/OpenLogicProject/OpenLogic/tree/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
   "relations": [
-    {
-      "from": "language",
-      "relationType": "IsTranslationOf",
-      "to": "original_durable_identifier"
-    },
-    {
-      "from": "language",
-      "relationType": "IsPartOf",
-      "to": "global_hub"
-    },
-    {
-      "from": "exact_version",
-      "relationType": "IsVersionOf",
-      "to": "language_concept"
-    }
+    {"from": "language", "relationType": "IsTranslationOf", "to": "original_durable_identifier"},
+    {"from": "language", "relationType": "IsPartOf", "to": "global_hub"},
+    {"from": "exact_version", "relationType": "IsVersionOf", "to": "language_concept"}
   ],
-  "reciprocal_relations_required": [
-    {
-      "from": "original",
-      "relationType": "HasTranslation",
-      "to": "language"
-    },
-    {
-      "from": "global_hub",
-      "relationType": "HasPart",
-      "to": "language"
-    },
-    {
-      "from": "language_concept",
-      "relationType": "HasVersion",
-      "to": "exact_version"
-    }
-  ],
-  "zenodo_compatibility_2026_08_13": {
+  "zenodo_compatibility_2026_08_15": {
     "translation_relation_values_exposed": false,
-    "translator_contributor_role_exposed": false,
-    "temporary_machine_readable_collection_relation": "IsPartOf/HasPart",
     "translation_relation_preserved_in_description_and_evidence": true
   }
 }

@@ -1,0 +1,115 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{seq}{der}}
+      {\olfileid[hi]{pl}{seq}{der}}
+
+\olsection{\usetoken{p}{derivation}}
+
+\begin{explain}
+हम प्रारंभिक अनुक्रम का रूप और अनुमान-नियम दे चुके हैं। अनुक्रम-कलन की
+!!^{derivation}s इन्हीं से आगमनात्मक रूप से बनती हैं: हर !!{derivation} या तो
+अकेला प्रारंभिक अनुक्रम है, या उसका रूप है: एक अथवा दो !!{derivation}s और
+उनके बाद आने वाला एक अनुमान।
+\end{explain}
+
+\begin{defn}[$\Log{LK}$ !!{derivation}]
+\emph{$\Log{LK}$-!!{derivation}} अनुक्रम~$S$ के अनुक्रमों का ऐसा परिमित वृक्ष
+है जो निम्नलिखित शर्तें पूरी करे:
+\begin{enumerate}
+\item वृक्ष के शीर्षस्थ अनुक्रम प्रारंभिक अनुक्रम हैं।
+\item वृक्ष का सबसे निचला अनुक्रम~$S$ है।
+\item वृक्ष में $S$ को छोड़कर हर अनुक्रम किसी अनुमान-नियम के सही प्रयोग का
+  पूर्वाधार है, और उस प्रयोग का निष्कर्ष वृक्ष में उस अनुक्रम के ठीक नीचे है।
+\end{enumerate}
+तब $S$ को !!{derivation} का \emph{अंतिम अनुक्रम} कहते हैं और कहते हैं कि $S$,
+\emph{$\Log{LK}$ में !!{derivable}} है (या $\Log{LK}$-!!{derivable} है)।
+\end{defn}
+
+\begin{ex}
+हर प्रारंभिक अनुक्रम, जैसे $!C \Sequent !C$, !!a{derivation} है। इस पर, मान
+लें, $\LeftR{\Weakening}$ नियम लगाकर नई !!{derivation} मिलती है:
+\begin{prooftree}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\end{prooftree}
+पर यह नियम सामान्य है: इसमें $!A$ के स्थान पर कोई भी !!{sentence}, जैसे~$!D$,
+रख सकते हैं। यदि पूर्वाधार हमारे प्रारंभिक अनुक्रम $!C \Sequent !C$ से मेल
+खाए, तो $\Gamma$ और $\Delta$ दोनों केवल~$!C$ हैं और निष्कर्ष
+$!D, !C \Sequent !C$ होगा। अतः यह !!a{derivation} है:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\end{prooftree}
+अब $\LeftR{\Exchange}$ जैसा दूसरा नियम लगा सकते हैं, जो बाईं ओर के दो
+!!{sentence}s की अदला-बदली करता है। अतः यह भी सही !!{derivation} है:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\end{prooftree}
+इस प्रयोग में नियम का दिया हुआ रूप था:
+\begin{prooftree}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta,$
+\end{prooftree}
+यहाँ $\Gamma$ और $\Pi$ दोनों रिक्त थे, $\Delta$ का मान $!C$ था, और $!A$ तथा
+$!B$ की भूमिकाएँ क्रमशः $!D$ और~$!C$ ने निभाईं। लगभग इसी तरह हम देखते हैं कि
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\end{prooftree}
+!!a{derivation} है। अब ये दोनों !!{derivation}s $\RightR{\land}$ से जोड़ी जा
+सकती हैं। वह नियम था:
+\begin{prooftree}
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\end{prooftree}
+हमारे मामले में !!{derivation}s पूर्वाधारों पर समाप्त होती हैं, और उनके अंतिम
+अनुक्रमों का मेल उन्हीं पूर्वाधारों से होना चाहिए। अर्थात् $\Gamma$ का मान
+$!C, !D$ है, $\Delta$ रिक्त है, $!A$ का मान $!C$ और $!B$ का मान $!D$ है।
+अतः अनुमान सही होने पर निष्कर्ष $!C, !D \Sequent !C
+\land !D$ है।
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !C \land !D $
+\end{prooftree}
+पूर्वाधारों का क्रम उलट भी सकते हैं; तब $!A$ का मान $!D$ और $!B$ का मान~$!C$
+होगा।
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !D \land !C $
+\end{prooftree}
+\end{ex}
+
+\end{document}

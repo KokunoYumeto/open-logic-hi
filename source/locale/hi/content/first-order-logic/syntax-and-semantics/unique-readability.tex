@@ -1,0 +1,200 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: unique-readability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{unq}
+
+\olsection{अद्वितीय पठनीयता}
+
+\begin{explain}
+!!{formula}s की हमारी परिभाषा यह सुनिश्चित करती है कि प्रत्येक !!{formula}
+का \emph{अद्वितीय पाठ} हो; अर्थात् !!{formula}s के हमारे निर्माण-नियमों के
+अनुसार उसे बनाने का मूलतः केवल एक ढंग हो और उसकी ``व्याख्या'' करने का भी
+केवल एक ढंग हो। ऐसा न होता तो कुछ !!{formula}s संदिग्ध होते, अर्थात् उनका
+एक से अधिक पाठ या अर्थ-निर्णय होता---जिससे हम स्पष्टतः बचना चाहते हैं। इससे
+भी अधिक महत्त्वपूर्ण यह है कि इस गुण के बिना आगे दी जाने वाली हमारी अधिकांश
+परिभाषाएँ और प्रमाण काम नहीं करेंगे।
+
+इसे स्पष्ट करने का शायद सर्वोत्तम ढंग यह देखना है कि यदि हमने !!{formula}s
+के ऐसे दोषपूर्ण निर्माण-नियम दिए होते जो अद्वितीय पठनीयता सुनिश्चित न करते,
+तो क्या होता। उदाहरणतः हम संयोजकों के निर्माण-नियमों में कोष्ठक भूल सकते थे
+और यह अनुमति दे सकते थे:
+\begin{quote}
+यदि $!A$ और $!B$ !!{formula}s हैं, तो $!A \lif !B$ भी !!{formula} है।
+\end{quote}
+किसी परमाण्विक सूत्र $!D$ से आरंभ करके इससे हम $!D
+\lif !D$ बना सकते। इससे और $!D$ से हमें $!D \lif !D
+\lif !D$ मिलता। किंतु इसे बनाने के दो ढंग हैं:
+\begin{enumerate}
+\item हम $!D$ को $!A$ और $!D \lif !D$ को $!B$ लेते हैं।
+\item हम $!A$ को $!D \lif !D$ और $!B$ को~$!D$ लेते हैं।
+\end{enumerate}
+तदनुसार !!{formula}~$!D \lif !D \lif !D$ को ``पढ़ने'' के भी दो ढंग हैं।
+यह $!B
+\lif !C$ के रूप में है, जहाँ $!B$, $!D$ है और $!C$, $!D \lif !D$
+है; किंतु यह $!B \lif !C$ के रूप में \emph{भी है}, जहाँ $!B$,
+$!D \lif !D$ है और $!C$,~$!D$ है।
+
+यदि ऐसा हो, तो हमारी परिभाषाएँ सदा काम नहीं करेंगी। उदाहरणतः किसी सूत्र का
+!!{main operator} परिभाषित करते समय हम कहते हैं कि $!B \lif !C$ रूप के सूत्र
+में~$\lif$ की दर्शाई गई उपस्थिति ही !!{main operator} है। किंतु यदि सूत्र $!D
+\lif !D \lif !D$ को ऊपर बताए दो भिन्न ढंगों से $!B \lif !C$ के साथ मिलाया
+जा सके, तो एक स्थिति में $\lif$ की पहली उपस्थिति !!{main operator} मिलती है
+और दूसरी स्थिति में दूसरी उपस्थिति। हमारा आशय तो यह है कि !!{main operator},
+!!{formula} का कोई \emph{फलन} हो; अर्थात् प्रत्येक !!{formula} में
+!!{main
+  operator} की ठीक एक उपस्थिति होनी चाहिए।
+\end{explain}
+
+\begin{lem}
+किसी !!a{formula}~$!A$ में बाएँ और दाएँ कोष्ठकों की संख्या समान होती है।
+\end{lem}
+
+\begin{proof}
+हम इसका प्रमाण $!A$ के निर्माण पर आगमन द्वारा देते हैं। इसके लिए दो बातें
+चाहिए: (क) पहले सिद्ध करना होगा कि सभी परमाण्विक सूत्रों में यह गुण है
+(आगमन-आधार)। (ख) फिर सिद्ध करना होगा कि दिए गए सूत्रों से नया सूत्र बनाने पर,
+यदि पुराने सूत्रों में यह गुण है तो नए सूत्र में भी है।
+
+मान लें कि $l(!A)$ बाएँ कोष्ठकों की संख्या और $r(!A)$ दाएँ कोष्ठकों की
+संख्या है जो~$!A$ में हैं; इसी प्रकार $l(t)$ और $r(t)$ किसी पद~$t$ में
+क्रमशः बाएँ और दाएँ कोष्ठकों की संख्याएँ हैं।
+
+\begin{prob}
+    सिद्ध कीजिए कि किसी भी पद~$t$ के लिए $l(t) = r(t)$।
+\end{prob}
+
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\indfrm$ में $0$ बाएँ और $0$
+    दाएँ कोष्ठक हैं।}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\indfrm$ में $0$ बाएँ और $0$
+    दाएँ कोष्ठक हैं।}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1,\dots,t_n}}{$l(\indfrm) = 1 + l(t_1) +
+  \dots + l(t_n) = 1 + r(t_1) + \dots + r(t_n) = r(\indfrm)$। यहाँ हम
+  इस तथ्य का उपयोग करते हैं कि $l(t) = r(t)$ किसी भी पद~$t$ के लिए; इसे
+  अभ्यास के लिए छोड़ा गया है।}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$l(\indfrm) = l(t_1) + l(t_2) =
+  r(t_1) + r(t_2) = r(\indfrm)$।}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{आगमनात्मक परिकल्पना से
+    $l(!B) = r(!B)$। अतः $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$।}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{आगमनात्मक परिकल्पना से $l(!B) =
+  r(!B)$ और $l(!C) = r(!C)$। अतः $l(\indfrm) = 1 + l(!B) + l(!C) =
+  1 + r(!B) + r(!C) = r(\indfrm)$।}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{आगमनात्मक परिकल्पना से
+    $l(!B) = r(!B)$। अतः $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$।}}{}
+
+% Print case for \lexists if prvEx and not prvAll
+\tagitem{prvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{आगमनात्मक
+    परिकल्पना से $l(!B) = r(!B)$। अतः $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$।}}
+
+% Just say similarly if prvEx and prvAll
+\tagitem{notprvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{इसी प्रकार।}}
+\end{enumerate}
+\end{proof}
+
+\begin{defn}[उचित आरंभिक खंड]
+प्रतीक-शृंखला $!B$ किसी प्रतीक-शृंखला~$!A$ का \emph{उचित आरंभिक खंड} है यदि
+$!B$ और किसी अरिक्त प्रतीक-शृंखला को जोड़ने पर~$!A$ प्राप्त हो।
+\end{defn}
+
+\begin{lem}\ollabel{lem:no-prefix}
+यदि $!A$ !!a{formula} है और $!B$, $!A$ का उचित आरंभिक खंड है, तो $!B$
+!!a{formula} नहीं है।
+\end{lem}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][unq]{lem:no-prefix} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:unique-atomic}
+यदि $!A$ कोई परमाण्विक !!{formula} है, तो वह निम्न शर्तों में से ठीक एक को
+संतुष्ट करता है।
+\begin{enumerate}
+\tagitem{prvFalse}{$!A \ident \lfalse$.}{}
+\tagitem{prvTrue}{$!A \ident \ltrue$.}{}
+\item $!A \ident \Atom{R}{t_1,\dots,t_n}$, जहाँ $R$ कोई $n$-स्थानी
+  !!{predicate} है, $t_1$, \dots, $t_n$ पद हैं, और $R$, $t_1$, \dots,
+  $t_n$ में से प्रत्येक अद्वितीय रूप से निर्धारित है।
+\item $!A \ident \eq[t_1][t_2]$, जहाँ $t_1$ और $t_2$ अद्वितीय रूप से
+  निर्धारित पद हैं।
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][unq]{prop:unique-atomic} सिद्ध कीजिए। (संकेत: पदों के लिए
+\olref[fol][syn][unq]{lem:no-prefix} का एक रूप बनाकर सिद्ध कीजिए।)
+\end{prob}
+
+\begin{prop}[अद्वितीय पठनीयता]
+प्रत्येक !!{formula} निम्न शर्तों में से ठीक एक को संतुष्ट करता है।
+\begin{enumerate}
+\item $!A$ परमाण्विक है।
+
+\tagitem{prvNot}{$!A$, $\lnot !B$ के रूप में है।}{}
+
+\tagitem{prvAnd}{$!A$, $(!B \land !C)$ के रूप में है।}{}
+
+\tagitem{prvOr}{$!A$, $(!B \lor !C)$ के रूप में है।}{}
+
+\tagitem{prvIf}{$!A$, $(!B \lif !C)$ के रूप में है।}{}
+
+\tagitem{prvIff}{$!A$, $(!B \liff !C)$ के रूप में है।}{}
+
+\tagitem{prvAll}{$!A$, $\lforall[x][!B]$ के रूप में है।}{}
+
+\tagitem{prvEx}{$!A$, $\lexists[x][!B]$ के रूप में है।}{}
+\end{enumerate}
+इसके अतिरिक्त प्रत्येक स्थिति में $!B$, अथवा $!B$ और $!C$, अद्वितीय रूप से
+निर्धारित होते हैं। इसका अर्थ है कि, उदाहरणतः, ऐसे भिन्न युग्म $!B$, $!C$
+और $!B'$, $!C'$ नहीं हैं जिनसे $!A$ एक साथ इन दोनों रूपों में हो:
+\iftag{prvIf}{$(!B \lif !C)$ और $(!B' \lif !C')$।}{
+    \iftag{prvOr}{$(!B \lor !C)$ और $(!B' \lor !C')$।}{
+      \iftag{prvAnd}{$(!B \land !C)$ और $(!B' \land !C')$।}{}}}
+\end{prop}
+
+\begin{proof}
+निर्माण-नियमों के अनुसार यदि कोई !!a{formula} परमाण्विक नहीं है, तो उसे
+आरंभिक कोष्ठक~(, \iftag{prvNot}{$\lnot$,}{} या किसी परिमाणक से आरंभ होना
+चाहिए। दूसरी ओर, निम्न प्रतीकों में से किसी से आरंभ होने वाला प्रत्येक
+!!{formula} परमाण्विक होना चाहिए: !!a{predicate}, !!a{function},
+!!a{constant}\iftag{prvFalse}{, $\lfalse$}{}\iftag{prvTrue}{, $\ltrue$}{}।
+
+अतः हमें वास्तव में केवल यह दिखाना है कि यदि $!A$, $(!B \ast
+!C)$ के रूप
+में और $(!B' \mathbin{\ast'} !C')$ के रूप में भी है, तो $!B \ident
+!B'$,
+$!C \ident !C'$, और $\ast = {\ast'}$।
+
+मान लें कि $!A \ident (!B \ast !C)$ और $!A \ident (!B'
+\mathbin{\ast'} !C')$ दोनों हैं। तब या तो $!B \ident !B'$ है या नहीं। यदि
+है, तो स्पष्टतः $\ast = {\ast'}$ और $!C \ident !C'$ हैं, क्योंकि तब वे
+$!A$ की ऐसी उपशृंखलाएँ हैं जो एक ही स्थान पर आरंभ होती और समान लंबाई की हैं।
+दूसरी स्थिति $!B \not\ident !B'$ है। चूँकि $!B$ और $!B'$ दोनों $!A$ की
+एक ही स्थान पर आरंभ होने वाली उपशृंखलाएँ हैं, उनमें से एक दूसरे का उचित
+आरंभिक खंड होना चाहिए। किंतु \olref{lem:no-prefix} के अनुसार यह असंभव है।
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,85 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{prf}{tab}}
+      {\olfileid[hi]{pl}{prf}{tab}}
+
+\olsection{\usetoken{P}{tableau}}
+
+जहाँ अनेक !!{derivation}-तंत्र !!{sentence}s की व्यवस्थाओं पर कार्य करते हैं,
+वहीं !!{tableau}s !!{signed formula}s पर कार्य करते हैं। !!^{signed formula}
+सत्य-मूल्य-चिह्न ($\True$ अथवा $\False$) और !!{sentence} का युग्म होता है:
+\[
+\sFmla{\True}{!A} \text{ अथवा } \sFmla{\False}{!A}.
+\]
+!!^{tableau}, नीचे की ओर शाखित वृक्ष में व्यवस्थित !!{signed formula}s से बनता
+है। वह कई \emph{मान्यताओं} से शुरू होता है और ऐसे !!{signed formula}s से आगे
+बढ़ता है जो अपने ऊपर के !!{signed formula}s में से किसी एक पर अनुमान-नियम
+लगाने से मिलते हैं। हर नियम शाखा के सिरे पर एक या अधिक !!{signed formula}s को
+जोड़ने देता है, अथवा दो !!{signed formula}s को साथ-साथ जोड़ने देता है—इस
+स्थिति में शाखा दो भागों में बँटती है और जोड़े गए दो !!{signed
+  formula}s से दोनों नई शाखाओं के सिरे बनते हैं।
+
+किसी जटिल !!{signed formula} पर नियम लगाने से कुछ !!{signed formula}s को जोड़ा
+जाता है; ये मूल सूत्र के ठीक भीतर के !!{formula}s से बनते हैं। नियम जोड़ों
+में आते हैं—दोनों चिह्नों में से प्रत्येक के लिए एक नियम। उदाहरणतः,
+$\TRule{\True}{\land}$ नियम $\sFmla{\True}{!A \land !B}$ पर लागू होता है और
+दोनों !!{signed formula}s $\sFmla{\True}{!A}$ तथा~$\sFmla{\True}{!B}$ को उस
+किसी भी शाखा के सिरे पर जोड़ने देता है जिसमें
+$\sFmla{\True}{!A \land !B}$ हो; और नियम $\TRule{\False}{!A \land !B}$,
+$\sFmla{\False}{!A}$ तथा $\sFmla{\False}{!B}$ को साथ-साथ जोड़कर शाखा को दो
+भागों में बाँटने देता है। !!^{tableau} बंद है यदि उसकी हर शाखा में आपस में
+मेल खाते !!{signed formula}s का युग्म $\sFmla{\True}{!A}$ और
+$\sFmla{\False}{!A}$ हो।
+
+!!{tableau}s-आधारित $\Proves$ संबंध की परिभाषा इस प्रकार है:
+$\Gamma \Proves !A$ तभी और केवल तभी जब कोई परिमित समुच्चय
+$\Gamma_0 = \{!B_1,
+\dots, !B_n\} \subseteq \Gamma$ ऐसा हो कि इन मान्यताओं का कोई बंद
+!!{tableau} हो:
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\]
+उदाहरण के लिए, यह बंद !!{tableau} दिखाता है कि $\Proves
+(!A \land !B) \lif !A$:
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}}, just = {\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}}, just = {\TRule{\True}{\lif}[2]}
+          [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\lif}[2]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+समुच्चय $\Gamma$, !!{tableau}-कलन में असंगत है यदि इन मान्यताओं का कोई बंद
+!!{tableau} हो:
+\[
+\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\]
+जहाँ कोई $!B_i \in \Gamma$ हो।
+
+!!^{tableau}s 1950 के दशक में एवर्ट बेथ और याक्को हिंटिक्का ने एक-दूसरे से
+स्वतंत्र रूप से प्रस्तुत किए; रेमंड स्मलियन ने उन्हें सरल और लोकप्रिय
+बनाया। इनका उपयोग बहुत आसान है, क्योंकि !!{tableau} बनाना अत्यंत व्यवस्थित
+प्रक्रिया है। !!{tableau}s व्यवस्थित ढंग से बनते हैं, इसलिए संगणक पर उनका
+कार्यान्वयन भी सहज है। किन्तु !!{tableau} पढ़ना प्रायः कठिन होता है और प्रमाणों
+से उसका संबंध भी कभी-कभी आसानी से दिखाई नहीं देता। यह दृष्टिकोण व्यापक भी है,
+और अनेक भिन्न तर्कशास्त्रों के अपने !!{tableau}-तंत्र हैं। !!^{tableau}s ऐसी
+!!{structure}s खोजने में भी मदद करते हैं जो दिए गए !!{sentence}s (अथवा उनके
+समुच्चयों) को संतुष्ट करती हैं: समुच्चय संतुष्टनीय हो तो उसका कोई बंद
+!!{tableau} नहीं होगा, अर्थात् हर !!{tableau} में कोई खुली शाखा होगी। संतुष्ट
+करने वाली !!{structure} को खुली शाखा से ``पढ़कर निकाला'' जा सकता है, बशर्ते
+उस शाखा पर लागू हो सकने वाला हर नियम लगा दिया गया हो। अनुक्रम-कलन से भी इसका
+बहुत निकट संबंध है: सारतः, कोई बंद !!{tableau}, अनुक्रम-कलन की संक्षिप्त
+!!{derivation} है जिसे उलटी दिशा में लिखा गया है।
+
+\end{document}

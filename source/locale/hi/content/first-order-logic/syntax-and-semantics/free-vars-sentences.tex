@@ -1,0 +1,97 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: free-vars-sentences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{fvs}
+
+\olsection{मुक्त \printtoken{P}{variable} और \printtoken{P}{sentence} की धारणा}
+
+\begin{defn}[!!a{variable} की मुक्त उपस्थितियाँ]
+\ollabel{defn:free-occ}
+किसी !!a{formula} में !!a{variable} की \emph{मुक्त} उपस्थितियाँ निम्न प्रकार
+आगमनात्मक रूप से परिभाषित हैं:
+\begin{enumerate}
+\item \indcase*{!A}{$!A$ परमाण्विक है}{$\indfrm$ में !!{variable} की सभी
+  उपस्थितियाँ मुक्त हैं।}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ में !!{variable} की मुक्त
+  उपस्थितियाँ ठीक वही हैं जो $!B$ में हैं।}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$ में !!{variable} की मुक्त
+  उपस्थितियाँ वे हैं जो $!B$ में और वे जो~$!C$ में हैं।}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ में !!{variable}
+  की मुक्त उपस्थितियाँ~$!B$ की सभी मुक्त उपस्थितियाँ हैं, सिवाय~$x$ की
+  उपस्थितियों के।}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ में !!{variable}
+  की मुक्त उपस्थितियाँ~$!B$ की सभी मुक्त उपस्थितियाँ हैं, सिवाय~$x$ की
+  उपस्थितियों के।}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[आबद्ध चर]
+किसी सूत्र~$!A$ में !!a{variable} की कोई उपस्थिति \emph{आबद्ध} है यदि वह
+मुक्त नहीं है।
+\end{defn}
+
+\begin{prob}
+\olref[fol][syn][fvs]{defn:free-occ} की तर्ज पर चर की आबद्ध उपस्थितियों की
+आगमनात्मक परिभाषा दीजिए।
+\end{prob}
+
+\begin{defn}[परास]
+\iftag{prvAll}{यदि $\lforall[x][!B]$ किसी सूत्र~$!A$ में किसी उपसूत्र की
+  उपस्थिति है, तो~$!B$ की संगत उपस्थिति को~$!A$ में~$\lforall[x]$ की संगत
+  उपस्थिति का \emph{परास} कहते हैं। \iftag{prvEx}{$\lexists[x]$ के लिए भी
+  इसी प्रकार।}{}}{यदि $\lexists[x][!B]$ किसी सूत्र~$!A$ में किसी उपसूत्र की
+  उपस्थिति है, तो~$!B$ की संगत उपस्थिति को~$!A$ में~$\lexists[x]$ की संगत
+  उपस्थिति का \emph{परास} कहते हैं।}
+
+यदि $!B$ परिमाणक की किसी उपस्थिति
+\iftag{prvAll}{$\lforall[x]$\iftag{prvEx}{ अथवा
+    $\lexists[x]$}{}}{$\lexists[x]$} का सूत्र~$!A$ में परास है, तो~$x$ की~$!B$ में मुक्त
+उपस्थितियाँ \iftag{prvAll}{$\lforall[x][!B]$\iftag{prvEx}{ और
+$\lexists[x][!B]$}{}}{$\lexists[x][!B]$} में आबद्ध हैं। हम कहते हैं कि इन
+उपस्थितियों को उक्त परिमाणक-उपस्थिति ने \emph{बाँधा} है।
+\end{defn}
+
+\begin{ex}
+निम्न सूत्र पर विचार कीजिए:
+\[
+\lexists[\Obj v_0][\underbrace{\Atom{\Obj A^2_0}{\Obj v_0,\Obj v_1}}_{!B}] 
+\]
+$!B$, $\lexists[\Obj v_0]$ का परास दर्शाता है। परिमाणक $\Obj v_0$ की
+उपस्थिति को $!B$ में बाँधता है, किंतु $\Obj v_1$ की उपस्थिति को नहीं बाँधता। अतः
+इस स्थिति में $\Obj v_1$ मुक्त चर है।
+
+
+अब हम देख सकते हैं कि किसी अधिक जटिल !!{formula}~$!A$ में यह कैसे काम करता
+है:
+\[
+\lforall[\Obj v_0][\underbrace{(\Atom{\Obj A^1_0}{\Obj v_0} \lif
+    \Atom{\Obj A^2_0}{\Obj v_0, \Obj v_1})}_{!B}] \lif \lexists[\Obj
+  v_1][\underbrace{(\Atom{\Obj A^2_1}{\Obj v_0, \Obj v_1} \lor \lforall[\Obj v_0][\overbrace{\lnot \Atom{\Obj A^1_1}{\Obj v_0}}^{!D}])}_{!C}]
+\]
+$!B$ पहले $\lforall[\Obj v_0]$ का परास है, $!C$, $\lexists[\Obj v_1]$ का
+परास है, और $!D$ दूसरे $\lforall[\Obj v_0]$ का परास है। पहला
+$\lforall[\Obj v_0]$, $\Obj v_0$ की उपस्थितियों को~$!B$ में बाँधता है;
+$\lexists[\Obj v_1]$, $\Obj v_1$ की उपस्थिति को $!C$ में बाँधता है; और
+दूसरा $\lforall[\Obj v_0]$, $\Obj v_0$ की उपस्थिति को~$!D$ में बाँधता है।
+$\Obj v_1$ की पहली उपस्थिति और $\Obj v_0$ की चौथी उपस्थिति~$!A$ में मुक्त
+हैं। $\Obj v_0$ की अंतिम उपस्थिति $!D$ में मुक्त, किंतु $!C$ और~$!A$ में
+आबद्ध है।
+\end{ex}
+
+\begin{defn}[वाक्य]
+!!^a{formula}~$!A$ कोई \article{sentence} \emph{!!{sentence}} तभी और केवल
+तभी है जब उसमें !!{variable}s की कोई मुक्त उपस्थिति न हो।
+\end{defn}
+
+% add examples!
+
+\end{document}

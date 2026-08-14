@@ -1,0 +1,115 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: cuts
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{arith}{cuts}
+\olsection{$\Rat$ से $\Real$ तक}
+
+मूलतः पूर्णता गुणधर्म दिखाता है कि वास्तविक संख्या-रेखा का प्रत्येक बिंदु
+$\alpha$ उस रेखा को ठीक दो भागों में बाँटता है: एक वह भाग जिसका लघुतम ऊपरी
+परिबंध $\alpha$ है, और दूसरा वह भाग जिसका महत्तम निचला परिबंध $\alpha$ है।
+परिमेय संख्याओं से वास्तविक संख्याओं का \emph{निर्माण} करने के लिए डेडेकिंड ने
+सुझाव दिया कि वास्तविक संख्याओं को बस उन \emph{विच्छेदों} के रूप में मानें जो
+परिमेय संख्याओं का विभाजन करते हैं। अर्थात हम $\sqrt{2}$ को उस \emph{विच्छेद}
+से पहचानते हैं जो $< \sqrt{2}$ वाली परिमेय संख्याओं को $> \sqrt{2}$ वाली
+परिमेय संख्याओं से अलग करता है।
+
+इसे अधिक व्यवस्थित करें। परिमेय संख्याओं को दो भागों में काटने पर, बने हुए
+विभाजन के केवल \emph{निचले} भाग को देखकर भी उसे अद्वितीय रूप से पहचाना जा सकता
+है। इसलिए सटीक रूप में यह परिभाषा देते हैं:
+
+\begin{defn}[विच्छेद]
+कोई \emph{विच्छेद} $\alpha$ परिमेय संख्याओं का ऐसा रिक्तेतर उचित आरंभिक खंड
+है जिसका कोई अधिकतम अवयव नहीं होता। अर्थात $\alpha$ विच्छेद तभी और केवल तभी
+है जब:
+\begin{enumerate}
+	\item \emph{रिक्तेतर और उचित}: $\emptyset \neq \alpha \subsetneq \Rat$
+	\item \emph{आरंभिक}: सभी $p,q \in \Rat$ के लिए, यदि $p < q \in \alpha$ तो $p \in \alpha$
+	\item \emph{कोई अधिकतम नहीं}: प्रत्येक $p \in \alpha$ के लिए कोई $q \in \alpha$ ऐसा है कि $p < q$
+\end{enumerate}
+तब $\Real$ विच्छेदों का समुच्चय है।
+\end{defn}
+
+अब कह सकते हैं कि $\sqrt{2} = \Setabs{p \in \Rat}{p^2 < 2\text{
+अथवा }p < 0}$। निश्चय ही हमें जाँचना होगा कि यह सचमुच एक विच्छेद \emph{है},
+पर यह जाँच \olref[check]{sec} में छोड़ते हैं।
+
+पहले की तरह, कुछ वस्तुएँ परिभाषित करने के बाद उन पर मूल फलन और संबंध
+परिभाषित करने हैं। एक सरल संबंध से आरंभ करें:
+\begin{align*}
+	\alpha \leq \beta \text{ तभी और केवल तभी जब }\alpha \subseteq \beta
+\end{align*}
+क्रम की यह परिभाषा हमें केंद्रीय परिणाम \emph{कहने} देती है: विच्छेदों के
+समुच्चय में पूर्णता गुणधर्म है। पूरा खोलकर कहें तो कथन का रूप यह है। यदि $S$
+विच्छेदों का कोई रिक्तेतर समुच्चय है और उसका कोई ऊपरी परिबंध है, तो $S$ का
+एक लघुतम ऊपरी परिबंध है। अधिक विस्तार से: एक विच्छेद $\lambda$ है जो $S$ का
+ऊपरी परिबंध है, अर्थात\ $(\forall \alpha \in S)\alpha \subseteq
+\lambda$, और $\lambda$ ऐसा लघुतम विच्छेद है, अर्थात\ $(\forall \beta \in \Real)((\forall \alpha \in S)\alpha \subseteq \beta \lif \lambda \subseteq \beta)$। अब इस परिणाम का प्रमाण प्रस्तुत है:
+
+\begin{thm}\ollabel{realcompleteness}
+विच्छेदों के समुच्चय में पूर्णता गुणधर्म होता है।
+\end{thm}
+
+\begin{proof}
+मान लें कि $S$ विच्छेदों का कोई रिक्तेतर समुच्चय है जिसका एक ऊपरी परिबंध है।
+मान लें कि $\lambda
+= \bigcup S$।
+%\Setabs{p \in \Rat}{(\exists \alpha \in S)p \in \alpha}$$
+पहले हमारा दावा है कि $\lambda$ एक विच्छेद है:
+\begin{enumerate}
+\item चूँकि $S$ का ऊपरी परिबंध है, इसलिए कम-से-कम एक विच्छेद $S$ में है, अतः
+$\emptyset \neq \lambda$। चूँकि $S$ विच्छेदों का समुच्चय है, इसलिए $\lambda
+\subseteq \Rat$। चूँकि $S$ का ऊपरी परिबंध है, कोई $p \in \Rat$ प्रत्येक
+विच्छेद $\alpha \in S$ से अनुपस्थित है। अतः $p\notin \lambda$, और इसलिए
+$\lambda \subsetneq \Rat$।
+\item मान लें कि $p < q \in \lambda$। तब कोई $\alpha \in S$ ऐसा है कि
+$q \in \alpha$। चूँकि $\alpha$ एक विच्छेद है, इसलिए $p \in \alpha$। अतः
+$p \in \lambda$।
+\item मान लें कि $p \in \lambda$। तब कोई $\alpha \in S$ ऐसा है कि
+$p \in \alpha$। चूँकि $\alpha$ एक विच्छेद है, इसलिए कोई $q \in
+\alpha$ ऐसा है कि $p < q$। अतः $q \in \lambda$।
+\end{enumerate}
+इससे दावा सिद्ध होता है। इसके अतिरिक्त स्पष्टतः $(\forall \alpha \in S)\alpha
+\subseteq \bigcup S = \lambda$, अर्थात\ $\lambda$, $S$ का ऊपरी परिबंध है। अब मान लें कि $\beta \in \mathbb{R}$ भी एक ऊपरी परिबंध है, अर्थात\ $(\forall \alpha \in S)\alpha \subseteq \beta$। किसी भी $p \in \Rat$ के लिए, यदि $p \in \lambda$, तो कोई $\alpha \in S$ ऐसा है कि $p \in \alpha$, इसलिए $p \in \beta$। इसे व्यापक करने पर $\lambda \subseteq \beta$। अतः $\lambda$, $S$ का \emph{लघुतम} ऊपरी परिबंध है।
+\end{proof}
+
+इस प्रकार हमारे पास ऐसी बहुत-सी वस्तुएँ हैं जो पूर्णता गुणधर्म को संतुष्ट करती
+हैं। इसे इस तरह भी कह सकते हैं: हमारे विच्छेदों में कोई ``रिक्त स्थान'' नहीं
+है। (इसलिए परिमेय संख्याओं के बजाय वास्तविक संख्याओं के और ``विच्छेद'' लेने
+से कोई रोचक नई वस्तु नहीं मिलेगी।)
+
+अब वास्तविक संख्याओं पर कुछ संक्रियाएँ परिभाषित करनी हैं। पहले यह निर्धारित
+करके कि $p_\Real =
+\Setabs{q \in \Rat}{q < p}$, प्रत्येक $p \in \Rat$ को वास्तविक संख्याओं में
+अंतःस्थापित करें। फिर परिभाषित करें:
+\begin{align*}
+	\alpha + \beta &= \Setabs{p + q}{p \in \alpha \land q \in \beta}\\
+%	\alpha - \beta &\defis \Setabs{p - q}{p \in \alpha \land q \in \Rat \setminus \beta}\\
+	\alpha \times \beta &= 
+	\Setabs{p \times q}{0 \leq p \in \alpha \land 0 \leq q \in \beta} \cup 0^\mathbb{R} & \text{यदि }\alpha, \beta \geq 0_\Real
+%	\alpha \div \beta &\defis
+%	\Setabs{\nicefrac{p}{q}}{p \in \alpha \land q \in \Rat \setminus \beta}  & \text{if }\alpha \geq 0_\Real, \beta > 0_\Real
+\end{align*}
+गुणन के अन्य मामलों को सँभालने के लिए पहले रखें: %that $0_\Real \times \alpha = 0_\Real = \alpha \times 0_\Real$, and add:
+\begin{align*}
+	-\alpha &= \Setabs{p - q}{p < 0 \land q \notin \alpha}
+\end{align*}
+और फिर निर्धारित करें:
+\begin{align*}
+	\alpha \times \beta &\defis 
+	\begin{cases}
+		\mathord{-}\alpha \times \mathord{-}\beta &\text{यदि }\alpha < 0_\Real\text{ और }\beta < 0_\Real\\
+		\mathord{-}(\mathord{-}\alpha \times \beta) &\text{यदि }\alpha < 0_\Real \text{ और }\beta > 0_\Real\\
+		\mathord{-}(\alpha \times \mathord{-}\beta) &\text{यदि }\alpha > 0_\Real \text{ और }\beta < 0_\Real
+	\end{cases}
+\end{align*}
+फिर जाँचना होगा कि इनमें से प्रत्येक परिभाषा का परिणाम हमेशा एक विच्छेद होता
+है। अंत में एक सरल (पर लंबी) स्थापना करनी होगी कि इस प्रकार परिभाषित विच्छेद
+ठीक वैसा ही व्यवहार करते हैं जैसा उन्हें करना चाहिए। ये सभी जाँचें
+\olref[check]{sec} में छोड़ते हैं।
+\end{document}

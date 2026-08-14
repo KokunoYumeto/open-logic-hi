@@ -1,0 +1,200 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: valuations-sat
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{syn}{val}
+
+\olsection{\usetoken{S}{valuation} और संतुष्टि}
+
+\begin{defn}[!!^{valuation}]
+$\{\True, \False\}$ दो सत्य-मूल्यों, ``सत्य'' और ``असत्य'', का समुच्चय हो।
+$\Lang{L_0}$ के लिए \emph{!!{valuation}} वह फलन~$\pAssign{v}$ है जो भाषा के
+!!{propositional variable}s में से प्रत्येक को $\True$ या $\False$ देता है;
+अर्थात् $\pAssign{v} \colon
+\PVar \to \{\True, \False \}$।
+\end{defn}
+
+\begin{defn}
+  दिए गए !!a{valuation}~$\pAssign{v}$ के लिए मूल्य-फलन
+  $\pValue{v} \colon \Frm[L_0] \to \{\True, \False \}$ को निम्न प्रकार
+  आगमनात्मक रूप से परिभाषित करें:
+  \begin{align*}
+    \iftag{prvFalse}{\pValue{v}(\lfalse) & = \False; \\}{}
+    \iftag{prvTrue}{\pValue{v}(\ltrue) & = \True; \\}{}
+    \pValue{v}(\Obj p_n) & = \pAssign{v}(\Obj p_n); \\
+    \iftag{prvNot}{\pValue{v}(\lnot !A) & = \begin{cases}
+        \True & \text{यदि } \pValue{v}(!A) = \False;\\
+        \False & \text{अन्यथा।}
+      \end{cases} \\ }{}
+    \iftag{prvAnd}{\pValue{v}(!A \land !B) & = \begin{cases}
+        \True &
+        \text{यदि $\pValue{v}(!A) = \True$ और $\pValue{v}(!B) = \True$;}\\
+        \False &
+        \text{यदि $\pValue{v}(!A) = \False$ या $\pValue{v}(!B) = \False$}.
+      \end{cases}\\}{}
+    \iftag{prvOr}{\pValue{v}(!A \lor !B) & = \begin{cases}
+        \True &
+        \text{यदि $\pValue{v}(!A) = \True$ या $\pValue{v}(!B) = \True$;}\\
+        \False &
+        \text{यदि $\pValue{v}(!A) = \False$ और $\pValue{v}(!B) = \False$}.
+      \end{cases}\\}{}
+    \iftag{prvIf}{\pValue{v}(!A \lif !B) & = \begin{cases}
+        \True &
+        \text{यदि $\pValue{v}(!A) = \False$ या $\pValue{v}(!B) = \True$;}\\
+        \False &
+        \text{यदि $\pValue{v}(!A) = \True$ और $\pValue{v}(!B) = \False$}.
+      \end{cases}\\}{}
+    \iftag{prvIff}{\pValue{v}(!A \liff !B) & = \begin{cases}
+        \True &
+        \text{यदि $\pValue{v}(!A) = \pValue{v}(!B)$;}\\
+        \False &
+        \text{यदि $\pValue{v}(!A) \neq \pValue{v}(!B)$}.
+      \end{cases}}{}
+\end{align*}
+\end{defn}
+
+\begin{explain}
+ये खंड निम्नलिखित सत्यता-सारणियों के अनुरूप हैं:
+\begin{center}
+\iftag{prvNot}{
+  \begin{tabular}{|c||c|} \hline
+    $!A$ & $ \lnot !A$ \\
+    \hline \hline
+    $\True$ & $\False$ \\
+    $\False$ & $\True$ \\
+    \hline
+  \end{tabular}
+}{}
+\iftag{prvAnd}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \land !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\False$ \\
+    $\False$ & $\True$ & $\False$ \\
+    $\False$ & $\False$ & $\False$ \\
+    \hline
+  \end{tabular}
+}{}
+\iftag{prvOr}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \lor !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\True$ \\
+    $\False$ & $\True$ & $\True$ \\
+    $\False$ & $\False$ & $\False$ \\
+    \hline
+  \end{tabular}
+}{}%
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}{\\[1em]}
+\iftag{prvIf}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \lif !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\False$ \\
+    $\False$ & $\True$ & $\True$ \\
+    $\False$ & $\False$ & $\True$ \\
+    \hline
+  \end{tabular}
+}{}
+\iftag{prvIff}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \liff !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\False$ \\
+    $\False$ & $\True$ & $\False$ \\
+    $\False$ & $\False$ & $\True$ \\
+    \hline
+  \end{tabular}
+}{}
+\end{center}
+\end{explain}
+
+\begin{prob}
+$\Lang{L_0}$ में एक त्रिस्थानी संयोजक $\diamondsuit$ जोड़ने पर विचार करें,
+जिसका मूल्यांकन इस प्रकार दिया गया है:
+\begin{gather*}
+  \pValue{v}(\diamondsuit( !A , !B , !C ) ) = \begin{cases}
+    \pValue{v}( !B ) &
+    \text{यदि $\pValue{v}(!A) = \True$;}\\
+    \pValue{v}( !C ) &
+    \text{यदि $\pValue{v}(!A) = \False $}.
+  \end{cases}
+\end{gather*}
+इस संयोजक की सत्यता-सारणी लिखें।
+\end{prob}
+
+\begin{thm}[स्थानीय निर्धारण]
+\ollabel{thm:LocalDetermination} मानें कि $\pAssign{v_1}$ और
+$\pAssign{v_2}$ !!{valuation} हैं और $!A$ में आने वाले
+!!{propositional
+variable}s पर सहमत हैं; अर्थात् $\pAssign{v_1}(\Obj p_n) =
+\pAssign{v_2}(\Obj p_n)$, जब भी $\Obj p_n$ किसी
+!!{formula}~$!A$ में आए। तब $\pValue{v_1}$ और $\pValue{v_2}$ भी~$!A$ पर
+सहमत हैं; अर्थात् $\pValue{v_1}(!A) = \pValue{v_2}(!A)$।
+\end{thm}
+
+\begin{proof}
+$!A$ पर आगमन द्वारा।
+\end{proof}
+
+\begin{defn}[संतुष्टि]
+\ollabel{defn:satisfaction} हम \emph{!!a{formula}~$!A$ की
+  !!a{valuation}~$\pAssign{v}$ द्वारा संतुष्टि} की धारणा $\pSat{v}{!A}$ को
+  निम्न प्रकार आगमनात्मक रूप से परिभाषित कर सकते हैं।
+  (हम $\pSat/{v}{!A}$ को ``$\pSat{v}{!A}$ नहीं'' के अर्थ में लिखते हैं।)
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\pSat/{v}{\indfrm}$।}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\pSat{v}{\indfrm}$।}}{}
+
+\item \indcase{!A}{\Obj p_i}{$\pSat{v}{\indfrm}$
+  तभी और केवल तभी, जब $\pAssign{v}(\Obj p_i) = \True$।}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\pSat{v}{\indfrm}$ तभी और केवल तभी, जब
+    $\pSat/{v}{!B}$।}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\pSat{v}{\indfrm}$ तभी और केवल तभी, जब
+    $\pSat{v}{!B}$ और $\pSat{v}{!C}$।}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\pSat{v}{\indfrm}$ तभी और केवल तभी, जब
+    $\pSat{v}{!B}$ या $\pSat{v}{!C}$ (या दोनों)।}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\pSat{v}{\indfrm}$ तभी और केवल तभी, जब
+    $\pSat/{v}{!B}$ या $\pSat{v}{!C}$ (या दोनों)।}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\pSat{v}{\indfrm}$ तभी और केवल तभी, जब या तो
+    $\pSat{v}{!B}$ और $\pSat{v}{!C}$ दोनों, अथवा न $\pSat{v}{!B}$
+    न $\pSat{v}{!C}$।}}{}
+\end{enumerate}
+यदि $\Gamma$ !!{formula}s का कोई समुच्चय है, तो $\pSat{v}{\Gamma}$ तभी और
+केवल तभी, जब $\pSat{v}{!A}$ प्रत्येक~$!A \in \Gamma$ के लिए सत्य हो।
+\end{defn}
+
+\begin{prop}\ollabel{prop:sat-value}
+  $\pSat{v}{!A}$ तभी और केवल तभी, जब $\pValue{v}(!A) = \True$।
+\end{prop}
+
+\begin{proof}
+  $!A$ पर आगमन द्वारा।
+\end{proof}
+
+\begin{prob}
+  \olref[pl][syn][val]{prop:sat-value} सिद्ध करें।
+\end{prob}
+
+\end{document}

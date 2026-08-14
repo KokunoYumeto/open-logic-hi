@@ -1,0 +1,79 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind-induction
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{infinite}{induction}
+\olsection[अंकगणितीय आगमन]{डेडेकिंड बीजगणित और अंकगणितीय आगमन}
+
+अब निर्णायक बात यह है कि कोई डेडेकिंड बीजगणित---वस्तुतः \emph{कोई भी}
+डेडेकिंड बीजगणित---प्राकृत संख्याओं के स्थानापन्न का काम करेगा। इसका कारण
+निम्नलिखित सरल परिणाम है:
+
+\begin{thm}[अंकगणितीय आगमन]\ollabel{thm:dedinfiniteinduction}
+मान लें कि $N, s, o$ मिलकर डेडेकिंड बीजगणित बनाते हैं। तब किसी भी समुच्चय $X$ के लिए:
+	\begin{center}
+		यदि $o \in X$ और $(\forall {n} \in N \cap X){s}({n}) \in X$, तो $N \subseteq X$।
+	\end{center}
+\end{thm}
+
+\begin{proof}
+डेडेकिंड बीजगणित की परिभाषा से $N = \closureofunder{s}{o}$। अब यदि ${o} \in X$
+और $(\forall {n} \in N)(n \in X \lif
+{s}({n}) \in X)$ दोनों हों, तो $N = \closureofunder{s}{o} \subseteq X$।
+\end{proof}
+
+चूँकि आगमन प्राकृत संख्याओं का लाक्षणिक गुण है, बात यह है। कोई भी
+डेडेकिंड-अनंत समुच्चय दिए जाने पर हम डेडेकिंड बीजगणित बना सकते हैं और उस
+बीजगणित को प्राकृत संख्याओं के स्थानापन्न के रूप में उपयोग कर सकते हैं।
+
+निस्संदेह, \olref{thm:dedinfiniteinduction} आगमन को \emph{समुच्चय-सैद्धांतिक}
+शब्दों में सूत्रबद्ध करता है। किन्तु हम इस सिद्धांत को सरलता से अधिक परिचित
+रूप में रख सकते हैं:
+
+\begin{cor}\ollabel{natinductionschema}
+मान लें कि $N, s, o$ मिलकर डेडेकिंड बीजगणित बनाते हैं। तब किसी भी सूत्र
+$\phi(x)$ के लिए, जिसमें प्राचल हो सकते हैं:
+\begin{center}
+	यदि $\phi(o)$ और $(\forall {n} \in N)(\phi(n)\lif
+	\phi({s}({n})))$, तो $(\forall n \in N)\phi(n)$
+\end{center}
+\end{cor}
+
+\begin{proof}
+$X = \Setabs{n \in N}{\phi(n)}$ रखें और अब
+\olref{thm:dedinfiniteinduction} का उपयोग करें।
+\end{proof}
+
+इस परिणाम में हमने किसी सूत्र में ``प्राचल होने'' की बात की। मोटे तौर पर इसका
+अर्थ यह है कि किन्हीं भी वस्तुओं $c_1, \ldots, c_k$ के लिए हम
+$\phi(x, c_1, \ldots, c_k)$ के साथ काम कर सकते हैं। अधिक यथार्थतः, हम
+``प्राचलों'' का उल्लेख किए बिना परिणाम इस प्रकार कह सकते हैं। किसी भी सूत्र
+$\phi(x, v_1, \ldots, v_k)$ के लिए, जिसके सभी मुक्त चर प्रदर्शित हैं, हमारे पास है:
+	\begin{align*}
+			\forall v_1 \ldots \forall v_k((&\phi(o, v_1,\ldots, v_k) \land {}\\
+			&	(\forall x \in N)(\phi(x,v_1, \ldots, v_k) \lif \phi(s(x), v_1,\ldots, v_k))) \lif {}\\
+			&\hspace{3em} (\forall x \in N)\phi(x, v_1,\ldots, v_k))
+	\end{align*}
+स्पष्ट है कि ``प्राचल होने'' की भाषा पाठ को बहुत सुगम बना सकती है।
+(\olref[sth][][]{part} में हम इस उपाय का बार-बार उपयोग करेंगे।)
+
+डेडेकिंड बीजगणितों पर लौटें: कोई भी डेडेकिंड बीजगणित दिए जाने पर हम योग, गुणन
+और घातांक के सामान्य अंकगणितीय फलन भी परिभाषित कर सकते हैं। किन्तु यह साधारण
+बात नहीं है और इसमें \emph{पुनरावर्ती परिभाषा} की तकनीक लगती है। इस तकनीक को
+हम बहुत बाद में, कहीं अधिक सामान्य संदर्भ में प्रस्तुत और उचित सिद्ध करेंगे।
+(उत्सुक पाठक \olref[sth][ord-arithmetic][]{chap} के बाद यहाँ लौटना चाह सकते
+हैं, या \citealt[pp.~95--8]{Potter2004} जैसे किसी वैकल्पिक विवेचन को पढ़ सकते
+हैं।) किन्तु जहाँ $N, s, o$ मिलकर डेडेकिंड बीजगणित बनाते हैं, वहाँ अंततः हम
+निम्नलिखित निर्धारित कर सकेंगे:
+\begin{align*}
+	{a} + {o} &= {a} & & & {a} \times {o} &= {o} & & & {a}^{o} &= s(o)\\
+{a} + {s}({b}) &= {s}({a}+{b}) &&& {a} \times {s}({b}) &= ({a}\times {b}) + {a}  & & & {a}^{{s}({b})} &= {a}^{b} \times {a}
+\end{align*}
+और दिखा सकेंगे कि इनका व्यवहार अपेक्षा के अनुरूप है।
+
+\end{document}

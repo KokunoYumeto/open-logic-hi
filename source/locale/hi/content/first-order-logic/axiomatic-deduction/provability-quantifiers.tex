@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-quantifiers
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{axd}{qpr}
+
+\olsection{\usetoken{S}{derivability} और परिमाणक}
+
+\begin{explain}
+  पूर्णता प्रमेय के लिए यह भी आवश्यक है कि अभिगृहीतीय व्युत्पत्तियाँ इस
+  अनुभाग में स्थापित~$\Proves$ से संबंधित तथ्य प्रदान करें।
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} यदि $c$ ऐसा !!a{constant} है जो
+$\Gamma$ या $!A(x)$ में नहीं आता, और $\Gamma \Proves !A(c)$, तो $\Gamma
+\Proves \lforall[x][!A(x)]$।
+\end{thm}
+
+\begin{proof}
+निगमन प्रमेय से $\Gamma \Proves \ltrue \lif !A(c)$। चूँकि $c$, $\Gamma$
+या~$\top$ में नहीं आता, इसलिए $\Gamma \Proves
+\ltrue \lif \lforall[x][!A(x)]$ मिलता है। निगमन प्रमेय से फिर $\Gamma \Proves
+\lforall[x][!A(x)]$।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{\olref[qua]{ax:q2} और निगमन प्रमेय से।}{}
+\tagitem{prvAll}{\olref[qua]{ax:q1} और निगमन प्रमेय से।}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

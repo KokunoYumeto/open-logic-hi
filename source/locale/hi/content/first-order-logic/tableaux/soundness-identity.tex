@@ -1,0 +1,44 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{tab}{sid}
+
+\olsection{\usetoken{S}{identity} सहित सुदृढ़ता}
+
+\begin{prop}
+तादात्म्य के नियमों वाले !!^{tableau}s सुदृढ़ हैं: कोई बंद !!{tableau}
+संतुष्टनीय नहीं है।
+\end{prop}
+
+\begin{proof}
+पहले की तरह हमें केवल यह दिखाना है कि यदि किसी !!a{tableau} की कोई शाखा
+संतुष्टनीय है, तो उस पर~$\eq$ के किसी नियम को लगाने से प्राप्त शाखा भी
+संतुष्टनीय है। शाखा के चिह्नित !!{formula}s का समुच्चय $\Gamma$ मानें और
+!!a{structure} को $\Struct{M}$ मानें जो~$\Gamma$ को संतुष्ट करती है।
+
+मान लें कि शाखा को~$\eq$ का प्रयोग करके, अर्थात् चिह्नित
+!!{formula}~$\sFmla{\True}{\eq[t][t]}$ जोड़कर, विस्तृत किया जाता है। स्पष्टतः
+$\Sat{M}{\eq[t][t]}$, इसलिए $\Struct{M}$, $\Gamma \cup
+\{\sFmla{\True}{\eq[t][t]}\}$ को भी संतुष्ट करती है।
+
+यदि शाखा को $\TRule{\True}{\eq}$ से विस्तृत किया जाता है, तो हम चिह्नित
+!!{formula}~$\sFmla{S}{!A(t_2)}$ जोड़ते हैं, किंतु $\Gamma$ में
+$\sFmla{\True}{\eq[t_1][t_2]}$ और $\sFmla{\True}{!A(t_1)}$ दोनों हैं। अतः
+$\Sat{M}{\eq[t_1][t_2]}$ और $\Sat{M}{!A(t_1)}$। ऐसा चर-निर्धारण $s$ लें
+जिसमें $s(x) = \Value{t_1}{M}$।
+\olref[syn][ass]{prop:sentence-sat-true} से $\Sat{M}{!A(t_1)}[s]$। चूँकि
+$\varAssign{s}{s}{x}$, इसलिए \olref[syn][ext]{prop:ext-formulas} से
+$\Sat{M}{!A(x)}[s]$। चूँकि $\Sat{M}{\eq[t_1][t_2]}$, इसलिए
+$\Value{t_1}{M} = \Value{t_2}{M}$ और फलतः $s(x) = \Value{t_2}{M}$।
+\olref[syn][ext]{prop:ext-formulas} को फिर लगाने पर
+$\Sat{M}{!A(t_2)}[s]$ भी मिलता है।
+\olref[syn][ass]{prop:sentence-sat-true} से $\Sat{M}{!A(t_2)}$।
+$\TRule{\False}{\eq}$ का प्रसंग इसी प्रकार सिद्ध होता है।
+\end{proof}
+
+\end{document}

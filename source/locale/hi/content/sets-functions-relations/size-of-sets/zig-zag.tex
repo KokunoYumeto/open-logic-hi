@@ -1,0 +1,127 @@
+% Part: sets-functions-relations
+% Chapter: size-of-sets
+% Section: zig-zag
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{siz}{zigzag}
+
+\olsection{कैंटर की आड़ी-तिरछी विधि}
+
+\begin{explain}
+हम कुछ ``सरल'' गणनों पर पहले ही विचार कर चुके हैं। अब हम कुछ अधिक कठिन विषय
+पर विचार करेंगे। प्राकृत संख्याओं के युग्मों के उस समुच्चय पर विचार करें
+\oliflabeldef{sfr:set:pai:sec}{, जिसे हमने \olref[set][pai]{sec} में इस
+प्रकार परिभाषित किया था:}{, जिसकी परिभाषा है:}
+\[
+\Nat \times \Nat = \Setabs{\tuple{n,m}}{n,m \in \Nat}
+\]
+हम इन क्रमित युग्मों को निम्न प्रकार एक \emph{सरणी} में व्यवस्थित कर सकते हैं:
+\[
+\begin{array}{ c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
+\hline
+\mathbf 0 & \tuple{0,0} & \tuple{0,1} & \tuple{0,2} & \tuple{0,3} & \dots \\
+\hline
+\mathbf 1 & \tuple{1,0} & \tuple{1,1} & \tuple{1,2} & \tuple{1,3} & \dots \\
+\hline
+\mathbf 2 & \tuple{2,0} & \tuple{2,1} & \tuple{2,2} & \tuple{2,3} & \dots \\
+\hline
+\mathbf 3 & \tuple{3,0} & \tuple{3,1} & \tuple{3,2} & \tuple{3,3} & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+स्पष्ट है कि $\Nat \times \Nat$ का प्रत्येक क्रमित युग्म सरणी में ठीक एक बार
+आएगा। विशेष रूप से, $\tuple{n,m}$, $n$वीं पंक्ति और $m$वें स्तंभ में आएगा।
+पर ऐसी सरणी के अवयवों को ``एकविमीय'' सूची में कैसे व्यवस्थित करें? नीचे की
+सरणी का प्रतिरूप ऐसा करने का एक ढंग दिखाता है (यद्यपि निस्संदेह कई अन्य विकल्प
+भी हैं):
+\[
+\begin{array}{ c | c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 &\dots \\
+\hline
+\mathbf 0 & 0  & 1& 3 & 6& 10 &\ldots \\
+\hline
+\mathbf 1 &2 & 4& 7 & 11 & \dots &\ldots \\
+\hline
+\mathbf 2 & 5 & 8 & 12 & \ldots & \dots&\ldots \\
+\hline
+\mathbf 3 & 9 & 13 & \ldots & \ldots & \dots & \ldots \\
+\hline
+\mathbf 4 & 14 & \ldots & \ldots & \ldots & \dots & \ldots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots&\ldots & \ddots\\
+\end{array}
+\]\noindent
+यह प्रतिरूप \emph{कैंटर की आड़ी-तिरछी विधि} कहलाता है। यह
+$\Nat \times \Nat$ का गणन इस प्रकार करता है:
+\[
+\tuple{0,0}, \tuple{0,1}, \tuple{1,0}, \tuple{0,2}, \tuple{1,1},
+\tuple{2,0}, \tuple{0,3}, \tuple{1,2}, \tuple{2,1}, \tuple{3,0}, \dots
+\]
+इससे निम्नलिखित स्थापित होता है:
+\end{explain}
+
+\begin{prop}\ollabel{natsquaredenumerable}
+$\Nat \times \Nat$ !!{enumerable} है।
+\end{prop}
+
+\begin{proof}
+फलन $f \colon \Nat \to \Nat\times\Nat$ प्रत्येक $k \in \Nat$ को उस
+युग्म $\tuple{n,m} \in \Nat \times \Nat$ पर भेजे जिसके लिए $k$, कैंटर की
+आड़ी-तिरछी सरणी की $n$वीं पंक्ति और $m$वें स्तंभ में लिखा मान है। 
+\end{proof}
+
+\begin{explain}
+यह तकनीक बड़े सुगम ढंग से व्यापक भी होती है। उदाहरणार्थ, हम इसका उपयोग प्राकृत
+संख्याओं के क्रमित त्रिकों के समुच्चय का गणन करने में कर सकते हैं, अर्थात:
+\[
+\Nat \times \Nat \times \Nat = \Setabs{\tuple{n,m,k}}{n,m,k \in \Nat}
+\]
+हम $\Nat \times \Nat \times \Nat$ को $\Nat \times \Nat$ और $\Nat$ का
+कार्तीय गुणनफल मानते हैं, अर्थात,
+\[
+\Nat^3 = (\Nat \times \Nat) \times \Nat =
+\Setabs{\tuple{\tuple{n,m},k}}{n, m, k
+  \in \Nat }
+\]
+और इस प्रकार हम $\Nat^3$ का गणन ऐसी सरणी से कर सकते हैं जिसके एक अक्ष पर
+$\Nat$ का गणन और दूसरे अक्ष पर $\Nat^2$ का गणन अंकित हो:
+\[
+\begin{array}{ c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
+\hline
+\mathbf{\tuple{0,0}} & \tuple{0,0,0} & \tuple{0,0,1} & \tuple{0,0,2} & \tuple{0,0,3} & \dots \\
+\hline
+\mathbf{\tuple{0,1}} & \tuple{0,1,0} & \tuple{0,1,1} & \tuple{0,1,2} & \tuple{0,1,3} & \dots \\
+\hline
+\mathbf{\tuple{1,0}} & \tuple{1,0,0} & \tuple{1,0,1} & \tuple{1,0,2} & \tuple{1,0,3} & \dots \\
+\hline
+\mathbf{\tuple{0,2}} & \tuple{0,2,0} & \tuple{0,2,1} & \tuple{0,2,2} & \tuple{0,2,3} & \dots\\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{array}
+\]
+इस प्रकार, कैंटर की आड़ी-तिरछी विधि जैसी विधि से हम इसी तरह~$\Nat^3$ का गणन
+प्राप्त कर सकते हैं। और हम आगे बढ़ते हुए $\Nat^n$ के गणन प्राप्त कर सकते हैं,
+जहाँ $n$ कोई भी प्राकृत संख्या हो। अतः:
+\end{explain}
+
+\begin{prop}
+$\Nat^n$ प्रत्येक $n \in \Nat$ के लिए !!{enumerable} है।
+\end{prop}
+
+\begin{prob}\label{sfr:siz:zigzag:prob:posint-n}
+दिखाइए कि $(\PosInt)^n$ प्रत्येक $n \in \Nat$ के लिए !!{enumerable} है।
+\end{prob}
+
+\begin{prob}\label{sfr:siz:zigzag:prob:posint-star}
+  दिखाइए कि $(\PosInt)^*$ !!{enumerable} है। आप \cref{sfr:siz:zigzag:prob:posint-n}
+  को मान सकते हैं।
+\end{prob}
+
+\end{document}

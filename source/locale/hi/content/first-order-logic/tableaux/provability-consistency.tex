@@ -1,0 +1,145 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{tab}{prv}}
+      {\olfileid[hi]{pl}{tab}{prv}}
+
+\olsection{\usetoken{S}{derivability} और संगतता}
+
+अब हम !!{derivability} संबंध के अनेक गुण स्थापित करेंगे। ये अपने-आप में
+रोचक हैं, पर इनमें से प्रत्येक पूर्णता प्रमेय के प्रमाण में भूमिका निभाएगा।
+
+\begin{prop}\ollabel{prop:provability-contr}
+  यदि $\Gamma \Proves !A$ और $\Gamma \cup \{!A\}$ असंगत है, तो
+  $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+ऐसे परिमित $\Gamma_0 = \{!B_1, \dots, !B_n\}$ और $\Gamma_1
+  =\{!C_1, \dots, !C_n\} \subseteq \Gamma$ हैं कि
+  \begin{align*}
+    \{\sFmla{\False}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \\
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  के लिए बंद !!{tableau}s हैं। $!A$ पर \Cut{} नियम लगाकर इन्हें एक बंद
+  !!{tableau} में जोड़ा जा सकता है, जो दिखाता है कि $\Gamma_0
+  \cup \Gamma_1$ असंगत है। चूँकि $\Gamma_0
+  \subseteq \Gamma$ और $\Gamma_1 \subseteq \Gamma$, इसलिए $\Gamma_0 \cup
+  \Gamma_1 \subseteq \Gamma$;
+  अतः $\Gamma$ असंगत है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ तभी और केवल तभी जब $\Gamma \cup \{\lnot !A\}$ असंगत हो।
+\end{prop}
+
+\begin{proof}
+पहले मान लें $\Gamma \Proves !A$; अर्थात् निम्न के लिए कोई बंद
+!!{tableau} है:
+\[
+\{\sFmla{\False}{!A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+\]
+$\TRule{\True}{\lnot}$ नियम का प्रयोग करके इसे निम्न के लिए बंद
+!!{tableau} में बदला जा सकता है:
+\[
+\{\sFmla{\True}{\lnot !A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+
+दूसरी ओर, यदि बाद वाले के लिए कोई बंद !!{tableau} है, तो पहली मान्यता
+$\sFmla{\True}{\lnot !A}$ और उस पर \TRule{\True}{\lnot} लगाने से प्राप्त
+हर सूत्र को हटाकर तथा मान्यता $\sFmla{\False}{!A}$ जोड़कर हम उसे पहले वाले
+का बंद !!{tableau} बना सकते हैं। यदि कोई शाखा पहले इसलिए बंद थी कि उसमें
+$\sFmla{\True}{\lnot !A}$ पर \TRule{\True}{\lnot} लगाने का निष्कर्ष,
+अर्थात् $\sFmla{\False}{!A}$, था, तो नए !!{tableau} में संगत शाखा भी बंद
+है। यदि पुराने सत्य-वृक्ष में कोई शाखा इसलिए बंद थी कि उसमें मान्यता
+$\sFmla{\True}{\lnot !A}$ के साथ $\sFmla{\False}{\lnot
+  !A}$ भी था, तो $\TRule{\False}{\lnot}$ को
+$\sFmla{\False}{\lnot !A}$ पर लगाकर
+$\sFmla{\True}{!A}$ प्राप्त करें। चूँकि हमने
+$\sFmla{\False}{!A}$ को मान्यता के रूप में जोड़ा है, इससे शाखा बंद हो जाती
+है।
+\end{proof}
+
+\begin{prob}
+सिद्ध कीजिए कि $\Gamma \Proves \lnot !A$ तभी और केवल तभी जब
+$\Gamma \cup \{!A\}$ असंगत हो।
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  यदि $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$, तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+  मान लें $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$। तब
+  $!B_1$, \dots, $!B_n \in \Gamma$ ऐसे हैं कि \
+  \[
+  \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+  \]
+  के लिए कोई बंद सत्य-वृक्ष है। मान्यता \sFmla{\False}{!A} को
+  \sFmla{\True}{\lnot !A} से बदलें और मान्यताओं के बाद
+  \sFmla{\False}{!A} पर \TRule{\True}{\lnot} लगाने का निष्कर्ष जोड़ें।
+  प्रत्येक !!{sentence}, जो !!{tableau} में पुराने !!{tableau} की
+  पंक्ति~$1$ के आधार पर उचित ठहराया गया था, अब पंक्ति~$n+1$ के आधार पर उचित
+  ठहरता है। अतः यदि पुराना !!{tableau} बंद था, तो नया भी बंद है। चूँकि सभी मान्यताएँ~$\Gamma$ में
+  हैं, यह दिखाता है कि $\Gamma$ असंगत है।
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  यदि $\Gamma \cup \{!A\}$ और $\Gamma \cup \{\lnot !A\}$ दोनों असंगत हैं,
+  तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+  यदि $!B_1$, \dots, $!B_n \in \Gamma$ और $!C_1$, \dots,
+  $!C_m \in \Gamma$ ऐसे हैं कि
+  \begin{align*}
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \text{ और}\\
+    \{\sFmla{\True}{\lnot !A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  दोनों के लिए बंद !!{tableau}s हों, तो हम एक संयुक्त बंद !!{tableau} बना
+  सकते हैं जो दिखाता है कि $\Gamma$ असंगत है। इसके लिए मान्यताओं के रूप में
+  $\sFmla{\True}{!B_1}$, \dots, $\sFmla{\True}{!B_n}$ के साथ
+  $\sFmla{\True}{!C_1}$, \dots, $\sFmla{\True}{!C_m}$ लेकर और फिर \Cut{}
+  नियम लगाएँ। इससे दो शाखाएँ मिलती हैं: एक
+  $\sFmla{\True}{!A}$ से और दूसरी $\sFmla{\False}{!A}$ से आरंभ होती है।
+  
+  बाईं ओर पहले !!{tableau} की मान्यताओं के नीचे का भाग जोड़ें। यहाँ नियम का
+  प्रत्येक प्रयोग अब भी सही है, क्योंकि पहले !!{tableau} की प्रत्येक
+  मान्यता, $\sFmla{\True}{!A}$ सहित, उपलब्ध है। अतः
+  $\sFmla{\True}{!A}$ के नीचे की हर शाखा बंद हो जाती है।
+  
+  दाईं ओर दूसरे !!{tableau} की मान्यताओं के नीचे का भाग जोड़ें, पर
+  $\TRule{\True}{\lnot}$ को $\sFmla{\True}{\lnot !A}$ पर लगाने से प्राप्त
+  परिणाम हटा दें। $\TRule{\True}{\lnot}$ का
+  $\sFmla{\True}{\lnot !A}$ पर प्रयोग करने का निष्कर्ष
+  $\sFmla{\False}{!A}$ है, जो फिर भी
+  उपलब्ध है, क्योंकि वह संयुक्त !!{tableau} की दाईं ओर \Cut{} नियम का
+  निष्कर्ष है।
+
+  यदि दूसरे सत्य-वृक्ष की कोई शाखा इसलिए बंद थी कि उसमें मान्यता
+  $\sFmla{\True}{\lnot !A}$ (जो अब संयुक्त !!{tableau} में मान्यता के रूप
+  में नहीं आती) के साथ $\sFmla{\False}{\lnot !A}$ भी था, तो
+  $\TRule{\False}{\lnot}$ को $\sFmla{\False}{\lnot !A}$ पर लगाकर
+  $\sFmla{\True}{!A}$ प्राप्त करें। अब संयुक्त !!{tableau} में संगत शाखा भी
+  बंद हो जाती है, क्योंकि उसमें \Cut{} नियम का दायाँ निष्कर्ष
+  $\sFmla{\False}{!A}$ है। यदि दूसरे !!{tableau} की कोई शाखा किसी अन्य
+  कारण से बंद थी, तो संयुक्त !!{tableau} में संगत शाखा भी बंद है, क्योंकि
+  $\sFmla{\True}{\lnot !A}$ के अतिरिक्त सभी !!{signed formula}s, जो पुराने
+  दूसरे !!{tableau} की शाखा पर आते हैं, संयुक्त !!{tableau} की संगत शाखा पर
+  भी आते हैं।
+  \end{proof}
+
+\end{document}

@@ -1,0 +1,157 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness-direct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{com}{cpd}}
+      {\olfileid[hi]{pl}{com}{cpd}}
+
+\olsection{संहतता प्रमेय का प्रत्यक्ष प्रमाण}
+
+पूर्णता प्रमेय का सहारा लिए बिना, पूर्णता प्रमेय के प्रमाण वाले ही विचारों
+से हम संहतता प्रमेय को सीधे सिद्ध कर सकते हैं। पूर्णता प्रमेय के प्रमाण में
+हमने संगत समुच्चय~$\Gamma$ से आरंभ किया, जो !!{sentence}s का था; उसे
+संगत\iftag{FOL}{, संतृप्त}{} और !!{complete} समुच्चय~$\Gamma^*$ तक
+विस्तारित किया, जो !!{sentence}s का था; और फिर दिखाया कि
+\iftag{FOL}{पद-प्रतिरूप~$\Struct{M(\Gamma^*)}$}{!!{valuation}~$\pAssign{v(\Gamma^*)}$}
+में, जिसे~$\Gamma^*$ से बनाया गया था,~$\Gamma$ के सभी !!{sentence}s सत्य
+हैं; अतः $\Gamma$ संतुष्टनीय है।
+
+इसी विधि से हम दिखा सकते हैं कि परिमिततः संतुष्टनीय वाक्य-समुच्चय
+संतुष्टनीय है। हमें सत्यता उपपत्ति तक ले जाने वाले परिणामों के अनुरूप रूपों
+को बस इस प्रकार सिद्ध करना है कि उनमें ``संगत'' के स्थान पर ``परिमिततः
+संतुष्टनीय'' हो।
+
+\begin{prop}
+\ollabel{prop:fsat-ccs}
+मान लें कि $\Gamma$ !!{complete} और परिमिततः संतुष्टनीय है। तब:
+\begin{enumerate}
+\tagitem{prvAnd}{$(!A \land !B) \in \Gamma$
+  तभी और केवल तभी जब $!A \in \Gamma$ और $!B \in \Gamma$ दोनों हों।}{}
+
+\tagitem{prvOr}{$(!A \lor !B) \in \Gamma$ तभी और केवल तभी जब
+  या तो $!A \in \Gamma$ या $!B \in \Gamma$ हो।}{}
+
+\tagitem{prvIf}{$(!A \lif !B) \in \Gamma$ तभी और केवल तभी जब
+  या तो $!A \notin \Gamma$ या $!B \in \Gamma$ हो।}{}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{prop:fsat-ccs} सिद्ध कीजिए। $\Proves$ का उपयोग न करें।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][cpd]{prop:fsat-ccs} सिद्ध कीजिए। $\Proves$ का उपयोग न करें।
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{lem}
+\ollabel{lem:fsat-henkin} प्रत्येक परिमिततः संतुष्टनीय समुच्चय~$\Gamma$ को
+किसी संतृप्त परिमिततः संतुष्टनीय समुच्चय~$\Gamma'$ तक विस्तारित किया जा
+सकता है।
+\end{lem}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{lem:fsat-henkin} सिद्ध कीजिए। (संकेत: निर्णायक चरण यह
+दिखाना है कि यदि $\Gamma_n$ परिमिततः संतुष्टनीय है, तो $\Gamma_n
+\cup \{!D_n\}$ भी परिमिततः संतुष्टनीय है, और इसमें !!{derivation}s अथवा
+संगतता का कोई सहारा न लिया जाए।)
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{prop}\ollabel{prop:fsat-instances}
+मान लें कि $\Gamma$ पूर्ण, परिमिततः संतुष्टनीय और संतृप्त है।
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ तभी और केवल तभी जब
+  $!A(t) \in \Gamma$ कम-से-कम एक बंद पद~$t$ के लिए हो।}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ तभी और केवल तभी जब
+  $!A(t) \in \Gamma$ सभी बंद पदों~$t$ के लिए हो।}{}
+\end{tagenumerate}
+\end{prop}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{prop:fsat-instances} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{lem}
+\ollabel{lem:fsat-lindenbaum} प्रत्येक परिमिततः संतुष्टनीय समुच्चय~$\Gamma$
+को !!a{complete} और परिमिततः संतुष्टनीय समुच्चय~$\Gamma^*$ तक विस्तारित
+किया जा सकता है।
+\end{lem}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{lem:fsat-lindenbaum} सिद्ध कीजिए। (संकेत: निर्णायक
+चरण यह दिखाना है कि यदि $\Gamma_n$ परिमिततः संतुष्टनीय है, तो
+$\Gamma_n \cup \{!A_n\}$ या $\Gamma_n \cup \{\lnot !A_n\}$ में से कोई एक
+परिमिततः संतुष्टनीय है।)
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][cpd]{lem:fsat-lindenbaum} सिद्ध कीजिए। (संकेत: निर्णायक
+चरण यह दिखाना है कि यदि $\Gamma_n$ परिमिततः संतुष्टनीय है, तो
+$\Gamma_n \cup \{!A_n\}$ या $\Gamma_n \cup \{\lnot !A_n\}$ में से कोई एक
+परिमिततः संतुष्टनीय है।)
+\end{prob}
+\tagendprob
+
+\begin{thm}[संहतता]
+\ollabel{thm:compactness-direct} $\Gamma$ संतुष्टनीय तभी और केवल तभी है जब
+वह परिमिततः संतुष्टनीय है।
+\end{thm}
+
+\begin{proof}
+यदि $\Gamma$ संतुष्टनीय है, तो ऐसी
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$} है कि
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ सभी $!A \in \Gamma$ के लिए। निस्संदेह,
+यह \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} भी~$\Gamma$ के प्रत्येक परिमित
+उपसमुच्चय को संतुष्ट करती है, अतः $\Gamma$ परिमिततः संतुष्टनीय है।
+
+अब मान लें कि $\Gamma$ परिमिततः संतुष्टनीय है।\iftag{FOL}{
+  \olref{lem:fsat-henkin} से कोई परिमिततः संतुष्टनीय, संतृप्त समुच्चय
+  $\Gamma' \supseteq \Gamma$ है।}{} \olref{lem:fsat-lindenbaum} से
+$\iftag{FOL}{\Gamma'}{\Gamma}$ को !!a{complete} और परिमिततः संतुष्टनीय
+समुच्चय~$\Gamma^*$ तक विस्तारित किया जा सकता है\iftag{FOL}{, और
+  $\Gamma^*$ अब भी संतृप्त है}{}। \olref[mod]{defn:termmodel} की तरह
+\iftag{FOL}{पद-प्रतिरूप~$\Struct{M(\Gamma^*)}$}{!!{valuation}~$\pAssign{v(\Gamma^*)}$}
+बनाएँ।\iftag{FOL}{ ध्यान दें कि \olref[mod]{prop:quant-termmodel} ने इस तथ्य
+पर भरोसा नहीं किया था कि $\Gamma^*$ संगत है (या !!{complete} अथवा संतृप्त,
+इस विषय में), बल्कि केवल इस तथ्य पर कि $\Struct{M(\Gamma^*)}$ आच्छादित है।}{}
+सत्यता उपपत्ति (\olref[mod]{lem:truth}) का प्रमाण तब भी चलता है जब हम
+\olref[ccs]{prop:ccs}\iftag{FOL}{ और
+\olref[hen]{prop:saturated-instances} के संदर्भों के स्थान पर क्रमशः
+\olref{prop:fsat-ccs} और \olref{prop:fsat-instances} के संदर्भ रखें}।
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+सत्यता उपपत्ति \olref[fol][com][mod]{lem:truth} का वह पूरा प्रमाण लिखिए जो
+\olref[fol][com][cpd]{thm:compactness-direct} के प्रमाण के लिए आवश्यक है।
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+सत्यता उपपत्ति \olref[pl][com][mod]{lem:truth} का वह पूरा प्रमाण लिखिए जो
+\olref[pl][com][cpd]{thm:compactness-direct} के प्रमाण के लिए आवश्यक है।
+\end{prob}
+\tagendprob
+
+\end{document}

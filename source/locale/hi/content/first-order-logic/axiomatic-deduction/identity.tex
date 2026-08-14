@@ -1,0 +1,55 @@
+% Part: first-order-logic
+% Chapter: axiomatic-proofs
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{axd}{ide}
+
+\olsection{\usetoken{P}{derivation} : \usetoken{S}{identity} सहित}
+
+$\eq$ को !!{derivation}s में सम्मिलित करने के लिए हम केवल नए अभिगृहीत-प्रारूप
+जोड़ते हैं। !!{derivation} और $\Proves$ की परिभाषा वही रहती है; अब नए
+अभिगृहीतों की भी अनुमति रहती है।
+
+\begin{defn}[!!{identity} के अभिगृहीत]
+\begin{align}
+\ollabel{ax:id1} & \eq[t][t], \\
+\ollabel{ax:id2} & \eq[t_1][t_2] \lif (!B(t_1) \lif
+  !B(t_2)),
+\end{align}
+किन्हीं बंद पदों $t$, $t_1$, $t_2$ के लिए।
+\end{defn}
+
+\begin{prop}\ollabel{prop:sound}
+  अभिगृहीत \olref{ax:id1} और \olref{ax:id2} वैध हैं।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][axd][ide]{prop:sound} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}\ollabel{prop:iden1}
+ $\Gamma \Proves \eq[t][t]$, किसी भी पद $t$ और समुच्चय~$\Gamma$ के लिए।
+\end{prop}
+
+\begin{prop}\ollabel{prop:iden2}
+  यदि $\Gamma \Proves !A(t_1)$ और $\Gamma \Proves
+  \eq[t_1][t_2]$, तो $\Gamma \Proves !A(t_2)$।
+\end{prop}
+
+\begin{proof}
+!!{formula}
+\[
+(\eq[t_1][t_2] \lif (!A(t_1) \lif !A(t_2)))
+\]
+~\olref{ax:id2} का एक दृष्टान्त है। निष्कर्ष~\MP{} के दो प्रयोगों से मिलता है।
+\end{proof}
+
+\end{document}

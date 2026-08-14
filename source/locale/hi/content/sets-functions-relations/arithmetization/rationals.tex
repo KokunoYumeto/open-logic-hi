@@ -1,0 +1,75 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: rationals
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{arith}{rat}
+\olsection{$\Int$ से $\Rat$ तक}
+
+अभी हमने देखा कि सरल समुच्चय-सिद्धांत का उपयोग करके प्राकृत संख्याओं से
+पूर्णांक कैसे बनाए जाते हैं। अब लगभग उसी प्रकार पूर्णांकों से परिमेय संख्याएँ
+बनाएँगे। हमारे प्रारंभिक अवलोकन हैं:
+\begin{enumerate}
+	\item प्रत्येक परिमेय संख्या को $\nicefrac{i}{j}$ के रूप में लिखा जा सकता
+	है, जहाँ $i$ और $j$ दोनों पूर्णांक हैं, किंतु $j$ शून्येतर है।
+	\item व्यंजक $\nicefrac{i}{j}$ में निहित जानकारी को क्रमित युग्म
+	$\tuple{ i, j}$ में भी समान रूप से रखा जा सकता है।
+\end{enumerate}
+स्वाभाविक उपाय परिमेय संख्याओं को
+$\Int \times (\Int \setminus \{0_\Int\})$ से लिए गए क्रमित युग्म
+\emph{मानना} होगा। पर पहले की तरह यह अत्यधिक सरल होगा, क्योंकि हम चाहते हैं कि
+$\nicefrac{3}{2} = \nicefrac{6}{4}$ हो, जबकि $\tuple{ 3, 2}\neq \tuple{ 6,
+4}$। अधिक सामान्य रूप में हमें यह चाहिए:
+\[
+	\nicefrac{a}{b} = \nicefrac{c}{d} \text{ तभी और केवल तभी जब } a \times d = b \times c
+\]
+इसके लिए $\Int \times
+(\Int \setminus \{0_\Int\})$ पर एक तुल्यता संबंध इस प्रकार परिभाषित करें:
+\[
+	\tuple{ a, b }\Ratequiv \tuple{ c, d} \text{ तभी और केवल तभी जब }a \times d = b \times c
+\]
+हमें जाँचना है कि यह तुल्यता संबंध है। यह~$\Intequiv$ के मामले से बहुत मिलता
+है, इसलिए इसे अभ्यास के रूप में छोड़ते हैं।
+\begin{prob}
+दिखाइए कि $\Ratequiv$ एक तुल्यता संबंध है।
+\end{prob}
+तब हम यह परिभाषा दे सकते हैं:
+\begin{defn}
+परिमेय संख्याएँ, पूर्णांकों के उन युग्मों के~$\Ratequiv$ के अधीन तुल्यता वर्ग
+हैं जिनका दूसरा अवयव शून्येतर है। अर्थात $\Rat =
+\equivclass{(\Int \times (\Int\setminus \{0_\Int\}))}{\Ratequiv}$।
+\end{defn}
+
+पूर्णांकों की तरह यहाँ भी कुछ मूल संक्रियाएँ परिभाषित करनी हैं। जहाँ
+$\equivrep{i,j}{\Ratequiv}$ से~$\Ratequiv$ के अधीन वह तुल्यता वर्ग सूचित हो
+जिसका !!a{element} $\tuple{i, j}$ है, वहाँ हम कहते हैं:
+\begin{align*}
+	\equivrep{a, b}{\Ratequiv} + \equivrep{c, d}{\Ratequiv} &= \equivrep{ad + bc,  bd}{\Ratequiv}\\
+	\equivrep{a, b}{\Ratequiv} \times \equivrep{c, d}{\Ratequiv} &= \equivrep{a  c, b d}{\Ratequiv}.
+\intertext{इन परिमेयों पर $r \leq s$ परिभाषित करने के लिए इस तथ्य का उपयोग
+करें कि $r \le s$ तभी और केवल तभी जब $s - r$ ऋणात्मक न हो; अर्थात $s - r$
+को $\nicefrac{i}{j}$ के रूप में लिखा जा सके, जहाँ $i$ ऋणेतर और $j$~धनात्मक हो:}
+	\equivrep{a, b}{\Ratequiv} \leq \equivrep{c, d}{\Ratequiv} &\text{ तभी और केवल तभी जब }
+	\equivrep{c, d}{\Ratequiv} - \equivrep{a, b}{\Ratequiv} = 
+	\equivrep{i_\Int, j_\Int}{\Ratequiv}
+\end{align*}
+जहाँ कोई $i \in \Nat$ और $0 \neq j \in \Nat$ हो।
+
+फिर जाँचना होगा कि ये परिभाषाएँ वैसा ही व्यवहार करती हैं जैसा उन्हें
+\emph{करना चाहिए}; यह जाँच \olref[check]{sec} में दी गई है। और वे सचमुच ऐसा
+करती हैं। अंततः पूर्णांकों को परिमेय संख्याएँ \emph{मानकर} बरतने का कोई ढंग
+चाहिए; अतः प्रत्येक $i \in \Int$ के लिए नियत करें कि $i_\Rat =
+\equivrep{i, 1_\Int}{\Ratequiv}$। इन सबके उचित व्यवहार की जाँच भी
+\olref[check]{sec} में की गई है।
+
+\begin{prob}
+दिखाइए कि $(i + j)_\Rat = i_\Rat+ j_\Rat$, $(i \times j)_\Rat =
+i_\Rat \times j_\Rat$ और $i \leq j \liff i_\Rat \leq j_\Rat$, किन्हीं
+भी $i, j \in \Int$ के लिए।
+\end{prob}
+
+\end{document}

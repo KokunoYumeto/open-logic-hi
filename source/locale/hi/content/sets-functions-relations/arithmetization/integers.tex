@@ -1,0 +1,108 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: From N to Z
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[hi]{sfr}{arith}{int}
+\olsection{$\Nat$ से $\Int$ तक}
+
+यहाँ दो मूल अवलोकन हैं:
+	\begin{enumerate}
+		\item प्रत्येक पूर्णांक को $n - m$ के रूप में लिखा जा सकता है, जहाँ $n, m \in\Nat$।
+		\item व्यंजक $n - m$ में निहित जानकारी को क्रमित युग्म $\tuple{n, m}$ में भी समान रूप से रखा जा सकता है।
+	\end{enumerate}
+हम पहले ही जानते हैं कि प्राकृत संख्याओं के क्रमित युग्म $\Nat^2$ के
+!!{element} हैं। और हम मान रहे हैं कि~$\Nat$ को समझते हैं। अतः इन दोनों
+अवलोकनों पर आधारित एक आरंभिक सुझाव यह है: \emph{पूर्णांकों को प्राकृत
+संख्याओं के क्रमित युग्म मानें}।
+
+वास्तव में यह सुझाव अत्यधिक सरल है। हम निश्चय ही चाहते हैं कि
+$0- 2 = 4 - 6$ हो। किंतु स्पष्टतः $\tuple{0, 2 }\neq \tuple{4, 6}$। इसलिए
+हम केवल यह नहीं कह सकते कि $\Nat^2$ ही पूर्णांकों का समुच्चय है।
+
+पिछली समस्या का व्यापकीकरण करने पर हमें यह चाहिए:
+	$$a - b = c - d \text{ तभी और केवल तभी जब }a + d = c + b$$
+(यह स्पष्ट होना चाहिए कि पूर्णांकों को इसी प्रकार \emph{व्यवहार करना चाहिए}:
+दोनों पक्षों में बस $b$ और $d$ जोड़ दीजिए।) इस व्यवहार को सुनिश्चित करने का
+सरल ढंग क्रमित युग्मों के बीच तुल्यता संबंध~$\Intequiv$ इस प्रकार परिभाषित
+करना है:
+$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ तभी और केवल तभी जब }a + d = c + b$$
+अब हमें दिखाना है कि यह एक तुल्यता संबंध है।
+\begin{prop} $\Intequiv$ एक तुल्यता संबंध है।
+\end{prop}
+	\begin{proof}
+	हमें दिखाना है कि $\Intequiv$ स्वतुल्य, सममित और संक्रामक है।
+	
+	\emph{स्वतुल्यता:} स्पष्टतः $\tuple{a, b} \Intequiv \tuple{a, b}$, क्योंकि $a + b = b + a$।
+	
+	\emph{सममिति:} मान लीजिए $\tuple{a, b} \Intequiv \tuple{c, d}$, अतः $a + d = c + b$। तब $c + b = a + d$, इसलिए $\tuple{c, d} \Intequiv \tuple{a, b}$।
+	
+	\emph{संक्रामकता:} मान लीजिए $\tuple{a, b} \Intequiv \tuple{c, d}\Intequiv \tuple{m, n}$। तब $a + d = c + b$ और $c + n = m + d$। अतः $a + d + c + n = c + b + m + d$, और इसलिए $a + n = m + b$। फलतः $\tuple{a, b } \Intequiv \tuple{m, n}$।
+\end{proof}
+
+अब इस तुल्यता संबंध से तुल्यता वर्ग बनाए जा सकते हैं:
+
+\begin{defn}
+		पूर्णांक, प्राकृत संख्याओं के क्रमित युग्मों के~$\Intequiv$ के अधीन तुल्यता
+		वर्ग हैं; अर्थात $\Int = \equivclass{\Nat^2}{\Intequiv}$।
+\end{defn}
+
+इस प्रकार नियत की गई परिभाषा पर कई अलग-अलग \emph{दार्शनिक} प्रतिक्रियाएँ
+हो सकती हैं। उन प्रतिक्रियाओं पर विचार करने से पहले कुछ तकनीकी विवरणों को
+आगे बढ़ाना उपयोगी होगा।
+
+पूर्णांक क्या हैं यह बताने के बाद उन पर मूल फलन और संबंध परिभाषित करने होंगे।
+$\equivrep{m, n}{\Intequiv}$ से~$\Intequiv$ के अधीन वह तुल्यता वर्ग सूचित
+करें जिसका !!a{element} $\tuple{m, n}$ है।\footnote{ध्यान दें:
+\olref[sfr][rel][eqv]{def:equivalenceclass} में दिए गए संकेत का उपयोग करते
+हुए इसी वस्तु को $\equivrep{\tuple{m,n}}{\Intequiv}$ लिखते हैं। किंतु उसे पढ़ना
+थोड़ा कठिन है।} अर्थात:
+	$$\equivrep{m, n}{\Intequiv} = \Setabs{\tuple{a, b} \in \Nat^2}{\tuple{a, b}\Intequiv \tuple{m, n}}$$
+अब कुछ परिभाषाएँ दें:
+	\begin{align*}
+		\equivrep{a, b}{\Intequiv} + \equivrep{c, d}{\Intequiv} &= \equivrep{a + c, b + d}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \times \equivrep{c, d}{\Intequiv} &= \equivrep{a c + b  d, a  d + b c}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \leq \equivrep{c, d}{\Intequiv} &\text{ तभी और केवल तभी जब }a + d \leq b + c
+	\end{align*}	
+(प्रचलित रीति के अनुसार सूत्रों को पढ़ना आसान बनाने के लिए मैं `$ab$' को
+`$(a \times b)$' के स्थान पर लिख रहा हूँ।) अब यह सुनिश्चित करना होगा कि ये
+परिभाषाएँ वैसा ही व्यवहार करें जैसा उन्हें \emph{करना चाहिए}। इसका अर्थ
+विस्तार से लिखना और जाँचना श्रमसाध्य है; विवरण \olref[check]{sec} में दिए
+गए हैं। संक्षेप में: सब कुछ ठीक काम करता है।
+
+एक अंतिम बात शेष है। हमने पूर्णांकों का निर्माण प्राकृत संख्याओं से किया
+है। इसका अर्थ होगा कि प्राकृत संख्याएँ \emph{स्वयं पूर्णांक नहीं हैं}। इसके
+दार्शनिक महत्त्व पर हम \olref[ref]{sec} में लौटेंगे। किंतु तकनीकी रूप से
+हमें प्राकृत संख्याओं को पूर्णांक \emph{मानकर} बरतने का कोई ढंग चाहिए। विचार
+सरल है: प्रत्येक $n \in \Nat$ के लिए बस नियत करें कि
+$n_\Int = \equivrep{n, 0}{\Intequiv}$। हमें पुष्टि करनी है कि यह परिभाषा
+उचित व्यवहार करती है; अर्थात किन्हीं भी $m, n
+\in \Nat$ के लिए
+\begin{align*}
+	(m + n)_\Int &= m_\Int + n_\Int\\
+	(m \times n)_\Int &= m_\Int \times n_\Int\\
+	m \leq n &\liff m_\Int \leq n_\Int
+\end{align*}
+यह सब पर्याप्त सीधा है। उदाहरण के लिए, इनमें दूसरी समानता दिखाने हेतु
+प्राकृत संख्याओं के गुणों का उपयोग करके इस प्रकार तर्क कर सकते हैं:
+%\begin{proof}
+%	Helping myself to the behaviour of the natural numbers, evidently:
+	\begin{align*}
+%		(m + n)_\Int  = \equivrep{m + n, 0}{\Intequiv} = \equivrep{m + n, 0 + 0}{\Intequiv} = \equivrep{m, 0}{\Intequiv} + \equivrep{n, 0}{\Intequiv} = m_\Int + n_\Int\\
+		(m \times n)_\Int  &= \equivrep{m \times n, 0}{\Intequiv} \\
+		&= \equivrep{m \times n + 0 \times 0, m \times 0 + 0 \times n}{\Intequiv} \\
+		&= \equivrep{m, 0}{\Intequiv} \times \equivrep{n, 0}{\Intequiv} \\
+		&= m_\Int \times n_\Int
+	\end{align*}
+%\end{proof}
+अन्य दोनों शर्तों की पुष्टि अभ्यास के रूप में छोड़ते हैं।
+\begin{prob}
+	दिखाइए कि $(m + n)_\Int = m_\Int + n_\Int$ और
+	$m \leq n \liff m_\Int \leq n_\Int$, किन्हीं भी $m, n \in \Nat$ के लिए।
+\end{prob}
+\end{document}

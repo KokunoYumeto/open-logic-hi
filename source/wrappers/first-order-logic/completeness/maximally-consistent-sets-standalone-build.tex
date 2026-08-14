@@ -1,0 +1,43 @@
+% Target-only standalone reader wrapper for the frozen unimported source file
+% maximally-consistent-sets.tex, included in the 158-file Hindi working edition.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{xr-hyper}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build}
+% The frozen completeness witness uses the former `prv` IDs for results that
+% now live in the `ppr` files.  Keep the witness immutable and import explicit,
+% audited compatibility aliases instead.
+\externaldocument{maximally-consistent-sets-reference-aliases}
+% open-logic-selective.sty separates enabled tag references with `,,`, which
+% makes cleveref request an empty label between the SC and ND references.
+% Scope the corrected separator to this standalone wrapper.
+\makeatletter
+\def\tagpair#1/#2{\iftoggle{#1}{%
+  \edef\taglist@result{\taglist@result\csvcomma #2}%
+  \def\csvcomma{,}}{}}
+\makeatother
+% cleveref has no built-in Hindi conjunction table in this build; its
+% fallback commands are created at begin-document time, so override them then.
+\AtBeginDocument{%
+  \def\crefpairconjunction{ और }%
+  \def\crefmiddleconjunction{, }%
+  \def\creflastconjunction{ और }%
+}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{3em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रथम-कोटि तर्कशास्त्र: अधिकतम संगत समुच्चय}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{com}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{maximally-consistent-sets}
+\end{document}

@@ -1,0 +1,137 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: reduction-alt
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{siz}{red-alt}
+
+\olsection{न्यूनीकरण}
+
+\begin{editorial}
+  यह खंड न्यूनीकरण द्वारा अगणनीयता सिद्ध करता है और इसके परिणाम
+  \olref[nen-alt]{sec} के परिणामों से मेल खाते हैं। \olref[nen]{sec} के
+  परिणामों से मेल खाने वाला थोड़ा अधिक विस्तृत वैकल्पिक रूप
+  \olref[red]{sec} में दिया गया है।
+\end{editorial}
+
+हमने विकर्णीकरण के तर्क से सिद्ध किया कि $\Bin^\omega$ !!{nonenumerable}
+है। इसी प्रकार के विकर्णीकरण-तर्क से हमने दिखाया कि $\Pow{\Nat}$
+!!{nonenumerable} है। पर $\Pow{\Nat}$ को !!{nonenumerable} सिद्ध करने का
+एक और ढंग है: दिखाइए कि \emph{यदि $\Pow{\Nat}$ !!{enumerable} है, तो
+$\Bin^\omega$ भी !!{enumerable} है}। चूँकि हम जानते हैं कि $\Bin^\omega$
+!!{nonenumerable} है, फलतः $\Pow{\Nat}$ भी अगणनीय है।
+
+इसे एक समस्या का दूसरी समस्या में \emph{न्यूनीकरण} कहते हैं। यहाँ हम
+$\Bin^\omega$ को गिनने की समस्या का न्यूनीकरण $\Pow{\Nat}$ को गिनने की
+समस्या में करते हैं। दूसरी समस्या का समाधान---$\Pow{\Nat}$ का कोई
+गणन---पहली समस्या का समाधान, अर्थात $\Bin^\omega$ का कोई गणन, दे देगा।
+
+समुच्चय~$B$ को गिनने की समस्या का न्यूनीकरण समुच्चय~$A$ को गिनने की समस्या
+में करने के लिए हम~$A$ के किसी गणन को~$B$ के गणन में बदलने का ढंग देते हैं।
+इसका सबसे सरल उपाय कोई !!a{surjection} $f\colon A \to B$ परिभाषित करना है।
+यदि $x_1$, $x_2$, \dots{},~$A$ को गिनते हैं, तो $f(x_1)$, $f(x_2)$,
+\dots{},~$B$ को गिनेंगे। हमारे मामले में हम कोई !!a{surjection}
+$f\colon \Pow{\Nat}
+\to \Bin^\omega$ खोज रहे हैं।
+
+\begin{prob}
+दिखाइए कि यदि कोई !!{injective} फलन $g\colon B \to A$ है और
+$B$~!!{nonenumerable} है, तो~$A$ भी अगणनीय है। इसके लिए दिखाइए कि~$g$ की
+सहायता से~$A$ के गणन को~$B$ के गणन में कैसे बदला जा सकता है।
+\end{prob}
+
+\begin{proof}[न्यूनीकरण द्वारा {\olref[nen-alt]{thm:nonenum-pownat}} का प्रमाण]
+न्यूनीकरण के लिए मान लीजिए कि $\Pow{\Nat}$ !!{enumerable} है और इसलिए उसका
+कोई गणन $N_{1}$, $N_{2}$, $N_{3}$, \dots{} है।
+
+फलन $f \colon \Pow{\Nat} \to \Bin^\omega$ इस प्रकार परिभाषित कीजिए:
+$f(N)$ वह लड़ी $s_{k}$ हो जिसके लिए $s_{k}(n) = 1$ यदि और केवल यदि
+$n \in N$, और अन्यथा $s_k(n) = 0$।
+
+इससे स्पष्टतः एक फलन परिभाषित होता है, क्योंकि जब भी $N \subseteq \Nat$
+हो, तब कोई भी $n \in \Nat$ या तो~$N$ का !!a{element} है या नहीं है। उदाहरण
+के लिए, सम प्राकृत संख्याओं का समुच्चय $2\Nat = \Setabs{2n}{n \in \Nat} = \{0,2, 4, 6,
+\dots\}$ लड़ी $1010101\dots$ पर भेजा जाता है; $\emptyset$
+को $0000\dots$ पर और $\Nat$ को $1111\dots$ पर भेजा जाता है।
+
+यह फलन !!{surjective} भी है: $0$ और $1$ से बनी प्रत्येक लड़ी प्राकृत संख्याओं
+के किसी समुच्चय के संगत है, अर्थात उस समुच्चय के जिसके अवयव ठीक वे प्राकृत
+संख्याएँ हैं जो लड़ी में~$1$ आने वाले स्थानों के संगत हैं। अधिक ठीक रूप में,
+यदि $s \in \Bin^\omega$ हो, तो $N
+\subseteq \Nat$ इस प्रकार परिभाषित करें:
+\[
+N = \Setabs{n \in \Nat}{s(n) = 1}
+\]
+तब $f(N) = s$; इसे~$f$ की परिभाषा देखकर जाँचा जा सकता है।
+
+अब सूची
+\[
+f(N_1), f(N_2), f(N_3), \dots
+\]
+पर विचार कीजिए। चूँकि $f$ !!{surjective} है, इसलिए $\Bin^\omega$ का प्रत्येक
+अवयव किसी निवेश पर~$f$ के मान के रूप में अवश्य आता है और इस कारण सूची में भी
+अवश्य आता है। अतः यह सूची पूरे~$\Bin^\omega$ को गिनती है।
+
+यदि $\Pow{\Nat}$ !!{enumerable} होता, तो $\Bin^\omega$ भी !!{enumerable}
+होता। पर $\Bin^\omega$ !!{nonenumerable} है
+(\olref[nen-alt]{thm:nonenum-bin-omega})। अतः $\Pow{\Nat}$
+!!{nonenumerable} है।
+\end{proof}
+
+%\begin{explain}
+%It is easy to be confused about the direction the reduction goes in.
+%For instance, !!a{surjective} function $g \colon \Bin^\omega \to X$
+%does \emph{not} establish that $X$ is !!{nonenumerable}.  (Consider $g
+%\colon \Bin^\omega \to \Bin$ defined by $g(s) = s(1)$, the function
+%that maps a sequence of $0$'s and $1$'s to its first !!{element}.  It
+%is surjective, because some sequences start with $0$ and some start
+%with $1$. But $\Bin$ is finite.)  Note also that the function $f$ must
+%be surjective, or otherwise the argument does not go through:
+%$f(x_1)$, $f(x_2)$, \dots{} would then not be guaranteed to include
+%all the !!{element}s of~$Y$. For instance, $h\colon \Nat \to
+%\Bin^\omega$ defined by
+%\[
+%h(n) = \underbrace{000\dots0}_{\text{$n$ $0$'s}}
+%\]
+%is a function, but $\Nat$ is !!{enumerable}.
+%\end{explain}
+
+\begin{prob}\label{sfr:siz:red-alt:prob:nat-nat}
+  न्यूनीकरण के तर्क द्वारा दिखाइए कि समुच्चय~$X$, जिसमें सभी फलन
+  $f\colon \Nat \to \Nat$ हैं, !!{nonenumerable} है (संकेत: $X$
+  से~$\Bin^\omega$ पर कोई आच्छादक फलन दीजिए।)
+\end{prob}
+
+\begin{prob}
+न्यूनीकरण के तर्क द्वारा दिखाइए कि प्राकृत संख्याओं के युग्मों के सभी
+\emph{समुच्चयों का समुच्चय}, अर्थात $\Pow{\Nat \times \Nat}$,
+!!{nonenumerable} है।
+\end{prob}
+
+\begin{prob}
+न्यूनीकरण के तर्क द्वारा दिखाइए कि $\Nat^\omega$, अर्थात प्राकृत संख्याओं
+के सभी अनंत अनुक्रमों का समुच्चय, !!{nonenumerable} है।
+\end{prob}
+
+%\begin{prob}
+%Let $P$ be the set of functions from $\Nat$ to the set $\{0\}$, and let $Q$ be the set of \emph{partial}
+%functions from the set of positive integers to the set $\{0\}$. Show
+%that $P$~is !!{enumerable} and $Q$~is not. (Hint: reduce the problem
+%of enumerating $\Bin^\omega$ to enumerating~$Q$).
+%\end{prob}
+
+\begin{prob}
+$S$,~$\Nat$ से समुच्चय $\{0,1\}$ पर जाने वाले उन सभी फलनों का समुच्चय हो
+जो !!{surjection} हैं; अर्थात $S$ में सभी !!{surjection}~$f \colon \Nat
+\to \Bin$ हैं। दिखाइए कि $S$ !!{nonenumerable} है।
+\end{prob}
+
+\begin{prob}
+दिखाइए कि सभी वास्तविक संख्याओं का समुच्चय~$\Real$ !!{nonenumerable} है।
+\end{prob}
+
+\end{document}

@@ -1,0 +1,111 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: equinumerous-sets
+% Hindi translation (hi-Deva-IN) of Open Logic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sfr}{siz}{equ}
+
+\olsection{समसंख्यता}
+
+समुच्चयों के ``आकार'' की हमारी एक सहज धारणा है, जो परिमित समुच्चयों के लिए
+ठीक काम करती है। लेकिन अनंत समुच्चयों का क्या? यदि हम \emph{किसी भी} आकार
+के दो समुच्चयों के आकारों की तुलना करने का कोई विधिवत ढंग चाहते हैं, तो
+पहले यह परिभाषित करना उचित है कि समुच्चय समान आकार के कब होते हैं। फ्रेगे
+इसे इस प्रकार कहते हैं:
+\begin{quote}
+  यदि कोई परिचारक यह सुनिश्चित करना चाहता है कि उसने मेज पर ठीक उतनी ही
+  छुरियाँ रखी हैं जितनी थालियाँ, तो उसे दोनों में से किसी को भी गिनने की
+  आवश्यकता नहीं है; वह बस प्रत्येक थाली के दाहिने एक छुरी इस प्रकार रख दे
+  कि मेज की प्रत्येक छुरी किसी थाली के दाहिने हो। इस तरह थालियाँ और छुरियाँ
+  एक-दूसरे के साथ अद्वितीय रूप से सहसंबद्ध होती हैं, और वह भी उसी स्थानिक
+  संबंध के माध्यम से। \citep[\S70]{Frege1884}
+\end{quote}
+इस अनुच्छेद की अंतर्दृष्टि को निम्न विधिवत परिभाषा से स्पष्ट किया जा सकता है:
+
+\begin{defn}\ollabel{comparisondef}
+  $A$ और $B$ \emph{समसंख्यक} हैं, जिसे $\cardeq{A}{B}$ लिखते हैं, यदि
+  और केवल यदि कोई !!a{bijection} $f \colon A \to B$ हो।
+\end{defn}
+
+\begin{prop}\ollabel{equinumerosityisequi}
+समसंख्यता एक तुल्यता संबंध है।
+\end{prop}
+
+\begin{proof} 
+हमें दिखाना है कि समसंख्यता स्वतुल्य, सममित और संक्रामक है। मान लीजिए
+$A, B$ और $C$ समुच्चय हैं।
+
+\emph{स्वतुल्यता।} तत्समक फलन $\Id{A} \colon A \to A$, जहाँ
+$\Id{A} (x) = x$ प्रत्येक $x \in A$ के लिए है, एक !!a{bijection} है। अतः
+$\cardeq{A}{A}$।
+
+\emph{सममिति।} मान लीजिए $\cardeq{A}{B}$; अर्थात कोई !!a{bijection}
+$f\colon A \to B$ है। चूँकि $f$ !!{bijective} है, उसका प्रतिलोम $f^{-1}$
+विद्यमान है और वह भी !!{bijective} है। अतः $f^{-1}\colon B \to A$ एक
+!!a{bijection} है, इसलिए $\cardeq{B}{A}$।
+
+\emph{संक्रामकता।} मान लीजिए कि $\cardeq{A}{B}$ और $\cardeq{B}{C}$ हैं;
+अर्थात !!{bijection} $f\colon A \to B$ और $g\colon B \to
+C$ हैं। तब संयोजन $\comp{f}{g}\colon A \to C$ !!{bijective} है, इसलिए
+$\cardeq{A}{C}$।
+\end{proof}
+
+\begin{prop}
+यदि $\cardeq{A}{B}$, तो $A$ !!{enumerable} है यदि
+और केवल यदि $B$ गणनीय है।
+\end{prop}
+
+\begin{editorial}
+यदि \olref[enm]{sec} सम्मिलित है, तो निम्न प्रमाण
+\olref[enm]{defn:enumerable} का उपयोग करता है; अन्यथा वह
+\olref[enm-alt]{defn:enumerable} का उपयोग करता है।
+\end{editorial}
+
+\begin{proof}
+मान लीजिए $\cardeq{A}{B}$ है, इसलिए कोई !!{bijection} $f \colon A
+\to B$ है, और मान लीजिए कि $A$ !!{enumerable} है।
+\oliflabeldef{sfr:siz:enm:defn:enumerable}{
+  तब या तो $A = \emptyset$ है या कोई !!a{surjective} फलन
+  $g\colon \PosInt \to A$ है। यदि $A = \emptyset$, तो $B = \emptyset$
+  भी है (अन्यथा कोई !!a{element}~$y \in B$ होता, लेकिन ऐसा कोई $x \in
+  A$ न होता जिसके लिए $f(x) = y$)। दूसरी ओर, यदि $g\colon \PosInt \to A$
+  !!{surjective} है, तो $\comp{g}{f} \colon \PosInt \to B$ भी
+  !!{surjective} है। इसे देखने के लिए कोई $y \in B$ लें। चूँकि $f$
+  !!{surjective} है, इसलिए कोई $x \in A$ ऐसा है कि $f(x) = y$। चूँकि
+  $g$ !!{surjective} है, इसलिए कोई $n \in \PosInt$ ऐसा है कि $g(n) =
+  x$। अतः
+\[
+(\comp{g}{f})(n) = f(g(n)) = f(x) = y
+\]
+और इस प्रकार $\comp{g}{f}$ !!{surjective} है। अतः $\comp{g}{f}$,
+~$B$ का एक गणन है, इसलिए $B$~!!{enumerable} है।}
+{
+  तब या तो $A  = \emptyset$ है या कोई !!a{bijection}~$g$ है जिसका
+  परिसर $A$ है और जिसका प्रांत या तो $\Nat$ है या प्राकृत संख्याओं का कोई
+  आरंभिक अनुक्रम है। यदि $A = \emptyset$, तो $B =
+  \emptyset$ भी है (अन्यथा कोई~$y \in B$ ऐसा होता कि ऐसा कोई $x
+  \in A$ न होता जिसके लिए $f(x) = y$)। अतः मान लें कि हमारा
+  !!{bijection}~$g$ है। तब $\comp{g}{f}$ एक !!a{bijection} है जिसका
+  परिसर~$B$ और प्रांत वही है जो~$g$ का है (अर्थात या तो $\Nat$ या उसका
+  कोई आरंभिक खंड), इसलिए $B$ !!{enumerable} है।}
+
+यदि $B$ !!{enumerable} है, तो $A$ भी !!{enumerable} है। यह निष्कर्ष इसी
+तर्क को !!{bijection} $f^{-1}\colon B \to A$ के साथ~$f$ के स्थान पर
+दोहराने से मिलता है।
+\end{proof}
+
+\begin{prob}
+दिखाइए कि यदि $\cardeq{A}{C}$ और $\cardeq{B}{D}$ हैं, और $A \cap B =
+C \cap D = \emptyset$ है, तो $\cardeq{A \cup B}{C \cup D}$।
+\end{prob}
+
+\begin{prob}
+दिखाइए कि यदि $A$ अनंत और !!{enumerable} है, तो
+$\cardeq{A}{\Nat}$।
+\end{prob}
+
+\end{document}

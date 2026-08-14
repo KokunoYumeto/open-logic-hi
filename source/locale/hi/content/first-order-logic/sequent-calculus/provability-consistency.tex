@@ -1,0 +1,128 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[hi]{fol}{seq}{prv}}
+      {\olfileid[hi]{pl}{seq}{prv}}
+
+\olsection{\usetoken{S}{derivability} और संगतता}
+
+अब हम !!{derivability} संबंध के अनेक गुण स्थापित करेंगे। ये अपने-आप में
+रोचक हैं, पर इनमें से प्रत्येक पूर्णता प्रमेय के प्रमाण में भूमिका निभाएगा।
+
+\begin{prop}\ollabel{prop:provability-contr}
+  यदि $\Gamma \Proves !A$ और $\Gamma \cup \{!A\}$ असंगत है, तो
+  $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+ऐसे परिमित समुच्चय $\Gamma_0$ और $\Gamma_1 \subseteq \Gamma$ हैं कि
+$\Log{LK}$, $\Gamma_0 \Sequent !A$ और $!A, \Gamma_1
+\Sequent \quad$ को !!{derive} करता है। $\Log{LK}$ में $\Gamma_0 \Sequent
+!A$ की !!{derivation} को~$\pi_0$ और $\Log{LK}$ में $\Gamma_1, !A
+\Sequent \quad$ की !!{derivation} को~$\pi_1$ मानें। तब हम निम्न अनुक्रम को
+!!{derive} कर सकते हैं:
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ \Gamma_0 \fCenter !A $
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A, \Gamma_1 \fCenter $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0,\Gamma_1 \fCenter $
+\end{prooftree}
+
+चूँकि $\Gamma_0 \subseteq \Gamma$ और $\Gamma_1 \subseteq \Gamma$, इसलिए
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$; अतः $\Gamma$ असंगत है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ तभी और केवल तभी जब $\Gamma \cup \{\lnot !A\}$ असंगत हो।
+\end{prop}
+
+\begin{proof}
+पहले मान लें कि $\Gamma \Proves !A$; अर्थात् कोई
+!!a{derivation}~$\pi_0$ ऐसी है जिसका अंतिम अनुक्रम $\Gamma \Sequent !A$ है।
+$\LeftR{\lnot}$ नियम जोड़ने पर $\lnot !A, \Gamma
+\Sequent \quad$ की !!a{derivation} मिलती है; अर्थात्
+$\Gamma \cup \{\lnot !A\}$ असंगत है।
+
+यदि $\Gamma \cup \{\lnot !A\}$ असंगत है, तो कोई
+!!a{derivation}~$\pi_1$ ऐसी है जिसका अंतिम अनुक्रम $\lnot !A, \Gamma \Sequent \quad$
+है। निम्नलिखित $\Gamma \Sequent !A$ की !!a{derivation} है:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\fCenter !A, \lnot !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\lnot !A, \Gamma \fCenter$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma \fCenter !A$
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+सिद्ध कीजिए कि $\Gamma \Proves \lnot !A$ तभी और केवल तभी जब
+$\Gamma \cup \{!A\}$ असंगत हो।
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  यदि $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$, तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+  मान लें कि $\Gamma \Proves !A$ और $\lnot !A \in \Gamma$। तब कोई
+  !!a{derivation}~$\pi$ ऐसी है जिसका अंतिम अनुक्रम $\Gamma_0 \Sequent !A$ है। अनुक्रम
+  $\lnot !A, \Gamma_0 \Sequent \quad$ भी !!{derivable} है:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi$}
+    \Deduce$\Gamma_0 \fCenter !A$
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, !A \fCenter$
+    \RightLabel{\LeftR{\Exchange}}
+    \UnaryInf$!A, \lnot !A \fCenter$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_0, \lnot !A \fCenter$
+  \end{prooftree}
+  चूँकि $\lnot !A \in \Gamma$ और $\Gamma_0 \subseteq \Gamma$, इससे सिद्ध
+  होता है कि $\Gamma$ असंगत है।
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  यदि $\Gamma \cup \{!A\}$ और $\Gamma \cup \{\lnot !A\}$ दोनों असंगत हैं,
+  तो $\Gamma$ असंगत है।
+\end{prop}
+
+\begin{proof}
+ऐसे परिमित समुच्चय $\Gamma_0 \subseteq \Gamma$ और $\Gamma_1
+\subseteq \Gamma$ तथा $\Log{LK}$-!!{derivation}s $\pi_0$ और $\pi_1$ हैं,
+जिनके अंतिम अनुक्रम क्रमशः $!A, \Gamma_0 \Sequent \quad$ और
+$\lnot !A, \Gamma_1 \Sequent
+\quad$ हैं। तब हम निम्न अनुक्रम को !!{derive} कर सकते हैं:
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ !A, \Gamma_0 \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \Gamma_0 \fCenter \lnot !A$
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lnot !A, \Gamma_1 \fCenter  $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0, \Gamma_1 \fCenter $
+\end{prooftree}
+चूँकि $\Gamma_0 \subseteq \Gamma$ और $\Gamma_1 \subseteq \Gamma$, इसलिए
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$। अतः $\Gamma$ असंगत है।
+\end{proof}
+
+\end{document}
