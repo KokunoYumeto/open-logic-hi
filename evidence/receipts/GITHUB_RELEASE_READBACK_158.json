@@ -1,0 +1,56 @@
+{
+  "schema": "openlogic-hi-github-publication-receipt-v1",
+  "verified_at": "2026-08-15T01:35:19+02:00",
+  "status": "PASS_PUBLIC_ANONYMOUS_READBACK",
+  "release_id": "HI-OLP-PUB-0003",
+  "repository": "https://github.com/KokunoYumeto/open-logic-hi",
+  "release_url": "https://github.com/KokunoYumeto/open-logic-hi/releases/tag/HI-OLP-PUB-0003",
+  "tag": "HI-OLP-PUB-0003",
+  "payload_commit": "e463cc59ecf19ea641672606b5636556decb983b",
+  "release_title": "Open Logic Project — Hindi Working Edition (158/722)",
+  "assets": [
+    {
+      "name": "00_OpenLogic_hi-Deva-IN_WORKING_READER_158-of-722.pdf",
+      "bytes": 3250779,
+      "sha256": "D08E9EA3D8398DB2A8F3CD3FC966A9849B41549A9282780EE1725B36B1716781",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "01_OpenLogic_hi-Deva-IN_EDITABLE_SOURCES_158-of-722.zip",
+      "bytes": 1645877,
+      "sha256": "2F83338475982720ED45203AF0EF5D3DF4DDE6520C4002A0E7BF7748F994331E",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "02_OpenLogic_hi-Deva-IN_PROVENANCE_AND_QA_158-of-722.zip",
+      "bytes": 416457621,
+      "sha256": "4B2CE226EB219AEED456D264A88E1ABFA407A9D2AC5EEA292D22377E332A01CE",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "03_SHA256SUMS.txt",
+      "bytes": 365,
+      "sha256": "6DFE59DCBC7D0C0FC1DA592097C19089E6B18BF77F209061DA0BF72D2F86BE78",
+      "anonymous_readback": "PASS"
+    }
+  ],
+  "commit_archive": {
+    "downloaded_bytes": 3332559,
+    "download_sha256": "F24652363A617941BEFF852976C3BE5760CCE9BA847D4DCE22177C1791B1A761",
+    "reader_hash": "PASS",
+    "accepted_target_hashes": "158/158 PASS"
+  },
+  "coverage": {
+    "accepted_source_files": 158,
+    "source_denominator_files": 722,
+    "accepted_source_words": 59955,
+    "reader_pages": 211
+  },
+  "concept_doi": "10.5281/zenodo.21920511",
+  "version_doi": "10.5281/zenodo.21940471",
+  "caveats": {
+    "complete_open_logic": false,
+    "human_reviewed": false,
+    "pdf_ua_certified": false
+  }
+}
