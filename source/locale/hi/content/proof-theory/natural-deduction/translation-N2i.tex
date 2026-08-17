@@ -1,0 +1,124 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: translation-N2i
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nat}{tni}
+
+\olsection{\Log{N2} से \Log{G2} में अनुवाद}
+
+\begin{prop}\ollabel{prop:N2-to-G2} यदि $\Log{N2c}\ (\Log{N2i}) \Proves
+\Gamma \Sequent !A$, तो $\Log{G2c}\ (\Log{N2i}) + \Cut \Proves \Gamma'
+\Sequent \Delta$, जहाँ $\Gamma'$, $\Gamma$ से चिह्न हटाने पर मिले
+!!{formula}s का बहुसमुच्चय है, और यदि $!A$,~$\lfalse$ नहीं है तो $\Delta =
+\{!A\}$, तथा यदि है तो $\Delta = \emptyset$।
+\end{prop}
+
+\begin{proof}
+प्रमाण फिर $\Gamma \Sequent !A$ के !!{proof}~$\delta$ की ऊँचाई पर आगमन से
+है। यदि $\delta$ अभिगृहीत $x:!A \Sequent !A$ है, तो $\pi$ उसका संगत अभिगृहीत
+$!A \Sequent !A$, अथवा $!A \ident \lfalse$ होने पर $\lfalse \Sequent \ $
+है।
+
+यदि $\delta$ किसी अनुमान नियम पर समाप्त होता है, तो हम स्थितियों में भेद
+करते हैं:
+\begin{enumerate}
+  \item यदि $R$, प्रमुख सूत्र $!B \lif !C$ सहित \Intro{\lif} है और $x:!B$
+  आधार-वाक्य के प्रसंग में उपस्थित पर निष्कर्ष के प्रसंग में अनुपस्थित है, तो
+  $\delta$ का अंत है
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  आगमन परिकल्पना $!B, \Gamma' \Sequent !C$ का (या $!C \ident \lfalse$ होने
+  पर $!B, \Gamma' \Sequent \ $ का) कोई !!a{proof}~$\pi_1$ देती है, जिससे
+  हम~\RightR{\lif} लागू करके $\pi$ प्राप्त करते हैं ($!C \ident \lfalse$
+  की स्थिति में पहले \RightR{\Weakening} लागू करके)।
+  \item यदि $R$, \Intro{\lif} है, किंतु $x:!B$ आधार-वाक्य के प्रसंग में
+  उपस्थित नहीं है, तो $\delta$ का अंत है
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  आगमन परिकल्पना $\Gamma' \Sequent !C$ का कोई !!a{proof}~$\pi_1$ देती है,
+  जिससे हम~$!B$ सहित \LeftR{\Weakening}, और फिर~\RightR{\lif} लागू करके
+  $\pi$ प्राप्त करते हैं।
+  \item यदि $R$, \Elim{\lif} है, तो $\delta$ का अंत है
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma_1 \fCenter !B \lif !A$
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \Deduce$\Gamma_2 \fCenter !B$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  जहाँ $\Gamma = \Gamma_1 \cup \Gamma_2$। आगमन परिकल्पना $\Gamma_1'
+  \Sequent !B \lif !A$ का !!{proof} $\pi_1$ और $\Gamma_2' \Sequent !B$ का
+  !!{proof} $\pi_2$ देती है। हमें !!{proof}~$\pi$ इस रूप में मिलता है
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter !B \lif !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma_2' \fCenter !B$
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\LeftR{\lif}}
+  \BinaryInf$!B \lif !A, \Gamma_2' \fCenter !A$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+  बहुसमुच्चय $\Gamma_1' \cup \Gamma_2'$, $\Gamma' = (\Gamma_1 \cup
+  \Gamma_2)'$ के बराबर न भी हो सकता है: उदाहरणतः यदि $\Gamma_1$ और
+  $\Gamma_2$ दोनों में $x:!C$ हो, तो $\Gamma_1' \cup \Gamma_2'$ में $!C$
+  की दो प्रतियाँ हैं, पर $(\Gamma_1 \cup \Gamma_2)'$ में केवल एक। उपयुक्त
+  \LeftR{\Contraction} अनुमान जोड़कर इसे ठीक कर सकते हैं।
+
+  $!A \ident \lfalse$ होने पर $\delta_2$ पर लागू आगमन परिकल्पना $\Gamma_2'
+  \Sequent \ $ का कोई !!a{proof} देती है, जिससे हम उपयुक्त
+  \LeftR{\Weakening} अनुमान और~$!A$ सहित एक \RightR{\Weakening} जोड़कर
+  !!{proof}~$\pi$ प्राप्त कर सकते हैं।
+\item यदि $R$, \FalseCl है, तो $\delta$ का अंत है
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x: \lnot !A, \Gamma \fCenter \lfalse$
+  \RightLabel{\FalseCl}
+  \UnaryInf$\Gamma \fCenter !A$
+  \DisplayProof
+  \]
+  आगमन परिकल्पना से $\lnot !A, \Gamma' \Sequent \ $ का कोई !!a{proof}
+  $\pi_1$ है। हम !!{proof}~$\pi$ को यह लेते हैं
+  \[
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\fCenter !A, \lnot !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$x: \lnot !A, \Gamma' \fCenter $
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma' \fCenter !A$
+  \DisplayProof
+  \]
+\end{enumerate}
+ध्यान दें कि केवल \FalseCl{} का अनुवाद ऐसा !!a{proof}~$\pi$ देता है जिसके
+दाईं ओर एक से अधिक !!{formula} हैं। अर्थात् किसी~\Log{N2i} !!{proof} का
+अनुवाद एक \Log{G2i}-!!{proof} है।
+\end{proof}
+
+\end{document}

@@ -1,0 +1,26 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0050.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{float}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+% Frozen reference into the preceding Relations chapter.  Retain its complete-
+% reader number without fabricating a link target in this chapter-only PDF.
+\makeatletter
+\expandafter\def\csname r@sfr:rel:ops:sec\endcsname
+  {{2.8}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ops:sec@cref\endcsname
+  {{[section][8][2]2.8}{}{}{}{}}
+\makeatother
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{फलन}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{fun}
+
+\begin{document}
+\subfile{functions}
+\end{document}

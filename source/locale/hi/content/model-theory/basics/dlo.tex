@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{dlo}
+\section{सघन रैखिक क्रम}
+
+\begin{defn}
+  कोई \emph{अंतबिंदु-रहित सघन रैखिक क्रम} ऐसी !!a{structure}~$\Struct{M}$
+  है जो केवल एक द्वि-स्थानीय !!{predicate}~$<$ वाली !!{language} के लिए है
+  और निम्न वाक्यों को संतुष्ट करती है:
+  \begin{enumerate}
+  \item $\lforall[x][\lnot x < x]$;
+  \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x
+    <z ))]]]$;
+  \item $\lforall[x][\lforall[y][(x< y \lor \eq[x][y] \lor y < x)]]$;
+  \item $\lforall[x][\lexists[y][x < y]]$;
+  \item $\lforall[x][\lexists[y][y < x]]$;
+  \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land
+        z < y))]]]$.
+ \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:cantorQ}
+  कोई भी दो !!{enumerable} अंतबिंदु-रहित सघन रैखिक क्रम समरूपी होते हैं।
+\end{thm}
+
+\begin{proof}
+  मान लें कि $\Struct{M_1}$ और $\Struct{M_2}$ ऐसे !!{enumerable}
+  अंतबिंदु-रहित सघन रैखिक क्रम हैं जिनमें ${<_1} = \Assign{<}{M_1}$ और ${<_2} =
+  \Assign{<}{M_2}$, तथा $\PIso{I}$ उनके बीच सभी आंशिक समरूपताओं का समुच्चय
+  है। $\PIso{I}$ अरिक्त है, क्योंकि कम-से-कम $\emptyset \in \PIso{I}$। हम
+  दिखाते हैं कि $\PIso{I}$ आगे-पीछे गुणधर्म को संतुष्ट करता
+  है। तब $\Struct{M_1} \iso[p] \Struct{M_2}$, और प्रमेय
+  \olref[pis]{thm:p-isom1} से मिलता है।
+
+  यह दिखाने के लिए कि $\PIso{I}$ आगे गुणधर्म को संतुष्ट करता है, कोई $p \in
+  \PIso{I}$ लें और $p(a_i) = b_i$ मानें, जहाँ $i = 1$, \dots,~$n$।
+  व्यापकता की हानि के बिना मान लें कि $a_1 <_1 a_2 <_1 \cdots <_1
+  a_n$।
+  कोई $a \in \Domain{M_1}$ दिया हो, तो $b \in \Domain{M_2}$ को इस प्रकार
+  खोजें:
+  \begin{enumerate}
+  \item यदि $a <_1 a_1$, तो $b \in \Domain{M_2}$ ऐसा लें कि $b <_2
+    b_1$;
+  \item यदि $a_n <_1 a$, तो $b \in \Domain{M_2}$ ऐसा लें कि $b_n <_2 b$;
+ \item यदि $a_i <_1 a <_1 a_{i+1}$ किसी $i$ के लिए, तो $b \in
+   \Domain{M_2}$ ऐसा लें कि $b_i <_2 b <_2 b_{i+1}$।
+  \end{enumerate}
+  वांछित गुणधर्म वाला $b$ खोजना हमेशा संभव है, क्योंकि $\Struct{M_2}$ कोई
+  अंतबिंदु-रहित सघन रैखिक क्रम है। $q = p \cup \{ \langle a, b \rangle \}$
+  परिभाषित करें; तब $q \in \PIso{I}$, $p$ का वांछित विस्तार है। इससे
+  आगे गुणधर्म स्थापित होता है। पीछे गुणधर्म का प्रमाण समान है। अतः
+  $\Struct{M_1} \iso[p]
+  \Struct{M_2}$; \olref[pis]{thm:p-isom1} से $\Struct{M_1} \iso
+  \Struct{M_2}$।
+\end{proof}
+
+\begin{prob}
+  यह सत्यापित करके \olref[mod][bas][dlo]{thm:cantorQ} का प्रमाण पूरा कीजिए
+  कि $\PIso{I}$ पीछे गुणधर्म को संतुष्ट करता है।
+\end{prob}
+
+\begin{rem}
+  मान लें कि $\Struct{S}$ कोई भी !!{enumerable} अंतबिंदु-रहित सघन रैखिक
+  क्रम है। तब (\olref{thm:cantorQ} से) $\Struct{S} \iso
+  \Struct{Q}$, जहाँ
+  $\Struct{Q} = (\Rat, <)$ वह !!{enumerable} सघन रैखिक क्रम है जिसका प्रांत
+  परिमेय संख्याओं का समुच्चय $\Rat$ है। अब \olref[thm]{remark:R} की
+  !!{structure}~$\Struct{R} =
+  (\Real, <)$ पर फिर विचार करें। हमने देखा कि
+  कोई !!a{enumerable} !!{structure}~$\Struct{S}$ ऐसी है कि $\Struct{R}
+  \elemequiv \Struct{S}$। किंतु $\Struct{S}$ कोई !!a{enumerable}
+  अंतबिंदु-रहित सघन रैखिक क्रम है, इसलिए वह !!{structure}~$\Struct{Q}$ के
+  समरूपी (और अतः प्राथमिकतः तुल्य) है। प्राथमिक तुल्यता की संक्रामकता से
+  $\Struct{R} \elemequiv
+  \Struct{Q}$। (इसे हम उसी आगे-पीछे तर्क से सीधे
+  $\Struct{R} \iso[p] \Struct{Q}$ स्थापित करके भी दिखा सकते थे।)
+\end{rem}
+\end{document}

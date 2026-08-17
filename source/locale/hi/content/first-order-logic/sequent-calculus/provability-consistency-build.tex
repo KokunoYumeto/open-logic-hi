@@ -1,0 +1,19 @@
+% Target-only first-order-logic profile build wrapper for HI-OLP-0076.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\setlength{\emergencystretch}{2em}
+\firmlists
+\usepackage{needspace}
+\AtBeginEnvironment{prop}{\Needspace{0.18\textheight}}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रथम-कोटि तर्कशास्त्र: व्युत्पन्नता और संगतता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{provability-consistency}
+\end{document}

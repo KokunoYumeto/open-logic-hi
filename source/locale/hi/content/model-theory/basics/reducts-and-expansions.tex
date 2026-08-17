@@ -1,0 +1,70 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: reducts-and-expansions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{red}
+\section{न्यूनीकृत रूप और विस्तार}
+
+जिन भाषाओं के कुछ प्रतीक समान हों, उन भाषाओं की तथा उनकी !!{structure}s की
+तुलना करना प्रायः उपयोगी या आवश्यक होता है। सबसे सामान्य स्थिति तब होती है जब
+!!a{language}~$\Lang{L}$ के सभी प्रतीक !!a{language}~$\Lang{L'}$ में भी हों,
+अर्थात् $\Lang{L} \subseteq
+\Lang{L'}$। तब अतिरिक्त प्रतीकों की व्याख्याएँ
+जोड़कर और समान प्रतीकों की व्याख्याएँ अपरिवर्तित रखकर किसी
+$\Lang{L}$-!!{structure}~$\Struct{M}$ को हमेशा किसी
+$\Lang{L'}$-!!{structure} में विस्तारित किया जा सकता है। दूसरी ओर, किसी
+$\Lang{L'}$-संरचना~$\Struct{M'}$ से उन प्रतीकों की व्याख्याएँ केवल
+``भुलाकर'', जो~$\Lang{L}$ में नहीं आते, हम एक $\Lang{L}$-संरचना प्राप्त
+कर सकते हैं।
+
+\begin{defn}
+\ollabel{defn:reduct}
+मान लें कि $\Lang L \subseteq \Lang L'$ है, $\Struct M$ एक
+$\Lang L$-!!{structure} है और $\Struct M'$ एक $\Lang L'$-!!{structure} है।
+$\Struct M$, $\Struct M'$ का $\Lang L$ तक \emph{न्यूनीकृत रूप} है, और
+$\Struct M'$, $\Struct M$ का $\Lang L'$ तक \emph{विस्तार} है, तभी
+और केवल तभी जब
+\begin{enumerate}
+\item $\Domain{M} = \Domain{M'}$
+\item प्रत्येक !!{constant}~$c \in \Lang L$ के लिए, $\Assign{c}{M} =
+  \Assign{c}{M'}$.
+\item प्रत्येक !!{function}~$f \in \Lang L$ के लिए, $\Assign{f}{M} =
+  \Assign{f}{M'}$.
+\item प्रत्येक !!{predicate}~$P \in \Lang L$ के लिए, $\Assign{P}{M} =
+  \Assign{P}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:reduct}
+यदि कोई $\Lang{L}$-!!{structure}~$\Struct{M}$ किसी
+$\Lang{L'}$-!!{structure}~$\Struct{M'}$ का न्यूनीकृत रूप है, तो प्रत्येक
+$\Lang{L}$-!!{sentence}~$!A$ के लिए,
+\[
+\Sat{M}{!A} \text{ तभी और केवल तभी जब } \Sat{M'}{!A}.
+\]
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[mod][bas][red]{prop:reduct} को सिद्ध कीजिए।
+\end{prob}
+
+\begin{defn}
+मान लें कि हमारे पास कोई $\Lang{L}$-संरचना $\Struct{M}$ है, और
+$\Lang{L'} =
+\Lang{L} \cup \{P\}$, $\Lang{L}$ में कोई एक $n$-स्थानीय
+!!{predicate}~$P$ जोड़कर प्राप्त विस्तार है। यदि $R \subseteq \Domain{M}^n$
+कोई $n$-स्थानीय संबंध है, तो हम $\Expan{M}{R}$ उस विस्तार~$\Struct{M'}$
+के लिए लिखते हैं जो~$\Struct{M}$ से मिलता है और जिसमें
+$\Assign{P}{M'} = R$।
+\end{defn}
+
+\end{document}

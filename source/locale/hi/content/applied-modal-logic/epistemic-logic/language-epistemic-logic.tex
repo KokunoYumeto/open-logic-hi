@@ -1,0 +1,87 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: language-epistemic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{aml}{el}{lan}
+
+\olsection{ज्ञानात्मक तर्कशास्त्र की भाषा}
+
+\begin{defn}
+मान लें कि $G$ कर्ता-संकेतों का समुच्चय है। बहु-कर्ता ज्ञानात्मक तर्कशास्त्र
+की मूल भाषा में निम्नलिखित होते हैं:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} का प्रतिज्ञप्तिक अचर~$\lfalse$।}{}
+  \tagitem{prvTrue}{!!{truth} का प्रतिज्ञप्तिक अचर~$\ltrue$।}{}
+  \item !!{propositional variable}ों का !!{denumerable} समुच्चय: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item प्रतिज्ञप्तिक संयोजक: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}।
+  \item प्रत्येक $a \in G$ के लिए ज्ञान-संकारक $\Knows_a$।
+\end{enumerate}
+\end{defn}
+
+यदि हमारी रुचि अपने तंत्र में केवल एक कर्ता के ज्ञान में है, तो हम समुच्चय
+~$G$ और अलग-अलग कर्ताओं का उल्लेख छोड़ सकते हैं। उस स्थिति में हमारे पास
+केवल मूल संकारक~$\Knows$ होता है।
+
+\begin{defn}
+ज्ञानात्मक भाषा की \emph{!!{formula}ें} आगमनात्मक रूप से इस प्रकार परिभाषित
+होती हैं:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ एक परमाण्विक !!{formula} है।}{}
+
+\tagitem{prvTrue}{$\ltrue$ एक परमाण्विक !!{formula} है।}{}
+
+\item प्रत्येक प्रतिज्ञप्तिक चर $\Obj p_i$ एक (परमाण्विक) !!{formula} है।
+
+\tagitem{prvNot}{यदि $!A$ एक !!{formula} है, तो $\lnot !A$ एक
+  !!{formula} है।}{}
+
+\tagitem{prvAnd}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \land
+  !B)$ एक !!{formula} है।}{}
+
+\tagitem{prvOr}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lor !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvIf}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lif !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvIff}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \liff !B)$
+  एक !!{formula} है।}{}
+
+\item यदि $!A$ एक !!{formula} और $a \in G$ है, तो $\Knows_a !A$ एक
+  !!{formula} है।
+
+\tagitem{limitClause}{इसके अतिरिक्त कुछ भी !!{formula} नहीं है।}{}
+\end{enumerate}
+\end{defn}
+
+यदि किसी !!{formula}~$!A$ में $\Knows_a$ नहीं आता, तो हम उसे
+\emph{मोडल-मुक्त} कहते हैं।
+
+\begin{defn}
+  संकारक $\Knows$ का उद्देश्य व्यक्तिगत ज्ञान को संकेतित करना है, जबकि
+  $\EKnows$, जिसे प्रायः ``हर कोई जानता है'' पढ़ते हैं, सामूहिक ज्ञान को
+  संकेतित करता है। जहाँ $G' \subseteq G$, वहाँ हम $\EKnows_{G'} !A$ को
+  निम्न का संक्षिप्त रूप मानते हैं:
+  \[\bigwedge_{b \in G'} \Knows_b !A.\]
+\end{defn}
+
+हम ज्ञान की एक और भी प्रबल धारणा, अर्थात कर्ताओं के समूह~$G$ में
+\emph{सार्वज्ञान}, भी परिभाषित कर सकते हैं। जब कोई सूचना कर्ताओं के समूह
+में सार्वज्ञान होती है, तो इसका अर्थ है कि उस समूह के कर्ताओं के प्रत्येक
+संयोजन के लिए वे सभी जानते हैं कि दूसरे जानते हैं कि दूसरे जानते हैं
+\dots और यह क्रम अनंत तक चलता है। यह सामूहिक ज्ञान से बहुत अधिक प्रबल है,
+और ऐसे संबंधात्मक प्रतिरूप आसानी से बनाए जा सकते हैं जिनमें कोई !!{formula}
+सामूहिक ज्ञान तो हो, किंतु सार्वज्ञान न हो। ``समूह~$G$ में यह सार्वज्ञान है
+कि~$!A$'' को हम $\CKnows_G !A$ से संकेतित करेंगे।
+
+\end{document}

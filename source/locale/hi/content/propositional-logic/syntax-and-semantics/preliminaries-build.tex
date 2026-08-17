@@ -1,0 +1,22 @@
+% Target-only standalone build wrapper for HI-OLP-0057.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen reference into the immediately preceding formulas section, which is
+% deliberately absent from this section-only defect-check PDF.
+\makeatletter
+\expandafter\def\csname r@pl:syn:fml:defn:formulas\endcsname
+  {{syn.{1}}{}{}{}{}}
+\expandafter\def\csname r@pl:syn:fml:defn:formulas@cref\endcsname
+  {{[defn][1][0]syn.{1}}{}{}{}{}}
+\makeatother
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रतिज्ञप्ति तर्कशास्त्र: प्रारंभिक तथ्य}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{preliminaries}
+\end{document}

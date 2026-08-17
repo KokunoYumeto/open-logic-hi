@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: substructures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{sub}
+\olsection{उप\printtoken{p}{structure}}
+
+किसी !!a{structure}~$\Struct{M}$ का !!{domain} किसी अन्य~$\Struct{M'}$ के
+प्रांत का उपसमुच्चय हो सकता है। किंतु स्पष्टतः $\Struct{M}$ को
+$\Struct{M'}$ का ``भाग'' तभी मानना चाहिए जब केवल $\Domain{M}
+\subseteq \Domain{M'}$ ही न हो, बल्कि $\Struct{M}$ और $\Struct{M'}$ भाषा
+के प्रतीकों की व्याख्या करने के ढंग में कम-से-कम साझा भाग~$\Domain{M}$ पर
+``सहमत'' भी हों।
+
+\begin{defn}
+\ollabel{defn:substructure}
+!!{structure}s $\Struct M$ और $\Struct M'$ एक ही भाषा~$\Lang L$ की दी गई
+हों। हम $\Struct M$ को $\Struct M'$ की \emph{उप!!{structure}}, और $\Struct M'$
+को $\Struct M$ का \emph{विस्तार} कहते हैं, तथा $\Struct M \substruct \Struct M'$
+लिखते हैं, तभी और केवल तभी जब
+\begin{enumerate}
+\item $\Domain{M} \subseteq \Domain{M'}$,
+\item प्रत्येक नियतांक $c \in \Lang L$ के लिए, $\Assign{c}{M} =
+    \Assign{c}{M'}$;
+\item प्रत्येक $n$-स्थानीय !!{function} $f \in \Lang L$ के लिए,
+  $\Assign{f}{M}(a_1, \dots, a_n) = \Assign{f}{M'}(a_1, \dots, a_n)$
+  सभी $a_1$, \dots, $a_n \in \Domain{M}$ के लिए।
+\item प्रत्येक $n$-स्थानीय !!{predicate} $R \in \Lang L$ के लिए, $\langle
+  a_1, \dots, a_n\rangle \in \Assign{R}{M}$ तभी और केवल तभी जब $\langle a_1, \dots,
+  a_n\rangle \in \Assign{R}{M'}$; यह सभी $a_1$, \dots, $a_n \in
+  \Domain{M}$ के लिए है।
+\end{enumerate}
+\end{defn}
+
+\begin{rem}
+\ollabel{rem:substructure}
+यदि भाषा में कोई नियतांक या !!{function} न हो, तो कोई भी $N
+\subseteq \Domain{M}$ ऐसी उप!!{structure}~$\Struct{N}$ निर्धारित करता है
+जो $\Struct M$ की है और जिसका !!{domain}~$\Domain{N} = N$ है; इसे
+$\Assign{R}{N} =
+\Assign{R}{M} \cap N^n$ रखकर निर्धारित करते हैं।
+\end{rem}
+
+% prove something about this? Examples?
+
+\end{document}

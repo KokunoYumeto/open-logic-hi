@@ -1,0 +1,18 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0061.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{2em}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{वाक्यविन्यास और अर्थविज्ञान}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{syn}
+
+\begin{document}
+\subfile{syntax-and-semantics}
+\end{document}

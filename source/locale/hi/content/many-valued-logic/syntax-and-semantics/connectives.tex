@@ -1,0 +1,67 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: connectives
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{syn}{con}
+
+\olsection{भाषाएँ और संयोजक}
+
+चिरसम्मत प्रतिज्ञप्ति तर्कशास्त्र और अनेक अन्य तर्कशास्त्र
+\emph{प्रतिज्ञप्तिपरक अचरों} तथा \emph{संयोजकों} के नियत भंडार का उपयोग
+करते हैं। उदाहरणार्थ, हम निम्न को आदिम मानते हैं:
+\begin{enumerate}
+\tagitem{prvFalse}{!!{falsity} के लिए प्रतिज्ञप्तिपरक अचर~$\lfalse$।}{}
+\tagitem{prvTrue}{!!{truth} के लिए प्रतिज्ञप्तिपरक अचर~$\ltrue$।}{}
+\item तार्किक संयोजक:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\end{enumerate}
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+ऊपर के आदिम संयोजकों के अतिरिक्त हम संक्षिप्त रूपों के रूप में परिभाषित
+चिह्न भी उपयोग करते हैं, जैसे
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}.}{}
+
+यही संयोजक बहुमूल्य तर्कशास्त्रों में भी उपयोग होते हैं। किंतु एक ही
+तर्कशास्त्र में, मसलन, संयोजन के भिन्न रूप सम्मिलित करना प्रायः उपयोगी
+होता है; उन्हें अलग रखने के लिए भिन्न चिह्न चाहिए होंगे। कुछ बहुमूल्य
+तर्कशास्त्रों में ऐसे संयोजक भी होते हैं जिनका चिरसम्मत तर्कशास्त्र में कोई
+तुल्य नहीं। अतः हम सामान्य से कुछ अधिक व्यापक होंगे।
+
+\begin{defn}
+  किसी \emph{प्रतिज्ञप्तिपरक भाषा} में \emph{संयोजकों} का समुच्चय $\Lang
+  L$ होता है। प्रत्येक संयोजक $\star$ की कोई \emph{स्थानिकता} होती है;
+  स्थानिकता~$n$ वाला संयोजक \emph{$n$-स्थानी} कहलाता है। स्थानिकता~$0$ के
+  संयोजक \emph{अचर}, स्थानिकता~$1$ के संयोजक \emph{एक-स्थानी}, और
+  स्थानिकता~$2$ के संयोजक \emph{दो-स्थानी} भी कहलाते हैं।
+\end{defn}
+
+\begin{ex}
+  प्रतिज्ञप्ति तर्कशास्त्र की मानक भाषा $\Lang L_0$ में निम्न संयोजक (उनकी
+  स्थानिकताओं सहित) हैं:
+  $\lfalse$~($0$)
+  $\lnot$~($1$),
+  $\land$~($2$),
+  $\lor$~($2$),
+  $\lif$~($2$)। हमारे विचाराधीन अधिकांश तर्कशास्त्र इस भाषा का उपयोग
+  करेंगे। कुछ तर्कशास्त्र परंपरा और रूढ़ि के कारण कुछ संयोजकों के लिए भिन्न
+  चिह्न उपयोग करते हैं। उदाहरणार्थ, गुणनफल तर्कशास्त्र में संयोजन का चिह्न
+  प्रायः~$\land$ के बदले $\odot$ होता है। कभी-कभी नया संक्रियक जोड़ना
+  सुविधाजनक होता है, जैसे निर्धार्यता संक्रियक $\triangle$ ($1$-स्थानी)।
+\end{ex}
+
+\end{document}

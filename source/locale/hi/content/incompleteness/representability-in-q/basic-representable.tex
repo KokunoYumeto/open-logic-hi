@@ -1,0 +1,235 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: basic-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{req}{bre}
+\olsection{मूल फलन~$\Th{Q}$ में निरूपणीय हैं}
+
+पहले हमें दिखाना है कि सभी मूल फलन~$\Th{Q}$ में निरूपणीय हैं। अंततः हमें
+दिखाना होगा कि प्रत्येक $k$-स्थानीय मूल फलन $f(x_0,\dots,x_{k-1})$ को
+उसका निरूपण करने वाला कोई !!a{formula} $!A_f(x_0,\dots,x_{k-1},y)$ कैसे
+नियत किया जाए।
+
+हम शून्य, उत्तराधिकारी, जोड़, गुणन, समता के अभिलाक्षणिक फलन और प्रक्षेपों
+का निरूपण कर सकेंगे। प्रत्येक मामले में उपयुक्त निरूपक सूत्र पूरी तरह सीधा
+है; उदाहरणतः शून्य का निरूपण सूत्र $y = \Obj 0$ द्वारा, उत्तराधिकारी का
+निरूपण !!{formula} $x_0' = y$ द्वारा और जोड़ का निरूपण !!{formula}
+$(x_0 + x_1) = y$ द्वारा होता है। काम यह दिखाने में है कि $\Th{Q}$ संबद्ध
+!!{sentence}s को सिद्ध कर सकता है; उदाहरणतः ऊपर के !!{formula} द्वारा जोड़
+का निरूपण होने का अर्थ यह दिखाना है कि प्राकृतिक संख्याओं $m$ और $n$ के
+प्रत्येक युग्म के लिए $\Th{Q}$ सिद्ध करता है
+\begin{align*}
+& \eq[\num n + \num m][\num {n+m}] \text{ और}\\
+& \lforall[y][(\eq[(\num n + \num m)][y] \lif \eq[y][\num{n+m}])].
+\end{align*}
+
+\begin{prop}
+\ollabel{prop:rep-zero}
+शून्य फलन $\Zero(x) = 0$ का~$\Th{Q}$ में निरूपण
+$!A_{\Zero}(x,y) \ident \eq[y][\Obj 0]$ द्वारा होता है।
+\end{prop}
+
+\begin{prop}
+\ollabel{prop:rep-succ}
+उत्तराधिकारी फलन $\Succ(x) = x+1$ का~$\Th{Q}$ में निरूपण
+$!A_{\Succ}(x,y) \ident \eq[y][x']$ द्वारा होता है।
+\end{prop}
+
+\begin{prop}
+\ollabel{prop:rep-proj}
+प्रक्षेप फलन $\Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i$ का~$\Th{Q}$ में
+निरूपण
+\[!A_{\Proj{n}{i}}(x_0, \dots, x_{n-1}, y) \ident \eq[y][x_i].\]
+द्वारा होता है।
+\end{prop}
+
+\begin{prob}
+सिद्ध करें कि $\eq[y][\Obj 0]$, $\eq[y][x']$ और $\eq[y][x_i]$ क्रमशः
+$\Zero$, $\Succ$ और $\Proj{n}{i}$ का निरूपण करते हैं।
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:rep-id}
+समता~($=$) का अभिलाक्षणिक फलन,
+\[
+\Char{=}(x_0, x_1) =
+\begin{cases}
+  1 & \text{यदि } x_0 =x_1\\
+  0 & \text{अन्यथा}
+\end{cases}
+\]
+का~$\Th{Q}$ में निरूपण
+\[
+  !A_{\Char{=}}(x_0, x_1, y) \ident (\eq[x_0][x_1] \land \eq[y][\num{1}]) \lor (\eq/[x_0][x_1] \land
+\eq[y][\num{0}]).
+\]
+द्वारा होता है।
+\end{prop}
+
+प्रमाण के लिए निम्न उपपत्ति चाहिए।
+
+\begin{lem}
+\ollabel{lem:q-proves-neq} प्राकृतिक संख्याएँ $n$ और $m$ दी गई हों। यदि
+$n \neq m$, तो $\Th{Q} \Proves \eq/[\num n][\num m]$।
+\end{lem}
+
+\begin{proof}
+$n$ पर आगमन का उपयोग करके दिखाएँ कि प्रत्येक $m$ के लिए, यदि $n \neq m$,
+तो $Q \Proves \eq/[\num n][\num m]$।
+
+आधार मामले में $n = 0$। यदि $m$,~$0$ के बराबर नहीं है, तो किसी प्राकृतिक
+संख्या $k$ के लिए $m = k + 1$। हमारे पास अभिगृहीत
+$\lforall[x][\eq/[0][x']]$ है। किसी परिमाणक-अभिगृहीत द्वारा $x$ के स्थान
+पर $\num k$ रखकर हम $\eq/[0][\num k']$ निष्कर्षित कर सकते हैं। किंतु
+$\num k'$ केवल $\num m$ है।
+
+आगमन चरण में हम मान सकते हैं कि दावा $n$ के लिए सत्य है और $n+1$ पर विचार
+करते हैं। $m$ कोई भी प्राकृतिक संख्या हो। दो संभावनाएँ हैं: या तो $m = 0$,
+अथवा किसी $k$ के लिए $m = k+1$। पहला मामला ऊपर की तरह हल होता है। दूसरे
+मामले में मान लें कि $n+1 \neq k+1$। तब $n \neq k$। $n$ के लिए आगमन
+परिकल्पना से हमारे पास $\Th{Q} \Proves \eq/[\num n][\num k]$ है। हमारे
+पास अभिगृहीत
+$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$ है। किसी
+परिमाणक-अभिगृहीत से हमें
+$\eq[\num n'][\num k'] \lif \eq[\num n][\num k]$ मिलता है। प्रतिज्ञप्तिक
+तर्क का उपयोग करके हम $\Th{Q}$ में
+$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$ निष्कर्षित कर सकते
+हैं। मोडस पोनेन्स से हमें $\eq/[\num n'][\num k']$ मिलता है, और यही हमें
+चाहिए, क्योंकि $\num k'$,~$\num m$ है।
+\end{proof}
+
+\begin{explain}
+ध्यान दें कि उपपत्ति बहुत बड़ा दावा नहीं करती: मूलतः वह कहती है कि
+$\Th{Q}$ सिद्ध कर सकता है कि अलग-अलग अंक-सूचक अलग वस्तुओं को निर्दिष्ट
+करते हैं। उदाहरणतः, $\Th{Q}$ सिद्ध करता है कि $0'' \neq 0'''$। किंतु इसे
+सामान्य रूप में दिखाने के लिए कुछ सावधानी चाहिए। यह भी ध्यान दें कि यद्यपि
+हम आगमन का उपयोग कर रहे हैं, यह $\Th{Q}$ के \emph{बाहर} का आगमन है।
+\end{explain}
+
+\begin{proof}[\olref{prop:rep-id} का प्रमाण]
+यदि $n = m$, तो $\num{n}$ और $\num{m}$ एक ही पद हैं, और
+$\Char{=}(n, m) = 1$। किंतु
+$\Th{Q} \Proves (\eq[\num{n}][\num{m}] \land
+\eq[\num{1}][\num{1}])$, इसलिए वह
+$!A_=(\num{n}, \num{m}, \num{1})$ को सिद्ध करता है। यदि $n \neq m$,
+तो $\Char=(n, m) = 0$। \olref{lem:q-proves-neq} के अनुसार
+$\Th{Q} \Proves \eq/[\num{n}][\num{m}]$, और इसलिए
+$(\eq/[\num{n}][\num{m}] \land \Obj 0 = \Obj 0)$ भी। अतः
+$\Th{Q} \Proves !A_=(\num{n}, \num{m}, \num{0})$।
+
+दूसरे भाग के लिए भी दो मामले हैं। यदि $n = m$, तो हमें दिखाना है कि
+$\Th{Q} \Proves \lforall[y][(!A_=(\num{n}, \num{m}, y)
+  \lif \eq[y][\num{1}])]$। अनौपचारिक रूप से तर्क करते हुए, मान लें कि
+$!A_=(\num{n}, \num{m}, y)$, अर्थात्
+\[
+(\eq[\num{n}][\num{n}] \land \eq[y][\num{1}]) \lor
+(\eq/[\num{n}][\num{n}] \land \eq[y][\num{0}])
+\]
+बायाँ वियोज्य तर्क द्वारा $\eq[y][\num{1}]$ देता है; दायाँ वियोज्य
+$\eq[\num{n}][\num{n}]$ के विरुद्ध है, जो तर्क द्वारा सिद्ध है।
+
+दूसरी ओर मान लें कि $n \neq m$। तब $!A_=(\num{n}, \num{m}, y)$ है
+\[
+(\eq[\num{n}][\num{m}] \land \eq[y][\num{1}]) \lor
+(\eq/[\num{n}][\num{m}] \land \eq[y][\num{0}])
+\]
+यहाँ बायाँ वियोज्य $\eq/[\num{n}][\num{m}]$ के विरुद्ध है, जो
+\olref{lem:q-proves-neq} के अनुसार $\Th{Q}$ में सिद्ध है; दायाँ वियोज्य
+$\eq[y][\num{0}]$ निष्पन्न करता है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-add}
+जोड़ फलन $\Add(x_0, x_1) = x_0+x_1$ का~$\Th{Q}$ में निरूपण
+\[
+  !A_{\Add}(x_0, x_1, y) \ident \eq[y][(x_0 + x_1)].
+\]
+द्वारा होता है।
+\end{prop}
+
+\begin{lem}
+\ollabel{lem:q-proves-add}
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$।
+\end{lem}
+
+\begin{proof}
+हम इसे~$m$ पर आगमन द्वारा सिद्ध करते हैं। यदि $m = 0$, तो दावा है कि
+$\Th{Q} \Proves \eq[(\num{n} + \Obj 0)][\num{n}]$। यह अभिगृहीत~$!Q_4$
+से निकलता है। अब दावा $m$ के लिए मानें; $m+1$ के लिए दावा सिद्ध करें,
+अर्थात् सिद्ध करें कि
+$\Th{Q} \Proves \eq[(\num{n} + \num{m+1})][\num{n+m+1}]$। ध्यान दें कि
+$\num{m+1}$ केवल $\num{m}'$ और $\num{n+m+1}$ केवल $\num{n+m}'$ है।
+अभिगृहीत $!Q_5$ से
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][(\num{n}+\num{m})']$। आगमन
+परिकल्पना से
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$। अतः
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][\num{n+m}']$।
+\end{proof}
+
+\begin{proof}[\olref{prop:rep-add} का प्रमाण]
+$\Add$ का निरूपण करने वाला !!{formula}~$!A_\Add(x_0, x_1, y)$,
+$\eq[y][(x_0 + x_1)]$ है। पहले हम दिखाते हैं कि यदि $\Add(n, m) = k$, तो
+$\Th{Q} \Proves !A_\Add(\num{n}, \num{m}, \num{k})$, अर्थात्
+$\Th{Q} \Proves \eq[\num{k}][(\num{n} + \num{m})]$। किंतु
+$k = n + m$ होने से $\num{k}$ केवल $\num{n+m}$ है, और हम
+\olref{lem:q-proves-add} में दिखा चुके हैं कि
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$।
+
+हमें यह भी दिखाना है कि यदि $\Add(n, m) = k$, तो
+\[
+\Th{Q} \Proves \lforall[y][(!A_\Add(\num{n}, \num{m}, y) \lif
+  \eq[y][\num{k}])].
+\]
+मान लें कि हमारे पास $\eq[(\num{n} + \num{m})][y]$ है। चूँकि
+\[
+\Th{Q} \Proves \eq[(\num{n}+\num{m})][\num{n+m}],
+\]
+हम बाएँ पक्ष को $\num{n+m}$ से बदलकर स्वेच्छ~$y$ के लिए
+$\eq[\num{n+m}][y]$ प्राप्त कर सकते हैं।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-mult}
+गुणन फलन $\Mult(x_0, x_1) = x_0 \cdot x_1$ का~$\Th{Q}$ में निरूपण
+\[
+  !A_{\Mult}(x_0, x_1, y) \ident y = (x_0 \times x_1).
+\]
+द्वारा होता है।
+\end{prop}
+
+\begin{proof} अभ्यास। \end{proof}
+
+\begin{lem}
+\ollabel{lem:q-proves-mult}
+$\Th{Q} \Proves \eq[(\num{n} \times \num{m})][\num{n \cdot m}]$।
+\end{lem}
+
+\begin{proof} अभ्यास। \end{proof}
+
+\begin{prob}
+\olref[inc][req][bre]{lem:q-proves-mult} सिद्ध करें।
+\end{prob}
+
+\begin{prob}
+\olref[inc][req][bre]{lem:q-proves-mult} का उपयोग करके
+\olref[inc][req][bre]{prop:rep-mult} सिद्ध करें।
+\end{prob}
+
+\begin{explain}
+  याद करें कि हम अंकगणित की भाषा के फलन-चिह्न के लिए $\times$ और संख्याओं
+  पर सामान्य गुणन-संक्रिया के लिए $\cdot$ का उपयोग करते हैं। अतः $\cdot$
+  संख्याओं के व्यंजकों के बीच आ सकता है (जैसे $m \cdot n$ में), जबकि
+  $\times$ केवल अंकगणित की भाषा के पदों के बीच आता है (जैसे
+  $(\num{m} \times \num{n})$ में)। और भी भ्रमकारी ढंग से, $+$ का उपयोग
+  !!{function} और जोड़-संक्रिया दोनों के लिए होता है। जब वह पदों के बीच
+  आता है---उदाहरणतः $(\num{n} + \num{m})$ में---तो वह अंकगणित की भाषा का
+  $2$-स्थानीय !!{function} है, और जब वह संख्याओं के बीच आता है---उदाहरणतः
+  $n+m$ में---तो वह जोड़-संक्रिया है। इसमें $\num{n+m}$ का मामला भी शामिल
+  है: यह संख्या~$n+m$ के संगत मानक अंक-सूचक है।
+\end{explain}
+
+\end{document}

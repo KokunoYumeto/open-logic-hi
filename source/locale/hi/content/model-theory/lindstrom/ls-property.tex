@@ -1,0 +1,120 @@
+% Part: first-order-logic
+% Chapter: lindstrom
+% Section: ls-property
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{lin}{lsp}
+
+\olsection{संहतता और लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) गुण}
+
+अब हम संहतता और लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) के अमूर्त तर्कों वाली स्थिति तक सहज
+विस्तार देते हैं।
+
+\begin{defn}
+किसी अमूर्त तर्क $\tuple{L, \models_L}$ में \emph{संहतता गुण} है, यदि
+प्रत्येक समुच्चय $\Gamma$, $L(\Lang{L})$-!!{sentence}s का, तब संतुष्टनीय
+होता है जब प्रत्येक परिमित $\Gamma_0 \subseteq \Gamma$ संतुष्टनीय हो।
+\end{defn}
+
+\begin{defn}
+$\tuple{L, \models_L}$ में \emph{अवरोही लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) गुण} है, यदि
+प्रत्येक संतुष्टनीय $\Gamma$ का कोई !!a{enumerable} प्रतिरूप हो।
+\end{defn}
+
+
+\olref[bas][pis]{defn:partialisom} में दी गई आंशिक समरूपता की धारणा पूर्णतः
+``बीजगणितीय'' है (अर्थात् वह भाषा के !!{sentence}s का संदर्भ लिए बिना,
+केवल उन अचरों के आधार पर दी गई है जो !!{language}~$\Lang{L}$,
+!!{structure}s को प्रदान करती है), और इसलिए वह अमूर्त तर्कों की स्थिति पर भी लागू होती है।
+प्रथम-कोटि तर्कशास्त्र की स्थिति में हम \olref[bas][pis]{thm:p-isom2} से
+जानते हैं कि यदि दो !!{structure}s आंशिक रूप से समरूपी हैं, तो वे
+प्राथमिकतः तुल्य हैं। वह प्रमाण अमूर्त तर्कों तक नहीं पहुँचता, क्योंकि किसी
+स्वेच्छ $!E \in L(\Lang{L})$ के लिए !!{formula}s पर आगमन उपलब्ध होना
+आवश्यक नहीं; फिर भी, यदि लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) गुण मान्य हो, तो प्रमेय सत्य है।
+
+\begin{thm}
+\ollabel{thm:abstract-p-isom}
+मान लें कि $\tuple{L, \models_L}$ लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) गुण वाला कोई
+प्रसामान्य तर्क है। तब कोई भी दो आंशिक रूप से समरूपी !!{structure}s,
+$\tuple{L,
+  \models_L}$ में प्राथमिकतः तुल्य हैं।
+\end{thm}
+
+\begin{proof}
+मान लें कि $\Struct{M} \simeq_p \Struct{N}$, किंतु किसी $!E$ के लिए
+$\Struct{M} \models_L !E$ जबकि $\Struct{N} \not\models_L !E$। समरूपता
+गुण से हम मान सकते हैं कि $\Domain{M}$ और $\Domain{N}$ असंयुक्त हैं, और
+विस्तार गुण से हम मान सकते हैं कि $!E \in
+L(\Lang{L})$, किसी परिमित !!{language}~$\Lang{L}$ के लिए। मान लें कि
+$\mathcal{I}$, $\Struct{M}$ और
+$\Struct{N}$ के बीच आंशिक समरूपताओं का एक समुच्चय है; और व्यापकता खोए बिना
+यह भी मान लें कि यदि $p
+\in \mathcal{I}$ और $q \subseteq p$, तो
+$q \in \mathcal{I}$ भी।
+
+$\Domain{M}^{<\omega}$, $\Domain{M}$ के !!{element}s के परिमित अनुक्रमों
+का समुच्चय है। $S$ को $\Domain{M}^{<\omega}$ पर वह त्रयी संबंध मानें जो
+संलग्नन निरूपित करता है; अर्थात् यदि $\mathbf{a}, \mathbf{b},
+\mathbf{c} \in \Domain{M}^{<\omega}$, तो $S(\mathbf{a}, \mathbf{b},
+\mathbf{c})$ तभी और केवल तभी मान्य है जब $\mathbf{c}$, $\mathbf{a}$ और
+$\mathbf{b}$ का संलग्नन हो। और $T$ को वह त्रयी संबंध मानें जिसके लिए
+$T(\mathbf{a}, b, \mathbf{c})$, $b \in M$ और
+$\mathbf{a}, \mathbf{c} \in \Domain{M}^{<\omega}$ के लिए, तभी और केवल तभी मान्य है जब $\mathbf{a} =
+a_1, \dots a_n$ और $\mathbf{c} = a_1, \dots a_n, b$। नए त्रिस्थानी
+!!{predicate}s $P$ और $Q$ चुनें और वह !!{structure} $\Struct{M}^*$ बनाएँ
+जिसका समग्र समुच्चय $\Domain{M} \cup \Domain{M}^{<\omega}$ है, जिसमें
+$\Struct{M}$ उपसंरचना है, और जो $P$ तथा $Q$ की व्याख्या संलग्नन-संबंधों
+$S$ तथा $T$ से करती है (अतः $\Struct{M}^*$, !!{language} $\Lang{L} \cup \{ P, Q\}$ में है)।
+
+$\Domain{N}^{<\omega}$, $S'$, $T'$, $P'$, $Q'$ और
+$\Struct{N}^*$ को इसी प्रकार परिभाषित करें। परिकल्पना से $\Struct{M} \simeq_p
+\Struct{N}$ है, इसलिए कोई संबंध $I$, $\Domain{M}^{<\omega}$ और
+$\Domain{N}^{<\omega}$ के बीच, ऐसा है कि $I(\mathbf{a}, \mathbf{b})$
+तभी और केवल तभी मान्य है जब $\mathbf{a}$ और $\mathbf{b}$ समरूपी हों और
+वे
+\olref[bas][pis]{defn:partialisom} की आगे-पीछे शर्त को संतुष्ट करें। अब $\Struct{M}$ को वह
+!!{structure} मानें जिसका !!{domain},
+$\Struct{M}^*$ और $\Struct{N}^*$ के !!{domain}s का संघ है, जिसमें $\Struct{M}^*$ और
+$\Struct{N}^*$ उप!!{structure}s हैं, और जिसकी !!{language} में एक अतिरिक्त
+द्वयी !!{predicate}~$R$ है जिसकी व्याख्या संबंध~$I$ से होती है, तथा ऐसे
+!!{predicate}s हैं जो !!{domain}s $\Domain{M}^*$
+और~$\Domain{N}*$ को निरूपित करते हैं।
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[node distance=2cm, auto, thick, >=stealth']
+    \draw [rounded corners] (0,0) -- (8,0) -- (8,4) -- (0,4) --  cycle;
+    \draw (2,2) circle (0.5cm);
+    \draw (2,2) circle (1.25cm);
+    \draw (6,2) circle (0.5cm);
+    \draw (6,2) circle (1.25cm);
+    \path node at (0.75,3.5) {\large $\Struct{M}$};
+    \path node at (2,2) {\large $\Struct{M}$};
+    \path node at (6,2) {\large $\Struct{N}$};
+    \path node at (3.5,1) {\large $\Struct{M}^*$};
+    \path node at (7.5,1) {\large $\Struct{N}^*$};
+    \node (Idom) at (2.8,2) {};
+    \node (Irng) at (5.2,2) {};
+    \draw[<->, bend left] (Idom) to node {\large $I$} (Irng) ;
+  \end{tikzpicture} 
+  \caption{आंतरिक आंशिक समरूपता वाली !!{structure}~$\Struct{M}$।}
+\end{figure}
+
+निर्णायक बात यह है कि !!{structure}~$\Struct{M}$ की !!{language} में कोई
+\emph{प्रथम-कोटि} !!{sentence} $!D_1$ ऐसा है जो $\Struct{M}$ में सत्य है
+और कहता है कि $\Struct{M} \models_L !E$ तथा $\Struct{N} \not\models_L !E$ (इसके लिए सापेक्षीकरण गुण आवश्यक है); साथ ही कोई \emph{प्रथम-कोटि}
+!!{sentence} $!D_2$ ऐसा है जो $\Struct{M}$ में सत्य है और कहता है कि
+$\Struct{M} \simeq_p \Struct{N}$, आंशिक समरूपता~$I$ के माध्यम से।
+लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) गुण से $!D_1$ और $!D_2$, किसी !!a{enumerable} प्रतिरूप
+$\Struct{M}_0$ में संयुक्त रूप से सत्य हैं; उसमें आंशिक रूप से समरूपी
+उपसंरचनाएँ $\Struct{M}_0$ और $\Struct{N}_0$ ऐसी हैं कि $\Struct{M}_0 \models_L !E$ और $\Struct{N}_0
+\not\models_L !E$। किंतु
+\olref[bas][pis]{thm:p-isom1} से !!{enumerable} आंशिक रूप से समरूपी
+!!{structure}s वास्तव में समरूपी हैं, जो प्रसामान्य अमूर्त तर्कों के
+समरूपता गुण के विरुद्ध है।
+\end{proof}
+
+\end{document}

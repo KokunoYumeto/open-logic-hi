@@ -1,0 +1,186 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{ps}{tab}
+
+\olsection{सार्थक वृक्ष}
+
+सार्थक-वृक्ष प्रणालियाँ अनुक्रम कलनों से निकटतः संबंधित ऐसी !!{proof}
+प्रणालियाँ हैं जो हाथ से और सॉफ्टवेयर में कार्यान्वित—दोनों प्रकार की
+प्रमाण-खोज के लिए विशेष रूप से उपयुक्त हैं। अनुक्रमों के वृक्ष बनाने के बजाय
+सार्थक-वृक्षों में !!a{proof}, !!{formula}s का वृक्ष होता है। किंतु प्राकृतिक
+निगमन के विपरीत इनके नियम अनुक्रम कलन के नियमों का प्रतिबिंब हैं। सार्थक-वृक्ष
+!!{proof} मूलतः किसी निदर्श की प्रत्यक्ष खोज है। इसलिए इन्हें कभी-कभी
+\emph{अर्थविज्ञानपरक सार्थक-वृक्ष} या \emph{सत्य-वृक्ष} भी कहते हैं।
+
+\emph{चिह्नित} सार्थक वृक्ष चिह्नित !!{formula}s का वृक्ष है, जिनका रूप
+$\sFmla{\True}{!A}$ अथवा $\sFmla{\False}{!A}$ हो सकता है। वृक्ष नीचे की ओर
+बढ़ते हैं। वे उन !!{formula}s से आरंभ होते हैं जो बताते हैं कि हम क्या
+!!{prove} करना चाहते हैं। उदाहरणतः अनुक्रम $!A, !B \Sequent !C, !D$ को
+!!{prove} करने के लिए वृक्ष $\sFmla{\True}{!A}, \sFmla{\True}{!B},
+\sFmla{\False}{!C}, \sFmla{\True}{!D}$ से आरंभ होगा। ऐसी !!a{structure} जो
+$!A$ और $!B$ को सत्य तथा $!C$ और $!D$ को असत्य बनाती है, यह दिखाने वाली
+!!a{structure} है कि $!A, !B \Sequent !C, !D$ वैध नहीं है।
+
+सार्थक वृक्ष के किसी पर्ण (सबसे निचले) आसंधि को शाखा-विस्तार नियमों द्वारा
+बढ़ाया जा सकता है। ये नियम उसी शाखा में अतिरिक्त आसंधियाँ जोड़ते हैं या नीचे
+दो सहोदर आसंधियाँ जोड़कर शाखा को दो नई शाखाओं में बाँटते हैं। नियमों को उसी
+शाखा में उसके ऊपर स्थित किसी भी चिह्नित !!{formula} पर लगाया जा सकता है।
+चिरसम्मत सार्थक-वृक्ष प्रणाली \Log{Tc} के शाखा-विस्तार नियम
+\olref{tab:Tc} में दिए गए हैं।
+
+\subfile{rules-Tc}
+
+जैसा कि आप देख सकते हैं, ये नियम केवल \Log{G3c} के उलटे किए हुए नियम हैं;
+$\True$ और $\False$ चिह्न क्रमशः बताते हैं कि !!a{formula} अनुक्रम के बाएँ या
+दाएँ पक्ष पर प्रमुख है।
+
+सार्थक वृक्ष की कोई शाखा \emph{बंद} है यदि उसमें $\sFmla{\True}{!A}$ और
+$\sFmla{\False}{!A}$ दोनों हों। यदि प्रत्येक शाखा बंद है, तो हम पूरे सार्थक
+वृक्ष को बंद कहते हैं। उदाहरणतः $!A \lor (!B \land !C) \Sequent (!A \lor
+!B) \land (!A \lor !C)$ के लिए, अर्थात् $\sFmla{\True}{!A \lor (!B \land
+!C)}$ और $\sFmla{\False}{(!A \lor !B) \land (!A \lor !C)}$ से आरंभ होने
+वाला, एक संवृतक सार्थक वृक्ष यह है:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}, checked
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\True}{\formula{B}},
+            just={\TRule{\True}{\land}[3]}, move by=2
+            [\sFmla{\True}{\formula{C}},
+              just={\TRule{\True}{\land}[3]}
+              [\sFmla{\False}{\formula{A}},
+                just={\TRule{\False}{\lor}[4]}
+                [\sFmla{\False}{\formula{B}},
+                  just={\TRule{\False}{\lor}[4]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\True}{\formula{B}},
+            just={\TRule{\True}{\land}[3]}, move by=2
+              [\sFmla{\True}{\formula{C}},
+                just={\TRule{\True}{\land}[3]}
+                [\sFmla{\False}{\formula{A}},
+                  just={\TRule{\False}{\lor}[4]}
+                  [\sFmla{\False}{\formula{C}},
+                  just={\TRule{\False}{\lor}[4]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+सही के चिह्न बताते हैं कि संबंधित नियम को !!a{formula} के नीचे की सभी शाखाओं
+में उस पर लगाया जा चुका है। $\otimes$ चिह्न बताता है कि शाखा बंद है। नियमों
+के बाद की पंक्ति-संख्याएँ बताती हैं कि नियम किन चिह्नित !!{formula}s पर लगाया
+गया है (अर्थात् उसी शाखा की बताई गई पंक्ति के !!{formula} पर)।
+
+सार्थक वृक्षों में प्रमाण-खोज सरल है। हम सार्थक वृक्ष को चरणों में उत्पन्न
+करते हैं। चरण~$0$ में आरंभिक !!{formula}s को ऊपर लिख दें। चरण~$n+1$ में
+प्रत्येक पर्ण आसंधि के लिए यह करें: अभी तक सही का चिह्न न लगे हुए पहले (सबसे
+ऊपरी) चिह्नित सूत्र को खोजें। उस सूत्र पर शाखा-विस्तार नियम लगाएँ। जिस प्रत्येक
+शाखा में वह चिह्नित सूत्र है, उसमें नियम लग जाने के बाद उस पर सही का चिह्न लगा
+दें। (ऊपर का उदाहरण इसी कलन-विधि से उत्पन्न हुआ है।)
+
+$\sFmla{\True}{\lforall}$ और $\sFmla{\False}{\lexists}$ रूप के चिह्नित
+!!{formula}s पर कभी सही का चिह्न नहीं लगाया जाता, इसलिए उनका विशेष उपचार
+करना पड़ता है। यदि वे उपस्थित हों, तो हमें सुनिश्चित करना चाहिए कि अंततः सभी
+लागू पदों के लिए $\TRule{\True}{\forall}$ और
+$\TRule{\False}{\lexists}$ नियम लगाए जाएँ। उदाहरणतः प्रत्येक चरण में प्रत्येक
+शाखा के ऐसे सभी सूत्रों पर इन्हें लगाकर इसकी गारंटी दी जा सकती है (इस रूप का
+न होने वाले सर्वोच्च चिह्नित !!{formula} से निपटने के बाद)। प्रयुक्त पद~$t$
+ऐसा पहला पद है जिसे शाखा में पहले से आने वाले !!{constant}s (या कोई
+!!{constant} न आए तो $\Obj c_0$) और आरंभिक !!{formula}s में आने वाले
+!!{function}s से बनाया जा सकता है, और जिसका संगत चिह्नित !!{formula}
+$\sFmla{\True}{!B(t)}$ अथवा~$\sFmla{\False}{!B(t)}$ शाखा में पहले से नहीं है।
+
+यदि यह प्रमाण-खोज बंद सार्थक वृक्ष उत्पन्न नहीं करती, तो या तो उसमें ऐसी
+सीमित खुली शाखा है जहाँ सभी गैर-परमाण्विक !!{formula}s पर सही का चिह्न लग चुका
+है, या खोज ऐसा अनंत, सीमित-शाखी वृक्ष उत्पन्न करती है जिसमें कोई अनंत शाखा
+होनी ही चाहिए। \olref[cpl]{sec} की ही तरह हम ऐसी !!a{structure}~$\Struct{M}$
+परिभाषित कर सकते हैं कि शाखा में $\sFmla{\True}{!A}$ आने पर $\Sat{M}{!A}$,
+और $\sFmla{\False}{!A}$ आने पर $\Sat/{M}{!A}$ हो। ($\Theta =
+\Setabs{!A}{\sFmla{\True}{!A} \text{ शाखा में}}$ और $\Xi =
+\Setabs{!A}{\sFmla{\False}{!A} \text{ शाखा में}}$ लें।)
+
+इस प्रमाण-खोज विधि से उत्पन्न सार्थक वृक्षों का प्रत्येक आसंधि को एक अनुक्रम
+देकर आसानी से \Log{G3c} के प्रमाणों में अनुवाद किया जा सकता है। यदि आरंभिक
+सूत्र अनुक्रम $\Gamma \Sequent \Delta$ के अनुरूप हैं, तो प्रत्येक आरंभिक सूत्र
+को $\Gamma \Sequent \Delta$ से चिह्नित करें। यदि किसी शाखा को चिह्नित
+!!{formula} $\sFmla{\True}{!A}$ पर शाखा-विस्तार नियम लगाकर बढ़ाया जाता है, तो
+पर्ण को $!A, \Pi \Sequent \Lambda$ से चिह्नित करें; और यदि नियम चिह्नित
+!!{formula} $\sFmla{\False}{!A}$ पर लगा है, तो पर्ण को $\Pi \Sequent
+\Lambda, !A$ से चिह्नित करें। जहाँ सार्थक वृक्ष $\TRule{\True}{\star}$ नियम
+लगाता है, वहाँ अनुक्रम पर \LeftR{\star} नियम ($!A$ को प्रमुख रखकर) लगाएँ;
+जहाँ वह $\TRule{\False}{\star}$ नियम लगाता है, वहाँ \RightR{\star} नियम
+लगाएँ। नियम के आधार-वाक्य सार्थक वृक्ष में जोड़े गए संगत आसंधियों को चिह्नित
+करने वाले अनुक्रम हैं। जब कोई सार्थक वृक्ष $\sFmla{\True}{!A}$ और
+$\sFmla{\False}{!A}$ से बंद होता है, तब अंतिम पर्ण आसंधि का चिह्न $!A, \Pi
+\Sequent \Lambda, !A$ रूप का अनुक्रम होगा। सार्थक वृक्ष की कुछ क्रमिक
+आसंधियों को एक ही अनुक्रम मिलेगा; उनकी प्रतियाँ हटा दें। उदाहरणतः ऊपर का
+सार्थक वृक्ष इस !!{proof} में अनूदित होता है:
+\[\small
+\Axiom$!A \fCenter !A, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!A \fCenter !A \lor !B$
+\Axiom$!A \fCenter !A, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!A \fCenter !A \lor !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!A \fCenter (!A \lor !B) \land (!A \lor !C)$
+\Axiom$!B, !C \fCenter !A, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!B, !C \fCenter !A \lor !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C \fCenter !A \lor !B$
+\Axiom$!B, !C \fCenter !A, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!B, !C \fCenter !A \lor !C$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C \fCenter !A \lor !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!B \land !C \fCenter (!A \lor !B) \land
+(!A \lor !C)$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!A \lor (!B \land !C) \fCenter (!A \lor !B) \land
+(!A \lor !C)$
+\DisplayProof
+\]
+
+\end{document}

@@ -1,0 +1,119 @@
+% Complete Hindi build driver for the frozen Open Logic corpus.
+% Source authority: OpenLogicProject/OpenLogic 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+\documentclass[12pt,a4paper,openany]{memoir}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{hi}
+\newcommand*{\ollanguage}{hindi}
+
+\usepackage{subfiles}
+\usepackage{fontspec}
+\usepackage{float}
+\ifdefined\XeTeXgenerateactualtext
+  \XeTeXgenerateactualtext=1
+\fi
+\setmainfont[
+  Path=fonts/,
+  BoldFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldFeatures={FakeBold=2},
+  ItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  ItalicFeatures={FakeSlant=0.2},
+  BoldItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldItalicFeatures={FakeBold=2,FakeSlant=0.2},
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+\setsansfont[
+  Path=fonts/,
+  BoldFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldFeatures={FakeBold=2},
+  ItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  ItalicFeatures={FakeSlant=0.2},
+  BoldItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldItalicFeatures={FakeBold=2,FakeSlant=0.2},
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+\newfontfamily\hindifont[
+  Path=fonts/,
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+
+\input{\olpath/sty/open-logic.sty}
+\input{\olpath/sty/open-logic-defer.sty}
+
+% Hindi academic/scientific reader geometry: A4, 12-point Devanagari, and a
+% 160 x 235 mm working area.  This follows the proportions used in current
+% Hindi university and school scientific material and replaces memoir's
+% unusually narrow default Letter-paper block.
+\settypeblocksize{235mm}{160mm}{*}
+\setlrmarginsandblock{25mm}{25mm}{*}
+\setulmarginsandblock{25mm}{37mm}{*}
+\checkandfixthelayout
+
+\SetSymbolFont{operators}{normal}{OT1}{cmr}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{cmr}{bx}{n}
+\SetMathAlphabet{\mathrm}{normal}{OT1}{cmr}{m}{n}
+\SetMathAlphabet{\mathrm}{bold}{OT1}{cmr}{bx}{n}
+\SetMathAlphabet{\mathbf}{normal}{OT1}{cmr}{bx}{n}
+\SetMathAlphabet{\mathbf}{bold}{OT1}{cmr}{bx}{n}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{5em}
+\raggedbottom
+\hypersetup{
+  pdflang={hi-IN},
+  pdftitle={ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण},
+  pdfauthor={Open Logic Project},
+  pdfsubject={ओपन लॉजिक परियोजना के जमे हुए स्रोत-वृक्ष का संपूर्ण हिंदी अनुवाद}
+}
+\AtBeginDocument{%
+  \def\OLTlinkname{https://github.com/OpenLogicProject/OpenLogic}%
+  \renewcommand*{\crefrangeconjunction}{ से\nobreakspace}%
+  \renewcommand*{\crefpairconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddleconjunction}{, }%
+  \renewcommand*{\creflastconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefpairgroupconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddlegroupconjunction}{, }%
+  \renewcommand*{\creflastgroupconjunction}{, और\nobreakspace}%
+}
+\AddToHook{begindocument/end}{\renewcommand*{\bar}[1]{\overline{#1}}}
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{titlingpage}
+\begin{raggedleft}
+\HUGE\selectfont\bfseries\sffamily
+ओपन लॉजिक परियोजना
+\vskip 3ex
+\normalfont\huge
+संपूर्ण हिंदी संस्करण
+\vskip 4ex
+\Large
+जमी हुई स्रोत प्रति: 9620cc7
+\vskip 3ex
+\large
+मूल लेखक: Open Logic Project
+\par
+हिंदी रूपांतरण: AI typesetting \& translation
+\end{raggedleft}
+\vfill
+\ollicense
+\end{titlingpage}
+
+\pagestyle{plain}
+\include{content/open-logic-about}
+\tableofcontents*
+\olimport[content]{content}
+\photocredits
+\bibliographystyle{natbib-oup}
+\bibliography{open-logic}
+
+\end{document}

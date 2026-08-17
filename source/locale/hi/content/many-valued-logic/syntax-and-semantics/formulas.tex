@@ -1,0 +1,42 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{syn}{fml}
+
+\olsection{\usetoken{P}{formula}}
+
+\begin{defn}[सूत्र]
+\ollabel{defn:formulas}
+किसी प्रतिज्ञप्तिपरक भाषा~$\Lang L$ के \emph{!!{formula}} का समुच्चय
+~$\Frm[L]$ आगमनतः इस प्रकार परिभाषित है:
+\begin{enumerate}
+\item प्रत्येक !!{propositional variable}~$\Obj p_i$ परमाण्विक
+  !!{formula} है।
+\item ~ $\Lang L$ का प्रत्येक $0$-स्थानी संयोजक (प्रतिज्ञप्तिपरक अचर)
+परमाण्विक !!{formula} है।
+\item यदि $\star$, ~$\Lang L$ का $n$-स्थानी संयोजक है और $!A_1$, \dots,
+$!A_n$ !!{formula} हैं, तो $\star(!A_1, \dots, !A_n)$ !!a{formula} है।
+\tagitem{limitClause}{इसके अतिरिक्त कुछ भी !!a{formula} नहीं है।}{}
+\end{enumerate}
+यदि $\star$ $1$-स्थानी है, तो $\star(!A_1)$ को प्रायः केवल $\star !A_1$
+लिखेंगे। यदि $\star$ $2$-स्थानी है, तो $\star(!A_1,!A_2)$ को प्रायः
+$(!A_1 \star !A_2)$ लिखेंगे।
+\end{defn}
+
+सामान्य रीति से हम प्रायः सबसे बाहरी कोष्ठक बिना बताए छोड़ देंगे।
+
+\begin{ex}
+  मानक भाषा~$\Lang{L_0}$ में $\Obj p_1 \lif (\Obj p_1 \land \lnot \Obj
+  p_2)$ कोई सूत्र है। गुणनफल तर्कशास्त्र की भाषा में उसे इसके बदले $\Obj
+  p_1 \lif (\Obj p_1 \odot \lnot \Obj p_2)$ लिखा जाएगा। यदि भाषा में
+  $1$-स्थानी $\triangle$ जोड़ें, तो हमारे पास $\triangle (\Obj p_1 \land
+  \Obj p_2) \lif (\triangle \Obj p_1 \land \triangle \Obj p_2)$ जैसे
+  सूत्र भी होंगे।
+\end{ex}
+
+\end{document}

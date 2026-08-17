@@ -1,0 +1,108 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{inf}{luk}
+
+\olsection{लुकासिएविच तर्कशास्त्र}
+
+\begin{editorial}
+  यह अनंत-मूल्य लुकासिएविच तर्कशास्त्र पर एक संक्षिप्त, आरंभिक खंड है।
+\end{editorial}
+
+\begin{defn}\ollabel{def:lukasiewicz} अनंत-मूल्य लुकासिएविच
+तर्कशास्त्र~$\LogLuk[\infty]$ निम्नलिखित आव्यूह से परिभाषित होता है:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ वाली मानक प्रतिज्ञप्तिक भाषा
+  $\Lang L_0$।
+  \item सत्य-मूल्यों का समुच्चय $V_\infty$।
+  \item $1$ एकमात्र निर्दिष्ट मूल्य है, अर्थात् $V^+ = \{1\}$।
+  \item सत्य-फलन निम्नलिखित फलनों से दिए जाते हैं:
+  \begin{align*}
+    \tf{\lnot}[\LogLuk](x) & = 1 - x\\
+    \tf{\land}[\LogLuk](x,y) & = \min(x,y)\\
+    \tf{\lor}[\LogLuk](x,y) & = \max(x,y)\\
+    \tf{\lif}[\LogLuk](x,y) & = \min(1,1-(x-y)) = \begin{cases}
+      1 & \text{यदि } x \le y\\
+      1-(x-y) & \text{अन्यथा।}
+    \end{cases}
+    \end{align*}
+\end{enumerate}
+$m$-मूल्य लुकासिएविच तर्कशास्त्र भी इसी प्रकार परिभाषित होता है, केवल
+$V = V_m$ लिया जाता है।
+\end{defn}
+
+\begin{prop}
+  \olref[thr][luk]{def:lukasiewicz} से परिभाषित तर्कशास्त्र $\LogLuk[3]$
+  वही है जो \olref{def:lukasiewicz} से परिभाषित $\LogLuk[3]$ है।
+\end{prop}
+
+\begin{proof}
+  इसे \olref[thr][luk]{def:lukasiewicz} में संयोजकों के लिए दी गई
+  सत्य-सारणियों की तुलना \olref{def:lukasiewicz} के समीकरणों से निर्धारित
+  सत्य-सारणियों के साथ करके देखा जा सकता है:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $1$ & $0$ \\ 
+      $1/2$ & $1/2$ \\
+      $0$ & $1$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1/2$ & $1/2$ & $0$\\ 
+      $0$ & $0$ & $0$ & $0$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1$ & $1$ \\ 
+      $1/2$ & $1$ & $1/2$ & $1/2$ \\
+      $0$ & $1$ & $1/2$ & $0$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1$ & $1$ & $1/2$  \\ 
+      $0$ & $1$ & $1$ & $1$ 
+    \end{tabular}
+  \end{center} 
+\end{proof}
+
+\begin{prop}\ollabel{prop:luk-infty-m}
+  यदि $\Gamma \Entails[\LogLuk[\infty]] !B$, तो प्रत्येक $m \ge 2$ के लिए
+  $\Gamma \Entails[\LogLuk[m]] !B$।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[mvl][inf][luk]{prop:luk-infty-m} सिद्ध कीजिए।
+\end{prob}
+
+वास्तव में विलोम भी मान्य है।
+
+अनंत-मूल्य लुकासिएविच तर्कशास्त्र सर्वाधिक लोकप्रिय फ़ज़ी तर्कशास्त्र है।
+फ़ज़ी तर्कशास्त्र के साहित्य में सशर्त को प्रायः $\lnot !A \lor !B$ के रूप
+में परिभाषित किया जाता है। इससे अनंत-मूल्य प्रबल क्लिनी तर्कशास्त्र प्राप्त
+होगा।
+
+\begin{prob}
+  दिखाइए कि $(p \lif q) \lor (q \lif p)$, $\LogLuk[\infty]$ की
+  सर्वसत्यता है।
+\end{prob}
+
+\end{document}

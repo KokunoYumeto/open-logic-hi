@@ -1,0 +1,163 @@
+% Part: many-valued-logics
+% Chapter: sequent-calculus
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{seq}{prf}
+
+\olsection{प्रमाण-सैद्धांतिक धारणाएँ}
+
+\begin{explain}
+जिस प्रकार हमने अनेक महत्त्वपूर्ण अर्थगत धारणाएँ (मान्यता, परिणाम,
+संतुष्टता) परिभाषित की हैं, उसी प्रकार अब हम उनकी संगत
+\emph{प्रमाण-सैद्धांतिक धारणाएँ} परिभाषित करते हैं। ये !!{structure}ओं में
+!!{sentence}ों की संतुष्टि के आधार पर नहीं, बल्कि कुछ सीक्वेंटों की
+!!{derivability} या !!{nonderivability} के आधार पर परिभाषित होती हैं। यह एक
+महत्त्वपूर्ण खोज थी कि ये धारणाएँ परस्पर मेल खाती हैं। इनका मेल खाना
+\emph{यथार्थता} और \emph{पूर्णता प्रमेय} की अंतर्वस्तु है।
+\end{explain}
+
+\begin{defn}[प्रमेय]
+कोई !!{sentence}~$!A$ \emph{प्रमेय} है यदि $\Log{LK}$ में सीक्वेंट
+$\quad \Sequent !A$ की कोई !!{derivation} हो। यदि $!A$ प्रमेय है तो हम
+$\Proves !A$ लिखते हैं और यदि नहीं है तो $\Proves/ !A$।
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+कोई !!{sentence}~$!A$, !!{sentence}ों के समुच्चय~$\Gamma$ से
+\emph{!!{derivable}} है, $\Gamma \Proves !A$, तभी जब कोई परिमित
+उपसमुच्चय~$\Gamma_0 \subseteq \Gamma$ और $\Gamma_0$ के !!{sentence}ों का कोई
+अनुक्रम $\Gamma_0'$ ऐसा हो कि $\Log{LK}$, $\Gamma_0' \Sequent !A$ को
+!!{derive}। यदि $!A$, $\Gamma$ से !!{derivable} नहीं है तो हम
+$\Gamma \Proves/ !A$ लिखते हैं।
+\end{defn}
+
+संकुचन, दुर्बलीकरण और विनिमय नियमों के कारण $\Gamma_0'$ में !!{sentence}ों का
+क्रम और संख्या महत्त्व नहीं रखते: यदि कोई सीक्वेंट
+$\Gamma_0' \Sequent !A$ !!{derivable} है, तो ऐसा प्रत्येक
+$\Gamma_0'' \Sequent !A$ भी !!{derivable} है जिसमें वही !!{sentence} आते
+हैं जो $\Gamma_0'$ में आते हैं। उदाहरणार्थ, यदि
+$\Gamma_0 = \{!B, !C\}$, तो $\Gamma_0' = \tuple{!B, !B, !C}$ और
+$\Gamma_0'' = \tuple{!C, !C, !B}$ दोनों ऐसे अनुक्रम हैं जिनमें केवल
+$\Gamma_0$ के !!{sentence} आते हैं। यदि इनमें से एक वाला सीक्वेंट !!{derivable}
+है तो दूसरा भी है, जैसे:
+\begin{prooftree}
+  \AxiomC{}
+  \Deduce$!B, !B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Exchange}}
+  \UnaryInf$!C, !B \fCenter !A$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!C, !C, !B \fCenter !A$
+\end{prooftree}
+अब से यदि $\Gamma_0$ !!{sentence}ों का परिमित समुच्चय हो, तो
+$\Gamma_0 \Sequent !A$ से हमारा आशय ऐसा कोई भी सीक्वेंट होगा जिसका
+पूर्ववर्ती $\Gamma_0$ के !!{sentence}ों का अनुक्रम हो; और आवश्यकता होने पर हम
+संकुचन, विनिमय और दुर्बलीकरण को अंतर्निहित मानेंगे।
+
+\begin{defn}[संगति]
+वाक्यों का समुच्चय~$\Gamma$ \emph{असंगत} है, तभी जब कोई परिमित उपसमुच्चय
+$\Gamma_0 \subseteq \Gamma$ ऐसा हो कि $\Log{LK}$,
+$\Gamma_0 \Sequent \quad$ को !!{derive}। यदि $\Gamma$ असंगत
+नहीं है, अर्थात् प्रत्येक परिमित $\Gamma_0 \subseteq \Gamma$ के लिए
+$\Log{LK}$, $\Gamma_0 \Sequent \quad$ को !!{derive}, तो हम
+इसे \emph{संगत} कहते हैं।
+\end{defn}
+
+\begin{prop}[स्वपरावर्तन]
+\ollabel{prop:reflexivity}
+यदि $!A \in \Gamma$, तो $\Gamma \Proves !A$।
+\end{prop}
+
+\begin{proof}
+आरंभिक सीक्वेंट $!A \Sequent !A$ !!{derivable} है और
+$\{!A\} \subseteq \Gamma$।
+\end{proof}
+  
+\begin{prop}[एकदिष्टता]
+\ollabel{prop:monotonicity}
+यदि $\Gamma \subseteq \Delta$ और $\Gamma \Proves !A$, तो
+$\Delta \Proves !A$।
+\end{prop}
+
+\begin{proof}
+मान लें $\Gamma \Proves !A$, अर्थात् कोई परिमित
+$\Gamma_0 \subseteq \Gamma$ ऐसा है कि $\Gamma_0 \Sequent !A$
+!!{derivable} है। चूँकि $\Gamma \subseteq \Delta$, इसलिए $\Gamma_0$,
+$\Delta$ का भी परिमित उपसमुच्चय है। अतः $\Gamma_0 \Sequent !A$ की
+!!{derivation} यह भी दिखाती है कि $\Delta \Proves !A$।
+\end{proof}
+
+\begin{prop}[संक्रमणशीलता]
+\ollabel{prop:transitivity}
+यदि $\Gamma \Proves !A$ और $\{!A\} \cup \Delta \Proves !B$, तो
+$\Gamma \cup \Delta \Proves !B$।
+\end{prop}
+
+\begin{proof}
+यदि $\Gamma \Proves !A$, तो कोई परिमित $\Gamma_0 \subseteq \Gamma$ और
+$\Gamma_0 \Sequent !A$ की कोई !!{derivation}~$\pi_0$ है। यदि
+$\{!A\} \cup \Delta \Proves !B$, तो किसी परिमित उपसमुच्चय
+$\Delta_0 \subseteq \Delta$ के लिए $!A, \Delta_0 \Sequent !B$ की कोई
+!!{derivation}~$\pi_1$ है। निम्न !!{derivation} पर विचार करें:
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{$\pi_0$}
+  \Deduce$\Gamma_0 \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!A, \Delta_0 \fCenter !B$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_0, \Delta_0 \fCenter !B$
+\end{prooftree}
+चूँकि $\Gamma_0 \cup \Delta_0 \subseteq \Gamma \cup \Delta$, इससे
+$\Gamma \cup \Delta \Proves !B$ सिद्ध होता है।
+\end{proof}
+
+ध्यान दें कि इससे विशेष रूप से यह मिलता है कि यदि $\Gamma \Proves !A$ और
+$!A \Proves !B$, तो $\Gamma \Proves !B$। इससे यह भी निकलता है कि यदि
+$!A_1, \dots, !A_n \Proves !B$ और प्रत्येक $i$ के लिए
+$\Gamma \Proves !A_i$, तो $\Gamma \Proves !B$।
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ असंगत है तभी जब प्रत्येक वाक्य~$!A$ के लिए
+$\Gamma \Proves {!A}$।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][seq][ptn]{prop:incons} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}[संहतता]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय
+    $\Gamma_0 \subseteq \Gamma$ ऐसा है कि $\Gamma_0 \Proves !A$।
+  \item यदि $\Gamma$ का प्रत्येक परिमित उपसमुच्चय संगत है, तो $\Gamma$
+    संगत है।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item यदि $\Gamma \Proves !A$, तो कोई परिमित उपसमुच्चय
+      $\Gamma_0 \subseteq \Gamma$ ऐसा है कि सीक्वेंट
+      $\Gamma_0 \Sequent !A$ की कोई !!{derivation} है। फलतः
+      $\Gamma_0 \Proves !A$।
+    \item यदि $\Gamma$ असंगत है, तो कोई परिमित उपसमुच्चय
+      $\Gamma_0 \subseteq \Gamma$ ऐसा है कि $\Log{LK}$,
+      $\Gamma_0 \Sequent \quad$ को !!{derive}। किंतु तब
+      $\Gamma_0$, $\Gamma$ का असंगत परिमित उपसमुच्चय है।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

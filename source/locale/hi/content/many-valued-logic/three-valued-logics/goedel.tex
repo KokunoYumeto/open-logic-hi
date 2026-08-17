@@ -1,0 +1,118 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: goedel
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{thr}{god}
+
+\olsection{गोडेल तर्कशास्त्र}
+
+कुर्ट गोडेल ने $n$-मूल्य तर्कशास्त्रों का ऐसा अनुक्रम प्रस्तुत किया जिनमें
+से प्रत्येक में अंतःप्रज्ञावादी तर्कशास्त्र में वैध सभी !!{formula}
+समाहित हैं और जो चिरसम्मत तर्कशास्त्र में समाहित हैं। यह पहला रोचक उदाहरण
+है:
+
+\begin{defn}\ollabel{defn:goedel}
+\emph{$3$-मूल्य गोडेल तर्कशास्त्र}~$\LogGod$ इस आव्यूह से परिभाषित है:
+\begin{enumerate}
+  \item मानक प्रतिज्ञप्तिपरक भाषा $\Lang L_0$, जिसमें
+  $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$.
+  \item सत्य-मानों का समुच्चय $V = \{\True, \Undef, \False\}$।
+  \item $\True$ एकमात्र निर्दिष्ट मान है, अर्थात् $V^+ = \{\True\}$।
+  \item $\lfalse$ के लिए $\tf{\lfalse} = \False$। शेष संयोजकों के
+  सत्य-फलन निम्न सारणियों से दिए जाते हैं:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}[\LogGod]$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\False$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
+      $\False$ & $\False$ & $\False$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\True$ & $\True$ & $\False$  \\ 
+      $\False$ & $\True$ & $\True$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+आप देखेंगे कि $\land$ और~$\lor$ की सत्य-सारणियाँ लुकासिएविच तथा प्रबल
+क्लिनी तर्कशास्त्र जैसी ही हैं, किंतु $\lnot$ और~$\lif$ की सत्य-सारणियाँ
+तीनों में भिन्न हैं। गोडेल तर्कशास्त्र में $\tf{\lnot}(\Undef) = \False$।
+लुकासिएविच और क्लिनी तर्कशास्त्र के विपरीत $\tf{\lif}(\Undef, \False) =
+\False$; और क्लिनी तर्कशास्त्र के विपरीत (पर लुकासिएविच तर्कशास्त्र की
+तरह), $\tf{\lif}(\Undef, \Undef) = \True$।
+
+ऊपर संकेतित अंतःप्रज्ञावादी तर्कशास्त्र से संबंध के अनुसार $\LogGod[3]$
+अंतःप्रज्ञावादी तर्कशास्त्र के निकट है। सभी अंतःप्रज्ञावादी सत्य
+~$\LogGod[3]$ में सर्वसत्यताएँ हैं; और जो अनेक चिरसम्मत सर्वसत्यताएँ
+अंतःप्रज्ञावादी रूप से वैध नहीं हैं, वे~$\LogGod[3]$ में भी सर्वसत्यताएँ
+नहीं हैं। उदाहरणार्थ, निम्न सर्वसत्यताएँ नहीं हैं:
+\begin{align*}
+  & p \lor \lnot p && (p \lif q) \lif (\lnot p \lor q) \\
+  & \lnot\lnot p \lif p && \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+  & ((p \lif q) \lif p) \lif p && \lnot(p \lif q) \lif (p \land \lnot q)
+\end{align*}
+किंतु $\LogGod[3]$ की प्रत्येक सर्वसत्यता अंतःप्रज्ञावादी रूप से वैध भी
+नहीं है; जैसे $\lnot\lnot p \lor \lnot p$ अथवा $(p \lif q) \lor (q \lif
+p)$।
+
+\begin{prob}
+  यह दिखाने के लिए सत्य-सारणियाँ दें कि निम्न~$\LogGod[3]$ की सर्वसत्यताएँ
+  हैं:
+  \begin{align*}
+    & \lnot\lnot p \lor \lnot p\\
+    & (p \lif q) \lor (q \lif p) \\
+    & \lnot(p \land q) \lif (\lnot p \lor \lnot q) \\
+    & (p \lif q) \lor (q \lif r) \lor (r \lif s)
+  \end{align*}
+\end{prob}
+
+\begin{prob}
+  यह दिखाने वाली सत्य-सारणियाँ दें कि निम्न~$\LogGod[3]$ की सर्वसत्यताएँ
+  नहीं हैं:
+  \begin{align*}
+    & (p \lif q) \lif (\lnot p \lor q) \\
+    & \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+    & ((p \lif q) \lif p) \lif p \\
+    & \lnot(p \lif q) \lif (p \land \lnot q)
+  \end{align*}
+\end{prob}
+
+\begin{prob}
+  निम्न में से कौन-से संबंध गोडेल तर्कशास्त्र में लागू होते हैं? प्रत्येक
+  के लिए सत्य-सारणी दें।
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $p \lor q, \lnot p \Entails q$
+    \item $p \land q \Entails p$
+    \item $p \Entails p \land p$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

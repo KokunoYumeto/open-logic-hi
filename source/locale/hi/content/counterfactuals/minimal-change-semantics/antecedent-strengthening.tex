@@ -1,0 +1,71 @@
+% Part: counterfactuals
+% Chapter: minimal-change-semantics
+% Section: antecedent-strengthening
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cnt}{min}{agg}
+
+\olsection{पूर्ववर्ती का प्रबलीकरण}
+
+``पूर्ववर्ती का प्रबलीकरण'' अनुमान
+$!A \lif !C \Entails (!A \land !B) \lif !C$ को कहते हैं। यह भौतिक सशर्त
+के लिए मान्य, किंतु प्रतितथ्यात्मक के लिए अमान्य है। मान लें यह सत्य है कि
+यदि मैं इस माचिस की तीली को रगड़ता, तो वह जलती। (इसका अर्थ है कि तीली या
+डिबिया की रगड़ने वाली सतह में कोई खराबी नहीं, मैं तीली तोड़ूँगा नहीं,
+इत्यादि।) किंतु यह सत्य नहीं है कि यदि मैं बाह्य अंतरिक्ष में इस तीली को
+जलाता, तो वह जलती। अतः निम्न अनुमान अमान्य है:
+\begin{quote}
+  यदि माचिस की तीली रगड़ी जाती, तो वह जलती।
+
+  अतः यदि माचिस की तीली बाह्य अंतरिक्ष में रगड़ी जाती, तो वह जलती।
+\end{quote}
+
+सशर्तों का लुईस--स्टालनेकर विवरण इसे समझाता है: वह निकटतम जगत जहाँ मैं तीली
+जलाता हूँ और ऐसा बाह्य अंतरिक्ष में करता हूँ, उस निकटतम जगत की अपेक्षा
+वास्तविक जगत से बहुत अधिक दूर है जहाँ मैं तीली जलाता हूँ। अतः यद्यपि बाद
+वाले में तीली जलती है, पहले वाले में नहीं। और ऐसा ही होना चाहिए।
+
+\begin{ex}
+  गोलक अर्थविज्ञान इस अनुमान को अमान्य करता है; अर्थात हमारे पास
+  $p \cif r \Entails/ (p \land q) \cif r$ है। प्रतिरूप
+  $\mModel{M} = \tuple{W, O, V}$ पर विचार करें, जहाँ
+  $W = \{w, w_1, w_2\}$,
+  $O_w = \{\{w\}, \{w, w_1\}, \{w, w_1, w_2\}\}$,
+  $V(p) = \{w_1, w_2\}$, $V(q) = \{w_2\}$ और $V(r) = \{w_1\}$। एक
+  $p$-स्वीकारी गोलक $S = \{w, w_1\}$ है और उसके सभी जगतों पर
+  $p \lif r$ सत्य है, अतः $\mSat{M}{p \cif r}[w]$। एक
+  $(p \land q)$-स्वीकारी गोलक $S' = \{w, w_1, w_2\}$ भी है, किंतु
+  $\mSat/{M}{(p \land q) \lif r}[w_2]$; अतः
+  $\mSat/{M}{(p \land q) \cif r}[w]$
+  (\olref{fig:antecedent-strengthening} देखें)।
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[layerwidth=1.5,scale=.6]\tiny
+  \spheresystem{3}
+  \propositionintersect{-10}{3}{30}{5}
+  \begin{scope}
+    \clip plot[smooth,tension=1] coordinates
+          {(0,4.5) (30:.95) (4.5,-3.5)} -- (4.5,4.5) ;
+    \spherefill{2}
+  \end{scope}
+  \draw[proposition] plot[dashed,smooth,tension=1] coordinates
+          {(0,4.5) (30:.95) (4.5,-3.5)} ;
+  \proposition{30}{2}{30}{5}
+  \path (0,0) node[world] {$w$};
+  \spherepos{30}{2}{node[world] {$w_1$}}
+  \spherepos{-10}{3}{node[world] {$w_2$}}
+  \spherepos{-10}{4}{node {$q$}}
+  \spherepos{30}{4}{node {$r$}}
+  \draw (1,4.5) node[below] {$p$};
+\end{tikzpicture}
+\caption{पूर्ववर्ती के प्रबलीकरण का प्रतिदृष्टांत}
+\ollabel{fig:antecedent-strengthening}
+\end{center}
+\end{figure}
+\end{ex}
+
+\end{document}

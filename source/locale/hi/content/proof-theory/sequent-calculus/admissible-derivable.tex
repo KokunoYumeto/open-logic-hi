@@ -1,0 +1,248 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: admissible-derivable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{seq}{adm}
+
+\olsection{ग्राह्य और व्युत्पाद्य नियम}
+
+प्रमाण सिद्धांत के अनेक परिणाम इस प्रश्न से संबद्ध परिणामों से सरोकार रखते
+हैं---या उनका उपयोग करते हैं---कि किसी विशिष्ट नियम का उपयोग करके !!{prove}
+की जा सकने वाली हर वस्तु को क्या उस नियम के बिना भी !!{prove} किया जा सकता
+है। कट-विलोपन प्रमेय इसका सबसे प्रसिद्ध उदाहरण है। वह दिखाता है कि~\Cut{}
+सहित किसी अनुक्रम प्रणाली के नियमों से !!{prove} किए जा सकने वाले प्रत्येक
+अनुक्रम को~\Cut के बिना भी !!{prove} किया जा सकता है। इस प्रकार का गुणधर्म
+इतना महत्त्वपूर्ण है कि इसका अपना नाम है।
+
+\begin{defn}
+कोई नियम~$R$ किसी अनुक्रम प्रणाली में \emph{ग्राह्य} है यदि उस प्रणाली और
+नियम~$R$ को साथ लेकर सिद्ध किए जा सकने वाले प्रत्येक अनुक्रम को~$R$ के बिना
+भी सिद्ध किया जा सकता है।
+\end{defn}
+
+\begin{ex}\ollabel{ex:land-deriv}
+नियम $\LeftR{\land}$ के \Log{G1c} और \Log{G3c} में अलग-अलग रूप हैं।
+\Log{G1c} में इसके दो रूप हैं: एक में प्रमुख !!{formula}~$!A \land !B$ का
+वाम संयोज्य $!A$ आधार-वाक्य में है, और दूसरे में दक्षिण संयोज्य~$!B$:
+\[
+\Axiom$ !A, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_1$}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$!B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_2$}
+\UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+इसके विपरीत, \Log{G3c} में केवल एक नियम है:
+\[
+\Axiom$ !A, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_3$}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+अब हम पूछ सकते हैं, ``क्या \Log{G3c} का नियम $\LeftR{\land}_3$, \Log{G1c}
+में ग्राह्य है?'' हाँ: $\LeftR{\land}_3$ का उपयोग करने वाले किसी भी निगमन का
+हम केवल \Log{G1c} के नियमों से सीधे अनुकरण कर सकते हैं।
+$\LeftR{\land}_1$ और $\LeftR{\land}_2$ के अतिरिक्त हमें संरचनात्मक
+नियम~$\LeftR{\Contraction}$ भी चाहिए:
+\[
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_1$}
+\UnaryInf$!A \land !B, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_2$}
+\UnaryInf$!A \land !B, !A \land !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$!A \land !B \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\end{ex}
+
+एक नियम वाले निगमन का अन्य नियमों से अनुकरण करना किसी नियम को ग्राह्य दिखाने
+का एक ढंग है। किंतु यही एकमात्र ढंग नहीं है, और कुछ नियम ग्राह्य तो हैं पर
+इस प्रकार अनुकरणीय नहीं। जिन नियमों का ऐसा अनुकरण हो सके उन्हें
+\emph{व्युत्पाद्य} कहते हैं।
+
+\begin{defn}
+A rule~$R$,
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+किसी प्रणाली में \emph{व्युत्पाद्य} कहलाता है यदि प्रणाली के नियमों और
+अभिगृहीतियों के साथ~$S_1$, \dots,~$S_n$ रूप के अतिरिक्त आरंभिक अनुक्रमों का
+उपयोग करके अनुक्रम~$S$ का कोई योजनाबद्ध !!{proof} हो।
+\end{defn}
+
+\olref{ex:land-deriv} में दिया !!{proof} दिखाता है कि $\LeftR{\land}_3$,
+\Log{G1c} में व्युत्पाद्य नियम है, क्योंकि वह केवल \Log{G1c} के नियमों से,
+$\LeftR{\land}_3$ के आधार-वाक्यों को आरंभिक अनुक्रम मानकर, उसके निष्कर्ष का
+योजनाबद्ध !!{proof} है। (उसमें \Log{G1c} की कोई अभिगृहीति उपयोग नहीं हुई।)
+
+\begin{prop}\ollabel{prop:lor-G3-adm}
+\Log{G3c} के नियम $\LeftR{\land}$ और $\RightR{\lor}$, \Log{G1c} में
+व्युत्पाद्य हैं।
+\end{prop}
+
+\begin{proof}
+  $\LeftR{\land}$ का प्रमाण \olref{ex:land-deriv} में दिया है।
+  $\RightR{\lor}$ का प्रमाण अभ्यास के लिए छोड़ा गया है।
+\end{proof}
+
+\begin{prob}
+दिखाएँ कि \Log{G3c} का नियम $\RightR{\lor}$, \Log{G1c} में व्युत्पाद्य है।
+\end{prob}
+
+\begin{prob}
+मान लें कि $\liff$ कोई परिभाषित !!{operator} है: $!A \liff !B$, $(!A \lif
+!B) \land (!B \lif !A)$ का संक्षिप्त रूप है। दिखाएँ कि नियम
+\begin{enumerate}
+\item \Axiom$\Gamma, !A, !B \fCenter \Delta$
+\Axiom$\Gamma \fCenter \Delta, !A, !B$
+\RightLabel{\LeftR{\liff}}
+\BinaryInf$\Gamma \fCenter \Delta, !A \liff !B$
+\DisplayProof
+\item
+\Axiom$!A, \Gamma \fCenter \Delta, !B$
+\Axiom$!B, \Gamma \fCenter \Delta, !A$
+\RightLabel{\RightR{\liff}}
+\BinaryInf$\Gamma \fCenter \Delta, !A \liff !B$
+\DisplayProof
+\end{enumerate}
+(क)~\Log{G1c} और (ख)~\Log{G3c} में व्युत्पाद्य हैं।
+\end{prob}
+
+
+\begin{ex}\ollabel{ex:weak-adm}
+\Log{G1c} का नियम $\RightR{\Weakening}$,
+\[
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\]
+\Log{G3c} में ग्राह्य है। प्रमाण का विचार सरल है: मान लें कि \Log{G3c} में
+आधार-वाक्य $\Gamma \Sequent \Delta$ का कोई !!a{proof}~$\pi$ है। $\pi$ के
+हर अनुक्रम के अनुवर्ती में !!{formula}~$!A$ जोड़ दें। अभिगृहीतियाँ अभिगृहीतियाँ
+रहती हैं; सही निगमन सही निगमन रहते हैं। नए !!{proof} का अंतिम-!!{formula}
+$\Gamma \Sequent \Delta, !A$ है।
+
+किंतु नियम $\RightR{\Weakening}$, \Log{G3c} में व्युत्पाद्य नहीं है। मान लें
+कि वह है, अर्थात \Log{G3c} की केवल अभिगृहीतियों और नियमों तथा संभवतः अतिरिक्त
+आरंभिक अनुक्रम~$\Gamma \Sequent \Delta$ से $\Gamma \Sequent \Delta, !A$ का
+कोई !!a{proof} मिल सकता है। यदि यह !!{proof}, जैसा $\RightR{\Weakening}$ के
+व्युत्पाद्य होने के लिए आवश्यक है, पूर्णतः योजनाबद्ध हो, तो $\Gamma$ और
+~$\Delta$ हटाकर हम उसे~$\Sequent !A$ के !!a{proof} में बदल सकते हैं। इससे
+अतिरिक्त आरंभिक अनुक्रम~$\Gamma \Sequent \Delta$, रिक्त अनुक्रम~$\quad
+\Sequent \quad$ में बदल जाएगा। चूँकि रिक्त अनुक्रम में एक भी !!{formula} नहीं
+है, जबकि \Log{G3c} के हर नियम को अपने आधार-वाक्यों में कम-से-कम एक सक्रिय
+!!{formula} चाहिए, रिक्त अनुक्रम इस योजनाबद्ध !!{proof} के किसी निगमन का
+आधार-वाक्य नहीं हो सकता। फलतः !!{proof} तभी योजनाबद्ध हो सकता है जब वह वास्तव
+में अतिरिक्त अनुक्रम $\Gamma \Sequent \Delta$ का आरंभिक अनुक्रम के रूप में
+उपयोग न करे। दूसरे शब्दों में, वह केवल \Log{G3c} की अभिगृहीतियों और नियमों से
+$\Gamma \Sequent \Delta, !A$ की योजनाबद्ध व्युत्पत्ति होगा, और हमने दिखा दिया
+होगा कि इस रूप के हर अनुक्रम का \Log{G3c} में !!a{proof} है। किंतु यह असंभव
+है, क्योंकि \Log{G3c} निर्दोष है और इसलिए केवल उन अनुक्रमों को !!{prove} कर
+सकता है जो हर !!{structure} में सत्य हैं। $\Gamma = \Delta = \emptyset$ और
+$!A \ident \lfalse$ लेने पर \Log{G3c} को, उदाहरणतः, अनुक्रम $\quad \Sequent
+\lfalse$ को !!{prove} करना होगा, जो वह नहीं करता।
+\end{ex}
+
+आइए इस परिणाम का एक सुंदर आगमनात्मक प्रमाण दें कि दुर्बलीकरण \Log{G3c} में
+ग्राह्य नियम है। वास्तव में, जैसा सहज तर्क दिखाता है, थोड़ा अधिक प्रबल परिणाम
+सत्य है: $\pi$ के हर अनुक्रम की दाईं ओर $!A$ जोड़ने से हम !!{proof} की संरचना
+नहीं बदलते, विशेषतः उसकी ऊँचाई नहीं बढ़ाते। यह महत्त्वपूर्ण है, इसलिए इसकी
+अपनी परिभाषा उचित है।
+
+\begin{defn}
+A rule~$R$,
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+किसी प्रणाली में \emph{!!{height}-संरक्षक ग्राह्य} (या
+\emph{!!{hp}-ग्राह्य}) है यदि $i = 1$, \dots,~$n$ के लिए जब भी
+$\Proves[h_i] S_i$ हो, तब $m = \max(h_1, \dots, h_n)$ के साथ $\Proves_m S$
+हो।
+\end{defn}
+
+ध्यान दें कि किसी नियम के !!{height}-संरक्षक ग्राह्य होने के लिए इतना पर्याप्त
+है कि जब भी आधार-वाक्यों~$S_i$ के !!{height}~$h_i = \pheight{\pi_i}$ वाले
+!!{proof}s~$\pi_i$ हों, तब निष्कर्ष का कोई ऐसा !!a{proof}~$\pi$ हो जिसकी
+!!{height}~$\pheight{\pi}$, $h_i$ के अधिकतम से बड़ी न हो। विशेषतः, यदि केवल
+एक आधार-वाक्य~$S_1$ है, तो $\pheight{\pi} \le \pheight{\pi_1}$ पर्याप्त है।
+$\RightR{\Weakening}$ और $\LeftR{\Weakening}$ की स्थिति में वास्तव में
+$\pheight{\pi} = \pheight{\pi_1}$ है, किंतु यह आवश्यक नहीं।
+
+\begin{prop}\ollabel{prop:weak-G3c-adm}
+\Log{G1c} के नियम $\RightR{\Weakening}$ और $\LeftR{\Weakening}$,
+\Log{G3c} में !!{height}-संरक्षक ग्राह्य हैं।
+\end{prop}
+
+\begin{proof}
+  हमें दिखाना है कि यदि !!{height}~$\pheight{\pi} = n$ वाले !!{proof}~$\pi$
+  के साथ $\Log{G3c} \Proves \Gamma \Sequent \Delta$, तो $\Gamma \Sequent
+  \Delta, !A$ का कोई \Log{G3c}-!!{proof} $\pi'$ है जिसके लिए
+  $\pheight{\pi'} = n$। हम इसे~$n$ पर आगमन द्वारा सिद्ध करते हैं। यदि $n=0$,
+  तो $\pi$ केवल अभिगृहीति $\Gamma \Sequent \Delta$ है (अर्थात कोई परमाण्विक
+  $!C$, $\Gamma$ और~$\Delta$ दोनों में आता है), और $\Gamma \Sequent \Delta,
+  !A$ भी अभिगृहीति है। यदि $n = \pheight{\pi} >0$, तो !!{proof}~$\pi$ का कोई
+  अंतिम निगमन है। उपयोग हुए नियम के अनुसार स्थितियाँ अलग करते हैं। केवल एक
+  उदाहरण दें: मान लें कि अंतिम निगमन $\RightR{\land}$ था। तब $\Delta =
+  \Delta', !B \land !C$, और अंतिम निगमन के निकटस्थ उप-!!{proof}s $\pi_1$ और
+  ~$\pi_2$ के अंतिम अनुक्रम क्रमशः $\Gamma \Sequent \Delta', !B$ और $\Gamma
+  \Sequent \Delta', !C$ हैं। दूसरे शब्दों में, $\pi$ ऐसा दिखता है:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma \fCenter \Delta', !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma \fCenter \Delta', !C$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Gamma \fCenter \Delta', !B \land !C$
+  \DisplayProof
+  \]
+  हमारे पास $n = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$ भी है। अतः
+  $\pheight{\pi_1} < n$ और $\pheight{\pi_2} < n$, इसलिए आगमन परिकल्पना लागू
+  होती है: $\Gamma \Sequent \Delta', !B, !A$ और $\Gamma \Sequent \Delta',
+  !C, !A$ के !!{proof}s $\pi_1'$ और~$\pi_2'$ हैं। $\RightR{\land}$ नियम से
+  हमें $\Gamma \Sequent \Delta', !B \land !C, !A$ का !!a{proof}~$\pi'$
+  मिलता है:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$\Gamma \fCenter \Delta', !B, !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta', !C, !A$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
+  \DisplayProof
+  \]
+  हमारे पास $\pheight{\pi'} =
+  \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1 = \max(\pheight{\pi_1},
+  \pheight{\pi_2}) + 1 = \pheight{\pi}$.
+\end{proof}
+
+\olref{prop:weak-G3c-adm} अत्यंत उपयोगी है। इसके बार-बार अनुप्रयोग के लिए हम
+एक संकेतन प्रस्तुत करेंगे: यदि $\pi$, $\Gamma \Sequent \Delta$ का
+!!a{proof} है, तो $\pi[\Pi \Sequent \Lambda]$, बाईं ओर~$\Pi$ के सभी
+!!{formula}s के साथ दुर्बलीकरण की ग्राह्यता और दाईं ओर~$\Lambda$ के सभी
+!!{formula}s के साथ दुर्बलीकरण की ग्राह्यता लागू करने से मिला परिणाम है। यह
+$\Gamma, \Pi \Sequent \Delta, \Lambda$ का !!a{proof} है।
+
+\end{document}

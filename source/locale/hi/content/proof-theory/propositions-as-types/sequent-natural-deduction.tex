@@ -1,0 +1,126 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: sequent-natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{pty}{snd}
+
+\olsection{अनुक्रम प्राकृतिक निगमन}
+
+यदि कोई ऐसी प्राकृतिक निगमन !!{derivation} है जिसमें $\Gamma$ मुक्त न की गई
+मान्यताएँ और $!A$ निष्कर्ष है, तो $\Gamma \Sequent !A$ लिखें; और यदि $\Gamma$
+रिक्त है तो $\Sequent !A$।
+
+$\Gamma \cup \{!A_1, \dots, !A_n\}$ के लिए $\Gamma, !A_1, \dots, !A_n$,
+और $\Gamma \cup \Delta$ के लिए $\Gamma, \Delta$ लिखते हैं।
+
+ध्यान दें कि $\Gamma \Sequent !A \land !A$ होने का अर्थ है कि हमारे पास ऐसी
+!!a{derivation} है जिसमें $\Gamma$ मुक्त न की गई मान्यताएँ और $!A \land !A$
+अंतिम !!{formula} है। तब नीचे $\Elim{\land}$ लगाकर हम समान मुक्त न की गई
+मान्यताओं और निष्कर्ष $!A$ वाली !!a{derivation} पा सकते हैं। दूसरे शब्दों में,
+यदि $\Gamma \Sequent !A \land !B$, तो $\Gamma \Sequent !A$।
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}$}
+  \UnaryInf$\Gamma \fCenter !A$
+  \DisplayProof\qquad\bottomAlignProof
+  \Axiom$\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}$}
+  \UnaryInf$\Gamma \fCenter !B$
+\end{prooftree}
+$\Elim{\land}$ चिह्न प्राकृतिक निगमन के इसी नाम के नियम से संबंध का संकेत
+देता है।
+
+इसी प्रकार मान लें $\Gamma, !A \Sequent !B$, अर्थात् हमारे पास मुक्त न की गई
+मान्यताओं $\Gamma, !A$ और अंतिम !!{formula}~$!B$ वाली !!a{derivation} है। यदि
+हम $\Intro{\lif}$ नियम लगाएँ, तो हमें ऐसी !!a{derivation} मिलती है जिसमें
+$\Gamma$ मुक्त न की गई मान्यताएँ और $!A \lif !B$ अंतिम !!{formula} है,
+अर्थात् $\Gamma \Sequent !A \lif !B$। ध्यान दें कि इससे मान्यताओं का
+!!{discharge} अधिक स्पष्ट हो गया है।
+\begin{prooftree}
+  \Axiom $\Gamma, !A \fCenter !B$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf $\Gamma \fCenter !A \lif !B$
+\end{prooftree}
+
+अन्य नियमों से भी इसी प्रकार निष्कर्ष निकाल सकते हैं, जिन्हें नीचे स्पष्ट किया
+गया है:
+\begin{gather*}
+  \Axiom $\Gamma \fCenter !A$
+  \Axiom $\Delta \fCenter !B$
+  \RightLabel{$\Intro{\land}$}
+  \BinaryInf $\Gamma,\Delta \fCenter !A \land !B$
+  \DisplayProof\\
+  \Axiom $\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}_1$}
+  \UnaryInf $\Gamma \fCenter !A$
+  \DisplayProof
+  \qquad
+  \Axiom $\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}_2$}
+  \UnaryInf $\Gamma \fCenter !B$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma \fCenter !A$
+  \RightLabel{$\Intro{\lor}_1$}
+  \UnaryInf $\Gamma \fCenter !A \lor !B$
+  \DisplayProof\qquad
+  \Axiom $\Gamma \fCenter !B$
+  \RightLabel{$\Intro{\lor}_2$}
+  \UnaryInf $\Gamma \fCenter !A \lor !B$
+  \DisplayProof\\
+  \Axiom $\Gamma \fCenter !A \lor !B$
+  \Axiom $\Delta, !A \fCenter !C$
+  \Axiom $\Delta', !B \fCenter !C$
+  \RightLabel{$\Elim{\lor}$}
+  \TrinaryInf $\Gamma, \Delta, \Delta' \fCenter !C$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma, !A \fCenter !B$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf $\Gamma \fCenter !A \lif !B$
+  \DisplayProof
+  \qquad
+  \Axiom $\Delta \fCenter !A \lif !B$
+  \Axiom $\Gamma \fCenter !A$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf $\Gamma, \Delta \fCenter !B$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma \fCenter \lfalse$
+  \RightLabel{$\FalseInt$}
+  \UnaryInf $\Gamma \fCenter !A$
+  \DisplayProof
+\end{gather*}
+
+हर मान्यता अपने आप~$!A$ से $!A$ की !!a{derivation} है, अर्थात् हमारे पास सदा
+$!A \Sequent !A$ है।
+
+\begin{prooftree}
+  \AxiomC{$ $}
+  \UnaryInfC{$!A \fCenter !A$}
+\end{prooftree}
+
+इन नियमों को मिलाकर इस विषय का कलन माना जा सकता है कि कौन-सी प्राकृतिक निगमन
+!!{derivation}s विद्यमान हैं। इन्हें प्राकृतिक निगमन का संकेतनात्मक रूपांतर भी
+माना जा सकता है, जिसमें प्रत्येक चरण न केवल !!{derive} किए गए !!{formula} को,
+बल्कि उन मुक्त न की गई मान्यताओं को भी दर्ज करता है जिनसे उसे !!{derive} किया
+गया।
+
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \UnaryInf $!A \fCenter !A \lor (!A \lif \lfalse)$
+  \Axiom $!B \fCenter !B$
+  \BinaryInf$!A, !B\lif \fCenter \lfalse$
+  \UnaryInf$(!B \fCenter !A \lif \lfalse$
+  \UnaryInf$( !B \fCenter !A \lor (!A \lif \lfalse)$
+  \Axiom$(!B \fCenter !B$
+  \BinaryInf$(!B \fCenter \lfalse$
+  \UnaryInf$\fCenter !B \lif \lfalse$
+\end{prooftree}
+जहाँ $!B$, $(!A \lor (!A \lif \lfalse))\lif \lfalse$ का संक्षिप्त रूप है।
+
+\end{document}

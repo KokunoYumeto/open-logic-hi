@@ -1,0 +1,39 @@
+% Target-only integrated chapter build wrapper for HI-OLP-COM-CHAPTER-0001.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{xr-hyper}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build}
+\externaldocument{../../../../../../../06_build/openlogic_hi_9620cc7/HI-OLP-COM-EXTERNAL-SYN/syntax-and-semantics-external-build}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{3em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रथम-कोटि तर्कशास्त्र: पूर्णता प्रमेय}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{com}
+% Cleveref creates its conjunction commands only at begin-document time.
+% Register these chapter-local Hindi surfaces after Cleveref's own hook so
+% references do not expose English while the shared locale remains safe when
+% Babel replays \extrashindi from an existing .aux file.
+\AtBeginDocument{%
+  \renewcommand*{\crefrangeconjunction}{ से\nobreakspace}%
+  \renewcommand*{\crefpairconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddleconjunction}{, }%
+  \renewcommand*{\creflastconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefpairgroupconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddlegroupconjunction}{, }%
+  \renewcommand*{\creflastgroupconjunction}{, और\nobreakspace}%
+}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{completeness}
+\end{document}

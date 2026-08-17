@@ -1,0 +1,119 @@
+% Part: first-order-logic
+% Chapter: lindstrom
+% Section: lindstrom-proof
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{lin}{prf}
+
+\olsection{लिंडस्ट्रॉम (Lindstr\"om) का प्रमेय}
+
+\begin{lem}
+\ollabel{lem:lindstrom}
+मान लें कि $!E \in L(\Lang{L})$, जहाँ $\Lang{L}$ परिमित है, और यह भी
+मान लें कि कोई $n \in \Nat$ ऐसा है कि किन्हीं दो !!{structure}s
+$\Struct{M}$ और~$\Struct{N}$ के लिए, यदि $\Struct{M} \equiv_n
+\Struct{N}$ और $\Struct{M} \models_L !E$, तो $\Struct{N}
+\models_L !E$
+भी। तब $!E$ किसी प्रथम-कोटि !!{sentence} के तुल्य है, अर्थात् कोई
+प्रथम-कोटि $!D$ ऐसा है कि $\Mod(L){!E} = \Mod(L){!D}$।
+\end{lem}
+
+\begin{proof} 
+$n$ ऐसा मानें कि कोई भी दो $n$-तुल्य !!{structure}s $\Struct{M}$ और
+$\Struct{N}$,~$!E$ की सत्यता पर सहमत हों।
+\olref[bas][pis]{prop:qr-finite} याद करें: तार्किक तुल्यता तक, किसी परिमित
+!!{language} में ऐसे केवल परिमिततः अनेक प्रथम-कोटि !!{sentence}s हैं जिनकी
+परिमाणक-कोटि~$n$ से अधिक नहीं। अब प्रत्येक नियत
+!!{structure}~$\Struct{M}$ के लिए $!D_{\Struct{M}}$ को उन सभी प्रथम-कोटि
+!!{sentence}s~$!E$ का संयोजन मानें जो~$\Struct{M}$ में सत्य हैं और जिनके
+लिए $\QuantRank{!E} \le n$ (यह संयोजन परिमित है), ताकि $\Struct{N} \models !D_{\Struct{M}}$ तभी और केवल तभी जब $\Struct{N}
+\equiv_n \Struct{M}$। फिर $!D = \textstyle\bigvee
+\Setabs{!D_{\Struct{M}}}{\Struct{M} \models_L !E}$ रखें; यह वियोजन भी
+(तार्किक तुल्यता तक) परिमित है।
+
+निष्कर्ष $\Mod(L){!E} = \Mod(L){!D}$ निकलता है। वास्तव में, यदि
+$\Struct{N} \models_L !D$, तो किसी $\Struct{M} \models_L
+!E$ के लिए
+$\Struct{N} \models !D_{\Struct{M}}$; अतः $\Struct{N} \models_L !E$ भी
+(उपपत्ति की परिकल्पना से)। विलोमतः, यदि $\Struct{N} \models_L !E$, तो
+$!D_\Struct{N}$, $!D$ का एक वियोज्य है; और चूँकि $\Struct{N}
+\models !D_\Struct{N}$, इसलिए $\Struct{N} \models_L !D$ भी।
+\end{proof}
+
+\begin{thm}[लिंडस्ट्रॉम (Lindstr\"om) का प्रमेय]
+  \ollabel{thm:lindstrom} मान लें कि $\tuple{L, \models_L}$ में संहतता
+  और लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) गुण हैं। तब
+  $\tuple{L, \models_L} \le \tuple{F, \models}$ (अर्थात्
+  $\tuple{L, \models_L}$ प्रथम-कोटि तर्कशास्त्र के तुल्य है)।
+\end{thm}
+
+\begin{proof}
+\olref{lem:lindstrom} से इतना दिखाना पर्याप्त है कि किसी भी $!E
+\in L(\Lang{L})$ के लिए, जहाँ $\Lang{L}$ परिमित है, कोई $n \in \Nat$ ऐसा है
+कि किन्हीं दो !!{structure}s $\Struct{M}$ और~$\Struct{N}$ के लिए: यदि
+$\Struct{M} \equiv_n \Struct{N}$, तो $\Struct{M}$ और $\Struct{N}$,~$!E$
+पर सहमत हैं। तब $!E$ किसी प्रथम-कोटि !!{sentence} के तुल्य होगा, जिससे
+$\tuple{L, \models_L} \le \tuple{F, \models}$ निकलेगा। चूँकि हम किसी
+परिमित, पूर्णतः संबंधपरक !!{language} में काम कर रहे हैं,
+\olref[bas][pis]{thm:b-n-f} से हम कथन $\Struct{M} \equiv_n \Struct{N}$
+को संगत बीजगणितीय कथन $I_n(\emptyset,\emptyset)$ से बदल सकते हैं।
+
+$!E$ दिए होने पर, विरोधाभास के लिए मान लें कि प्रत्येक $n$ के लिए ऐसी
+!!{structure}s $\Struct{M}_n$ और $\Struct{N}_n$ हैं कि
+$I_n(\emptyset, \emptyset)$, किंतु (मान लें) $\Struct{M}_n \models_L !E$
+जबकि $\Struct{N}_n \not\models_L !E$। समरूपता गुण से हम मान सकते हैं कि
+सभी $\Struct{M}_n$ भाषा के अचरों की व्याख्या उन्हीं वस्तुओं से करती हैं;
+इसके अतिरिक्त, चूँकि भाषा में केवल परिमिततः अनेक परमाण्विक !!{sentence}s
+हैं, हम यह भी मान सकते हैं कि वे उन्हीं परमाण्विक !!{sentence}s को संतुष्ट
+करती हैं (अन्यथा हम $\Struct{M}$ का कोई उपानुक्रम ले सकते हैं)।
+$\Struct{M}$ को सभी $\Struct{M}_n$ का संघ मानें, अर्थात् वह अद्वितीय
+न्यूनतम !!{structure} जिसकी प्रत्येक $\Struct{M}_n$ उपसंरचना है।
+\olref[lsp]{thm:abstract-p-isom} के प्रमाण की तरह, $\Struct{M}^*$ को
+$\Struct{M}$ का वह विस्तार मानें जिसका !!{domain} $\Domain{M} \cup
+\Domain{M}^{<\omega}$ है और जिसकी विस्तारित !!{language} में संलग्नन-विधेय
+$P$ और~$Q$ आते हैं।
+
+इसी प्रकार $\Struct{N}_n$, $\Struct{N}$ और $\Struct{N}^*$ को परिभाषित
+करें। अब $\Struct{M}$ को वह !!{structure} मानें जिसके !!{domain} में
+$\Struct{M}^*$ और $\Struct{N}^*$ के !!{domain}s के साथ प्राकृत
+संख्याएँ~$\Nat$ तथा उनका स्वाभाविक क्रम~$\le$ भी आते हैं; उसकी
+!!{language} में $\Domain{M}$, $\Domain{N}$,
+$\Domain{M}^{<\omega}$ और $\Domain{N}^{<\omega}$ को निरूपित करने वाले
+अतिरिक्त विधेय हैं, और $\Struct{M}_n$ तथा $\Struct{N}_n$ के !!{domain}s को
+इस अर्थ में कूटबद्ध करने वाले विधेय भी हैं कि:
+\begin{align*}
+  \Domain{M_n} & = \Setabs{a \in \Domain{M}}{R(a, n)}; & 
+  \Domain{N_n} & = \Setabs{a \in \Domain{N}}{S(a,n)}; \\
+  \Domain{M}^{<\omega}_n & = \Setabs{a \in \Domain{M}^{<\omega}}{R(a,n)}; &
+  \Domain{N}^{<\omega}_n & = \Setabs{a \in \Domain{N}^{<\omega}}{S(a,n)}. 
+\end{align*}
+!!{structure}~$\Struct{M}$ में एक त्रयी संबंध $J$ भी है, ऐसा कि
+$J(n, \mathbf{a}, \mathbf{b})$ तभी और केवल तभी मान्य है जब
+$I_n(\mathbf{a}, \mathbf{b})$।
+
+अब कोई !!a{sentence}~$!D$, उस !!{language}~$\Lang{L}$ में है जो
+$R$, $S$, $J$ इत्यादि से संवर्धित है; वह कहता है कि $\le$ ऐसा विविक्त रैखिक क्रम है जिसका
+प्रथम अवयव तो है पर अंतिम अवयव नहीं, और यह कि $\Struct{M}_n \models
+!E$,
+$\Struct{N}_n \not\models !E$, तथा क्रम के प्रत्येक $n$ के लिए
+$J(n, \mathbf{a}, \mathbf{b})$ तभी और केवल तभी मान्य है जब
+$I_n(\mathbf{a}, \mathbf{b})$।
+
+संहतता गुण का उपयोग करके हम कोई प्रतिरूप $\Struct{M}^*$, $!D$ का, पा सकते
+हैं जिसमें क्रम में कोई अमानक अवयव~$n^*$ आता है। तब विशेषतः
+$\Struct{M^*}$ में ऐसी उप!!{structure}s $\Struct{M_{n^*}}$ और
+$\Struct{N_{n^*}}$ होंगी कि $\Struct{M_{n^*}}
+\models_L !E$ और
+$\Struct{N_{n^*}} \not\models_L !E$। किंतु अब हम कोई समुच्चय $\mathcal{I}$,
+$k$-टुपलों के उन युग्मों का जो $\Domain{M_{n^*}}$ और
+$\Domain{N_{n^*}}$ से लिए गए हैं, इस प्रकार परिभाषित कर सकते हैं: $\tuple{\mathbf{a}, \mathbf{b}} \in \mathcal{I}$ तभी और केवल तभी जब $J(n^*-k, \mathbf{a}, \mathbf{b})$, जहाँ $k$, $\mathbf{a}$ और $\mathbf{b}$ की लंबाई है। चूँकि
+$n^*$ अमानक है, प्रत्येक मानक $k$ के लिए $n^* - k >0$, और समुच्चय
+$\mathcal{I}$ इस तथ्य का साक्षी है कि $\Struct{M_{n^*}} \simeq_p
+\Struct{N_{n^*}}$। किंतु \olref[lsp]{thm:abstract-p-isom} से
+$\Struct{M_{n^*}}$, $L$ की दृष्टि से, $\Struct{N_{n^*}}$ के तुल्य है, जो विरोधाभास है।
+\end{proof}
+
+\end{document}

@@ -1,0 +1,88 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: sublogics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{syn}{sub}
+
+\olsection{~$\LogCL$ के उपतर्कशास्त्रों के रूप में बहुमूल्य तर्कशास्त्र}
+
+सभी प्रचलित बहुमूल्य तर्कशास्त्र ऐसे आव्यूहों से परिभाषित होते हैं जिनमें
+$\{\True, \False\}$ के तर्कों पर सत्य-फलन का मान चिरसम्मत सत्य-फलनों से मेल
+खाता है। विशेषतः, इन तर्कशास्त्रों में यदि $x \in \{\True, \False\}$, तो
+$\tf{\lnot}[\Log L](x) = \tf{\lnot}[\LogCL](x)$; और $\star$, ~$\land$,
+$\lor$, $\lif$ में से कोई भी हो, यदि $x, y \in \{\True, \False\}$, तो
+$\tf{\star}[\Log L](x,y) = \tf{\star}[\LogCL](x,y)$। दूसरे शब्दों में,
+$\{\True,\False\}$ तक प्रतिबंधित $\lnot$, $\land$, $\lor$, $\lif$ के
+सत्य-फलन ठीक चिरसम्मत सत्य-फलन हैं।
+
+\begin{prop}\ollabel{prop:mvl-cl}
+  मान लें किसी बहुमूल्य तर्कशास्त्र~$\Log L$ की भाषा में संयोजक $\lnot$,
+  $\land$, $\lor$, $\lif$ हैं, $\True, \False \in V$, और उसके सत्य-फलन
+  निम्न को संतुष्ट करते हैं:
+  \begin{enumerate}
+    \item\ollabel{prop:not} $\tf{\lnot}[\Log L](x) = \tf{\lnot}[\LogCL](x)$ यदि $x =
+    \True$ अथवा $x = \False$;
+    \item\ollabel{prop:land} $\tf{\land}[\Log L](x,y) = \tf{\land}[\LogCL](x,y)$,
+    \item\ollabel{prop:lor} $\tf{\lor}[\Log L](x,y) = \tf{\lor}[\LogCL](x,y)$,
+    \item\ollabel{prop:lif} $\tf{\lif}[\Log L](x,y) = \tf{\lif}[\LogCL](x,y)$,
+    यदि $x, y \in \{\True, \False\}$।
+  \end{enumerate}
+  तब~$V$ में ऐसे किसी भी मूल्यांकन $\pAssign v$ के लिए कि $\pAssign v(p)
+  \in \{\True,\False\}$, ~$\pValue v[\Log L](!A) = \pValue
+  v[\LogCL](!A)$।
+\end{prop}
+
+\begin{proof}
+  ~$!A$ पर आगमन द्वारा।
+  \begin{enumerate}
+  \item यदि $!A \ident p$ परमाण्विक है, तो $\pValue v[\Log L](!A) =
+  \pAssign v(p) = \pValue
+  v[\LogCL](!A)$.
+  \item यदि $!A \ident \lnot B$, तो
+  \begin{align*}
+    \pValue v[\Log L](!A) & = \tf{\lnot}[\Log L](\pValue v[\Log L](!B)) & &\text{\olref[val]{defn:pValue} से}\\
+    & = \tf{\lnot}[\Log L](\pValue v[\LogCL](!B)) && \text{आगमन-परिकल्पना से}\\
+    & = \tf{\lnot}[\LogCL](\pValue v[\LogCL](!B)) 
+&&\text{परिकल्पना \olref{prop:not} से,}\\
+&&&\text{क्योंकि $\pValue v[\LogCL](!B) \in \{\True, \False\}$,}\\
+& = \pValue v[\LogCL](!A) &&\text{\olref[val]{defn:pValue} से}।
+\end{align*}
+\item यदि $!A \ident (!B \land !C)$, तो
+\begin{align*}
+  \pValue v[\Log L](!A) & = \tf{\land}[\Log L](\pValue v[\Log L](!B), \pValue v[\Log L](!C)) & &\text{\olref[val]{defn:pValue} से}\\
+  & = \tf{\land}[\Log L](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) && \text{आगमन-परिकल्पना से}\\
+  & = \tf{\land}[\LogCL](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) 
+&&\text{परिकल्पना \olref{prop:land} से,}\\
+&&&\text{क्योंकि $\pValue v[\LogCL](!B),\pValue v[\LogCL](!C) \in \{\True, \False\}$,}\\
+& = \pValue v[\LogCL](!A) &&\text{\olref[val]{defn:pValue} से}।
+\end{align*}
+\end{enumerate}
+$!A \ident (!B \lor !C)$ और $!A \ident (!B \lif !C)$ वाली स्थितियाँ
+समान हैं।
+\end{proof}
+
+\begin{cor}
+  यदि कोई बहुमूल्य तर्कशास्त्र \olref{prop:mvl-cl} की शर्तें संतुष्ट करता
+  है, $\True \in V^+$ और $\False \notin V^+$, तो
+  ${\Entails[\Log L]} \subseteq {\Entails[\LogCL]}$, अर्थात् यदि $\Gamma
+  \Entails[\Log L] !B$, तो $\Gamma \Entails[\LogCL] !B$। विशेषतः,
+  $\Log L$ की प्रत्येक सर्वसत्यता चिरसम्मत सर्वसत्यता भी है।
+\end{cor}
+
+\begin{proof}
+  हम प्रतिधनात्मक सिद्ध करते हैं। मान लें $\Gamma \Entails/[\LogCL] !B$।
+  तब कोई ऐसा !!{valuation}~$\pAssign v\colon \PVar \to \{\True,
+  \False\}$ है कि सभी $!A \in \Gamma$ के लिए $\pValue v[\LogCL](!A) =
+  \True$ और $\pValue v[\LogCL](!B) = \False$। चूँकि $\True, \False \in
+  V$, इसलिए !!{valuation}~$\pAssign v$, ~$\Log L$ के लिए भी
+  !!a{valuation} है। \olref{prop:mvl-cl} से सभी $!A \in \Gamma$ के लिए
+  $\pValue v[\Log L](!A) = \True$ और $\pValue v[\Log L](!B) = \False$।
+  चूँकि $\True \in V^+$ और $\False \notin V^+$, इसका अर्थ है $\pAssign v
+  \Entails[\Log L] \Gamma$ और $\pAssign v \Entails/[\Log L] !B$, अर्थात्
+  $\Gamma \Entails/[\Log L] !B$।
+\end{proof}
+\end{document}

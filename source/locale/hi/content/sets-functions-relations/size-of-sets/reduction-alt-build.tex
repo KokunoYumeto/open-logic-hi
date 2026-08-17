@@ -1,0 +1,37 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0032.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen cross-reference identities required by this standalone alternate.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:nen-alt:sec\endcsname
+  {{siz.12}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:sec@cref\endcsname
+  {{[section][12][0]siz.12}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen:sec\endcsname
+  {{siz.6}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen:sec@cref\endcsname
+  {{[section][6][0]siz.6}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:red:sec\endcsname
+  {{siz.7}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:red:sec@cref\endcsname
+  {{[section][7][0]siz.7}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:thm:nonenum-bin-omega\endcsname
+  {{siz.{31}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:thm:nonenum-bin-omega@cref\endcsname
+  {{[thm][31][0]siz.{31}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:thm:nonenum-pownat\endcsname
+  {{siz.{32}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:thm:nonenum-pownat@cref\endcsname
+  {{[thm][32][0]siz.{32}}{}{}{}{}}
+\makeatother
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{वैकल्पिक-न्यूनीकरण}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{reduction-alt}
+\end{document}

@@ -1,0 +1,184 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: rules-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{seq}{rp}
+
+\olsection{नियम और \usetoken{P}{proof}}
+
+हम कुछ परिभाषाएँ देकर और कुछ पारिभाषिक शब्द निश्चित करके आरंभ करते हैं।
+
+उदाहरण के लिए \Log{G3c} के उन दो नियमों पर विचार करें जो $!A$ और~$!B$ वाले
+अनुक्रमों से $!A \land !B$ वाले अनुक्रमों को !!{proving} करने देते हैं:
+\[
+\Axiom$ !A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\DisplayProof
+\]
+रेखा के ऊपर के अनुक्रमों को \emph{आधार-वाक्य} और रेखा के नीचे के अनुक्रम को
+\emph{निष्कर्ष} कहते हैं। प्रत्येक नियम में $\Gamma$ और $\Delta$ के
+!!{formula}s को \emph{प्रसंग}, अथवा \emph{पार्श्व !!{formula}s}, कहते हैं।
+निष्कर्ष में जो !!{formula} प्रसंग का भाग नहीं है उसे \emph{प्रमुख}
+!!{formula}, और आधार-वाक्यों में प्रसंग के बाहर के !!{formula}s को
+\emph{सक्रिय} (अथवा \emph{सहायक}) !!{formula}s कहते हैं।
+
+परिमाणक नियम कुछ अधिक जटिल हैं। उदाहरणतः \Log{G1c} में $\lforall$ के नियम हैं:
+\[\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\]
+\LeftR{\lforall} नियम में सक्रिय !!{formula}~$!A(t)$ है, जहाँ $t$ कोई बंद
+पद, अर्थात चरों से रहित पद, है। ऐसा निगमन सही है---अर्थात वह योजनाबद्ध नियम
+\LeftR{\lforall} से मेल खाता है---यदि कोई !!{formula}~$!A$, कोई चर~$x$ और
+कोई बंद पद~$t$ ऐसे हैं कि निष्कर्ष का प्रमुख !!{formula}
+$\lforall[x][!A]$ और आधार-वाक्य का सक्रिय !!{formula}~$\Subst{!A}{t}{x}$
+है। \RightR{\lforall} नियम इसी प्रकार काम करता है, बस किसी भी पद~$t$ के
+बदले आधार-वाक्य का सक्रिय !!{formula}~$\Subst{!A}{a}{x}$ होना चाहिए, जहाँ
+$a$ कोई !!a{constant} है। इस अचर को \RightR{\lforall} निगमन का
+\emph{आइगेनचर} कहते हैं। निगमन तभी सही है जब नीचे वाले अनुक्रम में~$a$ न आए,
+अर्थात $a$, $\Gamma$, $\Delta$ या~$!A$ में न आए। इसे \emph{आइगेनचर प्रतिबंध}
+कहते हैं।
+
+\Log{G1c} और \Log{G3c} जैसी अनुक्रम प्रणालियों में ऐसे योजनाबद्ध रूप से
+निर्दिष्ट नियमों का संग्रह और कुछ (वे भी योजनाबद्ध रूप से निर्दिष्ट) अनुक्रम
+होते हैं जिन्हें अभिगृहीतियाँ माना जाता है। ऐसी प्रणाली में !!^{proof}s,
+अनुक्रमों के सीमित वृक्ष हैं जो निगमन नियमों का उपयोग करके अभिगृहीतियों से
+आगमनतः उत्पन्न होते हैं। प्रत्येक पत्ता अभिगृहीति है और प्रत्येक अन्य अनुक्रम
+उसके ठीक ऊपर के अनुक्रमों से प्रणाली के किसी निगमन नियम द्वारा मिलता है।
+
+\begin{defn}\ollabel{defn:proof}
+किसी अनुक्रम प्रणाली में \emph{!!^{proof}s}, निम्न प्रकार आगमनतः परिभाषित
+अनुक्रमों के सीमित वृक्ष हैं:
+\begin{enumerate}
+  \item\ollabel{defn:prf:axiom} प्रत्येक अभिगृहीति !!a{proof} है।
+  \item\ollabel{defn:prf:one-prem} यदि $\pi_1$, अनुक्रम~$S_1$ पर समाप्त
+  होने वाला !!a{proof} है और $S$, एक आधार-वाक्य वाले नियम~$R$ द्वारा~$S_1$
+  से मिलने वाला अनुक्रम है, तो
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \DeduceC{$S_1$}
+  \RightLabel{$R$}
+  \UnaryInfC{$S$}
+  \DisplayProof
+  \]
+  !!a{proof} है।
+  \item\ollabel{defn:prf:two-prem} यदि $\pi_1$ और $\pi_2$, क्रमशः अनुक्रमों
+  ~$S_1$ और~$S_2$ पर समाप्त होने वाले !!{proof}s हैं और $S$, दो आधार-वाक्यों
+  वाले नियम~$R$ द्वारा~$S_1$ और $S_2$ से मिलने वाला अनुक्रम है, तो
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \DeduceC{$S_1$}
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \DeduceC{$S_2$}
+  \RightLabel{$R$}
+  \BinaryInfC{$S$}
+  \DisplayProof
+  \]
+  !!a{proof} है।
+\end{enumerate}
+\end{defn}
+
+\Olref{defn:proof}, !!{proof}s को अनुक्रमों के वृक्षों के रूप में परिभाषित
+करता है। हम इन वृक्षों को ``ऊपर की ओर'' बढ़ता हुआ समझते हैं। वृक्ष के सबसे
+ऊपरी (पत्ता) नोड अभिगृहीतियाँ हैं और उन्हें \emph{आरंभिक अनुक्रम} कहते हैं।
+सबसे नीचे वाले अनुक्रम को \emph{अंतिम अनुक्रम} कहते हैं। यदि $\pi$, अंतिम
+अनुक्रम~$S$ वाला !!a{proof} है, तो हम $\pi \Proves S$ भी लिखते हैं। यदि
+किसी अनुक्रम~$S$ का !!a{proof} है, तो हम $\Proves S$ लिखते हैं; कभी-कभी
+$\Proves$ चिह्न की बाईं ओर वह प्रणाली भी दिखाते हैं जिसमें प्रमाण है, जैसे
+$\Log{G1c} \Proves !A, !B \Sequent !A \land !B$। आरंभिक अनुक्रमों को छोड़कर
+!!a{proof} का प्रत्येक अनुक्रम किसी नियम~$R$ द्वारा किए गए निगमन का
+\emph{निष्कर्ष} है। !!a{proof} में किसी अनुक्रम के ठीक ऊपर के एक या दो
+अनुक्रमों (अर्थात उस नोड के जनकों) को निगमन के \emph{आधार-वाक्य} कहते हैं।
+
+!!a{proof} की आगमनात्मक रचना में उपयोग हुए !!{proof}s को उसके
+\emph{उप-!!{proof}s} कहते हैं। किसी निगमन के आधार-वाक्यों पर समाप्त होने वाले
+उप-!!{proof}s को उस निगमन के \emph{निकटस्थ उप-!!{proof}s} कहते हैं।
+
+प्रायः !!{proof}s की जटिलता को किसी प्राकृतिक संख्या से मापना आवश्यक होता
+है। हम !!a{proof} में अनुक्रमों की संख्या मात्र गिन सकते हैं, किंतु अक्सर
+!!a{proof} की !!{height} अधिक उपयोगी माप है: यह अंतिम अनुक्रम और किसी आरंभिक
+अनुक्रम के बीच अनुक्रमों की अधिकतम संख्या है। हम इसकी आगमनात्मक परिभाषा भी
+दे सकते हैं।
+
+\begin{defn}
+!!a{proof}~$\pi$ की \emph{!!{height}}~$\pheight{\pi}$ इस प्रकार आगमनतः
+परिभाषित है।
+\begin{enumerate}
+  \item यदि $\pi$ में केवल एक अभिगृहीति है, तो $\pheight{\pi} = 0$।
+  \item यदि $\pi$ एक आधार-वाक्य वाले ऐसे निगमन पर समाप्त होता है जिसका
+  निकटस्थ उप-!!{proof}~$\pi_1$ है, तो $\pheight{\pi} = \pheight{\pi_1} + 1$।
+  \item यदि $\pi$ दो आधार-वाक्यों वाले ऐसे निगमन पर समाप्त होता है जिसके
+  निकटस्थ उप-!!{proof}s~$\pi_1$ और~$\pi_2$ हैं, तो $\pheight{\pi} =
+  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$.
+\end{enumerate}
+यदि अनुक्रम~$S$ का ऊँचाई $\le n$ वाला !!a{proof} है, तो हम $\Proves[n] S$
+लिखते हैं।
+\end{defn}
+
+\begin{ex}
+\Log{G3c} में $!C, \Gamma \Sequent \Delta, !C$ रूप का हर अनुक्रम अभिगृहीति
+है, जहाँ $!C$ परमाण्विक होना चाहिए। मान लें कि $!D$ और $!E$ परमाण्विक वाक्य
+हैं। तब $!D, !E \Sequent !D$ और $!D, !E \Sequent !E$, अभिगृहीति $!C,
+\Gamma \Sequent \Delta, !C$ के दृष्टांत हैं। उदाहरणतः यदि $!C, \Gamma
+\Sequent \Delta, !C$ में $!C \ident !E$, $\Gamma = \{!D\}$ और $\Delta =
+\emptyset$ लें, तो ठीक अनुक्रम $!D, !E \Sequent !E$ मिलता है। (याद रखें कि
+हम बहु\emph{समुच्चयों} से काम कर रहे हैं, इसलिए $!D, !E \Sequent !E$ और
+$!E, !D \Sequent !D$ एक ही अनुक्रम हैं।)
+
+चूँकि $!D, !E \Sequent !D$, \Log{G3c} की किसी अभिगृहीति का दृष्टांत है, वह
+अपने आप में \Log{G3c} का !!a{proof} माना जाता है; और
+\olref{defn:proof}\olref{defn:prf:axiom} से $!D, !E \Sequent !E$ भी। इन्हें
+$\pi_1$ और~$\pi_2$ कहें। \olref{defn:prf:two-prem} से हम इन दोनों !!{proof}s
+को लेकर दो आधार-वाक्यों वाले नियम~$\RightR{\land}$ से नया प्रमाण ($\pi_3$)
+बना सकते हैं:
+\[
+\Axiom$!D, !E \fCenter !D$
+\Axiom$!D, !E \fCenter !E$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !E  \fCenter !D \land !E $
+\DisplayProof
+\]
+$\pi_3$ से फिर हमें यह !!{proof}~$\pi_4$ मिलता है:
+\[
+\Axiom$!D, !E \fCenter !D$
+\Axiom$!D, !E \fCenter !E$
+\RightLabel{\RightR{\land}}
+\insertBetweenHyps{\hspace{5ex}}
+\BinaryInf$!D, !E  \fCenter !D \land !E $
+\LeftSubproofLabel{$\pi_3$}
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!D \land !E  \fCenter !D \land !E$
+\RightSubproofLabel{$\pi_4$}
+\DisplayProof
+\]
+इसके लिए एक आधार-वाक्य वाले नियम~$\LeftR{\land}$ का उपयोग हुआ है
+(\olref{defn:proof}\olref{defn:prf:one-prem} का उपयोग करके)। $\pi_4$ के
+अंतिम निगमन का निकटस्थ उप-!!{proof}~$\pi_3$ है। $\RightR{\land}$ निगमन के
+निकटस्थ उप-!!{proof}s $\pi_1$ और~$\pi_2$ हैं। $\pi_4$ के उप-!!{proof}s में
+$\pi_1$, $\pi_2$, $\pi_3$ और स्वयं $\pi_4$, सभी हैं। हमारे पास
+$\pheight{\pi_1} = \pheight{\pi_2} = 0$, $\pheight{\pi_3} = 1$ और
+$\pheight{\pi_4} = 2$ हैं। हमने दिखाया है कि किन्हीं भी परमाण्विक $!D$ और
+~$!E$ के लिए $\Log{G3c} \Proves[4] !D \land !E \fCenter !D \land !E$।
+\end{ex}
+
+\end{document}

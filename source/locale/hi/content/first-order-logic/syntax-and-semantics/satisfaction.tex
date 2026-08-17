@@ -1,0 +1,442 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{sat}
+
+\olsection{\article{structure} \printtoken{S}{structure} में
+  \article{formula} \printtoken{S}{formula} की संतुष्टि}
+
+\begin{explain}
+एक ओर पदों और !!{formula}s जैसी अभिव्यक्तियों तथा दूसरी ओर !!{structure}s
+को जोड़ने वाली मूल धारणाएँ किसी पद के \emph{!!{value}} और किसी
+!!a{formula} की \emph{संतुष्टि} की हैं। अनौपचारिक रूप से, किसी पद का
+!!{value}, किसी !!a{structure} का !!a{element} होता है---यदि पद केवल कोई
+अचर है, तो उसका !!{value} वह वस्तु है जिसे !!{structure} उस अचर को
+नियत करती है; और यदि पद !!{function}s का उपयोग करके बनाया गया है, तो उसका
+  !!{value} अचरों के !!{value}s और पद में आए फलन-चिह्नों को नियत किए
+गए फलनों से निकाला जाता है। कोई !!^a{formula}, किसी !!a{structure} में
+  \emph{संतुष्ट} है यदि विधेयों को दिया गया निर्वचन उस !!{formula} को
+  !!{structure} के प्रांत में सत्य बनाता है। संतुष्टि की यह धारणा आगमनात्मक रूप से निर्दिष्ट
+की जाती है: !!{structure} का विनिर्देशन सीधे बताता है कि परमाण्विक
+!!{formula} कब संतुष्ट हैं; और किसी जटिल !!{formula} की संतुष्टि उसके मुख्य
+संयोजक अथवा परिमाणक तथा इस बात के आधार पर परिभाषित की जाती है कि उसके
+तात्कालिक !!{subformula} संतुष्ट हैं या नहीं।
+
+यहाँ परिमाणकों का प्रकरण कुछ कठिन है, क्योंकि किसी परिमाणित !!{formula} के
+तात्कालिक !!{subformula} में कोई मुक्त !!{variable} होता है, और
+!!{structure}s, !!{variable}s के !!{value} निर्दिष्ट नहीं करतीं। इस कठिनाई
+से निपटने के लिए हम \emph{चर-नियतन} भी प्रस्तुत करते हैं और संतुष्टि को केवल
+!!a{structure} के सापेक्ष नहीं, बल्कि !!a{structure} के साथ !!a{variable}
+नियतन के सापेक्ष परिभाषित करते हैं।
+\end{explain}
+
+\begin{defn}[चर-नियतन]
+\emph{चर-नियतन}~$s$, किसी !!a{structure}~$\Struct{M}$ के लिए ऐसा फलन है
+जो प्रत्येक !!{variable} को~$\Domain M$ के किसी !!a{element} पर
+प्रतिचित्रित करता है, अर्थात् $s\colon \Var \to \Domain M$।
+\end{defn}
+
+\begin{explain}
+!!^a{structure} प्रत्येक !!{constant} को कोई !!a{value}, और चर-नियतन
+प्रत्येक चर को कोई मान देता है। किंतु हम उनसे बने पदों का उपयोग करके
+!!{domain} में मौजूद प्रत्येक !!{element} का नामकरण भी करना चाहते हैं। इसके लिए हम पदों के
+!!{value} को आगमनात्मक रूप से परिभाषित करते हैं। !!{constant}s और चरों के
+लिए मान वही है जो !!{structure} अथवा चर-नियतन निर्दिष्ट करता है; अधिक जटिल
+पदों के लिए उसे उन फलनों का उपयोग करके पुनरावर्ती रूप से निकाला जाता है
+जिन्हें !!{structure}, !!{function}s को नियत करती है।
+\end{explain}
+
+\begin{defn}[पदों के !!^{value}]
+यदि~$t$, भाषा~$\Lang L$ का कोई पद है,~$\Struct M$,~$\Lang L$ के लिए कोई
+!!{structure} है, और~$s$,~$\Struct M$ के लिए कोई !!a{variable} नियतन है,
+तो \emph{!!{value}}~$\Value{t}{M}[s]$ निम्न प्रकार परिभाषित है:
+\begin{enumerate}
+\item \indcase{t}{c}{$\Value{\indfrm}{M}[s] = \Assign{\indcomplex}{M}$।}
+\item \indcase{t}{x}{$\Value{\indfrm}{M}[s] = s(\indcomplex)$।}
+\item \indcase{t}{\Atom{f}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = \Assign{f}{M}(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[$x$-परिवर्ती]
+यदि~$s$, किसी !!a{structure}~$\Struct M$ के लिए कोई !!a{variable} नियतन
+है, तो ऐसा कोई भी !!{variable} नियतन~$s'$,~$\Struct M$ के लिए, जो~$s$ से
+अधिक-से-अधिक इस बात में भिन्न हो कि वह~$x$ को क्या नियत करता है,
+वह \emph{$x$-परिवर्ती} कहलाता है---नियतन~$s$ का। यदि~$s'$ कोई $x$-परिवर्ती है
+जो~$s$ का है तो हम
+$\varAssign{s'}{s}{x}$ लिखते हैं।
+\end{defn}
+
+\begin{explain}
+ध्यान दें कि कोई $x$-परिवर्ती, नियतन~$s$ से संबद्ध होते हुए भी,~$x$ को कोई भिन्न वस्तु
+नियत करना \emph{आवश्यक} नहीं है। वास्तव में, प्रत्येक नियतन स्वयं अपना
+$x$-परिवर्ती माना जाता है।
+\end{explain}
+
+\begin{defn}
+  यदि~$s$, किसी !!a{structure}~$\Struct M$ के लिए कोई !!a{variable} नियतन
+  है और $m \in \Domain{M}$, तो नियतन~$\Subst{s}{m}{x}$ वह चर-नियतन है
+  जिसे इस प्रकार परिभाषित किया जाता है:
+  \[\Subst{s}{m}{x}(y) = \begin{cases}
+    m & \text{यदि } y \ident x\\
+    s(y) & \text{अन्यथा}.
+  \end{cases}\]
+\end{defn}
+
+दूसरे शब्दों में,~$\Subst{s}{m}{x}$ वह विशेष $x$-परिवर्ती है जो~$s$ का है,
+प्रांत के !!{element}~$m$ को~$x$ का मान बनाता है, और~$x$ से भिन्न
+!!{variable}s को वही वस्तुएँ नियत करता है जो~$s$ करता है।
+
+\begin{defn}[संतुष्टि]
+\ollabel{defn:satisfaction}
+किसी !!a{formula}~$!A$ की किसी !!a{structure}~$\Struct M$ में किसी
+!!a{variable} नियतन~$s$ के सापेक्ष संतुष्टि, चिह्नों में:
+$\Sat{M}{!A}[s]$, निम्न प्रकार पुनरावर्ती रूप से परिभाषित है।
+($\Sat/{M}{!A}[s]$ से हमारा आशय ``$\Sat{M}{!A}[s]$ नहीं'' है।)
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\Sat/{M}{\indfrm}[s]$।}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Sat{M}{\indfrm}[s]$।}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  ठीक तब, जब $\langle \Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s] \rangle \in
+  \Assign{R}{M}$।}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी
+  जब $\Value{t_1}{M}[s] = \Value{t_2}{M}[s]$।}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+    $\Sat/{M}{!B}[s]$।}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+    $\Sat{M}{!B}[s]$ और $\Sat{M}{!C}[s]$।}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+    $\Sat{M}{!B}[s]$ अथवा $\Sat{M}{!C}[s]$ (अथवा दोनों)।}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+    $\Sat/{M}{!B}[s]$ अथवा $\Sat{M}{!C}[s]$ (अथवा दोनों)।}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+    या तो $\Sat{M}{!B}[s]$ और $\Sat{M}{!C}[s]$ दोनों, अथवा न
+    $\Sat{M}{!B}[s]$ और न $\Sat{M}{!C}[s]$।}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+    प्रत्येक !!{element}~$m \in \Domain M$ के लिए
+    $\Sat{M}{!B}[\Subst{s}{m}{x}]$।}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+  कम-से-कम एक !!{element}~$m \in \Domain M$ के लिए
+  $\Sat{M}{!B}[\Subst{s}{m}{x}]$।}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+अंतिम \iftag{notprvEx,notprvAll}{खंड में}{दो खंडों में} चर-नियतन महत्त्वपूर्ण
+हैं।\iftag{prvAll}{ हम $\lforall[x][!B(x)]$ की संतुष्टि को ``सभी
+$m \in
+\Domain{M}$ के लिए $\Sat{M}{!B(m)}$'' द्वारा परिभाषित नहीं कर
+सकते।}{}\iftag{prvEx}{ हम $\lexists[x][!B(x)]$ की संतुष्टि को ``कम-से-कम
+एक $m \in
+\Domain{M}$ के लिए $\Sat{M}{!B(m)}$'' द्वारा परिभाषित नहीं कर
+सकते।}{} कारण यह है कि यदि $m \in
+\Domain M$, तो वह भाषा का चिह्न नहीं
+है, और इसलिए $!B(m)$ कोई !!a{formula} नहीं है (अर्थात्
+$\Subst{!B}{m}{x}$ अपरिभाषित है)। हम यह भी नहीं मान सकते कि हमारे पास
+~$\Struct{M}$ के प्रत्येक !!a{element} का नाम रखने वाले !!{constant} अथवा
+पद उपलब्ध हैं, क्योंकि !!{structure} की परिभाषा में ऐसी कोई अपेक्षा नहीं
+है। मानक भाषा में !!{constant}s का समुच्चय !!{denumerable} है; अतः यदि
+$\Domain{M}$ !!{enumerable} नहीं है, तो प्रत्येक वस्तु का नाम रखने के लिए
+पर्याप्त !!{constant} भी नहीं हैं।
+
+हम !!{variable} नियतन प्रस्तुत करके इस समस्या को हल करते हैं; वे हमें चरों को प्रांत
+के प्रत्येक !!{element} से सीधे जोड़ने देते हैं। तब, उदाहरण के लिए, यह कहने के
+स्थान पर कि \iftag{prvEx}{$\lexists[x][!B(x)]$}{$\lforall[x][!B(x)]$},
+~$\Struct M$ में तभी और केवल तभी संतुष्ट है जब
+\iftag{prvEx}{कम-से-कम एक $m \in
+\Domain{M}$ के लिए}{सभी
+$m \in \Domain{M}$ के लिए $\Sat{M}{!B(m)}$}, हम कहते हैं कि वह
+~$\Struct M$ में~$s$ के \emph{सापेक्ष} तभी और केवल तभी संतुष्ट है जब
+$!B(x)$,~$\Subst{s}{m}{x}$ के सापेक्ष
+\iftag{prvEx}{कम-से-कम एक}{प्रत्येक} $m \in \Domain M$ के लिए संतुष्ट है।
+\end{explain}
+
+\begin{ex}
+मान लें कि $\Lang{L} = \{a, b, f, R\}$, जहाँ~$a$ और~$b$ !!{constant},
+~$f$ कोई दो-स्थानी !!{function}, और~$R$ कोई दो-स्थानी !!{predicate} है।
+निम्न प्रकार परिभाषित !!{structure}~$\Struct{M}$ पर विचार करें:
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3, 4\}$
+\item $\Assign{a}{M} = 1$
+\item $\Assign{b}{M} = 2$
+\item $\Assign{f}{M}(x, y) = x+y$ यदि $x+y \le 3$, और अन्यथा $= 3$।
+\item $\Assign{R}{M} = \{\tuple{1, 1}, \tuple{1, 2}, \tuple{2, 3}, \tuple{2, 4}\}$
+\end{enumerate}
+फलन $s(x) = 1$, जो प्रत्येक !!{variable} को $1 \in \Domain{M}$ नियत करता
+है,~$\Struct{M}$ के लिए चर-नियतन है।
+
+तब
+\begin{align*}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(\Value{a}{M}[s], \Value{b}{M}[s]).
+\intertext{चूँकि~$a$ और~$b$ !!{constant} हैं, इसलिए $\Value{a}{M}[s]
+  = \Assign{a}{M} = 1$ और $\Value{b}{M}[s] = \Assign{b}{M} = 2$। अतः}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(1, 2) = 1+2 = 3.
+\intertext{$f(f(a,b),a)$ का मान निकालने के लिए हमें यह देखना होगा:}
+\Value{f(f(a,b),a)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{a}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\intertext{क्योंकि $3+1 > 3$। चूँकि $s(x) = 1$ और $\Value{x}{M}[s] =
+  s(x)$, हमारे पास यह भी है:}
+\Value{f(f(a,b),x)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{x}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\end{align*}
+
+किसी परमाण्विक !!{formula}~$R(t_1, t_2)$ की संतुष्टि के लिए यह आवश्यक और
+पर्याप्त है कि उसके तर्कों के मानों का क्रमित युग्म $\tuple{\Value{t_1}{M}[s],
+  \Value{t_2}{M}[s]}$,~$\Assign{R}{M}$ का !!a{element} हो। अतः, उदाहरण
+के लिए, हमारे पास $\Sat{M}{R(b,f(a,b))}[s]$ है, क्योंकि
+$\tuple{\Value{b}{M},
+  \Value{f(a,b)}{M}} = \tuple{2, 3} \in \Assign{R}{M}$; किंतु
+$\Sat/{M}{R(x, f(a,b))}[s]$, क्योंकि
+$\tuple{1, 3} \notin \Assign{R}{M}[s]$।
+
+यह निर्धारित करने के लिए कि कोई अपरमाण्विक सूत्र~$!A$ संतुष्ट है या नहीं,
+आप आगमनात्मक परिभाषा का वह खंड लगाते हैं जो मुख्य संयोजक पर लागू होता है।
+उदाहरणतः, $R(a, a) \lif (R(b,
+x) \lor R(x, b))$ का मुख्य संयोजक~$\lif$
+है, और
+\begin{align*}
+  & \Sat{M}{R(a, a) \lif (R(b, x) \lor R(x, b))}[s]
+    \text{ तभी और केवल तभी जब }\\
+  & \qquad
+  \Sat/{M}{R(a,a)}[s] \text{ अथवा } \Sat{M}{R(b, x) \lor R(x, b)}[s]
+  \intertext{चूँकि $\Sat{M}{R(a,a)}[s]$ (क्योंकि $\tuple{1,1} \in
+    \Assign{R}{M}$), हम अभी उत्तर निर्धारित नहीं कर सकते और पहले यह पता
+    करना होगा कि $\Sat{M}{R(b, x) \lor R(x, b)}[s]$ है या नहीं:}
+  & \Sat{M}{R(b, x) \lor R(x, b)}[s] \text{ तभी और केवल तभी जब }\\
+  & \qquad \Sat{M}{R(b,x)}[s] \text{ अथवा } \Sat{M}{R(x, b)}[s]
+  \intertext{और ऐसा है, क्योंकि $\Sat{M}{R(x, b)}[s]$
+    (क्योंकि $\tuple{1,2} \in \Assign{R}{M}$)।}
+\end{align*}
+
+याद करें कि कोई $x$-परिवर्ती~$s$ का ऐसा चर-नियतन है जो~$s$ से अधिकतम इस
+बात में भिन्न होता है कि वह~$x$ को क्या नियत करता है।~$\Domain{M}$ के
+प्रत्येक !!{element} के लिए एक $x$-परिवर्ती~$s$ का है:
+\begin{align*}
+  s_1 & = \Subst{s}{1}{x}, &
+  s_2 & = \Subst{s}{2}{x},\\
+  s_3 & = \Subst{s}{3}{x}, &
+  s_4 & = \Subst{s}{4}{x}.
+\end{align*}
+अतः, उदाहरण के लिए, $s_2(x) = 2$ और $s_2(y) = s(y) = 1$ उन सभी चरों~$y$
+के लिए जो~$x$ से भिन्न हैं। ये सभी $x$-परिवर्ती~$s$ के हैं,
+~$\Struct{M}$ के लिए, क्योंकि $\Domain{M} = \{1, 2, 3, 4\}$। विशेषतः ध्यान
+दें कि $s_1 = s$ (~$s$ सदैव स्वयं अपना $x$-परिवर्ती है)।
+
+\iftag{prvEx}{किसी अस्तित्वपरक परिमाणित !!{formula}
+  ~$\lexists[x][!A(x)]$ की संतुष्टि निर्धारित करने के लिए हमें यह निर्धारित
+  करना होता है कि $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ कम-से-कम एक
+  $m \in \Domain
+  M$ के लिए है या नहीं। अतः
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s],
+  \]
+  क्योंकि $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+  ($\Subst{s}{3}{x}$ से भी काम बनता)। किंतु
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s]
+  \]
+  क्योंकि हम चाहे जो $m \in \Domain{M}$ चुनें,
+  $\Sat/{M}{R(b,x) \land R(x,b)}[\Subst{s}{m}{x}]$।}{}
+
+\iftag{prvAll}{किसी सार्ववाची परिमाणित !!{formula}
+  ~$\lforall[x][!A(x)]$ की संतुष्टि निर्धारित करने के लिए हमें यह निर्धारित
+  करना होता है कि $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ सभी $m \in \Domain M$
+  के लिए है या नहीं। अतः
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+  क्योंकि $\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$ सभी $m \in
+  \Domain M$ के लिए है। $m = 1$ के लिए हमारे
+  पास $\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$ है, अतः उत्तरपक्ष सत्य है;
+  $m = 2$, $3$, और~$4$ के लिए हमारे पास
+  $\Sat/{M}{R(x,a)}[\Subst{s}{m}{x}]$ है, अतः पूर्वपक्ष असत्य है। किंतु
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s]
+  \]
+  क्योंकि $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$ (क्योंकि
+  $\Sat{M}{R(a, x)}[\Subst{s}{2}{x}]$ और $\Sat/{M}{R(x,
+  a)}[\Subst{s}{2}{x}]$)।}{}
+
+\iftag{defEx}{किसी अस्तित्वपरक परिमाणित !!{formula}
+  ~$\lexists[x][!A(x)]$ की संतुष्टि निर्धारित करने के लिए हमें यह निर्धारित
+  करना होता है कि $\Sat{M}{\lnot \lforall[x][\lnot !A(x)]}[s]$ है या
+  नहीं। उदाहरणतः हमारे पास
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s].
+  \]
+  पहले, $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+  ($\Subst{s}{3}{x}$ से भी काम बनता)। अतः
+  $\Sat/{M}{\lnot(R(b,x) \lor R(x,b))}[\Subst{s}{1}{x}]$, इसलिए
+  $\Sat/{M}{\lforall[x][\lnot((R(b,x) \lor R(x,b))]}[s]$, और अतः
+  $\Sat{M}{\lnot\lforall[x][\lnot((R(b,x) \lor
+  R(x,b))]}[s]$। दूसरी ओर,
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))],}[s].
+  \]
+  ऐसा इसलिए कि $\Sat{M}{\lforall[x][\lnot(R(b,x) \land
+  R(x,b))]}[s]$, क्योंकि किसी भी $m \in \Domain M$ के लिए
+  $\Sat{M}{R(b,x) \land
+  R(x,b)}[\Subst{s}{m}{x}]$ नहीं। जैसा कि इन
+  उदाहरणों से अनुमान लगाया जा सकता है,
+  $\Sat{M}{\lexists[x][!A(x)]}[s]$ तभी और केवल तभी जब
+  $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ कम-से-कम एक $m \in \Domain
+  M$ के लिए।}{}
+
+\iftag{defAll}{किसी सार्ववाची परिमाणित !!{formula}
+  ~$\lforall[x][!A(x)]$ की संतुष्टि निर्धारित करने के लिए हमें यह निर्धारित
+  करना होता है कि $\Sat{M}{\lnot\lexists[x][\lnot !A(x)]}[s]$ है या नहीं।
+  उदाहरणतः
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+  पहले, $\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$ सभी
+  $m \in
+  \Domain M$ के लिए
+  ($\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$ और
+  $\Sat/{M}{R(a,x)}[\Subst{s}{m}{x}]$, जब $m = 2$, $3$, अथवा~$4$)। अतः
+  कोई $m \in \Domain M$ ऐसा
+  नहीं कि $\Sat{M}{\lnot(R(x,a) \lif R(a,x))}[\Subst{s}{m}{x}]$, और इसलिए
+  $\Sat/{M}{\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$। अतः
+  $\Sat{M}{\lnot\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$। दूसरी ओर,
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s],
+  \]
+  क्योंकि $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$, और इसलिए
+  $\Sat{M}{\lexists[x][\lnot(R(a,x) \lif R(x,a))]}[s]$। जैसा कि इन
+  उदाहरणों से अनुमान लगाया जा सकता है, $\Sat{M}{\lforall[x][!A(x)]}[s]$
+  तभी और केवल तभी जब $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ प्रत्येक
+  $m \in \Domain
+  M$ के लिए।}{}
+
+अधिक जटिल प्रकरण के लिए इस पर विचार करें:
+\[
+\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])].
+\]
+चूँकि $\Sat/{M}{R(a,x)}[\Subst{s}{3}{x}]$ और
+$\Sat/{M}{R(a,x)}[\Subst{s}{4}{x}]$, वे रोचक प्रकरण, जिनमें हमें सशर्त
+के उत्तरपक्ष की चिंता करनी है, केवल $m = 1$ और $ = 2$ हैं। क्या
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{1}{x}]$ सत्य है? ऐसा तब है जब
+कम-से-कम एक $n \in \Domain M$ ऐसा हो कि
+$\Sat{M}{R(x,y)}[\Subst{\Subst{s}{1}{x}}{n}{y}]$। वास्तव में, यदि हम
+$n = 1$ लें, तो $\Subst{\Subst{s}{1}{x}}{n}{y} = \Subst{s}{1}{y} =
+s$।
+चूँकि $s(x) = 1$, $s(y) = 1$, और $\tuple{1,1} \in \Assign{R}{M}$, उत्तर
+हाँ है।
+
+यह निर्धारित करने के लिए कि
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{2}{x}]$ है या नहीं, हमें
+!!{variable} नियतनों $\Subst{\Subst{s}{2}{x}}{n}{y}$ को देखना होगा। यहाँ
+$n = 1$ के लिए यह नियतन~$s_2 = \Subst{s}{2}{x}$ है, जो~$R(x,y)$ को
+संतुष्ट नहीं करता ($s_2(x) =
+2$, $s_2(y) = 1$, और
+$\tuple{2,1}\notin \Assign{R}{M}$)। किंतु
+$\Subst{\Subst{s}{2}{x}}{3}{y} = \Subst{s_2}{3}{y}$ पर विचार करें।
+$\Sat{M}{R(x,y)}[\Subst{s_2}{3}{y}]$, क्योंकि $\tuple{2,3} \in
+\Assign{R}{M}$; और अतः
+$\Sat{M}{\lexists[y][R(x,y)]}[s_2]$।
+
+अतः सभी $n \in \Domain M$ के लिए या तो
+$\Sat/{M}{R(a,x)}[\Subst{s}{m}{x}]$ (यदि $m = 3$, $4$), अथवा
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{m}{x}]$ (यदि $m = 1$, $2$), और इसलिए
+\[
+\Sat{M}{\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])]}[s].
+\]
+दूसरी ओर,
+\[
+\Sat/{M}{\lexists[x][(R(a,x) \land \lforall[y][R(x,y)])]}[s].
+\]
+हमारे पास $\Sat{M}{R(a,x)}[\Subst{s}{m}{x}]$ केवल $m = 1$ और $m =
+2$
+के लिए है। किंतु~$m$ के इन दोनों मानों के लिए क्रमशः कोई
+$n \in
+\Domain M$, अर्थात् $n = 4$, ऐसा है कि
+$\Sat/{M}{R(x,y)}[\Subst{\Subst{s}{m}{x}}{n}{y}]$, और अतः
+$\Sat/{M}{\lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$ होता है—यह $m = 1$ और $m =
+2$ दोनों के लिए। संक्षेप
+में, कोई $m \in \Domain M$ ऐसा नहीं कि $\Sat{M}{R(a,x)
+\land \lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$।
+\end{ex}
+
+\iftag{defEx}{%
+\begin{prop}\ollabel{prop:sat-ex}
+$\Sat{M}{\lexists[x][!B(x)]}[s]$ तभी और केवल तभी जब कोई $x$-परिवर्ती
+$s'$ ऐसा हो जो~$s$ का हो और $\Sat{M}{!B(x)}[s']$।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+}{}
+
+\tagprob{defEx}
+\begin{prob}
+  \olref[fol][syn][sat]{prop:sat-ex} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\iftag{defAll}{%
+\begin{prop}\ollabel{prop:sat-all}
+$\Sat{M}{\lforall[x][!B(x)]}[s]$ तभी और केवल तभी जब प्रत्येक $x$-परिवर्ती
+~$s'$ के लिए, जो~$s$ का है, $\Sat{M}{!B(x)}[s']$।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+}{}
+
+\tagprob{defAll}
+\begin{prob}
+  \olref[fol][syn][sat]{prop:sat-all} सिद्ध कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prob}
+मान लें कि $\Lang L = \{c, f, A\}$, जिसमें एक !!{constant}, एक एक-स्थानी
+!!{function} और एक दो-स्थानी !!{predicate} है; और
+!!{structure}~$\Struct{M}$ इस प्रकार दी गई है:
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3\}$
+\item $\Assign{c}{M} = 3$
+\item $\Assign{f}{M}(1) = 2, \Assign{f}{M}(2) = 3, \Assign{f}{M}(3) = 2$
+\item $\Assign{A}{M} = \{\tuple{1, 2}, \tuple{2, 3}, \tuple{3, 3}\}$
+\end{enumerate}
+(a) $s(v) = 1$ रखें, सभी !!{variable}~$v$ के लिए। पता लगाइए कि क्या
+\[
+\Sat{M}{\lexists[x][(A(f(z), c) \lif \lforall[y][(A(y, x) \lor A(f(y),
+      x))])]}[s]
+\]
+है। क्यों अथवा क्यों नहीं, स्पष्ट कीजिए।
+
+(b) ऐसी कोई भिन्न संरचना और !!{variable} नियतन दीजिए जिसमें यह
+!!{formula} संतुष्ट न हो।
+\end{prob}
+
+\end{document}

@@ -1,0 +1,53 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: q-is-ce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{tcp}{qce}
+
+\olsection{$\Th{Q}$, \printtoken{S}{c.e.}-पूर्ण है}
+
+\begin{thm}
+$\Th{Q}$, !!{c.e.} है, किंतु निर्णेय नहीं है। वास्तव में वह एक पूर्ण
+!!{c.e.} समुच्चय है।
+\end{thm}
+
+\begin{proof}
+यह देखना कठिन नहीं है कि $\Th{Q}$, !!{c.e.} है, क्योंकि वह उन वाक्यों
+(के कूटों)~$y$ का समुच्चय है जिनके लिए~$\Th{Q}$ में $y$ का कोई प्रमाण~$x$ है:
+\[
+Q = \Setabs{y}{\lexists[x][\Prf[\Th{Q}](x,y)]}.
+\]
+किंतु हम जानते हैं कि $\Prf[\Th{Q}](x,y)$ संगणनीय (वास्तव में आदिम
+पुनरावर्ती) है, और ऊपर के रूप में लिखा जा सकने वाला प्रत्येक समुच्चय
+संगणनीयतः परिगणनीय है।
+
+उसके पूर्ण संगणनीयतः परिगणनीय समुच्चय होने का कथन $K \leq_m Q$ के समतुल्य है, जहाँ
+$K = \Setabs{x}{!A_x(x) \downarrow}$। अतः दिखाएँ कि $K$ को~$\Th{Q}$ में
+घटाया जा सकता है। चूँकि क्लेनी (Kleene) का विधेय $T(e,x,s)$ आदिम पुनरावर्ती
+है, वह~$\Th{Q}$ में, मान लें $!A_T$ द्वारा, निरूपणीय है। तब प्रत्येक $x$
+के लिए हमारे पास
+\begin{align*}
+x \in K & \lif \lexists[s][T(x,x,s)] \\
+& \lif \lexists[s][(\Th{Q} \Proves !A_T(\num x,\num x, \num s))]
+  \\
+& \lif \Th{Q} \Proves \lexists[s][!A_T(\num x, \num x, s)].
+\end{align*}
+विलोमतः यदि
+$\Th{Q} \Proves \lexists[s][!A_T(\num x, \num x, s)]$, तो वास्तव में
+किसी प्राकृतिक संख्या $n$ के लिए सूत्र $!A_T(\num x, \num x, \num n)$
+सत्य होना चाहिए। अब यदि $T(x,x,n)$ असत्य होता, तो $!A_T$ द्वारा $T$ का
+निरूपण होने से $\Th{Q}$,~$\lnot !A_T(\num x, \num x, \num n)$ को सिद्ध
+करता। किंतु तब $\Th{Q}$ एक असत्य सूत्र सिद्ध करता, जो विरोधाभास है। अतः
+$T(x,x,n)$ सत्य होना चाहिए, जिससे $!A_x(x) \downarrow$ निकलता है।
+
+संक्षेप में, प्रत्येक $x$ के लिए $x$,~$K$ में तभी और केवल तभी है जब
+$\Th{Q}$,~$\lexists[s][T(\num x,\num x,s)]$ को सिद्ध करता है। अतः वह
+फलन $f$ जो $x$ को वाक्य $\lexists[s][T(\num x, \num x, s)]$ के (किसी
+कूट) पर भेजता है,~$K$ का~$\Th{Q}$ में एक अपचयन है।
+\end{proof}
+
+\end{document}

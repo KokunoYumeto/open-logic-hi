@@ -1,0 +1,192 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: examples
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cmp}{rec}{exa}
+\olsection{आदिम पुनरावर्ती फलनों के उदाहरण}
+
+
+हमारे पास आदिम पुनरावर्ती फलनों के कुछ उदाहरण पहले से हैं: जोड़ और गुणा
+फलन~$\Add$ तथा $\Mult$। तत्समक फलन $\fn{id}(x) = x$ आदिम पुनरावर्ती
+है, क्योंकि वह केवल~$\Proj{1}{0}$ है। अचर फलन $\fn{const}_n(x) = n$
+  आदिम पुनरावर्ती है, क्योंकि उसे $\Zero$ और $\Succ$ से क्रमिक संयोजन
+द्वारा परिभाषित किया जा सकता है। यह तब उपयोगी है जब हम आदिम पुनरावर्ती
+परिभाषाओं में अचरों का उपयोग करना चाहते हैं। मसलन, यदि हम फलन
+$f(x) = 2 \cdot x$ परिभाषित करना चाहें, तो उसे $\fn{const}_n(x)$ और
+गुणा से संयोजन द्वारा $f(x) =
+\Mult(\fn{const}_2(x), \Proj{1}{0}(x))$ के रूप में पा सकते हैं। आगे से
+हम इस युक्ति का उपयोग करेंगे।
+
+\begin{prop}
+  घातांक फलन $\fn{exp}(x, y) = x^y$ आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  हम $\fn{exp}$ को आदिम पुनरावर्ती रूप से इस प्रकार परिभाषित कर सकते हैं:
+  \begin{align*}
+    \fn{exp}(x, 0) & = 1\\
+    \fn{exp}(x, y+1) & = \Mult(x, \fn{exp}(x,y)).
+    \intertext{ठीक-ठीक कहें तो यह आदिम पुनरावर्ती फलनों से पुनरावर्ती
+      परिभाषा नहीं है। किंतु औपचारिक रूप से हमारे पास है:}
+    \fn{exp}(x, 0) & = f(x)\\
+    \fn{exp}(x, y+1) & = g(x, y, \fn{exp}(x,y)).
+    \intertext{जहाँ}
+    f(x) & = \Succ(\Zero(x)) = 1\\
+    g(x, y, z) & = \Mult(\Proj{3}{0}(x, y, z), \Proj{3}{2}(x, y, z)) = x \cdot z
+  \end{align*}
+  और इस प्रकार $f$ तथा $g$ आदिम पुनरावर्ती फलनों से संयोजन द्वारा
+  परिभाषित हैं।
+\end{proof}
+
+\begin{prop}
+  निम्न प्रकार परिभाषित पूर्ववर्ती फलन $\fn{pred}(y)$
+  \[
+  \fn{pred}(y) = \begin{cases}
+    0 & \text{यदि $y=0$}\\
+    y-1 & \text{अन्यथा}
+  \end{cases}
+  \]
+  आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+ ध्यान दें कि
+ \begin{align*}
+   \fn{pred}(0) & = 0 \text{ और}\\
+   \fn{pred}(y+1) & = y.
+ \end{align*}
+ यह लगभग आदिम पुनरावर्ती परिभाषा है। ठीक-ठीक कहें तो यह आदिम पुनरावर्तन
+ द्वारा परिभाषा के प्रतिरूप में नहीं आती, क्योंकि उस प्रतिरूप को कम-से-कम
+ एक अतिरिक्त तर्क~$x$ चाहिए। यह इस अर्थ में भी असामान्य है कि
+ $\fn{pred}(y)$ का वास्तव में उपयोग नहीं होता जब $\fn{pred}(y+1)$ को
+ परिभाषित किया जाता है। किंतु पहले हम $\fn{pred}'(x, y)$ को इस प्रकार परिभाषित कर सकते हैं:
+ \begin{align*}
+   \fn{pred}'(x, 0) & = \Zero(x) = 0,\\
+   \fn{pred}'(x, y+1) & = \Proj{3}{1}(x, y, \fn{pred'}(x, y)) = y.
+ \end{align*}
+और फिर उससे संयोजन द्वारा $\fn{pred}$ परिभाषित कर सकते हैं, मसलन
+$\fn{pred}(x) = \fn{pred}'(\Zero(x), \Proj{1}{0}(x))$ के रूप में।
+\end{proof}
+
+\begin{prop}
+  क्रमगुणित फलन $\fn{fac}(x) = \fact{x} = 1 \cdot 2 \cdot 3
+  \cdot \dots \cdot x$ आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  स्पष्ट आदिम पुनरावर्ती परिभाषा यह है:
+  \begin{align*}
+    \fn{fac}(0) &= 1\\
+    \fn{fac}(y+1) & = \fn{fac}(y) \cdot (y+1).
+    \intertext{औपचारिक रूप से हमें पहले एक द्वि-स्थानी फलन $h$ परिभाषित करना है:}
+    h(x, 0) & = \fn{const}_1(x)\\
+    h(x, y+1) & = g(x, y, h(x, y))
+    \intertext{जहाँ $g(x, y, z) = \Mult(\Proj{3}{2}(x, y, z),
+      \Succ(\Proj{3}{1}(x, y, z)))$ है, और फिर रखें:}
+    \fn{fac}(y) & = h(\Proj{1}{0}(y), \Proj{1}{0}(y)) = h(y,y).
+  \end{align*}
+  आगे से हम कुछ अधिक अनौपचारिक रहेंगे और संयोजन तथा आदिम पुनरावर्तन
+  द्वारा पूर्ण औपचारिक परिभाषाएँ नहीं देंगे।
+\end{proof}
+
+\begin{prop}
+  निम्न प्रकार परिभाषित छँटा हुआ घटाव $x \tsub y$
+  \[
+  x \tsub y = \begin{cases}
+    0 & \text{यदि $x < y$}\\
+    x-y & \text{अन्यथा}
+  \end{cases}
+  \]
+  आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  हमारे पास है:
+  \begin{align*}
+    x \tsub 0 & = x\\
+    x \tsub (y+1) & = \fn{pred}(x \tsub y) 
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+ $x$ और $y$ के बीच की दूरी $\left|x-y\right|$ आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  हमारे पास $\left| x-y \right| = (x \tsub y) + (y \tsub x)$ है;
+  अतः दूरी को $+$ और $\tsub$ से संयोजन द्वारा परिभाषित किया जा सकता है,
+  जो आदिम पुनरावर्ती हैं।
+\end{proof}
+
+\begin{prop}
+  $x$ और $y$ का अधिकतम $\fn{max}(x,y)$ आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  हम $\fn{max}(x,y)$ को $+$ और $\tsub$ से संयोजन द्वारा इस प्रकार
+  परिभाषित कर सकते हैं:
+  \[
+  \fn{max}(x,y) \defis x + (y \tsub x).
+  \]
+  यदि $x$ अधिकतम है, अर्थात् $x \ge y$, तो $y \tsub x = 0$, इसलिए $x
+  + (y \tsub x) = x + 0 = x$। यदि $y$ अधिकतम है, तो $y \tsub x =
+  y - x$, और इसलिए $x + (y \tsub x) = x + (y - x) = y$।
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:min-pr}
+  $x$ और $y$ का न्यूनतम $\fn{min}(x,y)$ आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[cmp][rec][exa]{prop:min-pr} सिद्ध करें।
+\end{prob}
+
+\begin{prob}
+दिखाएँ कि \[
+f(x, y) =
+2^{(2^{\iddots^{2^{x}}})}\raisebox{1ex}{\bigg\rbrace}
+\raisebox{1ex}{\text {$y$ बार $2$}}\] आदिम पुनरावर्ती है।
+\end{prob}
+
+\begin{prob}
+दिखाएँ कि पूर्णांक भाग $d(x, y) = \lfloor x/y \rfloor$ (अर्थात् ऐसा
+भाग जिसमें दशमलव बिंदु के बाद की हर चीज़ छोड़ दी जाती है) आदिम
+पुनरावर्ती है। जब $y = 0$ हो, तब हम $d(x, y) = 0$ निर्धारित करते हैं।
+आदिम पुनरावर्तन और संयोजन का उपयोग करके~$d$ की स्पष्ट परिभाषा दें।
+\end{prob}
+
+\begin{prop}
+आदिम पुनरावर्ती फलनों का समुच्चय निम्न दो संक्रियाओं के अधीन संवृत है:
+\begin{enumerate}
+\item परिमित योग: यदि $f(\vec x, z)$ आदिम पुनरावर्ती है, तो निम्न फलन
+भी ऐसा ही है:
+\[
+g(\vec x, y) \defis \sum_{z = 0}^y f(\vec x, z).
+\]
+\item परिमित गुणनफल: यदि $f(\vec x, z)$ आदिम पुनरावर्ती है, तो निम्न
+फलन भी ऐसा ही है:
+\[
+h(\vec x, y) \defis \prod_{z = 0}^y f(\vec x, z).
+\]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+मसलन, परिमित योग निम्न समीकरणों से पुनरावर्ती रूप में परिभाषित होते हैं:
+\begin{align*}
+  g(\vec x, 0) & = f(\vec x, 0)\\
+  g(\vec x, y+1) & = g(\vec x, y) + f(\vec x, y+1).
+\end{align*}
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,49 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: completeness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{cpl}
+
+\olsection{पूर्णता प्रमेय}
+
+\begin{thm}\ollabel{thm:completeness}
+  यदि $\Gamma \Entails !A$, तो $\Gamma \Proves !A$।
+\end{thm}
+
+\begin{proof}
+  हम प्रतिधनात्मक रूप सिद्ध करते हैं। मान लें $\Gamma \Proves/ !A$। तब
+  \olref[lin]{lem:lindenbaum} से कोई अभाज्य समुच्चय
+  ~$\Gamma^* \supseteq \Gamma$ ऐसा है कि $\Gamma^* \Proves/ !A$।
+  \olref[mod]{defn:canonical-model} में परिभाषित $\Gamma^*$ के विहित
+  प्रतिरूप~$\mModel{M(\Gamma^*)}$ पर विचार करें। किसी भी
+  $!B \in \Gamma$ के लिए $\Gamma^* \Proves !B$। ध्यान दें कि
+  $\Gamma^*(\emptyseq) = \Gamma^*$। सत्यता लेम्मा
+  (\olref[tru]{lem:truth}) से प्रत्येक $!B \in \Gamma$ के लिए
+  $\mSat{M(\Gamma^*)}{!B}[\emptyseq]$, और
+  $\mSat/{M(\Gamma^*)}{!A}[\emptyseq]$। इससे
+  $\Gamma \Entails/ !A$ सिद्ध होता है।
+\end{proof}
+
+\begin{prob}
+  दिखाइए कि यदि $!A$ में केवल !!{propositional variable}, $\lor$ और~$\land$ आते
+  हैं, तो $\Entails/ !A$। इससे निष्कर्ष निकालिए कि अंतःप्रज्ञावादी
+  तर्कशास्त्र में $\lif$ को $\lor$ और~$\land$ से परिभाषित नहीं किया जा सकता।
+\end{prob}
+  
+\begin{prob}
+  पूर्णता प्रमेय का उपयोग करके सिद्ध कीजिए कि यदि
+  $\Proves !A \lor !B$, तो $\Proves !A$ या $\Proves !B$। (संकेत: मान लें
+  $\mSat/{M_1}{!A}$ और $\mSat/{M_2}{!B}$, और ऐसा नया प्रतिरूप~$\mModel{M}$
+  बनाइए कि $\mSat/{M}{!A \lor !B}$।)
+\end{prob}
+  
+\begin{prob} 
+  दिखाइए कि यदि $\mModel{M}$ रैखिक क्रम वाला संबंधात्मक प्रतिरूप है, तो
+  $\mSat{M}{(!A \lif !B)\lor(!B \lif !A)}$।
+\end{prob}
+
+\end{document}

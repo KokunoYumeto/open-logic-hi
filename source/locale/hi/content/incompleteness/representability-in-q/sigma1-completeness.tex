@@ -1,0 +1,284 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: sigma1-completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{inp}{s1c}
+\olsection{\texorpdfstring{$\Sigma_1$}{Sigma-1} पूर्णता}
+
+$\Th{Q}$ और उसके संगत, अभिगृहीतीकरणीय विस्तार अपूर्ण होने के बावजूद हमने
+देखा है कि $\Th{Q}$ अंक-सूचकों के बारे में अनेक मूलभूत तथ्य सिद्ध करता है।
+वास्तव में इसे काफी अधिक विस्तृत किया जा सकता है। यह समझने के लिए कि
+$\Th{Q}$ में क्या-क्या सिद्ध किया जा सकता है, हम $\Delta_0$, $\Sigma_1$
+और $\Pi_1$ !!{formula}s की धारणाएँ प्रस्तुत करते हैं। मोटे तौर पर,
+$\Sigma_1$ !!{formula},~$\lexists[x][!B(x)]$ रूप का होता है, जहाँ $!B$ केवल
+प्रतिज्ञप्तिक संयोजकों और परिबद्ध परिमाणकों से बनाया गया है। हम दिखाएँगे कि
+यदि $!A$ ऐसा $\Sigma_1$ !!{sentence} है जो $\Struct{N}$ में सत्य है, तो
+$\Th{Q} \Proves !A$ (\olref{thm:sigma1-completeness})।
+
+\begin{defn}
+\ollabel{defn:bd-quant}
+\emph{परिबद्ध अस्तित्वात्मक !!{formula}} वह है जो
+$\lexists[x][(x < t \land !A(x))]$ के रूप का हो, जहाँ $t$ कोई भी पद है;
+इसे हम परंपरानुसार $\bexists{x < t}{!A(x)}$ लिखते हैं।
+%
+\emph{परिबद्ध सार्विक !!{formula}} वह है जो
+$\lforall[x][(x < t \lif !A(x))]$ के रूप का हो, जहाँ $t$ कोई भी पद है;
+इसे हम परंपरानुसार $\bforall{x < t}{!A(x)}$ लिखते हैं।
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:delta0-sigma1-pi1-frm}
+कोई !!{formula} $!B$,~$\Delta_0$ है यदि वह परमाण्विक !!{formula}s से केवल
+प्रतिज्ञप्तिक संयोजकों और परिबद्ध परिमाणीकरण द्वारा बना हो।
+%
+कोई !!{formula} $!A$,~$\Sigma_1$ है यदि
+$!A \ident \lexists[x][!B(x)]$, जहाँ $!B$,~$\Delta_0$ है।
+%
+कोई !!{formula} $!A$,~$\Pi_1$ है यदि
+$!A \ident \lforall[x][!B(x)]$, जहाँ $!B$,~$\Delta_0$ है।
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:q-proves-clterm-id} मान लें कि $t$ ऐसा बंद पद है कि
+$\Value{t}{N} = n$। तब $\Th{Q} \Proves \eq[t][\num n]$।
+\end{lem}
+
+\begin{proof}
+हम इसे~$t$ की जटिलता पर आगमन द्वारा सिद्ध करते हैं। आधार मामले में
+$\Value{\Obj 0}{N} = 0$, और $\num 0 \ident \Obj 0$ होने से
+$\Th{Q} \Proves \eq[\Obj 0][\num 0]$।
+%
+आगमन मामले के लिए $t_1$ और $t_2$ ऐसे पद हों कि
+$\Value{t_1}{N} = n_1$, $\Value{t_2}{N} = n_2$,
+$\Th{Q} \Proves \eq[t_1][\num n_1]$ और
+$\Th{Q} \Proves \eq[t_2][\num n_2]$।
+
+तब $\Value{(t_1')}{N} = n_1 + 1$, और आगमन परिकल्पना तथा !!{formula}
+$\eq[\num{n_1}'][\num{n_1}']$ पर समता के प्रथम-कोटि नियम लागू करने से
+$\Th{Q} \Proves \eq[t_1'][{\num n_1}']$; अतः अंक-सूचकों की परिभाषा से
+$\Th{Q} \Proves \eq[t_1'][\num{n_1 + 1}]$।
+
+योगों के लिए हमारे पास
+\[
+      \Value{(t_1 + t_2)}{N}
+    = \Value{t_1}{N} + \Value{t_2}{N}
+    = n_1 + n_2.
+\]
+आगमन परिकल्पना और समता के नियमों से
+$\Th{Q} \Proves \eq[t_1 + t_2][\num{n_1} + t_2]$, और फिर समता के नियमों
+के दूसरे अनुप्रयोग से
+$\Th{Q} \Proves \eq[t_1 + t_2][\num{n_1} + \num{n_2}]$।
+\olref[inc][req][bre]{lem:q-proves-add} से
+$\Th{Q} \Proves \eq[\num{n_1} + \num{n_2}][\num{n_1 + n_2}]$, इसलिए
+$\Th{Q} \Proves \eq[t_1 + t_2][\num{n_1 + n_2}]$।
+
+इसी प्रकार का तर्क~$\times$ के लिए भी काम करता है, जिसमें
+\olref[inc][req][bre]{lem:q-proves-mult} का उपयोग होता है।
+%
+इससे अंकगणित के सभी बंद पद समेट लिए जाते हैं, अतः प्रत्येक ऐसे बंद पद~$t$
+के लिए जिसके लिए $\Value{t}{N} = n$, हमारे पास
+$\Th{Q} \Proves \eq[t][\num n]$ है।
+\end{proof}
+
+\begin{prob}
+\olref{lem:q-proves-clterm-id} के~$\times$ वाले भाग को विस्तार से सिद्ध
+करें।
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:atomic-completeness}
+मान लें कि $t_1$ और $t_2$ बंद पद हैं। तब
+\begin{enumerate}
+\item यदि $\Value{t_1}{N} = \Value{t_2}{N}$, तो
+    $\Th{Q} \Proves \eq[t_1][t_2]$।
+\item यदि $\Value{t_1}{N} \neq \Value{t_2}{N}$, तो
+    $\Th{Q} \Proves \eq/[t_1][t_2]$।
+\item यदि $\Value{t_1}{N} < \Value{t_2}{N}$, तो
+    $\Th{Q} \Proves t_1 < t_2$।
+\item यदि $\Value{t_2}{N} \leq \Value{t_1}{N}$, तो
+    $\Th{Q} \Proves \lnot(t_1 < t_2)$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+पद $t_1$ और $t_2$ दिए जाने पर हम $n = \Value{t_1}{N}$ और
+$m = \Value{t_2}{N}$ नियत करते हैं।
+
+मान लें $!A \ident t_1 = t_2$। \olref{lem:q-proves-clterm-id} से
+$\Th{Q} \Proves \eq[t_1][\num n]$ और
+$\Th{Q} \Proves \eq[t_2][\num n]$। यदि $n = m$, तो
+$\Th{Q} \Proves \eq[\num n][\num m]$, और इसलिए समता की संक्रामकता से
+$\Th{Q} \Proves \eq[t_1][t_2]$। यदि $n \neq m$, तो
+$\Th{Q} \Proves \eq/[\num n][\num m]$, और समता की संक्रामकता से फिर
+$\Th{Q} \Proves \eq/[t_1][t_2]$।
+
+अब $!A \ident t_1 < t_2$ मानें। दोनों मामलों के लिए हम अभिगृहीत~$!Q_8$
+पर निर्भर करते हैं, जो सभी $x,y$ के लिए
+$x < y \liff \lexists[z][\eq[z' + x][y]]$ कहता है।
+
+मान लें $\Sat{N}{t_1 < t_2}$। तब कोई $k \in \Nat$ ऐसा है कि
+$n + k + 1 = m$। \olref{lem:q-proves-clterm-id} से
+$\Th{Q} \Proves \eq[t_1][\num n]$ और
+$\Th{Q} \Proves \eq[t_2][\num m]$, और इस उपपत्ति के पहले भाग से
+$\Th{Q} \Proves \eq[\num n + {\num k}'][\num m]$। समता की संक्रामकता
+से निकलता है कि $\Th{Q} \Proves \eq[{\num k}' + t_1][t_2]$, इसलिए
+$\Th{Q} \Proves \lexists[z][\eq[z' + t_1][t_2]]$। $!Q_8$ की
+दाएँ-से-बाएँ दिशा से $\Th{Q} \Proves t_1 < t_2$।
+
+इसके स्थान पर मान लें $\Sat/{N}{t_1 < t_2}$, अर्थात् $m \leq n$।
+%
+हम~$\Th{Q}$ के भीतर काम करते हुए $t_1 < t_2$ मानते हैं। $!Q_8$ की
+बाएँ-से-दाएँ दिशा से कोई~$z$ ऐसा है कि $\eq[z' + t_1][t_2]$। चूँकि
+$\Th{Q} \Proves \eq[t_1][\num n]$ और
+$\Th{Q} \Proves \eq[t_2][\num m]$, इसलिए
+$\eq[z' + \num n][\num m]$।
+%
+$!Q_5$ का उपयोग करते हुए~$m$ पर बाहरी आगमन से
+$\eq[z' + \num{n - m}][\Obj 0]$। यदि $m = n$, तो
+$\eq/[z'][\Obj 0]$, जिससे~$!Q_3$ द्वारा विरोधाभास मिलता है। यदि $m < n$,
+तो फिर~$!Q_5$ से $\eq[(z' + \num{n - m - 1})'][\Obj 0]$, जिससे~$!Q_3$
+द्वारा विरोधाभास मिलता है। अतः $\Th{Q} \Proves \lnot(t_1 < t_2)$।
+\end{proof}
+
+\begin{lem}
+\ollabel{lem:bounded-quant-equiv}
+मान लें कि $!A$ कोई !!a{formula}, $t$ कोई बंद पद और $k=\Value{t}{N}$ है।
+तब
+\begin{enumerate}
+\item $\Th{Q} \Proves \bforall{x<t}{!A(x)}$ तभी और केवल तभी जब
+    $\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num{k-1})$।
+\item $\Th{Q} \Proves \bexists{x<t}{!A(x)}$ तभी और केवल तभी जब
+    $\Th{Q} \Proves !A(\num 0) \lor \dots \lor !A(\num{k-1})$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+    हम परिबद्ध सार्विक परिमाणक का मामला सिद्ध करते हैं। यदि
+    $\Value{t}{N} = 0$, तो समतुल्यता का बायाँ पक्ष~$\Th{Q}$ में सिद्ध है,
+    क्योंकि \olref[inc][req][min]{lem:less-zero} के अनुसार कोई
+    $x<\num 0$ नहीं है। इसी प्रकार हम रिक्त वियोजन को केवल $\ltrue$ मान
+    सकते हैं, जो~$\Th{Q}$ में भी सिद्ध है।
+    %
+    अतः हम मानते हैं कि किसी प्राकृतिक संख्या~$k$ के लिए
+    $\Value{t}{N} = k+1$। \olref{lem:q-proves-clterm-id} से हम मान सकते
+    हैं कि हम $\bforall{x<\num{k+1}}{!A(x)}$ रूप के !!a{formula} के साथ
+    काम कर रहे हैं।
+
+    मान लें कि $\Th{Q} \Proves \bforall{x<\num{k+1}}{!A(x)}$, और
+    $n \leq k$। चूँकि \olref{lem:atomic-completeness} से
+    $\Th{Q} \Proves \num n < \num{k+1}$, तर्क से निकलता है कि
+    $\Th{Q} \Proves !A(\num n)$। प्रत्येक $n \leq k$ के लिए इस तथ्य को
+    $k+1$ बार लागू करके हमें इच्छित
+    $\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num k)$ मिलता है।
+
+    दूसरी दिशा के लिए मान लें कि
+    $\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num k)$।
+    $\Th{Q}$ में काम करते हुए मान लें कि $x < \num{k+1}$।
+    \olref[inc][req][min]{lem:less-nsucc} से हमारे पास
+    $x = \num 0 \lor \dots \lor x = \num k$ है, इसलिए तर्क से~$!A(x)$
+    निकलता है, और फलतः सार्विक दावा
+    $\bforall{x<\num{k+1}}{!A(x)}$ निकलता है।
+
+    परिबद्ध अस्तित्वात्मक रूप से परिमाणित !!{formula}s की समतुल्यता का
+    प्रमाण इसी प्रकार है।
+\end{proof}
+
+\begin{prob}
+\olref{lem:bounded-quant-equiv} के अस्तित्वात्मक मामले का विस्तृत प्रमाण
+दें।
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:delta0-completeness}
+यदि $!A$ ऐसा $\Delta_0$ !!{sentence} है जो $\Struct{N}$ में सत्य है, तो
+$\Th{Q} \Proves !A$।
+\end{lem}
+
+\begin{proof}
+हम इसे !!{formula} की जटिलता पर आगमन द्वारा सिद्ध करते हैं।
+%
+आधार मामला \olref{lem:atomic-completeness} से मिलता है, इसलिए हम आगमन चरण
+पर आते हैं। सरलता के लिए निषेध के मामले को उस !!{formula} की संरचना के
+आधार पर उपमामलों में बाँटते हैं जिस पर निषेध लागू होता है।
+
+\begin{enumerate}
+\item मान लें $(!A \land !B)$,~$\Struct{N}$ में सत्य है; अतः $!A$ और $!B$
+दोनों~$\Struct{N}$ में सत्य हैं। आगमन परिकल्पना से
+$\Th{Q} \Proves !A$ और $\Th{Q} \Proves !B$, इसलिए तर्क से
+$\Th{Q} \Proves (!A \land !B)$।
+%
+\item मान लें $\lnot (!A \land !B)$,~$\Struct{N}$ में सत्य है; अतः या तो
+$\lnot !A$ अथवा $\lnot !B$,~$\Struct{N}$ में सत्य है। सामान्यता की हानि
+के बिना पहले को मान लें। आगमन परिकल्पना से
+$\Th{Q} \Proves \lnot !A$, और इसलिए तर्क से
+$\Th{Q} \Proves \lnot (!A \land !B)$।
+%
+\item मान लें $(!A \lor !B)$,~$\Struct{N}$ में सत्य है; अतः या तो $!A$,
+~$\Struct{N}$ में सत्य है अथवा $!B$,~$\Struct{N}$ में सत्य है। सामान्यता की हानि के बिना पहले को
+मान लें। आगमन परिकल्पना से $\Th{Q} \Proves !A$, और इसलिए तर्क से
+$\Th{Q} \Proves (!A \lor !B)$।
+%
+\item मान लें $\lnot(!A \lor !B)$,~$\Struct{N}$ में सत्य है; अतः
+$\lnot !A$ और $\lnot !B$,~$\Struct{N}$ में सत्य हैं। तब आगमन परिकल्पना से
+$\Th{Q} \Proves \lnot !A$ और $\Th{Q} \Proves \lnot !B$। फलतः तर्क से
+$\Th{Q} \Proves \lnot(!A \lor !B)$।
+%
+\item मान लें $\bforall{x<t}{!A(x)}$,~$\Struct{N}$ में सत्य है, जहाँ $t$
+कोई बंद पद और $k=\Value{t}{N}$ है। आगमन परिकल्पना और तर्क से, यदि प्रत्येक
+$n < \Value{t}{N}$ के लिए $!A(\num n)$,~$\Struct{N}$ में सत्य है, तो
+$\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num{k-1})$।
+\olref{lem:bounded-quant-equiv} से निकलता है कि
+$\Th{Q} \Proves \bforall{x<t}{!A(x)}$।
+%
+\item परिबद्ध अस्तित्वात्मक परिमाणक का मामला, जिसमें हमारे पास
+$\bexists{x < t}{!A(x)}$ रूप का !!a{sentence} है, परिबद्ध सार्विक परिमाणक
+के मामले जैसा है।
+%
+\item मान लें $\lnot \bforall{x<t}{!A(x)}$,~$\Struct{N}$ में सत्य है,
+जहाँ $t$ कोई बंद पद है। यह !!{sentence},~!!{sentence} $\bexists{x<t}{\lnot !A(x)}$ के
+समतुल्य है और यह समतुल्यता~$\Th{Q}$ में व्युत्पन्न की जा सकती है; अतः हम
+परिबद्ध अस्तित्वात्मक परिमाणकों वाला तर्क लागू कर सकते हैं।
+%
+\item इसी प्रकार मान लें कि $\lnot \bexists{x<t}!A(x)$,~$\Struct{N}$ में
+सत्य है, जहाँ $t$ कोई बंद पद है। यह !!{sentence},~$\Th{Q}$ में
+$\bforall{x<t}{\lnot!A(x)}$ के समतुल्य है, इसलिए हम परिबद्ध सार्विक
+परिमाणकों वाला तर्क लागू कर सकते हैं।
+%
+\item अंततः मान लें $\lnot !A$,~$\Struct{N}$ में सत्य है। अब केवल वे
+मामले शेष हैं जिनमें $!A$ परमाण्विक है, अथवा किसी $\Delta_0$
+!!{sentence} $!B$ के लिए $\lnot !A \ident \lnot\lnot !B$। यदि $!A$
+परमाण्विक है, तो \olref{lem:atomic-completeness} से
+$\Th{Q} \Proves \lnot !A$। यदि
+$\lnot !A \ident \lnot\lnot !B$, तो तर्क द्वारा यह~$\Th{Q}$ में~$!B$ के
+सिद्धतः समतुल्य है; और चूँकि $\lnot !A$,~$\Struct{N}$ में सत्य है, इसलिए
+वह भी~$\Struct{N}$ में सत्य है। अतः आगमन परिकल्पना से हमारे पास
+$\Th{Q} \Proves \lnot !A$ है।
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref{lem:delta0-completeness} के अस्तित्वात्मक मामले का विस्तृत प्रमाण
+दें।
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:sigma1-completeness}
+यदि $!A$ ऐसा $\Sigma_1$ !!{sentence} है जो~$\Struct{N}$ में सत्य है, तो
+$\Th{Q} \Proves !A$।
+\end{thm}
+
+\begin{proof}
+यदि $\lexists{x}!A(x)$ ऐसा $\Sigma_1$ !!{sentence} है जो~$\Struct{N}$ में
+सत्य है, तो कोई प्राकृतिक संख्या~$n$ और कोई चर-नियतन~$s$ ऐसे हैं कि
+$s(x) = n$ और $\Sat{N}{!A(x)}[s]$। संतुष्टि-संबंध के मानक तथ्यों से निकलता
+है कि $\Sat{N}{!A(\num n)}$। किंतु $!A(\num n)$ कोई $\Delta_0$
+!!{formula} है, इसलिए \olref{lem:delta0-completeness} से हमारे पास
+$\Th{Q} \Proves !A(\num n)$ है, और फलतः तर्क से हमारे पास
+$\Th{Q} \Proves \lexists[x][!A(x)]$ भी है।
+\end{proof}
+
+\end{document}

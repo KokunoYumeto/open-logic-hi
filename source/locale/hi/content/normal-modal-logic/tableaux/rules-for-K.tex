@@ -1,0 +1,269 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: rules-for-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{tab}{rul}
+
+\olsection{\Ax{K} के नियम}
+
+सामान्य प्रतिज्ञप्तिक संयोजकों के नियम सामान्य प्रतिज्ञप्तिक चिह्नित
+!!{tableau} के नियमों जैसे ही हैं, बस उनमें उपसर्ग जोड़े गए हैं। प्रत्येक
+स्थिति में किसी चिह्नित !!{formula} $\sFmla{S}{!A}[\sigma]$ पर लगाया गया
+नियम ऐसे नए !!{formula} उत्पन्न करता है जिनका उपसर्ग भी~$\sigma$ है। यह
+सहजतः स्पष्ट होना चाहिए: जैसे यदि $!A \land !B$, $\sigma$ (द्वारा नामित
+जगत) पर सत्य है, तो $!A$ और $!B$, $\sigma$ पर सत्य हैं (किसी अन्य जगत पर
+नहीं)। हम प्रतिज्ञप्तिक नियमों को \olref{tab:prop-rules} में एकत्र करते हैं।
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\True}{\lnot}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\False}{\lnot}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \DisplayProof
+    \\[1ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\land}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\True}{!B}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\land}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\False}{!B}[\sigma]$}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lor}}
+    \UnaryInfC{$\sFmla{\True}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lor}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lif}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid
+      \quad \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lif}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+  \end{array}\]
+  \caption{प्रतिज्ञप्तिक संयोजकों के उपसर्गयुक्त !!{tableau} नियम}
+  \ollabel{tab:prop-rules}
+\end{table}
+
+संवृत्ति-शर्त सामान्य !!{tableau} जैसी ही है, यद्यपि हम अपेक्षा करते हैं कि
+केवल !!{formula} ही नहीं, उपसर्ग भी मेल खाएँ। अतः कोई शाखा संवृत है यदि उसमें
+\[
+\sFmla{\True}{!A}[\sigma] \quad\text{और}\quad \sFmla{\False}{!A}[\sigma]
+\]
+किसी उपसर्ग $\sigma$ और !!{formula}~$!A$ के लिए, दोनों हों।
+
+मान्यताएँ स्थापित करने के नियम भी सामान्य !!{tableau} जैसे हैं, बस
+मान्यताओं के लिए हम सदा उपसर्ग~$1$ का उपयोग करते हैं। (हम कौन-सा उपसर्ग
+लेते हैं, इससे अंतर नहीं पड़ता, बशर्ते सभी मान्यताओं के लिए वही हो।) अतः,
+उदाहरणार्थ, हम कहते हैं कि
+\[
+!B_1, \dots, !B_n \Proves !A
+\]
+तभी जब इन मान्यताओं के लिए कोई संवृत टैब्लो हो:
+\[
+\sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
+\sFmla{\False}{!A}[1].
+\]
+
+मोडल संकारक\iftag{prvBox}{\iftag{prvDiamond}{ों~$\Box$ और}{~$\Box$}}{}
+\iftag{prvDiamond}{~$\Diamond$}{} के लिए, उपसर्ग~$\sigma$ वाले किसी
+!!a{formula} पर लगाए गए नियम के निष्कर्ष का उपसर्ग $\sigma.n$ है। किंतु
+कौन-सा $n$ अनुमत है, यह इस पर निर्भर करता है कि चिह्न~$\True$ है या
+~$\False$।
+
+\iftag{prvBox}{$\TRule{\True}{\Box}$ नियम,
+  $\sFmla{\True}{\Box !A}[\sigma]$ वाली शाखा को
+  $\sFmla{\True}{!A}[\sigma.n]$ से बढ़ाता है।\iftag{prvDiamond}{ इसी
+    प्रकार, }{}}{}\iftag{prvDiamond}{$\TRule{\False}{\Diamond}$ नियम,
+  $\sFmla{\False}{\Diamond !A}[\sigma]$ वाली शाखा को
+  $\sFmla{\False}{!A}[\sigma.n]$ से बढ़ाता है।}{}
+\iftag{notprvBox,notprvDiamond}{इसे}{इन्हें} केवल ऐसे उपसर्ग~$\sigma.n$
+के लिए लगाया जा सकता है जो उस शाखा पर \emph{पहले से} आता है जहाँ नियम
+लगाया जा रहा है। ऐसे उपसर्ग को (उस शाखा पर) ``प्रयुक्त'' कहें।
+
+\iftag{prvBox}{$\TRule{\False}{\Box}$ नियम,
+  $\sFmla{\False}{\Box !A}[\sigma]$ वाली शाखा को
+  $\sFmla{\False}{!A}[\sigma.n]$ से बढ़ाता है।\iftag{prvDiamond}{ इसी
+    प्रकार, }{}}{}\iftag{prvDiamond}{$\TRule{\True}{\Diamond}$ नियम,
+  $\sFmla{\True}{\Diamond !A}[\sigma]$ वाली शाखा को
+  $\sFmla{\True}{!A}[\sigma.n]$ से बढ़ाता है।}{}
+\iftag{notprvBox,notprvDiamond}{किंतु इस नियम को}{किंतु इन नियमों को}
+केवल ऐसे उपसर्ग~$\sigma.n$ के लिए लगाया जा सकता है जो उस शाखा पर पहले से
+\emph{नहीं} आता जहाँ नियम लगाया जा रहा है। ऐसे उपसर्गों को (उस शाखा के
+लिए) ``नया'' कहते हैं।
+
+नियम \olref{tab:rules-K} में दिए गए हैं।
+
+\begin{table}
+  \begin{center}
+    \def\arraystretch{3}\def\fCenter{}
+    \begin{tabular}{|c|c|}
+    \hline
+    \iftag{prvBox}{
+      \AxiomC{\sFmla{\True}{\Box !A}[\sigma]}
+      \RightLabel{\TRule{\True}{\Box}}
+      \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Box !A}[\sigma]}
+      \RightLabel{\TRule{\False}{\Box}}
+      \UnaryInfC{\sFmla{\False}{!A}[\sigma.n]}
+      \DisplayProof\\
+      $\sigma.n$ प्रयुक्त है & $\sigma.n$ नया है
+      \\[1ex]
+      \hline}{}
+    \iftag{prvDiamond}{
+      \AxiomC{\sFmla{\True}{\Diamond !A}[\sigma]}
+      \RightLabel{\TRule{\True}{\Diamond}}
+      \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Diamond !A}[\sigma]}
+      \RightLabel{\TRule{\False}{\Diamond}}
+      \UnaryInfC{\sFmla{\False}{!A}[\sigma.n]}
+      \DisplayProof\\
+      $\sigma.n$ नया है & $\sigma.n$ प्रयुक्त है
+      \\[1ex]
+      \hline}{}
+    \end{tabular}
+  \end{center}
+  \caption{\Ax{K} के मोडल नियम।}
+  \ollabel{tab:rules-K}
+\end{table}
+
+\iftag{prvBox}{\TRule{\True}{\Box}}{\TRule{\False}{\Diamond}} का उपसर्ग
+प्रयुक्त होना चाहिए---इस प्रतिबंध की अपेक्षा आवश्यक है, क्योंकि अन्यथा हम
+निम्न को संवृत !!{tableau} गिनेंगे:
+\iftag{notprvBox,notprvDiamond}{%
+  \iftag{prvBox}{%
+  \begin{oltableau}
+    [\pFmla{\True}{\Box \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[1]}
+          [\pFmla{\True}{\Box\lnot\formula{A}}{1},
+            just ={\TRule{\False}{\lnot}[2]}
+            [\pFmla{\True}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\True}{\Box}[4]}
+              [\pFmla{\False}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  }{
+  \begin{oltableau}
+    [\pFmla{\True}{\lnot\Diamond\lnot \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Diamond\formula{A}}{1}, just = \TAss
+        [\pFmla{\False}{\formula{A}}{1.1}, just = {\TRule{\False}{\Diamond}[2]}
+          [\pFmla{\False}{\Diamond\lnot\formula{A}}{1},
+            just ={\TRule{\True}{\lnot}[1]}
+            [\pFmla{\False}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\False}{\Diamond}[4]}
+              [\pFmla{\True}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+}}{
+  \begin{oltableau}
+    [\pFmla{\True}{\Box \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Diamond \formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[1]}
+          [\pFmla{\False}{\formula{A}}{1.1},
+            just = {\TRule{\False}{\Diamond}[2]}, close]
+        ]
+      ]
+    ]
+\end{oltableau}}
+
+किंतु $\Box \formula{A} \Entails/ \Diamond \formula{A}$, इसलिए हमारा
+प्रमाण-तंत्र अयथार्थ होगा। इसी प्रकार $\Diamond \formula{A} \Entails/
+\Box \formula{A}$, किंतु इस प्रतिबंध के बिना कि
+\iftag{prvBox}{\TRule{\False}{\Box}}{\TRule{\True}{\Diamond}} का उपसर्ग
+नया होना चाहिए, यह संवृत टैब्लो होगा: \iftag{notprvBox,notprvDiamond}{%
+  \iftag{prvBox}{%
+  \begin{oltableau}
+    [\pFmla{\True}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Box \formula{A}}{1}, just = \TAss
+        [\pFmla{\False}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[2]}
+          [\pFmla{\False}{\Box\lnot\formula{A}}{1},
+            just ={\TRule{\True}{\lnot}[1]}
+            [\pFmla{\False}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\False}{\Box}[4]}
+              [\pFmla{\True}{\formula{A}}{1.1},
+                  just ={\TRule{\False}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  }{
+  \begin{oltableau}
+    [\pFmla{\True}{\Diamond \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\lnot\Diamond\lnot\formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Diamond}[1]}
+          [\pFmla{\True}{\Diamond\lnot\formula{A}}{1},
+            just ={\TRule{\False}{\lnot}[2]}
+            [\pFmla{\True}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\True}{\Diamond}[4]}
+              [\pFmla{\False}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+}}{
+  \begin{oltableau}
+    [\pFmla{\True}{\Diamond \formula{A}}{1}, just = \TAss,name=one
+      [\pFmla{\False}{\Box \formula{A}}{1}, just = \TAss, name=two
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Diamond}[1]}
+          [\pFmla{\False}{\formula{A}}{1.1},
+            just = {\TRule{\False}{\Box}[2]}, close]
+        ]
+      ]
+    ]
+  \end{oltableau}}
+
+\end{document}

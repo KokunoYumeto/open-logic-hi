@@ -1,0 +1,36 @@
+% Target-only standalone build wrapper for HI-OLP-0016.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% The complete source graph makes both conditional paragraphs reader-facing.
+% Seed their frozen full-reader section identities, plus the two forward
+% section references, without importing another build tree.
+\makeatletter
+\expandafter\def\csname r@sfr:rel:ref:sec\endcsname
+  {{2.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ref:sec@cref\endcsname
+  {{[section][2][2]2.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ops:sec\endcsname
+  {{2.8}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ops:sec@cref\endcsname
+  {{[section][8][2]2.8}{}{}{}{}}
+\expandafter\def\csname r@sfr:fun:inv:sec\endcsname
+  {{3.4}{}{}{}{}}
+\expandafter\def\csname r@sfr:fun:inv:sec@cref\endcsname
+  {{[section][4][3]3.4}{}{}{}{}}
+\expandafter\def\csname r@sfr:fun:cmp:sec\endcsname
+  {{3.5}{}{}{}{}}
+\expandafter\def\csname r@sfr:fun:cmp:sec@cref\endcsname
+  {{[section][5][3]3.5}{}{}{}{}}
+\makeatother
+% \jobname is useful build metadata but is not reader-facing Hindi.
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{संबंधों के रूप में फलन}}
+  \ifgitinfo\ 
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{functions-relations}
+\end{document}

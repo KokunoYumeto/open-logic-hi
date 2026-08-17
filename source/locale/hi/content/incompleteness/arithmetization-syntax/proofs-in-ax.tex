@@ -1,0 +1,210 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-ax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{art}{pax}
+\olsection{अभिगृहीतीय \usetoken{P}{derivation}}
+
+\begin{explain}
+अभिगृहीतीय !!{derivation} का अंकगणितीकरण करने के लिए हमें !!{derivation} को
+संख्याओं के रूप में निरूपित करना होगा। चूँकि !!{derivation} केवल !!{formula}
+के अनुक्रम हैं, स्वाभाविक उपाय प्रत्येक !!{derivation} को उसमें आए !!{formula}
+के कूटों के अनुक्रम के कूट के रूप में कूटित करना है।
+\end{explain}
+
+\begin{defn}
+यदि $\delta$, !!{formula} $!A_1$, \dots,~$!A_n$ से बनी अभिगृहीतीय
+!!{derivation} है, तो $\Gn{\delta}$ है
+\[
+\tuple{\Gn{!A_1}, \dots, \Gn{!A_n}}.
+\]
+\end{defn}
+
+\begin{ex}
+  इस बहुत सरल !!{derivation} पर विचार करें:
+  \begin{derivation}
+  1. & $!B \lif (!B \lor !A)$ \\
+  2. & $(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))$\\
+  3. & $!A  \lif (!B \lif (!B \lor !A))$
+  \end{derivation}
+  इस !!{derivation} की ग्योडेल (G\"odel) संख्या होगी
+  \begin{align*}
+  \openTuple\, 
+    & \Gn{!B \lif (!B \lor !A)}, \\
+    &\Gn{(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))},\\
+    & \Gn{!A  \lif (!B \lif (!B \lor !A))} \,\closeTuple.
+  \end{align*}
+\end{ex}
+
+\begin{explain}
+!!{derivation} का निरूपण तय कर लेने पर हमें यह भी दिखाना होगा कि ऐसी
+!!{derivation} पर आदिम पुनरावर्ती ढंग से क्रियाएँ की जा सकती हैं और उनके
+आवश्यक गुणों तथा संबंधों को भी उसी ढंग से व्यक्त किया जा सकता है। कुछ
+संक्रियाएँ सरल हैं: उदाहरणतः किसी !!a{derivation} की ग्योडेल (G\"odel)
+संख्या~$d$ दिए जाने पर $(d)_{\len{d}-1}$ उसके अंतिम-!!{formula} की ग्योडेल (G\"odel)
+ संख्या देता है। कुछ संक्रियाएँ कहीं अधिक कठिन हैं। हम कम-से-कम यह
+रूपरेखा देंगे कि उन्हें कैसे किया जाए। लक्ष्य यह दिखाना है कि ``$\delta$,
+~$\Gamma$ से~$!A$ की !!a{derivation} है'' संबंध, $\delta$ और~$!A$ की ग्योडेल (G\"odel)
+ संख्याओं में आदिम पुनरावर्ती है।
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:followsby}
+निम्न संबंध आदिम पुनरावर्ती हैं:
+\begin{enumerate}
+\item $!A$ एक अभिगृहीत है।
+\item $\delta$ की $i$-वीं पंक्ति मोडस पोनेन्स से औचित्यप्राप्त है।
+\item $\delta$ की $i$-वीं पंक्ति \QR{} से औचित्यप्राप्त है।
+\item $\delta$ एक सही !!{derivation} है।
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+हमें दिखाना है कि !!{formula} की ग्योडेल (G\"odel) संख्याओं और !!{derivation}
+की ग्योडेल (G\"odel) संख्याओं के बीच संगत संबंध आदिम पुनरावर्ती हैं।
+\begin{enumerate}
+\item हमारे पास अभिगृहीत-प्रतिरूपों की एक दी हुई सूची है, और यदि $!A$ इनमें
+  से किसी प्रतिरूप द्वारा दिए गए रूप का है, तो वह अभिगृहीत है। चूँकि
+  प्रतिरूपों की सूची परिमित है, इतना दिखाना पर्याप्त है कि प्रत्येक
+  अभिगृहीत-प्रतिरूप के लिए हम आदिम पुनरावर्ती ढंग से जाँच सकते हैं कि $!A$ उस
+  रूप का है या नहीं। उदाहरण के लिए, अभिगृहीत-प्रतिरूप पर विचार करें
+  \[
+  !B \lif (!C \lif !B).
+  \]
+  $!A$ इस अभिगृहीत-प्रतिरूप का उदाहरण है यदि ऐसे !!{formula} $!B$ और $!C$
+  हैं कि `$($', $!B$, `$\lif$', `$($', $!C$, `$\lif$', $!B$ और~`$))$' को
+  जोड़ने पर $!A$ मिलता है। हम~$!A$ की ग्योडेल (G\"odel) संख्या $n$ का संगत
+  गुण जाँच सकते हैं, क्योंकि अनुक्रमों का संयोजन आदिम पुनरावर्ती है और $!B$
+  तथा $!C$ की ग्योडेल (G\"odel) संख्याएँ~$!A$ की ग्योडेल (G\"odel) संख्या
+  से छोटी होनी चाहिए; संबंध लागू होने पर $!B$ और $!C$, दोनों~$!A$ के
+  उप-!!{formula} हैं। अतः हम परिभाषित कर सकते हैं:
+  \begin{multline*}
+  \fn{IsAx}_{!B \lif (!C \lif !B)}(n) \defiff \bexists{b< n}{
+    \bexists{c < n}{(\fn{Sent}(b) \land \fn{Sent}(c) \land {}}}\\ n =
+  \Gn{(} \concat b \concat \Gn{\lif} \concat \Gn{(} \concat c \concat
+  \Gn{\lif} \concat b \concat \Gn{))}).
+  \end{multline*}
+  यदि प्रत्येक अभिगृहीत-प्रतिरूप के लिए ऐसी परिभाषा हो, तो उनका वियोजन गुण
+  $\fn{IsAx}(n)$, ``$n$ किसी अभिगृहीत की ग्योडेल (G\"odel) संख्या है'',
+  परिभाषित करता है।
+\item $\delta$ की $i$-वीं पंक्ति मोडस पोनेन्स से औचित्यप्राप्त है यदि और
+  केवल यदि ऐसी पंक्तियाँ $j$ और $k < i$ हैं जिनमें पंक्ति~$j$ का !!{sentence}
+  कोई सूत्र $!A$, पंक्ति~$k$ का वाक्य $!A \lif !B$, और पंक्ति~$i$ का वाक्य
+  ~$!B$ है।
+  \begin{multline*}
+    \fn{MP}(d, i) \defiff \bexists{j < i}{\bexists{k < i}{}}\\
+    (d)_k = \Gn{(} \concat (d)_j
+      \concat \Gn{\lif} \concat (d)_i \concat \Gn{)}
+  \end{multline*}
+  चूँकि परिबद्ध परिमाणीकरण, संयोजन और $=$ आदिम पुनरावर्ती हैं, यह एक आदिम
+  पुनरावर्ती संबंध परिभाषित करता है।
+\item $\delta$ की कोई पंक्ति \QR{} से औचित्यप्राप्त है यदि वह $!B \lif
+  \lforall[x][!A(x)]$ रूप की है, कोई पिछली पंक्ति किसी !!{constant}~$c$ के
+  लिए $!B \lif !A(c)$ है, और $c$,~$!B$ में नहीं आता। यह लागू होता है यदि और
+  केवल यदि
+  \begin{enumerate}
+  \item कोई !!a{sentence}~$!B$ है, और
+  \item केवल एक चर~$x$ मुक्त रखने वाला !!a{formula}~$!A(x)$ ऐसा है कि
+  \item पंक्ति $i$ में $!B \lif \lforall[x][!A(x)]$ है,
+  \item किसी पंक्ति $j < i$ में किसी अचर~$c$ के लिए $!B \lif
+    \Subst{!A}{c}{x}$ है,
+  \item और वह अचर~$!B$ में नहीं आता।
+  \end{enumerate}
+  इन सभी को आदिम पुनरावर्ती ढंग से जाँचा जा सकता है, क्योंकि $!B$, $!A(x)$
+  और $x$ की ग्योडेल (G\"odel) संख्याएँ पंक्ति~$i$ के सूत्र की ग्योडेल (G\"odel)
+   संख्या से छोटी हैं, और $a$ की संख्या पंक्ति~$j$ के सूत्र की
+  ग्योडेल (G\"odel) संख्या से छोटी है:
+  \begin{multline*}
+    \fn{QR}_1(d, i) \defiff \bexists{b < (d)_i}{\bexists{x <
+        (d)_i}{\bexists{a < (d)_i}{\bexists{c < (d)_j}{(}}}}
+    \\ \fn{Var}(x) \land \fn{Const}(c) \land {} \\
+    (d)_i = \Gn{(} \concat
+    b \concat \Gn{\lif} \concat \Gn{\lforall} \concat x \concat a
+    \concat \Gn{)} \land {}\\
+    (d)_j = \Gn{(} \concat b \concat
+    \Gn{\lif} \concat \fn{Subst}(a,c,x) \concat \Gn{)} \land {}\\ \fn{Sent}(b)
+    \land \fn{Sent}(\fn{Subst}(a,c,x)) \land {} \bforall{k <
+      \len{b}}{(b)_k \neq (c)_0})
+  \end{multline*}
+  यहाँ हम मानते हैं कि $c$ और $x$, पदों के रूप में लिए गए चर और अचर की
+  ग्योडेल (G\"odel) संख्याएँ हैं (अर्थात् उनके चिह्न-कूट नहीं)। हम यह जाँचकर
+  परीक्षण करते हैं कि $x$,~$!A(x)$ का एकमात्र मुक्त चर है कि
+  $\Subst{!A(x)}{c}{x}$ !!a{sentence} है या नहीं; और~$!B$ के प्रत्येक चिह्न
+  को~$c$ से भिन्न अपेक्षित करके सुनिश्चित करते हैं कि $c$,~$!B$ में नहीं आता।
+
+  \QR{} का दूसरा रूप अभ्यास के लिए छोड़ते हैं।
+\item $d$ किसी सही !!{derivation} की ग्योडेल (G\"odel) संख्या है यदि और केवल
+  यदि उसकी प्रत्येक पंक्ति अभिगृहीत है अथवा मोडस पोनेन्स या~\QR{} से
+  औचित्यप्राप्त है। अतः:
+  \[
+  \fn{Deriv}(d) \defiff \bforall{i < \len{d}}{(\fn{IsAx}((d)_i) \lor
+    \fn{MP}(d,i) \lor \fn{QR}(d, i))}
+  \]
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref[inc][art][pax]{prop:followsby} की भाँति निम्न संबंध परिभाषित करें:
+\begin{enumerate}
+\item $\fn{IsAx}_{!A \lif (!B \lif (!A \land !B))}(n)$,
+\item $\fn{IsAx}_{\lforall[x][!A(x)] \lif !A(t)}(n)$,
+\item $\fn{QR}_{2}(d, i)$ (\QR{} के दूसरे रूप के लिए)।
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+मान लें कि $\Gamma$, !!{sentence} का आदिम पुनरावर्ती समुच्चय है। तब यह
+व्यक्त करने वाला संबंध $\Prf[\Gamma](x, y)$ कि ``$x$,~$\Gamma$ से~$!A$ की
+!!a{derivation}~$\delta$ का कूट है और $y$,~$!A$ की ग्योडेल (G\"odel) संख्या
+है'', आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+मान लें कि ``$y \in \Gamma$'' आदिम पुनरावर्ती विधेय~$R_\Gamma(y)$ से दिया
+गया है। हमें दिखाना है कि संबंध $\Prf[\Gamma](x, y)$ आदिम पुनरावर्ती है,
+जहाँ $\Prf[\Gamma](x, y)$ तब लागू होता है जब $y$ किसी !!a{sentence}~$!A$ की
+ग्योडेल (G\"odel) संख्या और $x$,~$\Gamma$ से~$!A$ की !!a{derivation} का कूट
+हो।
+
+पिछली प्रतिज्ञप्ति के अनुसार गुण $\fn{Deriv}(x)$, जो तभी लागू होता है जब $x$
+किसी सही !!{derivation}~$\delta$ का कूट हो, आदिम पुनरावर्ती है। किंतु उस
+परिभाषा ने !!{derivation} की पंक्तियों को औचित्य देने के अतिरिक्त उपाय के रूप
+में समुच्चय $\Gamma$ को सम्मिलित नहीं किया। किसी पंक्ति के \QR{} से
+औचित्यप्राप्त होने के हमारे आदिम पुनरावर्ती परीक्षण ने यह अपेक्षा भी छोड़ दी
+कि अचर~$c$ को~$\Gamma$ में आने की अनुमति नहीं। परिभाषा में संशोधन करके
+$\Gamma$ को सीधे सम्मिलित करना संभव है, किंतु $\fn{Deriv}$ और निगमन प्रमेय का
+उपयोग अधिक सरल है। $\Gamma \Proves !A$ यदि और केवल यदि !!{sentence} की कोई
+परिमित सूची $!B_1$, \dots, $!B_n \in \Gamma$ ऐसी है कि $\{!B_1, \dots,
+!B_n\} \Proves !A$। और निगमन प्रमेय के अनुसार यह तब लागू होता है जब $\Proves
+(!B_1 \lif (!B_2 \lif \cdots (!B_n \lif !A)\cdots))$। ग्योडेल (G\"odel)
+संख्या~$z$ वाला कोई !!a{sentence} इस रूप का है या नहीं, इसे आदिम पुनरावर्ती
+ढंग से जाँचा जा सकता है। इसलिए $x$ को~$\Gamma$ \emph{से} ग्योडेल (G\"odel)
+संख्या~$y$ वाले !!{sentence} की !!a{derivation} की ग्योडेल (G\"odel) संख्या
+मानने के स्थान पर हम $x$ को~$\emptyset$ से उपर्युक्त रूप के अंतर्निहित
+प्रतिबंधात्मक की !!a{derivation} की ग्योडेल (G\"odel) संख्या मानते हैं।
+
+पहले, यदि हमारे पास !!{sentence} का कोई अनुक्रम है, तो हम आदिम पुनरावर्ती
+ढंग से ऐसा प्रतिबंधात्मक बना सकते हैं जिसमें ये सभी वाक्य पूर्वपक्ष और दिया
+हुआ !!{sentence} उत्तरपक्ष हो:
+\begin{align*}
+  \fn{hCond}(s, y, 0) & = y \\
+  \fn{hCond}(s, y, n+1) & = \Gn{(} \concat (s)_{n} \concat \Gn{\lif}
+  \concat \fn{Cond}(s, y, n) \concat \Gn{)}\\
+  \fn{Cond}(s, y) & = \fn{hCond}(s, y, \len{s})\\
+  \intertext{अतः हम $\Prf[\Gamma](x, y)$ को इस प्रकार परिभाषित कर सकते हैं:}
+  \Prf[\Gamma](x, y) & \defiff \bexists{s < \fn{sequenceBound}(x,x)}{(} \\
+  &\qquad (x)_{\len{x}-1} = \fn{Cond}(s,y) \land {} \\
+  &\qquad\bforall{i<\len{s}}{(s)_i \in \Gamma} \land {} \\
+  &\qquad\fn{Deriv}(x)).
+\end{align*}
+~$s$ पर परिसीमा इस बात से मिलती है कि प्रत्येक $(s)_i$, !!{derivation} की
+अंतिम पंक्ति के किसी उप-!!{formula} की ग्योडेल (G\"odel) संख्या है; अर्थात्
+वह $(x)_{\len{x}-1}$ से छोटा है। पूर्वपक्षों $!B \in \Gamma$ की संख्या,
+अर्थात्~$s$ की लंबाई,~$x$ की अंतिम पंक्ति की लंबाई से छोटी है।
+\end{proof}
+
+\end{document}

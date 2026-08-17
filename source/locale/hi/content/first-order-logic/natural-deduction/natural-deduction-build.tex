@@ -1,0 +1,50 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0096.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{xr-hyper}
+\usepackage{etoolbox}
+\usepackage{needspace}
+% The integrated chapter still cites six earlier syntax-and-semantics results.
+\externaldocument{soundness-external-labels}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{2em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रथम-कोटि तर्कशास्त्र: स्वाभाविक निगमन}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{ntd}
+
+% Private-reader pagination guards: keep structural headings and example/case
+% openings with enough substantive content to prevent detached proof trees.
+\pretocmd{\olsection}{\Needspace{8\baselineskip}}{}{}
+\BeforeBeginEnvironment{prop}{\Needspace{9\baselineskip}}
+\BeforeBeginEnvironment{prooftree}{\par\nopagebreak[4]}
+\newcount\HindiQuantifierExampleCount
+\BeforeBeginEnvironment{ex}{%
+  \ifdefstring{\olfilename}{proving-things-quant}{%
+    \global\advance\HindiQuantifierExampleCount by 1
+    \ifnum\HindiQuantifierExampleCount=2
+      \Needspace{12\baselineskip}%
+    \fi
+  }{}%
+}
+\pretocmd{\item}{%
+  \ifdefstring{\olfilename}{soundness}{%
+    \ifnum\inputlineno=133
+      \Needspace{7\baselineskip}%
+    \fi
+    \ifnum\inputlineno=158
+      \Needspace{7\baselineskip}%
+    \fi
+  }{}%
+}{}{}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{natural-deduction}
+\end{document}

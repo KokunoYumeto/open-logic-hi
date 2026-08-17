@@ -1,0 +1,206 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{syn}{sat}
+
+\olsection{संतुष्टि}
+
+\begin{explain}
+द्वितीय-कोटि !!{formula} के लिए संतुष्टि संबंध $\Sat{M}{!A}[s]$ परिभाषित
+करने हेतु हमें परिभाषाओं का विस्तार करके द्वितीय-कोटि !!{variable} भी
+समाहित करने होंगे। द्वितीय-कोटि तर्कशास्त्र में !!a{structure} की धारणा वही
+है जो प्रथम-कोटि तर्कशास्त्र में है। अंतर केवल चर-नियतन~$s$ में है: अब उसे
+केवल प्रथम-कोटि !!{variable} ही नहीं, बल्कि द्वितीय-कोटि !!{variable} के लिए
+भी मान देने होंगे।
+\end{explain}
+
+\begin{defn}[चर-नियतन]
+!!a{structure}~$\Struct{M}$ के लिए \emph{चर-नियतन}~$s$ ऐसा फलन है जो प्रत्येक
+\begin{enumerate}
+\item वस्तु-!!{variable}~$\Obj{v_i}$ को~$\Domain M$ के किसी अवयव में,
+  अर्थात् $s(\Obj{v_i}) \in \Domain{M}$;
+\item $n$-स्थानी संबंध-चर~$\Obj{V_i^n}$ को~$\Domain{M}$ पर किसी
+  $n$-स्थानी संबंध में, अर्थात् $s(\Obj{V_i^n}) \subseteq \Domain{M}^n$;
+\item $n$-स्थानी फलन-चर~$\Obj{u_i^n}$ को $\Domain{M}$ से $\Domain{M}$ में
+  जाने वाले किसी $n$-स्थानी फलन में, अर्थात्
+  $s(\Obj{u_i^n})\colon \Domain{M}^n \to \Domain{M}$;
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+!!^a{structure} प्रत्येक !!{constant} और !!{function} को !!a{value} देती है,
+और द्वितीय-कोटि चर-नियतन प्रत्येक वस्तु-चर और फलन-चर को क्रमशः वस्तु और फलन
+देता है। दोनों मिलकर हमें प्रत्येक पद का मान निर्धारित करने देते हैं।
+\end{explain}
+
+\begin{defn}[किसी पद का \usetoken{S}{value}]
+यदि $t$ भाषा~$\Lang L$ का पद है, $\Struct M$ भाषा~$\Lang L$ की
+!!a{structure} है, और $s$, $\Struct M$ के लिए !!a{variable} नियतन है, तो
+\emph{!!{value}}~$\Value{t}{M}[s]$ की परिभाषा प्रथम-कोटि पदों जैसी है, और
+उसमें निम्न खंड जोड़ा जाता है:
+\begin{quote}
+\indcase{t}{\Atom{u}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = s(u)(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{quote}
+\end{defn}
+
+\begin{defn}[$x$-परिवर्ती]
+यदि $s$, !!a{structure}~$\Struct M$ के लिए !!a{variable} नियतन है, तो
+$\Struct M$ के लिए ऐसा कोई भी !!{variable} नियतन $s'$, जो $s$ से अधिक-से-अधिक
+$x$ को दिए गए मान में भिन्न हो, $s$ का \emph{$x$-परिवर्ती} कहलाता है। यदि
+$s'$, $s$ का $x$-परिवर्ती है, तो हम $\varAssign{s'}{s}{x}$ लिखते हैं।
+(द्वितीय-कोटि चर $X$ या $u$ के लिए भी इसी प्रकार।)
+\end{defn}
+
+\begin{defn}
+  यदि $s$, !!a{structure}~$\Struct M$ के लिए !!a{variable} नियतन है और
+  $m \in \Domain{M}$, तो नियतन~$\Subst{s}{m}{x}$ निम्न प्रकार परिभाषित
+  !!{variable} नियतन है:
+  \[\Subst{s}{m}{y} = \begin{cases}
+    m & \text{यदि } y \ident x\\
+    s(y) & \text{अन्यथा},
+  \end{cases}\]
+  यदि $X$ एक $n$-स्थानी संबंध-!!{variable} है और $M \subseteq
+  \Domain{M}^n$, तो $\Subst{s}{M}{X}$ निम्न प्रकार परिभाषित !!{variable}
+  नियतन है:
+  \[\Subst{s}{M}{y} = \begin{cases}
+    M & \text{यदि } y \ident X\\
+    s(y) & \text{अन्यथा}। 
+  \end{cases}\]
+  यदि $u$ एक $n$-स्थानी फलन-!!{variable} है और $f\colon \Domain{M}^n
+  \to \Domain{M}$, तो $\Subst{s}{f}{u}$ निम्न प्रकार परिभाषित !!{variable}
+  नियतन है:
+  \[\Subst{s}{f}{y} = \begin{cases}
+    f & \text{यदि } y \ident u\\
+    s(y) & \text{अन्यथा}।
+  \end{cases}\]
+  प्रत्येक स्थिति में $y$ कोई भी प्रथम- या द्वितीय-कोटि !!{variable} हो सकता है।
+\end{defn}
+
+\begin{defn}[संतुष्टि]
+द्वितीय-कोटि !!{formula}~$!A$ के लिए संतुष्टि की परिभाषा
+\olref[fol][syn][sat]{defn:satisfaction} जैसी है, और उसमें ये खंड जोड़े जाते हैं:
+\begin{enumerate}
+\item \indcase{!A}{\Atom{X^n}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  तभी और केवल तभी जब $\langle \Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s] \rangle \in
+  s(X^n)$।}
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[X][!B]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब प्रत्येक $M
+  \subseteq \Domain{M}^n$ के लिए $\Sat{M}{!B}[\Subst{s}{M}{X}]$।}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[X][!B]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+  कम-से-कम एक $M \subseteq \Domain{M}^n$ ऐसा हो कि
+  $\Sat{M}{!B}[\Subst{s}{M}{X}]$।}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[u][!B]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब प्रत्येक
+  $f\colon \Domain{M}^n \to \Domain{M}$ के लिए
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$।}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[u][!B]}{$\Sat{M}{\indfrm}[s]$ तभी और केवल तभी जब
+  कम-से-कम एक $f\colon \Domain{M}^n \to \Domain{M}$ ऐसा हो कि
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$।}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+  !!{formula} $\lforall[z][(\Atom{X}{z} \liff \lnot
+    \Atom{Y}{z})]$ पर विचार करें। इसमें कोई द्वितीय-कोटि परिमाणक नहीं है,
+  किंतु द्वितीय-कोटि !!{variable} $X$ और~$Y$ अवश्य हैं (यहाँ इन्हें एक-स्थानी
+  समझा गया है)। संगत प्रथम-कोटि !!{sentence}
+  $\lforall[z][(\Atom{P}{z} \liff \lnot \Atom{R}{z})]$ कहता है कि जो कुछ
+  $P$ की व्याख्या के अंतर्गत आता है वह $R$ की व्याख्या के अंतर्गत नहीं आता,
+  और इसका विलोम भी। किसी !!a{structure} में !!a{predicate}~$P$ की व्याख्या
+  ~$\Assign{P}{M}$ से दी जाती है। किंतु $X$ और~$Y$ जैसे द्वितीय-कोटि
+  !!{variable} की व्याख्या स्वयं !!{structure} नहीं, बल्कि !!a{variable}
+  नियतन देता है। चूँकि द्वितीय-कोटि !!{formula}, !!a{sentence} नहीं है (इसमें
+  मुक्त !!{variable} $X$ और~$Y$ हैं), इसलिए यह केवल !!a{structure}~$\Struct{M}$
+  और !!a{variable} नियतन~$s$ के सापेक्ष संतुष्ट होता है।
+
+  $\Sat{M}{\lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})]}[s]$
+  तब लागू होता है जब~$s(X)$ के !!{element}, $s(Y)$ के !!{element} न हों और
+  इसका विलोम भी; अर्थात् तभी और केवल तभी जब $s(Y) = \Domain{M} \setminus
+  s(X)$। उदाहरण के लिए $\Domain{M} = \{1, 2, 3\}$ लें। चूँकि कोई
+  !!{predicate}, !!{function} या !!{constant} सम्मिलित नहीं है, इसलिए केवल
+  ~$\Struct{M}$ का प्रांत प्रासंगिक है। अब $s_1(X) = \{1, 2\}$ और
+  $s_1(Y) = \{3\}$ के लिए हमारे पास $\Sat{M}{\lforall[z][(\Atom{X}{z}
+      \liff \lnot \Atom{Y}{z})]}[s_1]$.
+
+  इसके विपरीत, यदि $s_2(X) = \{1, 2\}$ और $s_2(Y) = \{2, 3\}$ हों, तो
+  $\Sat/{M}{\lforall[z][(\Atom{X}{z} \liff \lnot
+      \Atom{Y}{z})]}[s_2]$। इसका कारण यह है कि
+  $\Sat{M}{\Atom{X}{z}}[\Subst{s_2}{2}{z}]$ (क्योंकि $2 \in \Subst{s_2}{2}{z}(X)$), किंतु
+  $\Sat/{M}{\lnot \Atom{Y}{z}}[\Subst{s_2}{2}{z}]$ (क्योंकि $2 \in
+  \Subst{s_2}{2}{z}(Y)$ भी है)।
+\end{ex}
+
+\begin{ex}
+  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ तब लागू होता
+  है जब कोई $N \subseteq \Domain{M}$ ऐसा हो कि
+  $\Sat{M}{(\lexists[y][\Atom{Y}{y}] \land \lforall[z][(\Atom{X}{z}
+  \liff \lnot \Atom{Y}{z})])}[\Subst{s}{N}{Y}]$। यह किसी भी
+  $N \neq \emptyset$ के लिए लागू है (जिससे
+  $\Sat{M}{\lexists[y][\Atom{Y}{y}]}[\Subst{s}{N}{Y}]$), और पिछले उदाहरण
+  की भाँति $N = \Domain{M} \setminus s(X)$ हो। दूसरे शब्दों में,
+  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ तभी और केवल
+  तभी जब $\Domain{M} \setminus s(X)$ अरिक्त हो, अर्थात् $s(X) \neq
+  \Domain{M}$। अतः उदाहरणार्थ, यदि $\Domain{M} = \{1, 2, 3\}$ और
+  $s(X) = \{1, 2\}$ हों तो !!{formula} संतुष्ट है, किंतु यदि
+  $s(X) = \{1, 2, 3\} = \Domain{M}$ हो तो नहीं।
+
+  क्योंकि $s(X) = \Domain{M}$ होने पर !!{formula} संतुष्ट नहीं होता, इसलिए
+  !!{sentence}
+  \[
+  \lforall[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+      \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
+  \]
+  कभी संतुष्ट नहीं होता: किसी भी !!{structure}~$\Struct{M}$ के लिए
+  नियतन~$s(X) = \Domain{M}$ उस !!{sentence} को असत्य कर देगा। दूसरी ओर,
+  वाक्य
+  \[
+  \lexists[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+      \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
+  \]
+  किसी भी नियतन~$s$ के सापेक्ष संतुष्ट होता है, क्योंकि हम सदैव
+  $M \subseteq \Domain{M}$ किंतु $M \neq \Domain{M}$ पा सकते हैं
+  (उदाहरणार्थ $M = \emptyset$)।
+\end{ex}
+
+\begin{ex}
+  द्वितीय-कोटि !!{sentence}~$\lforall[X][\lforall[y][X(y)]]$ कहता है कि
+  प्रत्येक $1$-स्थानी संबंध, अर्थात् प्रत्येक गुण, हर वस्तु पर लागू होता है।
+  यह स्पष्टतः कभी सत्य नहीं है, क्योंकि प्रत्येक~$\Struct{M}$ में ऐसे
+  चर-नियतन~$s$ के लिए जिसमें $s(X) = \emptyset$ और $s(y) = a \in
+  \Domain{M}$ हों, हमारे पास $\Sat/{M}{X(y)}[s]$ है। इसका अर्थ है कि
+  द्वितीय-कोटि तर्कशास्त्र में $!A \lif \lforall[X][\lforall[y][X(y)]]$,
+  $\lnot !A$ के समतुल्य है; अर्थात् $\Sat{M}{!A \lif
+  \lforall[X][\lforall[y][X(y)]]}$ तभी और केवल तभी जब
+  $\Sat{M}{\lnot !A}$। दूसरे शब्दों में, द्वितीय-कोटि तर्कशास्त्र में हम
+  $\lforall$ और~$\lif$ का उपयोग करके $\lnot$ को परिभाषित कर सकते हैं।
+\end{ex}
+
+\begin{prob}
+  दिखाएँ कि द्वितीय-कोटि तर्कशास्त्र में $\lforall$ और~$\lif$ अन्य संयोजकों
+  को परिभाषित कर सकते हैं:
+  \begin{enumerate}
+    \item सिद्ध करें कि द्वितीय-कोटि तर्कशास्त्र में $!A \land !B$,
+    $\lforall[X][(!A \lif (!B \lif \lforall[x][X(x)])\lif
+    \lforall[x][X(x)])]$ के समतुल्य है।
+    \item केवल $\lforall$ और $\lif$ का उपयोग करने वाला ऐसा द्वितीय-कोटि
+    सूत्र खोजें जो $!A \lor !B$ के समतुल्य हो।
+  \end{enumerate}
+\end{prob}
+
+\end{document}

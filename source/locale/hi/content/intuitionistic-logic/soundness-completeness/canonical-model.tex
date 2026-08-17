@@ -1,0 +1,67 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: canonical-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{mod}
+
+\olsection{विहित प्रतिरूप}
+
+हमारे प्रतिरूप के जगत प्राकृतिक संख्याओं के परिमित अनुक्रम~$\sigma$ होंगे;
+अर्थात $\sigma \in \Nat^*$। ध्यान दें कि $\Nat^*$ आगमनात्मक रूप से इस
+प्रकार परिभाषित है:
+\begin{enumerate}
+\item $\emptyseq \in \Nat^*$.
+\item यदि $\sigma \in \Nat^*$ और $n \in \Nat$, तो
+  $\sigma.n \in \Nat^*$ (जहाँ $\sigma.n$, $\sigma \concat \tuple{n}$ है,
+  और $\sigma \concat \sigma'$, $\sigma$ तथा $\sigma'$ का सन्निवेशन है)।
+\item इसके अतिरिक्त कुछ भी $\Nat^*$ में नहीं है।
+\end{enumerate}
+अतः हम आगमनात्मक परिभाषाएँ देने के लिए $\Nat^*$ का उपयोग कर सकते हैं।
+
+मान लें कि $\tuple{!B_1, !C_1}$, $\tuple{!B_2, !C_2}$, \dots,
+!!{formula}ों के सभी युग्मों का परिगणन है। !!{formula}ों का समुच्चय~$\Delta$
+दिए जाने पर $\Delta(\sigma)$ को आगमन द्वारा इस प्रकार परिभाषित करें:
+\begin{enumerate}
+\item $\Delta(\emptyseq) = \Delta$
+\item $\Delta(\sigma.n) = {}$
+  \[
+  \begin{cases}
+    (\Delta(\sigma) \cup \{!B_n\})^* &
+    \text{यदि $\Delta(\sigma) \cup \{!B_n\} \Proves/ !C_n$} \\
+    \Delta(\sigma) & \text{अन्यथा}
+  \end{cases}
+  \]
+\end{enumerate}
+यहाँ $(\Delta(\sigma) \cup \{!B_n\})^*$ से हमारा आशय !!{formula}ों के उस
+अभाज्य समुच्चय से है जिसका अस्तित्व समुच्चय
+$\Delta(\sigma) \cup \{!B_n\}$ और !!{formula}~$!C_n$ पर
+\olref[lin]{lem:lindenbaum} लगाने से मिलता है। ध्यान दें कि इस परिभाषा से,
+यदि $\Delta(\sigma) \cup \{!B_n\} \Proves/ !C_n$, तो
+$\Delta(\sigma.n) \Proves !B_n$ और
+$\Delta(\sigma.n) \Proves/ !C_n$। यह भी ध्यान दें कि किसी भी~$n$ के लिए
+$\Delta(\sigma) \subseteq \Delta(\sigma.n)$। यदि $\Delta$ अभाज्य है, तो
+प्रत्येक~$\sigma$ के लिए $\Delta(\sigma)$ अभाज्य है।
+
+\begin{defn}\ollabel{defn:canonical-model}
+  मान लें कि $\Delta$ अभाज्य है। तब $\Delta$ का \emph{विहित प्रतिरूप}
+  $\mModel{M(\Delta)}$ इस प्रकार परिभाषित है:
+  \begin{enumerate}
+  \item $W = \Nat^*$, प्राकृतिक संख्याओं के परिमित अनुक्रमों का समुच्चय।
+  \item $R$ वह आंशिक क्रम है जिसके अनुसार $R\sigma\sigma'$ तभी जब $\sigma$,
+    ~$\sigma'$ का आरंभिक खंड हो (अर्थात किसी अनुक्रम~$\sigma''$ के लिए
+    $\sigma' = \sigma \concat \sigma''$)।
+  \item $V(p) = \Setabs{\sigma}{p \in \Delta(\sigma)}$.
+  \end{enumerate}
+\end{defn}
+
+यह सत्यापित करना सरल है कि $R$ वास्तव में आंशिक क्रम है।~$V$ पर एकदिष्टता
+की शर्त भी संतुष्ट होती है। चूँकि
+$\Delta(\sigma) \subseteq \Delta(\sigma.n)$, इसलिए~$\sigma$ पर आगमन द्वारा
+जब भी $R\sigma\sigma'$, तब
+$\Delta(\sigma) \subseteq \Delta(\sigma')$ मिलता है।
+
+\end{document}

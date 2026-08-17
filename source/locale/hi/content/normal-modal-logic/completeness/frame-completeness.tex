@@ -1,0 +1,226 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: frame-completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{com}{fra}
+
+\olsection{फ़्रेम-पूर्णता}
+
+किसी दिए गए तर्कशास्त्र के विहित प्रतिरूप में संबद्ध फ़्रेम-गुण दिखा देने
+पर \Log{K} के पूर्णता प्रमेय को अन्य मोडल तंत्रों तक विस्तृत किया जा सकता
+है।
+
+\begin{thm}\ollabel{thm:completeframeprops}
+  यदि कोई सामान्य मोडल तर्कशास्त्र $\Sigma$,
+  \olref{tab:correspondencetable} के बाईं ओर के !!{formula}ों में से किसी को
+  रखता है, तो $\Sigma$ के विहित प्रतिरूप में दाईं ओर का संबद्ध गुण होता है।
+\end{thm}
+
+\begin{table}[htp]
+  \centering
+    \begin{tabular}{| l || l |}
+      \hline
+      \emph{यदि $\Sigma$ में \dots है} & \emph{\dots तो $\Sigma$ का
+        विहित प्रतिरूप है:} \\
+      \hline \hline
+      \Ax{D}:\;\; $\Box!A \lif \Diamond !A$ & \quad सीरियल; \\
+      \hline
+      \Ax{T}:\;\; $\Box!A \lif !A$ &\quad  स्वपरावर्ती;\\
+      \hline
+      \Ax{B}: \;\;$!A \lif \Box\Diamond!A$ &\quad  सममित; \\
+      \hline
+      \Ax{4}: \;\; $\Box!A \lif \Box\Box!A$ & \quad संक्रमणशील; \\
+      \hline 
+      \Ax{5}: \;\; $\Diamond !A \lif \Box\Diamond!A$& \quad यूक्लिडीय।\\
+      \hline
+    \end{tabular}
+    \caption{आधारभूत अनुरूपता तथ्य।}
+    \ollabel{tab:correspondencetable}
+\end{table}
+
+\begin{proof}
+  हम इनमें से प्रत्येक पर क्रमशः विचार करते हैं।
+
+  मान लें कि $\Sigma$ में \Ax{D} है, और $\Delta \in W^\Sigma$ हो; हमें
+  दिखाना है कि ऐसा $\Delta'$ है कि $R^\Sigma \Delta\Delta'$। यह दिखाना
+  पर्याप्त है कि $\Box^{-1}\Delta$, $\Sigma$-संगत है, क्योंकि तब
+  लिंडेनबाउम के लेम्मा से ऐसा पूर्ण $\Sigma$-संगत समुच्चय $\Delta'
+  \supseteq \Box^{-1}\Delta$ है, और $R^\Sigma$ की परिभाषा
+  \iftag{prvBox}{}{तथा \olref[mod]{lem:box-iff-diamond} }से $R^\Sigma
+  \Delta\Delta'$। अतः विरोधाभास के लिए मान लें कि $\Box^{-1}\Delta$
+  $\Sigma$-संगत \emph{नहीं} है, अर्थात् $\Box^{-1}\Delta
+  \Proves[\Sigma] \lfalse$। \olref[mod]{lem:box2} से $\Delta
+  \Proves[\Sigma] \Box\lfalse$; और चूँकि $\Sigma$ में \Ax{D} है,
+  $\Delta \Proves[\Sigma] \Diamond\lfalse$ भी। किंतु $\Sigma$ सामान्य
+  है, अतः $\Sigma \Proves \lnot\Diamond \lfalse$
+  (\olref[prf][nor]{prop:notDiamondBot}); इसलिए $\Delta \Proves[\Sigma]
+  \lnot\Diamond \lfalse$ भी, जो $\Delta$ की संगति के विरुद्ध है।
+
+  अब मान लें कि $\Sigma$ में \Ax{T} है और $\Delta \in W^\Sigma$ हो। हम
+  $R^\Sigma \Delta\Delta$, अर्थात्\iftag{prvBox}{}{
+  \olref[mod]{lem:box-iff-diamond} से,} $\Box^{-1}\Delta \subseteq
+  \Delta$ दिखाना चाहते हैं। किंतु यदि $\Box!A \in \Delta$, तो \Ax{T}
+  से $!A \in \Delta$ भी, जैसा अपेक्षित था।
+
+  अब मान लें कि $\Sigma$ में \Ax{B} है, और $\Delta$, $\Delta' \in
+  W^\Sigma$ के लिए $R^\Sigma \Delta\Delta'$। हमें $R^\Sigma
+  \Delta'\Delta$, अर्थात्\iftag{prvBox}{ $\Box^{-1}\Delta' \subseteq
+    \Delta$ दिखाना है। \olref[mod]{lem:box-iff-diamond} से यह इसके तुल्य
+    है:}{} $\Diamond\Delta \subseteq \Delta'$। अतः मान लें $!A \in
+  \Delta$। \Ax{B} से $\Box\Diamond!A \in \Delta$ भी। परिकल्पना
+  $R^\Sigma \Delta\Delta'$\iftag{prvBox}{}{ तथा
+    \olref[mod]{lem:box-iff-diamond}} से $\Box^{-1}\Delta \subseteq
+  \Delta'$, और इसलिए अपेक्षानुसार $\Diamond!A \in \Delta'$।
+
+  अब मान लें कि $\Sigma$ में \Ax{4} है, तथा $R^\Sigma
+  \Delta_1\Delta_2$ और $R^\Sigma \Delta_2\Delta_3$। हमें $R^\Sigma
+  \Delta_1\Delta_3$ दिखाना है। परिकल्पना\iftag{prvBox}{}{ और
+    \olref[mod]{lem:box-iff-diamond}} से $\Box^{-1}\Delta_1 \subseteq
+  \Delta_2$ तथा $\Box^{-1}\Delta_2 \subseteq \Delta_3$, दोनों मिलते
+  हैं। $R^\Sigma \Delta_1\Delta_3$ दिखाने के लिए $\Box^{-1}\Delta_1
+  \subseteq \Delta_3$ दिखाना पर्याप्त है। अतः $!B \in
+  \Box^{-1}\Delta_1$, अर्थात् $\Box!B \in \Delta_1$, मान लें। \Ax{4}
+  से $\Box\Box!B \in \Delta_1$ भी; और परिकल्पना से पहले $\Box!B \in
+  \Delta_2$, फिर अपेक्षानुसार $!B \in \Delta_3$ मिलता है।
+
+  अब मान लें कि $\Sigma$ में \Ax{5} है, तथा $R^\Sigma
+  \Delta_1\Delta_2$ और $R^\Sigma \Delta_1\Delta_3$। हमें $R^\Sigma
+  \Delta_2\Delta_3$ दिखाना है। पहली परिकल्पना से $\Box^{-1}\Delta_1
+  \subseteq \Delta_2$\iftag{prvBox}{}{
+    \olref[mod]{lem:box-iff-diamond} के अनुसार}, और दूसरी परिकल्पना
+  $\Diamond\Delta_3 \subseteq \Delta_1$ के तुल्य है\iftag{prvBox}{,
+    \olref[mod]{lem:box-iff-diamond} के अनुसार}{}। $R^\Sigma
+  \Delta_2\Delta_3$ दिखाने के लिए\iftag{prvBox}{,
+    \olref[mod]{lem:box-iff-diamond} से, इतना पर्याप्त है कि}{ हमें}
+  $\Diamond\Delta_3 \subseteq \Delta_2$ दिखाना है। अतः $\Diamond!A \in
+  \Diamond\Delta_3$, अर्थात् $!A \in \Delta_3$, मान लें। दूसरी परिकल्पना
+  से $\Diamond!A \in \Delta_1$, और \Ax{5} से $\Box\Diamond!A \in
+  \Delta_1$ भी। अब पहली परिकल्पना से अपेक्षानुसार $\Diamond!A \in
+  \Delta_2$।
+  \end{proof}
+
+उपप्रमेय के रूप में हमें अनेक तंत्रों के लिए पूर्णता-परिणाम मिलते हैं।
+उदाहरणार्थ, हम जानते हैं कि $\Log{S5} = \Log{KT5} = \Log{KTB4}$ सभी
+स्वपरावर्ती यूक्लिडीय प्रतिरूपों के वर्ग के सापेक्ष पूर्ण है; यह वर्ग सभी
+स्वपरावर्ती, सममित और संक्रमणशील प्रतिरूपों के वर्ग के समान है।
+
+\begin{thm}\ollabel{thm:generaldet}
+  $\mClass{C}_\Ax{D}$, $\mClass{C}_\Ax{T}$,
+  $\mClass{C}_\Ax{B}$, $\mClass{C}_\Ax{4}$, और
+  $\mClass{C}_\Ax{5}$ क्रमशः सभी सीरियल, स्वपरावर्ती, सममित,
+  संक्रमणशील और यूक्लिडीय प्रतिरूपों के वर्ग हों। तब \Ax{D}, \Ax{T},
+  \Ax{B}, \Ax{4}, और \Ax{5} में से किन्हीं स्कीमाओं $!A_1$, \dots,
+  $!A_n$ के लिए, प्रतिरूपों का वर्ग $\mClass{C} =
+  \mClass{C}_{!A_1} \cap \dots \cap \mClass{C}_{!A_n}$ तंत्र
+  $\Log{K}!A_1 \dots !A_n$ को निर्धारित करता है।
+\end{thm}
+
+\begin{prop}
+  मान लें कि $\Sigma$ कोई सामान्य मोडल तर्कशास्त्र है; तब:
+  \begin{enumerate}
+  \item\ollabel{prop:anotherfive-a}%
+    यदि $\Sigma$ में स्कीमा $\Diamond!A \lif \Box !A$ है, तो $\Sigma$
+    का विहित प्रतिरूप आंशिक फलनीय है।
+  \item यदि $\Sigma$ में स्कीमा $\Diamond!A \liff \Box !A$ है, तो
+    $\Sigma$ का विहित प्रतिरूप फलनीय है।
+  \item यदि $\Sigma$ में स्कीमा $\Box\Box!A \lif \Box !A$ है, तो
+    $\Sigma$ का विहित प्रतिरूप दुर्बलतः सघन है।
+  \end{enumerate}
+(इन फ़्रेम-गुणों की परिभाषाओं के लिए
+  \olref[frd][acc]{tab:anotherfive} देखें)।
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item मान लें कि $\Sigma$ में स्कीमा $\Diamond !A \lif \Box !A$ है।
+    $R^\Sigma$ को आंशिक फलनीय दिखाने के लिए हमें सिद्ध करना है कि किन्हीं
+    $\Delta_1$, $\Delta_2$, $\Delta_3 \in W^\Sigma$ के लिए, यदि
+    $R^\Sigma \Delta_1\Delta_2$ और $R^\Sigma \Delta_1\Delta_3$, तो
+    $\Delta_2=\Delta_3$। $R^\Sigma \Delta_1\Delta_2$ से
+    $\Box^{-1}\Delta_1 \subseteq \Delta_2$, और $R^\Sigma
+    \Delta_1\Delta_3$ से $\Box^{-1}\Delta_1 \subseteq
+    \Delta_3$ भी\iftag{prvBox}{}{; दोनों
+      \olref[mod]{lem:box-iff-diamond} से}। यदि हम दोनों समावेशन
+    $\Delta_2 \subseteq \Delta_3$ और $\Delta_3 \subseteq \Delta_2$
+    स्थापित कर सकें, तो $\Delta_2=\Delta_3$ निकलेगा। पहले समावेशन के लिए
+    $!A \in \Delta_2$ मान लें; तब $\Diamond!A \in \Delta_1$, और स्कीमा
+    तथा $\Delta_1$ की निगमनात्मक संवृत्ति से $\Box!A \in \Delta_1$ भी;
+    अतः परिकल्पना $R^\Sigma \Delta_1\Delta_3$ से $!A \in \Delta_3$।
+    दूसरा समावेशन इसी प्रकार मिलता है।
+
+  \item यह भाग~\olref{prop:anotherfive-a} और
+    \olref{thm:completeframeprops} में सीरियलता के प्रमाण से तुरंत निकलता
+    है।
+
+  \item मान लें कि $\Sigma$ में स्कीमा $\Box\Box!A \lif \Box!A$ है, और
+    $R^\Sigma$ को दुर्बलतः सघन दिखाने के लिए $R^\Sigma
+    \Delta_1\Delta_2$ मान लें। हमें दिखाना है कि ऐसा पूर्ण
+    $\Sigma$-संगत समुच्चय $\Delta_3$ है कि $R^\Sigma
+    \Delta_1\Delta_3$ और $R^\Sigma \Delta_3\Delta_2$। रखें:
+    \[
+    \Gamma = \Box^{-1}\Delta_1 \cup \Diamond\Delta_2.
+    \]
+    यह दिखाना पर्याप्त है कि $\Gamma$, $\Sigma$-संगत है, क्योंकि तब
+    लिंडेनबाउम के लेम्मा से इसे ऐसे पूर्ण $\Sigma$-संगत
+    समुच्चय~$\Delta_3$ तक विस्तृत किया जा सकता है कि
+    $\Box^{-1}\Delta_1 \subseteq \Delta_3$ और $\Diamond\Delta_2
+    \subseteq \Delta_3$, अर्थात् $R^\Sigma
+    \Delta_1\Delta_3$\iftag{prvBox}{}{ (
+      \olref[mod]{lem:box-iff-diamond} से)} और $R^\Sigma
+    \Delta_3\Delta_2$\iftag{prvBox}{ (
+      \olref[mod]{lem:box-iff-diamond} से)}{}।
+
+    विरोधाभास के लिए मान लें कि $\Gamma$ संगत नहीं है। तब ऐसे !!{formula}
+    $\Box!A_1$, \dots, $\Box!A_n \in \Delta_1$ और $!B_1$,
+    \dots,~$!B_m \in \Delta_2$ हैं कि \[!A_1, \dots, !A_n,
+    \Diamond!B_1, \dots, \Diamond!B_m \Proves[\Sigma] \lfalse.\]
+    चूँकि $\Diamond (!B_1 \land \dots \land !B_m) \to
+    (\Diamond!B_1 \land \dots \land \Diamond!B_m)$ प्रत्येक सामान्य
+    मोडल तर्कशास्त्र में !!{derivable} है, हम निम्न प्रकार तर्क करते हैं,
+    जिससे $\Delta_2$ की संगति के साथ विरोधाभास मिलता है:
+    \begin{align*}
+      !A_1, \dots, !A_n, & \Diamond!B_1, \dots,
+      \Diamond!B_m \Proves[\Sigma] \lfalse \\
+      !A_1, \dots,!A_n & \Proves[\Sigma] (\Diamond!B_1 \land
+      \dots \land \Diamond!B_m) \lif \lfalse\\
+      & \qquad\text{निगमन प्रमेय से}\\
+      & \qquad\text{\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-deduction}, और \Taut} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \Diamond(!B_1 \land
+      \dots \land !B_m) \lif \lfalse\\
+      & \qquad \text{क्योंकि $\Sigma$ सामान्य है} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \lnot\Diamond (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{\PL{} से} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{$\lnot\Diamond$ के स्थान पर $\Box\lnot$} \\
+      \Box!A_1, \dots,\Box!A_n
+      & \Proves[\Sigma] \Box\Box \lnot (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{\olref[mod]{lem:box1} से} \\
+      \Box!A_1, \dots,\Box!A_n
+      & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      &\qquad\text{स्कीमा $\Box\Box!A \lif \Box!A$ से} \\
+      \Delta_1 & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      &\qquad\text{एकदिष्टता से, \olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-monotonicity}} \\
+      & \Box\lnot (!B_1 \land \dots \land !B_m) \in \Delta_1\\
+      &\qquad\text{निगमनात्मक संवृत्ति से}; \\
+      & \lnot (!B_1 \land \dots \land !B_m) \in \Delta_2\\
+      &\qquad \text{क्योंकि }
+      R^\Sigma \Delta_1\Delta_2. 
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+इन उदाहरणों के आधार पर कोई सोच सकता है कि मोडल तर्कशास्त्र का प्रत्येक
+तंत्र~$\Sigma$ इस अर्थ में \emph{पूर्ण} है कि वह हर ऐसे सूत्र को सिद्ध
+करता है जो उन सभी फ़्रेमों में मान्य है जिनमें $\Sigma$ का प्रत्येक प्रमेय
+मान्य है। दुर्भाग्य से अनेक तंत्र इस अर्थ में पूर्ण नहीं हैं।
+
+\end{document}

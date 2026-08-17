@@ -1,0 +1,275 @@
+% Part: first-order-logic
+% Chapter: models-of-arithmetic
+% Section: models-of-pa
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{mar}{mpa}
+\section{$\Th{PA}$ के प्रतिरूप}
+
+\begin{explain}
+~$\Th{TA}$ का प्रत्येक अमानक प्रतिरूप~$\Th{PA}$ का भी अमानक प्रतिरूप है।
+हम जानते हैं कि~$\Th{TA}$ के, और इसलिए~$\Th{PA}$ के, अमानक प्रतिरूप
+अस्तित्व में हैं। हम यह भी जानते हैं कि ऐसे अमानक प्रतिरूपों में अमानक
+“संख्याएँ” होती हैं, अर्थात् प्रांत के ऐसे !!{element}s जो सभी मानक
+“संख्याओं” के “आगे” होते हैं। किंतु वे किस प्रकार व्यवस्थित हैं? वे कितने
+हैं? हमने देखा है कि दुर्बलतर सिद्धांत~$\Th{Q}$ के प्रतिरूपों में केवल एक
+अमानक संख्या भी हो सकती है। किंतु ये सरल !!{structure}s न~$\Th{PA}$ की
+प्रतिरूप हैं, न~$\Th{TA}$ की।
+
+$\Th{PA}$ या $\Th{TA}$ के प्रतिरूपों की संरचना समझने की कुंजी यह देखना है
+कि इन सिद्धांतों में कौन-से तथ्य !!{derivable} हैं। उदाहरणार्थ, $\Th{PA}$
+पहले ही सिद्ध करता है कि $\lforall[x][\eq/[x][x']]$ और
+$\lforall[x][\lforall[y][\eq[(x+y)][(y+x)]]]$; अतः यह सरल संरचनाओं को
+(जिनमें ये !!{sentence}s असत्य हैं)~$\Th{PA}$ के प्रतिरूप होने से रोकता है।
+
+मान लें कि~$\Struct{M}$,~$\Th{PA}$ का प्रतिरूप है। तब यदि
+$\Th{PA} \Proves
+!A$, तो $\Sat{M}{!A}$। फिर से $\nszero$ का उपयोग
+$\Assign{\Obj{0}}{M}$ के लिए, $\nssucc$ का $\Assign{\prime}{M}$ के लिए,
+$\nsplus$ का $\Assign{+}{M}$ के लिए, $\nstimes$ का
+$\Assign{\times}{M}$ के लिए, और $\nsless$ का $\Assign{<}{M}$ के लिए करें।
+तब कोई भी !!{sentence}~$!A$, $\nszero$,
+$\nssucc$, $\nsplus$, $\nstimes$ और $\nsless$ के बारे में कोई शर्त
+बताता है; यदि $\Sat{M}{!A}$, तो उस शर्त को संतुष्ट होना चाहिए। उदाहरणार्थ,
+यदि $\Sat{M}{!Q_1}$, अर्थात्
+$\Sat{M}{\lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]}$,
+तो $\nssucc$ को !!{injective} होना चाहिए।
+\end{explain}
+
+\begin{prop}
+~$\Struct{M}$ में $\nsless$ एक रैखिक सख्त क्रम है; अर्थात् वह निम्न को
+संतुष्ट करता है:
+\begin{enumerate}
+\item $x \nsless x$ नहीं, किसी भी~$x \in \Domain{M}$ के लिए।
+\item यदि $x \nsless y$ और $y \nsless z$, तो $x \nsless z$।
+\item किसी भी $x \neq y$ के लिए, $x \nsless y$ या $y \nsless x$।
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$\Th{PA}$ निम्न को सिद्ध करता है:
+\begin{enumerate}
+\item $\lforall[x][\lnot x < x]$
+\item $\lforall[x][\lforall[y][\lforall[z][((x < y \land y < z) \lif x < z)]]]$
+\item $\lforall[x][\lforall[y][((x < y \lor y < x) \lor \eq[x][y]))]]$
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:M-discrete} $\nszero$,~$\Domain{M}$ का $\nsless$-क्रम में
+सबसे छोटा !!{element} है। किसी भी $x$ के लिए $x \nsless
+x^\nssucc$, और
+$x^\nssucc$ इस गुण वाला $\nsless$-सबसे छोटा !!{element} है। किसी भी $x$
+के लिए एक अद्वितीय $y$ ऐसा है कि $y^\nssucc = x$। (हम~$y$ को
+~$x$ का,~$\Struct{M}$ में, “पूर्ववर्ती” कहते हैं और इसे~$^\nssucc x$ से
+निरूपित करते हैं।)
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+$\Lang{L_A}$ में ऐसे !!{sentence}s खोजिए जो~$\Th{PA}$ में
+!!{derivable} हों (और इसलिए~$\Struct{N}$ में सत्य हों) तथा
+\olref[mod][mar][mpa]{prop:M-discrete} में $\nszero$, $\nssucc$ और
+$\nsless$ के गुणों को सुनिश्चित करें।
+\end{prob}
+
+\begin{prop}
+~$\Struct{M}$ के सभी मानक !!{element}s, सभी अमानक !!{element}s से
+(~$\nsless$ के अनुसार) छोटे हैं।
+\end{prop}
+
+\begin{proof}
+हम $n$ का उपयोग $\Value{\num{n}}{M}$ के संक्षिप्त रूप में करेंगे, जो
+~$\Struct{M}$ का मानक !!{element} है। $\Th{Q}$ पहले ही सिद्ध करता है कि
+किसी भी~$n
+\in \Nat$ के लिए,
+$\lforall[x][(x < \num{n}' \lif (\eq[x][\num{0}] \lor
+  \eq[x][\num{1}] \lor \dots \lor \eq[x][\num{n}]))]$। कोई भी
+!!{element}, $\nsless \nszero$ नहीं है। इसलिए यदि $n$ मानक और $x$ अमानक
+हो, तो $x \nsless n$ नहीं हो सकता। परिभाषा से, अमानक अवयव वह है जो
+$\Value{\num{n}}{M}$ नहीं है किसी भी~$n
+\in \Nat$ के लिए, इसलिए $x \neq n$ भी।
+चूँकि $\nsless$ एक रैखिक क्रम है, $n \nsless x$ होना आवश्यक है।
+\end{proof}
+
+\begin{prop}
+प्रत्येक अमानक !!{element}~$x$,~$\Domain{M}$ के निम्न उपसमुच्चय का एक अवयव
+है:
+\[
+\dots ^{\nssucc\nssucc\nssucc}x \nsless ^{\nssucc\nssucc}x \nsless
+^{\nssucc}x \nsless x \nsless x^{\nssucc} \nsless x^{\nssucc\nssucc}
+\nsless x^{\nssucc\nssucc\nssucc} \nsless \dots
+\]
+हम इस उपसमुच्चय को \emph{$x$ का खंड} कहते हैं और इसे $[x]$ लिखते हैं।
+इसमें न कोई सबसे छोटा !!{element} है, न कोई सबसे बड़ा। इसे उन
+$y \in \Domain{M}$ के समुच्चय के रूप में अभिलक्षित किया जा सकता है जिनके
+लिए किसी मानक~$n$ पर $x \nsplus n = y$ या $y \nsplus n = x$।
+\end{prop}
+
+\begin{proof}
+स्पष्टतः ऐसा समुच्चय~$[x]$ सदैव अस्तित्व में है, क्योंकि प्रत्येक
+!!{element}~$y$,~$\Domain{M}$ में, एक अद्वितीय परवर्ती~$y^\nssucc$ और एक अद्वितीय
+पूर्ववर्ती~$^\nssucc y$ है। क्रमागत !!{element}s $y$, $y^\nssucc$ के लिए
+$y \nsless y^\nssucc$, और $y^\nssucc$ वह $\nsless$-सबसे छोटा
+!!{element} है~$\Domain{M}$ का, जिससे $y$, $\nsless$-छोटा है। चूँकि
+सदैव $^\nssucc y \nsless y$ और $y \nsless y^\nssucc$, इसलिए $[x]$ में
+न कोई सबसे छोटा !!{element} है, न सबसे बड़ा। यदि $y \in [x]$, तो
+$x \in [y]$, क्योंकि तब या तो $y^{\nssucc\dots\nssucc} = x$ या
+$x^{\nssucc\dots\nssucc} = y$। यदि $y^{\nssucc\dots\nssucc} = x$
+(जिसमें $n$ बार $\nssucc$ है), तो $y \nsplus n = x$, और इसका विलोम भी,
+क्योंकि $\Th{PA} \Proves \lforall[x][\eq[x^{\prime\dots\prime}][(x +
+    \num{n})]]$ (यदि $n$,~$\prime$ की संख्या है)।
+\end{proof}
+
+\begin{prop}
+यदि $[x] \neq [y]$ और $x \nsless y$, तो किसी भी $u \in [x]$ और किसी भी
+$v \in [y]$ के लिए $u \nsless v$।
+\end{prop}
+
+\begin{proof}
+ध्यान दें कि $\Th{PA} \Proves \lforall[x][\lforall[y][(x < y \lif (x' < y
+    \lor x' = y))]]$। अतः यदि $u \nsless v$, तो
+$u \nsplus
+n^\nssucc \nsless v$ भी किसी~$n$ के लिए, यदि $[u] \neq [v]$।
+
+प्रत्येक $u \in [x]$,~$\nsless y$ है: परिकल्पना से $x \nsless y$। यदि $u
+\nsless x$, तो संक्रामकता से $u \nsless y$। और यदि $x \nsless u$, किंतु
+$u
+\in [x]$, तो हमारे पास $u = x\nsplus n^\nssucc$ है किसी~$n$ के लिए, और
+इसलिए अभी सिद्ध किए गए तथ्य से $u
+\nsless y$।
+
+अब मान लें कि कोई $v \in [y]$,~$\nsless y$ है, अर्थात्
+$v \nsplus
+m^\nssucc = y$ किसी मानक~$m$ के लिए। इससे $v \nsless x$ असंभव हो जाता है,
+क्योंकि अन्यथा $y = v \nsplus m^\nssucc \nsless x$। स्पष्टतः
+$x \neq
+v$ भी, क्योंकि अन्यथा
+$x \nsplus m^\nssucc = v \nsplus m^\nssucc = y$ और हमें
+$[x] = [y]$ मिलता। अतः $x \nsless v$। किंतु तब
+$x \nsplus
+n^\nssucc \nsless v$ भी किसी भी~$n$ के लिए। इसलिए यदि $x \nsless u$ और
+$u \in
+[x]$, तो $u \nsless v$। यदि $u \nsless x$, तो संक्रामकता से
+$u \nsless v$।
+
+अंततः यदि $y \nsless v$, तो $u \nsless v$, क्योंकि जैसा हमने दिखाया है, $u
+\nsless y$ और $y \nsless v$।
+\end{proof}
+
+\begin{cor}
+यदि $[x] \neq [y]$, तो $[x] \cap [y] = \emptyset$।
+\end{cor}
+
+\begin{proof}
+मान लें कि $z \in [x]$ और $x \nsless y$। तब $z \nsless u$ सभी $u
+\in [y]$ के लिए। यदि $z \in [y]$, तो $z \nsless z$ होता। $y
+\nsless x$
+की स्थिति में भी इसी प्रकार।
+\end{proof}
+
+\begin{explain}
+इसका अर्थ है कि स्वयं खंडों को ऐसे क्रमित किया जा सकता है जो $\nsless$ का
+सम्मान करे: $[x] \nsless [y]$ तभी और केवल तभी जब $x \nsless y$, अथवा
+समतुल्य रूप से, जब $u \nsless v$ किसी भी $u \in [x]$ और $v \in [y]$ के
+लिए। स्पष्टतः मानक खंड $[0]$ सबसे छोटा खंड है। वह किसी अमानक खंड
+को प्रतिच्छेद नहीं करता, और कोई दो अमानक खंड भी परस्पर प्रतिच्छेद नहीं करते।
+विशेषतः, बार-बार परवर्ती या पूर्ववर्ती लेकर किसी दूसरे खंड तक “पहुँचा” नहीं
+जा सकता।
+\end{explain}
+
+\begin{prop}
+यदि $x$ और $y$ अमानक हैं, तो $x \nsless x \nsplus y$ और $x
+\nsplus y \notin [x]$।
+\end{prop}
+
+\begin{proof}
+यदि $y$ अमानक है, तो $y \neq \nszero$। $\Th{PA} \Proves
+\lforall[x][(y \neq \Obj{0} \lif x < (x+y))]$। अब मान लें कि $x
+\nsplus y \in [x]$। चूँकि $x \nsless x \nsplus y$, हमें $x
+\nsplus n^\nssucc = x \nsplus y$ मिलता। किंतु
+$\Th{PA} \Proves
+\lforall[x][\lforall[y][\lforall[z][(\eq[(x+y)][(x+z)] \lif y = z)]]]$
+(योग के लिए निरसन नियम)। इसका अर्थ होता कि $y = n^\nssucc$ किसी मानक~$n$
+के लिए; किंतु $y$ को अमानक माना गया है।
+\end{proof}
+
+\begin{prop}
+कोई सबसे छोटा अमानक खंड नहीं है।
+\end{prop}
+
+\begin{proof}
+$\Th{PA} \Proves \lforall[x][\lexists[y][(\eq[(y+y)][x] \lor
+      \eq[(y+y)'][x])]]$; अर्थात् प्रत्येक $x$,~$2$ से विभाज्य है
+  (संभवतः शेषफल~$1$ के साथ)। यदि $x$ अमानक है, तो $y$ भी अमानक है। पिछले
+  प्रस्ताव से $y \nsless y \nsplus y$ और $y \nsplus y
+  \notin [y]$। तब $y \nsless (y \nsplus y)^\nssucc$ और $(y
+  \nsplus y)^\nssucc \notin [y]$ भी। किंतु
+  $x = y \nsplus y$ या $x = (y
+  \nsplus y)^\nssucc$, इसलिए
+  $y \nsless x$ और $y \notin [x]$।
+\end{proof}
+
+\begin{prop}
+कोई सबसे बड़ा खंड नहीं है।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+दिखाइए कि~$\Th{PA}$ के किसी अमानक प्रतिरूप में कोई सबसे बड़ा खंड नहीं है।
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:blocks-dense}
+खंडों का क्रम सघन है। अर्थात् यदि $x \nsless y$ और $[x] \neq [y]$, तो
+उनके बीच कोई ऐसा खंड $[z]$ है जो दोनों से भिन्न है।
+\end{prop}
+
+\begin{proof}
+मान लें कि $x \nsless y$। पहले की तरह $x \nsplus y$ दो से विभाज्य है
+(संभवतः शेषफल सहित): कोई $z \in \Domain{M}$ ऐसा है कि या तो
+$x \oplus y = z \oplus z$ या $x \oplus y = (z \oplus
+z)^\nssucc$। अवयव $z$,~$x$ और~$y$ का “औसत” है, और $x
+\nsless z$ तथा
+$z \nsless y$।
+\end{proof}
+
+\begin{prob}
+\olref[mod][mar][mpa]{prop:blocks-dense} का विस्तृत प्रमाण लिखिए।
+कौन-सा !!{sentence} $\Th{PA}$ को !!{derive} करना चाहिए ताकि~$z$ का अस्तित्व
+प्रत्याभूत हो? $x \nsless z$ और $z \nsless y$ क्यों, तथा
+$[x] \neq [z]$ और $[z]
+\neq [y]$ क्यों?
+\end{prob}
+
+\begin{explain}
+इसलिए अमानक खंड परिमेय संख्याओं की तरह क्रमित हैं: वे अंतबिंदु-रहित
+!!a{denumerable} सघन रैखिक क्रम बनाते हैं। यह दिखाया जा सकता है कि ऐसे कोई
+भी दो !!{denumerable} क्रम समरूपी होते हैं। इससे निष्कर्ष निकलता है
+कि सत्य अंकगणित के किन्हीं दो !!{enumerable} अमानक प्रतिरूपों $\Struct{M}_1$ और
+$\Struct{M_2}$ के, केवल $<$ और $=$ वाली भाषा तक न्यूनीकृत रूप समरूपी होते
+हैं। वास्तव में, एक समरूपता $h$
+इस प्रकार परिभाषित की जा सकती है: $\Struct{M_1}$ और $\Struct{M_2}$ के मानक
+भाग मानक प्रतिरूप $\Struct{N}$ के समरूपी हैं और इसलिए परस्पर भी समरूपी हैं।
+अमानक भाग बनाने वाले खंड स्वयं परिमेय संख्याओं की तरह क्रमित हैं और इसलिए
+समरूपी हैं; खंडों की किसी समरूपता को, प्रत्येक खंड के मनमाने अवयवों को आपस
+में मिलाकर और फिर~$x$ के परवर्ती के,~$\Struct{M_1}$ में, प्रतिबिंब को
+~$x$ के प्रतिबिंब का,~$\Struct{M_2}$ में, परवर्ती लेकर, खंडों के
+\emph{भीतर} की समरूपता तक विस्तृत किया जा सकता है। ध्यान दें कि इससे यह
+निष्कर्ष \emph{नहीं} निकलता कि $\mathfrak{M}_1$ और $\mathfrak{M}_2$
+अंकगणित की पूरी भाषा में समरूपी हैं (वास्तव में, समरूपता सदैव किसी
+!!a{language} के सापेक्ष होती है), क्योंकि $\Domain{M_1}$ और
+$\Domain{M_2}$ पर योग तथा गुणन को परिभाषित करने के परस्पर असमरूपी ढंग हैं।
+(यह वॉट के प्रसिद्ध प्रमेय से भी निकलता है कि किसी पूर्ण सिद्धांत के गणनीय
+प्रतिरूपों की संख्या~2 नहीं हो सकती।)
+\end{explain}
+\end{document}

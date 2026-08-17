@@ -1,0 +1,17 @@
+% Target-only propositional-logic profile build wrapper for HI-OLP-0073.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\setlength{\emergencystretch}{2em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रतिज्ञप्ति तर्कशास्त्र: अनुक्रम-कलन की उदाहरण-व्युत्पत्तियाँ}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\tagfalse{FOL}
+\subfile{proving-things}
+\end{document}

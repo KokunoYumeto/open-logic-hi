@@ -1,0 +1,274 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-lk
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{art}{plk}
+\olsection{$\Log{LK}$ में \usetoken{P}{derivation}}
+
+\begin{explain}
+!!{derivation} का अंकगणितीकरण करने के लिए हमें !!{derivation} को संख्याओं के रूप में
+निरूपित करना होगा। चूँकि !!{derivation} ऐसे अनुक्रमों के वृक्ष हैं जिनमें
+प्रत्येक अनुमान के साथ एक नामपत्र भी होता है, पुनरावर्ती निरूपण सबसे स्वाभाविक
+उपाय है: हम किसी !!{derivation} को ऐसे टपल के रूप में निरूपित करते हैं जिसके
+घटक अंतिम अनुक्रम, नामपत्र और अंतिम अनुमान के आधारवाक्यों तक पहुँचाने वाली
+उप-!!{derivation} के निरूपण हैं।
+\end{explain}
+
+\begin{defn}
+यदि $\Gamma$, !!{sentence} का परिमित अनुक्रम है, $\Gamma =
+\tuple{!A_1, \dots, !A_n}$, तो $\Gn{\Gamma} = \tuple{\Gn{!A_1},
+  \dots, \Gn{!A_n}}$।
+
+यदि $\Gamma \Sequent \Delta$ एक अनुक्रम है, तो $\Gamma \Sequent \Delta$ की
+ग्योडेल (G\"odel) संख्या है
+\[
+\Gn{\Gamma \Sequent \Delta} = \tuple{\Gn{\Gamma}, \Gn{\Delta}}
+\]
+
+यदि $\pi$, $\Log{LK}$ में !!a{derivation} है, तो $\Gn{\pi}$ निम्न प्रकार
+परिभाषित है:
+\begin{enumerate}
+\item यदि $\pi$ केवल आरंभिक अनुक्रम $\Gamma \Sequent \Delta$ से बनी है, तो
+  $\Gn{\pi}$ है
+  \[
+    \tuple{0, \Gn{\Gamma \Sequent \Delta}}.
+  \]
+\item यदि $\pi$ एक या दो आधारवाक्यों वाले अनुमान पर समाप्त होती है, उसका
+  निष्कर्ष $\Gamma \Sequent \Delta$ है, और $\pi_1$ तथा $\pi_2$ अंतिम अनुमान
+  के आधारवाक्यों पर समाप्त होने वाले तात्कालिक उपप्रमाण हैं, तो $\Gn{\pi}$
+  क्रमशः है
+  \begin{align*}
+    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ अथवा}\\ 
+    & \tuple{2, \Gn{\pi_1}, \Gn{\pi_2}, \Gn{\Gamma \Sequent \Delta}, k}, 
+  \end{align*}
+  जहाँ अंतिम अनुमान में प्रयुक्त नियम के अनुसार $k$ निम्न सारणी से मिलता है:
+
+  \begin{tabular}{lccccccc}
+    \text{नियम:} & \LeftR{\Weakening} & \RightR{\Weakening} &
+    \LeftR{\Contraction} & \RightR{\Contraction} &
+    \LeftR{\Exchange} & \RightR{\Exchange} \\
+    $k$: & 1 & 2 & 3 & 4 & 5 & 6 \\[2ex]
+    \text{नियम:} & \LeftR{\lnot} & \RightR{\lnot} &
+    \LeftR{\land} & \RightR{\land} & 
+    \LeftR{\lor} & \RightR{\lor} \\
+    $k$: & 7 & 8 & 9 & 10 & 11 & 12 \\[2ex]
+    \text{नियम:} & \LeftR{\lif} & \RightR{\lif} &
+    \LeftR{\lforall} & \RightR{\lforall} &
+    \LeftR{\lexists} & \RightR{\lexists} \\
+    $k$: & 13 & 14 & 15 & 16 & 17 & 18 \\[2ex]
+    \text{नियम:} & \Cut & = \\
+    $k$: & 19 & 20
+  \end{tabular}
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+  इस बहुत सरल !!{derivation} पर विचार करें:
+  \begin{prooftree}
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B \fCenter !A$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\fCenter (!A \land !B) \lif !A$
+  \end{prooftree}
+  आरंभिक अनुक्रम की ग्योडेल (G\"odel) संख्या $p_0 = \tuple{0,
+    \Gn{!A \Sequent !A}}$ होगी।~$\LeftR{\land}$ के निष्कर्ष पर समाप्त होने
+  वाली !!{derivation} की ग्योडेल (G\"odel) संख्या $p_1 = \tuple{1, p_0,
+    \Gn{!A \land !B \Sequent !A}, 9}$ होगी ($1$ इसलिए कि $\LeftR{\land}$ का
+    एक आधारवाक्य है, $!A \land !B \Sequent !A$ निष्कर्ष की ग्योडेल (G\"odel)
+     संख्या है, और $9$,~$\LeftR{\land}$ को कूटित करने वाली संख्या
+    है)। तब संपूर्ण !!{derivation} की ग्योडेल (G\"odel) संख्या
+    $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$ है, अर्थात्
+  \[
+  \tuple{1, \tuple{1, \tuple{0, \Gn{!A \Sequent !A)}}, \Gn{!A \land !B \Sequent !A}, 9},
+    \Gn{\Sequent (!A \land !B) \lif !A}, 14}.
+  \]
+\end{ex}
+
+\begin{explain}
+!!{derivation} का निरूपण तय कर लेने पर हमें यह भी दिखाना होगा कि ऐसी
+!!{derivation} पर आदिम पुनरावर्ती ढंग से क्रियाएँ की जा सकती हैं और उनके
+आवश्यक गुण तथा संबंध भी उसी ढंग से व्यक्त किए जा सकते हैं। कुछ संक्रियाएँ
+सरल हैं: उदाहरणतः किसी !!a{derivation} की ग्योडेल (G\"odel) संख्या~$p$ दिए
+जाने पर $\fn{EndSeq}(p) = (p)_{(p)_0+1}$ उसके अंतिम अनुक्रम की ग्योडेल (G\"odel)
+ संख्या और $\fn{LastRule}(p) = (p)_{(p)_0+2}$ उसके अंतिम नियम का कूट
+देता है। गुण $\fn{Sequent}(s)$, जिसे
+\[
+  \len{s} = 2 \land \bforall{i<\len{(s)_0} + \len{(s)_1}}{\fn{Sent}(((s)_0 \concat (s)_1)_i)}
+\]
+से परिभाषित किया गया है,~$s$ के लिए तभी लागू होता है जब $s$, !!{sentence} से
+बने किसी अनुक्रम की ग्योडेल (G\"odel) संख्या हो। कुछ संक्रियाएँ कहीं अधिक
+कठिन हैं। हम कम-से-कम यह रूपरेखा देंगे कि उन्हें कैसे किया जाए। लक्ष्य यह
+दिखाना है कि ``$\pi$,~$\Gamma$ से~$!A$ की !!a{derivation} है'' संबंध, $\pi$
+और~$!A$ की ग्योडेल (G\"odel) संख्याओं का आदिम पुनरावर्ती संबंध है।
+\end{explain}
+
+\begin{prop}\ollabel{prop:followsby}
+  गुण $\fn{Correct}(p)$, जो तभी लागू होता है जब ग्योडेल (G\"odel) संख्या~$p$
+  वाली !!{derivation}~$\pi$ का अंतिम अनुमान सही हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  $\Gamma \Sequent \Delta$ आरंभिक अनुक्रम है यदि या तो कोई !!a{sentence}~$!A$
+  ऐसा है कि $\Gamma \Sequent \Delta$, $!A \Sequent !A$ है, अथवा कोई पद~$t$
+  ऐसा है कि $\Gamma \Sequent \Delta$, $\emptyset \Sequent \eq[t][t]$ है।
+  ग्योडेल (G\"odel) संख्याओं के पदों में $\fn{InitSeq}(s)$ लागू होता है यदि
+  और केवल यदि
+  \begin{align*}
+  \bexists{x < s}{} (\fn{Sent}(x) & \land
+  s = \tuple{\tuple{x},\tuple{x}})
+  \lor {}\\
+  \bexists{t<s}{} (\fn{Term}(t) & \land
+  s = \tuple{0, \tuple{\Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)}}}).
+  \end{align*}
+
+  हमें यह भी दिखाना है कि प्रत्येक अनुमान-नियम~$R$ के लिए संबंध
+  $\fn{FollowsBy}_R(p)$ आदिम पुनरावर्ती है, जहाँ $\fn{FollowsBy}_R(p)$ तभी
+  लागू होता है जब $p$, !!{derivation}~$\pi$ की ग्योडेल (G\"odel) संख्या हो और
+  ~$\pi$ का अंतिम अनुक्रम,~$\pi$ की तात्कालिक उप-!!{derivation} से~$R$ के सही
+  अनुप्रयोग द्वारा फलित हो।
+
+  एक सरल स्थिति \RightR{\land} नियम की है। यदि $\pi$ किसी सही
+  $\RightR{\land}$ अनुमान पर समाप्त होती है, तो वह ऐसी दिखती है:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma \fCenter \Delta, !B$
+
+    \RightLabel{\RightR\land}
+    \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
+  \end{prooftree}
+  अतः !!{derivation} $\pi$ का अंतिम अनुमान $\RightR{\land}$ का सही अनुप्रयोग
+  है यदि और केवल यदि !!{sentence} के ऐसे अनुक्रम $\Gamma$ और $\Delta$ तथा
+  ऐसे दो !!{sentence} $!A$ और~$!B$ हैं कि $\pi_1$ का अंतिम अनुक्रम $\Gamma
+  \Sequent \Delta, !A$, $\pi_2$ का अंतिम अनुक्रम $\Gamma \Sequent \Delta,
+  !B$, और $\pi$ का अंतिम अनुक्रम $\Gamma \Sequent \Delta, !A \land !B$ है।
+  हमें इसे केवल ग्योडेल (G\"odel) संख्याओं में अनूदित करना है। यदि $s =
+  \Gn{\Gamma \Sequent \Delta}$, तो $(s)_0 = \Gn{\Gamma}$ और $(s)_1 =
+  \Gn{\Delta}$। अतः $\fn{FollowsBy}_{\RightR{\land}}(p)$ लागू होता है यदि
+  और केवल यदि
+\begin{align*}
+& \bexists{g < p}{\bexists{d < p}{\bexists{a < p}{\bexists{b < p}{\quad}}}} \\
+& \qquad \fn{EndSequent}(p) = 
+  \tuple{g, d \concat 
+    \tuple{\Gn{(} \concat a \concat \Gn{\land} \concat b \concat \Gn{)}}} \land {} \\
+& \qquad \fn{EndSequent}((p)_1) = \tuple{g, d \concat \tuple{a}} \land {}\\
+& \qquad \fn{EndSequent}((p)_2) = \tuple{g, d \concat \tuple{b}} \land {}\\
+& \qquad (p)_0 = 2 \land \fn{LastRule}(p) = 10.
+\end{align*}
+अलग-अलग पंक्तियाँ क्रमशः व्यक्त करती हैं कि ``ग्योडेल (G\"odel) संख्या~$g$
+वाला अनुक्रम~($\Gamma$), ग्योडेल (G\"odel) संख्या~$d$ वाला अनुक्रम~($\Delta$),
+ग्योडेल (G\"odel) संख्या~$a$ वाला !!a{formula}~($!A$), और ग्योडेल (G\"odel)
+संख्या~$b$ वाला !!a{formula}~($!B$) है'', ऐसे कि ``$\pi$ का अंतिम अनुक्रम
+$\Gamma \Sequent \Delta, !A \land !B$ है'', ``$\pi_1$ का अंतिम अनुक्रम
+$\Gamma \Sequent \Delta, !A$ है'', ``$\pi_2$ का अंतिम अनुक्रम $\Gamma
+\Sequent \Delta, !B$ है'', और ``$\pi$ की दो तात्कालिक उपव्युत्पत्तियाँ हैं
+तथा अंतिम अनुमान-नियम $\RightR\land$ (संख्या~$10$ वाला) है''।
+
+~$\pi$ का अंतिम अनुमान $\RightR\lexists$ का सही अनुप्रयोग है यदि और केवल यदि
+ऐसे अनुक्रम $\Gamma$ और $\Delta$, !!a{formula}~$!A$, चर~$x$ और पद~$t$ हैं कि
+$\pi$ का अंतिम अनुक्रम $\Gamma \Sequent \Delta, \lexists[x][!A]$ और
+$\pi_1$ का अंतिम अनुक्रम $\Gamma \Sequent \Delta, \Subst{!A}{t}{x}$ है। अतः
+ग्योडेल (G\"odel) संख्याओं के पदों में $\fn{FollowsBy}_{\RightR\lexists}(p)$
+लागू होता है यदि और केवल यदि
+\begin{align*}
+  & \bexists{g<p}{\bexists{d<p}{\bexists{a<p}{\bexists{x<p}{\bexists{t<p}{\quad}}}}}\\
+  & \qquad \fn{EndSequent}(p) = 
+  \tuple{
+    g,
+    d \concat \tuple{\Gn{\lexists} \concat x \concat a}
+  } \land {}\\
+  & \qquad \fn{EndSequent}((p)_1) = 
+  \tuple{
+    g,
+    d \concat \tuple{\fn{Subst}(a, t, x)}
+  } \land {}\\
+  & \qquad (p)_0 = 1 \land \fn{LastRule}(p) = 18.
+\end{align*}
+तब हम $\fn{Correct}(p)$ को इस प्रकार परिभाषित करते हैं:
+\begin{multline*}
+  \fn{Sequent}(\fn{EndSequent}(p)) \land {}\\ 
+  [(\fn{LastRule}(p) = 1 \land 
+  \fn{FollowsBy}_{\LeftR\Weakening}(p)) \lor \dots \lor {}\\
+  (\fn{LastRule}(p) = 20 \land \fn{FollowsBy}_{\eq}(p)) \lor {}\\
+  (p)_0 = 0 \land \fn{InitialSeq}(\fn{EndSequent}(p))]
+\end{multline*}
+पहली पंक्ति सुनिश्चित करती है कि~$d$ का अंतिम अनुक्रम वास्तव में !!{sentence}
+से बना अनुक्रम है। अंतिम पंक्ति उस स्थिति को समेटती है जिसमें $p$ केवल एक
+आरंभिक अनुक्रम है।
+\end{proof}
+
+\begin{prob}
+  \olref[inc][art][plk]{prop:followsby} की भाँति निम्न गुण परिभाषित करें:
+  \begin{enumerate}
+  \item $\fn{FollowsBy}_{\Cut}(p)$,
+  \item $\fn{FollowsBy}_{\LeftR\lif}(p)$,
+  \item $\fn{FollowsBy}_{\eq}(p)$,
+  \item $\fn{FollowsBy}_{\RightR{\lforall}}(p)$।
+  \end{enumerate}
+  अंतिम गुण के लिए आपको यह भी दिखाना होगा कि आदिम पुनरावर्ती ढंग से जाँचा
+  जा सकता है कि ग्योडेल (G\"odel) संख्या~$p$ वाली !!{derivation} का अंतिम
+  अनुमान स्वचर-शर्त पूरी करता है या नहीं; अर्थात् $\RightR{\lforall}$ का
+  स्वचर~$a$ अंतिम अनुक्रम में नहीं आता।
+  \end{prob}
+  
+
+\begin{prop}
+  \ollabel{prop:deriv}
+  संबंध $\fn{Deriv}(p)$, जो तब लागू होता है जब $p$ किसी सही
+  !!{derivation}~$\pi$ की ग्योडेल (G\"odel) संख्या हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  !!^a{derivation}~$\pi$ तब सही है जब उसका प्रत्येक अनुमान किसी नियम का सही
+  अनुप्रयोग हो; अर्थात् उसकी प्रत्येक उप-!!{derivation} किसी सही अनुमान पर
+  समाप्त हो। अतः $\fn{Deriv}(d)$ यदि और केवल यदि
+  \[
+  \bforall{i<\len{\fn{SubtreeSeq}(p)}}{\fn{Correct}((\fn{SubtreeSeq}(p))_i}.
+  \]
+\end{proof}
+
+
+\begin{prop}
+मान लें कि $\Gamma$, !!{sentence} का आदिम पुनरावर्ती समुच्चय है। तब यह
+व्यक्त करने वाला संबंध $\Prf[\Gamma](x, y)$ कि ``किसी परिमित $\Gamma_0
+\subseteq \Gamma$ के लिए $x$,~$\Gamma_0 \Sequent !A$ की
+!!a{derivation}~$\pi$ का कूट है और $y$,~$!A$ की ग्योडेल (G\"odel) संख्या
+है'', आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+मान लें कि ``$y \in \Gamma$'' आदिम पुनरावर्ती विधेय~$R_\Gamma(y)$ से दिया
+गया है। हमें दिखाना है कि $\Prf[\Gamma](x, y)$ आदिम पुनरावर्ती है, जो तब
+लागू होता है जब $y$ किसी वाक्य~$!A$ की ग्योडेल (G\"odel) संख्या हो और $x$,
+अंतिम अनुक्रम $\Gamma_0 \Sequent !A$ वाली किसी $\Log{LK}$-!!{derivation} का
+कूट हो।
+
+पिछली प्रतिज्ञप्ति के अनुसार गुण $\fn{Deriv}(x)$, जो तभी लागू होता है जब $x$,
+$\Log{LK}$ में किसी सही !!{derivation}~$\pi$ का कूट हो, आदिम पुनरावर्ती है।
+यदि $x$ ऐसा कूट है, तो $\fn{EndSequent}(x)$,~$\pi$ के अंतिम अनुक्रम का कूट
+है; इसलिए $(\fn{EndSequent}(x))_0$ अंतिम अनुक्रम के बाएँ पक्ष का कूट और
+$(\fn{EndSequent}(x))_1$ दाएँ पक्ष का कूट है। अतः हम ``~$\pi$ के अंतिम
+अनुक्रम का दायाँ पक्ष~$!A$ है'' को $\len{(\fn{EndSequent}(x))_1} = 1 \land
+((\fn{EndSequent}(x))_1)_0 = x$ से व्यक्त कर सकते हैं। $\pi$ के अंतिम अनुक्रम
+का बायाँ पक्ष निस्संदेह स्वतः परिमित है; हमें केवल यह व्यक्त करना है कि उसमें
+प्रत्येक वाक्य~$\Gamma$ में है। इस प्रकार हम $\Prf[\Gamma](x, y)$ को परिभाषित
+कर सकते हैं:
+\begin{align*}
+\Prf[\Gamma](x, y) \defiff {}&
+\fn{Deriv}(x) \land {} \\
+& \bforall{i <
+  \len{(\fn{EndSequent}(x))_0}}{R_\Gamma(((\fn{EndSequent}(x))_0)_i)} \land {}\\
+& \len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 = y.
+\end{align*}
+\end{proof}
+
+\end{document}

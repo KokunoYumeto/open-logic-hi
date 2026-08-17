@@ -1,0 +1,113 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: representable-comp
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{req}{rpc}
+\olsection{$\Th{Q}$ में निरूपणीय फलन संगणनीय हैं}
+
+हम सिद्ध करेंगे कि~$\Th{Q}$ में निरूपणीय प्रत्येक फलन संगणनीय है। पहले
+हमें~$\Th{Q}$ में निरूपणीय फलनों के बारे में एक उपपत्ति स्थापित करनी होगी।
+
+\begin{lem}\ollabel{lem:rep-q}
+  यदि $f(x_0, \dots, x_k)$,~$\Th{Q}$ में निरूपणीय है, तो कोई
+  !!a{formula}~$!A(x_0, \dots, x_k, y)$ ऐसा है कि
+  \[
+  \Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{m})
+  \quad\text{तभी और केवल तभी जब}\quad m = f(n_0, \dots, n_k).
+  \]
+\end{lem}
+
+\begin{proof}
+  ``यदि'' भाग
+  \olref[int]{defn:representable-fn}\olref[int]{defn:rep:a} है। ``केवल
+  यदि'' भाग इस प्रकार मिलता है: मान लें कि
+  $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$, किंतु
+  $m \neq f(n_0, \dots, n_k)$। मानें $l = f(n_0, \dots, n_k)$।
+  \olref[int]{defn:representable-fn}\olref[int]{defn:rep:a} के अनुसार
+  $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{l})$।
+  \olref[int]{defn:representable-fn}\olref[int]{defn:rep:b} के अनुसार
+  $\lforall[y][(!A_f(\num{n_0}, \dots, \num{n_k}, y) \lif \num{l} =
+  y)]$। तर्कशास्त्र और इस मान्यता का उपयोग करके कि
+  $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$, हमें
+  मिलता है कि $\Th{Q} \Proves \eq[\num{l}][\num{m}]$। दूसरी ओर,
+  \olref[bre]{lem:q-proves-neq} के अनुसार
+  $\Th{Q} \Proves \eq/[\num{l}][\num{m}]$। अतः $\Th{Q}$ असंगत है। किंतु
+  यह असंभव है, क्योंकि $\Th{Q}$ मानक प्रतिरूप द्वारा संतुष्ट होता है
+  (देखें \olref[int][def]{def:standard-model}), $\Sat{N}{\Th{Q}}$, और
+  सुदृढ़ता प्रमेय के अनुसार संतुष्टनीय सिद्धांत सदैव संगत होते हैं
+  (\tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+prfSC/{fol:seq:sou:cor:consistency-soundness},
+prfND/{fol:ntd:sou:cor:consistency-soundness},
+prfTab/{fol:tab:sou:cor:consistency-soundness}})।
+\end{proof}
+
+\begin{lem}
+$\Th{Q}$ में निरूपणीय प्रत्येक फलन संगणनीय है।
+\end{lem}
+
+\begin{proof}
+पहले यह सत्य क्यों है, इसका सहज विचार दें। $f$ को संगणित करने के लिए हम
+यह करते हैं। अंकगणित की भाषा में सभी संभव !!{derivation}s~$\delta$ की सूची
+बनाएँ। यह यांत्रिक रूप से किया जा सकता है। प्रत्येक के लिए जाँचें कि क्या
+वह $!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$ रूप के किसी
+!!a{formula} की !!a{derivation} है (अर्थात् \olref{lem:rep-q} का वह
+!!{formula} जो~$\Th{Q}$ में $f$ का निरूपण करता है)। यदि हाँ, तो
+\olref{lem:rep-q} के अनुसार $m = f(n_0, \dots, n_k)$, और हमें~$f$ का मान
+मिल गया है। खोज समाप्त होती है, क्योंकि
+$\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$; अतः अंततः हमें सही प्रकार का कोई~$\delta$ मिल
+जाता है।
+
+यह अभी पूरी तरह सटीक नहीं है, क्योंकि हमारी प्रक्रिया केवल संख्याओं के
+स्थान पर !!{derivation}s और !!{formula}s पर काम करती है, और हमने ठीक-ठीक
+यह नहीं बताया कि ``सभी संभव !!{derivation}s की सूची बनाना'' यांत्रिक रूप
+से क्यों संभव है। किंतु जैसा हमने देखा है, पदों, !!{formula}s और
+!!{derivation}s को ग्योडेल (G\"odel) संख्याओं से कूटबद्ध किया जा सकता है।
+हमने संगणना का एक सटीक प्रतिरूप---सामान्य पुनरावर्ती फलन---भी प्रस्तुत
+किया है। और हमने देखा है कि संबंध $\Prf[\Th{Q}](d,y)$ (जो तभी लागू होता है
+जब $d$,~$\Th{Q}$ के अभिगृहीतों से ग्योडेल (G\"odel) संख्या~$y$ वाले
+!!{formula} की !!a{derivation} की ग्योडेल (G\"odel) संख्या हो) (आदिम)
+पुनरावर्ती है। हमें जिन अन्य आदिम पुनरावर्ती फलनों की आवश्यकता होगी, वे
+$\fn{num}$ (\olref[art][trm]{prop:num-primrec}) और $\fn{Subst}$
+(\olref[art][sub]{prop:subst-primrec}) हैं। इनसे~$f$ को न्यूनीकरण द्वारा
+परिभाषित किया जा सकता है; अतः $f$ पुनरावर्ती है।
+
+पहले परिभाषित करें
+\begin{multline*}
+  A(n_0, \dots, n_k, m) = \\
+  \fn{Subst}(\fn{Subst}(\dots\fn{Subst}(\Gn{!A_f}, \fn{num}(n_0), \Gn{x_0}),\\ \dots),
+  \fn{num}(n_k),  \Gn{x_k}), \fn{num}(m), \Gn{y}).
+\end{multline*}
+यह जटिल दिखता है, किंतु यह केवल फलन
+$A(n_0, \dots, n_k, m) =
+\Gn{!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})}$ है।
+
+अब संबंध~$R(n_0, \dots, n_k, s)$ पर विचार करें, जो तब लागू होता है जब
+$(s)_0$,~$\Th{Q}$ से
+$!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$ की !!a{derivation} की
+ग्योडेल (G\"odel) संख्या हो:
+\[
+R(n_0, \dots, n_k, s) \quad\text{तभी और केवल तभी जब}\quad
+\Prf[\Th{Q}]((s)_0, A(n_0, \dots, n_k, (s)_1))
+\]
+यदि हमें ऐसा~$s$ मिल जाए जिसके लिए $R(n_0, \dots, n_k, s)$ लागू हो, तो
+हमें संख्याओं का ऐसा युग्म---$(s)_0$ और~$(s)_1$---मिल गया है जिसमें
+$(s)_0$,~$A_f(\num{n_0}, \dots, \num{n_k}, (s)_1)$ की
+!!a{derivation} की ग्योडेल (G\"odel) संख्या है। अतः~$s$ को खोजना अनौपचारिक
+प्रमाण के $d$ और~$m$ युग्म को खोजने जैसा है। ऐसे~$s$ को ``खोजने वाला''
+संगणनीय फलन नियमित न्यूनीकरण द्वारा परिभाषित किया जा सकता है। ध्यान दें कि
+$R$ नियमित है: प्रत्येक $n_0$, \dots, $n_k$ के लिए
+$\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$ की कोई !!a{derivation}~$\delta$ है; इसलिए
+$s = \tuple{\Gn{\delta}, f(n_0, \dots, n_k)}$ के लिए
+$R(n_0, \dots, n_k, s)$ लागू होता है। अतः हम~$f$ को इस प्रकार लिख सकते हैं:
+\[
+f(n_0,\dots,n_{k}) = (\umin{s}{R(n_0, \dots, n_k, s)})_1.
+\]
+\end{proof}
+
+\end{document}

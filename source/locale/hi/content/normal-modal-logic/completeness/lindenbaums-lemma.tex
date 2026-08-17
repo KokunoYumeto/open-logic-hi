@@ -1,0 +1,104 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{com}{lin}
+
+\olsection{लिंडेनबाउम का लेम्मा}
+
+लिंडेनबाउम का लेम्मा स्थापित करता है कि !!{formula}ों का प्रत्येक
+$\Sigma$-संगत समुच्चय कम-से-कम एक \emph{पूर्ण} $\Sigma$-संगत समुच्चय में
+समाहित होता है। विहित प्रतिरूप का हमारा निर्माण दिखाएगा कि प्रत्येक पूर्ण
+$\Sigma$-संगत समुच्चय~$\Delta$ के लिए विहित प्रतिरूप में ऐसा जगत है जहाँ
+ठीक $\Delta$ के सभी !!{formula} सत्य हैं। अतः लिंडेनबाउम का लेम्मा प्रत्याभूत
+करता है कि प्रत्येक $\Sigma$-संगत समुच्चय विहित प्रतिरूप के किसी जगत पर
+सत्य है।
+
+\begin{thm}[लिंडेनबाउम का लेम्मा]\ollabel{thm:lindenbaum}
+  यदि $\Gamma$, $\Sigma$-संगत है, तो $\Gamma$ को विस्तृत करने वाला कोई
+  पूर्ण $\Sigma$-संगत समुच्चय $\Delta$ है।
+\end{thm}
+
+\begin{proof}
+मान लें कि $!A_0$, $!A_1$, \dots{} भाषा के सभी सूत्रों की समग्र सूची है
+(पुनरावृत्तियाँ अनुमत हैं)। उदाहरणार्थ, सूची को $\Obj p_0$ से आरंभ करें,
+और प्रत्येक चरण $n \ge 1$ पर केवल $\Obj p_0$, \dots,~$\Obj p_n$ में से
+चरों का उपयोग करने वाले लंबाई~$n$ के परिमिततः अनेक सूत्र सूचीबद्ध करें।
+हम $n$ पर आगमन से !!{formula}ों के समुच्चय $\Delta_n$ परिभाषित करते हैं और
+फिर $\Delta = \bigcup_n \Delta_n$ रखते हैं। पहले $\Delta_0 = \Gamma$
+रखें। मान लें कि $\Delta_n$ परिभाषित हो चुका है; तब $\Delta_{n+1}$ को इस
+प्रकार परिभाषित करते हैं:
+\[
+\Delta_{n+1} =
+\begin{cases}
+  \Delta_n \cup \{!A_n\}, & \text{यदि $\Delta_n \cup \{ !A_n\}$
+    $\Sigma$-संगत है;} \\
+  \Delta_n \cup \{ \lnot !A_n\}, & \text{अन्यथा।}
+\end{cases}
+\]
+अब $\Delta = \bigcup_{n=0}^\infty \Delta_n$ रखें।
+
+हमें दिखाना है कि यह परिभाषा वास्तव में अपेक्षित गुणों वाला समुच्चय
+$\Delta$ देती है, अर्थात् $\Gamma \subseteq \Delta$ और $\Delta$ पूर्ण
+$\Sigma$-संगत है।
+
+स्पष्ट है कि $\Gamma \subseteq \Delta$, क्योंकि निर्माण से $\Delta_0
+\subseteq \Delta$, और $\Delta_0 = \Gamma$। वास्तव में प्रत्येक~$n$ के
+लिए $\Delta_n \subseteq \Delta$, क्योंकि $\Delta$ सभी~$\Delta_n$ का
+सम्मिलन है। (निर्माण के प्रत्येक चरण में हम पहले से बने समुच्चय में
+!!a{formula} जोड़ते हैं, इसलिए $\Delta_n \subseteq \Delta_{n+1}$; और
+$\subseteq$ के संक्रमणशील होने से जब भी $n \le m$, तब $\Delta_n
+\subseteq \Delta_m$।) निर्माण के प्रत्येक चरण में हम $!A_n$ या $\lnot
+!A_n$ में से एक जोड़ते हैं, और प्रत्येक !!{formula} सभी~$!A_n$ की सूची में
+(कम-से-कम एक बार) आता है। अतः प्रत्येक $!A$ के लिए या तो $!A \in
+\Delta$, या $\lnot !A \in \Delta$; इसलिए परिभाषा से $\Delta$ पूर्ण है।
+
+अंततः हमें दिखाना है कि $\Delta$, $\Sigma$-संगत है। इसके लिए हम दिखाते
+हैं कि (क) यदि $\Delta$, $\Sigma$-असंगत होता, तो कोई $\Delta_n$ भी
+$\Sigma$-असंगत होता, और (ख) सभी $\Delta_n$, $\Sigma$-संगत हैं।
+
+मान लें कि $\Delta$, $\Sigma$-असंगत है। तब $\Delta \Proves[\Sigma]
+\lfalse$, अर्थात् ऐसे $!A_1$, \dots,~$!A_k \in \Delta$ हैं कि $\Sigma
+\Proves !A_1 \lif (!A_2 \lif \cdots (!A_k \lif \lfalse)\dots)$। चूँकि
+$\Delta = \bigcup_{n=0}^\infty \Delta_n$, प्रत्येक $!A_i$ किसी~$n_i$ के
+लिए $\Delta_{n_i}$ में है। इन $n_i$ में सबसे बड़े को $n$ मानें। चूँकि
+$n_i \le n$, इसलिए $\Delta_{n_i} \subseteq \Delta_n$। अतः सभी $!A_i$
+किसी एक~$\Delta_n$ में हैं। इसका अर्थ होगा $\Delta_n \Proves[\Sigma]
+\lfalse$, अर्थात् $\Delta_n$, $\Sigma$-असंगत है।
+
+प्रत्येक $\Delta_n$ की $\Sigma$-संगति दिखाने के लिए हम $n$ पर सरल आगमन
+का उपयोग करते हैं। $\Delta_0 = \Gamma$, और हमने माना था कि $\Gamma$,
+$\Sigma$-संगत है। अतः दावा $n = 0$ के लिए सत्य है। अब मान लें कि वह $n$
+के लिए सत्य है, अर्थात् $\Delta_n$, $\Sigma$-संगत है। यदि $\Delta_n \cup
+\{!A_n\}$, $\Sigma$-संगत है तो $\Delta_{n+1}$ यही है; अन्यथा वह
+$\Delta_n \cup \{\lnot!A_n\}$ है। पहली स्थिति में $\Delta_{n+1}$
+स्पष्टतः $\Sigma$-संगत है। किंतु
+\olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-c}
+के अनुसार $\Delta_n \cup \{!A_n\}$ और $\Delta_n \cup \{\lnot!A_n\}$
+में से कोई एक संगत है, इसलिए दूसरी स्थिति में भी $\Delta_{n+1}$ संगत है।
+\end{proof}
+
+\begin{cor}\ollabel{cor:provability-characterization}
+  $\Gamma \Proves[\Sigma] !A$ तभी जब $\Gamma$ को विस्तृत करने वाले
+  प्रत्येक पूर्ण $\Sigma$-संगत समुच्चय $\Delta$ के लिए $!A \in \Delta$
+  (इसमें $\Gamma = \emptyset$ की स्थिति भी है, जिसमें हमें मोडल तंत्र
+  $\Sigma$ का एक और अभिलक्षण मिलता है)।
+\end{cor}
+
+\begin{proof}
+  मान लें $\Gamma \Proves[\Sigma] !A$, और $\Delta$, $\Gamma$ को विस्तृत
+  करने वाला कोई पूर्ण $\Sigma$-संगत समुच्चय हो। यदि $!A \notin \Delta$,
+  तो अधिकतमता से $\lnot!A \in \Delta$; और इसलिए $\Delta
+  \Proves[\Sigma] !A$ (एकदिष्टता से) तथा $\Delta \Proves[\Sigma]
+  \lnot!A$ (स्वपरावर्तिता से), अतः $\Delta$ असंगत है। विलोमतः, यदि
+  $\Gamma \Proves/[\Sigma] !A$, तो $\Gamma \cup \{ \lnot!A\}$,
+  $\Sigma$-संगत है; और लिंडेनबाउम के लेम्मा से $\Gamma \cup \{ \lnot!A
+  \}$ को विस्तृत करने वाला कोई पूर्ण संगत समुच्चय $\Delta$ है। संगति से
+  $!A \notin \Delta$।
+\end{proof}
+
+\end{document}

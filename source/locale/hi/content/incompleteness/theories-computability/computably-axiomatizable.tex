@@ -1,0 +1,38 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: computably-axiomatizable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{tcp}{cax}
+
+\olsection{\printtoken{S}{axiomatizable} सिद्धांत}
+
+कोई सिद्धांत $\Th{T}$ \emph{!!{axiomatizable}} कहलाता है यदि उसके पास
+अभिगृहीतों का कोई संगणनीय समुच्चय~$A$ हो। ($A$ को $\Th{T}$ के अभिगृहीतों
+का समुच्चय कहने का अर्थ है
+$T = \Setabs{!A}{A \Proves !A}$।) प्राकृतिक संख्याओं के प्रत्येक
+``उचित'' अभिगृहीतीकरण में यह गुण होगा। विशेषतः, अभिगृहीतों के परिमित
+समुच्चय वाला प्रत्येक सिद्धांत !!{axiomatizable} है।
+
+\begin{lem}
+मान लें $\Th{T}$,~!!{axiomatizable} है। तब $\Th{T}$,~!!{computably
+enumerable} है।
+\end{lem}
+
+\begin{proof}
+मान लें $A$,~$\Th{T}$ के अभिगृहीतों का कोई संगणनीय समुच्चय है। यह निर्धारित
+करने के लिए कि $!A \in T$ है या नहीं, अभिगृहीतों से~$!A$ की किसी
+!!a{derivation} की खोज करें।
+
+कुछ भिन्न शब्दों में, $!A$,~$\Th{T}$ में तभी और केवल तभी है जब $A$ में
+अभिगृहीतों $!B_1$, \dots, $!B_k$ की कोई परिमित सूची और प्रथम-कोटि
+तर्कशास्त्र में $(!B_1 \land \dots \land !B_k) \lif !A$ की कोई
+!!a{derivation} हो। किंतु हम पहले ही जानते हैं कि ``कोई \dots ऐसा है कि
+\dots'' रूप की परिभाषा वाला प्रत्येक समुच्चय~!!{c.e.} है, बशर्ते दूसरा
+``\dots'' संगणनीय हो।
+\end{proof}
+
+\end{document}

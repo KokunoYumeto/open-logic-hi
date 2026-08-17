@@ -1,0 +1,175 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: schemas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{sch}
+
+\olsection{स्कीमाएँ और मान्यता}
+
+\begin{defn}
+  \emph{स्कीमा} !!{formula}ों का ऐसा समुच्चय है जिसमें किसी मोडल
+  !!{formula}~$!C$ के सभी और केवल प्रतिस्थापन-दृष्टांत होते हैं, अर्थात्
+  \[
+  \Setabs{!B}{\lexists[!D_1], \dots, \lexists[!D_n] \left(!B =
+  \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \right) }.
+  \]
+  !!{formula}~$!C$ स्कीमा का \emph{अभिलाक्षणिक} !!{formula} कहलाता है और
+  !!{propositional variable}ों के पुनर्नामकरण तक अद्वितीय है। कोई !!{formula}~$!A$
+  किसी स्कीमा का \emph{दृष्टांत} है यदि वह उस समुच्चय का सदस्य हो।
+\end{defn}
+
+$!C$ के परमाण्विक अवयवों के स्थान पर `$!A$', `$!B$',~\dots, रखकर मिलने
+वाले अधिभाषिक व्यंजक से किसी स्कीमा को निरूपित करना सुविधाजनक है।
+उदाहरणार्थ, ये स्कीमाओं को निरूपित करते हैं: `$!A$',
+`$!A \lif \Box!A$', `$!A \lif (!B \lif !A)$'। इनके संगत अभिलाक्षणिक
+!!{formula} $p$, $p \lif \Box p$, $p \lif (q \lif p)$ हैं। स्कीमा `$!A$'
+\emph{सभी} !!{formula}ों के समुच्चय को निरूपित करती है।
+
+\begin{defn}
+  कोई स्कीमा किसी प्रतिरूप में \emph{सत्य} तभी है जब उसके सभी दृष्टांत सत्य
+  हों; और कोई स्कीमा \emph{मान्य} तभी है जब वह प्रत्येक प्रतिरूप में सत्य हो।
+\end{defn}
+
+\begin{prop}\ollabel{prop:Kvalid}
+  निम्न स्कीमा \Ax{K} मान्य है:
+  \begin{equation*}
+  \Box(!A \lif !B) \lif (\Box !A \lif \Box !B). \tag{\Ax{K}}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  हमें दिखाना है कि स्कीमा के सभी दृष्टांत प्रत्येक प्रतिरूप के प्रत्येक
+  जगत पर सत्य हैं। इसलिए $\mModel{M} = \tuple{W,R,V}$ और $w \in W$ को
+  स्वेच्छ मानें। किसी जगत पर सशर्त की सत्यता दिखाने के लिए हम पूर्ववर्ती को
+  सत्य मानकर दिखाते हैं कि अनुवर्ती भी सत्य है। इस मामले में मान लें
+  $\mSat{M}{\Box(!A \lif !B)}[w]$ और $\mSat{M}{\Box !A}[w]$। हमें
+  $\mSat{M}{\Box !B}[w]$ दिखाना है। अतः कोई $Rww'$ वाला स्वेच्छ $w'$ लें।
+  पहली धारणा से $\mSat{M}{!A \lif !B}[w']$ और दूसरी धारणा से
+  $\mSat{M}{!A}[w']$। इससे $\mSat{M}{!B}[w']$ मिलता है। चूँकि $w'$ स्वेच्छ
+  था, $\mSat{M}{\Box !B}[w]$।
+\end{proof}
+
+\begin{prop}\ollabel{prop:Dual-valid}
+  निम्न स्कीमा \Dual{} मान्य है:
+  \begin{equation*}
+  \Diamond !A \liff \lnot\Box\lnot !A. \tag{\Dual}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[nml][syn][sch]{prop:Dual-valid} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}\ollabel{prop:soundMP}
+  यदि किसी प्रतिरूप के किसी जगत पर $!A$ और $!A \lif !B$ सत्य हैं, तो $!B$
+  भी सत्य है। अतः मान्य !!{formula} मोडस पोनेन्स के अधीन संवृत हैं।
+\end{prop}
+
+\begin{prop}\ollabel{prop:valid-instances}
+  कोई !!{formula}~$!A$ तभी मान्य है जब उसके सभी प्रतिस्थापन-दृष्टांत मान्य
+  हों। दूसरे शब्दों में, कोई स्कीमा तभी मान्य है जब उसका अभिलाक्षणिक
+  !!{formula} मान्य हो।
+\end{prop}
+
+\begin{proof}
+  ``यदि'' दिशा स्पष्ट है, क्योंकि $!A$ स्वयं अपना प्रतिस्थापन-दृष्टांत है।
+
+  ``केवल यदि'' दिशा सिद्ध करने के लिए हम यह दिखाते हैं। मान लें
+  $\mModel{M} = \tuple{W, R, V}$ कोई मोडल प्रतिरूप है, और $!B \ident
+  \SSubst{!A}{\subst{!D_1}{p_1},\dots,\subst{!D_n}{p_n}}$
+  $!A$ का प्रतिस्थापन-दृष्टांत है। $V'(p_i) =
+  \Setabs{w}{\mSat{M}{!D_i}[w]}$ द्वारा
+  $\mModel{M'} = \tuple{W, R, V'}$ परिभाषित करें। तब प्रत्येक~$w \in W$
+  के लिए $\mSat{M}{!B}[w]$ तभी जब $\mSat{M'}{!A}[w]$। (प्रमाण अभ्यास के
+  लिए छोड़ा गया है।) अब मान लें कि $!A$ मान्य था, पर $!A$ का कोई
+  प्रतिस्थापन-दृष्टांत $!B$ मान्य नहीं था। तब किसी
+  $\mModel{M} = \tuple{W, R, V}$ और किसी $w \in W$ के लिए
+  $\mSat/{M}{!B}[w]$। किंतु दावे से $\mSat/{M'}{!A}[w]$, अतः $!A$ मान्य
+  नहीं है, जो विरोधाभास है।
+\end{proof}
+
+\begin{prob}
+  \olref[nml][syn][sch]{prop:valid-instances} के प्रमाण की ``केवल यदि'' दिशा
+  में किया गया दावा सिद्ध कीजिए। (संकेत: $!A$ पर आगमन का प्रयोग कीजिए।)
+\end{prob}
+
+किंतु ध्यान दें कि यह सत्य नहीं कि कोई स्कीमा किसी प्रतिरूप में तभी सत्य है
+जब उसका अभिलाक्षणिक सूत्र सत्य हो। निस्संदेह ``केवल यदि'' दिशा मान्य है:
+यदि $!A$ का प्रत्येक दृष्टांत $\mModel{M}$ में सत्य है, तो $!A$ स्वयं भी
+$\mModel{M}$ में सत्य है। पर ऐसा हो सकता है कि $!A$, $\mModel{M}$ में सत्य
+हो, फिर भी $!A$ का कोई दृष्टांत $\mModel{M}$ के किसी जगत पर असत्य हो। एक
+बहुत सरल प्रतिदृष्टांत के लिए केवल एक जगत~$w$ और $V(p) = \{w\}$ वाले
+प्रतिरूप में~$p$ पर विचार करें; तब $p$, $w$ पर सत्य है। किंतु $\lfalse$,
+$p$ का एक दृष्टांत है और $w$ पर सत्य नहीं है।
+
+\begin{prob}
+  दिखाइए कि निम्नलिखित !!{formula}ों में से कोई मान्य नहीं है:
+  \begin{enumerate}
+    \item[\Ax{D}:] \quad $\Box p \lif \Diamond p$;
+    \item[\Ax{T}:] \quad $\Box p \lif p$;
+    \item[\Ax{B}:] \quad $p \lif \Box\Diamond p$;
+    \item[\Ax{4}:] \quad $\Box p \lif \Box \Box p$;
+    \item[\Ax{5}:] \quad $\Diamond p \lif \Box \Diamond
+      p$.
+  \end{enumerate}
+\end{prob}
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{| l || l |}
+      \hline
+      {\emph{मान्य स्कीमाएँ}} & {\emph{अमान्य स्कीमाएँ}} \\
+      \hline\hline
+      $\Box(!A \lif !B) \lif (\Diamond !A \lif \Diamond !B)$
+      & $\Box (!A \lor !B) \lif (\Box !A \lor \Box !B)$ \\
+      $\Diamond (!A \lif !B) \lif (\Box !A \lif \Diamond
+      !B)$
+      & $(\Diamond !A \land \Diamond !B) \lif \Diamond (!A
+      \land !B)$\\
+      $\Box (!A \land !B) \liff (\Box !A \land \Box !B)$
+      & $!A \lif \Box !A$ \\
+      $\Box !A \lif \Box (!B \lif !A)$
+      & $\Box \Diamond !A \lif !B$ \\
+      $\lnot \Diamond !A \lif \Box (!A \lif !B)$
+      & $\Box \Box !A \lif \Box !A$ \\
+      $\Diamond (!A \lor !B) \liff (\Diamond !A \lor
+      \Diamond !B)$
+      & $\Box \Diamond !A \lif \Diamond \Box !A$. \\
+      \hline
+    \end{tabular}
+    \caption{मान्य और (या?) अमान्य स्कीमाएँ।}
+    \ollabel{tab:valid-invalidSchemas}
+\end{table}
+
+\begin{prob}%\ollabel{ex:in/validSchemas}
+  सिद्ध कीजिए कि \olref[nml][syn][sch]{tab:valid-invalidSchemas} के पहले
+  स्तंभ की स्कीमाएँ मान्य हैं और दूसरे स्तंभ की स्कीमाएँ मान्य नहीं हैं।
+\end{prob}
+
+\begin{prob}
+  निर्धारित कीजिए कि निम्न स्कीमाएँ मान्य हैं या अमान्य:
+  \begin{enumerate}
+  \item $(\Diamond !A \lif \Box !B) \lif (\Box !A \lif \Box
+    !B)$;
+  \item $\Diamond(!A \lif !B) \lor \Box(!B \lif !A)$.
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  निम्न प्रत्येक स्कीमा के लिए ऐसा प्रतिरूप $\mModel{M}$ खोजिए जिसमें
+  !!{formula} का प्रत्येक दृष्टांत सत्य हो:
+  \begin{enumerate}
+  \item $p \lif \Diamond\Diamond p$;
+  \item $\Diamond p \lif \Box p$.
+  \end{enumerate}
+\end{prob}
+
+\end{document}

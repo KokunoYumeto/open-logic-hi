@@ -1,0 +1,112 @@
+% Part: conditional-logics
+% Chapter: minimal-change-semantics
+% Section: true-false
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{con}{min}{tf}
+
+\olsection{प्रतितथ्यात्मक की सत्यता और असत्यता}
+
+यदि निकटतम $!A$-जगत सभी $!B$-जगत हों, तो प्रतितथ्यात्मक $!A \cif !B$
+(गैर-रिक्ततः) सत्य है, जैसा \olref{fig:true} में चित्रित है।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.6,-1)}]{90}{1}{30}{4}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\caption{गैर-रिक्ततः सत्य प्रतितथ्यात्मक}
+\ollabel{fig:true}
+\end{center}
+\end{figure}
+यदि~$w$ के चारों ओर गोलक-तंत्र में कोई भी $!A$-स्वीकारी गोलक न हो, तो
+प्रतितथ्यात्मक~$w$ पर भी सत्य है। उस स्थिति में वह \emph{रिक्ततः} सत्य है
+(\olref{fig:vacuous} देखें)।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \proposition{0}{6.5}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.2,-1)}]{90}{1}{30}{4}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \spherepos{0}{7}{node {$\formula{A}$}}
+\end{tikzpicture}
+\caption{रिक्ततः सत्य प्रतितथ्यात्मक}
+\ollabel{fig:vacuous}
+\end{center}
+\end{figure}
+
+वह दो प्रकार से असत्य हो सकता है। एक प्रकार वह है जिसमें निकटतम $!A$-जगत
+सभी $!B$-जगत नहीं हैं, किंतु उनमें से कुछ हैं। इस मामले में
+$!A \cif \lnot !B$ भी असत्य है (\olref{fig:false} देखें)।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.6,0)}]{90}{1}{30}{3}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\caption{असत्य प्रतितथ्यात्मक, असत्य विपरीत}
+\ollabel{fig:false}
+\end{center}
+\end{figure}
+यदि निकटतम $!A$-जगतों का $!B$-जगतों के साथ बिल्कुल अतिव्यापन न हो, तो
+$!A \cif !B$ असत्य है। किंतु इस मामले में सभी निकटतम $!A$-जगत
+$\lnot !B$-जगत हैं, अतः $!A \cif \lnot !B$ सत्य है
+(\olref{fig:false-opposite} देखें)।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(-1,0)}]{90}{1}{30}{3}}
+  \path (-1,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\caption{असत्य प्रतितथ्यात्मक, सत्य विपरीत}
+\ollabel{fig:false-opposite}
+\end{center}
+\end{figure}
+
+कठोर सशर्त के विपरीत, प्रतितथ्यात्मक आकस्मिक हो सकते हैं।
+\olref{fig:contingent} के गोलक प्रतिरूप पर विचार करें।~$u$ के निकटतम सभी
+$!A$-जगत $!B$-जगत हैं, अतः $\mSat{M}{!A \cif !B}[u]$। किंतु~$v$ के
+निकटतम $!A$-जगतों में कुछ $!B$-जगत नहीं हैं, अतः
+$\mSat/{M}{!A \cif !B}[v]$।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.6]\small
+  \spheresystem{7}
+  \spheresystem[shift={(0:3.1)},dashed]{4}
+  \propositionintersect{45}{4}{40}{4.5}
+  \begin{scope}
+    \clip \propositionplot{45}{4}{40}{4.5} ;
+    \spherelayer[shift={(0:3.1)}]{3}
+  \end{scope}
+  \proposition[shift={(1.4,-.5)}]{90}{1}{35}{5}
+  \path (0,0) node {$u$};
+  \path (0:3.1) node {$v$};
+  \spherepos{35}{9}{node {$\formula{A}$}}
+  \spherepos{80}{9}{node {$\formula{B}$}}
+\end{tikzpicture}
+\end{center}
+\caption{आकस्मिक प्रतितथ्यात्मक}
+\ollabel{fig:contingent}
+\end{figure}
+\end{document}

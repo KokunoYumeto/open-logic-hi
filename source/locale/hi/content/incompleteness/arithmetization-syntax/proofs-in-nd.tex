@@ -1,0 +1,326 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-nd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{art}{pnd}
+\olsection{स्वाभाविक निगमन में \usetoken{P}{derivation}}
+
+\begin{explain}
+!!{derivation}s का अंकगणितीकरण करने के लिए हमें !!{derivation}s को
+संख्याओं के रूप में निरूपित करना होगा। चूँकि !!{derivation}s ऐसे वृक्ष हैं
+जिनके नोडों पर !!{formula}s होते हैं और प्रत्येक अनुमान के साथ एक या दो
+लेबल जुड़े होते हैं, इसलिए पुनरावर्ती निरूपण सबसे स्पष्ट उपाय है: हम किसी
+!!{derivation} को ऐसे टपल के रूप में निरूपित करते हैं जिसके घटक हैं---अंतिम
+अनुमान के आधारवाक्यों तक पहुँचने वाले तात्कालिक उप-!!{derivation}s की संख्या,
+इन उप-!!{derivation}s के निरूपण, अंतिम !!{formula}, अंतिम अनुमान का
+मुक्ति-लेबल, और अंतिम अनुमान का प्रकार बताने वाली एक संख्या।
+\end{explain}
+
+\begin{defn}
+  यदि $\delta$ स्वाभाविक निगमन में !!a{derivation} है, तो $\Gn{\delta}$
+  को निम्न प्रकार आगमनात्मक रूप से परिभाषित किया जाता है:
+  \begin{enumerate}
+  \item
+    यदि $\delta$ में केवल मान्यता~$!A$ है, तो $\Gn{\delta}$,
+    $\tuple{0, \Gn{!A}, n}$ है। यदि यह !!{undischarged} मान्यता है तो
+    संख्या~$n$, $0$ है; अन्यथा वह उसका संख्यात्मक लेबल है।
+  \item
+    यदि $\delta$ का अंत शून्य, एक, दो अथवा तीन आधारवाक्यों वाले अनुमान में
+    होता है, तो $\Gn{\delta}$ क्रमशः
+    \begin{align*}
+      & \tuple{0, \Gn{!A}, n, k}, \\
+      & \tuple{1, \Gn{\delta_1}, \Gn{!A}, n, k}, \\
+      & \tuple{2, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{!A}, n, k}, \text{ अथवा}\\
+      & \tuple{3, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{\delta_3}, \Gn{!A}, n,
+        k}
+    \end{align*}
+    है। यहाँ $\delta_1$, $\delta_2$, $\delta_3$ वे उप-!!{derivation}s हैं
+    जिनका अंत $\delta$ के अंतिम अनुमान के आधारवाक्य (अथवा आधारवाक्यों) में
+    होता है; $!A$, $\delta$ के अंतिम अनुमान का निष्कर्ष है; $n$ अंतिम
+    अनुमान का मुक्ति-लेबल है (यदि अनुमान किसी मान्यता को मुक्त नहीं करता,
+    तो $0$); और अंतिम अनुमान में प्रयुक्त नियम के अनुसार $k$ निम्न तालिका
+    से मिलता है।
+
+    \begin{tabular}{lccccccc}
+      \text{नियम:} & \Intro{\land} & \Elim{\land} & \Intro{\lor} & \Elim{\lor} \\
+      $k$: & 1 & 2 & 3 & 4  \\[1.5ex]
+      \text{नियम:} &  \Intro{\lif} & \Elim{\lif} & \Intro{\lnot} & \Elim{\lnot} \\
+      $k$: & 5 & 6 & 7 & 8 \\[1.5ex]
+      \text{नियम:}  &  \FalseInt & \FalseCl & \Intro{\lforall} & \Elim{\lforall} \\
+      $k$: & 9 & 10 & 11 & 12 \\[1.5ex]
+      \text{नियम:} & \Intro{\lexists} & \Elim{\lexists} & \Intro{\eq} & \Elim{\eq} \\
+      $k$: & 13 & 14 & 15 & 16
+    \end{tabular}
+  \end{enumerate}
+\end{defn}
+
+\begin{ex}
+  इस अत्यंत सरल !!{derivation} पर विचार करें:
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A \land !B}{1}$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+    \DischargeRule{\Intro{\lif}}{1}
+    \UnaryInfC{$(!A \land !B) \lif !A$}
+  \end{prooftree}
+  मान्यता की ग्योडेल (G\"odel) संख्या $d_0 = \tuple{0,
+    \Gn{!A \land !B}, 1}$ होगी। $\Elim{\land}$ के निष्कर्ष पर समाप्त होने
+  वाली !!{derivation} की ग्योडेल (G\"odel) संख्या $d_1 = \tuple{1,
+     d_0, \Gn{!A}, 0, 2}$ होगी ($1$, क्योंकि $\Elim{\land}$ का एक
+  आधारवाक्य है; निष्कर्ष~$!A$ की ग्योडेल (G\"odel) संख्या; $0$, क्योंकि
+  कोई मान्यता मुक्त नहीं होती; और $2$, $\Elim{\land}$ को कूटबद्ध करने वाली
+  संख्या है)। तब पूरी !!{derivation} की ग्योडेल (G\"odel) संख्या
+  $\tuple{1, d_1, \Gn{((!A \land !B) \lif
+      !A)}, 1, 5}$ है, अर्थात्
+  \[
+  \tuple{1, \tuple{1, \tuple{0, \Gn{(!A \land !B)}, 1}, \Gn{!A}, 0, 2},
+    \Gn{((!A \land !B) \lif !A)}, 1, 5}.
+  \]
+\end{ex}
+
+\begin{explain}
+!!{derivation}s का एक निरूपण चुन लेने के बाद हमें यह भी दिखाना होगा कि
+ऐसी !!{derivation}s की ग्योडेल (G\"odel) संख्याओं को हम आदिम पुनरावर्ती
+ढंग से परिचालित कर सकते हैं और उनके आवश्यक गुण तथा संबंध व्यक्त कर सकते
+हैं। कुछ संक्रियाएँ सरल हैं: उदाहरणतः, !!a{derivation} की ग्योडेल (G\"odel)
+संख्या~$d$ दिए जाने पर $\fn{EndFmla}(d) = (d)_{(d)_0+1}$ उसके अंतिम
+!!{formula} की ग्योडेल (G\"odel) संख्या देता है,
+$\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ उसका मुक्ति-लेबल देता है और
+$\fn{LastRule}(d) = (d)_{(d)_0 + 3}$ अंतिम अनुमान का प्रकार बताने वाली
+संख्या देता है। कुछ संक्रियाएँ कहीं कठिन हैं। हम कम-से-कम यह रेखांकित
+करेंगे कि उन्हें कैसे किया जा सकता है। लक्ष्य यह दिखाना है कि संबंध
+``$\delta$,~$\Gamma$ से~$!A$ की !!a{derivation} है'' $\delta$ और~$!A$ की
+ग्योडेल (G\"odel) संख्याओं का आदिम पुनरावर्ती संबंध है।
+\end{explain}
+
+\begin{prop}
+  निम्न संबंध आदिम पुनरावर्ती हैं:
+  \begin{enumerate}
+  \item $!A$,~$\delta$ में लेबल~$n$ वाली मान्यता के रूप में आता है।
+  \item $\delta$ में लेबल~$n$ वाली सभी मान्यताएँ~$!A$ के रूप की हैं
+    (अर्थात् हम $\delta$ में लेबल~$n$ का उपयोग करके मान्यता~$!A$ को
+    !!{discharge} कर सकते हैं)।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  हमें यह दिखाना है कि !!{formula}s की ग्योडेल (G\"odel) संख्याओं और
+  !!{derivation}s की ग्योडेल (G\"odel) संख्याओं के बीच संगत संबंध आदिम
+  पुनरावर्ती हैं।
+  \begin{enumerate}
+  \item हम दिखाना चाहते हैं कि $\fn{Assum}(x, d, n)$ आदिम पुनरावर्ती है;
+    यह संबंध तभी लागू होता है जब $x$, ग्योडेल (G\"odel) संख्या~$d$ वाली
+    !!{derivation} की, लेबल~$n$ वाली मान्यता की ग्योडेल (G\"odel) संख्या
+    हो। ऐसा तभी है जब ग्योडेल (G\"odel) संख्या~$\tuple{0, x, n}$ वाली
+    !!{derivation},~$d$ की उप-!!{derivation} हो। ध्यान दें कि !!{derivation}s
+    का हमारा कूटलेखन
+    \olref[cmp][rec][tre]{sec} में दिए गए वृक्ष-कूटलेखन का विशेष मामला है,
+    इसलिए आदिम पुनरावर्ती फलन $\fn{SubtreeSeq}(d)$,~$d$ की सभी
+    उप-!!{derivation}s की ग्योडेल (G\"odel) संख्याओं का एक अनुक्रम देता है
+    (जिसकी लंबाई अधिकतम~$d$ है)। अतः हम परिभाषित कर सकते हैं
+    \[
+    \fn{Assum}(x, d, n) \defiff \bexists{i<d}{(\fn{SubtreeSeq}(d))_i =
+      \tuple{0, x, n}}.
+    \]
+  \item हम दिखाना चाहते हैं कि $\fn{Discharge}(x, d, n)$ आदिम पुनरावर्ती
+    है; यह संबंध तभी लागू होता है जब ग्योडेल (G\"odel) संख्या~$d$ वाली
+    !!{derivation} में लेबल~$n$ वाली सभी मान्यताएँ, ग्योडेल (G\"odel)
+    संख्या~$x$ वाले !!{formula} की ही हों। किंतु यह संबंध तभी और केवल तभी
+    लागू होता है जब $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y = x)}$।
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:followsby}
+  वह गुण $\fn{Correct}(d)$ आदिम पुनरावर्ती है, जो तभी लागू होता है जब
+  ग्योडेल (G\"odel) संख्या~$d$ वाली !!{derivation}~$\delta$ का अंतिम
+  अनुमान सही हो।
+\end{prop}
+
+\begin{proof}
+  यहाँ हमें प्रत्येक अनुमान-नियम~$R$ के लिए यह दिखाना है कि संबंध
+  $\fn{FollowsBy}_R(d)$ आदिम पुनरावर्ती है, जहाँ
+  $\fn{FollowsBy}_R(d)$ तभी लागू होता है जब $d$, !!{derivation}~$\delta$ की
+  ग्योडेल (G\"odel) संख्या हो और $\delta$ का अंतिम !!{formula},~$\delta$
+  की तात्कालिक उप-!!{derivation}s से~$R$ के सही अनुप्रयोग द्वारा निकले।
+
+  \Intro{\land} नियम का मामला सरल है। यदि $\delta$ का अंत सही
+  $\Intro{\land}$ अनुमान में होता है, तो वह ऐसा दिखता है:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+
+    \AxiomC{}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+
+    \RightLabel{\Intro\land}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  तब $\delta$ की ग्योडेल (G\"odel) संख्या~$d$, $\tuple{2, d_1, d_2,
+    \Gn{(!A \land !B)}, 0, k}$ है, जहाँ $\fn{EndFmla}(d_1) = \Gn{!A}$,
+  $\fn{EndFmla}(d_2) = \Gn{!B}$, $n=0$, और $k=1$। अतः हम
+  $\fn{FollowsBy}_{\Intro\land}(d)$ को इस प्रकार परिभाषित कर सकते हैं:
+  \begin{multline*}
+    (d)_0 = 2 \land \fn{DischargeLabel}(d) = 0 \land \fn{LastRule}(d) = 1 \land {}\\
+    \fn{EndFmla}(d) = {}\\
+    \Gn{(} \concat \fn{EndFmla}((d)_1) \concat \Gn{\land}
+    \concat \fn{EndFmla}((d)_2) \concat \Gn{)}.
+  \end{multline*}
+
+  दूसरा सरल उदाहरण $\Intro\eq$ नियम है। इसका कोई आधारवाक्य नहीं है,
+  इसलिए मान्यताओं की तरह $(d)_0 = 0$। इसका कोई मुक्ति-लेबल भी नहीं है,
+  अर्थात् $n=0$। किंतु किसी बंद पद~$t$ के लिए $!A$,~$\eq[t][t]$ के रूप
+  का होना चाहिए। यहाँ एक आदिम पुनरावर्ती परिभाषा यह है:
+  \begin{multline*}
+    (d)_0 = 0 \land \fn{DischargeLabel}(d) = 0 \land {}\\
+    \bexists{t<d}{(\fn{ClTerm}(t) \land
+      \fn{EndFmla}(d) = {}\\
+      \Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)})}.
+  \end{multline*}
+
+  एक अधिक जटिल उदाहरण में, $\fn{FollowsBy}_{\Intro{\lif}}(d)$ तभी लागू
+  होता है जब $\delta$ का अंतिम !!{formula},~$(!A \lif !B)$ के रूप का हो,
+  $\delta_1$ का अंतिम !!{formula},~$!B$ हो और $\delta$ में लेबल~$n$ वाली
+  हर मान्यता~$!A$ के रूप की हो। इसे हम निम्न प्रकार आदिम पुनरावर्ती रूप
+  में व्यक्त कर सकते हैं:
+  \begin{multline*}
+    (d)_0 = 1 \land {}\\
+    \bexists{a<d}{(\fn{Discharge}(a, (d)_1, \fn{DischargeLabel}(d)) \land {}}\\
+      \fn{EndFmla}(d) = (\Gn{(} \concat a \concat \Gn{\lif}
+      \concat \fn{EndFmla}((d)_1) \concat \Gn{)}))
+  \end{multline*}
+  ($a$ को~$!A$ की ग्योडेल (G\"odel) संख्या मानें)।
+
+  एक और उदाहरण के लिए \Intro{\lexists} पर विचार करें। यहाँ $\delta$ का
+  अंतिम अनुमान तभी सही है जब कोई !!a{formula}~$!A$, कोई बंद पद~$t$ और कोई
+  !!a{variable}~$x$ ऐसे हों कि $\Subst{!A}{t}{x}$,
+  !!{derivation}~$\delta_1$ का अंतिम !!{formula} हो और
+  $\lexists[x][!A]$ अंतिम अनुमान का निष्कर्ष हो। अतः
+  $\fn{FollowsBy}_{\Intro{\lexists}}(d)$ तभी लागू होता है जब
+  \begin{multline*}
+    (d)_0 = 1 \land \fn{DischargeLabel}(d) = 0 \land {} \\
+    \bexists{a < d}{\bexists{x<d}{\bexists{t<d}{
+          (\fn{ClTerm}(t) \land \fn{Var}(x)  \land {}}}}\\
+    \fn{Subst}(a,t,x) = \fn{EndFmla}((d)_1) \land
+    \fn{EndFmla}(d) = (\Gn{\lexists} \concat x \concat a)).
+  \end{multline*}
+
+  तब हम $\fn{Correct}(d)$ को इस प्रकार परिभाषित करते हैं:
+  \begin{multline*}
+    \fn{Sent}(\fn{EndFmla}(d)) \land {}\\
+    (\fn{LastRule}(d) = 1 \land
+    \fn{FollowsBy}_{\Intro\land}(d)) \lor \dots \lor {}\\
+    (\fn{LastRule}(d) = 16 \land \fn{FollowsBy}_{\Elim\eq}(d)) \lor {}\\
+    \bexists{n<d}{\bexists{x<d}{(d = \tuple{0, x, n})}}.
+  \end{multline*}
+  पहली पंक्ति सुनिश्चित करती है कि~$d$ का अंतिम !!{formula} कोई वाक्य है।
+  अंतिम पंक्ति उस मामले को समेटती है जिसमें $d$ केवल एक मान्यता है।
+\end{proof}
+
+\begin{prob}
+  निम्न गुणों को \olref[inc][art][pnd]{prop:followsby} की भाँति परिभाषित
+  करें:
+  \begin{enumerate}
+  \item $\fn{FollowsBy}_{\Elim{\lif}}(d)$,
+  \item $\fn{FollowsBy}_{\Elim{\eq}}(d)$,
+  \item $\fn{FollowsBy}_{\Elim{\lor}}(d)$,
+  \item $\fn{FollowsBy}_{\Intro{\lforall}}(d)$।
+  \end{enumerate}
+  अंतिम गुण के लिए आपको यह भी दिखाना होगा कि हम आदिम पुनरावर्ती ढंग से
+  जाँच सकते हैं कि ग्योडेल (G\"odel) संख्या~$d$ वाली !!{derivation} का अंतिम
+  अनुमान स्वचर-प्रतिबंध को संतुष्ट करता है या नहीं; अर्थात्
+  $\Intro{\lforall}$ अनुमान का स्वचर~$a$, न तो~$d$ के अंतिम !!{formula} में
+  और न~$d$ की किसी खुली मान्यता में आता है। इसके लिए आप
+  \olref[inc][art][pnd]{prop:openassum} का आदिम पुनरावर्ती विधेय
+  $\fn{OpenAssum}$ उपयोग कर सकते हैं।
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:deriv}
+  वह संबंध $\fn{Deriv}(d)$ आदिम पुनरावर्ती है, जो तब लागू होता है जब $d$
+  किसी सही !!{derivation}~$\delta$ की ग्योडेल (G\"odel) संख्या हो।
+\end{prop}
+
+\begin{proof}
+  !!^a{derivation}~$\delta$ तभी सही है जब उसका प्रत्येक अनुमान किसी नियम
+  का सही अनुप्रयोग हो, अर्थात् जब उसकी प्रत्येक उप-!!{derivation} का अंत
+  किसी सही अनुमान में हो। अतः $\fn{Deriv}(d)$ तभी लागू होता है जब
+  \[
+  \bforall{i<\len{\fn{SubtreeSeq}(d)}}{\fn{Correct}((\fn{SubtreeSeq}(d))_i)}
+  \]
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:openassum} संबंध $\fn{OpenAssum}(z, d)$ तब लागू होता है जब
+  $z$, ग्योडेल (G\"odel) संख्या~$d$ वाली !!{derivation}~$\delta$ की किसी
+  !!{undischarged} मान्यता~$!A$ की ग्योडेल (G\"odel) संख्या हो; यह संबंध
+  आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  मान्यता की कोई उपस्थिति तभी !!{discharged} होती है जब वह~$\delta$ की ऐसी
+  उप-!!{derivation} में लेबल~$n$ के साथ आती है, जिसका अंत मुक्ति-लेबल~$n$
+  वाले नियम में होता है। अतः $!A$,~$\delta$ की !!a{undischarged} मान्यता
+  तभी है जब उसकी कम-से-कम एक उपस्थिति~$\delta$ में !!{discharged} न हो।
+  हमें सावधान रहना चाहिए: $\delta$ में~$!A$ की !!{discharged} और
+  !!{undischarged}, दोनों प्रकार की उपस्थितियाँ हो सकती हैं।
+
+  ऐसे अनुक्रम $\delta_0$, \dots, $\delta_k$ पर विचार करें जिसमें
+  $\delta_0 = \delta$, $\delta_k$ मान्यता $\Discharge{!A}{n}$ है
+  (किसी~$n$ के लिए), और $\delta_{i+1}$,~$\delta_i$ की तात्कालिक
+  उप-!!{derivation} है। यदि ऐसा अनुक्रम मौजूद है जिसमें किसी~$\delta_i$
+  का अंत मुक्ति-लेबल~$n$ वाले अनुमान में नहीं होता, तो $!A$,~$\delta$ की
+  !!a{undischarged} मान्यता है।
+
+  आदिम पुनरावर्ती फलन $\fn{SubtreeSeq}(d)$ हमें~$\delta$ की सभी
+  उप-!!{derivation}s की ग्योडेल (G\"odel) संख्याओं का अनुक्रम देता है।
+  $\delta$ की उप-!!{derivation}s की ग्योडेल (G\"odel) संख्याओं का प्रत्येक
+  अनुक्रम इसका उपानुक्रम है। उपानुक्रम होना आदिम पुनरावर्ती संबंध है:
+  $\fn{Subseq}(s, s')$ तभी लागू होता है जब
+  $\bforall{i<\len{s}}{\lexists[j<\len{s'}][(s)_i = (s')_j]}$। तात्कालिक
+  उप-!!{derivation} होना भी ऐसा ही है: $\fn{Subderiv}(d, d')$ तभी लागू होता
+  है जब $\bexists{j<(d')_0}{d = (d')_j}$। अतः हम
+  $\fn{OpenAssum}(z, d)$ को इस प्रकार परिभाषित कर सकते हैं:
+  \begin{multline*}
+    \bexists{s<\fn{SubtreeSeq}(d)}{(\fn{Subseq}(s, \fn{SubtreeSeq}(d))
+      \land (s)_0 = d \land {}} \\
+    \bexists{n<d}{((s)_{\len{s} \tsub 1} = \tuple{0, z, n} \land {}}\\
+      \bforall{i<(\len{s} \tsub 1)}{(\fn{Subderiv}((s)_{i+1}, (s)_i) \land {}}\\
+      \fn{DischargeLabel}((s)_i) \neq n))).
+  \end{multline*}
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:prf-prim-rec}
+  मान लें कि $\Gamma$, !!{sentence}s का आदिम पुनरावर्ती समुच्चय है। तब
+  संबंध $\Prf[\Gamma](x, y)$, जो व्यक्त करता है कि ``$x$,~$\Gamma$ में
+  स्थित !!{undischarged} मान्यताओं से~$!A$ की !!a{derivation}~$\delta$ का
+  कूट है और $y$,~$!A$ की ग्योडेल (G\"odel) संख्या है'', आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  मान लें कि ``$y \in \Gamma$'' आदिम पुनरावर्ती विधेय~$R_\Gamma(y)$ द्वारा
+  दिया गया है। हमें दिखाना है कि $\Prf[\Gamma](x, y)$ आदिम पुनरावर्ती है;
+  यह संबंध तभी लागू होता है जब $y$ किसी वाक्य~$!A$ की ग्योडेल (G\"odel)
+  संख्या हो और $x$, ऐसे स्वाभाविक निगमन !!{derivation} का कूट हो जिसका
+  अंतिम !!{formula}~$!A$ है तथा जिसकी सभी !!{undischarged} मान्यताएँ
+  $\Gamma$ में हैं।
+
+  \olref{prop:deriv} के अनुसार वह गुण $\fn{Deriv}(x)$ आदिम पुनरावर्ती है,
+  जो तभी लागू होता है जब $x$ स्वाभाविक निगमन की किसी सही
+  !!{derivation}~$\delta$ की ग्योडेल (G\"odel) संख्या हो। अतः हम
+  $\Prf[\Gamma](x, y)$ को इस प्रकार परिभाषित कर सकते हैं:
+  \begin{align*}
+    \Prf[\Gamma](x, y) \defiff {}
+    & \fn{Deriv}(x) \land \fn{EndFmla}(x) = y \land {} \\
+    & \bforall{z < x}{(\fn{OpenAssum}(z, x) \lif R_\Gamma(z))}.
+  \end{align*}
+\end{proof}
+
+\end{document}

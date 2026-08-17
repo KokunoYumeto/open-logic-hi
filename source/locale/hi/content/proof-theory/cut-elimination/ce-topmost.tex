@@ -1,0 +1,621 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: ce-topmost
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{cut}{top}
+
+\olsection{सबसे ऊपर के कट हटाना}
+
+\begin{defn}
+किसी \CutCS{} नियम पर समाप्त होने वाले !!a{proof}~$\pi$ पर विचार करें,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+जिसमें कोई अन्य \CutCS{} अनुमान नहीं है।~$\pi$ की \emph{कट ऊँचाई}
+$\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2}$ है।~$\pi$ की \emph{कट
+कोटि} $\cutrank{\pi} = \depth{!A}$ है।
+\end{defn}
+
+\begin{lem}\ollabel{lem:cut-adm-G3c}
+\CutCS{} नियम~\Log{G3c} में ग्राह्य है। दूसरे शब्दों में, यदि $\pi$ किसी
+एक~\CutCS{} पर समाप्त होने वाला और अन्यथा केवल~\Log{G3c} के नियमों का उपयोग
+करने वाला !!a{proof} है, तो उसी अंतिम अनुक्रम का कोई !!a{proof}~$\pi'$,
+~\Log{G3c} में है।
+\end{lem}
+
+\begin{proof}
+प्रमाण कट !!{height} और कोटि पर दोहरे आगमन से है। !!{proof}~$\pi$ निम्न पर
+समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+
+आगमन आधार: $\cheight{\pi} = 0$ और $\cutrank{\pi} = 0$। चूँकि
+$\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2} = 0$,~$\Gamma \Sequent
+\Delta, !A$ और $!A, \Gamma \Sequent \Delta$ दोनों अभिगृहीत हैं। दो स्थितियाँ
+हैं: (क)~$!A$ इनमें से किसी एक में प्रमुख नहीं है, या (ख)~$!A$ दोनों में प्रमुख
+है। नीचे हम दोनों स्थितियों में दिखाएँगे कि $\Gamma \Sequent \Delta$ अभिगृहीत
+होना चाहिए (और इसके लिए आगमन परिकल्पना की आवश्यकता नहीं है)।
+
+अब हम इस आधार पर अनेक संभावित स्थितियों में भेद करेंगे कि $\pi_1$ और $\pi_2$
+अभिगृहीत हैं या किसी अनुमान पर समाप्त होते हैं, और उस अनुमान में~$!A$ प्रमुख
+है या नहीं। स्थितियाँ A और~B आगमन आधार को समेटती हैं। आगमन चरण में हम
+$\cheight{\pi} > 0$ या $\cutrank{\pi} > 0$ (या दोनों) मानते हैं। हम आगमन
+परिकल्पना का उपयोग कर सकते हैं: किसी एक~\CutCS{} पर समाप्त होने वाले ऐसे
+!!{proof} से अंतिम~\CutCS{} हटाया जा सकता है जिसकी या तो कट कोटि
+$= \cutrank{\pi}$ और कट !!{height} $< \cheight{\pi}$ है, या कट कोटि
+~$< \cutrank{\pi}$ है। $\cheight{\pi} = 0$ (दोनों आधार-वाक्य अभिगृहीत) वाली
+स्थिति A और~B में, तथा $\cheight{\pi} > 0$ वाली स्थितियाँ C--D में समेटी गई
+हैं।
+
+\paragraph{स्थिति A:}
+कोई $!B$, $\Gamma$ और~$\Delta$ दोनों में आता है। तब $\Gamma \Sequent \Delta$
+अभिगृहीत है (यदि~$!B$ परमाण्विक है), अथवा
+\olref[seq][ex]{prop:G3c-axioms} से उसका \Log{G3c} में \CutCS{}-विहीन
+!!a{proof}~$\pi'$ है। यह आगमन आधार की स्थिति~(क) को समेटता है, क्योंकि यदि
+$!A$, $\Gamma \Sequent \Delta, !A$ में अथवा $!A, \Gamma \Sequent \Delta$ में
+प्रमुख नहीं है और ये अभिगृहीत हैं, तो कोई अन्य परमाण्विक~$!B$, $\Gamma$ और
+~$\Delta$ दोनों में होना चाहिए। यह आगमन चरण को भी समेटता है यदि आधार-वाक्यों
+में से कोई एक ऐसा अभिगृहीत है जिसमें~$!A$ प्रमुख नहीं है (भले ही दूसरा
+आधार-वाक्य किसी नियम का निष्कर्ष हो)।
+
+\paragraph{स्थिति B:} दोनों आधार-वाक्य अभिगृहीत हैं और $!A$ प्रमुख, अतः
+परमाण्विक, है। बाएँ आधार-वाक्य $\Gamma \Sequent \Delta, !A$ पर विचार करें।
+चूँकि $!A$ प्रमुख है, उसे $\Gamma$ में आना चाहिए (अन्यथा $\Gamma \Sequent
+\Delta, !A$ अभिगृहीत न होता)। इसी प्रकार $!A$ को $\Delta$ में आना चाहिए,
+अन्यथा $!A, \Gamma \Sequent \Delta$ अभिगृहीत न होता। अतः $!A$ परमाण्विक है
+और $\Gamma$ तथा $\Delta$ दोनों में आता है, अर्थात् $\Gamma \Sequent \Delta$
+अभिगृहीत है। यह आगमन आधार की स्थिति~(ख) को समेटता है।
+
+\begin{center}
+वैकल्पिक स्थितियाँ A और B
+\end{center}
+
+\paragraph{स्थिति A:} कट के आधार-वाक्यों में से एक, परमाण्विक~$!C$ वाला
+$!C, \Gamma' \Sequent \Delta', !C$ रूप का अभिगृहीत है। यदि $!C$, कट
+!!{formula}~$!A$ नहीं है, तो $!C$ को $\Gamma$ और~$\Delta$ दोनों में आना चाहिए।
+उस स्थिति में $\Gamma \Sequent \Delta$ अभिगृहीत है और हम उसे~$\pi'$ ले सकते
+हैं। यदि कट !!{formula} $!C \ident !A$ है, तो या तो (बायाँ आधार-वाक्य
+अभिगृहीत हो तो) $!A \in \Gamma$ और $\Gamma = \Gamma', !A$, अथवा (दायाँ
+आधार-वाक्य अभिगृहीत हो तो) $!A \in \Delta$ और $\Delta = \Delta', !A$। पहली
+स्थिति में $\pi_2$, $!A, !A, \Gamma' \Sequent \Delta$ का !!a{proof} है, और
+\LeftR{\Contraction} की ग्राह्यता (\olref[seq][inv]{prop:G3c-cont-adm}) से
+$\Gamma \Sequent \Delta$ का !!a{proof} है। दूसरी स्थिति में $\pi_2$, $\Gamma
+\Sequent \Delta', !A, !A$ का !!a{proof} है और \RightR{\Contraction} की
+ग्राह्यता से $\Gamma \Sequent \Delta$ का !!a{proof} मिलता है।
+
+\paragraph{स्थिति B:} आधार-वाक्यों में से एक~$\lfalse, \Gamma' \Sequent
+\Delta'$ रूप का अभिगृहीत है। यदि बायाँ आधार-वाक्य ऐसा अभिगृहीत है, तो
+$\lfalse \in \Gamma$ और $\Gamma \Sequent \Delta$ भी अभिगृहीत है। यदि दायाँ
+आधार-वाक्य ऐसा अभिगृहीत है, तो या तो $\lfalse \in \Gamma$ (जिस स्थिति में
+$\Gamma \Sequent \Delta$ फिर अभिगृहीत है), या $!A \ident \lfalse$। दूसरी
+स्थिति में $\pi_1$, $\Gamma \Sequent \Delta, \lfalse$ का !!a{proof} है।
+~$\pi_1$ के प्रत्येक अनुक्रम के अनुवर्ती से~$\lfalse$ की एक प्रति हटाकर हम
+इसे~$\Gamma \Sequent \Delta$ के !!a{proof} में बदल सकते हैं। (अभ्यास:
+~$\pheight{\pi_1}$ पर आगमन से इसे सत्यापित करें।)
+
+अब मान लें कि न स्थिति~A लागू है, न स्थिति~B। शेष स्थितियों में
+$\cheight{\pi} > 0$, अर्थात् आधार-वाक्यों में से कम-से-कम एक किसी अनुमान का
+निष्कर्ष है।
+
+\paragraph{स्थितियाँ C और D: कटों का क्रम-विनिमय।}
+स्थितियों~C और~D की सभी संभावनाओं का एक समान प्रतिरूप है। हम~\CutCS{} पर
+समाप्त होने वाले ऐसे !!a{proof} से आरंभ करते हैं जिसमें एक आधार-वाक्य किसी
+नियम~$R$ से प्राप्त होता है, और उसमें कट !!{formula}~$!A$ प्रमुख नहीं (कोई
+अन्य !!{formula}~$!D$ प्रमुख) है। इस !!{proof} में \CutCS{}, नियम~$R$ के बाद
+आता है और उसका योजनाबद्ध रूप है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !D, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, \Gamma, \Pi \fCenter \Delta', \Lambda$
+\RightLabel{$R$}
+\UnaryInf$!A, \Gamma \fCenter \Delta', !D$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !D$
+\DisplayProof
+\]
+यह केवल उस स्थिति को समेटता है जहाँ $R$ एक आधार-वाक्य वाला दायाँ नियम है,
+$A$,~$R$ का प्रमुख !!{formula} नहीं है, और जो !!{formula}~$!D$ प्रमुख
+\emph{है} वह~\CutCS के दाएँ आधार-वाक्य के अनुवर्ती में आता है। यदि $!D$
+पूर्वपक्ष में (अर्थात् $R$ कोई बायाँ नियम है) अथवा~\CutCS के बाएँ आधार-वाक्य
+में आता, तो स्पष्टतः रूप अलग होता। $\Pi$ और~$\Lambda$ के !!{formula}s नियम~$R$
+के सक्रिय !!{formula}s को निरूपित करते हैं।
+
+हम इस क्रम को उलटकर ऐसे !!a{proof} पर विचार करते हैं जिसमें $R$,~\CutCS{} के
+बाद आता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma, \Pi \fCenter \Delta', !D, \Lambda, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, \Gamma, \Pi \fCenter \Delta', !D, \Lambda$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta', !D, \Lambda$
+\RightLabel{$R$}
+\UnaryInf$\Gamma, \fCenter \Delta', !D, !D$
+\DisplayProof
+\]
+हम !!{height}-संरक्षक दुर्बलीकरण से $\pi_1$ और $\pi_3$ से क्रमशः $\pi_1'$ और
+$\pi_3'$ प्राप्त करते हैं।
+
+चूँकि हम \CutCS{} और~$R$ का क्रम बदलते हैं, इसे ``कट का~$R$ के आर-पार ऊपर की
+ओर क्रम-विनिमय'' कहते हैं। ऐसा करने पर~\CutCS के दाएँ आधार-वाक्य पर समाप्त
+होने वाले !!{proof} की ऊँचाई, और इसलिए कट !!{height}, घटती है। अर्थात् नए
+\CutCS{} पर समाप्त होने वाले उप-!!{proof}s की !!{height}, $\pi_1$ और $\pi_3$
+से अधिक नहीं मानी जा सकती; अतः कट !!{height} घटती है (हमने दाईं ओर का एक
+अनुमान हटाया है)। अब आगमन परिकल्पना लागू होती है, जिससे \CutCS{} अनुमान हटाया
+जा सकता है। अंत में~$\RightR{\Contraction}$ की ग्राह्यता का उपयोग करके~$!D$
+की अतिरिक्त प्रति हटाते हैं।
+
+\paragraph{स्थिति C:}
+$\pi_1$ और $\pi_2$ में से कम-से-कम एक, एक-आधार-वाक्य नियम~$R$ पर समाप्त होता
+है जिसमें~$!A$ प्रमुख नहीं है। कुल 18 स्थितियाँ हैं, जो इस पर निर्भर हैं कि
+$!A$,~\CutCS के बाएँ या दाएँ आधार-वाक्य में प्रमुख नहीं है, और नियम~$R$ नौ
+एक-आधार-वाक्य नियमों (\LeftR{\lnot}, \RightR{\lnot}, \RightR{\lor},
+\LeftR{\land}, \RightR{\lif}, तथा चार परिमाणक नियम) में से कौन-सा है। हम
+केवल दो उदाहरणों पर विचार करते हैं: जहाँ~$!A$,~$\pi_2$ के अंतिम अनुमान में
+प्रमुख नहीं है और वह अनुमान~$\RightR{\lif}$ या~\LeftR{\lexists} पर समाप्त
+होता है। अन्य स्थितियाँ सदृश हैं और अभ्यास के लिए छोड़ी गई हैं।
+
+मान लें $\pi$ निम्न पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B \lif !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, !B, \Gamma \fCenter \Delta', !C$
+\RightLabel{$\RightR{\lif}$}
+\UnaryInf$!A, \Gamma \fCenter \Delta', !B \lif !C$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \lif !C$
+\DisplayProof
+\]
+जहाँ $\Delta = \Delta', !B \lif !C$। $\pi_1$ पर !!{height}-संरक्षक
+दुर्बलीकरण (\olref[seq][adm]{prop:weak-G3c-adm}) लगाकर हम $!B, \Gamma
+\fCenter \Delta', !B \lif !C, !C, !A$ का !!a{proof} $\pi_1'$ पाते हैं (बाईं
+ओर $!B$ और दाईं ओर $!C$ से दुर्बलीकरण करके)। इसी प्रकार~$\pi_3$ पर
+\olref[seq][adm]{prop:weak-G3c-adm} लगाकर $!A, !B, \Gamma \fCenter \Delta',
+!B \lif !C, !C$ का !!a{proof}~$\pi_3'$ पाते हैं (दाईं ओर $!B \lif !C$ से
+दुर्बलीकरण करके)। आगमन परिकल्पना निम्न पर लागू होती है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta', !B \lif !C, !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, !B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\DisplayProof
+\]
+जिसका कट !!{formula}~$!A$ है: इस !!{proof} की कट कोटि~$\pi$ जैसी और कट
+!!{height} उससे कम है। इससे~$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+का \Log{G3c} में \CutCS{}-विहीन !!a{proof}~$\pi_4$ मिलता है।
+$\RightR{\lif}$ लगाकर $\Gamma \fCenter \Delta', !B \lif !C, !B \lif !C$ का
+!!a{proof} मिलता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_4$}
+\Deduce$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\RightLabel{$\RightR{\lif}$}
+\UnaryInf$\Gamma \fCenter \Delta', !B \lif !C, !B \lif !C$
+\DisplayProof
+\]
+$\Gamma \Sequent \Delta$, अर्थात् $\Gamma \fCenter \Delta', !B \lif !C$, का
+!!a{proof}~$\pi'$ पाने के लिए \olref[seq][inv]{prop:G3c-cont-adm} (संकुचन की
+ग्राह्यता) लगाएँ।
+
+अब मान लें $\pi$ निम्न पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lexists[x][!B(x)], \Gamma' \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{$\LeftR{\lexists}$}
+\UnaryInf$!A, \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma' \fCenter \Delta$
+\DisplayProof
+\]
+हम फिर आगमन परिकल्पना निम्न पर लगाते हैं
+\[
+\AxiomC{}
+\RightLabel{$\pi_1[!B(c) \Sequent {}]$}
+\Deduce$\lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta, !A$
+\AxiomC{}
+\LeftLabel{$\pi_3[\lexists[x][!B(x)] \Sequent {}]$}
+\Deduce$!A, \lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$\lexists[x][!B(x)], \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\DisplayProof
+\]
+ध्यान दें कि आइगेनचर की शर्त पूरी है, क्योंकि~$\pi_2$ में
+~\LeftR{\lexists} की आइगेनचर-शर्त प्रत्याभूत करती है कि $c$,
+$\lexists[x][!B(x)]$, $\Gamma'$ या~$\Delta$ में नहीं आता। अंत में
+\olref[seq][inv]{prop:G3c-cont-adm} लगाएँ।
+
+
+\paragraph{स्थिति D:}
+$\pi_1$ और $\pi_2$ में से कम-से-कम एक ऐसे द्वि-आधार-वाक्य नियम~$R$ पर समाप्त
+होता है जिसमें $!A$ प्रमुख नहीं है। कुल 6 स्थितियाँ हैं। हम उस स्थिति पर
+विचार करते हैं जहाँ~$!A$,~$\pi_2$ के~$\RightR{\land}$ पर समाप्त होने वाले
+अंतिम अनुमान में प्रमुख नहीं है; अन्य स्थितियाँ सदृश हैं।
+
+मान लें $\pi$ निम्न पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B$
+\AxiomC{}
+\RightLabel{$\pi_4$}
+\Deduce$!A, \Gamma \fCenter \Delta', !C$
+\RightLabel{$\RightR{\land}$}
+\BinaryInf$!A, \Gamma \fCenter \Delta', !B \land !C$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+आगमन परिकल्पना इन !!{proof}s पर लागू होती है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !B, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B \land !C, !B$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !B$
+\DisplayProof
+\]
+और
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_4'$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B \land !C, !C$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !C$
+\DisplayProof
+\]
+यहाँ \Log{G3c} के !!{proof}s $\pi_1'$ और $\pi_1''$,~$\pi_1$ से
+!!{height}-संरक्षक दुर्बलीकरण (\olref[seq][adm]{prop:weak-G3c-adm}) द्वारा
+मिलते हैं (एक बार दाईं ओर $!B$ से और एक बार $!C$ से दुर्बलीकरण करके)।
+!!{proof}s $\pi_3'$ और~$\pi_4'$ भी क्रमशः $\pi_3$ और~$\pi_4$ से
+!!{height}-संरक्षक दुर्बलीकरण द्वारा मिलते हैं (दाईं ओर $!B \land !C$ से
+दुर्बलीकरण करके)।
+
+आगमन परिकल्पना हमें $\Gamma \fCenter \Delta', !B \land !C, !B$ और $\Gamma
+\fCenter \Delta', !B \land !C, !C$ के \Log{G3c} में !!{proof}s~$\pi_5$ और
+~$\pi_6$ देती है। नियम~$\RightR{\land}$ द्वारा हम इन्हें $\Gamma \Sequent
+\Delta', !B \land !C, !B \land !C$ के !!a{proof} में मिलाते हैं:
+\[
+\AxiomC{}
+\RightLabel{$\pi_5$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !B$
+\AxiomC{}
+\RightLabel{$\pi_6$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C, !B \land !C$
+\DisplayProof
+\]
+$\Gamma \Sequent \Delta$, अर्थात् $\Gamma \fCenter \Delta', !B \land !C$, का
+!!a{proof} पाने के लिए \olref[seq][inv]{prop:G3c-cont-adm} (संकुचन की
+ग्राह्यता) लगाएँ।
+
+\paragraph{स्थिति E: कटों का अपचयन।}
+अंतिम स्थिति में $\pi_1$ और $\pi_2$ दोनों ऐसे अनुमानों पर समाप्त होते हैं
+जिनमें $!A$ प्रमुख है।~$!A$ के प्रत्येक संभावित !!{main operator} के लिए एक,
+कुल छह स्थितियाँ हैं।
+
+प्रत्येक स्थिति में कट !!{formula}~$!A$ वाले \CutCS{} को~$!A$ के
+उप-!!{formula}s पर एक या अधिक कटों में बदलते हैं; अर्थात् उन अनुमानों के
+सक्रिय !!{formula}s पर जिनमें~$!A$ प्रमुख !!{formula} है। इसलिए इन स्थितियों
+को प्रायः कट अनुमान का ``अपचयन'' या ``रूपांतरण'' कहते हैं।
+
+\begin{enumerate}
+\item यदि $!A \ident \lnot !B$, तो $\pi$ निम्न पर समाप्त होता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\Gamma \fCenter \Delta, \lnot !B$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+आगमन परिकल्पना से निम्न में \CutCS{} का विलोपन किया जा सकता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+
+\item
+यदि $!A \ident (!B \lor !C)$, तो $\pi$ निम्न पर समाप्त होता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lor !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!B \lor !C, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\CutCS पर समाप्त होने वाले !!{proof} पर विचार करें,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B, !C$
+\AxiomC{}
+\RightLabel{$\pi_2'''$}
+\Deduce$!C, \Gamma \fCenter \Delta, !B$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta, !B$
+\DisplayProof
+\]
+जहाँ $\pi_2'''$, $\pi_2''$ से !!{height}-संरक्षक दुर्बलीकरण द्वारा प्राप्त
+होता है। इसकी कट कोटि $< \cutr{\pi}$ है, क्योंकि $\depth{!C} < \depth{!B
+\lor !C}$; अतः आगमन परिकल्पना $\Gamma \fCenter \Delta, !B$ का \Log{G3c} में
+!!a{proof}~$\pi_1''$ देती है। \CutCS पर समाप्त होने वाला !!{proof}
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+की कट कोटि $= \depth{!B} < \depth{!B \lor !C}$ है, इसलिए आगमन परिकल्पना फिर
+लागू होती है और $\Gamma \fCenter \Delta$ का !!a{proof} $\pi'$ देती है।
+
+\item $!A \ident (!B \land !C)$। अभ्यास।
+
+\item यदि $!A \ident (!B \lif !C)$, तो $\pi$ निम्न पर समाप्त होता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\CutCS पर समाप्त होने वाला !!{proof},
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+की कट कोटि~$\pi$ से कम है। आगमन परिकल्पना $!B, \Gamma \fCenter \Delta$ का
+!!a{proof}~$\pi_1''$ देती है। अब \CutCS पर समाप्त होने वाले !!{proof} पर
+विचार करें,
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+इसकी कट कोटि भी~$\pi$ की कट कोटि से कम है, इसलिए आगमन परिकल्पना $\Gamma
+\fCenter \Delta$ का \Log{G3c}-!!{proof}~$\pi'$ देती है।
+\item यदि $!A \ident \lforall[x][!B(x)]$, तो $\pi$ निम्न पर समाप्त होता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B(t), \lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+आगमन परिकल्पना से निम्न में \CutCS{} का विलोपन किया जा सकता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$!B(t), \Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B(t), \lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B(t), \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+जहाँ $\pi_1''$, $\pi_1$ से (~$\pi_1'$ से नहीं!) !!{height}-संरक्षक
+दुर्बलीकरण द्वारा प्राप्त होता है। (इस !!{proof} की कट कोटि समान किंतु कट
+!!{height} कम है।) इससे $!B(t), \Gamma \fCenter \Delta$ का
+!!a{proof}~$\pi_2''$ मिलता है।
+
+!!{proof}~$\pi_1'$ का अंतिम अनुक्रम $\Gamma \Sequent \Delta, !B(c)$ है, जहाँ
+$c$ किसी~$\RightR{\lforall}$ अनुमान का आइगेनचर है। अतः $c$,~$!B(x)$,
+$\Gamma$ या~$\Delta$ में नहीं आता। हम !!{proof}~$\pi$ को नियमित मानते हैं,
+इसलिए $c$ केवल निम्न~$\RightR{\lforall}$ अनुमान का आइगेनचर है और केवल उसके
+ऊपर आता है; अर्थात् केवल~$\pi_1'$ में आता है और~$\pi_1'$ के किसी अनुमान का
+आइगेनचर नहीं है। चूँकि $c$,~$\pi_2$ में नहीं आता, वह~$t$ में भी नहीं आ सकता।
+\olref[seq][qua]{lem:subst-regular} से !!{proof}~$\Subst{\pi_1'}{t}{c}$,
+$\Gamma \Sequent \Delta, !B(t)$ का !!a{proof} है। अब हम आगमन परिकल्पना इस
+!!{proof} पर लगाते हैं
+\[
+\AxiomC{}
+\RightLabel{$\Subst{\pi_1'}{t}{c}$}
+\Deduce$\Gamma \fCenter \Delta, !B(t)$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!B(t), \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+(आगमन परिकल्पना लागू होती है क्योंकि कट !!{formula}~$!B(t)$ है, अतः इस
+!!{proof} की कट कोटि~$\pi$ से कम है।)
+\item $!A \ident \lexists[x][!B(x)]$ वाली स्थिति हम अभ्यास के लिए छोड़ते हैं।
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} के प्रमाण में स्थिति~D की उस उपस्थिति को सत्यापित करें
+जिसमें~$!A$,~$\pi_1$ के~$\LeftR{\lif}$ पर समाप्त होने वाले अंतिम अनुमान में
+प्रमुख नहीं है। (ध्यान दें: इस अभ्यास का एक भाग यह स्पष्ट रूप से कहना है कि
+आपको क्या सिद्ध करना है, अर्थात् इस स्थिति में $\pi$ का क्या रूप है।)
+\end{prob}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} के प्रमाण में स्थिति~D की उस उपस्थिति को सत्यापित करें
+जिसमें~$!A$,~$\pi_1$ के~$\LeftR{\lforall}$ पर समाप्त होने वाले अंतिम अनुमान
+में प्रमुख नहीं है।
+\end{prob}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} के प्रमाण में स्थिति~E की उस उपस्थिति को सत्यापित करें
+जिसमें~$!A$, $\pi_1$ और $\pi_2$ दोनों के अंतिम अनुमानों में प्रमुख है और $!A
+\ident (!B \land !C)$।
+\end{prob}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} के प्रमाण में स्थिति~E की उस उपस्थिति को सत्यापित करें
+जिसमें~$!A$, $\pi_1$ और $\pi_2$ दोनों के अंतिम अनुमानों में प्रमुख है और $!A
+\ident \lexists[x][!B(x)]$।
+\end{prob}
+
+ध्यान दें कि स्थिति~E में जिस \CutCS{}-समाप्त !!{proof} पर हम आगमन परिकल्पना
+लगाते हैं, उसकी कट !!{height} मूल प्रमाण की कट !!{height} से अधिक हो सकती है।
+उदाहरणतः $!A \ident (!B \lif !C)$ वाली स्थिति में हमने $\pi$ को दो \CutCS{}
+अनुमानों वाले !!a{proof} में बदला,
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_1''$}
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+$\pi_1'$ और $\pi_2''$ के बीच के ऊपर वाले \CutCS{} की कट कोटि और कट
+!!{height} दोनों~$\pi$ से कम हैं। किंतु आगमन परिकल्पना लगाने से प्राप्त
+!!{proof}~$\pi_1''$ की कट !!{height} अब~$\pi$ से कम नहीं है। फिर भी नीचे वाले
+\CutCS{} का कट !!{formula} $!B$ होने से उसकी कट \emph{कोटि},~$\pi$ की कट कोटि
+से कम है।
+
+\olref{lem:cut-adm-G3c} स्थापित करता है कि किसी !!a{proof} से एक सबसे ऊपर का
+\CutCS{} अनुमान हटाया जा सकता है। इसे~\CutCS पर समाप्त होने वाले सबसे ऊपर के
+उप-!!{proof}s पर क्रमशः लगाकर दिखाया जा सकता है कि किसी !!a{proof} से कितने भी
+\CutCS{} अनुमान हटाए जा सकते हैं।
+
+\begin{thm}\ollabel{thm:cut-elim-G3c-topmost} $\Log{G3c} + \CutCS$ के प्रत्येक
+!!{proof} $\pi$ को~\Log{G3c} के !!a{proof} में बदला जा सकता है।
+\end{thm}
+
+\begin{proof}
+  ~ $\pi$ में \CutCS{} अनुमानों की संख्या~$n$ पर आगमन से। यदि $n=0$, तो कुछ
+  करने को नहीं है: $\pi$ पहले से~\Log{G3c} में !!a{proof} है। अन्यथा सबसे ऊपर
+  के \CutCS{} अनुमान पर समाप्त होने वाले उप-!!{proof}~$\pi'$ पर विचार करें।
+  उसमें अंतिम अनुमान के रूप में केवल एक \CutCS{} नियम है।
+  \olref{lem:cut-adm-G3c} लगाकर उसे \CutCS{}-विहीन प्रमाण~$\pi''$ में बदलें और
+  उप-!!{proof}~$\pi'$ को~$\pi''$ से बदल दें। परिणाम $n-1$ \CutCS{} अनुमानों
+  वाला !!a{proof} है और आगमन परिकल्पना लागू होती है।
+\end{proof}
+
+\end{document}

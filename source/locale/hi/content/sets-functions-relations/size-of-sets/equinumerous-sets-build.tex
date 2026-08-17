@@ -1,0 +1,35 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0027.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen external identities needed by this standalone section. Empty
+% destinations avoid inventing local hyperlinks to absent predecessor units.
+% Defining the primary enumerability label selects the frozen reader branch.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:enm:sec\endcsname
+  {{siz.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:sec@cref\endcsname
+  {{[section][2][0]siz.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:defn:enumerable\endcsname
+  {{siz.{4}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:defn:enumerable@cref\endcsname
+  {{[defn][4][0]siz.{4}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:defn:enumerable\endcsname
+  {{siz.{27}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:defn:enumerable@cref\endcsname
+  {{[defn][27][0]siz.{27}}{}{}{}{}}
+\makeatother
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{समसंख्यता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{equinumerous-sets}
+% The cited 1884 record's bibliography note explicitly cites this translation.
+\nocite{Frege1953}
+\end{document}

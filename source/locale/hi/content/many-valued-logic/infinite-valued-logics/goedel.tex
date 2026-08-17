@@ -1,0 +1,128 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{inf}{god}
+
+\olsection{गोडेल तर्कशास्त्र}
+
+\begin{editorial}
+  यह अनंत-मूल्य गोडेल तर्कशास्त्र पर एक संक्षिप्त, आरंभिक खंड है।
+\end{editorial}
+
+\begin{defn}\ollabel{def:goedel} अनंत-मूल्य गोडेल
+तर्कशास्त्र~$\LogGod[\infty]$ निम्नलिखित आव्यूह से परिभाषित होता है:
+\begin{enumerate}
+  \item $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$ वाली मानक
+  प्रतिज्ञप्तिक भाषा $\Lang L_0$।
+  \item सत्य-मूल्यों का समुच्चय $V_\infty$।
+  \item $1$ एकमात्र निर्दिष्ट मूल्य है, अर्थात् $V^+ = \{1\}$।
+  \item सत्य-फलन निम्नलिखित फलनों से दिए जाते हैं:
+  \begin{align*}
+    \tf{\lfalse} & = 0\\
+    \tf{\lnot}[\LogGod](x) & = \begin{cases}
+      $1$ & \text{यदि } x =0\\
+      $0$ & \text{अन्यथा}
+    \end{cases}\\
+    \tf{\land}[\LogGod](x,y) & = \min(x,y)\\
+    \tf{\lor}[\LogGod](x,y) & = \max(x,y)\\
+    \tf{\lif}[\LogGod](x,y) & = \begin{cases}
+      1 & \text{यदि } x \le y\\
+      y & \text{अन्यथा।}
+    \end{cases}
+    \end{align*}
+\end{enumerate}
+$m$-मूल्य गोडेल तर्कशास्त्र भी इसी प्रकार परिभाषित होता है, केवल
+$V = V_m$ लिया जाता है।
+\end{defn}
+
+\begin{prop}
+  \olref[thr][god]{defn:goedel} से परिभाषित तर्कशास्त्र $\LogGod[3]$ वही है
+  जो \olref{def:goedel} से परिभाषित $\LogGod[3]$ है।
+\end{prop}
+
+\begin{proof}
+  इसे \olref[thr][god]{defn:goedel} में संयोजकों के लिए दी गई सत्य-सारणियों
+  की तुलना \olref{def:goedel} के समीकरणों से निर्धारित सत्य-सारणियों के साथ
+  करके देखा जा सकता है:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}[\LogGod[3]]$ & \\ 
+      \hline  
+      $1$ & $0$ \\ 
+      $1/2$ & $0$ \\
+      $0$ & $1$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1/2$ & $1/2$ & $0$\\ 
+      $0$ & $0$ & $0$ & $0$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1$ & $1$ \\ 
+      $1/2$ & $1$ & $1/2$ & $1/2$ \\
+      $0$ & $1$ & $1/2$ & $0$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1$ & $1$ & $0$  \\ 
+      $0$ & $1$ & $1$ & $1$ 
+    \end{tabular}
+  \end{center} 
+\end{proof}
+
+\begin{prop}\ollabel{prop:god-infty-m}
+  यदि $\Gamma \Entails[\LogGod[\infty]] !B$, तो प्रत्येक $m \ge 2$ के लिए
+  $\Gamma \Entails[\LogGod[m]] !B$।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[mvl][inf][god]{prop:god-infty-m} सिद्ध कीजिए।
+\end{prob}
+
+वास्तव में विलोम भी मान्य है।
+
+$\LogGod[3]$ की तरह $\LogGod[\infty]$ में सभी अंतःप्रज्ञावादी रूप से मान्य
+!!{formula} सर्वसत्यताएँ हैं, और गैर-सर्वसत्यताओं के वही उदाहरण
+$\LogGod[\infty]$ की भी गैर-सर्वसत्यताएँ हैं:
+\begin{align*}
+  & p \lor \lnot p && (p \lif q) \lif (\lnot p \lor q) \\
+  & \lnot\lnot p \lif p && \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+  & ((p \lif q) \lif p) \lif p && \lnot(p \lif q) \lif (p \land \lnot q)
+\end{align*}
+किसी ऐसे अंतःप्रज्ञावादी रूप से अमान्य !!{formula} का उदाहरण जो फिर भी
+$\LogGod[3]$ की सर्वसत्यता है, $(p \lif q) \lor (q \lif p)$,
+$\LogGod[\infty]$ में भी सर्वसत्यता है। वास्तव में $\LogGod[\infty]$ को
+उस अंतःप्रज्ञावादी तर्कशास्त्र के रूप में निरूपित किया जा सकता है जिसमें
+स्कीमा $(!A \lif !B) \lor (!B \lif !A)$ जोड़ी गई हो। यह माइकल डमेट ने
+दिखाया था, इसलिए $\LogGod[\infty]$ को प्रायः गोडेल--डमेट
+तर्कशास्त्र~$\Log{LC}$ कहा जाता है।
+
+\begin{prob}
+  दिखाइए कि $(p \lif q) \lor (q \lif p)$, $\LogGod[\infty]$ की सर्वसत्यता
+  है।
+\end{prob}
+
+\begin{prob}
+  दिखाइए कि $(p \lif q) \lor (q \lif r) \lor (r \lif s)$, जो
+  $\LogGod[3]$ की सर्वसत्यता है, $\LogGod[\infty]$ की सर्वसत्यता नहीं है।
+\end{prob}
+
+\end{document}

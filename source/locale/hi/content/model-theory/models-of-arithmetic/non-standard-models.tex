@@ -1,0 +1,121 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: non-standard-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{mar}{nst}
+\section{अमानक प्रतिरूप}
+
+\begin{explain}
+$\Lang{L_A}$ की किसी !!{structure} को हम मानक कहते हैं, यदि वह
+~$\Struct{N}$ की समरूपी हो। यदि कोई !!{structure},~$\Struct{N}$ की समरूपी
+नहीं है, तो वह अमानक कहलाती है।
+\end{explain}
+
+\begin{defn}
+कोई !!{structure}~$\Struct{M}$,~$\Lang{L_A}$ के लिए \emph{अमानक} है, यदि वह
+~$\Struct{N}$ की समरूपी नहीं है। वे !!{element}s $x \in
+\Domain{M}$ जो $\Value{\num{n}}{M}$ के बराबर हों किसी $n \in
+\Nat$ के लिए,
+($\Struct{M}$ की) \emph{मानक संख्याएँ} कहलाते हैं; जो ऐसे न हों वे
+\emph{अमानक संख्याएँ} कहलाते हैं।
+\end{defn}
+
+\begin{explain}
+\olref[stm]{prop:standard-domain} के अनुसार,~$\Lang{L_A}$ की प्रत्येक
+मानक !!{structure} में केवल मानक !!{element}s होते हैं। फलतः किसी अमानक
+!!{structure} में कम-से-कम एक अमानक अवयव अवश्य होना चाहिए। वस्तुतः, किसी
+अमानक !!{element} का अस्तित्व सुनिश्चित करता है कि वह !!{structure} अमानक
+है।
+\end{explain}
+
+\begin{prop}
+यदि कोई !!{structure}~$\Struct{M}$,~$\Lang{L_A}$ के लिए, कोई अमानक संख्या
+है, तो $\Struct{M}$ अमानक है।
+\end{prop}
+
+\begin{proof}
+मान लें कि ऐसा नहीं है; अर्थात् मान लें कि $\Struct{M}$ मानक है, किंतु
+उसमें कोई अमानक संख्या~$x$ है। $g\colon \Nat \to \Domain{M}$ को एक
+समरूपता मानें। यह देखना सरल है (~$n$ पर आगमन द्वारा) कि
+$g(\Value{\num{n}}{N}) = \Value{\num{n}}{M}$। दूसरे शब्दों में, $g$,
+~$\Struct{N}$ की मानक संख्याओं को~$\Struct{M}$ की मानक संख्याओं पर
+प्रतिचित्रित करता है। यदि $\Struct{M}$ में कोई अमानक संख्या है, तो $g$
+!!{surjective} नहीं हो सकता, जो परिकल्पना के विरुद्ध है।
+\end{proof}
+
+\begin{prob}
+याद कीजिए कि $\Th{Q}$ में निम्न अभिगृहीत हैं:
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]] \tag{$!Q_1$}\\
+& \lforall[x][\eq/[\Obj 0][x']] \tag{$!Q_2$}\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])] \tag{$!Q_3$}
+\end{align*}
+ऐसी !!{structure}s~$\Struct{M_1}$, $\Struct{M_2}$, $\Struct{M_3}$ दीजिए
+कि
+\begin{enumerate}
+\item $\Sat{M_1}{!Q_1}$, $\Sat{M_1}{!Q_2}$, $\Sat/{M_1}{!Q_3}$;
+\item $\Sat{M_2}{!Q_1}$, $\Sat/{M_2}{!Q_2}$, $\Sat{M_2}{!Q_3}$; और
+\item $\Sat/{M_3}{!Q_1}$, $\Sat{M_3}{!Q_2}$, $\Sat{M_3}{!Q_3}$;
+\end{enumerate}
+स्पष्टतः, आपको प्रत्येक के लिए केवल~$\Assign{\Obj{0}}{M_i}$ और
+$\Assign{\prime}{M_i}$ निर्दिष्ट करने हैं।
+\end{prob}
+
+\begin{explain}
+$\Lang{L_A}$ की अमानक !!{structure}s निर्दिष्ट करना पर्याप्त सरल है। उदाहरण
+के लिए, !!{domain}~$\Int$ वाली संरचना लें और सभी अतार्किक प्रतीकों की
+व्याख्या सामान्य ढंग से करें। चूँकि ऋणात्मक संख्याएँ $\num{n}$ के मान नहीं
+हैं किसी भी~$n$ के लिए, यह संरचना अमानक है। निस्संदेह, यह इस अर्थ में
+अंकगणित का \emph{प्रतिरूप} नहीं होगी कि वह उन्हीं वाक्यों को सत्य बनाती हो
+जिन्हें~$\Struct{N}$ सत्य बनाती है। उदाहरणार्थ,
+$\lforall[x][\eq/[x'][\Obj{0}]]$ असत्य है। फिर भी, संहतता प्रमेय का उपयोग
+करके हम पर्याप्त सरलता से सिद्ध कर सकते हैं कि अंकगणित के अमानक प्रतिरूप
+अस्तित्व में हैं।
+\end{explain}
+
+\begin{prop}
+मान लें कि $\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$,~$\Struct{N}$ का
+सिद्धांत है। $\Th{TA}$ का कोई !!a{enumerable} अमानक प्रतिरूप है।
+\end{prop}
+
+\begin{proof}
+$\Lang{L_A}$ को एक नए !!{constant}~$c$ से विस्तृत करें और निम्न
+!!{sentence}s के समुच्चय पर विचार करें:
+\[
+\Gamma = \Th{TA} \cup \{\eq/[c][\num{0}], \eq/[c][\num{1}],
+\eq/[c][\num{2}], \dots\}
+\]
+किसी भी प्रतिरूप~$\Struct{M^c}$ में, जो~$\Gamma$ का हो, कोई
+!!a{element}~$x =
+\Assign{c}{M}$ अमानक होगा, क्योंकि $x \neq
+\Value{\num{n}}{M}$ प्रत्येक $n \in \Nat$ के लिए। साथ ही, स्पष्टतः
+$\Sat{M^c}{\Th{TA}}$, क्योंकि $\Th{TA} \subseteq \Gamma$। यदि हम
+$\Struct{M^c}$ को !!a{structure}~$\Struct{M}$,~$\Lang{L_A}$ के लिए, केवल
+~$c$ को भुलाकर बना दें, तो उसके प्रांत में अमानक~$x$ अब भी
+रहता है, और $\Sat{M}{\Th{TA}}$ भी। बाद वाली बात सुनिश्चित है, क्योंकि
+$c$,~$\Th{TA}$ में नहीं आता। अतः यह दिखाना पर्याप्त है कि $\Gamma$ का
+कोई प्रतिरूप है।
+
+हम संहतता प्रमेय का उपयोग करके दिखाते हैं कि~$\Gamma$ का कोई प्रतिरूप है।
+यदि~$\Gamma$ का प्रत्येक परिमित उपसमुच्चय संतुष्टनीय है, तो~$\Gamma$ भी
+संतुष्टनीय है। किसी भी परिमित उपसमुच्चय
+$\Gamma_0 \subseteq
+\Gamma$ पर विचार करें। $\Gamma_0$ में~$\Th{TA}$ के
+कुछ !!{sentence}s और~$\eq/[c][\num{n}]$ रूप के कुछ वाक्य आते हैं, किंतु
+ऐसे वाक्य केवल परिमित संख्या में हैं। मान लें कि $k$ वह सबसे बड़ी संख्या है
+जिसके लिए $\eq/[c][\num{k}] \in \Gamma_0$। $\Struct{N_k}$ को
+~$\Struct{N}$ के उस विस्तार के रूप में परिभाषित करें जिसमें
+व्याख्या~$\Assign{c}{N_k} = k+1$ सम्मिलित है। $\Sat{N_k}{\Gamma_0}$: यदि
+$!A
+\in \Th{TA}$, तो $\Sat{N_k}{!A}$, क्योंकि $\Struct{N_k}$ प्रत्येक दृष्टि से
+~$\Struct{N}$ जैसी है, केवल~$c$ को छोड़कर, और $c$,~$!A$ में नहीं आता। तथा
+$\Sat{N_k}{\eq/[c][\num{n}]}$, क्योंकि $n \le k$ और
+$\Value{c}{N_k} = k+1$। अतः~$\Gamma$ का प्रत्येक परिमित उपसमुच्चय
+संतुष्टनीय है।
+\end{proof}
+
+\end{document}

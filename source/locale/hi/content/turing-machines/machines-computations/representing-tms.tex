@@ -1,0 +1,287 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: representing-tms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{mac}{rep}
+\olsection{ट्यूरिंग मशीनों का निरूपण}
+
+\begin{explain}
+ट्यूरिंग मशीनों को \emph{अवस्था आरेखों} द्वारा दृश्य रूप में निरूपित किया
+जा सकता है। ये आरेख तीरों से जुड़े अवस्था-कोष्ठों से बने होते हैं। जैसा
+कि अपेक्षित है, प्रत्येक अवस्था-कोष्ठ मशीन की एक अवस्था को निरूपित करता
+है। प्रत्येक तीर उस निर्देश को निरूपित करता है जिसे उस अवस्था से
+निष्पादित किया जा सकता है; निर्देश का विशिष्ट विवरण संबंधित तीर के ऊपर
+या नीचे लिखा होता है। निम्न मशीन पर विचार करें, जिसमें केवल दो आंतरिक
+अवस्थाएँ $q_0$ और $q_1$, तथा एक निर्देश है:
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]   (A)              {$q_0$};
+  \node[state]   (B) [right of=A] {$q_1$};
+
+  \path (A) edge  node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (B);
+\end{tikzpicture}
+\]
+याद करें कि ट्यूरिंग मशीन में एक पठन-लेखन शीर्ष और उस पर लिखे आगत वाली
+एक पट्टी होती है। इस निर्देश को ऐसे पढ़ सकते हैं: \emph{यदि
+एक~$\TMblank$ को अवस्था $q_0$ में पढ़ रहे हों, तो~$\TMstroke$ लिखें, दाईं ओर जाएँ और
+अवस्था $q_1$ में चले जाएँ}। यह उस संक्रमण फलन के समतुल्य है जो
+$\tuple{q_0, \TMblank}$ को $\tuple{q_1, \TMstroke,
+\TMright}$ पर भेजता
+है।
+\end{explain}
+
+\begin{ex}
+\emph{सम मशीन}: निम्न ट्यूरिंग मशीन तभी और केवल तभी रुकती है जब पट्टी पर
+$\TMstroke$ प्रतीकों की संख्या सम हो (यह मानते हुए कि सभी $\TMstroke$
+प्रतीक पट्टी के पहले $\TMblank$ से पहले आते हैं)।
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}
+\]
+
+यह अवस्था आरेख निम्न संक्रमण फलन के अनुरूप है:
+\begin{align*}
+\delta(q_0, \TMstroke) & = \tuple{q_1, \TMstroke, \TMright},\\
+\delta(q_1, \TMstroke) & = \tuple{q_0, \TMstroke, \TMright},\\
+\delta(q_1, \TMblank)  & = \tuple{q_1, \TMblank, \TMright}
+\end{align*}
+\end{ex}
+
+\begin{explain}
+ऊपर की मशीन केवल तभी रुकती है जब आगत में आघात-प्रतीकों की संख्या सम हो।
+अन्यथा मशीन (सैद्धांतिक रूप से) अनिश्चित काल तक चलती रहती है। किसी भी
+मशीन और आगत के लिए निर्गत निर्धारित करने हेतु मशीन के
+\emph{विन्यासों} का क्रम देखा जा सकता है। हम विन्यास की आकारिक परिभाषा
+आगे देंगे। अभी हम सहज रूप से विन्यासों को ऐसे आरेखों की शृंखला मान सकते
+हैं जो क्रिया के दौरान किसी भी समय मशीन की अवस्था दिखाते हैं। विन्यास
+पट्टी की सामग्री, मशीन की अवस्था और पठन-लेखन शीर्ष का स्थान दिखाते हैं।
+
+यदि सम मशीन को चार $\TMstroke$ के आगत से आरंभ किया जाए, तो उसके विन्यासों
+का क्रम देखें। इस स्थिति में हम मशीन के रुकने की अपेक्षा करते हैं। इसके
+बाद मशीन को तीन $\TMstroke$ के आगत पर चलाएँगे, जहाँ वह सदा चलती रहेगी।
+
+मशीन अवस्था~$q_0$ में आरंभ होकर सबसे बाएँ~$\TMstroke$ को पढ़ती है। मशीन
+के आरंभिक विन्यास को इस प्रकार निरूपित कर सकते हैं:
+\[
+\TMendtape \TMstroke_0 \TMstroke \TMstroke \TMstroke \TMblank \ldots
+\]
+ऊपर का विन्यास सीधा है। जैसा दिखाई देता है, मशीन आरंभिक अवस्था में
+सबसे बाएँ~$\TMstroke$ को पढ़ती है। इसे पहले~$\TMstroke$ पर अवस्था
+के नाम को अधोलिखित करके निरूपित किया गया है। इस बिंदु पर लागू निर्देश
+$\delta(q_0, \TMstroke) = \tuple{q_1, \TMstroke, \TMright}$ है; अतः
+मशीन पट्टी पर दाईं ओर जाती है और अवस्था~$q_1$ में बदल जाती है।
+\[
+\TMendtape \TMstroke \TMstroke_1 \TMstroke \TMstroke \TMblank \ldots
+\]
+चूँकि अब मशीन अवस्था~$q_1$ में एक~$\TMstroke$ पढ़ रही है, हमें निर्देश
+$\delta(q_1, \TMstroke) = \tuple{q_0,
+  \TMstroke, \TMright}$ का
+``अनुसरण'' करना होगा। इससे निम्न विन्यास मिलता है:
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke_0 \TMstroke \TMblank \ldots
+\]
+मशीन के आगे चलने पर नियम पुनः उसी क्रम में लागू होते हैं, जिससे अगले दो
+विन्यास मिलते हैं:
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke \TMstroke_1 \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke \TMstroke \TMblank_0 \ldots
+\]
+अब मशीन अवस्था~$q_0$ में एक~$\TMblank$ पढ़ रही है। संक्रमण आरेख से सरलता
+से दिखता है कि निष्पादित करने के लिए कोई निर्देश नहीं है; अतः मशीन रुक
+गई है। इसका अर्थ है कि आगत स्वीकार कर लिया गया है।
+
+अब मान लें कि मशीन को तीन $\TMstroke$ के आगत से आरंभ करते हैं। आरंभिक
+कुछ विन्यास समान हैं, क्योंकि वही निर्देश निष्पादित होते हैं; अंतर केवल
+पट्टी के आगत में थोड़ा-सा है:
+\[
+\TMendtape \TMstroke_0 \TMstroke \TMstroke \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke_1 \TMstroke \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke_0 \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke \TMblank_1 \ldots
+\]
+अब मशीन सभी $\TMstroke$ से आगे निकल चुकी है और एक~$\TMblank$ को
+अवस्था~$q_1$ में पढ़ रही है। आरेख के अनुसार यहाँ
+$\delta(q_1, \TMblank) =\tuple{q_1,
+\TMblank, \TMright}$ रूप का निर्देश
+है। चूँकि पट्टी दाईं ओर अनिश्चित काल तक $\TMblank$ से भरी है, मशीन
+अवस्था~$q_1$ में रहते और निरंतर दाईं ओर जाते हुए इस निर्देश को
+\emph{सदा} निष्पादित करती रहेगी। मशीन कभी नहीं रुकेगी और आगत स्वीकार
+नहीं करेगी।
+\end{explain}
+
+\begin{explain}
+यह ध्यान रखना महत्त्वपूर्ण है कि सभी मशीनें नहीं रुकेंगी। यदि रुकने का
+अर्थ यह है कि मशीन के पास निष्पादित करने के लिए कोई निर्देश शेष नहीं
+रहा, तो प्रत्येक अवस्था पर प्रत्येक प्रतीक के लिए एक बाहर जाने वाला तीर
+सुनिश्चित करके ऐसी मशीन बनाई जा सकती है जो कभी न रुके। एक
+$\TMblank$ को अवस्था~$q_0$ में पढ़ने का निर्देश जोड़कर सम मशीन को अनिश्चित काल तक चलने वाली
+मशीन में बदला जा सकता है।
+\end{explain}
+
+\begin{ex}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+
+  \path
+  (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+      edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (A)
+  (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+      edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}
+\]
+\end{ex}
+
+\begin{explain}
+मशीन सारणियाँ ट्यूरिंग मशीनों के निरूपण की दूसरी रीति हैं। मशीन सारणी
+में पट्टी की वर्णमाला $x$-अक्ष पर और मशीन की अवस्थाओं का समुच्चय
+$y$-अक्ष पर दिखाया जाता है। सारणी के भीतर प्रत्येक अवस्था और प्रतीक के
+प्रतिच्छेद पर निर्देश का शेष भाग---नई अवस्था, नया प्रतीक और गति की
+दिशा---लिखा होता है। मशीन सारणी से यह निर्धारित करना सरल हो जाता है कि
+मशीन किस अवस्था और किस प्रतीक पर रुकती है। सारणी का प्रत्येक रिक्त स्थान
+मशीन के रुकने का संभावित बिंदु है। अवस्था आरेखों और निर्देश-समुच्चयों में
+मशीन के रुकने के बिंदु सदैव तुरंत स्पष्ट नहीं होते; इसके विपरीत, मशीन
+सारणी के रिक्त स्थान खोजकर सभी विराम-बिंदुओं को शीघ्र पहचाना जा सकता है।
+\end{explain}
+
+\begin{ex}
+सम मशीन की मशीन सारणी यह है:
+\[
+\centering
+\begin{tabular}{lllll}
+\cline{2-4}
+\multicolumn{1}{l|}{}      & \multicolumn{1}{c|}{$\TMblank$}                
+& \multicolumn{1}{c|}{$\TMstroke$}     & \multicolumn{1}{c|}{$\TMendtape$}   &  \\ \cline{1-4}
+\multicolumn{1}{|l|}{$q_0$} & \multicolumn{1}{l|}{}                          
+& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_1}{\TMright}} & 
+\multicolumn{1}{l|}{\phantom{\TMtrans{\TMstroke}{q_1}{\TMright}}} &  \\ \cline{1-4}
+\multicolumn{1}{|l|}{$q_1$} & \multicolumn{1}{l|}{\TMtrans{\TMblank}{q_1}{\TMright}} 
+& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_0}{\TMright}} & 
+\multicolumn{1}{l|}{\phantom{\TMtrans{\TMstroke}{q_1}{\TMright}}} &  \\ \cline{1-4}
+\end{tabular}
+\]
+जैसा दिखाई देता है, मशीन एक~$\TMblank$ को अवस्था~$q_0$ में पढ़ते समय रुकती
+है।
+\end{ex}
+
+\begin{explain}
+अब तक हमने केवल उन मशीनों पर विचार किया है जो आगत को पढ़ती और स्वीकार
+करती हैं। किंतु ट्यूरिंग मशीनों में पढ़ने और लिखने दोनों की क्षमता होती
+है। ऐसी मशीन का एक उदाहरण (यद्यपि उदाहरण बहुत अधिक हैं) \emph{द्विगुणक}
+है। पट्टी पर~$n$ $\TMstroke$ के खंड से आरंभ करने पर द्विगुणक~$2n$
+$\TMstroke$ का खंड निर्गत करता है।
+\end{explain}
+
+\begin{ex}
+  \ollabel{ex:doubler} द्विगुणक मशीन बनाने से पहले समस्या हल करने की
+  एक \emph{रणनीति} बनाना महत्त्वपूर्ण है। चूँकि मशीन (जैसा हमने उसे
+  सूत्रबद्ध किया है) यह याद नहीं रख सकती कि उसने कितने $\TMstroke$ पढ़े
+  हैं, इसलिए पट्टी के सभी $\TMstroke$ का लेखा रखने की रीति चाहिए। एक रीति
+  यह है कि निर्गत को आगत से एक~$\TMblank$ द्वारा अलग कर दें। तब मशीन आगत
+  से पहला $\TMstroke$ मिटा सकती है, शेष आगत को पार कर सकती है, एक
+  $\TMblank$ छोड़ सकती है और दो नए $\TMstroke$ लिख सकती है। फिर मशीन
+  लौटकर आगत में दूसरा $\TMstroke$ खोजेगी और उसे भी दुगुना करेगी। आगत के
+  प्रत्येक एक $\TMstroke$ के लिए वह निर्गत के दो $\TMstroke$ लिखेगी।
+  चलते-चलते आगत मिटाने से यह सुनिश्चित होता है कि कोई $\TMstroke$ छूटे
+  नहीं और किसी को दो बार दुगुना न किया जाए। पूरा आगत मिट जाने पर पट्टी पर
+  $2n$ $\TMstroke$ शेष रहेंगे। परिणामी ट्यूरिंग मशीन का अवस्था आरेख
+  \olref{fig:doubler} में दिखाया गया है।
+  \begin{figure}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (1)              {$q_0$};
+  \node[state]         (2) [right of=1] {$q_1$};
+  \node[state]         (3) [right of=2] {$q_2$};
+  \node[state]         (4) [below of=3] {$q_3$};
+  \node[state]         (5) [left of=4]  {$q_4$};
+  \node[state]         (6) [left of=5]  {$q_5$};
+
+  \path (1) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMright}} (2)
+    (2) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (2)
+      edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (3)
+    (3) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (3)
+        edge node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (4)
+    (4) edge [loop below] node {\TMtrans{\TMblank}{\TMstroke}{\TMleft}} (4)
+        edge node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+    (5) edge [loop below]  node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (6)
+    (6) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (6)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (1);
+\end{tikzpicture}
+\]
+\caption{एक द्विगुणक मशीन}
+\ollabel{fig:doubler}
+\end{figure}
+\end{ex}
+
+\begin{prob}
+कोई मनमाना आगत चुनें और \olref[tur][mac][rep]{ex:doubler} की द्विगुणक
+मशीन के विन्यासों का क्रम निकालें।
+\end{prob}
+
+\begin{prob}
+$\{\TMendtape,\TMblank, A, B\}$ वर्णमाला वाली ऐसी ट्यूरिंग मशीन की
+अभिकल्पना करें जो $A$ और $B$ की प्रत्येक ऐसी अक्षर-शृंखला को स्वीकार
+करे, अर्थात् उस पर रुके, जिसमें $A$ की संख्या $B$ की संख्या के बराबर हो
+\emph{और} सभी $A$, सभी $B$ से पहले आएँ; तथा प्रत्येक ऐसी अक्षर-शृंखला
+को अस्वीकार करे, अर्थात् उस पर न रुके, जिसमें $A$ की संख्या~$B$ की
+संख्या के बराबर न हो अथवा सभी $A$, सभी~$B$ से पहले न आएँ। (उदाहरणतः,
+मशीन को $AABB$ और $AAABBB$ स्वीकार करना चाहिए, किंतु $AAB$ और
+$AABBAABB$ दोनों को अस्वीकार करना चाहिए।)
+\end{prob}
+
+\begin{prob}
+$\{\TMendtape,\TMblank, A, B\}$ वर्णमाला वाली ऐसी ट्यूरिंग मशीन की
+अभिकल्पना करें जो किसी भी अक्षर-शृंखला $\alpha$ को, जो $A$ और $B$ की हो, आगत के
+रूप में लेकर उसकी प्रतिलिपि बनाए और $\alpha\alpha$ रूप का निर्गत दे।
+(उदाहरणतः, आगत $ABBA$ का निर्गत $ABBAABBA$ होना चाहिए।)
+\end{prob}
+
+\begin{prob}
+\emph{वर्णानुक्रम में?}: $\{\TMendtape,\TMblank, A, B\}$ वर्णमाला वाली
+ऐसी ट्यूरिंग मशीन की अभिकल्पना करें जो $A$ और $B$ का कोई परिमित अनुक्रम
+आगत के रूप में मिलने पर जाँचे कि सभी $A$, सभी $B$ के बाईं ओर हैं या
+नहीं। मशीन को आगत अक्षर-शृंखला पट्टी पर छोड़ देनी चाहिए और यदि शृंखला
+``वर्णानुक्रम में'' हो तो रुकना चाहिए, अन्यथा सदा चक्रित होना चाहिए।
+\end{prob}
+
+\begin{prob}
+\emph{वर्णानुक्रमक}: $\{\TMendtape,\TMblank, A, B\}$ वर्णमाला वाली ऐसी
+ट्यूरिंग मशीन की अभिकल्पना करें जो $A$ और $B$ के किसी परिमित अनुक्रम को
+आगत के रूप में लेकर उन्हें इस प्रकार पुनर्व्यवस्थित करे कि सभी $A$, सभी
+~$B$ के बाईं ओर हों। (उदाहरणतः, अनुक्रम $BABAA$ को अनुक्रम $AAABB$ बनना
+चाहिए और अनुक्रम $ABBABB$ को अनुक्रम $AABBBB$ बनना चाहिए।)
+\end{prob}
+
+\end{document}

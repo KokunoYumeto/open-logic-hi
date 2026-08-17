@@ -1,0 +1,57 @@
+% Part: second-order-logic
+% Chapter: metatheory
+% Section: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{met}{lst}
+
+\olsection{द्वितीय-कोटि तर्कशास्त्र के लिए ल्योवेनहाइम--स्कोलेम प्रमेय विफल होता है}
+
+\begin{explain}
+(अवरोही) ल्योवेनहाइम--स्कोलेम प्रमेय कहता है कि !!{sentence} के जिस भी
+समुच्चय का कोई अनंत मॉडल है, उसका कोई !!a{enumerable} मॉडल भी है। यह भी
+पूर्णता प्रमेय का परिणाम है: पूर्णता का प्रमाण !!{sentence} के किसी भी
+संगत समुच्चय के लिए एक मॉडल बनाता है, और वह मॉडल !!{enumerable} होता है।
+एक आरोही ल्योवेनहाइम--स्कोलेम प्रमेय भी है, जो आश्वस्त करता है कि यदि
+!!{sentence} के किसी समुच्चय का कोई !!a{denumerable} मॉडल है, तो उसका कोई
+!!a{nonenumerable} मॉडल भी है। द्वितीय-कोटि तर्कशास्त्र में दोनों प्रमेय
+विफल होते हैं।
+\end{explain}
+
+
+\begin{thm}
+\ollabel{thm:sol-no-ls} द्वितीय-कोटि तर्कशास्त्र के लिए
+ल्योवेनहाइम--स्कोलेम प्रमेय विफल होता है: ऐसे !!{sentence} हैं जिनके अनंत
+मॉडल हैं, पर कोई !!{enumerable} मॉडल नहीं है।
+\end{thm}
+
+\begin{proof}
+स्मरण करें कि
+\[
+\fn{Count} \ident \lexists[z][\lexists[u][\lforall[X][((X(z) \land
+      \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
+\]
+!!a{structure}~$\Struct{M}$ में तभी और केवल तभी सत्य है जब $\Domain{M}$
+!!{enumerable} हो; अतः $\lnot\fn{Count}$, ~$\Struct{M}$ में तभी और केवल
+तभी सत्य है जब $\Domain{M}$ !!{nonenumerable} हो। ऐसी !!{structure}
+अस्तित्व में हैं---किसी भी !!{nonenumerable} समुच्चय को !!{domain} मान लें,
+जैसे $\Pow{\Nat}$ या~$\Real$। इसलिए $\lnot \fn{Count}$ के अनंत मॉडल तो
+हैं, पर कोई !!{enumerable} मॉडल नहीं है।
+\end{proof}
+
+\begin{thm}
+ऐसे !!{sentence} हैं जिनके !!{denumerable} मॉडल तो हैं, पर कोई
+!!{nonenumerable} मॉडल नहीं है।
+\end{thm}
+
+\begin{proof}
+$\fn{Count} \land \fn{Inf}$, ~$\Nat$ में सत्य है, पर ऐसी किसी
+!!{structure}~$\Struct{M}$ में सत्य नहीं है जिसका $\Domain{M}$
+!!{nonenumerable} हो।
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,320 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: ce-largest
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{cut}{inv}
+
+\olsection{सबसे बड़े कट हटाना}
+
+\olref[seq][inv]{lem:G3c-invert} के प्रमाण ने दिखाया कि यदि \Log{G3c} किसी
+तार्किक नियम (\RightR{\lexists} और \LeftR{\lforall} के अतिरिक्त) के निष्कर्ष
+को !!{prove} करता है, तो वह प्रमाण की !!{height} बढ़ाए बिना नियम के प्रत्येक
+आधार-वाक्य को भी !!{prove} करता है। हम इससे अधिक दिखा सकते हैं: यह $\Log{G3c}
++ \CutCS$ के लिए भी सत्य है।
+
+पहले की तरह किसी \CutCS{} अनुमान की \emph{कट कोटि} उसके कट !!{formula} की
+गहराई लेते हैं।
+
+\begin{lem}\ollabel{lem:inv-G3c-cut}
+यदि $\Log{G3c} + \CutCS$ किसी !!a{proof}~$\pi$ द्वारा \RightR{\lexists} या
+\LeftR{\lforall} से भिन्न तार्किक नियम~$R$ के निष्कर्ष को !!{prove} करता है,
+तो वह प्रत्येक आधार-वाक्य को भी !!{proof}~$\pi'$ द्वारा (अथवा नियम के एक या
+दो आधार-वाक्य होने के अनुसार !!{proof}s~$\pi'$, $\pi''$ द्वारा) !!{prove}
+करता है। इसके अतिरिक्त (क)~$\pheight{\pi'}\le\pheight{\pi}$ (और
+$\pheight{\pi''}\le\pheight{\pi}$), तथा (ख)~$\pi'$ (और $\pi''$) में \CutCS{}
+अनुमानों की संख्या और उनकी कोटियाँ~$\pi$ जैसी ही हैं।
+\end{lem}
+
+\begin{proof}
+\cref{pt:seq:inv:lem:G3c-invert,pt:seq:inv:lem:invert-quant} के प्रमाणों के
+निरीक्षण से। वह प्रमाण~$\pheight{\pi}$ पर आगमन से था। आधार स्थिति में हमने
+एक अभिगृहीत को दूसरे अभिगृहीत से बदला; इसलिए शर्तें (क) और~(ख) स्वतः पूरी हैं।
+यदि~$\pi$ का अंतिम नियम~$R$ था, तो उसके निकटस्थ उप-!!{proof}s ही वांछित
+!!{proof}s~$\pi_i$ हैं और (क),~(ख) दोनों पूरी हैं। अन्य सभी स्थितियों में हमने
+~$\pi$ के निकटस्थ उप-!!{proof}s—अर्थात् अंतिम अनुमान~$R$ के आधार-वाक्य(यों) तक
+जाने वाले प्रमाणों—पर आगमन परिकल्पना लगाई और फिर परिणामों पर वही नियम~$R$
+लगाया। नए प्रमाण के निकटस्थ उप-!!{proof}s के लिए शर्तें (क),~(ख) सत्य हैं,
+इसलिए पूरे प्रमाण के लिए भी सत्य हैं। केवल उस स्थिति का सत्यापन शेष है जहाँ
+अंतिम अनुमान~\CutCS है। फिर केवल एक उदाहरण देखें: मान लें $\pi$,
+\LeftR{\land} के निष्कर्ष $!B \land !C, \Gamma \Sequent \Delta$ का
+!!a{proof} है और~\CutCS पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B \land !C, \Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, !B \land !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B \land !C, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+आगमन परिकल्पना $\pi_1$ और~$\pi_2$ पर लागू होती है (जो
+$\LeftR{\land}$ के निष्कर्ष के उदाहरणों के भी !!{proof}s हैं) और क्रमशः $!B,
+!C, \Gamma \fCenter \Delta, !A$ तथा $!A, !B, !C, \Gamma \fCenter \Delta$ के
+!!{proof}s $\pi_1'$ और~$\pi_2'$ देती है। इन्हें \CutCS{} से मिलाकर~$\pi'$
+पाते हैं:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!A, !B, !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, !C, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+स्पष्टतः (क) और~(ख) पूरी हैं।
+\end{proof}
+
+ध्यान दें कि \CutCS के बजाय \Cut{} लेने पर यह काम नहीं करता, क्योंकि तब अंतिम
+!!{proof} के निष्कर्ष के पूर्वपक्ष में $!B, !C, \Gamma$ की दो प्रतियाँ और
+अनुवर्ती में $\Delta$ की दो प्रतियाँ होतीं। हमें संकुचन की ग्राह्यता का आह्वान
+करना पड़ता, किंतु \olref[seq][inv]{prop:G3c-cont-adm} का प्रमाण उत्क्रमणीयता
+प्रमेय का उपयोग करता है। इस प्रकार तर्क चक्रीय हो जाता।
+
+\cref{pt:cut:inv:lem:inv-G3c-cut} से हम कट-विलोपन का वैकल्पिक प्रमाण दे सकते
+हैं। इस प्रमाण में हम \CutCS{} अनुमानों की सबसे ऊपर की आवृत्तियाँ क्रमशः नहीं
+हटाते, बल्कि महत्तम कोटि वाले \CutCS{} अनुमानों की आवृत्तियाँ हटाते हैं।
+अर्थात् $\Log{G3c} + \CutCS$ के किसी !!a{proof}~$\pi$ से आरंभ करके उसमें कहीं
+भी स्थित कट हटाते हैं (संभवतः उसे कम कोटि के कटों से बदलकर), और तब तक ऐसा करते
+हैं जब तक कोई कट शेष न हो। केवल यह शर्त है कि जिस कट से निपटते हैं उसके ऊपर
+समान या अधिक कोटि का कोई कट न हो।
+
+\begin{lem}\ollabel{lem:max-cut-red-G3c} यदि $\pi$, $\Log{G3c}+\CutCS$ में
+कोटि~$n$ के किसी~\CutCS{} अनुमान पर समाप्त होने वाला और अन्यथा केवल
+~$\Log{G3c}$ के नियमों तथा कोटि $<n$ के \CutCS{} अनुमानों का उपयोग करने वाला
+!!a{proof} है, तो उसी अंतिम अनुक्रम का $\Log{G3c} + \CutCS$ में ऐसा
+प्रमाण~$\pi'$ है जिसमें प्रत्येक \CutCS{} अनुमान की कोटि~$<n$ है।
+\end{lem}
+
+\begin{proof}
+!!{proof}~$\pi$ निम्न पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+हम~$!A$ के रूप के अनुसार स्थितियों में भेद करते हैं।
+
+मान लें $!A$ परमाण्विक है। इस शर्त से कि~$\pi_1$ और $\pi_2$ के सभी \CutCS{}
+अनुमानों की कोटि $< \depth{!A} = 0$ होनी चाहिए, ध्यान दें कि~$\pi_1$ या
+~$\pi_2$ में कोई \CutCS{} अनुमान हो ही नहीं सकता। $\pheight{\pi_2}$ पर आगमन
+से हम दिखाते हैं कि $\Gamma \Sequent \Delta$ का कट-मुक्त प्रमाण है। यदि
+$\pheight{\pi_2} = 0$, तो $!A, \Gamma \Sequent \Delta$ अभिगृहीत है। यदि
+$!A$ प्रमुख नहीं है, तो कोई परमाण्विक $!C$,~$\Gamma$ और $\Delta$ दोनों का
+!!a{element} है और $\Gamma \Sequent \Delta$ स्वयं अभिगृहीत है। यदि $!A$
+प्रमुख है, तो $\Delta = \Delta, !A$। इस स्थिति में $\pi_1$, $\Gamma \Sequent
+\Delta', !A, !A$ पर समाप्त होता है। \olref[seq][inv]{prop:G3c-cont-adm}
+(संकुचन की ग्राह्यता) लगाकर $\Gamma \Sequent \Delta', !A$ का कट-मुक्त प्रमाण
+मिलता है। यदि $\pheight{\pi_2} > 0$, तो वह किसी नियम~$R$ पर समाप्त होता है।
+उस नियम का कोई आधार-वाक्य लें: उसका रूप $!A, \Gamma', \Pi \Sequent \Delta',
+\Lambda$ है, जहाँ $\Pi$ और $\Lambda$,~$R$ के सक्रिय !!{formula}s हैं।
+$\pi_1$ और $\pi_2$ पर \olref[seq][adm]{prop:weak-G3c-adm} लगाने से $\Gamma,
+\Gamma', \Pi \Sequent \Delta, \Delta', \Lambda, !A$ और $!A, \Gamma,
+\Gamma', \Pi \Sequent \Delta, \Delta', \Lambda$ के !!{proof}s मिलते हैं,
+जिन पर आगमन परिकल्पना लागू होती है। इससे~$R$ के प्रत्येक आधार-वाक्य के लिए
+$\Gamma, \Gamma', \Pi \Sequent \Delta, \Delta', \Lambda$ का !!a{proof}
+मिलता है। $R$ लगाने से $\Gamma, \Gamma \Sequent \Delta, \Delta$ मिलता है,
+और \olref[seq][inv]{prop:G3c-cont-adm}, $\Gamma \Sequent \Delta$ का कट-मुक्त
+प्रमाण देता है।
+
+यदि $!A$ परमाण्विक नहीं है, तो उसके !!{main operator} के अनुसार स्थितियों में
+भेद करते हैं। प्रत्येक स्थिति में \olref{lem:inv-G3c-cut} लगाकर उन बाएँ और
+दाएँ नियमों के आधार-वाक्यों के !!{proof}s प्राप्त करते हैं जिनमें $!A$ प्रमुख
+सूत्र है। फिर \olref[top]{lem:cut-adm-G3c} के प्रमाण की स्थिति~E की तरह आगे
+बढ़ते हैं।
+\begin{enumerate}
+  \item $!A \ident \lnot !B$। !!{proof}s $\pi_1$ और $\pi_2$, $\Gamma
+  \Sequent \Delta, \lnot !B$ और $\lnot !B, \Gamma \Sequent \Delta$ पर
+  समाप्त होते हैं। \olref{lem:inv-G3c-cut} से $!B, \Gamma \Sequent \Delta$
+  और $\Gamma \Sequent \Delta, !B$ के !!{proof}s $\pi_1'$ और $\pi_2'$ हैं।
+  !!{proof}~$\pi'$ है:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident (!B \lor !C)$। !!{proof}s $\pi_1$ और $\pi_2$, $\Gamma
+  \Sequent \Delta, !B \lor !C$ और $!B \lor !C, \Gamma \Sequent \Delta$ पर
+  समाप्त होते हैं। \olref{lem:inv-G3c-cut} (~$\pi_1$ पर लगाया गया
+  \RightR{\lor} का उत्क्रमण) से $\Gamma \Sequent \Delta, !B, !C$ का
+  !!a{proof} $\pi_1'$ है। \olref{lem:inv-G3c-cut} (~$\pi_2$ पर लगाया गया
+  \LeftR{\lor} का उत्क्रमण) से $!B, \Gamma \Sequent \Delta$ का !!a{proof}
+  $\pi_2'$ और $!C, \Gamma \Sequent \Delta$ का !!a{proof} $\pi_2''$ है।
+  $\pi_2''$ पर \olref[seq][adm]{prop:weak-G3c-adm} लगाकर $!C, \Gamma \Sequent
+  \Delta, !B$ का !!a{proof}~$\pi_2'''$ भी मिलता है। !!{proof}~$\pi'$ है:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$\Gamma \fCenter \Delta, !B, !C$
+  \AxiomC{}
+  \RightLabel{$\pi_2'''$}
+  \Deduce$!C, \Gamma \fCenter \Delta, !B$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident (!B \land !C)$। अभ्यास।
+  \item $!A \ident (!B \lif !C)$। !!{proof}s $\pi_1$ और $\pi_2$, $\Gamma
+  \Sequent \Delta, !B \lif !C$ तथा $!B \lif !C, \Gamma \Sequent \Delta$ पर
+  समाप्त होते हैं। \olref{lem:inv-G3c-cut} (~$\pi_1$ पर लगाया गया
+  \RightR{\lif} का उत्क्रमण) से $!B, \Gamma \Sequent \Delta, !C$ का
+  !!a{proof} $\pi_1'$ है। \olref{lem:inv-G3c-cut} (~$\pi_2$ पर लगाया गया
+  \LeftR{\lif} का उत्क्रमण) से $\Gamma \Sequent \Delta, !B$ का !!a{proof}
+  $\pi_2'$ और $!C, \Gamma \Sequent \Delta$ का !!a{proof} $\pi_2''$ है।
+  $\pi_2''$ पर \olref[seq][adm]{prop:weak-G3c-adm} लगाकर $!C, !B, \Gamma
+  \Sequent \Delta$ का !!a{proof}~$\pi_2'''$ भी मिलता है। !!{proof}~$\pi'$ है:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$!B, \Gamma \fCenter \Delta, !C$
+  \AxiomC{}
+  \RightLabel{$\pi_2'''$}
+  \Deduce$!C, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident \lforall[x][!B(x)]$। !!{proof}s $\pi_1$ और $\pi_2$,
+  $\Gamma \Sequent \Delta, \lforall[x][!B(x)]$ तथा $\lforall[x][!B(x)],
+  \Gamma \Sequent \Delta$ पर समाप्त होते हैं। \olref{lem:inv-G3c-cut} से
+  $\Gamma \Sequent \Delta, !B(c)$ का !!a{proof}~$\pi_1'$ है।
+
+  अब !!{proof}~$\pi_2$ पर विचार करें। वह $\lforall[x][!B(x)], \Gamma
+  \Sequent \Delta$ पर समाप्त होता है।~$\pi_2$ के अंतिम अनुक्रम से ऊपर की ओर
+  बढ़ते हुए किसी अनुक्रम के बाईं ओर $\lforall[x][!B(x)]$ की प्रत्येक ऐसी
+  आवृत्ति चिह्नित करें जो~$\pi_2$ के अंतिम अनुक्रम में $\lforall[x][!B(x)]$
+  की आवृत्ति तक ``जाती है''; अर्थात्: (क)~$\pi_2$ के अंतिम अनुक्रम में
+  $\lforall[x][!B(x)]$ को चिह्नित करें। (ख)~यदि $\lforall[x][!B(x)]$ किसी
+  नियम के निष्कर्ष के प्रसंग में आता और चिह्नित है, तो नियम के आधार-वाक्य(यों)
+  में संगत आवृत्ति चिह्नित करें। (ग)~यदि $\lforall[x][!B(x)]$ किसी
+  \LeftR{\lforall} नियम के निष्कर्ष में प्रमुख और चिह्नित है, तो आधार-वाक्य में
+  $\lforall[x][!B(x)]$ और $!B(t)$ की संगत सक्रिय आवृत्तियाँ चिह्नित करें।
+  
+  अब $\lforall[x][!B(x)]$ की इन सभी चिह्नित आवृत्तियों पर विचार करें। उनमें
+  से कोई भी \LeftR{\lforall} के अतिरिक्त किसी नियम में सक्रिय नहीं है (केवल
+  \LeftR{\lforall} के सक्रिय !!{formula}s चिह्नित होते हैं)।~$\pi_2$ में
+  $\lforall[x][!B(x)]$ की सभी चिह्नित आवृत्तियाँ हटा दें। यदि यह सही !!a{proof}
+  है, तो $\lforall[x][!B(x)]$ की चिह्नित आवृत्तियाँ कभी सक्रिय नहीं थीं; वे
+  सभी सीधे अभिगृहीतों से आई थीं। !!{proof},~$\Gamma \Sequent \Delta$ पर समाप्त
+  होता है और हम $\pi$ को उससे बदल सकते हैं। हमने महत्तम कोटि का एक कट हटा दिया
+  है।
+
+  अन्यथा हमारे पास सही प्रमाण नहीं है, क्योंकि हमने उन !!{formula}s
+  $\lforall[x][!B(x)]$ को हटाया है जो कुछ \LeftR{\lforall} अनुमानों में सक्रिय
+  थे। हमने इन्हें इस रूप के ``अनुमानों'' में बदल दिया है
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_t$}
+  \Deduce$!B(t), \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\lforall}}
+  \UnaryInf$\Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  ऐसे प्रत्येक सबसे ऊपर के ``अनुमान'' को निम्न से बदलें
+  \[
+  \AxiomC{}
+  \RightLabel{$\Subst{\pi_1'}{t}{c}[\Pi \Sequent \Lambda]$}
+  \Deduce$\Gamma, \Pi \fCenter \Delta, \Lambda, !B(t)$
+  \AxiomC{}
+  \RightLabel{$\pi_t[\Gamma \Sequent \Delta]$}
+  \Deduce$!B(t), \Gamma, \Pi \fCenter \Delta, \Lambda$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+  \DisplayProof
+  \]
+  और उसके नीचे प्रत्येक अनुक्रम की बाईं ओर $\Gamma$ तथा दाईं ओर $\Delta$
+  जोड़ें। इसे तब तक दोहराएँ जब तक आधार-वाक्य में चिह्नित $!B(t)$ वाले सभी
+  \LeftR{\lforall} ``अनुमान'', किसी~$!B(t)$ पर \CutCS{} अनुमान से न बदल दिए
+  जाएँ। परिणामी !!{proof} (जो अब सही !!a{proof} है) का अंतिम अनुक्रम $\Gamma,
+  \dots, \Gamma \Sequent \Delta, \dots, \Delta$ रूप का है। संकुचन की ग्राह्यता
+  लगाकर उसे~$\Gamma \Sequent \Delta$ के !!a{proof} में बदलें और $\pi$ को उससे
+  बदल दें। हमने $\lforall[x][!B(x)]$ पर एक कट को $!B(t)$ पर (संभवतः अनेक)
+  कटों से बदला है, किंतु ये सभी कम कोटि के हैं। $\pi_1$ या $\pi_2$ में पहले से
+  आने वाले कट बने रहते हैं, पर वे भी सभी कम कोटि के हैं।
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref{lem:inv-G3c-cut} के प्रमाण में $!A \ident (!B \land !C)$ वाली स्थिति
+सत्यापित करें। अर्थात् दिखाएँ कि यदि निम्न पर समाप्त होने वाला कोई
+!!a{proof}~$\pi$ है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!B \land !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+जिसमें $\pi_1$ और $\pi_2$ केवल $<\depth{!B \land !C}$ कोटि के कट रखते हैं,
+तो $\Gamma \Sequent \Delta$ का ऐसा !!a{proof}~$\pi'$ है जिसमें केवल
+$<\depth{!B \land !C}$ कोटि के कट हैं।
+\end{prob}
+
+% \begin{prob}
+% Verify the case where $!A \ident \lexists[x][!B(x)]$ in the proof of
+% \olref{lem:inv-G3c-cut}.
+% \end{prob}
+
+
+\olref[top]{lem:cut-adm-G3c} स्थापित करता है कि किसी !!a{proof} में सर्वोच्च
+कोटि के \CutCS{} अनुमान को कम कोटि के \CutCS{} अनुमानों से बदला जा सकता है।
+इस प्रमेय को महत्तम~\CutCS पर समाप्त होने वाले सबसे ऊपर के उप-!!{proof}s पर
+क्रमशः लगाकर हम फिर दिखा सकते हैं कि किसी !!a{proof} से कितने भी \CutCS{}
+अनुमान हटाए जा सकते हैं।
+
+\begin{thm}\ollabel{thm:cut-elim-G3c-largest}
+$\Log{G3c} + \CutCS$ के प्रत्येक !!{proof} $\pi$ को~\Log{G3c} के किसी प्रमाण
+में बदला जा सकता है।
+\end{thm}
+
+\begin{proof}
+  पहले सिद्ध करें कि~$\pi$ में महत्तम कोटि के सभी कट हटाए जा सकते हैं।~$\pi$
+  में आने वाले कटों की महत्तम कोटि $d$ और कोटि~$d$ के कटों की संख्या $n$ हो।
+  प्रमाण~$n$ पर आगमन से है। यदि $n=0$, तो सिद्ध करने को कुछ नहीं है। यदि
+  $n>0$, तो कोटि~$d$ का कोई सबसे ऊपर का कट चुनें और उस पर समाप्त होने वाला
+  उप-!!{proof} $\pi_1$ मानें। \olref{lem:max-cut-red-G3c} से उसी अंतिम अनुक्रम
+  का ऐसा !!a{proof}~$\pi_1'$ है जिसके सभी कटों की कोटि $<d$ है।~$\pi$ में
+  $\pi_1$ को $\pi_1'$ से बदलें। परिणाम कोटि~$d$ के $n-1$ कटों वाला !!a{proof}
+  है और आगमन परिकल्पना लागू होती है।
+
+  अब परिणाम~$d$ पर आगमन से मिलता है। यदि $d=0$, तो सभी कट परमाण्विक हैं और
+  पिछले परिणाम से सभी हटाए जा सकते हैं। यदि $d>0$, तो पिछला परिणाम ऐसा प्रमाण
+  देता है जिसमें कोटि $d$ के सभी कट कोटि~$<d$ के कटों से बदल दिए गए हैं। चूँकि
+  $d$,~$\pi$ में कटों की अधिकतम कोटि थी, अब हमारे पास ऐसा प्रमाण है जिसमें
+  कटों की महत्तम कोटि $<d$ है; अतः आगमन परिकल्पना लागू होती है।
+\end{proof}
+
+\end{document}

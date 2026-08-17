@@ -1,0 +1,22 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0030.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen primary-section identity required by this standalone alternative.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:enm:sec\endcsname
+  {{siz.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:sec@cref\endcsname
+  {{[section][2][0]siz.2}{}{}{}{}}
+\makeatother
+\pdfstringdefDisableCommands{\def\usetoken#1#2{गणनीय}}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{वैकल्पिक-गणन}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{enumerability-alt}
+\end{document}

@@ -1,0 +1,93 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: terms-to-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{pty}{tp}
+
+\olsection{प्रमाण पदों से \usetoken{P}{derivation} पुनः प्राप्त करना}
+
+अब दूसरी दिशा पर विचार करें: प्रमाण पद~$N$ का वापस \Log{N2i} के !!a{proof}
+में अनुवाद। सामान्यतः यह केवल ऐसे प्रसंग के सापेक्ष संभव है जिसमें दिए गए
+प्रमाण पद में मुक्त आने वाले प्रत्येक चर~$x$ के लिए युग्म $x : !A$ हो। पर
+पहले ऐसे उदाहरण से आरंभ करें जिसमें कोई मुक्त चर नहीं है, अर्थात् पद
+\[
+\lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]
+\]
+यह $\lambd[\typeof{x}{!A \land !B}][N_1]$ रूप का है। चूँकि इस रूप का पद
+उत्पन्न करने वाला \Log{tN2i} का एकमात्र नियम~\Intro{\lif} है, हम जानते हैं कि
+~$N$ द्वारा संहिताबद्ध !!{proof} को~\Intro{\lif} पर समाप्त होना चाहिए,
+अर्थात् वह निम्न पर समाप्त होता है
+  \[
+  \Axiom$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !C$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif !C$
+  \DisplayProof
+  \]
+हम अभी नहीं जानते कि $!C$ क्या है, किंतु जानते हैं कि पूर्वपक्ष $!A \land !B$
+है और आधार-वाक्य के प्रसंग में $x:!A \land !B$ सम्मिलित होना चाहिए।
+
+अब आधार-वाक्य से संबंधित प्रमाण पद पहले से निर्धारित है:
+$\pair{\proj{2}{x}}{\proj{1}{x}}$। उसके द्वारा संहिताबद्ध !!{proof} को
+\Intro{\land} पर समाप्त होना चाहिए। हम अब भी नहीं जानते कि $!C$ क्या है,
+किंतु~\Intro{\land} का निष्कर्ष होने से जानते हैं कि वह संयोजन होना चाहिए,
+अर्थात् $!C \ident (!C_1 \land !C_2)$। पुनर्निर्माण जारी रखते हैं:
+  \[
+  \Axiom$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
+  \Axiom$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !C_1 \land !C_2$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!C_1 \land !C_2)$
+  \DisplayProof
+  \]
+प्रमाण पद $\pi_2(x)$ का अर्थ है कि बाईं ओर का सर्वोच्च अनुक्रम
+\Elim{\land}[2] से प्राप्त हुआ, अर्थात् आधार-वाक्य $!D \land !C_1$ रूप का है।
+दाईं ओर हम निर्धारित कर सकते हैं कि $!C_2$ तक जाने वाला अनुमान
+\Elim{\land}[1] होना चाहिए और आधार-वाक्य $!C_2 \land !E$ रूप का है।
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !D\land !C_1$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
+  \Axiom$x : !A\land !B \fCenter x: !C_2\land !E$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !C_1 \land !C_2$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!C_1 \land !C_2)$
+  \DisplayProof
+  \]
+अब सर्वोच्च अनुक्रमों के प्रमाण पद चर हैं, इसलिए हम जानते हैं कि उन्हें
+अभिगृहीत होना चाहिए। इससे $!C_1$, $!C_2$, $!D$ और $!E$ निर्धारित होते हैं:
+$!D \ident !A$ और $!C_1 \ident !B$, अन्यथा बायाँ अनुक्रम अभिगृहीत नहीं होगा;
+तथा $!C_2 \ident !A$ और $!E \ident !B$, अन्यथा दायाँ अनुक्रम अभिगृहीत नहीं
+होगा। हमने प्रमाण पूर्णतः पुनः प्राप्त कर लिया है:
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !B$
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+
+
+\end{document}

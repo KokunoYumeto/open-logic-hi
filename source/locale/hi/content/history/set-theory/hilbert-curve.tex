@@ -1,0 +1,157 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{his}{set}{hilbertcurve}
+
+\olsection{परिशिष्ट: हिल्बर्ट के अंतरिक्ष-पूर्ति वक्र}
+
+अध्याय \olref[pathology]{sec} में हमने बताया था कि किसी रेखा और वर्ग पर
+बिंदुओं की संख्या ठीक समान होने के कांटोर के प्रमाण
+(\olref[his][set][cantorplane]{thm:cantorplane}) ने पियानो को यह पूछने के
+लिए प्रेरित किया कि क्या कोई अंतरिक्ष-पूर्ति \emph{वक्र} हो सकता है। 1890
+में उन्हें सकारात्मक उत्तर मिला। इस खंड में हम (कुछ अनौपचारिक ढंग से) समझाते
+हैं कि हिल्बर्ट का अंतरिक्ष-पूर्ति वक्र (एक छोटे-से बदलाव सहित) कैसे बनाया
+जाए।\footnote{अधिक कठोर व्याख्या के लिए \cite{Rose2010} देखें। बदलाव का अर्थ
+नीचे के वक्रों के लाल भाग सम्मिलित करना है। इससे यह जाँचना कुछ सरल होता है कि
+वक्र सतत है।}
+
+हमें किसी फलन $h$ को फलनों $h_1$, $h_2$, $h_3$, \dots\@ के अनुक्रम की सीमा
+के रूप में परिभाषित करना है। पहले हम निर्माण का वर्णन करेंगे। फिर दिखाएँगे कि
+वह अंतरिक्ष की पूर्ति करता है। उसके बाद दिखाएँगे कि वह वक्र है।
+
+हम $h$ का परिसर इकाई वर्ग $\unitsquare$ लेंगे। $h$ का हमारा पहला सन्निकटन,
+अर्थात् $h_1$, यह है:
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 40pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[oldiagcolorC, thick] (20pt, 0)--(20pt, 20pt);
+	\draw[oldiagcolorC, thick] (60pt, 0)--(60pt, 20pt);		
+	\begin{scope}[xshift=20pt, yshift=20pt]
+	\draw [black, thick, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+चीज़ों का हिसाब रखने के लिए हमने वर्ग पर $2 \times 2$ जाल रखा है। हम वक्र को
+निचले बाएँ चतुर्थांश से आरंभ होकर ऊपरी बाएँ, फिर ऊपरी दाएँ और अंततः निचले
+दाएँ जाते हुए सोच सकते हैं। निर्माण का दूसरा चरण, अर्थात् $h_2$, यह है:
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 20pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[oldiagcolorC, thick] (0pt, 10pt)--(10pt, 10pt);
+	\draw[oldiagcolorC, thick] (70pt, 10pt)--(80pt, 10pt);
+	\draw[thick, oldiagcolorE] (10pt, 30pt)--(10pt, 50pt); 
+	\draw[thick, oldiagcolorE] (30pt, 50pt)--(50pt, 50pt); 
+	\draw[thick, oldiagcolorE] (70pt, 50pt)--(70pt, 30pt); \begin{scope}[xshift=10pt, yshift=30pt]
+	\draw [thick, rotate=270,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=10pt, yshift=50pt]
+	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=50pt, yshift=50pt]
+	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=70pt, yshift=10pt]
+	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+भिन्न रंग यह समझाने में सहायता करेंगे कि $h_2$ कैसे बनाया गया। पहले हम
+$h_1$ के गैर-!!{colorC} भाग की छोटे पैमाने की प्रतियाँ अपने वर्ग के निचले
+बाएँ, ऊपरी बाएँ, ऊपरी दाएँ और निचले दाएँ भाग में रखते हैं (काले रंग में
+खींची गईं)। फिर इन चार आकृतियों को (!!{colorE} रेखाओं से) जोड़ते हैं। अंत
+में अपनी आकृति को वर्ग की सीमा से (!!{colorC} रेखाओं से) जोड़ते हैं।
+
+अब $h_3$ लें। जैसे $h_2$, $h_1$ के गैर-लाल भाग की चार जुड़ी हुई छोटे पैमाने
+की प्रतियों से बना था, वैसे ही $h_3$, $h_2$ के गैर-लाल भाग की चार छोटे
+पैमाने की प्रतियों (काले रंग में खींची गईं) से बनता है, जिन्हें फिर
+(!!{colorE} रेखाओं से) परस्पर और अंत में (!!{colorC} रेखाओं से) वर्ग की
+सीमा से जोड़ा जाता है।
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 10pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[thick, oldiagcolorC](5pt, 0pt)--(5pt, 5pt); 
+	\draw[thick, oldiagcolorC] (75pt, 0pt)--(75pt, 5pt); 
+	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt);
+	\draw[thick, oldiagcolorE] (5pt, 35pt)--(5pt, 45pt); 
+	\draw[thick, oldiagcolorE] (35pt, 45pt)--(45pt, 45pt); 
+	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt); \begin{scope}[xshift=5pt, yshift=35pt]
+	\draw [rotate=270, thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=5pt, yshift=45pt]
+	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=45pt, yshift=45pt]
+	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=75pt, yshift=5pt]
+	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+अब हमें $h_n$ से $h_{n+1}$ परिभाषित करने का सामान्य प्रतिरूप दिखता है। अंततः
+हम इन क्रमागत फलनों $h_1$, $h_2$, \dots\@ की बिंदुवार सीमा लेकर \emph{स्वयं}
+वक्र $h$ परिभाषित करते हैं। अर्थात् प्रत्येक $x \in \unitsquare$ के लिए:
+\begin{align*}
+	h(x) &= \lim_{n \rightarrow \infty} h_n(x)
+\end{align*} 
+अब हम दिखाते हैं कि यह वक्र अंतरिक्ष की पूर्ति करता है। जब हम वक्र $h_n$
+खींचते हैं, तो $\unitsquare$ पर $2^n \times 2^n$ जाल रखते हैं। पाइथागोरस के
+प्रमेय से प्रत्येक जाल-खाने के विकर्ण की लंबाई है:
+\[
+\sqrt{\left(\nicefrac{1}{2^{n}}\right)^2+\left(\nicefrac{1}{2^{n}}\right)^2} = 2^{(\frac{1}{2}-n)}
+\]
+और स्पष्टतः $h_n$ प्रत्येक जाल-खाने से होकर गुजरता है। अतः $\unitsquare$ का
+प्रत्येक बिंदु $h_n$ के किसी बिंदु से \emph{अधिकतम}
+$2^{(\frac{1}{2}-n)}$ दूरी पर है। अब $h$ को फलनों $h_1$, $h_2$, $h_3$,
+\dots\@ की सीमा के रूप में परिभाषित किया गया है। इसलिए किसी भी बिंदु की $h$
+से अधिकतम दूरी इससे दी जाती है:
+\[
+\lim_{n \rightarrow \infty} 2^{(\frac{1}{2}-n)} = 0.
+\]
+अर्थात् $\unitsquare$ का प्रत्येक बिंदु~$h$ से $0$ दूरी पर है। दूसरे शब्दों
+में $\unitsquare$ का प्रत्येक बिंदु वक्र \emph{पर} स्थित है। अतः $h$
+अंतरिक्ष की पूर्ति करता है!{}
+
+यह दिखाना शेष है कि $h$ वास्तव में एक \emph{वक्र} है। इसे दिखाने के लिए हमें
+संकल्पना परिभाषित करनी होगी। आधुनिक परिभाषा 1887 में जॉर्डन की दी हुई परिभाषा
+पर आधारित है (अर्थात् पहला अंतरिक्ष-पूर्ति वक्र दिए जाने से केवल कुछ वर्ष
+पहले की):
+
+\begin{defn}
+वक्र, $\unitline$ से $\Real^2$ में एक सतत प्रतिचित्रण है।
+\end{defn}
+
+यह काफ़ी अंतर्ज्ञान-सुलभ है: अंतर्ज्ञानतः वक्र एक ``सुचारु'' प्रतिचित्रण है
+जो किसी विहित रेखा को समतल $\Real^2$ पर ले जाता है। हमारा फलन $h$ वास्तव में
+$\unitline$ से $\Real^2$ में प्रतिचित्रण है। अतः हमें केवल दिखाना है कि $h$
+सतत है। हमने \olref[limits]{sec} में $\epsilon$/$\delta$ संकेतन से सांतत्य
+परिभाषित किया था। साधारण भाषा में हम यह स्थापित करना चाहते हैं:
+\emph{यदि आप $\unitsquare$ में कोई बिंदु $p$ और परिशुद्धता का कोई इच्छित
+स्तर $\epsilon$ निर्दिष्ट करें, तो हम $\unitline$ का ऐसा खुला खंड खोज सकते
+हैं कि उस खुले खंड में कोई भी $x$ दिए जाने पर $h(x)$, $p$ से $\epsilon$ के
+भीतर हो।}
+
+अतः मान लें कि आपने $p$ और $\epsilon$ निर्दिष्ट किए हैं। इसका अर्थ वस्तुतः
+$\unitsquare$ पर केंद्र $p$ और त्रिज्या $\epsilon$ वाला वृत्त खींचना है।
+(वृत्त $\unitsquare$ के किनारे के बाहर निकल सकता है, किंतु इससे कोई अंतर
+नहीं पड़ता।) अब याद करें कि फलन $h_n$ का वर्णन करते समय हमने $\unitsquare$
+पर $2^n \times 2^n$ जाल खींचा था। स्पष्ट है कि $\epsilon$ कितना भी छोटा हो,
+कोई ऐसा $n$ होता है कि $\unitsquare$ पर $2^n \times 2^n$ जाल का कोई एक खाना
+केंद्र $p$ और त्रिज्या $\epsilon$ वाले वृत्त के पूर्णतः भीतर स्थित हो।
+
+अतः वह $n$ लें और $I$, $\unitline$ का वह सबसे बड़ा खुला भाग हो जिसे $h_n$
+पूरी तरह संबद्ध जाल-खाने में प्रतिचित्रित करता है। (स्पष्ट है कि $(a,b)$
+अस्तित्व में है, क्योंकि हम पहले ही बता चुके हैं कि $h_n$, $2^n\times 2^n$
+जाल के प्रत्येक खाने से होकर गुजरता है।) अब इतना दिखाना पर्याप्त है कि जब
+भी $x \in I$, बिंदु $h(x)$ उसी जाल-खाने में स्थित होता है। और \emph{यह}
+दिखाने के लिए इतना दिखाना पर्याप्त है कि किसी भी $m > n$ के लिए $h_m(x)$
+उसी जाल-खाने में है। किंतु यह स्पष्ट है। यदि हम देखें कि $m > n$ के लिए
+$h_m$ के साथ क्या होता है, तो पाते हैं कि इकाई अंतराल का ठीक ``वही भाग'' उसी
+जाल-खाने में प्रतिचित्रित होता है; बस हम उसे उस क्षेत्र में उत्तरोत्तर अधिक
+खींचे और लहरदार ढंग से प्रतिचित्रित करते हैं।
+
+\end{document}

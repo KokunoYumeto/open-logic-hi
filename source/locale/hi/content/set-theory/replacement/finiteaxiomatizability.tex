@@ -1,0 +1,115 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+	
+\olfileid[hi]{sth}{replacement}{finiteaxiomatizability}
+\olsection{परिशिष्ट: परिमित अभिगृहीतीकरणीयता}
+हम प्रतिस्थापन से कुछ परिणाम निकालकर यह अध्याय समाप्त करते हैं। पहला परिणाम
+\citet{Montague1961} का है; ध्यान दें कि यह $\ZF$ के \emph{भीतर} कोई प्रमाण
+नहीं, बल्कि $\ZF$ के \emph{विषय में} प्रमाण है:
+\begin{thm}\ollabel{zfnotfinitely}
+	$\ZF$ परिमित रूप से अभिगृहीतीकरणीय नहीं है। अधिक सामान्यतः: यदि $\Th{T}$
+	परिमित और $\Th{T} \Proves \ZF$ है, तो $\Th{T}$ असंगत है।
+	
+	(यहाँ हम मौन रूप से स्वयं को उन प्रथम-क्रम वाक्यों तक सीमित रखते हैं जिनका
+	एकमात्र अतार्किक आदिम $\in$ है, और यह दर्शाने के लिए
+	$\Th{T} \Proves \ZF$ लिखते हैं कि सभी $\phi \in \ZF$ के लिए
+	$\Th{T} \Proves \phi$।)
+\end{thm}
+\begin{proof}
+	ऐसे परिमित $\Th{T}$ को नियत करें कि $\Th{T} \Proves \ZF$। अतः $\Th{T}$
+	परावर्तन, अर्थात \olref[sth][replacement][ref]{reflectionschema}, को सिद्ध
+	करता है। चूँकि $\Th{T}$ परिमित है, हम उसे एक संयोजन $\theta$ के रूप में
+	फिर लिख सकते हैं। इस सूत्र के साथ परावर्तन करने पर
+	$\Th{T} \Proves \exists \beta(\theta \liff \theta^{V_\beta})$। चूँकि
+	तुच्छतः $\Th{T} \Proves \theta$, हमें
+	$\Th{T} \Proves \exists \beta\ \theta^{V_\beta}$ मिलता है।
+	
+	अब $\psi(X)$ को इसका संक्षेप मानें:
+	\[
+		\theta^X \land X\text{ संक्रमणशील है} \land
+		(\forall Y \in X)(Y\text{ संक्रमणशील है}\lif \lnot \theta^{Y})
+	\]
+	मोटे तौर पर यह कहता है: $X$, $\theta$ का संक्रमणशील प्रतिरूप है और इस
+	दृष्टि से $\in$-न्यूनतम है। अब
+	$\Th{T} \Proves \exists \beta\ \theta^{V_\beta}$ याद करते हुए, $\ZF$
+	और इसलिए $\Th{T}$ के भीतर रैंकों के मूल तथ्यों से हमारे पास है:
+	\begin{equation}
+		\Th{T} \Proves \exists M \psi(M). \tag{*}\label{Mpsi}
+	\end{equation}
+	$\psi(X)$ के पहले संयोज्य का उपयोग करके, जब भी
+	$\Th{T} \Proves \sigma$, हमारे पास
+	$\Th{T} \Proves \forall X(\psi(X) \lif \sigma^X)$ है। अतः
+	\eqref{Mpsi} से:
+	\begin{align*}
+		\Th{T} &\Proves \forall X(\psi(X) \lif (\exists N \psi(N))^X)\\
+	\intertext{इसका और फिर से \eqref{Mpsi} का उपयोग करके:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \psi(N))^M)
+	\intertext{अतः विशेषतः:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)((N\text{ संक्रमणशील है})^N \land (\theta^N)^M))
+	\intertext{अतः संक्रमणशीलता के विषय में प्राथमिक तर्क से:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)(N\text{ संक्रमणशील है} \land \theta^N))
+	\end{align*} 
+	अतः $\Th{T}$ असंगत है।\footnote{इस ``प्राथमिक तर्क'' में संक्रमणशील
+	समुच्चयों के लिए कुछ ``निरपेक्षता तथ्य'' सिद्ध करना अंतर्भूत है।}
+\end{proof}
+
+\citet[223]{Potter2004} द्वारा उल्लिखित समान परिणाम यह है:
+
+\begin{prop}\ollabel{finiteextensionofZ}
+	$\Th{T}$ को $\Z$ में परिमिततः अनेक नए अभिगृहीत जोड़ने वाला विस्तार मानें।
+	यदि $\Th{T} \Proves \ZF$, तो $\Th{T}$ असंगत है। (यहाँ हम
+	\olref{zfnotfinitely} वाली ही मौन सीमाएँ उपयोग करते हैं।)
+\end{prop}
+\begin{proof}
+	पृथक्करण के (अनंततः अनेक) दृष्टांतों को \emph{छोड़कर} $\Th{T}$ के सभी
+	अभिगृहीतों के संयोजन के लिए $\theta$ का उपयोग करें।
+	\olref{zfnotfinitely} की तरह $\theta$ से $\psi$ परिभाषित करके हम दिखा
+	सकते हैं कि $\Th{T} \Proves \exists M \psi(M)$।
+	
+	\olref{zfnotfinitely} की तरह हम यह योजना स्थापित कर सकते हैं कि जब भी
+	$\Th{T} \Proves \sigma$, तब
+	$\Th{T} \Proves \forall X(\psi(X) \lif \sigma^X)$। फिर हम ठीक
+	\olref{zfnotfinitely} की तरह अपना प्रमाण पूर्ण करते हैं।
+	
+	किंतु योजना स्थापित करने में \olref{zfnotfinitely} की अपेक्षा कुछ अधिक
+	काम लगता है। आखिर पृथक्करण-दृष्टांत $\Th{T}$ में हैं, पर वे $\theta$ के
+	संयोज्य नहीं। फिर भी प्रत्येक पृथक्करण-दृष्टांत $\sigma$ के लिए
+	$\Th{T} \Proves \forall X(X\text{ संक्रमणशील है} \lif \sigma^X)$ सिद्ध
+	करके हम यह बाधा पार कर सकते हैं। इसे पाठक के लिए छोड़ते हैं।
+\end{proof}
+\begin{prob}
+	दिखाइए कि प्रत्येक पृथक्करण-दृष्टांत $\sigma$ के लिए हमारे पास
+	$\Z \Proves \forall X(X\text{ संक्रमणशील है} \lif \sigma^X)$ है। (इस
+	योजना का उपयोग हमने
+	\olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ} में
+	किया।)
+\end{prob}
+\begin{prob}
+	दिखाइए कि प्रत्येक $\phi \in \Z$ के लिए
+	$\ZF \Proves \phi^{V_{\omega+\omega}}$।
+\end{prob}
+\begin{prob}
+	\olref[sth][replacement][finiteaxiomatizability]{zfnotfinitely} और
+	\olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ} के
+	प्रमाणों में प्रयुक्त शेष योजनाबद्ध परिणामों की पुष्टि कीजिए।
+\end{prob}
+
+जैसा \olref[sth][replacement][absinf]{sec} में कहा गया, यह दिखाता है कि
+प्रतिस्थापन \olref[ordinals][ordtype]{thmOrdinalRepresentation} से कड़ाई से
+अधिक प्रबल है। अथवा कुछ अधिक सटीक रूप में: यदि $\Z$ + ``प्रत्येक सुव्यवस्था
+किसी अद्वितीय क्रमसूचक के समाकृतिक है'' संगत है, तो वह प्रतिस्थापन के किसी
+दृष्टांत को सिद्ध करने में विफल रहता है।
+
+
+	%	By assumption, $\psi^{V_\alpha}$ has the form: 
+	%	\[
+	%		(\forall A \in V_\alpha)(\exists S \in V_\alpha)(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A))
+	%	\]
+	%	To establish this holds, fix $A \in V_\alpha$. Using Separation, obtain: 
+	%	\[
+	%		S = \Setabs{x \in A}{\phi^{V_\alpha}(x)}
+	%	\]
+	%	Now $S \in V_\alpha$, since $S \subseteq A \in V_\alpha$, and clearly $(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A)$.
+
+\end{document}

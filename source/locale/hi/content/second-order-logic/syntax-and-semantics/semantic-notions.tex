@@ -1,0 +1,37 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{syn}{sem}
+\olsection{अर्थवैज्ञानिक धारणाएँ}
+
+\begin{explain}
+\emph{वैधता}, \emph{अनुगमन} और \emph{संतुष्ट्यता} की केंद्रीय तार्किक
+धारणाएँ द्वितीय-कोटि तर्कशास्त्र के लिए उसी प्रकार परिभाषित होती हैं जैसे
+प्रथम-कोटि तर्कशास्त्र के लिए; अंतर केवल यह है कि आधारभूत संतुष्टि संबंध अब
+द्वितीय-कोटि !!{formula} का है। निस्संदेह, द्वितीय-कोटि !!{sentence} ऐसा
+!!a{formula} है जिसमें विधेय-चर और फलन-चर सहित सभी चर आबद्ध हैं।
+\end{explain}
+
+\begin{defn}[वैधता]
+वाक्य $!A$ \emph{वैध} है, $\Entails !A$, तभी और केवल तभी जब प्रत्येक
+!!{structure}~$\Struct M$ के लिए $\Sat{M}{!A}$।
+\end{defn}
+
+\begin{defn}[अनुगमन]
+वाक्यों का समुच्चय~$\Gamma$, वाक्य~$!A$ को \emph{अनुगमित करता है}, $\Gamma
+\Entails !A$, तभी और केवल तभी जब $\Sat{M}{\Gamma}$ वाली प्रत्येक
+!!{structure}~$\Struct M$ के लिए $\Sat{M}{!A}$।
+\end{defn}
+
+\begin{defn}[संतुष्ट्यता]
+वाक्यों का समुच्चय~$\Gamma$ \emph{संतुष्ट्य} है यदि किसी
+!!{structure}~$\Struct M$ के लिए $\Sat{M}{\Gamma}$। यदि $\Gamma$ संतुष्ट्य
+नहीं है तो वह \emph{असंतुष्ट्य} कहलाता है।
+\end{defn}
+
+\end{document}

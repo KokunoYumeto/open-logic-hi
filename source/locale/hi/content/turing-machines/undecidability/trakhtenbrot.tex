@@ -1,0 +1,249 @@
+% Part: turing-machines
+% Chapter: undecidability
+% Section: trakhtenbrot
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{und}{tra}
+\olsection{ट्राख्टेनब्रॉट का प्रमेय}
+
+\begin{explain}
+  \olref[rep]{sec} में हमने ट्यूरिंग मशीन~$M$ और आगत डोरी~$w$ के लिए
+  !!{sentence} $!T(M,w)$ तथा~$!E(M,w)$ परिभाषित किए। फिर
+  \olref[ver]{lem:valid-if-halt} और \olref[ver]{lem:halt-if-valid} में
+  हमने दिखाया कि $!T(M,w) \lif !E(M,w)$ तभी वैध है जब आगत~$w$ पर आरंभ
+  की गई $M$ अंततः रुकती है। चूँकि विराम समस्या अनिर्णेय है, इससे फलित
+  होता है कि प्रथम-कोटि तर्कशास्त्र के !!{sentence} की वैधता और
+  संतुष्टनीयता अनिर्णेय हैं
+  (\cref{tur:und:uns:thm:decision-prob,tur:und:uns:cor:undecidable-sat})।
+
+  किंतु वाक्यों की वैधता और संतुष्टनीयता स्वेच्छ !!{structure} के
+  लिए परिभाषित हैं, चाहे वे परिमित हों या अनंत। आपको संदेह हो सकता है
+  कि यह तय करना अधिक सरल है कि कोई !!{sentence} किसी परिमित
+  !!{structure} में संतुष्टनीय है या नहीं (अथवा सभी परिमित
+  !!{structure} में वैध है या नहीं)। हम निर्णय समस्या की असमाधेयता के
+  प्रमाण को इस तरह अनुकूलित कर सकते हैं कि वह दिखाए कि ऐसा नहीं है।
+
+  पहले, यदि आप \olref[ver]{lem:halt-if-valid} के प्रमाण पर लौटें, तो
+  देखेंगे कि वहाँ हमने $!T(M,w)$ का ऐसा प्रतिरूप~$\Struct M$ बनाया था
+  जो ठीक-ठीक वर्णित करता है कि आगत~$w$ पर आरंभ होने पर मशीन~$M$ क्या
+  करती है। उस प्रतिरूप का प्रांत~$\Nat$, अर्थात् अनंत था। किंतु यदि
+  $M$ वास्तव में आगत~$w$ पर रुकती है, तो हम उसी तरह एक परिमित
+  प्रतिरूप~$\Struct M'$ बना सकते हैं। मान लें कि आगत~$w$ पर आरंभ की गई
+  $M$, $k$ चरणों के बाद रुकती है। प्रांत~$\Domain{M'}$ के रूप में समुच्चय
+  $\{0, \dots, n\}$ लें, जहाँ $n$, $k$ और~$w$ की लंबाई में बड़ा है, और
+  मानें कि
+  \[
+    \Assign{\prime}{M'}(x) =
+    \begin{cases}
+      x + 1 &\text{यदि $x < n$}\\
+      n &\text{अन्यथा,}
+    \end{cases}
+  \]
+  तथा $\tuple{x,y} \in \Assign{<}{M'}$ तभी जब $x < y$ अथवा
+  $x = y = n$। अन्य बातों में $\Struct{M'}$ को ठीक $\Struct{M}$ की तरह
+  परिभाषित करें। $\Struct{M'}$ की परिभाषा के अनुसार, ठीक
+  \olref[ver]{lem:halt-if-valid} के प्रमाण की तरह,
+  $\Sat{M'}{!T(M,w)}$। और चूँकि हमने माना कि $M$ आगत~$w$ पर रुकती है,
+  $\Sat{M'}{!E(M,w)}$। इसलिए $\Struct{M'}$,
+  $!T(M,w) \land !E(M,w)$ का परिमित प्रतिरूप है (ध्यान दें कि हमने
+  $\lif$ को~$\land$ से बदल दिया है)।
+
+  हम प्रमाण का आधा भाग पूरा कर चुके हैं: हमने दिखाया है कि यदि $M$
+  आगत~$w$ पर रुकती है, तो $!T(M,w) \land !E(M,w)$ का कोई परिमित
+  प्रतिरूप है। दुर्भाग्यवश इसका विपरीत सत्य नहीं है; अर्थात् ऐसी
+  ट्यूरिंग मशीनें हैं जो किसी आगत~$w$ पर नहीं रुकतीं, फिर भी
+  $!T(M,w) \land !E(M,w)$ का कोई परिमित प्रतिरूप है। उदाहरण के लिए, उस
+  मशीन~$M$ पर विचार करें जिसकी एकमात्र अवस्था $q_0$ और निर्देश
+  $\delta(q_0,\TMblank) = \tuple{q_0,\TMblank,\TMstay}$ है। रिक्त
+  आगत~$w = \emptyseq$ पर आरंभ की गई यह मशीन कभी नहीं रुकती: वह अनंत
+  पाश में है, किंतु न पट्टी बदलती है, न शीर्ष को चलाती है। सभी विन्यास
+  समान हैं (वही अवस्था, वही शीर्ष-स्थान, वही पट्टी-सामग्री)। हम ऐसा
+  परिमित !!{structure}~$\Struct{M''}$ परिभाषित कर सकते हैं जो
+  $!T(M,\emptyseq) \land !E(M,\emptyseq)$ को संतुष्ट करता है (अभ्यास)।
+  फिर भी हम $!T(M,w)$ को उपयुक्त ढंग से बदल सकते हैं ताकि ऐसे
+  !!{structure} अपवर्जित हो जाएँ।
+
+  \begin{prob}
+    मान लें कि $M$ एक ऐसी ट्यूरिंग मशीन है जिसकी एकमात्र अवस्था $q_0$
+    और एकमात्र निर्देश
+    $\delta(q_0,\TMblank) = \tuple{q,\TMblank,\TMstay}$ है।
+    मानें कि $\Domain{M''} = \{0, 1, 2\}$,
+    $\Assign{\prime}{M''}(0) = \Assign{\prime}{M'}(1) = 1$ तथा
+    $\Assign{\prime}{M''}(2) = 2$, और
+    $\Assign{<}{M''} = \{\tuple{0,1}, \tuple{1,1}, \tuple{2,2}\}$।
+    $\Assign{\Obj Q_{q_0}}{M''}$, $\Assign{\Obj S_{\TMblank}}{M''}$,
+    और $\Assign{\Obj S_{\TMendtape}}{M''}$ को इस तरह परिभाषित करें कि
+    $!T(M,\emptyseq)$ और $!E(M,\emptyseq)$ सत्य हो जाएँ, और समझाएँ कि
+    वे सत्य क्यों हैं। संकेत: ध्यान दें कि
+    $\delta(q_0, \TMendtape)$ अपरिभाषित है। सुनिश्चित करें कि
+    \begin{align*}
+    & \Obj Q_{q_0}(\num{1}, \num{n}) \land \Obj S_{\TMendtape}(\num{0}, \num{n})
+      \land
+      \lforall[x][(\num{0} < x \lif \Obj S_\TMblank(x, \num{n}))] \text{\quad सभी $n \in \Nat$ के लिए}\\
+    & \lexists[y][(\Obj Q_{q_0}(\num{0}, y) \land \Obj S_{\TMendtape}(\num{0}, y))]
+    \end{align*}
+    दोनों $\Struct{M''}$ में सत्य हैं।
+  \end{prob}
+\end{explain}
+
+आगत $w = \sigma_{i_1}\dots\sigma_{i_k}$ पर ट्यूरिंग मशीन~$M$ की
+क्रिया का वर्णन करने वाले !!{sentence} पर विचार करें:
+\begin{enumerate}
+\item संख्याओं और~$<$ का वर्णन करने वाले अभिगृहीत (ठीक
+  \olref[rep]{sec} में $!T(M,w)$ की परिभाषा की तरह)।
+\item आगत-विन्यास का वर्णन करने वाले अभिगृहीत: ठीक $!T(M,w)$ की
+  परिभाषा की तरह।
+\item एक विन्यास से अगले विन्यास तक संक्रमण का वर्णन करने वाले
+  अभिगृहीत:
+
+निम्न के लिए $!A(x, y)$ को पहले की तरह मानें, और मानें कि
+\[
+  !B(y) \ident \lforall[x][(x < y \lif \eq/[x][y])].
+\]
+\begin{enumerate}
+\item \ollabel{rep-right} प्रत्येक निर्देश
+  $\delta(q_i, \sigma) = \tuple{q_j, \sigma', \TMright}$ के लिए
+  यह !!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y) \land !B(y')))
+\end{align*}
+\item \ollabel{rep-left} प्रत्येक निर्देश
+  $\delta(q_i, \sigma) = \tuple{q_j, \sigma', \TMleft}$ के लिए
+  यह !!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][
+    ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
+!A(x, y))) \land {}\\
+& \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
+  y') \land !A(\num{0}, y) \land !B(y')))
+\end{align*}
+\item \ollabel{rep-stay} प्रत्येक निर्देश
+  $\delta(q_i, \sigma) = \tuple{q_j, \sigma', \TMstay}$ के लिए
+  यह !!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y) \land !B(y')))
+\end{align*}
+\end{enumerate}
+जैसा आप देख सकते हैं, $M$ के संक्रमणों का वर्णन करने वाले !!{sentence},
+$!T(M,w)$ के संगत !!{sentence} के समान हैं; केवल अंत में $!B(y')$
+जोड़ा गया है। $!B(y')$ यह सुनिश्चित करता है कि “अगले” विन्यास की
+संख्या $y'$, पिछली सभी संख्याओं $\Obj 0$, $\Obj 0'$, \dots{} से भिन्न
+है।
+\end{enumerate}
+$!T'(M, w)$ को ट्यूरिंग मशीन~$M$ और आगत~$w$ के लिए ऊपर के सभी
+!!{sentence} का संयोजन मानें।
+
+\begin{lem}\ollabel{lem:halts-sat}
+  यदि आगत~$w$ पर आरंभ की गई $M$ रुकती है, तो
+  $!T'(M,w) \land !E(M,w)$ का कोई परिमित प्रतिरूप है।
+\end{lem}
+
+\begin{proof}
+  $\Struct{M'}$ को \olref[ver]{lem:halt-if-valid} के प्रमाण की तरह
+  मानें, केवल ये अपवाद रखें:
+  \begin{align*}
+    \Domain{M'} & = \{0, \dots, n\},\\
+    \Assign{\prime}{M'}(x) & =
+    \begin{cases}
+      x + 1 &\text{यदि $x < n$}\\
+      n &\text{अन्यथा,}
+    \end{cases} \\
+    \tuple{x,y} \in \Assign{<}{M'} &\text{तभी जब $x < y$ अथवा $x = y = n$,}
+  \end{align*}
+  जहाँ $n = \max(k,\len{w})$ और $k$ वह न्यूनतम संख्या है जिसके लिए
+  आगत~$w$ पर आरंभ की गई $M$, $k$ चरणों के बाद रुक चुकी है।
+  $\Sat{M'}{!T'(M,w) \land E(M,w)}$ का सत्यापन अभ्यास के रूप में छोड़ते
+  हैं।
+\end{proof}
+
+\begin{prob}
+  $\Sat{M'}{!T(M,w) \land E(M,w)}$ सिद्ध करके
+  \olref[tur][und][tra]{lem:halts-sat} का प्रमाण पूरा करें।
+\end{prob}
+
+\begin{lem}\ollabel{lem:sat-halts}
+  यदि $!T'(M,w) \land !E(M,w)$ का कोई परिमित प्रतिरूप है, तो आगत~$w$
+  पर आरंभ की गई $M$ रुकती है।
+\end{lem}
+
+\begin{proof}
+  हम प्रतिधनात्मक कथन सिद्ध करते हैं। मान लें कि आगत~$w$ पर आरंभ की गई
+  $M$ नहीं रुकती। यदि $!T'(M,w) \land !E(M,w)$ का कोई प्रतिरूप ही नहीं
+  है, तो प्रमाण पूरा हुआ। अतः मान लें कि $\Struct{M}$,
+  $!T(M,w) \land !E(M, w)$ का प्रतिरूप है। हमें दिखाना है कि वह परिमित
+  नहीं हो सकता।
+
+  ठीक \olref[ver]{lem:config} की तरह हम सिद्ध कर सकते हैं कि यदि आगत~$w$
+  पर आरंभ की गई~$M$, $n$ चरणों के बाद नहीं रुकी है, तो
+  $!T'(M,w) \Entails !C(M, w, n) \land !B(\num{n})$। चूँकि आगत~$w$ पर
+  आरंभ की गई $M$ नहीं रुकती, इसलिए सभी~$n \in \Nat$ के लिए
+  $!T'(M,w) \Entails !C(M, w, n) \land !B(\num{n})$। ध्यान दें कि
+  \olref[rep]{prop:mlessk} के अनुसार सभी~$k < n$ के लिए
+  $!T'(M,w) \Entails \num{k} < \num{n}$। साथ ही
+  $!B(\num{n}) \Entails \num{k} < \num{n} \lif
+  \eq/[\num{k}][\num{n}]$। अतः सभी~$k < n$ के लिए
+  $\Sat{M}{\eq/[\num{k}][\num{n}]}$, अर्थात् अनंततः अनेक पद~$\num{k}$
+  के मान $\Struct{M}$ में परस्पर भिन्न होने चाहिए। किंतु इसके लिए
+  $\Domain{M}$ का अनंत होना आवश्यक है; अतः $\Struct{M}$,
+  $!T'(M,w) \land !E(M, w)$ का परिमित प्रतिरूप नहीं हो सकता।
+\end{proof}
+
+\begin{prob}
+  यह सिद्ध करके \olref[tur][und][tra]{lem:sat-halts} का प्रमाण पूरा
+  करें कि यदि आगत~$w$ पर आरंभ की गई~$M$, $n$ चरणों के बाद नहीं रुकी है,
+  तो $!T'(M,w) \Entails !B(\num{n})$।
+\end{prob}
+
+\begin{thm}[ट्राख्टेनब्रॉट का प्रमेय]
+  \ollabel{thm:trakhtenbrodt}
+  यह अनिर्णेय है कि प्रथम-कोटि तर्कशास्त्र के किसी स्वेच्छ
+  !!{sentence} का परिमित प्रतिरूप है या नहीं (अर्थात् वह परिमित रूप से
+  संतुष्टनीय है या नहीं)।
+\end{thm}
+
+\begin{proof}
+  मान लें कि कोई ट्यूरिंग मशीन~$F$ है जो परिमित संतुष्टनीयता की समस्या
+  का निर्णय करती है। तब किसी भी ट्यूरिंग मशीन~$M$ और आगत~$w$ के दिए
+  होने पर हम वाक्य~$!T'(M,w) \land !E(M,w)$ की संगणना कर सकते
+  हैं और $F$ का उपयोग करके तय कर सकते हैं कि इसका कोई परिमित प्रतिरूप
+  है या नहीं।
+  \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts} के अनुसार
+  ऐसा तभी है जब आगत~$w$ पर आरंभ की गई $M$ रुकती है। इस प्रकार हम $F$
+  से विराम समस्या हल कर सकते, जबकि हम जानते हैं कि वह असमाधेय है।
+\end{proof}
+
+\begin{cor}\ollabel{cor:fproof-incomp}%
+  ऐसी कोई !!{derivation} प्रणाली नहीं हो सकती जो \emph{परिमित} वैधता
+  के लिए सुदृढ़ और पूर्ण हो; अर्थात् ऐसी !!a{derivation} प्रणाली जिसमें
+  प्रत्येक परिमित !!{structure}~$\Struct{M}$ के लिए
+  $\Proves !B$ तभी जब $\Sat{M}{!B}$।
+\end{cor}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[tur][und][tra]{cor:fproof-incomp} सिद्ध करें। ध्यान दें कि
+  $!B$ प्रत्येक परिमित !!{structure} में तभी संतुष्ट होता है जब
+  $\lnot !B$ परिमित रूप से संतुष्टनीय नहीं है। समझाएँ कि
+  \olref[tur][und][uns]{thm:valid-ce} के अर्थ में परिमित संतुष्टनीयता
+  अर्ध-निर्णेय क्यों है। इसका उपयोग यह तर्क देने के लिए करें कि यदि
+  परिमित वैधता के लिए कोई !!a{derivation} प्रणाली होती, तो परिमित
+  संतुष्टनीयता निर्णेय होती।
+\end{prob}
+
+
+\end{document}

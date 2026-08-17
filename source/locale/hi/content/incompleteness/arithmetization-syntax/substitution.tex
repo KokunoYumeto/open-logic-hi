@@ -1,0 +1,54 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{art}{sub}
+\olsection{प्रतिस्थापन}
+
+स्मरण करें कि प्रतिस्थापन वह संक्रिया है जिसमें !!a{formula}~$!A$ में
+!!a{variable}~$u$ की सभी मुक्त उपस्थितियों को पद~$t$ से बदला जाता है; इसे
+$\Subst{!A}{t}{u}$ लिखते हैं। !!{variable}, !!{formula} और पदों की ग्योडेल (G\"odel)
+ संख्याओं पर की गई यह संक्रिया आदिम पुनरावर्ती है।
+
+\begin{prop}\ollabel{prop:subst-primrec}
+ऐसा आदिम पुनरावर्ती फलन $\fn{Subst}(x, y, z)$ है जिसका गुण है कि
+\[
+\fn{Subst}(\Gn{!A}, \Gn{t}, \Gn{u}) = \Gn{\Subst{!A}{t}{u}}.
+\]
+\end{prop}
+
+\begin{proof}
+तब हम फलन $\fn{hSubst}$ को आदिम पुनरावर्तन द्वारा निम्न प्रकार परिभाषित कर
+सकते हैं:
+\begin{multline*}
+\begin{aligned}
+\fn{hSubst}(x, y, z, 0) & = \emptyseq \\
+\fn{hSubst}(x, y, z, i+1) & =
+\end{aligned}\\
+\begin{cases}
+\fn{hSubst}(x, y, z, i) \concat y & \text{यदि $\fn{FreeOcc}(x, z, i)$} \\
+\fn{append}(\fn{hSubst}(x, y, z, i), (x)_{i}) & \text{अन्यथा।}
+\end{cases}
+\end{multline*}
+अब $\fn{Subst}(x, y, z)$ को $\fn{hSubst}(x, y, z, \len{x})$ के रूप में
+परिभाषित किया जा सकता है।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:free-for}
+संबंध $\fn{FreeFor}(x, y, z)$, जो तभी लागू होता है जब ग्योडेल (G\"odel)
+संख्या~$y$ वाला पद, ग्योडेल (G\"odel) संख्या~$x$ वाले सूत्र में ग्योडेल (G\"odel)
+ संख्या~$z$ वाले चर के लिए !!{free for} हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof} अभ्यास। \end{proof}
+
+\begin{prob}
+\olref[inc][art][sub]{prop:free-for} सिद्ध करें।
+\end{prob}
+
+\end{document}

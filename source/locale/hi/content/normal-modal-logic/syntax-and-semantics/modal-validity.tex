@@ -1,0 +1,74 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: modal-validity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{val}
+
+\olsection{मान्यता}
+
+\begin{explain}
+  सभी प्रतिरूपों में, अर्थात् प्रत्येक प्रतिरूप के प्रत्येक जगत पर, सत्य
+  !!{formula} विशेष रूप से रोचक हैं। वे उन मोडल प्रतिज्ञप्तियों को निरूपित करते
+  हैं जो $\Box$ और $\Diamond$ की व्याख्या चाहे जैसे की जाए, सत्य रहती हैं,
+  बशर्ते व्याख्या इस अर्थ में ``सामान्य'' हो कि वह संभव जगतों पर किसी
+  अभिगम्यता संबंध से उत्पन्न होती हो। ऐसे !!{formula}ों को हम \emph{मान्य}
+  कहते हैं। उदाहरणार्थ, $\Box(p \land q) \lif \Box p$ मान्य है। किंतु
+  $\Box$ की एलेथिक व्याख्या के आधार पर जिन कुछ !!{formula}ों के मान्य होने की
+  आशा की जा सकती है, जैसे $\Box p \lif p$, वे मान्य नहीं हैं। संबंधात्मक
+  प्रतिरूपों की रुचिकर विशेषता यह है कि $\Box$ और $\Diamond$ की भिन्न
+  व्याख्याओं को भिन्न प्रकार के अभिगम्यता संबंधों से ग्रहण किया जा सकता है।
+  इससे संकेत मिलता है कि मान्यता को केवल \emph{सभी} प्रतिरूपों के सापेक्ष ही
+  नहीं, बल्कि \emph{किसी निश्चित प्रकार के} सभी प्रतिरूपों के सापेक्ष भी
+  परिभाषित करना चाहिए। उदाहरणार्थ, यह निकलेगा कि $\Box p \lif p$ उन सभी
+  प्रतिरूपों में सत्य है जिनमें प्रत्येक जगत स्वयं से अभिगम्य है, अर्थात्
+  $R$ स्वपरावर्ती है। प्रतिरूपों के वर्गों के सापेक्ष मान्यता की परिभाषा
+  हमें इसे संक्षेप में कहने देती है: $\Box p \lif p$ स्वपरावर्ती प्रतिरूपों
+  के वर्ग में मान्य है।
+\end{explain}
+
+\begin{defn}
+  कोई !!{formula}~$!A$, प्रतिरूपों के वर्ग $\mClass{C}$ में \emph{मान्य} है,
+  यदि वह $\mClass{C}$ के प्रत्येक प्रतिरूप में (अर्थात् प्रत्येक प्रतिरूप के
+  प्रत्येक जगत पर) सत्य हो। यदि $!A$, $\mClass{C}$ में मान्य है, तो हम
+  $\mClass{C} \Entails !A$ लिखते हैं; और यदि $!A$, \emph{सभी} प्रतिरूपों
+  के वर्ग में मान्य है, तो $\Entails !A$ लिखते हैं।
+\end{defn}
+
+\begin{prop}\ollabel{prop:subset-class}
+  यदि $!A$, $\mClass{C}$ में मान्य है, तो वह प्रत्येक वर्ग
+  $\mClass{C}' \subseteq \mClass{C}$ में भी मान्य है।
+\end{prop}
+
+\begin{prop}\ollabel{prop:Nec-rule}
+  यदि $!A$ मान्य है, तो $\Box!A$ भी मान्य है।
+\end{prop}
+
+\begin{proof}
+  मान लें $\Entails !A$। $\Entails \Box!A$ दिखाने के लिए कोई प्रतिरूप
+  $\mModel{M} = \tuple{W, R, V}$ और $w \in W$ लें। यदि $Rww'$, तो $!A$ की
+  मान्यता से $\mSat{M}{!A}[w']$, अतः $\mSat{M}{\Box!A}[w]$ भी। चूँकि
+  $\mModel{M}$ और $w$ स्वेच्छ थे, $\Entails \Box!A$।
+\end{proof}
+
+\begin{prob}
+  दिखाइए कि निम्नलिखित मान्य हैं:
+  \begin{enumerate}
+  \item $\Box p \lif \Box (q \lif p)$;
+  \item $\Box \lnot \lfalse$;
+  \item $\Box p \lif (\Box q \lif \Box p)$।
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  दिखाइए कि $!A \lif \Box!A$, उन प्रतिरूपों
+  $\mModel{M} = \tuple{W, R, V}$ के वर्ग $\mClass{C}$ में मान्य है जिनमें
+  $W = \{w\}$। इसी तरह दिखाइए कि $!B \lif \Box !A$ और
+  $\Diamond !A \lif !B$, उन प्रतिरूपों $\mModel{M} = \tuple{W, R, V}$ के
+  वर्ग में मान्य हैं जिनमें $R = \emptyset$।
+\end{prob}
+
+\end{document}

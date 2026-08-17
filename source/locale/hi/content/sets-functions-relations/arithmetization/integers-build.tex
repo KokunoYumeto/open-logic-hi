@@ -1,0 +1,30 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0033.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen cross-reference identities required by this standalone section.
+\makeatletter
+\expandafter\def\csname r@sfr:rel:eqv:def:equivalenceclass\endcsname
+  {{rel.{11}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:eqv:def:equivalenceclass@cref\endcsname
+  {{[defn][11][0]rel.{11}}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:ref:sec\endcsname
+  {{arith.5}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:ref:sec@cref\endcsname
+  {{[section][5][0]arith.5}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:check:sec\endcsname
+  {{arith.6}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:check:sec@cref\endcsname
+  {{[section][6][0]arith.6}{}{}{}{}}
+\makeatother
+\pdfstringdefDisableCommands{\def\Nat{N}\def\Int{Z}}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{पूर्णांक-निर्माण}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{integers}
+\end{document}

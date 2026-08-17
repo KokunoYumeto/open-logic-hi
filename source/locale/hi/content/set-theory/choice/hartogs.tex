@@ -1,0 +1,88 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{choice}{hartogs}
+\olsection{तुलनीयता और हार्टोग्स का लेम्मा}
+
+वह इसका सकारात्मक पक्ष था। अब नकारात्मक पक्ष देखें। चयन के बिना विषय
+\emph{अव्यवस्थित} हो जाता है। क्यों, यह देखने के लिए
+\cite{Hartogs1915} का यह सुंदर परिणाम देखें:
+
+\begin{lem}[\emph{$\ZF$ में}]\ollabel{HartogsLemma}
+किसी भी समुच्चय $A$ के लिए कोई क्रमसूचक $\alpha$ है ऐसा कि
+$\cardnless{\alpha}{A}$।
+\end{lem}
+
+\begin{proof}
+यदि $B\subseteq A$ और $R\subseteq B^2$, तो
+\olref[ord-arithmetic][using-addition]{rankcomputation} से
+$\tuple{B,R}\subseteq V_{\setrank{A}+4}$। अतः पृथक्करण का उपयोग करके
+विचार करें:
+\[
+	C = \Setabs{\tuple{B, R} \in V_{\setrank{A}+5}}{B\subseteq A 
+	\text{ और $\tuple{B,R}$ एक सुव्यवस्था है}}
+\]
+प्रतिस्थापन और \olref[ordinals][ordtype]{thmOrdinalRepresentation} का
+उपयोग करके यह समुच्चय बनाएँ:
+\[
+	\alpha = \Setabs{\ordtype{B, R}}{\tuple{B, R} \in C}.
+\]
+\olref[ordinals][basic]{corordtransitiveord} से $\alpha$ एक क्रमसूचक है,
+क्योंकि वह क्रमसूचकों का संक्रमणशील समुच्चय है। आखिर यदि
+$\gamma\in\beta\in\alpha$, तो किसी $B\subseteq R$ के लिए
+$\beta=\ordtype{B,R}$, जिससे
+\olref[ordinals][iso]{wellordinitialsegment} के अनुसार किसी $b\in B$ के
+लिए $\gamma=\ordtype{B_b,R_b}$, और इस प्रकार $\gamma\in\alpha$।
+
+विरोधाभास द्वारा मान लें कि कोई !!a{injection}
+$f\colon\alpha\to A$ है। तब जहाँ:
+\begin{align*}
+	B &= \ran{f}\\
+	R &= \Setabs{\tuple{f(\alpha), f(\beta)} \in A \times A}{\alpha \in \beta}.
+\end{align*}
+स्पष्टतः $\alpha=\ordtype{B,R}$ और $\tuple{B,R}\in C$। अतः
+$\alpha\in\alpha$, जो विरोधाभास है।
+\end{proof}
+
+इससे एक गहन परिणाम निष्पन्न होता है:
+
+\begin{thm}[\emph{$\ZF$ में}]
+निम्न दावे तुल्य हैं:
+\begin{enumerate}
+	\item\ollabel{equivwo} सुव्यवस्था अभिगृहीत
+	\item\ollabel{equivcompare} किन्हीं समुच्चयों $A$ और $B$ के लिए या तो
+	$\cardle{A}{B}$ अथवा $\cardle{B}{A}$
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\emph{\olref{equivwo} $\Rightarrow$ \olref{equivcompare}.} $A$ और $B$ को
+नियत करें। \olref{equivwo} का उपयोग करने पर सुव्यवस्थाएँ $\tuple{A,R}$ और
+$\tuple{B,S}$ हैं।
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} का उपयोग करके
+$f\colon\alpha\to\tuple{A,R}$ और $g\colon\beta\to\tuple{B,S}$ को
+समाकृतिकताएँ मानें। \olref[sth][ordinals][basic]{ordinalsaresubsets} से या
+तो $\alpha\subseteq\beta$ अथवा $\beta\subseteq\alpha$। यदि
+$\alpha\subseteq\beta$, तो $\comp{f^{-1}}{g}\colon A\to B$ एक
+!!a{injection} है, अतः $\cardle{A}{B}$; इसी प्रकार यदि
+$\beta\subseteq\alpha$, तो $\cardle{B}{A}$।
+
+\emph{\olref{equivcompare} $\Rightarrow$ \olref{equivwo}.} $A$ को नियत
+करें; \olref{HartogsLemma} से कोई क्रमसूचक $\beta$ है जिसके लिए
+$\cardnless{\beta}{A}$। \olref{equivcompare} का उपयोग करने पर हमारे पास
+$\cardle{A}{\beta}$ है। अतः कोई !!{injection} $f\colon A\to\beta$ है और
+क्रम $\Setabs{\tuple{a,b}\in A\times A}{f(a)\in f(b)}$ परिभाषित करके हम इस
+अंतःक्षेप का उपयोग $A$ के अवयवों को सुव्यवस्थित करने में कर सकते हैं।
+\end{proof}
+\noindent
+एक तत्काल परिणाम यह है: यदि सुव्यवस्था विफल होती है, तो कुछ समुच्चय आकार
+की दृष्टि से \emph{वास्तव में अतुलनीय} होते हैं। अतः यदि सुव्यवस्था विफल
+होती है, तो परिमितेतर कार्डिनल अंकगणित अव्यवस्थित होगा। उदाहरण के लिए हमें
+यह विचार छोड़ना होगा कि यदि $A$ और $B$ अनंत हों, तो
+$\cardeq{\cardeq{A\disjointsum B}{A\times B}}{M}$, जहाँ $M$, $A$ और $B$
+में बड़ा है (\olref[card-arithmetic][simp]{cardplustimesmax} देखें)। समस्या
+सरल है: यदि हम $A$ और $B$ के आकार की \emph{तुलना} नहीं कर सकते, तो यह पूछना
+निरर्थक है कि कौन बड़ा है।
+
+\end{document}

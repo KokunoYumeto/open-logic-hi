@@ -1,0 +1,130 @@
+% Part: second-order-logic
+% Chapter: metatheory
+% Section: second-order-arithmetic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{met}{spa}
+
+\olsection{द्वितीय-कोटि अंकगणित}
+
+स्मरण करें कि पियानो अंकगणित के सिद्धांत~$\Th{PA}$ में $\Th{Q}$ के ये आठ
+अभिगृहीत सम्मिलित हैं,
+\begin{align*}
+& \lforall[x][\eq/[x'][\Obj 0]]\\
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])]\\ 
+& \lforall[x][\eq[(x + \Obj 0)][x]]\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]]\\
+\intertext{और इनके साथ इस रूप के सभी वाक्य भी:}
+& (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)].
+\end{align*}
+अंतिम वाला एक ``स्कीमा'' है, अर्थात् ऐसा प्रतिरूप जो अंकगणित की भाषा में
+अनंत रूप से अनेक !!{sentence} बनाता है---प्रत्येक !!{formula}~$!A(x)$ के
+लिए एक। इस स्कीमा को हम (प्रथम-कोटि) \emph{आगमन-अभिगृहीत स्कीमा} कहते हैं।
+\emph{द्वितीय-कोटि} पियानो अंकगणित~$\Th{PA^2}$ में आगमन को एक ही वाक्य के
+रूप में कहा जा सकता है। $\Th{PA^2}$ में ऊपर के पहले आठ अभिगृहीत और यह
+(द्वितीय-कोटि) \emph{आगमन-अभिगृहीत} होते हैं:
+\[
+\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif \lforall[x][X(x)])].
+\]
+यह कहता है कि यदि !!{domain} के किसी उपसमुच्चय~$X$ में
+~$\Assign{\Obj{0}}{M}$ हो और किसी भी~$x \in \Domain{M}$ के साथ उसमें
+~$\Assign{\prime}{M}(x)$ भी हो (अर्थात् वह ``उत्तरवर्ती के अधीन संवृत''
+हो), तो उसमें !!{domain} की प्रत्येक वस्तु होती है (अर्थात् $X =
+\Domain{M}$)।
+
+आगमन-अभिगृहीत सुनिश्चित करता है कि उसे संतुष्ट करने वाली किसी भी
+!!{structure} के~$\Domain{M}$ में केवल वे !!{element} हों जिनका होना
+अभिगृहीतों द्वारा आवश्यक है, अर्थात् $n \in \Nat$ के लिए~$\num{n}$ के
+मान। $\Th{PA^2}$ के किसी मॉडल में कोई अमानक संख्या नहीं होती।
+
+\begin{thm}
+\ollabel{thm:sol-pa-standard}
+यदि $\Sat{M}{\Th{PA^2}}$, तो $\Domain{M} =
+\Setabs{\Value{\num{n}}{M}}{n \in \Nat}$.
+\end{thm}
+
+\begin{proof}
+मान लें $N = \Setabs{\Value{\num{n}}{M}}{n \in \Nat}$, और मान लें कि
+$\Sat{M}{\Th{PA^2}}$। निश्चय ही किसी भी $n \in \Nat$ के लिए
+$\Value{\num{n}}{M} \in \Domain{M}$, अतः $N \subseteq \Domain{M}$।
+
+अब दूसरी दिशा के अंतर्वेशन पर विचार करें। ऐसा चर-नियतन $s$ लें कि $s(X) =
+N$। परिकल्पना से,
+\begin{align*}
+\Sat{M}{\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x)
+      \lif X(x'))]) \lif \lforall[x][X(x)])]}, & \text{ अतः}\\
+\Sat{M}{(X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif
+  \lforall[x][X(x)]}[s]. & 
+\end{align*}
+इस सप्रतिबंध के पूर्वपक्ष पर विचार करें। $\Value{\Obj{0}}{M} \in N$, अतः
+$\Sat{M}{X(\Obj{0})}[s]$। दूसरा संयोज्य
+$\lforall[x][(X(x) \lif X(x'))]$ भी संतुष्ट है। मान लें $x \in N$।
+~$N$ की परिभाषा से किसी~$n$ के लिए $x = \Value{\num{n}}{M}$। फलतः
+$\Assign{\prime}{M}(x) = \Value{\num{n+1}}{M} \in N$। अतः
+$\Assign{\prime}{M}(x) \in N$।
+
+इस प्रकार $\Sat{M}{X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]}[s]$।
+फलतः $\Sat{M}{\lforall[x][X(x)]}[s]$। किंतु इसका अर्थ है कि प्रत्येक $x
+\in \Domain{M}$ के लिए $x \in s(X) = N$। इसलिए $\Domain{M} \subseteq
+N$।
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:sol-pa-categorical}
+$\Th{PA^2}$ के कोई भी दो मॉडल समरूप होते हैं।
+\end{cor}
+
+\begin{proof}
+\olref{thm:sol-pa-standard} से, $\Th{PA^2}$ के किसी भी मॉडल का प्रांत
+$\Value{\num{n}}{M}$ द्वारा पूरा भर जाता है। ऐसा कोई भी मॉडल~$\Th{Q}$ का
+मॉडल भी है। \olref[mod][mar][stm]{prop:thq-standard} से ऐसा कोई भी मॉडल
+मानक है, अर्थात्~$\Struct{N}$ के समरूप है।
+\end{proof}
+
+ऊपर हमने $\Th{PA^2}$ को उस सिद्धांत के रूप में परिभाषित किया जिसमें पहले
+आठ अंकगणितीय अभिगृहीत और द्वितीय-कोटि आगमन-अभिगृहीत हैं। वास्तव में,
+द्वितीय-कोटि तर्कशास्त्र की अभिव्यंजक शक्ति के कारण, द्वितीय-कोटि पियानो
+अंकगणित के लिए अंकगणितीय अभिगृहीतों में केवल \emph{पहले दो} और आगमन पर्याप्त
+हैं।
+
+\begin{prop}\ollabel{prop:sol-pa-definable}
+$\Th{PA^{2\dagger}}$ वह द्वितीय-कोटि सिद्धांत हो जिसमें पहले दो अंकगणितीय
+अभिगृहीत (उत्तरवर्ती अभिगृहीत) और द्वितीय-कोटि आगमन-अभिगृहीत हैं। तब
+$\le$, $+$ और $\times$, ~$\Th{PA^{2\dagger}}$ में परिभाष्य हैं।
+\end{prop}
+
+\begin{proof}
+$\le$ को परिभाष्य दिखाने के लिए हमें ऐसा सूत्र~$!A_\le(x, y)$ खोजना है कि
+$\Sat{N}{!A_\le(\num n, \num m)}$ तभी और केवल तभी जब $n \le m$। इस सूत्र
+पर विचार करें:
+\[
+!B(x, Y) \ident Y(x) \land \lforall[y][(Y(y) \lif Y(y'))]
+\]
+स्पष्टतः कोई समुच्चय $Y \subseteq \Nat$, ~$!B(\num n, Y)$ को तभी और केवल
+तभी संतुष्ट करता है जब $\Setabs{m}{n \le m} \subseteq Y$; अतः हम
+$!A_\le(x, y) \ident \lforall[Y][(!B(x, Y) \lif Y(y))]$ ले सकते हैं।
+
+यह देखने के लिए कि योग परिभाष्य है, ध्यान दें कि $k+l=m$ तभी और केवल तभी
+जब कोई ऐसा फलन $u$ हो कि $u(0)=k$, प्रत्येक $n$ के लिए $u(n')=u(n)'$, और
+$m = u(l)$। इस तुल्यता का उपयोग करके हम निम्न सूत्र द्वारा
+$\Th{PA^{2\dagger}}$ में योग को परिभाषित कर सकते हैं:
+\[
+!A_+(x,y,z) \ident \lexists[u][(u(\Obj 0)=x \land \lforall[w][u(x')=u
+ (x)'] \land u(y)=z)]
+\] 
+यह स्पष्ट होना चाहिए कि $\Sat{N}{!A_+(\num k, \num l, \num m)}$ तभी और
+केवल तभी जब $k+l=m$।
+\end{proof}
+
+\begin{prob}
+\olref[sol][met][spa]{prop:sol-pa-definable} का प्रमाण पूरा करें।
+\end{prob}
+
+\end{document}

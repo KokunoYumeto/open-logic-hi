@@ -1,0 +1,141 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: truth-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{com}{tru}
+
+\olsection{सत्यता लेम्मा}
+
+विहित प्रतिरूप~$\mModel{M^\Sigma}$ इस प्रकार परिभाषित है कि
+$\mSat{M^\Sigma}{!A}[\Delta]$ तभी जब $!A \in \Delta$। !!{propositional variable}ों के लिए $V^\Sigma$ की परिभाषा इसे सीधे देती है। किंतु हमें सत्यापित
+करना है कि यह तुल्यता सभी !!{formula}ों के लिए सत्य है। हम इसे आगमन से करते
+हैं। आगमनात्मक चरण में प्रतिज्ञप्तिक संकारकों वाले !!{formula}ों के लिए
+(जहाँ हमें \olref[ccs]{prop:ccs-properties} का उपयोग करना है) और मोडल
+संकारकों के लिए (जहाँ हम \olref[mod]{sec} के परिणाम लगाते हैं) तुल्यता
+सिद्ध करनी होती है।
+
+\begin{prop}[सत्यता लेम्मा]
+  \ollabel{prop:truthlemma}
+  प्रत्येक !!{formula}~$!A$ के लिए $\mSat{M^\Sigma}{!A}[\Delta]$ तभी जब
+  $!A \in \Delta$।
+\end{prop}
+
+\begin{proof}
+  $!A$ पर आगमन से।
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat/{M^\Sigma}{\lfalse}[\Delta]$
+        \olref[syn][trw]{defn:mmodels} से, और $\lfalse \notin \Delta$
+        इस परिणाम से:
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lfalse}.}}{}
+
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M^\Sigma}{\ltrue}[\Delta]$
+        \olref[syn][trw]{defn:mmodels} से, और $\ltrue \in \Delta$ इस परिणाम से:
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-ltrue}.}}{}
+
+    \item \indcase{!A}{p}{$\mSat{M^\Sigma}{p}[\Delta]$ तभी जब $\Delta \in
+      V^\Sigma(p)$, \olref[syn][trw]{defn:mmodels} से। साथ ही, $V^\Sigma$
+      की परिभाषा से $\Delta \in V^\Sigma(p)$ तभी जब $p \in \Delta$।}
+
+    \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
+        \iftag{probNot}{अभ्यास।}{$\mSat{M^\Sigma}{\lnot !B}[\Delta]$
+          तभी जब $\mSat/{M^\Sigma}{!B}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}), तभी जब $!B \notin \Delta$
+          (आगमनात्मक परिकल्पना से), तभी जब $\lnot !B \in \Delta$ (इससे:
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}).}}}{}
+
+    \tagitem{prvAnd}{\indcase{!A}{!B \land !C}{%
+        \iftag{probAnd}{अभ्यास।}{$\mSat{M^\Sigma}{!B \land
+            !C}[\Delta]$ तभी जब $\mSat{M^\Sigma}{!B}[\Delta]$ और
+          $\mSat{M^\Sigma}{!C}[\Delta]$ (\olref[syn][trw]{defn:mmodels}
+          से), तभी जब $!B \in \Delta$ और $!C \in \Delta$ (आगमनात्मक
+          परिकल्पना से), तभी जब $!B \land !C \in \Delta$ (इससे:
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-land}).}}}{}
+
+    \tagitem{prvOr}{\indcase{!A}{!B \lor !C}{%
+        \iftag{probOr}{अभ्यास।}{$\mSat{M^\Sigma}{!B \lor
+            !C}[\Delta]$ तभी जब $\mSat{M^\Sigma}{!B}[\Delta]$ या
+          $\mSat{M^\Sigma}{!C}[\Delta]$ (\olref[syn][trw]{defn:mmodels}
+          से), तभी जब $!B \in \Delta$ या $!C \in \Delta$ (आगमनात्मक
+          परिकल्पना से), तभी जब $!B \lor !C \in \Delta$ (इससे:
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lor}).}}}{}
+
+    \tagitem{prvIf}{\indcase{!A}{!B \lif !C}{%
+        \iftag{probIf}{अभ्यास।}{$\mSat{M^\Sigma}{!B \lif
+            !C}[\Delta]$ तभी जब $\mSat/{M^\Sigma}{!B}[\Delta]$ या
+          $\mSat{M^\Sigma}{!C}[\Delta]$ (\olref[syn][trw]{defn:mmodels}
+          से), तभी जब $!B \notin \Delta$ या $!C \in \Delta$ (आगमनात्मक
+          परिकल्पना से), तभी जब $!B \lif !C \in \Delta$ (इससे:
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lif}).}}}{}
+
+    \tagitem{prvIff}{\indcase{!A}{!B \liff !C}{%
+        \iftag{probIff}{अभ्यास।}{$\mSat{M^\Sigma}{!B \liff
+            !C}[\Delta]$ तभी जब या तो $\mSat{M^\Sigma}{!B}[\Delta]$ और
+          $\mSat{M^\Sigma}{!C}[\Delta]$, या
+          $\mSat/{M^\Sigma}{!B}[\Delta]$ और
+          $\mSat/{M^\Sigma}{!C}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels} से), तभी जब या तो $!B \in
+          \Delta$ और $!C \in \Delta$, या $!B \notin \Delta$ और $!C
+          \notin \Delta$ (आगमनात्मक परिकल्पना से), तभी जब $!B \liff !C
+          \in \Delta$ (इससे:
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-liff}).}}}{}
+
+    \tagitem{prvBox}{\indcase{!A}{\Box !B}{%
+        \iftag{probBox}{अभ्यास।}{पहले मान लें कि
+          $\mSat{M^\Sigma}{\Box !B}[\Delta]$।
+          \olref[syn][trw]{defn:mmodels} से ऐसे प्रत्येक $\Delta'$ के
+          लिए $\mSat{M^\Sigma}{!B}[\Delta']$ जिसके लिए $R^\Sigma
+          \Delta\Delta'$। आगमनात्मक परिकल्पना से ऐसे प्रत्येक $\Delta'$
+          के लिए $!B \in \Delta'$ जिसके लिए $R^\Sigma
+          \Delta\Delta'$। $R^\Sigma$ की परिभाषा से ऐसे प्रत्येक
+          $\Delta'$ के लिए $!B \in \Delta'$ जिसके लिए $\Box^{-1}
+          \Delta \subseteq \Delta'$। \olref[mod]{prop:box} से $\Box !B
+          \in \Delta$।
+
+          अब मान लें $\Box !B \in \Delta$। $\Delta' \in W^\Sigma$ ऐसा
+          हो कि $R^\Sigma \Delta\Delta'$, अर्थात् $\Box^{-1}\Delta
+          \subseteq \Delta'$। चूँकि $\Box !B \in \Delta$, इसलिए $!B
+          \in \Box^{-1} \Delta$। फलतः $!B \in \Delta'$। आगमनात्मक
+          परिकल्पना से $\mSat{M^\Sigma}{!B}[\Delta']$। चूँकि $\Delta'$,
+          $R^\Sigma \Delta\Delta'$ वाले जगतों में मनमाना है, इसलिए ऐसे
+          सभी $\Delta' \in W^\Sigma$ के लिए
+          $\mSat{M^\Sigma}{!B}[\Delta']$ जिनके लिए $R^\Sigma
+          \Delta\Delta'$। \olref[syn][trw]{defn:mmodels} से
+          $\mSat{M^\Sigma}{\Box !B}[\Delta]$।}}}{}
+
+    \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
+        \iftag{probDiamond}{अभ्यास।}{पहले मान लें कि
+          $\mSat{M^\Sigma}{\Diamond !B}[\Delta]$।
+          \olref[syn][trw]{defn:mmodels} से किसी ऐसे $\Delta'$ के लिए
+          $\mSat{M^\Sigma}{!B}[\Delta']$ जिसके लिए $R^\Sigma
+          \Delta\Delta'$। आगमनात्मक परिकल्पना से किसी ऐसे $\Delta'$ के
+          लिए $!B \in \Delta'$ जिसके लिए $R^\Sigma \Delta\Delta'$।
+          $R^\Sigma$ की परिभाषा से,\iftag{prvBox}{ किसी ऐसे $\Delta'$ के
+            लिए $!B \in \Delta'$ जिसके लिए $\Box^{-1} \Delta \subseteq
+            \Delta'$। \olref[mod]{prop:diamond} से,}{} किसी ऐसे $\Delta'$
+          के लिए $!B \in \Delta'$ जिसके लिए $\Diamond \Delta'
+          \subseteq \Delta$। चूँकि $!B \in \Delta'$, इसलिए $\Diamond
+          !B \in \Diamond \Delta'$, अतः $\Diamond !B \in \Delta$।
+
+          अब मान लें $\Diamond !B \in \Delta$।
+          \olref[mod]{prop:diamond} से ऐसा पूर्ण $\Sigma$-संगत
+          $\Delta' \in W^\Sigma$ है कि $\Diamond \Delta' \subseteq
+          \Delta$ और $!B \in \Delta'$।\iftag{prvBox}{
+            \olref[mod]{lem:box-iff-diamond} से ऐसा $\Delta' \in
+            W^\Sigma$ है कि $\Box^{-1} \Delta \subseteq \Delta'$ और
+            $!B \in \Delta'$।}{} $R^\Sigma$ की परिभाषा से $R^\Sigma
+          \Delta\Delta'$; इसलिए ऐसा $\Delta' \in W^\Sigma$ है कि
+          $R^\Sigma \Delta\Delta'$ और $!B \in \Delta'$।
+          \olref[syn][trw]{defn:mmodels} से
+          $\mSat{M^\Sigma}{\Diamond !B}[\Delta]$।}}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probFalse,probTrue,probNot,proband,probOr,probIf,probIff,probBox,probDiamond}
+  \olref[nml][com][tru]{prop:truthlemma} का प्रमाण पूरा कीजिए।
+\end{probtag}
+
+\end{document}

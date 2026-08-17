@@ -1,0 +1,130 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: second-incompleteness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{inp}{2in}
+
+\olsection{द्वितीय अपूर्णता-प्रमेय}
+
+इस कथन को हम कैसे व्यक्त कर सकते हैं कि $\Th{PA}$ अपनी संगतता स्वयं सिद्ध
+नहीं करता? $\Th{PA}$ के असंगत होने का अर्थ यह कहना है कि
+$\Th{PA} \Proves \eq[0][1]$। अतः हम संगतता-कथन $\OCon[\Th{PA}]$ को
+!!{sentence} $\lnot \OProv[\Th{PA}](\gn{\eq[0][1]})$ मान सकते हैं; तब
+अगला प्रमेय वांछित परिणाम देता है:
+
+\begin{thm}
+\ollabel{thm:second-incompleteness}
+यदि $\Th{PA}$ संगत है, तो $\Th{PA}$,~$\OCon[\Th{PA}]$ को !!{derive} नहीं
+करता।
+\end{thm}
+
+यह ध्यान देना महत्त्वपूर्ण है कि प्रमेय $\OCon[\Th{PA}]$ के विशिष्ट
+निरूपण (अर्थात् $\OProv[\Th{PA}](y)$ के विशिष्ट निरूपण) पर निर्भर है। हम
+केवल यह उपयोग करेंगे कि $\OProv[\Th{PA}](y)$ का निरूपण तीनों
+!!{derivability} प्रतिबंधों को संतुष्ट करता है; अतः प्रमेय ऐसे
+!!a{derivability} विधेय वाले प्रत्येक सिद्धांत तक व्यापक होता है जिसमें ये
+गुण हों।
+
+ग्योडेल (G\"odel) के तर्क की रूपरेखा पढ़ना ज्ञानवर्धक है, क्योंकि प्रमेय
+एक प्रभावी अंतिम पंक्ति की तरह निकलता है। तर्क ऐसा है। $!G_\Th{PA}$ को वह
+ग्योडेल (G\"odel) वाक्य मानें जिसे हमने \olref[1in]{thm:first-incompleteness} के
+प्रमाण में बनाया था। हमने दिखाया है: ``यदि $\Th{PA}$ संगत है, तो
+$\Th{PA}$,~$!G_\Th{PA}$ को !!{derive} नहीं करता।'' यदि इसे $\Th{PA}$
+\emph{के भीतर} औपचारिक बनाएँ, तो हमें इसका प्रमाण मिलता है:
+\[
+\OCon[\Th{PA}] \lif \lnot \OProv[\Th{PA}](\gn{!G_\Th{PA}}).
+\]
+अब मान लें $\Th{PA}$,~$\OCon[\Th{PA}]$ को !!{derive} करता है। तब वह
+$\lnot \Prov[\Th{PA}](\gn{!G_\Th{PA}})$ को !!{derive} करता है। किंतु
+चूँकि $!G_\Th{PA}$ ग्योडेल (G\"odel) वाक्य है, यह $!G_\Th{PA}$ के समतुल्य है। अतः
+$\Th{PA}$,~$!G_\Th{PA}$ को !!{derive} करता है।
+
+किंतु हम जानते हैं कि यदि $\Th{PA}$ संगत है, तो वह $!G_\Th{PA}$ को
+!!{derive} नहीं करता!{} अतः यदि $\Th{PA}$ संगत है, तो वह
+$\OCon[\Th{PA}]$ को !!{derive} नहीं कर सकता।
+
+तर्क को अधिक सटीक बनाने के लिए हम $!G_\Th{PA}$ को~$\Th{PA}$ का ग्योडेल (G\"odel)
+वाक्य लेंगे और !!{derivability} प्रतिबंधों (P1)--(P3) का उपयोग करके दिखाएँगे
+कि $\Th{PA}$,~$\OCon[\Th{PA}] \lif !G_\Th{PA}$ को !!{derive} करता है।
+इससे दिखेगा कि $\Th{PA}$,~$\OCon[\Th{PA}]$ को !!{derive} नहीं करता। यहाँ
+$\Th{PA}$ के भीतर प्रमाण की रूपरेखा है। (सरलता के लिए हम $\Th{PA}$ के
+अधोलेख हटा देते हैं।)
+\begin{align}
+& !G \liff \lnot \OProv(\gn{!G}) \ollabel{G2-1}\\
+& \qquad\text{$!G$ ग्योडेल (G\"odel) वाक्य है}\notag \\
+& !G \lif \lnot \OProv(\gn{!G}) \ollabel{G2-2}\\
+  & \qquad\text{\olref{G2-1} से} \notag\\
+& !G \lif
+  (\OProv(\gn{!G}) \lif \lfalse) \ollabel{G2-3}\\
+  & \qquad\text{\olref{G2-2} से, तर्क द्वारा}\notag\\
+& \OProv(\gn{
+    !G \lif
+    (\OProv(\gn{!G}) \lif \lfalse)
+  }) \ollabel{G2-4}\\
+  & \qquad\text{\olref{G2-3} से, प्रतिबंध P1 द्वारा} \notag\\
+& \OProv(\gn{!G}) \lif
+  \OProv(\gn{
+    (\OProv(\gn{!G}) \lif \lfalse)
+    }) \ollabel{G2-5}\\
+  & \qquad\text{\olref{G2-4} से, प्रतिबंध P2 द्वारा} \notag\\
+& \OProv(\gn{!G}) \lif (\OProv(\gn{\OProv(\gn{!G})}) \lif \OProv(\gn{\lfalse})) \ollabel{G2-6}\\
+  & \qquad\text{\olref{G2-5} से, प्रतिबंध P2 और तर्क द्वारा} \notag\\
+& \OProv(\gn{!G}) \lif
+  \OProv(\gn{\OProv(\gn{!G})}) \ollabel{G2-7}\\
+   & \qquad\text{P3 द्वारा} \notag\\
+& \OProv(\gn{!G}) \lif \OProv(\gn{\lfalse}) \ollabel{G2-8}\\
+  & \qquad \text{\olref{G2-6} और \olref{G2-7} से, तर्क द्वारा}\notag\\
+& \OCon \lif \lnot \OProv(\gn{!G}) \ollabel{G2-9}\\
+  & \qquad\text{\olref{G2-8} का प्रतिधनात्मक रूप और
+  $\OCon \ident \lnot \OProv(\gn{\lfalse})$}\notag \\
+& \OCon \lif !G \notag\\
+  & \qquad\text{\olref{G2-1} और \olref{G2-9} से, तर्क द्वारा।}\notag
+\end{align}
+ऊपर तर्क का उपयोग प्रतिज्ञप्तिक तर्कशास्त्र के केवल प्राथमिक तथ्यों के लिए
+है; उदाहरणतः \olref{G2-3},
+$\Proves \lnot!A \liff (!A\lif \lfalse)$ का उपयोग करता है और
+\olref{G2-8},
+$!A \lif (!B \lif !C), !A \lif !B \Proves !A \lif !C$ का।
+\olref{G2-5} और \olref{G2-6} में प्रतिबंध~P2 का उपयोग P2 के उदाहरणों
+$\OProv(\gn{!A \lif !B}) \lif
+(\OProv(\gn{!A}) \lif \OProv(\gn{!B}))$ पर निर्भर करता है। पहले में
+$!A \ident !G$ और $!B \ident \OProv(\gn{!G}) \lif \lfalse$; दूसरे में
+$!A \ident \OProv(\gn{G})$ और $!B \ident \lfalse$।
+
+द्वितीय अपूर्णता-प्रमेय का अधिक अमूर्त रूप यह है:
+
+\begin{thm}
+\ollabel{thm:second-incompleteness-gen} $\Th{T}$,~$\Th{Q}$ का कोई संगत,
+!!{axiomatized} विस्तार हो और $\OProv[\Th{T}](y)$ ऐसा कोई सूत्र हो जो
+$\Th{T}$ के लिए !!{derivability} प्रतिबंध P1--P3 को संतुष्ट करता है। तब
+$\Th{T}$,~$\OCon[T]$ को !!{derive} नहीं करता।
+\end{thm}
+
+\begin{prob}
+दिखाएँ कि $\Th{PA}$,~$!G_{\Th{PA}} \lif \OCon[\Th{PA}]$ को !!{derive}
+करता है।
+\end{prob}
+
+\begin{digress}
+कथा का निष्कर्ष यह है कि गणित का कोई ``उचित'' संगत सिद्धांत अपने ही
+संगतता-कथन को !!{derive} नहीं कर सकता। मान लें $\Th{T}$ गणित का ऐसा
+सिद्धांत है जिसमें $\Th{Q}$ और हिल्बर्ट का ``परिमितीय'' तर्क (वह चाहे जो
+भी हो) सम्मिलित हैं। तब पूरा $\Th{T}$,~$\Th{T}$ के संगतता-कथन को
+!!{derive} नहीं कर सकता; अतः और भी स्पष्टतः, उसका परिमितीय खंड भी
+$\Th{T}$ के संगतता-कथन को !!{derive} नहीं कर सकता। इस अर्थ में ``समूचे
+गणित'' का कोई परिमितीय संगतता-प्रमाण नहीं हो सकता।
+
+``परिमितीय'' पद की व्याख्या में कुछ छूट है, और 1931 के शोधपत्र में ग्योडेल (G\"odel)
+इस संभावना को स्वीकार करते हैं कि जिसे हम ``परिमितीय'' मानें वह उस प्रकार
+के गणित से बाहर हो सकता है जिसे हिल्बर्ट औपचारिक बनाना चाहते थे। किंतु
+ग्योडेल (G\"odel) उदार हो रहे थे; आज यह देखना कठिन है कि हम ऐसी कोई चीज़ कैसे पा
+सकते हैं जिसे उचित रूप से परिमितीय कहा जा सके, किंतु जिसे, मान लें,
+चयन-अभिगृहीत सहित ज़र्मेलो--फ्रेंकेल समुच्चय-सिद्धांत $\Th{ZFC}$ में
+औपचारिक न बनाया जा सके।
+\end{digress}
+
+\end{document}

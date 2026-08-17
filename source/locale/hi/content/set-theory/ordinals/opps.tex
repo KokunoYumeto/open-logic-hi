@@ -1,0 +1,100 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ordinals}{opps}
+\olsection{उत्तरवर्ती और सीमा क्रमसूचक}
+
+अगले कुछ अध्यायों में हम क्रमसूचकों का बहुत उपयोग करेंगे। इसलिए कुछ सरल
+धारणाएँ प्रस्तुत करना सहायक होगा।
+
+\begin{defn}
+किसी भी क्रमसूचक $\alpha$ का \emph{उत्तरवर्ती}
+$\ordsucc{\alpha} =\alpha \cup \{\alpha\}$ है। हम $\alpha$ को
+\emph{उत्तरवर्ती} क्रमसूचक कहते हैं यदि किसी क्रमसूचक~$\beta$ के लिए
+$\ordsucc{\beta} = \alpha$। हम $\alpha$ को \emph{सीमा} क्रमसूचक तभी और
+केवल तभी कहते हैं जब $\alpha$ न रिक्त हो, न उत्तरवर्ती क्रमसूचक।
+\end{defn}
+\noindent
+निम्न परिणाम दिखाता है कि यह \emph{उत्तरवर्ती} की सही धारणा है:
+
+\begin{prop}
+किसी भी क्रमसूचक $\alpha$ के लिए:
+\begin{enumerate}
+	\item $\alpha \in \ordsucc{\alpha}$;
+	\item $\ordsucc{\alpha}$ क्रमसूचक है;
+	\item ऐसा कोई क्रमसूचक $\beta$ नहीं है कि
+	$\alpha \in \beta \in \ordsucc{\alpha}$।
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+तुच्छतः $\alpha \in \alpha \cup \{\alpha\} = \ordsucc{\alpha}$। इसी
+तरह $\ordsucc{\alpha}$ क्रमसूचकों का संक्रमणशील समुच्चय है और इसलिए
+\olref[basic]{corordtransitiveord} से क्रमसूचक है। और
+$\alpha \in \beta \in \ordsucc{\alpha}$ असंभव है, क्योंकि तब या तो
+$\beta \in \alpha$ अथवा $\beta = \alpha$, जो
+\olref[basic]{ordordered} के विरुद्ध है।
+\end{proof}
+\noindent
+यह परिमितेतर आगमन द्वारा प्रमाण के एक रूपांतर की भी अनुमति देता है:
+
+\begin{thm}[सरल परिमितेतर आगमन]\ollabel{simpletransrecursion}
+$\phi(x)$ को ऐसा सूत्र मानें कि:
+\begin{enumerate}
+	\item $\phi(\emptyset)$; और
+	\item किसी भी क्रमसूचक $\alpha$ के लिए यदि $\phi(\alpha)$, तो
+	$\phi(\ordsucc{\alpha})$; और
+	\item यदि $\alpha$ सीमा क्रमसूचक और
+	$(\forall \beta \in \alpha)\phi(\beta)$ है, तो $\phi(\alpha)$।
+\end{enumerate}
+तब $\forall \alpha \phi(\alpha)$।
+\end{thm}
+
+\begin{proof}
+हम प्रतिधनात्मक सिद्ध करते हैं। मान लें कि कोई क्रमसूचक $\lnot\phi$ है;
+$\gamma$ को ऐसा लघुतम क्रमसूचक मानें। तब या तो $\gamma = \emptyset$; अथवा
+किसी ऐसे $\alpha$ के लिए $\gamma = \ordsucc{\alpha}$ जिसके लिए
+$\phi(\alpha)$; अथवा $\gamma$ सीमा क्रमसूचक है और
+$(\forall \beta \in \gamma)\phi(\beta)$।
+\end{proof}
+\noindent
+संकेतन का एक अंतिम अंश आगे सहायक होगा:
+
+\begin{defn}\ollabel{defsupstrict}
+यदि $X$ क्रमसूचकों का समुच्चय है, तो
+$\supstrict(X) = \bigcup_{\alpha \in X} \ordsucc{\alpha}$।
+\end{defn}
+\noindent
+यहाँ ``lsub'' अंग्रेज़ी ``least strict upper bound'', अर्थात ``लघुतम कठोर
+ऊपरी परिबंध'', का संक्षेप है।\footnote{कुछ पुस्तकें इसके लिए
+``$\text{sup}(X)$'' का उपयोग करती हैं। किंतु अन्य पुस्तकें
+``$\text{sup}(X)$'' का उपयोग लघुतम \emph{अकठोर} ऊपरी परिबंध, अर्थात केवल
+$\bigcup X$, के लिए करती हैं। यदि $X$ का महत्तम अवयव $\alpha$ हो, तो ये
+धारणाएँ अलग होती हैं: लघुतम \emph{कठोर} ऊपरी परिबंध $\ordsucc{\alpha}$ है,
+जबकि लघुतम \emph{अकठोर} ऊपरी परिबंध केवल $\alpha$ है।} निम्न परिणाम इसे
+समझाता है:
+
+\begin{prop}
+यदि $X$ क्रमसूचकों का समुच्चय है, तो $\supstrict(X)$, $X$ के प्रत्येक
+क्रमसूचक से बड़ा लघुतम क्रमसूचक है।
+\end{prop}
+
+\begin{proof}
+$Y = \Setabs{\ordsucc{\alpha}}{\alpha \in X}$ रखें, जिससे
+$\supstrict(X) = \bigcup Y$। चूँकि क्रमसूचक संक्रमणशील हैं और किसी क्रमसूचक
+का प्रत्येक सदस्य क्रमसूचक है, इसलिए $\supstrict(X)$ क्रमसूचकों का
+संक्रमणशील समुच्चय है और इस प्रकार \olref[basic]{corordtransitiveord} से
+क्रमसूचक है।
+
+यदि $\alpha \in X$, तो $\ordsucc{\alpha} \in Y$, अतः
+$\ordsucc{\alpha} \subseteq \bigcup Y = \supstrict(X)$ और इसलिए
+$\alpha \in \supstrict(X)$। अतः $\supstrict(X)$, $X$ के प्रत्येक
+क्रमसूचक से कड़ाई से बड़ा है।
+
+इसके विपरीत यदि $\alpha \in \supstrict(X)$, तो किसी $\beta \in X$ के लिए
+$\alpha \in \ordsucc{\beta} \in Y$, जिससे $\alpha \leq \beta \in X$।
+अतः $\supstrict(X)$, $X$ का \emph{लघुतम} कठोर ऊपरी परिबंध है।
+\end{proof}
+
+\end{document}

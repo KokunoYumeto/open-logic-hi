@@ -1,0 +1,100 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{sub}
+
+\olsection{युगपत प्रतिस्थापन}
+
+किसी !!{formula}~$!A$ का \emph{दृष्टांत}, $!A$ में किसी !!{propositional variable}
+के सभी आविर्भावों को किसी अन्य !!{formula} से बदलने का परिणाम है। मान्यता और
+!!{derivability} दोनों की चर्चा में हम सूत्रों के दृष्टांतों का बार-बार
+उल्लेख करेंगे। इसलिए इस धारणा को यथार्थतः परिभाषित करना उपयोगी है।
+
+\begin{defn}\ollabel{def:subst-inst}
+  मान लें कि $!A$ एक ऐसा मोडल !!{formula} है जिसके सभी !!{propositional variable}
+  $p_1$, \dots, $p_n$ में हैं, और $!D_1$, \dots, $!D_n$ भी मोडल !!{formula}
+  हैं। तब हम
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$
+  को $!A$ में प्रत्येक $p_i$ के स्थान पर $!D_i$ का युगपत प्रतिस्थापन करने
+  का परिणाम परिभाषित करते हैं। औपचारिक रूप से यह $!A$ पर आगमन द्वारा
+  परिभाषा है:
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$, $\lfalse$ है।}}{}
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$, $\ltrue$ है।}}{}
+    \item \indcase{!A}{q}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+        \subst{!D_n}{p_n}}$, $q$ है, बशर्ते $i=1$, \dots,~$n$ के लिए
+      $q \not\ident p_i$।}
+    \item \indcase{!A}{p_i}{$\SSubst{\indfrm}{\subst{!D_1}{p_1},
+        \dots, \subst{!D_n}{p_n}}$, $!D_i$ है।}
+    \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$
+        $\lnot \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ है।}}{}
+    \tagitem{prvAnd}{\indcase{!A}{(!B \land
+        !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$ यह है:
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \land
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
+    \tagitem{prvOr}{\indcase{!A}{(!B \lor
+          !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$ यह है:
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \lor
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
+    \tagitem{prvIf}{\indcase{!A}{(!B \lif
+          !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$ यह है:
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \lif
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
+    \tagitem{prvIf}{\indcase{!A}{(!B \liff
+          !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$ यह है:
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \liff
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
+    \item \indcase{!A}{\Box !B}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$
+        $\Box
+        \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ है।}
+    \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$
+        $\Diamond
+        \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ है।}}{}
+  \end{enumerate}
+  !!{formula} $\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+    \subst{!D_n}{p_n}}$, $!A$ का \emph{प्रतिस्थापन-दृष्टांत} कहलाता है।
+\end{defn}
+
+\begin{ex}
+  मान लें कि $!A$, $p_1 \lif \Box(p_1 \land p_2)$ है, $!D_1$,
+  $\Diamond(p_2 \lif p_3)$ है और $!D_2$, $\lnot\Box p_1$ है। तब
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ यह है:
+  \begin{align*}
+    \Diamond(p_2 \lif p_3) &
+    \lif \Box(\Diamond(p_2 \lif p_3) \land \lnot\Box p_1)
+    \intertext{जबकि $\SSubst{!A}{\subst{!D_2}{p_1}, \subst{!D_1}{p_2}}$ यह है:}
+    \lnot\Box p_1 &
+    \lif \Box(\lnot\Box p_1 \land \Diamond(p_2 \lif p_3))
+    \intertext{ध्यान दें कि युगपत प्रतिस्थापन सामान्यतः पुनरावृत्त
+      प्रतिस्थापन के समान नहीं होता। उदाहरणार्थ, ऊपर के
+      $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ above with
+      $\Subst{(\Subst{!A}{!D_1}{p_1})}{!D_2}{p_2}$ से तुलना करें, जो यह है:}
+    \Diamond(p_2 \lif p_3) & \Subst{\lif \Box(\Diamond(p_2 \lif p_3) \land p_2)}{\lnot\Box p_1}{p_2}, \text{ अर्थात्,}\\
+    \Diamond(\lnot\Box p_1 \lif p_3) &
+    \lif \Box(\Diamond(\lnot\Box p_1
+    \lif p_3) \land \lnot\Box p_1)\\
+    \intertext{और इसकी तुलना $\Subst{(\Subst{!A}{!D_2}{p_2})}{!D_1}{p_1}$ से करें:}
+    p_1 & \lif \Subst{\Box(p_1 \land \lnot\Box p_1)}{\Diamond(p_2 \lif p_3)}{p_1}, \text{ अर्थात्,}\\
+    \Diamond(p_2 \lif p_3) &
+    \lif \Box(\Diamond(p_2
+    \lif p_3) \land \lnot\Box\Diamond(p_2 \lif p_3)).
+  \end{align*}
+\end{ex}
+
+\end{document}

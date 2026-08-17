@@ -1,0 +1,119 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: normal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{nor}
+
+\olsection{सामान्य मोडल तर्कशास्त्र}
+
+मोडल !!{formula}ों के प्रत्येक समुच्चय को अभिगृहीतों के किसी समुच्चय से
+व्युत्पाद्य !!{formula}ों के रूप में आसानी से अभिलक्षित नहीं किया जा सकता। हम
+चाहते हैं कि मोडल तर्कशास्त्र सुव्यवस्थित हों। सबसे पहले, शास्त्रीय
+प्रतिज्ञप्तिक तर्कशास्त्र में जो कुछ हम !!{derive} वह अब भी
+!!{derivable} होना चाहिए, यह ध्यान रखते हुए कि सूत्रों में अब
+\iftag{prvBox}{$\Box$\iftag{prvDiamond}{
+    और~}{}}{}\iftag{prvDiamond}{$\Diamond$}{} भी आ सकते हैं। इसके लिए हम
+अपेक्षा करते हैं कि मोडल तर्कशास्त्र सभी सर्वसत्यतात्मक दृष्टांतों को समाहित
+करे और मोडस पोनेन्स के अधीन संवृत हो।
+
+\begin{defn}
+  \emph{मोडल तर्कशास्त्र} मोडल !!{formula}ों का ऐसा समुच्चय~$\Sigma$ है जो
+  \begin{enumerate}
+  \item सभी सर्वसत्यताओं को समाहित करता है, और
+  \item प्रतिस्थापन के अधीन संवृत है; अर्थात् यदि $!A \in \Sigma$ और
+    $!D_1$, \dots, $!D_n$ !!{formula} हैं, तो
+    \[
+    \SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \in \Sigma,
+    \]
+    \item \emph{मोडस पोनेन्स} के अधीन संवृत है; अर्थात् यदि $!A$ और
+      $!A \lif !B \in \Sigma$, तो $!B \in \Sigma$।
+  \end{enumerate}
+\end{defn}
+
+मोडल तर्कशास्त्र के संबंधात्मक अर्थविज्ञान का उपयोग करने के लिए हमें यह भी
+अपेक्षा करनी होती है कि सभी मोडल प्रतिरूपों में मान्य सभी !!{formula} समाहित
+हों। यह अपेक्षा तब पूरी हो जाती है जब \Ax{K}\iftag{prvDiamond}{ और~\Dual{}}{}
+के सभी दृष्टांत !!{derivable} हों और जब भी कोई !!{formula}~$!A$
+!!{derivable} हो, $\Box !A$ भी हो। इन प्रतिबंधों को संतुष्ट करने वाला मोडल
+तर्कशास्त्र \emph{सामान्य} कहलाता है। (निस्संदेह गैर-सामान्य मोडल
+तर्कशास्त्र भी हैं, पर सामान्य संबंधात्मक प्रतिरूप उनके लिए पर्याप्त नहीं।)
+
+\begin{defn}
+  कोई मोडल तर्कशास्त्र $\Sigma$ \emph{सामान्य} है यदि उसमें
+  \begin{align*}
+    \tag{\Ax{K}} & \Box(p \lif q) \lif (\Box p \lif \Box q),
+    \iftag{prvDiamond}{\\
+      \tag{\Dual} & \Diamond p \liff \lnot\Box\lnot p}{}
+  \end{align*}
+  हों और वह \emph{आवश्यकीकरण} के अधीन संवृत हो; अर्थात् यदि
+  $!A \in \Sigma$, तो $\Box !A \in \Sigma$।
+\end{defn}
+
+ध्यान दें कि सर्वसत्यतात्मक निहितार्थ \emph{किसी जगत पर सत्यता} को संरक्षित
+रखने जितना ``सूक्ष्म'' है, जबकि नियम \Nec{} केवल \emph{किसी प्रतिरूप में
+सत्यता} को संरक्षित रखता है (और इसलिए किसी फ़्रेम या फ़्रेमों के वर्ग में
+मान्यता को भी)।
+
+\begin{prop}\ollabel{prop:rk}
+  प्रत्येक सामान्य मोडल तर्कशास्त्र नियम \RK{} के अधीन संवृत है:
+  \begin{prooftree}
+    \AxiomC{$!A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots)$}
+    \RightLabel{\RK}
+    \UnaryInfC{$\Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
+      \lif \Box!A_n)\cdots).$}
+  \end{prooftree}
+\end{prop}
+
+\begin{proof}
+  $n$ पर आगमन से: यदि $n = 1$, तो नियम केवल \Nec{} है और प्रत्येक सामान्य
+  मोडल तर्कशास्त्र \Nec{} के अधीन संवृत है।
+
+  अब मान लें परिणाम $n-1$ के लिए मान्य है; हम इसे~$n$ के लिए दिखाते हैं।
+
+  मान लें
+  \begin{align*}
+  & !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots) \in \Sigma
+  \intertext{आगमन-परिकल्पना से हमारे पास है:}
+  & \Box!A_1 \lif (\Box!A_2 \lif \cdots \Box(!A_{n-1} \lif !A_n)\cdots)
+  \in \Sigma
+  \intertext{चूँकि $\Sigma$ सामान्य मोडल तर्कशास्त्र है, उसमें $\Ax{K}$ के
+    सभी दृष्टांत हैं, विशेषतः:}
+  & \Box(!A_{n-1} \lif !A_n) \lif (\Box!A_{n-1} \lif \Box!A_n) \in \Sigma
+  \intertext{मोडस पोनेन्स और उपयुक्त सर्वसत्यतात्मक दृष्टांतों से हमें मिलता है:}
+  & \Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
+  \lif \Box!A_n)\cdots) \in \Sigma. 
+  \end{align*}
+\end{proof}
+
+\begin{prop}\ollabel{prop:notDiamondBot}
+  प्रत्येक सामान्य मोडल तर्कशास्त्र $\Sigma$ में~$\lnot\Diamond\lfalse$ है।
+\end{prop}
+
+\begin{prob}
+  \olref[nml][prf][nor]{prop:notDiamondBot} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}
+  मान लें $!A_1$, \dots, $!A_n$ !!{formula} हैं। तब $!A_1$, \dots, $!A_n$
+  के सभी दृष्टांतों को समाहित करने वाला एक सबसे छोटा मोडल तर्कशास्त्र
+  $\Sigma$ है।
+\end{prop}
+
+\begin{proof}
+  $!A_1$, \dots, $!A_n$ दिए होने पर $\Sigma$ को उन सभी सामान्य मोडल
+  तर्कशास्त्रों का सर्वनिष्ठ परिभाषित करें जिनमें $!A_1$, \dots, $!A_n$ के
+  सभी दृष्टांत हैं। सर्वनिष्ठ अरिक्त है, क्योंकि सभी !!{formula}ों का समुच्चय
+  $\Frm[L]$ ऐसा मोडल तर्कशास्त्र है।
+\end{proof}
+
+\begin{defn}
+$!A_1$, \dots, $!A_n$ को समाहित करने वाला सबसे छोटा सामान्य मोडल तर्कशास्त्र
+\emph{मोडल तंत्र} कहलाता है और $\Log{K} !A_1 \dots !A_n$ से निरूपित होता
+है। सबसे छोटा सामान्य मोडल तर्कशास्त्र~\Log{K} से निरूपित होता है।
+\end{defn}
+
+\end{document}

@@ -1,0 +1,139 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{ext}
+
+\olsection{विस्तारात्मकता}
+
+\begin{explain}
+विस्तारात्मकता, जिसे कभी-कभी प्रासंगिकता भी कहते हैं, अनौपचारिक रूप से इस
+प्रकार कही जा सकती है: किसी !!{formula}~$!A$ की, किसी
+!!a{structure}~$\Struct M$ में किसी !!a{variable} नियतन~$s$ के सापेक्ष
+संतुष्टि को प्रभावित करने वाले एकमात्र कारक !!{domain} का आकार और वे नियतन हैं जो~$\Struct M$
+और~$s$,~$!A$ में वास्तव में आने वाले भाषा के अवयवों को देते हैं।
+
+विस्तारात्मकता का एक तात्कालिक परिणाम यह है कि जहाँ दो !!{structure}s
+~$\Struct M$ और~$\Struct M'$ किसी वाक्य~$!A$ में आने वाले भाषा के सभी
+अवयवों पर सहमत हों और उनका प्रांत समान हो, वहाँ~$\Struct M$ और~$\Struct M'$
+को इस बात पर भी सहमत होना चाहिए कि स्वयं~$!A$ सत्य है या नहीं।
+\end{explain}
+
+\begin{prop}[विस्तारात्मकता]
+  \ollabel{prop:extensionality}
+  मान लें कि~$!A$ कोई !!a{formula}, और~$\Struct M_1$ तथा~$\Struct M_2$
+  ऐसी !!{structure}s हैं जिनके लिए $\Domain{M_1} = \Domain{M_2}$; और~$s$,
+  $\Domain{M_1} = \Domain{M_2}$ पर कोई चर-नियतन है। यदि
+  $\Assign{c}{M_1} = \Assign{c}{M_2}$,
+  $\Assign{R}{M_1}=\Assign{R}{M_2}$, और
+  $\Assign{f}{M_1} = \Assign{f}{M_2}$, प्रत्येक !!{constant}~$c$,
+  संबंध-चिह्न~$R$, और !!{function}~$f$ के लिए जो~$!A$ में आते हैं, तो
+  $\Sat{M_1}{!A}[s]$ तभी और केवल
+  तभी जब $\Sat{M_2}{!A}[s]$।
+\end{prop}
+
+\begin{proof}
+  पहले ($t$ पर आगमन द्वारा) सिद्ध कीजिए कि प्रत्येक पद के लिए
+  $\Value{t}{M_1}[s] = \Value{t}{M_2}[s]$। फिर अभी सिद्ध दावे का उपयोग
+  आगमन के आधार में (जहाँ~$!A$ परमाण्विक है) करते हुए~$!A$ पर आगमन से
+  प्रतिज्ञप्ति सिद्ध कीजिए।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][ext]{prop:extensionality} का प्रमाण विस्तार से पूरा कीजिए।
+\end{prob}
+
+\begin{cor}[!!^{sentence}s के लिए विस्तारात्मकता]
+  \ollabel{cor:extensionality-sent}
+  मान लें कि~$!A$ कोई !!a{sentence} और~$\Struct{M_1}$, $\Struct{M_2}$,
+  \olref{prop:extensionality} के अनुसार हैं। तब $\Sat{M_1}{!A}$ तभी और
+  केवल तभी जब $\Sat{M_2}{!A}$।
+\end{cor}
+
+\begin{proof}
+\olref[ass]{cor:sat-sentence} के द्वारा \olref{prop:extensionality} से।
+\end{proof}
+
+इसके अतिरिक्त, किसी पद का मान, और यह कि कोई !!a{structure} किसी
+!!a{formula} को संतुष्ट करती है या नहीं, केवल उसके उपपदों के मानों पर निर्भर
+करते हैं।
+
+\begin{prop}\ollabel{prop:ext-terms}
+मान लें कि~$\Struct M$ कोई !!a{structure},~$t$ और~$t'$ पद, और~$s$ कोई
+चर-नियतन है। तब $\Value{\Subst{t}{t'}{x}}{M}[s] =
+\Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$।
+\end{prop}
+
+\begin{proof}
+~$t$ पर आगमन से।
+\begin{enumerate}
+\item यदि~$t$ कोई अचर है, मान लें $t\ident c$, तो
+  $\Subst{t}{t'}{x} =
+  c$, और $\Value{c}{M}[s] = \Assign{c}{M} =
+  \Value{c}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$।
+
+\item यदि~$t$,~$x$ से भिन्न चर है, मान लें $t \ident y$, तो
+  $\Subst{t}{t'}{x} = y$, और
+  $\Value{y}{M}[s] =
+  \Value{y}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$, क्योंकि
+  $\varAssign{s}{\Subst{s}{\Value{t'}{M}[s]}{x}}{x}$।
+
+\item यदि $t \ident x$, तो $\Subst{t}{t'}{x} = t'$। किंतु
+  $\Value{x}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}] = \Value{t'}{M}[s]$,
+  $\Subst{s}{\Value{t'}{M}[s]}{x}$ की परिभाषा से।
+
+\item यदि $t \ident \Atom{f}{t_1,\dots,t_n}$, तो हमारे पास:
+\begin{multline*}
+  \Value{\Subst{t}{t'}{x}}{M}[s]  = \\
+  \begin{aligned}[b]
+& = \Value{\Atom{f}{\Subst{t_1}{t'}{x}, \dots, \Subst{t_n}{t'}{x}}}{M}[s]\\
+& \qquad    \text{$\Subst{t}{t'}{x}$ की परिभाषा से}\\
+& = \Assign{f}{M}(\Value{\Subst{t_1}{t'}{x}}{M}[s], \dots,
+    \Value{\Subst{t_n}{t'}{x}}{M}[s])\\
+    & \qquad  \text{$\Value{\Atom{f}{\dots}}{M}[s]$ की परिभाषा से}\\
+& = \Assign{f}{M}(\Value{t_1}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}], \dots,
+   \Value{t_n}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}])\\
+& \qquad    \text{आगमन-परिकल्पना से}\\
+& = \Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]
+    \text{$\Value{\Atom{f}{\dots}}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$ की परिभाषा से}
+  \end{aligned}
+\end{multline*}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:ext-formulas} मान लें कि~$\Struct M$ कोई
+!!a{structure},~$!A$ कोई !!a{formula},~$t'$ कोई पद, और~$s$ कोई चर-नियतन
+है। तब $\Sat{M}{\Subst{!A}{t'}{x}}[s]$ तभी और केवल तभी जब
+$\Sat{M}{!A}[\Subst{s}{\Value{t'}{M}[s]}{x}]$।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][ext]{prop:ext-formulas} सिद्ध कीजिए।
+\end{prob}
+
+\begin{explain}
+  \cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas} का आशय
+  यह है। मान लें कि हमारे पास कोई पद~$t$ अथवा कोई !!a{formula}~$!A$, और
+  कोई पद~$t'$ है; और हम~$\Subst{t}{t'}{x}$ का मान जानना चाहते हैं, अथवा यह
+  जानना चाहते हैं कि~$\Subst{!A}{t'}{x}$ किसी !!a{structure}~$\Struct M$
+  में किसी !!a{variable} नियतन~$s$ के सापेक्ष संतुष्ट है या नहीं। तब हम या तो पहले
+  प्रतिस्थापन करके~$\Struct{M}$ और~$s$ के सापेक्ष मान अथवा संतुष्टि पर
+  विचार कर सकते हैं; या पहले~$m = \Value{t'}{M}[s]$ निर्धारित कर सकते हैं,
+  जो पद~$t'$ का मान है और~$\Struct{M}$ में~$s$ के सापेक्ष मिलता है; फिर
+  !!{variable} नियतन को~$\Subst{s}{m}{x}$ में बदल सकते हैं, और फिर~$t$ के मान पर,
+  $\Struct{M}$ में~$\Subst{s}{m}{x}$ के सापेक्ष,
+  अथवा इस पर विचार कर सकते हैं कि $\Sat{M}{!A}[\Subst{s}{m}{x}]$ है या
+  नहीं।
+  \Cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas}
+  सुनिश्चित करती हैं कि हम जिस भी ढंग से काम करें, उत्तर समान होगा।
+\end{explain}
+
+\end{document}

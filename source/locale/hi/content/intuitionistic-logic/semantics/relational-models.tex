@@ -1,0 +1,72 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: relational-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sem}{rel}
+
+\olsection{\usetoken{P}{relational model}}
+
+अंतःप्रज्ञावादी प्रतिज्ञप्तिक तर्कशास्त्र का सटीक अर्थविज्ञान देने के लिए
+हमें यह परिभाषित करना होगा कि ऐसा प्रतिरूप किसे माना जाए जिसके सापेक्ष हम
+!!{formula}ों का मूल्यांकन कर सकें। ऐसी परिभाषा के आधार पर मान्यता और
+निष्कर्षण जैसी अर्थवैज्ञानिक धारणाएँ भी परिभाषित की जा सकती हैं। ऐसा एक
+अर्थविज्ञान !!{relational model}ों द्वारा दिया जाता है।
+
+\begin{defn}
+  अंतःप्रज्ञावादी प्रतिज्ञप्तिक तर्कशास्त्र का !!{relational model} एक
+  त्रिक $\mModel{M} = \tuple{W, R, V}$ है, जहाँ
+  \begin{enumerate}
+  \item $W$ एक अरिक्त समुच्चय है,
+  \item $R$,~$W$ पर आंशिक क्रम (अर्थात स्वपरावर्ती, प्रतिसममित और
+    संक्रमणशील द्विपदी संबंध) है, और
+  \item $V$ ऐसा फलन है जो प्रत्येक !!{propositional variable}~$p$ को~$W$ का कोई
+    उपसमुच्चय देता है, इस प्रकार कि
+  \item $V$, $R$ के सापेक्ष एकदिष्ट है; अर्थात यदि $w \in V(p)$ और $Rww'$,
+    तो $w' \in V(p)$।
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}\ollabel{defn:true-at-w}
+  हम \emph{$\mModel{M}$ में $w$ पर $!A$ के सत्य होने} की धारणा
+  $\mSat{M}{!A}[w]$ को आगमनात्मक रूप से इस प्रकार परिभाषित करते हैं:
+  \begin{enumerate}
+  \item \indcase{!A}{p}{$\mSat{M}{\indfrm}[w]$ तभी जब $w \in V(p)$।}
+  \item \indcase{!A}{\lfalse}{$\mSat{M}{\indfrm}[w]$ नहीं।}
+  \item \indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ तभी जब $Rww'$
+    वाला कोई $w'$ ऐसा न हो कि $\mSat{M}{!B}[w']$।}
+  \item \indcase{!A}{!B \land !C}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$।}
+  \item \indcase{!A}{!B \lor !C}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ या $\mSat{M}{!C}[w]$ (या दोनों)।}
+  \item \indcase{!A}{!B \lif !C}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $Rww'$ वाले प्रत्येक $w'$ के लिए या तो $\mSat{M}{!B}[w']$ नहीं अथवा
+    $\mSat{M}{!C}[w']$} (या दोनों)।
+  \end{enumerate}
+  यदि $\mSat{M}{!A}[w]$ नहीं, तो हम $\mSat/{M}{!A}[w]$ लिखते हैं। यदि
+  $\Gamma$ !!{formula}ों का समुच्चय है, तो $\mSat{M}{\Gamma}[w]$ का अर्थ है
+  कि प्रत्येक $!B \in \Gamma$ के लिए $\mSat{M}{!B}[w]$।
+\end{defn}
+
+\begin{prob}
+  \olref[int][sem][rel]{defn:true-at-w} के अनुसार दिखाइए कि
+  $\mSat{M}{\lnot !A}[w]$ तभी जब $\mSat{M}{!A \lif \lfalse}[w]$।
+\end{prob}
+
+\begin{prop}\ollabel{prop:true-monotonic}
+  जगतों पर सत्यता~$R$ के सापेक्ष एकदिष्ट है; अर्थात यदि
+  $\mSat{M}{!A}[w]$ और $Rww'$, तो $\mSat{M}{!A}[w']$।
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[int][sem][rel]{prop:true-monotonic} सिद्ध कीजिए।
+\end{prob}
+
+\end{document}

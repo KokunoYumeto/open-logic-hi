@@ -1,0 +1,51 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: provability-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{prp}
+
+\olsection{\usetoken{S}{derivability} के गुण}
+
+\begin{prop}\ollabel{prop:derivabilityfacts}
+  मान लें $\Sigma$ कोई मोडल तंत्र और $\Gamma$ मोडल !!{formula}ों का समुच्चय
+  है। निम्न गुण मान्य हैं:
+  \begin{enumerate}
+  \item\ollabel{prop:derivabilityfacts-monotonicity} \emph{एकदिष्टता}: यदि
+    $\Gamma \Proves[\Sigma] !A$ और $\Gamma \subseteq \Delta$, तो
+    $\Delta \Proves[\Sigma] !A$;
+  \item\ollabel{prop:derivabilityfacts-reflexivity}
+    \emph{स्वपरावर्तन}: यदि $!A \in \Gamma$, तो $\Gamma
+    \Proves[\Sigma] !A$;
+  \item\ollabel{prop:derivabilityfacts-cut} \emph{छेदन}: यदि $\Gamma
+    \Proves[\Sigma] !A$ और $\Delta \cup \{!A\} \Proves[\Sigma] !B$
+    तो $\Gamma \cup \Delta \Proves[\Sigma] !B$;
+  \item\ollabel{prop:derivabilityfacts-deduction} \emph{निगमन प्रमेय}:
+    $\Gamma \cup \{!B\} \Proves[\Sigma] !A$ तभी जब
+    $\Gamma \Proves[\Sigma] !B \lif
+      !A$;
+  \item \ollabel{prop:derivabilityfacts-ruleT}% \emph{Rule T}: If
+    $\Gamma \Proves[\Sigma] !A_1$ और \dots और
+    $\Gamma \Proves[\Sigma] !A_n$, और
+    $!A_1 \to (!A_2 \lif \cdots (!A_n \lif !B)\cdots)$ सर्वसत्यतात्मक
+    दृष्टांत है, तो $\Gamma
+    \Proves[\Sigma] !B$.
+  \end{enumerate}
+\end{prop}
+
+प्रमाण एक सरल अभ्यास है।
+\olref{prop:derivabilityfacts-ruleT} of \olref{prop:derivabilityfacts}
+से, उदाहरणार्थ, यह मिलता है कि यदि $\Gamma \Proves[\Sigma] !A \lor !B$
+और $\Gamma \Proves[\Sigma] \lnot !A$, तो $\Gamma \Proves[\Sigma] !B$।
+इसके अतिरिक्त, आगे हम $\Gamma \cup \{!A\} \Proves[\Sigma] !B$ के स्थान पर
+$\Gamma, !A \Proves[\Sigma] !B$ लिखेंगे।
+
+\begin{defn}
+  कोई समुच्चय $\Gamma$, तंत्र $\Sigma$ के सापेक्ष \emph{निगमनतः संवृत} है,
+  तभी जब $\Gamma \Proves[\Sigma] !A$ से $!A \in \Gamma$ मिलता हो।
+\end{defn}
+
+\end{document}

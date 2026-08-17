@@ -1,0 +1,75 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: matrices
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{syn}{mat}
+
+\olsection{आव्यूह}
+
+कोई बहुमूल्य तर्कशास्त्र अपनी भाषा, सत्य-मानों के समुच्चय~$V$, निर्दिष्ट
+सत्य-मानों के उपसमुच्चय और अपने संयोजकों के सत्य-फलनों से परिभाषित होता
+है। इन अवयवों को एक साथ \emph{आव्यूह} कहते हैं।
+
+\begin{defn}[आव्यूह]
+\ollabel{defn:matrix}
+तर्कशास्त्र~$\Log L$ के किसी \emph{आव्यूह} में ये होते हैं:
+\begin{enumerate}
+\item भाषा~$\Lang L$ बनाने वाला संयोजकों का समुच्चय;
+\item सत्य-मानों का समुच्चय $V \neq \emptyset$;
+\item निर्दिष्ट सत्य-मानों का समुच्चय $V^+ \subseteq V$;
+\item ~ $\Lang L$ के प्रत्येक $n$-स्थानी संयोजक $\star$ के लिए सत्य-फलन
+~$\tf{\star} : V^n \to V$। यदि $n = 0$, तो $\tf{\star}$ केवल~$V$ का कोई
+अवयव है।
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+चिरसम्मत तर्कशास्त्र~\LogCL{} के आव्यूह में ये होते हैं:
+\begin{enumerate}
+  \item मानक प्रतिज्ञप्तिपरक भाषा $\Lang L_0$, जिसमें
+  $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$.
+  \item सत्य-मानों का समुच्चय $V = \{\True, \False\}$।
+  \item $\True$ एकमात्र निर्दिष्ट मान है, अर्थात् $V^+ = \{\True\}$।
+  \item $\lfalse$ के लिए $\tf{\lfalse} = \False$। अन्य सत्य-फलन प्रचलित
+  सत्य-सारणियों से दिए जाते हैं (\olref{fig:tf-CL} देखें)।
+\end{enumerate}
+\begin{figure}
+  \begin{center}
+      \begin{tabular}{c|c} 
+        $\tf{\lnot}$ & \\ 
+        \hline  
+        $\True$ & $\False$ \\ 
+        $\False$ & $\True$ 
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc} 
+        $\tf{\land}$ & $\True$ & $\False$ \\ 
+        \hline 
+        $\True$ & $\True$ & $\False$ \\ 
+        $\False$ & $\False$ & $\False$ 
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc} 
+        $\tf{\lor}$ & $\True$ & $\False$ \\ 
+        \hline 
+        $\True$ & $\True$ & $\True$ \\ 
+        $\False$ & $\True$ & $\False$ 
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc} 
+        $\tf{\lif}$ & $\True$ & $\False$ \\ 
+        \hline 
+        $\True$ & $\True$ & $\False$ \\ 
+        $\False$ & $\True$ & $\True$ 
+      \end{tabular}
+    \end{center} 
+    \caption{चिरसम्मत तर्कशास्त्र~$\LogCL$ के सत्य-फलन।}
+    \ollabel{fig:tf-CL}
+  \end{figure}
+  \end{ex}
+
+\end{document}

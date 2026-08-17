@@ -1,0 +1,82 @@
+% Section: truth-in-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{tru}
+
+\olsection{किसी प्रतिरूप में सत्यता}
+
+कभी-कभी हमारी रुचि यह जानने में होती है कि किसी दिए हुए प्रतिरूप के प्रत्येक
+जगत पर कौन-से !!{formula} सत्य हैं। इसके लिए एक संकेत-पद्धति प्रस्तुत करें।
+
+\begin{defn}
+  कोई !!{formula}~$!A$, प्रतिरूप $M = \tuple{W, R, V}$ में \emph{सत्य} है,
+  जिसे $\mSat{M}{!A}$ से लिखते हैं, तभी जब प्रत्येक $w \in W$ के लिए
+  $\mSat{M}{!A}[w]$।
+\end{defn}
+
+\begin{prop}\ollabel{prop:truthfacts}
+  \begin{enumerate}
+  \item यदि $\mSat{M}{!A}$, तो $\mSat/{M}{\lnot !A}$, किंतु इसका
+    \emph{विलोम नहीं}।
+  \item यदि $\mSat{M}{!A \lif !B}$, तो $\mSat{M}{!A}$ केवल तभी जब
+    $\mSat{M}{!B}$, किंतु इसका \emph{विलोम नहीं}।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item यदि $\mSat{M}{!A}$, तो $!A$, $W$ के सभी जगतों पर सत्य है। चूँकि
+    $W \neq \emptyset$, $\mSat{M}{\lnot!A}$ नहीं हो सकता, अन्यथा $!A$ को
+    किसी जगत पर सत्य और असत्य दोनों होना पड़ता।
+
+    दूसरी ओर, यदि $\mSat/{M}{\lnot !A}$, तो $!A$ किसी जगत $w \in W$ पर
+    सत्य है। इससे यह नहीं निकलता कि \emph{प्रत्येक}~$w \in W$ के लिए
+    $\mSat{M}{!A}[w]$। उदाहरणार्थ, \olref[rel]{fig:simple} के प्रतिरूप में
+    $\mSat/{M}{\lnot p}$ और $\mSat/{M}{p}$ दोनों।
+  \item मान लें $\mSat{M}{!A \lif !B}$ और $\mSat{M}{!A}$।
+    $\mSat{M}{!B}$ दिखाने के लिए $w \in W$ कोई स्वेच्छ जगत लें। तब
+    $\mSat{M}{!A \lif !B}[w]$ और $\mSat{M}{!A}[w]$, अतः
+    $\mSat{M}{!B}[w]$। चूँकि $w$ स्वेच्छ था, $\mSat{M}{!B}$।
+
+    विलोम की विफलता दिखाने के लिए हमें ऐसा प्रतिरूप $\mModel{M}$ खोजना है
+    जिसमें $\mSat{M}{!A}$ केवल तभी जब $\mSat{M}{!B}$, पर
+    $\mSat/{M}{!A \lif !B}$। फिर \olref[rel]{fig:simple} के प्रतिरूप पर
+    विचार करें: $\mSat/{M}{p}$, अतः (रिक्ततः) $\mSat{M}{p}$ केवल तभी जब
+    $\mSat{M}{q}$। किंतु $w_1$ पर $p$ सत्य और $q$ असत्य होने के कारण
+    $\mSat/{M}{p \lif q}$।
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  उस भाषा के लिए निम्न प्रतिरूप $\mModel{M}$ पर विचार कीजिए जिसमें केवल
+  $p_1$, $p_2$, $p_3$ !!{propositional variable} हैं:
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]left:\mTrue{p_1}\\\mFalse{p_2}\\\mFalse{p_3}}]
+            {$w_1$} ; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p_1}\\\mTrue{p_2}\\\mFalse{p_3}},
+        below right=of w1]  {$w_2$}; 
+      \node[world] (w3) [label={[align=right]right:\mTrue{p_1}\\\mTrue{p_2}\\\mTrue{p_3}},
+        above right=of w2] {$w_3$};
+      \draw[reflexive above] (w3) to (w3); 
+      \draw[->] (w1) to (w2);
+      \draw[->] (w2) to (w3);
+      \draw[->] (w1) to (w3); 
+    \end{tikzpicture}
+  \end{center}
+  क्या निम्न !!{formula} और स्कीमाएँ प्रतिरूप $\mModel{M}$ में, अर्थात्
+  $\mModel{M}$ के प्रत्येक जगत पर, सत्य हैं? समझाइए।
+  \begin{enumerate}
+  \item $p\lif \Diamond p$ ($p$ परमाण्विक है);
+  \item $!A\lif \Diamond !A$ ($!A$ स्वेच्छ है);
+  \item $\Box p \lif p$ ($p$ परमाण्विक है);
+  \item $\lnot p \lif \Diamond \Box p$ ($p$ परमाण्विक है);
+  \item $\Diamond \Box !A$ ($!A$ स्वेच्छ है);
+  \item $\Box \Diamond p$ ($p$ परमाण्विक है)।
+  \end{enumerate}
+\end{prob}
+
+\end{document}

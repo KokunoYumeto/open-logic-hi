@@ -1,0 +1,225 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{pis}
+\section{आंशिक समरूपताएँ}
+
+\begin{defn}
+  दो !!{structure}s $\Struct{M}$ और $\Struct{N}$ दी गई हों। $\Struct{M}$
+  से $\Struct{N}$ तक कोई \emph{आंशिक समरूपता} ऐसा परिमित आंशिक फलन $p$ है
+  जिसके तर्क $\Domain M$ में और मान $\Domain N$ में होते हैं, तथा जो अपने
+  प्रांत पर \olref[iso]{defn:isomorphism} की समरूपता-शर्तें पूरी करता है:
+  \begin{enumerate}
+  \item $p$ !!{injective} है;
+  \item प्रत्येक !!{constant}~$c$ के लिए: यदि $p(\Assign{c}{M})$ परिभाषित
+    है, तो $p(\Assign{c}{M}) = \Assign{c}{N}$;
+  \item प्रत्येक $n$-स्थानीय !!{predicate} $P$ के लिए: यदि $a_1$, \dots,
+    $a_n$, $p$ के प्रांत में हैं, तो $\langle a_1, \dots, a_n\rangle \in
+    \Assign P M$ तभी और केवल तभी जब $\langle p(a_1), \dots, p(a_n) \rangle
+    \in \Assign P N$;
+  \item प्रत्येक $n$-स्थानीय !!{function} $f$ के लिए निम्न शर्त लागू होती
+    है: यदि $a_1$, \dots, $a_n$, $p$ के प्रांत में हैं, तो
+    $p(\Assign f M (a_1, \dots,a_n))
+    = \Assign f N (p(a_1), \dots, p(a_n))$।
+  \end{enumerate}
+  $p$ के परिमित होने का अर्थ है कि $\dom{p}$ परिमित है।
+\end{defn}
+
+ध्यान दें कि रिक्त फलन~$\emptyset$ किन्हीं भी दो !!{structure}s के बीच
+हमेशा एक आंशिक समरूपता है।
+
+\begin{defn}\ollabel{defn:partialisom}
+  दो !!{structure}s $\Struct{M}$ और $\Struct{N}$ \emph{आंशिकतः समरूपी}
+  हैं, और इसे $\Struct{M} \iso[p]
+  \Struct{N}$ लिखते हैं, तभी और केवल तभी जब कोई अरिक्त समुच्चय $I$
+  $\Struct{M}$ और $\Struct{N}$ के बीच आंशिक समरूपताओं से बना हो और निम्न
+  \emph{आगे-पीछे} गुणधर्म को संतुष्ट करता हो:
+  \begin{enumerate}
+  \item (\emph{आगे}) प्रत्येक $p \in I$ और $a \in \Domain M$ के लिए कोई
+    $q \in I$ ऐसा है कि $p \subseteq q$ और $a$, $q$ के प्रांत में है;
+  \item (\emph{पीछे}) प्रत्येक $p \in I$ और $b \in \Domain N$ के लिए कोई
+    $q \in I$ ऐसा है कि $p \subseteq q$ और $b$, $q$ के परिसर में है।
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:p-isom1}
+  यदि $\Struct{M} \iso[p] \Struct{N}$ और $\Struct{M}$ तथा $\Struct{N}$
+  !!{enumerable} हैं, तो $\Struct{M} \iso
+  \Struct{N}$।
+\end{thm}
+
+\begin{proof}
+  चूँकि $\Struct{M}$ और $\Struct{N}$ !!{enumerable} हैं, मान लें कि
+  $\Domain{M} =
+  \{a_0, a_1, \ldots \}$ और $\Domain{N} = \{b_0, b_1, \ldots \}$। किसी
+  मनमाने $p_0 \in I$ से आरंभ करके हम आंशिक समरूपताओं का एक वर्धमान अनुक्रम
+  $p_0 \subseteq p_1 \subseteq p_2
+  \subseteq \cdots$
+  इस प्रकार परिभाषित करते हैं:
+  \begin{enumerate}
+  \item यदि $n+1$ विषम है, मान लें $n = 2r$, तो आगे गुणधर्म का उपयोग करके
+    कोई $p_{n+1} \in I$ ऐसा खोजें कि $p_n \subseteq p_{n+1}$ और $a_r$,
+    $p_{n+1}$ के प्रांत में हो;
+  \item यदि $n+1$ सम है, मान लें $n+1 =2r$, तो पीछे गुणधर्म का उपयोग करके
+    कोई $p_{n+1} \in I$ ऐसा खोजें कि $p_n \subseteq p_{n+1}$ और $b_r$,
+    $p_{n+1}$ के परिसर में हो।
+  \end{enumerate}
+अब यदि हम रखें:
+\[
+p = \bigcup_{n\ge 0} p_n,
+\]
+तो $p$, $\Struct{M}$ और $\Struct{N}$ के बीच एक समरूपता है।
+\end{proof}
+
+\begin{prob}
+  विस्तार से दिखाइए कि \olref[mod][bas][pis]{thm:p-isom1} में परिभाषित
+  $p$ वास्तव में एक समरूपता है।
+\end{prob}
+
+\begin{thm}\ollabel{thm:p-isom2}
+  मान लें कि $\Struct{M}$ और $\Struct{N}$ किसी शुद्ध संबंधात्मक
+  !!{language} की !!{structure}s हैं (ऐसी !!a{language} जिसमें केवल
+  !!{predicate}s हों और कोई !!{function} या नियतांक न हो)। तब यदि
+  $\Struct{M} \iso[p] \Struct{N}$, तो $\Struct{M} \elemequiv
+  \Struct{N}$ भी।
+\end{thm}
+
+\begin{proof}
+  !!{formula}s पर आगमन द्वारा दिखाया जाता है कि यदि $a_1$, \dots, $a_n$
+  और $b_1$, \dots, $b_n$ ऐसे हैं कि कोई आंशिक समरूपता $p$ प्रत्येक $a_i$
+  को $b_i$ पर प्रतिचित्रित करती है, तथा $s_1(x_i) =a_i$ और $s_2(x_i) =b_i$
+  ($i =1$, \dots,~$n$ के लिए), तो $\Sat{M}{!A}[s_1]$ तभी और केवल तभी जब
+  $\Sat{N}{!A}[s_2]$। $n=0$ की स्थिति से
+  $\Struct{M} \elemequiv \Struct{N}$ मिलता है।
+\end{proof}
+
+\begin{rem}
+यदि !!{function}s उपस्थित हों, तो पिछला परिणाम तब भी सत्य है, किंतु उस
+समरूपता पर विचार करना पड़ता है जो $p$ से प्रेरित होती है और जो $\Struct{M}$
+की, $a_1$, \dots, $a_n$ द्वारा जनित उप!!{structure} तथा $\Struct{N}$ की,
+$b_1$, \dots, $b_n$ द्वारा जनित उप!!{structure} के बीच होती है।
+\end{rem}
+
+किसी !!a{formula} में एक-दूसरे के भीतर स्थित परिमाणकों की संख्या और संबद्ध आंशिक
+समरूपताओं को कितनी बार विस्तारित किया जा सकता है, इनके बीच संबंध स्थापित करके
+पिछले परिणाम को चरणों में ``विभाजित'' किया जा सकता है।
+
+\begin{defn}
+  किसी भी !!{formula}~$!A$ के लिए, $!A$ की \emph{परिमाणक-कोटि}, जिसे
+  $\QuantRank{!A} \in \Nat$ से निरूपित करते हैं, पुनरावर्ती रूप से $!A$ में
+  एक-दूसरे के भीतर स्थित परिमाणकों की अधिकतम संख्या के रूप में परिभाषित होती है। दो
+  !!{structure}s $\Struct{M}$ और $\Struct{N}$ \emph{$n$-तुल्य} हैं, और इसे
+  $\Struct{M} \elemequiv[n] \Struct{N}$ लिखते हैं, यदि वे परिमाणक-कोटि~$n$
+  से कम या उसके बराबर वाले सभी वाक्यों पर सहमत हों।
+\end{defn}
+
+\begin{prop}\ollabel{prop:qr-finite}
+  मान लें कि $\Lang{L}$ कोई परिमित शुद्ध संबंधात्मक !!{language} है, अर्थात्
+  ऐसी !!{language} जिसमें परिमित रूप से अनेक !!{predicate}s और
+  !!{constant}s हों, तथा कोई !!{function} न हो। तब प्रत्येक $n \in \Nat$
+  के लिए, तार्किक तुल्यता तक, !!{language}~$\Lang{L}$ में परिमाणक-कोटि~$n$
+  से अधिक न रखने वाले प्रथम-कोटि !!{sentence}s केवल परिमित रूप से अनेक हैं।
+\end{prop}
+
+\begin{proof}
+  $n$ पर आगमन द्वारा।
+\end{proof}
+
+\begin{defn}
+  कोई !!a{structure}~$\Struct{M}$ दी गई हो। $\Domain M^{<\omega}$ को
+  $\Domain{M}$ के अवयवों के सभी परिमित अनुक्रमों का समुच्चय मानें। परिमित
+  अनुक्रमों पर चरने के लिए हम $\mathbf{a},
+  \mathbf{b}, \mathbf{c}, \ldots$
+  का उपयोग करते हैं। यदि $\mathbf{a} \in \Domain{M}^{<\omega}$ और
+  $a \in \Domain{M}$, तो $\mathbf{a}a$, $\mathbf{a}$ के साथ $a$ के
+  \emph{संलग्नन} को निरूपित करता है।
+\end{defn}
+
+\begin{defn}
+  !!{structure}s $\Struct{M}$ और $\Struct{N}$ दी गई हों। समान लंबाई के
+  अनुक्रमों के बीच संबंध $I_n \subseteq \Domain M^{<\omega} \times \Domain N^{<\omega}$
+  को हम $n$ पर पुनरावर्तन द्वारा इस प्रकार परिभाषित
+  करते हैं:
+   \begin{enumerate}
+   \item $I_0(\mathbf{a},\mathbf{b})$ तभी और केवल तभी जब $\mathbf{a}$ और
+     $\mathbf{b}$, $\Struct{M}$ और $\Struct{N}$ में उन्हीं परमाण्विक
+     !!{formula}s को संतुष्ट करते हैं; अर्थात् यदि $s_1(x_i) = a_i$ और
+     $s_2(x_i) =
+     b_i$, तथा $!A$ परमाण्विक है और उसके सभी !!{variable}s
+     $x_1$, \dots,~$x_n$ में हैं, तो $\Sat{M}{!A}[s_1]$ तभी और केवल तभी जब
+     $\Sat{N}{!A}[s_2]$।
+   \item $I_{n+1} (\mathbf{a},\mathbf{b})$ तभी और केवल तभी जब प्रत्येक
+     $a\in \Domain M$ के लिए कोई $b\in \Domain N$ ऐसा है कि $I_n
+     (\mathbf{a}a,\mathbf{b}b)$, और इसके विपरीत भी।
+   \end{enumerate}
+\end{defn}
+
+
+\begin{defn}
+  $\Struct{M} \approx_n \Struct{N}$ तब लिखें जब
+  $I_n(\emptyseq,\emptyseq)$, $\Struct{M}$ और $\Struct{N}$ के लिए सत्य हो
+  (यहाँ $\emptyseq$ रिक्त अनुक्रम है)।
+\end{defn}
+
+\begin{thm}\ollabel{thm:b-n-f}
+  मान लें कि $\Lang{L}$ कोई शुद्ध संबंधात्मक !!{language} है। तब $I_n
+  (\mathbf{a},\mathbf{b})$ से यह निष्पन्न होता है कि प्रत्येक ऐसे $!A$ के
+  लिए, जिसके लिए $\QuantRank{!A} \le n$, $\Sat{M}{!A}[\mathbf{a}]$ तभी और
+  केवल तभी जब $\Sat{N}{!A}[\mathbf{b}]$ (यहाँ फिर $\mathbf{a}$, $!A$ को तब
+  संतुष्ट करता है जब कोई भी $s$, जिसके लिए $s(x_i) = a_i$, $!A$ को संतुष्ट करता
+  हो)। इसके अतिरिक्त, यदि $\Lang{L}$ परिमित है, तो विलोम भी सत्य है।
+\end{thm}
+
+\begin{proof}
+  यह प्रमाण कि $I_n(\mathbf{a},\mathbf{b})$ से $\mathbf{a}$ और
+  $\mathbf{b}$ परिमाणक-कोटि~$n$ से अधिक न रखने वाले उन्हीं !!{formula}s को
+  संतुष्ट करते हैं, $!A$ पर सरल आगमन से मिलता है। विलोम के लिए हम $n$ पर
+  आगमन करते हुए \olref{prop:qr-finite} का उपयोग करते हैं; यह सुनिश्चित करता
+  है कि प्रत्येक $n$ के लिए उस परिमाणक-कोटि के परस्पर अतुल्य !!{formula}s
+  अधिक-से-अधिक परिमित रूप से अनेक हैं।
+
+  $n=0$ के लिए, $\mathbf{a}$ और $\mathbf{b}$ के उन्हीं परिमाणक-मुक्त
+  !!{formula}s को संतुष्ट करने की परिकल्पना से मिलता है कि वे उन्हीं परमाण्विक
+  सूत्रों को संतुष्ट करते हैं, अतः $I_0(\mathbf{a},\mathbf{b})$।
+
+  $n+1$ की स्थिति के लिए मान लें कि $\mathbf{a}$ और $\mathbf{b}$
+  परिमाणक-कोटि~$n+1$ से अधिक न रखने वाले उन्हीं !!{formula}s को संतुष्ट करते
+  हैं। $I_{n+1}(\mathbf{a},\mathbf{b})$ दिखाने के लिए यह दिखाना पर्याप्त है
+  कि प्रत्येक $a \in \Domain M$ के लिए कोई $b \in
+  \Domain N$ ऐसा है कि
+  $I_n(\mathbf{a}a,\mathbf{b}b)$; और आगमन-परिकल्पना से इसके लिए फिर यह
+  दिखाना पर्याप्त है कि प्रत्येक $a \in
+  \Domain M$ के लिए कोई $b \in \Domain N$ ऐसा है कि $\mathbf{a}a$ और
+  $\mathbf{b}b$ परिमाणक-कोटि~$n$ से
+  अधिक न रखने वाले उन्हीं !!{formula}s को संतुष्ट करते हैं।
+
+  कोई $a \in \Domain M$ दिया हो। $!T^a_n$ को उन !!{formula}s
+  $!B(x,\mathbf{y})$ का समुच्चय मानें जिनकी कोटि~$n$ से अधिक नहीं है और
+  जिन्हें $\mathbf{a}a$, $\Struct{M}$ में संतुष्ट करता है। $!T^a_n$ परिमित
+  है, इसलिए हम उसे एक ही
+  प्रथम-कोटि !!{formula} मान सकते हैं। इससे $\mathbf{a}$,
+  $\lexists[x][!T^a_n(x,\mathbf{y})]$ को संतुष्ट करता है, जिसकी
+  परिमाणक-कोटि~$n+1$ से अधिक नहीं है। परिकल्पना से $\mathbf{b}$,
+  $\Struct{N}$ में उसी !!{formula} को संतुष्ट करता है, अतः कोई
+  $b \in \Domain N$ ऐसा है कि $\mathbf{b}b$, $!T^a_n$ को संतुष्ट करता है। विशेषतः
+  $\mathbf{b}b$ उन्हीं परिमाणक-कोटि~$n$ से अधिक न रखने वाले !!{formula}s को
+  संतुष्ट करता है जिन्हें $\mathbf{a}a$ संतुष्ट करता है। इसी प्रकार दिखता है
+  कि प्रत्येक $b \in \Domain N$ के लिए कोई $a\in \Domain M$ ऐसा है कि
+  $\mathbf{a}a$ और $\mathbf{b}b$ परिमाणक-कोटि~$n$ से अधिक न रखने वाले उन्हीं
+  !!{formula}s को संतुष्ट करते हैं; इससे प्रमाण पूरा होता है।
+\end{proof}
+
+\begin{cor}\ollabel{cor:b-n-f}
+  यदि $\Struct{M}$ और $\Struct{N}$ किसी परिमित !!{language} में शुद्ध
+  संबंधात्मक !!{structure}s हैं, तो $\Struct{M} \approx_n\Struct{N}$ तभी
+  और केवल तभी जब $\Struct{M} \elemequiv[n] \Struct{N}$। विशेषतः
+  $\Struct{M} \elemequiv \Struct{N}$ तभी और केवल तभी जब प्रत्येक $n$ के
+  लिए $\Struct{M} \approx_n \Struct{N}$।
+\end{cor}
+
+\end{document}

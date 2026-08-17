@@ -1,0 +1,84 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{story}{approach}
+\olsection{संचयी-पुनरावर्ती दृष्टिकोण}
+
+हम समुच्चयों को चरणों में किस प्रकार स्तरित करेंगे, इसका कुछ अधिक पूर्ण
+विवरण यह है:
+\begin{quote}
+	समुच्चय \emph{चरणों} में बनते हैं। प्रत्येक चरण $S$ के लिए कुछ चरण
+	$S$ से \emph{पहले} होते हैं। चरण $S$ पर, $S$ से पहले के चरणों में बने
+	समुच्चयों से बने प्रत्येक संग्रह को एक समुच्चय बनाया जाता है। चरणों में
+	बने समुच्चयों के अतिरिक्त कोई समुच्चय नहीं हैं।
+	\citep[p.~323]{Shoenfield:AST}
+\end{quote} 
+यह \emph{समुच्चय की संचयी-पुनरावर्ती अवधारणा} की रूपरेखा है। यही
+\olref[sth][][]{part} में प्रस्तुत औपचारिक समुच्चय सिद्धांत का आधार होगी।
+
+इसे कुछ और विस्तार से देखें। शोएनफ़ील्ड के वर्णन में प्रत्येक चरण पर हम उन
+समुच्चयों से नए समुच्चय बनाते हैं जो पहले के चरणों से उपलब्ध हैं। अतः
+शोएनफ़ील्ड के चित्र में आरंभिक चरण, चरण $0$, से \emph{पहले} कोई चरण नहीं
+है और इसलिए \emph{और भी अधिक स्पष्टतः} पहले के चरणों से कोई समुच्चय उपलब्ध
+नहीं है।\footnote{हम क्यों मानें कि कोई \emph{पहला} चरण है? 
+\olref[z][story]{sec} में \stagesord{} की पादटिप्पणी देखें।} अतः हम केवल
+एक समुच्चय बनाते हैं: बिना किसी !!{element} वाला समुच्चय $\emptyset$। चरण
+$1$ पर पहले के चरणों से ठीक एक समुच्चय उपलब्ध है, इसलिए केवल एक नया समुच्चय
+$\{\emptyset\}$ है। चरण $2$ पर पहले के चरणों से दो समुच्चय उपलब्ध हैं और
+हम दो नए समुच्चय $\{\{\emptyset\}\}$ तथा
+$\{\emptyset, \{\emptyset\}\}$ बनाते हैं। चरण $3$ पर पहले के चरणों से चार
+समुच्चय उपलब्ध हैं, इसलिए हम बारह नए समुच्चय बनाते हैं\ldots। इस प्रकार
+समुच्चयों का संचयी-पुनरावर्ती चित्र कुछ ऐसा दिखेगा (संख्याएँ चरण दर्शाती
+हैं):
+\begin{center}
+	\begin{tikzpicture}[scale=0.6]
+	\tikzset{cut_here/.style={densely dotted}}
+	\draw (-4,6) -- (-1, 0)-- (2,6); 
+	\draw[cut_here] (-5,8)--(-4,6);
+	\draw[cut_here] (2,6)--(3,8);
+	\draw(-1.5, 1)--(-0.5, 1);
+	\draw(-2, 2)--(0, 2);
+	\draw(-2.5, 3)--(0.5,3);
+	\draw(-3, 4)--(1, 4);
+	\draw(-3.5, 5)--(1.5, 5);
+	\draw(-4, 6)--(2, 6);
+	\node[label] at (0, 0) {\small 0};
+	\node[label] at (0.5, 1) {\small 1};
+	\node[label] at (1, 2) {\small 2};
+	\node[label] at (1.5, 3) {\small 3};
+	\node[label] at (2, 4) {\small 4};
+	\node[label] at (2.5, 5) {\small 5};
+	\node[label] at (3, 6) {\small 6};
+	\end{tikzpicture}
+\end{center}
+तो इस कथा को क्यों स्वीकार करें?
+
+एक कारण यह है कि यह अच्छी और सुगम कथा है। सबसे स्पष्ट कथा, अर्थात सहज
+समुच्चय-निर्माण, के विफल हो जाने के बाद हमें किसी अच्छी कथा की आवश्यकता है।
+
+किंतु यह कथा \emph{केवल} अच्छी नहीं है। यह मानने का अच्छा कारण है कि इस
+कथा पर आधारित कोई भी समुच्चय सिद्धांत \emph{संगत} होगा। कारण यह है।
+
+समुच्चय की संचयी-पुनरावर्ती अवधारणा के अनुसार हम चरणों में समुच्चय बनाते हैं
+और उनके !!{element}s ऐसी वस्तुएँ होनी चाहिए जो \emph{पहले से} उपलब्ध थीं।
+अतः किसी भी चरण~$S$ के लिए हम यह समुच्चय बना सकते हैं:
+\[
+	R_S = \Setabs{x}{x \notin x \text{ और $x$, $S$ से पहले उपलब्ध था}}
+\]
+रसेल का विरोधाभास सिद्ध करने वाला तर्क अब स्थापित करेगा कि $R_S$ स्वयं
+चरण $S$ से पहले उपलब्ध नहीं है। और यह कोई विरोधाभास नहीं। इसके अतिरिक्त,
+यदि हम समुच्चय की संचयी-पुनरावर्ती अवधारणा स्वीकार करते हैं, तो हमें स्वयं
+रसेल समुच्चय बना पाने की \emph{अपेक्षा} भी नहीं करनी चाहिए थी। क्योंकि वह
+उन सभी स्वयं के असदस्य समुच्चयों का समुच्चय होता जो ``कभी भी उपलब्ध होंगे''।
+संक्षेप में: संचयी-पुनरावर्ती कथा को देखते हुए यह तथ्य \emph{आश्चर्यजनक}
+नहीं कि हम (सिद्धतः) रसेल समुच्चय नहीं बना सकते; यही तो हमारी
+\emph{भविष्यवाणी} होगी।
+
+%In one sense, then, the cumulative-iterative conception of set yields a response to Russell's Paradox which is rather like the \emph{predicativist}'s response. After all, the predicativist said that the collection of all non-self-membered sets$_n$ is a set$_{n+1}$, and this set$_n$ will not be self-membered. (Indeed, most predicativists will treat it as \emph{ungrammatical} to try to ask whether a set is self-membered.)
+%
+%But there is an important difference between the cumulative-iterative approach and the predicativist approach: the cumulative-iterative approach treats all of our entities as being \emph{of the same kind}. The predicativist will presumably have an empty set$_0$ (i.e., a set$_0$ with no !!{element}s), and an empty set$_1$ (i.e., a set$_1$ with no !!{element}s), and these will be \emph{different entities}. But on the cumulative-iterative approach, there is just one empty set, $\emptyset$, and it will be available at every stage of the hierarchy. 
+
+%Indeed, the Axiom of Extensionality, stated at the start of this chapter, will hold true of the elements in this hierarchy (so that there can be \emph{only one} ``empty'' set). But I do not intend to use the cumulative-iterative conception to justify Extensionality (see \cite{Boolos1971}). Again: I suggest that we should accept Extensionality, just because we are interested in extensional collections. 
+
+\end{document}

@@ -1,0 +1,169 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: fixpoints
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{ldf}{fp}
+
+\olsection{अचल-बिंदु}
+
+मान लें हम क्रमगुणित फलन को पुनरावर्तन द्वारा ऐसे पद $\fn{Fac}$ के रूप में
+परिभाषित करना चाहें जिसमें निम्न गुण हो:
+\[
+\fn{Fac} \ident \lambd[n][\fn{IsZero}\, n\, \num 1 (\fn{Mult}\, n (\fn{Fac}(\fn{Pred} \, n)))]
+\]
+अर्थात् $n = 0$ होने पर $n$ का क्रमगुणित $1$ है, और अन्यथा $n-1$ के
+क्रमगुणित का $n$ गुना। निश्चय ही हम पद $\fn{Fac}$ को इस प्रकार परिभाषित
+नहीं कर सकते, क्योंकि दाएँ पक्ष में स्वयं $\fn{Fac}$ आता है। स्वसंदर्भ
+वाली ऐसी पुनरावर्ती परिभाषाएँ लैम्ब्डा कलन का भाग नहीं हैं। उदाहरणार्थ,
+किसी पद को
+\[
+\fn{Mult} \ident \lambd[ab][a (\fn{Add}\, a) 0]
+\]
+द्वारा परिभाषित करने में दाएँ पक्ष पर केवल $\fn{Add}$ जैसे पहले से
+परिभाषित पद आते हैं। $\fn{Add}$ को उसके परिभाषक पद से बदलकर हम उसे सदा
+हटा सकते हैं। इससे पद $\fn{Mult}$ शुद्ध लैम्ब्डा पद के रूप में मिलेगा; यदि
+$\fn{Add}$ में स्वयं परिभाषित पद आते हों (जैसे $\fn{Add}'$ में), तो हम इस
+प्रक्रिया को जारी रखकर अंततः शुद्ध लैम्ब्डा पद तक पहुँच सकते हैं।
+
+किंतु ऊपर की $\fn{Fac}$ जैसी पुनरावर्ती परिभाषाओं के लिए यह सत्य नहीं है।
+यदि दाएँ पक्ष पर $\fn{Fac}$ के आविर्भाव को स्वयं $\fn{Fac}$ की परिभाषा से
+बदलें, तो मिलता है:
+\begin{align*}
+  \fn{Fac} & \ident \lambd[n][\fn{IsZero}\, n\, \num{1}] \\
+    & \qquad (\fn{Mult}\, n
+  ((\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult}\, n\, (\fn{Fac}
+    (\fn{Pred}\, n)))]) (\fn{Pred}\, n)))
+\end{align*}
+और हमने अब भी दाएँ पक्ष से $\fn{Fac}$ नहीं हटाया है। स्पष्टतः, इस प्रक्रिया
+को दोहराने पर परिभाषा लंबी होती जाती है और कभी शुद्ध लैम्ब्डा पद नहीं
+मिलता। अतः क्रमगुणित (या सामान्यतः पुनरावर्ती फलनों) को परिभाषित करने की
+यह विधि व्यावहारिक नहीं है।
+
+फिर भी पुनरावर्ती परिभाषा हमें कुछ बताती है: यदि $f$ क्रमगुणित फलन को
+निरूपित करने वाला पद होता, तो पद
+\[
+\fn{Fac}' \ident \lambd[g][\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult} \, n\, (g (\fn{Pred} n)))]]
+\]
+पद $f$ पर लागू होने पर, अर्थात् $\fn{Fac}'\,f$, क्रमगुणित फलन को भी
+निरूपित करता है। अर्थात् यदि $\fn{Fac}'$ को ऐसा फलन मानें जो कोई फलन
+स्वीकार करके फलन लौटाता है, तो $f$ के क्रमगुणित होने की दशा में
+$\fn{Fac'}\, f$ का मान केवल~$f$ है। जिस फलन~$f$ में $\fn{Fac}' \, f
+\equal[\beta] f$ गुण हो, उसे $\fn{Fac}'$ का \emph{अचल-बिंदु} कहते हैं। अतः
+क्रमगुणित $\fn{Fac}'$ का अचल-बिंदु है।
+
+लैम्ब्डा कलन में ऐसे पद हैं जो किसी दिए पद के अचल-बिंदुओं की संगणना करते
+हैं; फिर इन पदों का उपयोग $\fn{Fac}'$ जैसे पद को क्रमगुणित की परिभाषा में
+बदलने के लिए किया जा सकता है।
+
+\begin{defn}
+  \ollabel{defn:Turing-Y}
+  \emph{Y-संयोजक} यह पद है:
+  \[
+  Y \ident (\lambd[ux][x(uux)])(\lambd[ux][x(uux)]).
+  \]
+\end{defn}
+
+\begin{thm}
+  $Y$ में यह गुण है कि किसी भी पद $g$ के लिए $Yg \red g(Yg)$। अतः $Yg$
+  सदा~$g$ का अचल-बिंदु है।
+\end{thm}
+
+\begin{proof}
+  $(\lambd[ux][x(uux)])$ को~$U$ से संक्षिप्त करें, ताकि $Y \ident UU$। तब
+  \begin{align*}
+    Y g &\ident (\lambd[ux][x(uux)])U\,g \\
+    &\red (\lambd[x][x(UUx)])g\\
+    & \red g(UUg) \ident g(Yg).
+  \end{align*}
+  चूँकि $g(Yg)$ और $Yg$ दोनों अपचयित होकर $g(Yg)$ बनते हैं, इसलिए $g(Yg)
+  \equal[\beta] Yg$; अतः $Yg$, ~$g$ का अचल-बिंदु है।
+\end{proof}
+
+निश्चय ही, चूँकि $Yg$ रिडेक्स है, इसलिए अपचयन अनिश्चित काल तक चल सकता है:
+\begin{align*}
+  Y g &\red g (Y g) \\
+    &\red g (g (Y g)) \\
+    &\red g(g (g (Y g)))\\
+    &\ldots
+\end{align*}
+अतः हम $Yg$ को स्वयं पर अनंत बार लागू $g$ मान सकते हैं। यदि उस पर~$g$ एक
+बार और लागू करें, तो कहने को हम कुछ अतिरिक्त नहीं कर रहे; ~$Yg$ पर अनंत
+बार लागू~$g$ पर फिर लागू~$g$, अब भी~$Yg$ पर अनंत बार लागू~$g$ ही है।
+
+ध्यान दें कि~$Yg$ से आरंभ होने वाला ऊपर का $\beta$-अपचयन चरणों का अनुक्रम
+अनंत है। अतः यदि हम $Yg$ को किसी पद पर लागू करें, अर्थात् $(Yg)N$ पर विचार
+करें, तो वह पद भी अपचयित होकर अनंत रूप से अनेक भिन्न पद बनाएगा:
+$(g(Yg))N$, $(g(g(Yg)))N$, \dots। फिर भी संभव है कि अपचयन चरणों का कोई
+\emph{अन्य} अनुक्रम किसी प्रसामान्य रूप पर समाप्त हो।
+
+उदाहरण के लिए क्रमगुणित लें। $\fn{Fac}$ को $Y\, \fn{Fac}'$ (अर्थात्
+$\fn{Fac'}$ के किसी अचल-बिंदु) के रूप में परिभाषित करें। तब:
+\begin{align*}
+  \fn{Fac}\,\num 3
+  &\red Y\, \fn{Fac}' \, \num 3 \\
+  &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 3 \\
+  &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
+      (\fn{Mult}\, n\, (x (\fn{Pred}\, n)))]]) \, \fn{Fac} \, \num 3\\
+  & \red \fn{IsZero} \, \num 3\, \num 1\,
+      (\fn{Mult}\, \num 3\, (\fn{Fac} (\fn{Pred}\, \num 3))) \\
+  &\red  \fn{Mult}\, \num 3 \, (\fn{Fac} \, \num 2).
+  \intertext{इसी प्रकार,}
+  \fn{Fac}\,\num 2
+  &\red  \fn{Mult}\, \num 2 \, (\fn{Fac} \, \num 1) \\
+  \fn{Fac}\,\num 1
+  &\red  \fn{Mult}\, \num 1 \, (\fn{Fac} \, \num 0)
+  \intertext{किंतु}
+  \fn{Fac}\,\num 0
+  &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 0 \\
+  &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
+      (\fn{Mult}\, n\, (x (\fn{Pred}\, n)))]]) \, \fn{Fac} \, \num 0\\
+  & \red \fn{IsZero} \, \num 0\, \num 1\,
+      (\fn{Mult}\, \num 0\, (\fn{Fac} (\fn{Pred}\, \num 0))).\\
+  &\red \num 1.
+  \intertext{अतः सब मिलाकर}
+  \fn{Fac}\,\num 3
+  &\red  \fn{Mult}\, \num 3 \,
+  (\fn{Mult} \, \num 2\, (\fn{Mult} \, \num 1\, \num 1)).
+\end{align*}
+
+$\fn{Fac'}$ के लिए जो लागू होता है, वह किसी भी पुनरावर्ती परिभाषा के लिए
+लागू होता है। मान लें हमारे पास पुनरावर्ती समीकरण है:
+\begin{align*}
+g\,x_1\dots x_n & \equal[\beta] N
+\intertext{जहाँ $N$ में~$g$ और $x_1$, \dots,~$x_n$ आ सकते हैं। तब सदा कोई
+ऐसा पद~$G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]])$ है कि}
+G\,x_1 \dots x_n & \equal[\beta] \Subst{N}{G}{g}.
+\intertext{क्योंकि अचल-बिंदु प्रमेय से,}
+G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]]) & \red \lambd[g][\lambd[x_1\dots x_n][N]](Y \lambd[g][\lambd[x_1\dots x_n][N]])\\
+& \ident (\lambd[g][\lambd[x_1\dots x_n][N]])\,G
+\intertext{और फलतः}
+G\,x_1 \dots x_n 
+& \red (\lambd[g][\lambd[x_1\dots x_n][N]])\,G\,x_1\dots x_n\\
+& \red (\lambd[x_1\dots x_n][\Subst{N}{G}{g}])\,x_1\dots x_n\\
+  & \red \Subst{N}{G}{g}.
+\end{align*}
+
+\olref{defn:Turing-Y} का $Y$ संयोजक एलन ट्यूरिंग का है। अलॉन्ज़ो चर्च ने
+एक भिन्न रूप प्रस्तावित किया था, जिसे हम~$Y_C$ कहेंगे:
+\[
+Y_C \ident \lambd[g][(\lambd[x][g(xx)])(\lambd[x][g(xx)])].
+\]
+चर्च का संयोजक ट्यूरिंग के संयोजक से कुछ दुर्बल है: $Yg \equal[\beta]
+g(Yg)$, किंतु $Yg \bred g(Yg)$ नहीं। $V$ पद $\lambd[x][g(xx)]$ हो, ताकि
+$Y_C \ident \lambd[g][VV]$। तब
+\begin{align*}
+  VV & \ident (\lambd[x][g(xx)])V \red g(VV)
+  \text{ और अतः}\\
+  Y_C g & \ident (\lambd[g][VV])g \red VV \red g(VV), \text{ किंतु साथ ही}\\
+  g(Y_C g) & \ident g((\lambd[g][VV])g) \red g(VV).
+\end{align*}
+दूसरे शब्दों में, $Y_Cg$ और $g(Y_Cg)$ अपचयित होकर समान पद $g(VV)$ में
+पहुँचते हैं; अतः $Y_Cg \equal[\beta] g(Y_Cg)$। अनुप्रयोगों के लिए यह प्रायः
+पर्याप्त है।
+
+\end{document}
+

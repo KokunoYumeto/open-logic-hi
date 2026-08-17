@@ -1,0 +1,149 @@
+% Part: turing-machines
+% Chapter: undecidability
+% Section: enumerating-tms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{und}{enu}
+\olsection{ट्यूरिंग मशीनों का परिगणन}
+
+\begin{explain}
+हम दिखा सकते हैं कि सभी ट्यूरिंग मशीनों का समुच्चय !!{enumerable} है।
+यह इस तथ्य से निकलता है कि प्रत्येक ट्यूरिंग मशीन का परिमित वर्णन किया
+जा सकता है। अवस्थाओं का समुच्चय और पट्टी की शब्दावली परिमित समुच्चय हैं।
+संक्रमण फलन $Q \times \Sigma$ से
+$Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$ तक का आंशिक
+फलन है; अतः जिन परिमित संख्या में युग्म-आगतों पर वह परिभाषित है, उनके
+लिए उसके मान सूचीबद्ध करके उसे भी निर्दिष्ट किया जा सकता है।
+
+इतना कथन सही है, किंतु यहाँ एक सूक्ष्म अंतर है। ट्यूरिंग मशीन की परिभाषा
+ने इस पर कोई प्रतिबंध नहीं लगाया कि अवस्थाओं के समुच्चय और पट्टी-वर्णमाला
+में कौन-से !!{element} हो सकते हैं। अतः उदाहरण के लिए, तकनीकी रूप से
+प्रत्येक वास्तविक संख्या के लिए ऐसी ट्यूरिंग मशीन है जो उस संख्या को एक
+अवस्था के रूप में उपयोग करती है। फिर भी ट्यूरिंग मशीन का \emph{व्यवहार}
+इससे स्वतंत्र है कि कौन-सी वस्तुएँ अवस्थाओं और शब्दावली का काम करती हैं।
+\olref{fig:variants} की दोनों ट्यूरिंग मशीनों पर विचार करें।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}\\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+  semithick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\node[initial,state]         (A)              {$s$};
+\node[state]         (B) [right of=A] {$h$};
+
+\path (A) edge [bend left] node {\TMtrans{A}{A}{\TMright}} (B)
+(B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+edge [bend left] node {\TMtrans{A}{A}{\TMright}} (A);
+\end{tikzpicture}
+\end{center}
+\caption{\emph{सम} मशीन के रूपांतर}
+\ollabel{fig:variants}
+\end{figure}
+ये दोनों आरेख दो मशीनों के अनुरूप हैं: $M$, जिसकी पट्टी-वर्णमाला
+$\Sigma = \{\TMendtape,\TMblank,\TMstroke\}$ और अवस्था-समुच्चय
+$\{q_0,q_1\}$ हैं; तथा $M'$, जिसकी वर्णमाला $\Sigma' =
+\{\TMendtape,\TMblank,A\}$ और अवस्थाएँ $\{s,h\}$ हैं।
+किंतु अन्यथा उनके निर्देश समान हैं: $M$, $n$ संख्या के $\TMstroke$ के
+अनुक्रम पर तभी रुकती है जब $n$ सम हो, और $M'$, $n$ संख्या के $A$ के
+अनुक्रम पर तभी रुकती है जब $n$ सम हो। हमने केवल $\TMstroke$ का नाम
+बदलकर~$A$, $q_0$ का~$s$, और $q_1$ का~$h$ किया है। इस उदाहरण का
+सामान्यीकरण होता है: जब तक एक ट्यूरिंग मशीन दूसरी से प्रतीकों और अवस्थाओं
+के ऐसे पुनर्नामकरण द्वारा मिलती है, हम दोनों को एक ही मान सकते हैं।
+वस्तुतः हम ट्यूरिंग मशीन के प्रतीकों और अवस्थाओं को केवल धन पूर्णांक मान
+सकते हैं: $\sigma_0$ के स्थान पर~$1$, $\sigma_1$ के स्थान पर~$2$,
+इत्यादि; $\TMendtape$ को~$1$, $\TMblank$ को~$2$, इत्यादि। इस प्रकार
+\emph{सम} मशीन \olref{fig:standard-even} में दर्शाई मशीन बन जाती है।
+\begin{figure}
+\[\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+  semithick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\node[initial,state]         (A)              {$1$};
+\node[state]         (B) [right of=A] {$2$};
+
+\path (A) edge [bend left] node {\TMtrans{3}{3}{\TMright}} (B)
+(B) edge [loop above] node {\TMtrans{2}{2}{\TMright}} (B)
+edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
+\end{tikzpicture}
+\]
+\caption{एक मानक \emph{सम} मशीन}
+\ollabel{fig:standard-even}
+\end{figure}
+जिस ट्यूरिंग मशीन की अवस्थाएँ और प्रतीक धन पूर्णांक हों, उसे हम
+\emph{मानक} मशीन कह सकते हैं और अब से केवल मानक मशीनों पर विचार कर
+सकते हैं।\footnote{``मानक मशीन'' पदावली स्वयं मानक नहीं है।}
+
+हम दिखाना चाहते थे कि ट्यूरिंग मशीनों का समुच्चय !!{enumerable} है, और
+ऊपर के विचारों को ध्यान में रखते हुए मानक ट्यूरिंग मशीनों के समुच्चय को
+!!{enumerable} दिखाना पर्याप्त है। मान लें कि हमें मानक ट्यूरिंग मशीन
+$M = \tuple{Q, \Sigma, q_0, \delta}$ दी गई है। धन पूर्णांकों की परिमित
+अक्षर-शृंखला से उसका वर्णन कैसे करें? पहले हम अवस्थाओं की संख्या, स्वयं
+अवस्थाएँ, प्रतीकों की संख्या, स्वयं प्रतीक और आरंभिक अवस्था सूचीबद्ध
+करेंगे। (याद रखें, ये सभी धन पूर्णांक हैं क्योंकि $M$ एक मानक मशीन है।)
+अब~$\delta$ का क्या करें? संभावित आगतों का समुच्चय, अर्थात् युग्मों
+$\tuple{q,\sigma}$ का समुच्चय, परिमित है क्योंकि $Q$ और~$\Sigma$
+परिमित हैं। अतः~$\delta$ में निहित सूचना उन सभी $5$-गुणजों
+$\tuple{q, \sigma, q', \sigma', d}$ की परिमित सूची मात्र है जिनके लिए
+$\delta(q,\sigma) = \tuple{q', \sigma', D}$ है और $d$, दिशा~$D$ को
+कूटबद्ध करने वाली संख्या है (मान लें, $1$ से~$\TMleft$, $2$
+से~$\TMright$, और $3$ से~$\TMstay$ कूटबद्ध होते हैं)।
+
+इस प्रकार प्रत्येक मानक ट्यूरिंग मशीन का वर्णन धन पूर्णांकों की एक
+परिमित सूची द्वारा, अर्थात् अनुक्रम $s_M \in
+(\PosInt)^*$ के रूप में,
+किया जा सकता है। उदाहरणतः मानक \emph{सम} मशीन को निम्न अनुक्रम कूटबद्ध
+करता है:
+\[
+2, \underbrace{1, 2}_Q, 3, \overbrace{1, 2, 3}^\Sigma, 1, \underbrace{1, 3, 2, 3, 2}_{\delta(1,3) = \tuple{2,3,R}}, 
+\overbrace{2, 2, 2, 2, 2}^{\delta(2,2) = \tuple{2,2,R}},
+\underbrace{2, 3, 1, 3, 2}_{\delta(2,3) = \tuple{1,3,R}}.
+\]
+\end{explain}
+
+\begin{thm}
+$\Nat$ से~$\Nat$ तक ऐसे फलन हैं जो ट्यूरिंग-संगणनीय नहीं हैं।
+\end{thm}
+
+\begin{proof}
+हम जानते हैं कि धन पूर्णांकों के परिमित अनुक्रमों का समुच्चय
+~$(\PosInt)^*$, !!{enumerable} है
+(\cref{sfr:siz:zigzag:prob:posint-star})। इससे मिलता है कि
+~$(\PosInt)^*$ के उपसमुच्चय के रूप में मानक ट्यूरिंग मशीनों के वर्णनों
+का समुच्चय स्वयं परिगणनीय है। $\Nat$ से~$\Nat$ तक प्रत्येक
+ट्यूरिंग-संगणनीय फलन की संगणना कोई (वस्तुतः अनेक) ट्यूरिंग मशीन करती
+है। उसकी अवस्थाओं और प्रतीकों का नाम बदलकर धन पूर्णांक रखने पर (विशेषतः
+$\TMendtape$ को~$1$, $\TMblank$ को~$2$, और $\TMstroke$ को~$3$) हम देख
+सकते हैं कि प्रत्येक ट्यूरिंग-संगणनीय फलन की संगणना कोई मानक ट्यूरिंग
+मशीन करती है। इसका अर्थ है कि $\Nat$ से~$\Nat$ तक के सभी
+ट्यूरिंग-संगणनीय फलनों का समुच्चय भी परिगणनीय है।
+
+दूसरी ओर, $\Nat$ से~$\Nat$ तक के सभी फलनों का समुच्चय !!{enumerable}
+नहीं है (\cref{sfr:siz:red:prob:nat-nat})। यदि सभी फलन किसी ट्यूरिंग
+मशीन द्वारा संगणनीय होते, तो उनकी संगणना करने वाली ट्यूरिंग मशीनों के
+सभी वर्णनों को सूचीबद्ध करके हम सभी फलनों के समुच्चय का परिगणन कर सकते
+थे। अतः कुछ फलन ट्यूरिंग-संगणनीय नहीं हैं।
+\end{proof}
+
+\begin{prob}
+  क्या आप ट्यूरिंग मशीनों का वर्णन करने की ऐसी रीति सोच सकते हैं जिसमें
+  अवस्थाओं और वर्णमाला के प्रतीकों को स्पष्टतः सूचीबद्ध करना आवश्यक न
+  हो? आप ``मानक'' मशीन की अपनी धारणा परिभाषित कर सकते हैं, किंतु यह भी
+  बताएँ कि आपके नए अर्थ की किसी ``मानक'' मशीन द्वारा प्रत्येक ट्यूरिंग
+  मशीन का अनुकरण क्यों किया जा सकता है।
+\end{prob}
+
+\end{document}

@@ -1,0 +1,156 @@
+% Part: lambda-calculus
+% Chapter: church-rosser
+% Section: parallel-beta-reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{cr}{pb}
+
+\olsection{समांतर $\beta$-अपचयन}
+
+हम \emph{समांतर $\beta$-अपचयन} की धारणा प्रस्तुत करते हैं और सिद्ध करते
+हैं कि उसमें चर्च--रॉसर गुण है।
+
+\begin{defn}[समांतर $\beta$-अपचयन, $\bredpar$] \ollabel{defn:bredpar}
+  पदों का समांतर अपचयन ($\bredpar$) आगमनतः इस प्रकार परिभाषित है:
+  \begin{enumerate}
+    \item \ollabel{defn:bredpar1} $x \bredpar x$.
+    \item \ollabel{defn:bredpar2} यदि $N \xrightarrow{\beta} N'$, तो $\lambd[x][N] \bredpar
+      \lambd[x][N']$।
+    \item \ollabel{defn:bredpar3} यदि $P \bredpar P'$ और $Q \bredpar Q'$, तो $PQ \bredpar
+      P'Q'$।
+    \item \ollabel{defn:bredpar4} यदि $N \bredpar N'$ और $Q \bredpar Q'$, तो
+      $(\lambd[x][N])Q \bredpar \Subst{N'}{Q'}{x}$.
+  \end{enumerate}
+\end{defn}
+
+समांतर $\beta$-अपचयन हमें किसी पद के कितने भी रिडेक्स एक ही चरण में
+अपचयित करने देता है। वह $\beta$-अपचयन से इस अर्थ में भिन्न है कि हम केवल
+मूल पद में आने वाले रिडेक्स संकुचित कर सकते हैं, समांतर $\beta$-अपचयन से
+उत्पन्न रिडेक्स नहीं। उदाहरणार्थ, पद $(\lambd[f][fx])(\lambd[y][y])$ को
+समांतर $\beta$-अपचयित करके केवल स्वयं उसी में या $(\lambd[y][y])x$ में
+बदला जा सकता है, आगे~$x$ में नहीं; यद्यपि वह $\beta$-अपचयित होकर~$x$ बनता
+है। कारण यह है कि यह रिडेक्स समांतर $\beta$-अपचयन के एक चरण के बाद ही
+उत्पन्न होता है। फिर भी, समांतर $\beta$-अपचयन का दूसरा चरण~$x$ देता है।
+
+\begin{thm}\ollabel{thm:refl}
+  $M \bredpar M$.
+\end{thm}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pb]{thm:refl} सिद्ध करें।
+\end{prob}
+
+\begin{defn}[$\beta$-पूर्ण विकास]\ollabel{defn:bcd}
+  ~$M$ का \emph{$\beta$-पूर्ण विकास}~$\bcd{M}$ आगमनतः इस प्रकार परिभाषित
+  है:
+  \begin{align}
+    \bcd{x} &= x \ollabel{defn:bcd1} \\
+    \bcd{(\lambd[x][N])} &= \lambd[x][\bcd{N}] \ollabel{defn:bcd2}\\
+    \bcd{(PQ)} &= \bcd{P}\bcd{Q} && \text{यदि $P$ कोई $\lambd$-अमूर्त नहीं है}
+    \ollabel{defn:bcd3} \\
+    \bcd{((\lambd[x][N])Q)} &= \Subst{\bcd{N}}{\bcd{Q}}{x} \ollabel{defn:bcd4}
+  \end{align}
+\end{defn}
+
+किसी पद का $\beta$-पूर्ण विकास, जैसा नाम से स्पष्ट है, ``पूर्ण समांतर
+अपचयन'' है। समांतर $\beta$-अपचयन में हम अब भी किसी रिडेक्स को संकुचित न
+करने का विकल्प चुन सकते हैं, किंतु पूर्ण विकास में सभी रिडेक्स संकुचित करने
+ही होते हैं। अतः $(\lambd[f][fx])(\lambd[y][y])$ का पूर्ण विकास स्वयं वह
+पद नहीं, बल्कि $(\lambd[y][y])x$ है।
+
+\begin{editorial}
+  इस परिभाषा में यह समस्या है कि हमने ($\lambd$-)पदों पर फलन पुनरावर्ती
+  रूप से परिभाषित करने की विधि प्रस्तुत नहीं की है। भविष्य में इसे ठीक
+  किया जाएगा।
+\end{editorial}
+
+\begin{lem}\ollabel{lem:comp}
+  यदि $M \bredpar M'$ और $R \bredpar R'$, तो $\Subst{M}{R}{y}
+  \bredpar \Subst{M'}{R'}{y}$।
+\end{lem}
+
+\begin{proof}
+  $M \bredpar M'$ के !!{derivation} पर आगमन द्वारा।
+  \begin{enumerate}
+    \item अंतिम चरण \olref{defn:bredpar1} है: अभ्यास।
+    \item अंतिम चरण \olref{defn:bredpar2} है: तब $M$,
+      ~$\lambd[x][N]$ और $M'$, ~$\lambd[x][N']$ है, जहाँ $N \bredpar N'$।
+      हम सिद्ध करना चाहते हैं कि
+      $\Subst{(\lambd[x][N])}{R}{y} \bredpar
+      \Subst{(\lambd[x][N'])}{R'}{y}$, i.e.,
+      $\lambd[x][\Subst{N}{R}{y}] \bredpar
+      \lambd[x][\Subst{N'}{R}{y}]$। यह \olref{defn:bredpar2} और
+      आगमन-परिकल्पना से तुरंत मिलता है।
+    \item अंतिम चरण \olref{defn:bredpar3} है: अभ्यास।
+    \item अंतिम चरण \olref{defn:bredpar4} है: $M$,
+      ~$(\lambd[x][N])Q$ और $M'$, ~$\Subst{N'}{Q'}{x}$ है। हम सिद्ध करना
+      चाहते हैं कि $\Subst{((\lambd[x][N])Q)}{R}{y} \bredpar
+      \Subst{\Subst{N'}{Q'}{x}}{R'}{y}$, i.e.,
+      $(\lambd[x][\Subst{N}{R}{y}])\Subst{Q}{R}{y} \bredpar
+      \Subst{\Subst{N'}{R'}{y}}{\Subst{Q'}{R'}{y}}{x}$। यह
+      \olref{defn:bredpar4} और आगमन-परिकल्पना से मिलता है।
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pb]{lem:comp} का प्रमाण पूरा करें।
+\end{prob}
+
+\begin{lem}\ollabel{lem:cont}
+  यदि $M \bredpar M'$, तो $M' \bredpar \bcd{M}$।
+\end{lem}
+\begin{proof}
+  $M \bredpar M'$ के !!{derivation} पर आगमन द्वारा।
+  \begin{enumerate}
+    \item अंतिम नियम \olref{defn:bredpar1} है: अभ्यास।
+    \item अंतिम नियम \olref{defn:bredpar2} है: $M$, ~$\lambd[x][N]$ और
+      $M'$, ~$\lambd[x][N']$ है, जहाँ $N \bredpar N'$। हमें दिखाना है कि
+      $\lambd[x][N'] \bredpar \bcd{(\lambd[x][N])}$, अर्थात्
+      \olref{defn:bcd2} से $\lambd[x][N'] \bredpar
+      \lambd[x][\bcd{N}]$। यह \olref{defn:bredpar2} और आगमन-परिकल्पना से
+      मिलता है।
+    \item अंतिम नियम \olref{defn:bredpar3} है: किन्हीं $P$, $Q$, $P'$ और
+      $Q'$ के लिए $M$, ~$PQ$ और $M'$, ~$P'Q'$ है, जहाँ $P \bredpar P'$
+      और $Q \bredpar Q'$। आगमन-परिकल्पना से $P' \bredpar \bcd{P}$ और $Q'
+      \bredpar \bcd{Q}$।
+      \begin{enumerate}
+        \item यदि किन्हीं $x$ और $N$ के लिए $P$, ~$\lambd[x][N]$ है, तो
+          किसी $N'$ के लिए $P'$, ~$\lambd[x][N']$ होना चाहिए, जहाँ $N
+          \bredpar N'$। आगमन-परिकल्पना से $N' \bredpar \bcd{N}$ और $Q'
+          \bredpar \bcd{Q}$। तब \olref{defn:bredpar4} से
+          $(\lambd[x][N'])Q' \bredpar \Subst{\bcd{N}}{\bcd{Q}}{x}$।
+        \item यदि $P$ कोई $\lambd$-अमूर्त नहीं है, तो
+          \olref{defn:bredpar3} से $P'Q' \bredpar \bcd{P}\bcd{Q}$, और
+          \olref{defn:bcd3} से दायाँ पक्ष $\bcd{PQ}$ है।
+      \end{enumerate}
+    \item अंतिम नियम \olref{defn:bredpar4} है: किन्हीं $x$, $N$, $Q$,
+      $N'$ और~$Q'$ के लिए $M$, ~$(\lambd[x][N])Q$ और $M'$,
+      ~$\Subst{N'}{Q'}{x}$ है, जहाँ $N \bredpar N'$ और $Q \bredpar Q'$।
+      आगमन-परिकल्पना से $N' \bredpar \bcd{N}$ और $Q' \bredpar \bcd{Q}$।
+      \olref{lem:comp} से $\Subst{N'}{Q'}{x} \bredpar
+      \Subst{\bcd{N}}{\bcd{Q}}{x}$, जिसका दायाँ पक्ष ठीक
+      $\bcd{((\lambd[x][N])Q)}$ है।
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pb]{lem:cont} का प्रमाण पूरा करें।
+\end{prob}
+
+\begin{thm}\ollabel{thm:cr}
+  $\bredpar$ में चर्च--रॉसर गुण है।
+\end{thm}
+
+\begin{proof}
+  \olref{lem:cont} से तात्कालिक।
+\end{proof}
+
+\end{document}
+

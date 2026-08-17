@@ -1,0 +1,144 @@
+% Part: intuitionistic-logic
+% Chapter: tableaux
+% Section: rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{tab}{rul}
+
+\olsection{अंतःप्रज्ञावादी तर्कशास्त्र के नियम}
+
+संयोजकों $\land$ और $\lor$ के नियम सामान्य प्रतिज्ञप्तिक चिह्नित
+!!{tableau} जैसे ही हैं, केवल उपसर्ग जोड़ दिए गए हैं। प्रत्येक मामले में,
+किसी चिह्नित !!{formula} $\sFmla{S}{!A}[\sigma]$ पर लगाया गया नियम ऐसे नए
+!!{formula} उत्पन्न करता है जिन पर भी~$\sigma$ उपसर्ग लगा है। यह सहजतः स्पष्ट
+होना चाहिए: उदाहरणार्थ यदि $!A \land !B$,~$\sigma$ (द्वारा नामित जगत) पर
+सत्य है, तो $!A$ और $!B$,~$\sigma$ पर सत्य हैं (किसी अन्य जगत पर नहीं)।
+$\land$ और $\lor$ के नियम \olref{tab:prop-rules} में संकलित हैं।
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\land}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\True}{!B}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\land}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\False}{!B}[\sigma]$}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lor}}
+    \UnaryInfC{$\sFmla{\True}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lor}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+  \end{array}\]
+  \caption{$\land$ और $\lor$ के उपसर्गयुक्त !!{tableau} नियम}
+  \ollabel{tab:prop-rules}
+\end{table}
+
+संवरण-शर्त सामान्य !!{tableau} की शर्त जैसी है, यद्यपि हम यह अपेक्षा करते
+हैं कि केवल !!{formula} ही नहीं, उपसर्ग भी मेल खाएँ। वास्तव में हम कुछ अधिक
+उदार हो सकते हैं: चूँकि अंतःप्रज्ञावादी प्रतिरूपों में !!{formula} एक बार
+सत्य होने पर सत्य रहते हैं, इसलिए यह असंभव है कि $!A$,~$\sigma$ पर सत्य
+पर किसी अभिगम्य उपसर्ग~$\sigma.{*}$ पर असत्य हो। अतः कोई शाखा संवृत है यदि
+उसमें दोनों
+\[
+\sFmla{\True}{!A}[\sigma] \quad\text{और}\quad \sFmla{\False}{!A}[\sigma.{*}]
+\]
+किसी उपसर्ग $\sigma$ और !!{formula}~$!A$ के लिए हों। ध्यान दें कि यदि चिह्न
+उलट दिए जाएँ, अर्थात उसमें
+\[
+\sFmla{\False}{!A}[\sigma] \quad\text{और}\quad \sFmla{\True}{!A}[\sigma.{*}]
+\]
+हों, तो शाखा केवल तभी संवृत है जब $*$ रिक्त अनुक्रम हो।
+
+इसके अतिरिक्त, यदि किसी शाखा में~$\sFmla{\True}{\bot}[\sigma]$ हो, तो वह
+संवृत है।
+
+मान्यताएँ स्थापित करने के नियम भी सामान्य !!{tableau} जैसे हैं, सिवाय इसके
+कि मान्यताओं के लिए हम सदैव उपसर्ग~$1$ का उपयोग करते हैं। (कौन-सा उपसर्ग
+लेते हैं इससे अंतर नहीं पड़ता, बशर्ते सभी मान्यताओं के लिए वही हो।) अतः,
+उदाहरणार्थ, हम कहते हैं कि
+\[
+!B_1, \dots, !B_n \Proves !A
+\]
+तभी जब निम्न मान्यताओं के लिए कोई संवृत टैब्लो हो:
+\[
+\sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
+\sFmla{\False}{!A}[1].
+\]
+
+सशर्त~$\lif$ के नियम शास्त्रीय और मोडल मामलों से भिन्न हैं।
+$\TRule{\lif}{\True}$ नियम, $\sFmla{\True}{!A \lif !B}[\sigma]$ वाली शाखा
+को दो अलग शाखाओं पर $\sFmla{\True}{!A}[\sigma.{*}]$ और
+$\sFmla{\False}{!B}[\sigma.{*}]$ जोड़कर विस्तृत करता है। इसे केवल ऐसे
+उपसर्ग~$\sigma.{*}$ के लिए लगाया जा सकता है जो उस शाखा पर \emph{पहले से}
+आता हो। ऐसे उपसर्ग को शाखा पर ``प्रयुक्त'' कहें। (चूँकि $\sigma.{*}$ में
+स्वयं $\sigma$ भी आता है, नियम को अलग शाखाओं पर उपसर्गयुक्त चिह्नित सूत्र
+$\sFmla{\True}{!A}[\sigma]$ और $\sFmla{\False}{!B}[\sigma]$ जोड़कर सदैव
+लगाया जा सकता है।)
+
+$\TRule{\lif}{\False}$ नियम, $\sFmla{\False}{!A \lif !B}[\sigma]$ वाली
+शाखा को उसी शाखा पर $\sFmla{\True}{!A}[\sigma.n]$ और
+$\sFmla{\False}{!B}[\sigma.n]$ दोनों जोड़कर विस्तृत करता है, जहाँ
+$\sigma.n$ उस शाखा के लिए नया उपसर्ग है।
+
+~$\lnot$ के नियम इसी के अनुरूप परिभाषित हैं ($\lnot !A$ की
+$!A \lif \lfalse$ वाली परिभाषा का उपयोग करके)।
+
+नियम \olref{tab:rules-lif-lnot} में दिए गए हैं।
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\True}{\lnot}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma.{*}]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\False}{\lnot}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+    \DisplayProof
+    \\[1ex]
+    \text{$\sigma.{*}$ प्रयुक्त है} & \text{$\sigma.n$ नया है}\\
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lif}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma.{*}] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma.{*}]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lif}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma.n]}
+    \DisplayProof
+    \\[1ex]
+    \text{$\sigma.{*}$ प्रयुक्त है} & \text{$\sigma.n$ नया है}\\
+    \hline
+  \end{array}\]
+  \caption{$\lnot$ और $\lif$ के उपसर्गयुक्त !!{tableau} नियम}
+  \ollabel{tab:rules-lif-lnot}
+\end{table}
+
+\end{document}

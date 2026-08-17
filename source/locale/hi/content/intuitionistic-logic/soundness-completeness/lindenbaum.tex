@@ -1,0 +1,147 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: lindenbaum
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{lin}
+
+\olsection{लिंडेनबाउम का लेम्मा}
+
+अंतःप्रज्ञावादी तर्कशास्त्र का पूर्णता प्रमेय $\Gamma \Proves/ !A$ मानकर
+और ऐसा प्रतिरूप बनाकर सिद्ध किया जाता है जिसमें $\mSat{M}{\Gamma}$ तथा
+~$\mSat/{M}{!A}$।
+
+शास्त्रीय तर्कशास्त्र में !!{derivability} के संबंध को संगतता की धारणा तक
+घटाया जा सकता है, क्योंकि कोई !!{formula}~$!A$, !!{formula}ों के किसी समुच्चय
+से तभी !!{derivable} है जब वह समुच्चय~$!A$ के निषेध के साथ असंगत हो।
+अंतःप्रज्ञावादी तर्कशास्त्र में ऐसा संभव नहीं है। यहाँ यदि $\lnot!A$ असंगत
+है, तो हमें केवल $\Proves \lnot\lnot !A$ मिलता है। चूँकि
+$\lnot\lnot!A \lif !A$ सामान्यतः अंतःप्रज्ञावादी रूप से मान्य नहीं है, हम
+~$\Proves !A$ का निष्कर्ष नहीं निकाल सकते।
+
+अतः प्रतिरूप~$\mModel{M}$ बनाते समय हमें !!{formula}~$!A$ की
+अ-!!{derivability} का लेखा रखना होगा। इसलिए प्रतिरूप~$\mModel{M}$ बनाने के
+लिए हम पूर्ण समुच्चय $\Gamma^* \supseteq \Gamma$ का उपयोग नहीं कर सकते,
+क्योंकि प्रत्येक पूर्ण समुच्चय~$\Gamma^*$ में
+$\Gamma^* \Proves !A \lor \lnot !A$।
+
+पूर्ण समुच्चय~$\Gamma^*$ के स्थान पर हम सूत्रों के अभाज्य समुच्चय की धारणा
+का उपयोग करेंगे:
+
+\begin{defn}\ollabel{defn:prime}
+  !!{formula}ों का समुच्चय~$\Gamma$ \emph{अभाज्य} है, तभी जब
+  \begin{enumerate}
+  \item\ollabel{defn:prime1} $\Gamma$ संगत है; अर्थात
+    $\Gamma \Proves/ \lfalse$;
+  \item\ollabel{defn:prime2} यदि $\Gamma \Proves !A$, तो
+    $!A \in \Gamma$; और
+  \item\ollabel{defn:prime3} यदि $!A \lor !B \in \Gamma$, तो
+    $!A \in \Gamma$ या $!B \in \Gamma$।
+  \end{enumerate}
+\end{defn}
+
+\begin{lem}[लिंडेनबाउम का लेम्मा]
+  \ollabel{lem:lindenbaum} यदि $\Gamma \Proves/ !A$, तो कोई
+  $\Gamma^* \supseteq \Gamma$ ऐसा है कि $\Gamma^*$ अभाज्य और
+  $\Gamma^* \Proves/ !A$।
+\end{lem}
+
+\begin{proof}
+  मान लें कि $!B_1 \lor !C_1$, $!B_2 \lor !C_2$, \dots,~$!B \lor !C$
+  रूप वाले सभी !!{formula}ों का परिगणन है। हम !!{formula}ों के समुच्चयों का
+  वर्धमान अनुक्रम~$\Gamma_n$ परिभाषित करेंगे, जहाँ प्रत्येक
+  $\Gamma_{n+1}$ को $\Gamma_n$ में एक नया !!{formula} जोड़कर परिभाषित किया
+  जाएगा। $\Gamma^*$ सभी~$\Gamma_n$ का संघ होगा। नए !!{formula} इस प्रकार
+  चुने जाते हैं कि $\Gamma^*$ अभाज्य रहे और फिर भी
+  $\Gamma^* \Proves/ !A$। इसका अर्थ है कि प्रत्येक चरण पर हमें ऐसा पहला
+  वियोजन~$!B_i \lor !C_i$ खोजना चाहिए कि:
+  \begin{enumerate}
+  \item\ollabel{gamma-1} $\Gamma_n \Proves !B_i \lor !C_i$
+  \item\ollabel{gamma-2} $!B_i \notin \Gamma_n$ और $!C_i \notin \Gamma_n$
+  \end{enumerate}
+  यदि $\Gamma_n \cup \{!B_i\} \Proves/ !A$, तो हम $\Gamma_n$ में $!B_i$
+  जोड़ते हैं; अन्यथा $!C_i$। हमें दिखाना होगा कि यह विधि काम करती है। अभी
+  $i(n)$ को वह न्यूनतम $i$ परिभाषित करें जिसके लिए \olref{gamma-1} और
+  ~\olref{gamma-2} सत्य हैं।
+  
+  $\Gamma_0 = \Gamma$ परिभाषित करें और
+  \[
+  \Gamma_{n+1} = \begin{cases}
+    \Gamma_n \cup \{!B_{i(n)}\} &
+    \text{यदि $\Gamma_n \cup \{!B_{i(n)}\} \Proves/ !A$} \\
+    \Gamma_n \cup \{!C_{i(n)}\} & \text{अन्यथा}
+    \end{cases}
+  \]
+  यदि $i(n)$ अपरिभाषित है---अर्थात जब भी
+  $\Gamma_n \Proves !B \lor !C$, तब या तो $!B \in \Gamma_n$ या
+  $!C \in \Gamma_n$---तो हम $\Gamma_{n+1} = \Gamma_n$ लेते हैं। अब
+  $\Gamma^* = \bigcup_{n=0}^\infty \Gamma_n$ लें।
+
+  पहले हम दिखाते हैं कि प्रत्येक $n$ के लिए $\Gamma_n \Proves/ !A$। हम
+  ~$n$ पर आगमन करते हैं। $n = 0$ के लिए दावा प्रमेय की परिकल्पना, अर्थात
+  $\Gamma \Proves/ !A$, से सत्य है। $n>0$ के लिए हमें दिखाना है कि यदि
+  $\Gamma_n \Proves/ !A$, तो $\Gamma_{n+1} \Proves/ !A$। यदि $i(n)$
+  अपरिभाषित है, तो $\Gamma_{n+1} = \Gamma_n$ और सिद्ध करने को कुछ नहीं।
+  अतः मान लें कि $i(n)$ परिभाषित है। सरलता के लिए $i = i(n)$ लें।
+  
+  हम दावे का प्रतिधनात्मक रूप सिद्ध करेंगे। मान लें
+  $\Gamma_{n+1} \Proves !A$। रचना के अनुसार, यदि
+  $\Gamma_n \cup \{!B_i\} \Proves/ !A$, तो
+  $\Gamma_{n+1} = \Gamma_n \cup \{!B_i\}$; अन्यथा
+  $\Gamma_{n+1} = \Gamma_n \cup \{!C_i\}$। स्पष्टतः पहला मामला नहीं हो
+  सकता, क्योंकि तब $\Gamma_{n+1} \Proves/ !A$ होता। अतः
+  $\Gamma_n \cup \{!B_i\} \Proves !A$ और
+  $\Gamma_{n+1} = \Gamma_n \cup \{!C_i\}$। $i(n)$ की परिभाषा से
+  $\Gamma_n \Proves !B_i \lor !C_i$। हमारे पास
+  $\Gamma_n \cup \{!B_i\} \Proves !A$ है। साथ ही
+  $\Gamma_{n+1} = \Gamma_n \cup \{!C_i\} \Proves !A$। अतः
+  $\Gamma_n \Proves !A$, जैसा हमें दिखाना था।
+
+  यदि $\Gamma^* \Proves !A$, तो कोई परिमित उपसमुच्चय
+  $\Gamma' \subseteq \Gamma^*$ ऐसा होता कि $\Gamma' \Proves !A$। प्रत्येक
+  $!D \in \Gamma'$ किसी~$i$ के लिए $\Gamma_i$ में होना चाहिए। इनमें सबसे
+  बड़ा सूचकांक $n$ लें। चूँकि $i \le n$ होने पर
+  $\Gamma_i \subseteq \Gamma_n$, इसलिए $\Gamma' \subseteq \Gamma_n$। तब
+  $\Gamma_n \Proves !A$, जो ऊपर सिद्ध $\Gamma_n \Proves/ !A$ के विरुद्ध
+  है।
+
+  अंत में हम दिखाते हैं कि $\Gamma^*$ अभाज्य है; अर्थात वह
+  \olref{defn:prime} की शर्तें \olref{defn:prime1},
+  \olref{defn:prime2} और~\olref{defn:prime3} संतुष्ट करता है।
+
+  पहले, $\Gamma^* \Proves/ !A$, अतः $\Gamma^*$ संगत है; इसलिए
+  \olref{defn:prime1} सत्य है।
+
+  अब हम दिखाते हैं कि यदि $\Gamma^* \Proves !B \lor !C$, तो या तो
+  $!B \in \Gamma^*$ या $!C \in \Gamma^*$। इससे \olref{defn:prime3}
+  सिद्ध होता है, क्योंकि यदि $!B \lor !C \in \Gamma^*$, तो
+  $\Gamma^* \Proves !B \lor !C$ भी। अतः मान लें
+  $\Gamma^* \Proves !B \lor !C$, किंतु $!B \notin \Gamma^*$ और
+  $!C \notin \Gamma^*$। चूँकि $\Gamma^* \Proves !B \lor !C$, किसी~$n$
+  के लिए $\Gamma_n \Proves !B \lor !C$। सभी वियोजनों के परिगणन में
+  $!B \lor !C$, मान लें, $!B_j \lor !C_j$ के रूप में आता है।
+  $!B_j \lor !C_j$, $i(n)$ की परिभाषा के गुणों को संतुष्ट करता है:
+  $\Gamma_n \Proves !B_j \lor !C_j$, जबकि
+  $!B_j \notin \Gamma_n$ और $!C_j \notin \Gamma_n$। प्रत्येक चरण पर
+  शर्तें संतुष्ट करने वाला कम-से-कम एक वियोजन $!B_i \lor !C_i$ घट जाता है
+  (क्योंकि प्रत्येक चरण पर हम $!B_i$ या $!C_i$ जोड़ते हैं); अतः किसी
+  चरण~$m$ पर $j = i(m)$ होगा। किंतु तब या तो
+  $!B \in \Gamma_{m+1}$ या $!C \in \Gamma_{m+1}$, जो
+  $!B \notin \Gamma^*$ और $!C \notin \Gamma^*$ की मान्यता के विरुद्ध है।
+
+  अब मान लें $\Gamma^* \Proves !B$। तब
+  $\Gamma^* \Proves !B \lor !B$। किंतु हमने अभी सिद्ध किया कि यदि
+  $\Gamma^* \Proves !B \lor !B$, तो $!B \in \Gamma^*$। अतः $\Gamma^*$,
+  \olref{defn:prime} की शर्त~\olref{defn:prime2} संतुष्ट करता है।
+\end{proof}
+
+\begin{prob}
+दिखाइए कि यदि $\Gamma \Proves/ \bot$, तो $\Gamma$ शास्त्रीय तर्कशास्त्र में
+संगत है; अर्थात कोई ऐसा मूल्यांकन है जो~$\Gamma$ के सभी सूत्रों को सत्य
+बनाता है।
+\end{prob}
+
+\end{document}

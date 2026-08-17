@@ -1,0 +1,123 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ord-arithmetic}{using-addition}
+\olsection{क्रमसूचक योग का उपयोग}
+
+क्रमसूचकों पर योग का उपयोग करके हम
+\olref[spine][rank]{defnsetrank} के अर्थ में विभिन्न समुच्चयों की रैंक
+स्पष्टतः परिकलित कर सकते हैं:
+
+\begin{lem}\ollabel{rankcomputation}
+यदि $\setrank{A} = \alpha$ और $\setrank{B} = \beta$, तो:
+\begin{enumerate}
+	\item\ollabel{exrankpow} $\setrank{\Pow{A}} = \alpha\ordplus 1$
+	\item\ollabel{exrankpair} $\setrank{\{A, B\}} = \max(\alpha,
+	\beta) \ordplus 1$
+	\item\ollabel{exrankcup} $\setrank{A \cup B} = \max(\alpha,
+	\beta)$
+	\item\ollabel{exranktuple} $\setrank{\tuple{A,B}} = \max(\alpha,
+	\beta) \ordplus  2$
+	\item\ollabel{exranktimes} $\setrank{A \times B} \leq \max(\alpha,
+	\beta) \ordplus  2$
+	\item\ollabel{exrankunion} जब $\alpha$ रिक्त या सीमा हो, तब
+	$\setrank{\bigcup A} = \alpha$; जब $\alpha = \gamma\ordplus 1$, तब
+	$\setrank{\bigcup A} = \gamma$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+पूरे प्रमाण में हम \olref[spine][rank]{ranksupstrict} का बार-बार आह्वान करते
+हैं।
+
+\emph{\olref{exrankpow}.} यदि $x \subseteq A$, तो
+$\setrank{x} \leq \setrank{A}$। अतः
+$\setrank{\Pow{A}} \leq \alpha \ordplus 1$। विशेषतः चूँकि
+$A \in \Pow{A}$, इसलिए $\setrank{\Pow{A}} = \alpha \ordplus 1$।
+
+\emph{\olref{exrankpair}.} \olref[spine][rank]{ranksupstrict} से।
+
+\emph{\olref{exrankcup}.} \olref[spine][rank]{ranksupstrict} से।
+
+\emph{\olref{exranktuple}.} \olref{exrankpair} से, दो बार।
+
+\emph{\olref{exranktimes}.} ध्यान दें कि
+$A \times B \subseteq \Pow{\Pow{A \cup B}}$, और \olref{exranktuple} का
+आह्वान करें।
+
+\emph{\olref{exrankunion}.} यदि $\alpha = \gamma\ordplus 1$, तो कोई
+$c \in A$ ऐसा है कि $\setrank{c} = \gamma$, और $A$ के किसी !!{element}
+की रैंक इससे अधिक नहीं; अतः $\setrank{\bigcup A} = \gamma$। यदि $\alpha$
+सीमा क्रमसूचक है, तो $A$ के ऐसे !!{element}s हैं जिनकी रैंक $\alpha$ के
+मनमाने रूप से निकट (पर कड़ाई से छोटी) है; इसलिए $\bigcup A$ के भी ऐसे
+!!{element}s हैं जिनकी रैंक $\alpha$ के मनमाने रूप से निकट (पर कड़ाई से
+छोटी) है; अतः $\setrank{\bigcup A} = \alpha$।
+\end{proof}
+\noindent
+\olref{exranktimes} में \emph{अ}समानता क्यों आती है, यह दिखाना अभ्यास के
+लिए छोड़ते हैं।
+
+\begin{prob}
+ऐसे समुच्चय $A$ और $B$ दीजिए कि
+$\setrank{A \times B}= \max(\setrank{A}, \setrank{B})$। ऐसे समुच्चय $A$
+और $B$ दीजिए कि
+$\setrank{A \times B}\max(\setrank{A}, \setrank{B}) \ordplus 2$। क्या कोई
+अन्य रैंक संभव है?
+\end{prob}
+
+अब हम यह भी दिखा सकते हैं कि किसी क्रमसूचक को ``परिमित'' या ``अनंत'' कहने
+के अर्थ की कई उचित धारणाएँ परस्पर संपाती हैं:
+
+\begin{lem}\ollabel{ordinfinitycharacter}
+किसी भी क्रमसूचक $\alpha$ के लिए निम्न समतुल्य हैं:
+\begin{enumerate}
+	\item\ollabel{ord:notinomega} $\alpha\notin \omega$, i.e.,
+	$\alpha$ प्राकृतिक संख्या नहीं है;
+	\item\ollabel{ord:omegaplus} $\omega \leq \alpha$ 
+	\item\ollabel{ord:oneplus} $1 \ordplus  \alpha = \alpha$ 
+	%\alpha \approx \alpha \ordplus 1$
+	\item\ollabel{ord:plusone} $\alpha \approx \alpha\ordplus 1$,
+	अर्थात $\alpha$ और $\alpha\ordplus 1$ समसंख्य हैं;
+	\item\ollabel{ord:infinite} $\alpha$ डेडेकिंड-अनंत है।
+	\end{enumerate}
+\end{lem}
+\noindent
+अतः किसी क्रमसूचक के (अ)परिमित होने का अर्थ समझने के हमारे पास पाँच सिद्धतः
+समतुल्य ढंग हैं।
+
+\begin{proof}
+\emph{\olref{ord:notinomega} $\Rightarrow$ \olref{ord:omegaplus}.}
+त्रिकोटी से।
+
+\emph{\olref{ord:omegaplus} $\Rightarrow$ \olref{ord:oneplus}.}
+$\alpha \geq \omega$ को नियत करें। परिमितेतर आगमन से कोई लघुतम क्रमसूचक
+$\gamma$ (संभवतः $0$) ऐसा है कि कोई सीमा क्रमसूचक $\beta$ है जिसके लिए
+$\alpha = \beta \ordplus \gamma$। अब:
+\[
+	1 \ordplus \alpha =  
+	1 \ordplus (\beta \ordplus \gamma) = 
+	(1 \ordplus \beta) \ordplus \gamma =  
+	\supstrict_{\delta < \beta} (1 \ordplus  \delta) \ordplus  \gamma = 
+	\beta \ordplus  \gamma = 
+	\alpha.
+\]
+\emph{\olref{ord:oneplus} $\Rightarrow$ \olref{ord:plusone}.} स्पष्टतः
+कोई !!a{bijection}
+$f \colon (\alpha \disjointsum 1) \to (1 \disjointsum \alpha)$ है। यदि
+$1 \ordplus \alpha = \alpha$, तो कोई समाकृतिकता
+$g \colon (1 \disjointsum \alpha) \to \alpha$ है। अब $\comp{f}{g}$ पर
+विचार करें।
+
+\emph{\olref{ord:plusone} $\Rightarrow$ \olref{ord:infinite}.} यदि
+$\alpha \approx \alpha \ordplus 1$, तो कोई !!a{bijection}
+$f \colon (\alpha \disjointsum 1) \to \alpha$ है। प्रत्येक
+$\gamma < \alpha$ के लिए $g(\gamma) = f(\gamma, 0)$ परिभाषित करें; यह
+!!{injection} $\alpha$ के डेडेकिंड-अनंत होने का साक्षी है, क्योंकि
+$f(0,1) \in \alpha \setminus \ran{g}$।
+
+\emph{\olref{ord:infinite} $\Rightarrow$ \olref{ord:notinomega}.} यह
+\olref[z][infinity-again]{naturalnumbersarentinfinite} है।
+\end{proof}
+
+\end{document}

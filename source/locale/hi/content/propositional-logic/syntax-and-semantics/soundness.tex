@@ -1,0 +1,32 @@
+% Part: propositional-logic
+% Chapter: propositional-logic 
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{prp}{snd}
+
+\olsection{प्रतिज्ञप्ति तर्कशास्त्र की निर्दोषता}
+
+\begin{thm}[निर्दोषता]
+\ollabel{thm:soundness} 
+यदि $\Gamma\Proves!A$, तो $\Gamma \Entails !A$।
+\end{thm}
+
+\begin{proof} 
+प्रमेयों पर आगमन से। यदि $!A$ कोई अभिगृहीत है, तो $\Entails !A$ और इसलिए
+और भी अधिक स्पष्टतः $\Gamma \Entails!A$। इसी प्रकार यदि $!A \in \Gamma$,
+तो $\Gamma \Entails!A$। आगमन चरण के लिए मान लें कि $!A$, $!C$ और
+$!C\lif!A$ से \emph{मोदुस पोनेन्स} द्वारा प्राप्त होता है; आगमन परिकल्पना
+के रूप में यह भी मान लें कि प्रमेय $!C\lif !A$ और $!C$ के लिए सत्य है।
+\olref[sem]{prop:semanticalfacts} का तीसरा मद इच्छित परिणाम देता है।
+\end{proof}
+
+\begin{cor} 
+यदि $\Gamma$ संतुष्टनीय है, तो $\Gamma$ संगत है। अतः प्रतिज्ञप्ति तर्कशास्त्र
+संगत है।
+\end{cor}
+
+\end{document}

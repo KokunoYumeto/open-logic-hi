@@ -1,0 +1,40 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: church-rosser
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{int}{cr}
+\olsection{चर्च--रॉसर गुण}
+
+\begin{thm}
+\ollabel{thm:church-rosser}
+$M$, $N_1$ और $N_2$ ऐसे पद हों कि $M \red N_1$ और $M \red N_2$। तब कोई
+ऐसा पद $P$ है कि $N_1 \red P$ और $N_2 \red P$।
+\end{thm}
+
+\begin{cor}
+मान लें $M$ को प्रसामान्य रूप में अपचयित किया जा सकता है। तब यह प्रसामान्य
+रूप अद्वितीय है।
+\end{cor}
+
+\begin{proof}
+यदि $M \red N_1$ और $M \red N_2$, तो पिछले प्रमेय से कोई ऐसा पद~$P$ है
+कि $N_1$ और $N_2$ दोनों अपचयित होकर~$P$ बनते हैं। यदि $N_1$ और~$N_2$
+दोनों प्रसामान्य रूप में हों, तो ऐसा केवल तभी हो सकता है जब $N_1 \ident P
+\ident N_2$।
+\end{proof}
+
+अंततः, हम दो पदों $M$ और~$N$ को \emph{$\beta$-तुल्य}, अथवा केवल
+\emph{तुल्य}, तब कहेंगे जब वे अपचयित होकर किसी समान पद में पहुँचते हों;
+दूसरे शब्दों में, जब कोई ऐसा $P$ हो कि $M \red P$ और $N \red P$। इसे $M
+\equal[\beta] N$ लिखते हैं। \olref{thm:church-rosser} का उपयोग करके आप जाँच
+सकते हैं कि $\equal[\beta]$ एक तुल्यता-संबंध है, और उसमें यह अतिरिक्त गुण
+है कि प्रत्येक $M$ और~$N$ के लिए, यदि $M \red N$ अथवा $N \red M$, तो $M
+\equal[\beta] N$। (वास्तव में, यह दिखाया जा सकता है कि $\equal[\beta]$ इस
+गुण वाला \emph{सबसे छोटा} तुल्यता-संबंध है।)
+
+\end{document}
+

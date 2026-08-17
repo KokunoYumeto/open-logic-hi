@@ -1,0 +1,90 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: coding-formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{art}{frm}
+\olsection{\printtoken{P}{formula} का कूटलेखन}
+
+संबंध $\fn{Term}(x)$ को आदिम पुनरावर्ती रूप से परिभाषित कर लेने के बाद हम
+उसका उपयोग करके !!{formula} के लिए संगत संबंध $\fn{Frm}(x)$ को आदिम
+पुनरावर्ती रूप से परिभाषित कर सकते हैं।
+
+\begin{prop}
+संबंध $\fn{Atom}(x)$, जो तभी लागू होता है जब $x$ किसी परमाणु !!{formula} की
+ग्योडेल (G\"odel) संख्या हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+संख्या $x$ किसी परमाणु !!{formula} की ग्योडेल (G\"odel) संख्या है यदि और
+केवल यदि निम्न में से कोई एक बात लागू होती है:
+\begin{enumerate}
+\item ऐसे $n$, $j < x$ और $z < x$ हैं कि प्रत्येक $i < n$ के लिए
+  $\fn{Term}((z)_i)$ और $x = $
+\[
+\Gn{\Obj P^n_j(} \concat \fn{flatten}(z) \concat \Gn{)}.
+\]
+\item ऐसे $z_1, z_2 < x$ हैं कि $\fn{Term}(z_1)$, $\fn{Term}(z_2)$ और $x = $
+\[
+\Gn{{\eq}(} \concat z_1 \concat \Gn{,} \concat z_2 \concat{\Gn{)}}.
+\]
+  \tagitem{prvFalse}{$x = \Gn{\lfalse}$.}{}
+  \tagitem{prvTrue}{$x = \Gn{\ltrue}$.}{}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:frm-primrec}
+संबंध $\fn{Frm}(x)$, जो तभी लागू होता है जब $x$ किसी !!a{formula} की ग्योडेल (G\"odel)
+ संख्या हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+चिह्नों का अनुक्रम~$s$ !!a{formula} है यदि और केवल यदि !!{formula} का कोई
+निर्माण-अनुक्रम~$s_0$, \dots, $s_{k-1} = s$ यह दर्ज करता है कि निर्माण-नियमों
+के अनुसार परमाणु !!{formula} से~$s$ कैसे बना। प्रत्येक $s_i$ का कूट (और
+वास्तव में अनुक्रम $\tuple{s_0, \dots, s_{k-1}}$ का कूट भी),~$s$ के कूट~$x$
+से छोटा है।
+\end{proof}
+
+\begin{prob}
+\olref[inc][art][trm]{prop:term-primrec} के पहले प्रमाण की पद्धति पर
+\olref[inc][art][frm]{prop:frm-primrec} का विस्तृत प्रमाण दें।
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:freeocc-primrec}
+संबंध $\fn{FreeOcc}(x, z, i)$, जो तभी लागू होता है जब ग्योडेल (G\"odel)
+संख्या~$x$ वाले सूत्र का $i$-वाँ चिह्न ग्योडेल (G\"odel) संख्या~$z$ वाले चर
+की मुक्त उपस्थिति हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[inc][art][frm]{prop:freeocc-primrec} सिद्ध करें। आप इस तथ्य का उपयोग
+कर सकते हैं कि किसी !!a{formula} की प्रत्येक ऐसी उपडोरी जो स्वयं !!a{formula}
+है, उसका उप-!!{formula} है।
+\end{prob}
+
+\begin{prop}
+गुण $\fn{Sent}(x)$, जो तभी लागू होता है जब $x$ किसी !!a{sentence} की ग्योडेल (G\"odel)
+ संख्या हो, आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+!!{sentence} ऐसा !!a{formula} है जिसमें !!{variable} की कोई मुक्त उपस्थिति
+नहीं होती। अतः $\fn{Sent}(x)$ लागू होता है यदि और केवल यदि
+\begin{multline*}
+\bforall{i<\len{x}}{\bforall{z<x}{}}\\
+(\bexists{j<z}{z=\Gn{\Obj v_j}} \lif \lnot\fn{FreeOcc}(x,z,i)).
+\end{multline*}
+\end{proof}
+
+
+\end{document}

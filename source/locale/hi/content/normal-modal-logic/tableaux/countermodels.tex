@@ -1,0 +1,304 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: countermodels
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{tab}{cou}
+      
+\olsection{\usetoken{P}{tableau} से प्रतिप्रतिरूप}
+
+\begin{explain}
+  पूर्णता प्रमेय का प्रमाण केवल यह नहीं दिखाता कि यदि $\Entails !A$, तो
+  $\Proves !A$; यदि $\Entails/ A$, तो वह हमें $!A$ के प्रतिप्रतिरूप बनाने
+  की विधि भी देता है। $\Log{K}$ की स्थिति में यह विधि एक \emph{निर्णय
+    प्रक्रिया} बनाती है। मान लें $\Entails/ !A$। तब
+  \olref[cpl]{prop:complete-tableau} का प्रमाण पूर्ण !!{tableau} बनाने की
+  विधि देता है। वास्तव में यह विधि सदा समाप्त होती है। $\Log{K}$ के
+  प्रतिज्ञप्तिक नियम केवल कम जटिलता वाले उपसर्गयुक्त !!{formula} जोड़ते हैं,
+  अर्थात् किसी भी चिह्नित सूत्र $\sFmla{S}{!A}[\sigma]$ के लिए प्रत्येक
+  प्रतिज्ञप्तिक नियम किसी शाखा पर केवल एक बार लगाना आवश्यक है। नए उपसर्ग
+  केवल
+  \iftag{prvBox}{$\TRule{\False}{\Box}$}{}\iftag{notprvBox,notprvDiamond}{}{
+    और }\iftag{prvDiamond}{$\TRule{\True}{\Diamond}$}{}
+  \iftag{notprvBox,notprvDiamond}{नियम}{नियमों} से उत्पन्न होते हैं; और
+  \iftag{notprvBox,notprvDiamond}{उसे}{उन्हें} भी केवल एक बार लगाना होता
+  है (और एक ही नया उपसर्ग उत्पन्न होता है)।
+  \iftag{prvBox}{$\TRule{\True}{\Box}$}{}\iftag{notprvBox,notprvDiamond}{}{
+    और }\iftag{prvDiamond}{$\TRule{\False}{\Diamond}$}{} को संभवतः अनेक
+  बार लगाना होता है, किंतु प्रत्येक उपसर्ग के लिए केवल एक बार; और केवल
+  परिमिततः अनेक नए उपसर्ग उत्पन्न होते हैं। अतः निर्माण परिमिततः अनेक
+  चरणों के बाद या तो संवृत शाखा देता है, या पूर्ण शाखा।
+
+  खुली पूर्ण शाखा वाला टैब्लो बन जाने पर
+  \olref[cpl]{thm:tableau-completeness} का प्रमाण हमें ऐसा स्पष्ट प्रतिरूप
+  देता है जो उपसर्गयुक्त !!{formula}ों के मूल समुच्चय को संतुष्ट करता है।
+  अतः केवल यही नहीं कि यदि $\Gamma \Entails !A$, तो कोई संवृत !!{tableau}
+  है और $\Gamma \Proves !A$; यदि हम संवृत !!{tableau} उचित ढंग से खोजें और
+  अंत में कोई ``पूर्ण'' !!{tableau} पाएँ, तो हमें केवल $\Gamma \Entails/
+  !A$ का ज्ञान ही नहीं होगा, बल्कि हम वास्तव में प्रतिप्रतिरूप बना सकेंगे।
+\end{explain}
+
+\iftag{prvBox}{
+\begin{ex}
+  हम जानते हैं कि $\Proves/ \Box(p \lor q) \lif (\Box p \lor \Box
+  q)$। टैब्लो का निर्माण इस प्रकार आरंभ होता है:
+  \begin{oltableau}
+    [\pFmla{\False}{\Box(p \lor q) \lif (\Box p \lor \Box q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Box(p \lor q)}{1},
+        just = {\TRule{\False}{\lif}[1]}, 
+        [\pFmla{\False}{\Box p \lor \Box q}{1},
+          just = {\TRule{\False}{\lif}[1]}, checked
+          [\pFmla{\False}{\Box p}{1},
+            just = {\TRule{\False}{\lor}[3]}, checked
+            [\pFmla{\False}{\Box q}{1},
+              just = {\TRule{\False}{\lor}[3]}, checked
+              [\pFmla{\False}{p}{1.1}, 
+                just = {\TRule{\False}{\Box}[4]}, checked
+                [\pFmla{\False}{q}{1.2}, 
+                  just = {\TRule{\False}{\Box}[5]}, checked
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  निस्संदेह !!{tableau} अभी पूरा नहीं हुआ है। अगले चरण में हम बिना सही-चिह्न
+  वाली एकमात्र पंक्ति पर विचार करते हैं: पंक्ति~$2$ का उपसर्गयुक्त
+  !!{formula} $\sFmla{\True}{\Box(p \lor q)}[1]$। संवृत टैब्लो का निर्माण
+  कहता है कि शाखा पर प्रयुक्त प्रत्येक उपसर्ग, अर्थात् $1.1$ और $1.2$
+  दोनों, के लिए $\TRule{\True}{\Box}$ नियम लगाएँ:
+  \begin{oltableau}
+    [\pFmla{\False}{\Box(p \lor q) \lif (\Box p \lor \Box q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Box(p \lor q)}{1},
+        just = {\TRule{\False}{\lif}[1]}, 
+        [\pFmla{\False}{\Box p \lor \Box q}{1},
+          just = {\TRule{\False}{\lif}[1]}, checked
+          [\pFmla{\False}{\Box p}{1},
+            just = {\TRule{\False}{\lor}[3]}, checked
+            [\pFmla{\False}{\Box q}{1},
+              just = {\TRule{\False}{\lor}[3]}, checked
+              [\pFmla{\False}{p}{1.1}, 
+                just = {\TRule{\False}{\Box}[4]}, checked
+                [\pFmla{\False}{q}{1.2}, 
+                  just = {\TRule{\False}{\Box}[5]}, checked
+                  [\pFmla{\True}{p \lor q}{1.1}, 
+                    just = {\TRule{\True}{\Box}[2]}
+                    [\pFmla{\True}{p \lor q}{1.2}, 
+                      just = {\TRule{\True}{\Box}[2]}
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  अब पंक्तियों 2, 8 और 9 पर सही-चिह्न नहीं हैं। किंतु कोई नया उपसर्ग नहीं
+  जोड़ा गया है, इसलिए हम सभी परिणामी शाखाओं पर (जब तक वे संवृत न हों)
+  पंक्तियों~8 और~9 को $\TRule{\True}{\lor}$ लगाते हैं:
+  \begin{oltableau}
+    [\pFmla{\False}{\Box(p \lor q) \lif (\Box p \lor \Box q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Box(p \lor q)}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Box p \lor \Box q}{1},
+          just = {\TRule{\False}{\lif}[1]}, checked
+          [\pFmla{\False}{\Box p}{1},
+            just = {\TRule{\False}{\lor}[3]}, checked
+            [\pFmla{\False}{\Box q}{1},
+              just = {\TRule{\False}{\lor}[3]}, checked
+              [\pFmla{\False}{p}{1.1}, 
+                just = {\TRule{\False}{\Box}[4]}, checked
+                [\pFmla{\False}{q}{1.2}, 
+                  just = {\TRule{\False}{\Box}[5]}, checked
+                  [\pFmla{\True}{p \lor q}{1.1}, 
+                    just = {\TRule{\True}{\Box}[2]}, checked
+                    [\pFmla{\True}{p \lor q}{1.2}, 
+                      just = {\TRule{\True}{\Box}[2]}, checked
+                      [\pFmla{\True}{p}{1.1},
+                        just = {\TRule{\True}{\lor}[8]}, checked, close
+                      ]
+                      [\pFmla{\True}{q}{1.1},
+                        just = {\TRule{\True}{\lor}[8]}, checked
+                        [\pFmla{\True}{p}{1.2},
+                          just = {\TRule{\True}{\lor}[9]}, checked]
+                        [\pFmla{\True}{q}{1.2},
+                          just = {\TRule{\True}{\lor}[9]}, checked, close]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  एक खुली शाखा शेष है और वह पूर्ण है। उससे हम ऐसा प्रतिरूप परिभाषित करते
+  हैं जिसके जगत $W = \{1, 1.1, 1.2\}$ (खुली शाखा पर आने वाले एकमात्र
+  उपसर्ग), अभिगम्यता संबंध $R = \{\tuple{1, 1.1}, \tuple{1, 1.2}\}$,
+  तथा नियतन $V(p) = \{1.2\}$ (क्योंकि पंक्ति~11 में
+  $\sFmla{\True}{p}[1.2]$ है) और $V(q) = \{1.1\}$ (क्योंकि पंक्ति~10
+  में $\sFmla{\True}{q}[1.1]$ है) हैं। प्रतिरूप को
+  \olref{fig:counter-Box} में चित्रित किया गया है, और आप सत्यापित कर सकते
+  हैं कि वह $\Box(p \lor q) \lif (\Box p \lor \Box q)$ का प्रतिप्रतिरूप
+  है।
+  \begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}}]{$1$}; 
+      \node[world] (w2) [label={[align=right]right:\mFalse{p}\\ \mTrue{q}},
+        above left=of w1]{$1.1$}; 
+      \node[world] (w3) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}},
+        above right=of w1] {$1.2$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{$\Box(p \lor q) \lif (\Box p \lor \Box q)$ का प्रतिप्रतिरूप।}
+  \ollabel{fig:counter-Box}
+\end{figure}
+\end{ex}          
+}
+{
+\begin{ex}
+  हम जानते हैं कि $\Proves/ (\Diamond p \land \Diamond q) \lif
+  \Diamond(p \land q)$। टैब्लो का निर्माण इस प्रकार आरंभ होता है:
+  \begin{oltableau}
+    [\pFmla{\False}{(\Diamond p \land \Diamond q) \lif \Diamond(p \land q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Diamond p \land \Diamond q}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Diamond(p \land q)}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\True}{\Diamond p}{1},
+            just = {\TRule{\True}{\land}[2]}, checked
+            [\pFmla{\True}{\Diamond q}{1},
+              just = {\TRule{\True}{\land}[2]}, checked
+              [\pFmla{\True}{p}{1.1}, 
+                just = {\TRule{\True}{\Diamond}[4]}, checked
+                [\pFmla{\True}{q}{1.2}, 
+                  just = {\TRule{\True}{\Diamond}[5]}, checked
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  निस्संदेह !!{tableau} अभी पूरा नहीं हुआ है। अगले चरण में हम बिना सही-चिह्न
+  वाली एकमात्र पंक्ति पर विचार करते हैं: पंक्ति~$3$ का उपसर्गयुक्त
+  !!{formula} $\sFmla{\True}{\Diamond(p \land q)}[1]$। संवृत टैब्लो का
+  निर्माण कहता है कि शाखा पर प्रयुक्त प्रत्येक उपसर्ग, अर्थात् $1.1$ और
+  $1.2$ दोनों, के लिए $\TRule{\True}{\Diamond}$ नियम लगाएँ:
+  \begin{oltableau}
+    [\pFmla{\False}{\Diamond(p \land q) \lif (\Diamond p \land \Diamond q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Diamond p \land \Diamond q}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Diamond (p \land q)}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\True}{\Diamond p}{1},
+            just = {\TRule{\True}{\land}[2]}, checked
+            [\pFmla{\True}{\Diamond q}{1},
+              just = {\TRule{\True}{\land}[2]}, checked
+              [\pFmla{\True}{p}{1.1}, 
+                just = {\TRule{\True}{\Diamond}[4]}, checked
+                [\pFmla{\True}{q}{1.2}, 
+                  just = {\TRule{\True}{\Diamond}[5]}, checked
+                  [\pFmla{\False}{p \land q}{1.1}, 
+                    just = {\TRule{\False}{\Diamond}[3]}
+                    [\pFmla{\False}{p \land q}{1.2}, 
+                      just = {\TRule{\False}{\Diamond}[3]}
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  अब पंक्तियों 3, 8 और 9 पर सही-चिह्न नहीं हैं। किंतु कोई नया उपसर्ग नहीं
+  जोड़ा गया है, इसलिए हम सभी परिणामी शाखाओं पर (जब तक वे संवृत न हों)
+  पंक्तियों~8 और~9 को $\TRule{\False}{\land}$ लगाते हैं:
+  \begin{oltableau}
+    [\pFmla{\False}{(\Diamond p \land \Diamond q) \lif \Diamond(p \land q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Diamond p \land \Diamond q}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Diamond(p \land q)}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\True}{\Diamond p}{1},
+            just = {\TRule{\True}{\land}[2]}, checked
+            [\pFmla{\True}{\Diamond q}{1},
+              just = {\TRule{\True}{\land}[2]}, checked
+              [\pFmla{\True}{p}{1.1}, 
+                just = {\TRule{\True}{\Diamond}[4]}, checked
+                [\pFmla{\True}{q}{1.2}, 
+                  just = {\TRule{\True}{\Diamond}[5]}, checked
+                  [\pFmla{\False}{p \land q}{1.1}, 
+                    just = {\TRule{\False}{\Diamond}[3]}, checked
+                    [\pFmla{\False}{p \land q}{1.2}, 
+                      just = {\TRule{\False}{\Diamond}[3]}, checked
+                      [\pFmla{\False}{p}{1.1},
+                        just = {\TRule{\False}{\land}[8]}, checked, close
+                      ]
+                      [\pFmla{\False}{q}{1.1},
+                        just = {\TRule{\False}{\land}[8]}, checked
+                        [\pFmla{\False}{p}{1.2},
+                          just = {\TRule{\False}{\land}[9]}, checked]
+                        [\pFmla{\False}{q}{1.2},
+                          just = {\TRule{\False}{\land}[9]}, checked, close]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  एक खुली शाखा शेष है और वह पूर्ण है। उससे हम ऐसा प्रतिरूप परिभाषित करते
+  हैं जिसके जगत $W = \{1, 1.1, 1.2\}$ (खुली शाखा पर आने वाले एकमात्र
+  उपसर्ग), अभिगम्यता संबंध $R = \{\tuple{1, 1.1}, \tuple{1, 1.2}\}$,
+  तथा नियतन $V(p) = \{1.1\}$ (क्योंकि पंक्ति~6 में
+  $\sFmla{\True}{p}[1.1]$ है) और $V(q) = \{1.2\}$ (क्योंकि पंक्ति~7
+  में $\sFmla{\True}{q}[1.1]$ है) हैं। प्रतिरूप को
+  \olref{fig:counter-Diamond} में चित्रित किया गया है, और आप सत्यापित कर
+  सकते हैं कि वह $(\Diamond p \land \Diamond q) \lif \Diamond (p \land
+  q)$ का प्रतिप्रतिरूप है।
+  \begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}}]{$1$}; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}},
+        above left=of w1]{$1.1$}; 
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mTrue{q}},
+        above right=of w1] {$1.2$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{$(\Diamond p \land \Diamond q) \lif
+    \Diamond (p \land q)$ का प्रतिप्रतिरूप।}
+  \ollabel{fig:counter-Diamond}
+\end{figure}
+\end{ex}          
+}
+
+\end{document}

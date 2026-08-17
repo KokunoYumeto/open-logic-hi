@@ -1,0 +1,183 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{ps}{cpl}
+
+\olsection{पूर्णता}
+
+अब हम दिखाते हैं कि प्रमाण-खोज कलन-विधि अचूक है; अर्थात् यदि वह बीच में रुक
+जाती है या कभी समाप्त नहीं होती, तो आरंभिक अनुक्रम~$\Gamma \Sequent \Delta$
+का कोई !!{proof} नहीं है। इसके लिए हम ऐसी !!a{structure}~$\Struct M$
+परिभाषित करते हैं कि प्रत्येक $!A \in \Gamma$ के लिए $\Sat{M}{!A}$ और
+प्रत्येक~$! \in \Delta$ के लिए $\Sat/{M}{!A}$ हो। दूसरे शब्दों में,
+\Struct M में~$\Gamma$ के सभी !!{formula}s सत्य और~$\Delta$ के सभी
+!!{formula}s असत्य हैं; अर्थात् $\Gamma \Sequent \Delta$ वैध नहीं है। चूँकि
+\Log{G3c} निर्दोष है, $\Gamma \Sequent \Delta$ का कोई !!{proof} नहीं है।
+
+हम !!{formula}s के युग्म $\Theta, \Xi$ और !!{constant}s के समुच्चय~$C$ से
+$\Struct{M}$ को परिभाषित करते हैं। $\Theta, \Xi$ और~$C$ को प्रमाण-खोज के
+विफल (बीच में रुके या कभी समाप्त न होने वाले) निष्पादन की एक \emph{विफलता
+शाखा} से प्राप्त करते हैं। विफलता शाखा अनुक्रमों $\Pi_n \Sequent \Lambda_n$
+और !!{constant}s के समुच्चयों~$C_n$ का ऐसा क्रम है कि $\Pi_0 \Sequent
+\Lambda_0$ अंतिम अनुक्रम $\Gamma \Sequent \Delta$ है, और $\Pi_{n+1}
+\Sequent \Lambda_{n+1}$, चरण~$n+1$ में $\Pi_n \Sequent \Lambda_n$ से उत्पन्न
+ऐसा आधार-वाक्य है जिसका कलन-विधि कोई !!a{proof} नहीं खोजती। प्रत्येक~$n$ के
+लिए ऐसा आधार-वाक्य स्पष्टतः होना चाहिए, अन्यथा कलन-विधि !!a{proof} खोज चुकी
+होती। $C_n$ को~$\Pi_n \Sequent \Delta_n$ से संबद्ध !!{constant}s का समुच्चय
+मानते हैं।
+
+यदि कलन-विधि केवल परमाण्विक !!{formula}s वाले किसी सर्वोच्च अनुक्रम पर बीच में
+रुकती है, तो उस अनुक्रम पर समाप्त होने वाली शाखा विफलता शाखा है। यदि
+कलन-विधि कभी समाप्त नहीं होती, तो वह उत्तरोत्तर बड़े वृक्ष उत्पन्न करती रहती
+है। इन्हें किसी अनंत वृक्ष को बढ़ाते जाने के रूप में समझा जा सकता है (वह वृक्ष
+जो कलन-विधि के अनंत चरण चलने पर मिलता)। यह वृक्ष अनंत, किंतु सीमित-शाखी होगा
+(प्रत्येक आसंधि की केवल एक या दो संतानें—उसके ठीक ऊपर के अनुक्रम—हैं)। क्योनिग
+के प्रमेय से प्रत्येक अनंत सीमित-शाखी वृक्ष में कोई अनंत शाखा अवश्य होती है।
+खोज कलन-विधि के अनंत काल तक चलने की स्थिति में ऐसी अनंत शाखा विफलता शाखा
+होगी।
+
+यदि $\Pi_n \Sequent \Lambda_n$ और $C_n$ का क्रम विफलता शाखा है, तो $\Theta
+= \bigcup_n \Pi_n$ और $\Xi = \bigcup_n \Lambda_n$ (सूचकांक और !!{formula}s
+की अनेक आवृत्तियाँ हटाकर), तथा $C = \bigcup_n C_n$ लें।
+
+अब हम~$\Struct{M}$ को परिभाषित कर सकते हैं।
+\begin{enumerate}
+\item प्रांत $\Domain{M}$ उन पदों का समुच्चय है जिन्हें~$C$ और $\Gamma
+\Sequent \Delta$ के !!{function}s से बनाया जा सकता है, यदि कोई हों, किंतु
+बिना !!{variable}s के।
+\item यदि $c \in \Domain{M}$, तो $\Assign{c}{M} = c$।
+\item यदि $f$, $\Gamma \Sequent \Delta$ में कोई $m$-स्थानी !!{function} है और
+$t_1$, \dots, $t_m \in \Domain{M}$, तो $\Assign{f}{M}(t_1, \dots, t_m) =
+f(t_1, \dots, t_n)$।
+\item यदि $R$, $\Gamma \Sequent \Delta$ में कोई $m$-स्थानी !!{predicate} है,
+तो $\Assign{R}{M} = \Setabs{\tuple{t_1, \dots, t_m} \in
+\Domain{M}^n}{R(t_1, \dots, t_n) \in \Theta}$।
+\end{enumerate}
+$\Struct{M}$ इस अर्थ में \emph{पद निदर्श} है कि उसका प्रांत पदों का समुच्चय
+है, और !!{constant}s तथा !!{function}s की व्याख्या इस प्रकार की जाती है कि
+$\Value{t}{M} = t$ सुनिश्चित हो।~$\Theta$ के परमाण्विक !!{formula}s का उपयोग
+$\Assign{R}{M}$ को इस तरह परिभाषित करने में होता है कि
+$\Sat{M}{R(t_1, \dots, t_n)}$ तभी और केवल तभी हो जब $R(t_1, \dots, t_n)
+\in \Theta$।
+
+\begin{lem}\ollabel{lem:truth}
+प्रत्येक $!A \in \Theta \cup \Xi$ के लिए:
+\begin{enumerate}
+  \item यदि $!A \in \Theta$, तो $\Sat{M}{!A}$।
+  \item यदि $!A \in \Xi$, तो $\Sat/{M}{!A}$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+  $\depth{!A}$ पर आगमन से।
+
+पहले मान लें कि $!A$ परमाण्विक है, अर्थात् या तो $!A \ident \lfalse$ या $!A
+\ident R(t_1, \dots, t_m)$।
+
+चूँकि $\Pi_n \Sequent \Lambda_n$ विफलता शाखा है, कोई $\Pi_n$, $\lfalse$ को
+समाहित नहीं कर सकता (अन्यथा $\Pi_n \Sequent \Lambda_n$ अभिगृहीत होता)।
+\Struct{M} की परिभाषा से $\Sat{M}{R(t_1, \dots, t_m)}$ तभी और केवल तभी है
+जब $R(t_1, \dots, t_m) \in \Theta$। दोनों को मिलाकर: यदि $!A \in \Theta$,
+तो $\Sat{M}{!A}$।
+
+यदि $!A$ परमाण्विक है और $!A \in \Pi_n$, तो $!A \in \Pi_{n+1}$; और यदि
+$!A \in \Lambda_n$, तो $!A \in \Lambda_{n+1}$। (यह प्रमाण-खोज कलन-विधि
+द्वारा उत्तराधिकारी अनुक्रम उत्पन्न करने के ढंग से मिलता है।) अतः यदि $!A
+\in \Theta \cap \Xi$, तो किसी~$n$ के लिए $!A \in \Pi_n \cap \Lambda_n$।
+इसका अर्थ है कि $\Pi_n \Sequent \Lambda_n$ अभिगृहीत है, जबकि विफलता शाखा में
+कोई अभिगृहीत नहीं हो सकता। इसलिए रचना से परमाण्विक~$!A$ के लिए $!A \notin
+\Theta \cap \Xi$; फलतः यदि $!A \in \Xi$, तो $!A \notin \Theta$।
+\Struct{M} की परिभाषा से इसका अर्थ है कि यदि $!A \in \Xi$, तो
+$\Sat/{M}{!A}$।
+
+आगमन चरण के लिए मान लें कि (1) और (2),~$!A$ से कम !!{depth} वाले सभी
+!!{formula}s के लिए सत्य हैं। स्थितियों में भेद करके हम $!A$ के लिए (1) और
+(2) सिद्ध करते हैं।
+
+पहले ध्यान दें कि जब $!A^i$, $\Pi_n \Sequent \Lambda_n$ में आता है, तब वह
+$\Pi_{n+1} \Sequent \Lambda_{n+1}$ में भी आता है, जब तक कि $i$, $\Pi_n
+\Sequent \Lambda_n$ का सबसे छोटा सूचकांक न हो। प्रत्येक चरण में जोड़े गए
+सर्वोच्च अनुक्रमों में सबसे छोटा सूचकांक बढ़ता है, इसलिए अंततः हम ऐसे $\Pi_n
+\Sequent \Lambda_n$ पर पहुँचते हैं जिसमें $!A^i$ आता है और $i$ सबसे छोटा
+सूचकांक है। चरण~$n+1$ में कलन-विधि~$!A^i$ का अपचयन करती है। दूसरे शब्दों में,
+यदि $!A \in \Theta$, तो किसी $n$ के लिए $\Pi_n = \Pi_n', !A^i$ और $i$
+सबसे छोटा सूचकांक है। और यदि $!A \in \Xi$, तो किसी $n$ के लिए $\Lambda_n =
+\Lambda_n', !A^i$ और $i$ सबसे छोटा सूचकांक है।
+
+\begin{enumerate}
+  \item $!A \in \Theta$ और $!A \ident !B \land !C$। तब किसी $n$ के लिए
+  $\Pi_n = \Pi_n', (!B \land !C)^i$। $\Pi_{n+1} \Sequent \Lambda_{n+1}$,
+  \LeftR{\land} का संगत आधार-वाक्य है, अर्थात् $\Pi_{n+1} = \Pi_n', !B^k,
+  !C^{k+1}$। फलतः $!B, !C \in \Theta$। आगमन परिकल्पना से $\Sat{M}{!B}$ और
+  $\Sat{M}{!C}$। $\Sat{M}{}$ की परिभाषा से $\Sat{M}{!B \land !C}$।
+
+  \item $!A \in \Xi$ और $!A \ident !B \land !C$। तब किसी $n$ के लिए
+  $\Lambda_n = \Lambda_n', !B \land !C$। $\Pi_{n+1} \Sequent
+  \Lambda_{n+1}$, निष्कर्ष $\Pi_n \Sequent \Lambda'_n, !B \land !C$ वाले
+  \RightR{\land} के दो आधार-वाक्यों में से एक है; अर्थात् $\Lambda_{n+1} =
+  \Lambda_n', !B^k$ या $\Lambda_{n+1} = \Lambda_n', !C^k$। फलतः या तो $!B
+  \in \Xi$ या $!C \in \Xi$। आगमन परिकल्पना से या तो $\Sat/{M}{!B}$ या
+  $\Sat/{M}{!C}$। $\Sat{M}{}$ की परिभाषा से $\Sat/{M}{!B \land !C}$।
+  
+  \item $!A \ident \lnot !B$, $!A \ident !B \lor !C$ और $!A \ident !B
+  \lif !C$ वाली स्थितियाँ समान हैं और अभ्यास के लिए छोड़ी जाती हैं।
+
+  \item $!A \in \Theta$ और $!A \ident \lexists[x][!B(x)]$। तब किसी $n$ के
+  लिए $\Pi_n = \Pi_n', \lexists[x][!B(x)]^i$। $\Pi_{n+1} \Sequent
+  \Lambda_{n+1}$, \LeftR{\lexists} का संगत आधार-वाक्य है, अर्थात् किसी~$c$
+  के लिए $\Pi_{n+1} = \Pi_n', !B(c)^k$। फलतः $!B(c) \in \Theta$ और~$c \in
+  C$। आगमन परिकल्पना से $\Sat{M}{!B(c)}$। $\Sat{M}{}$ की परिभाषा से
+  $\Sat{M}{\lexists[x][!B(x)]}$।
+
+  \item $!A \in \Xi$ और $!A \ident \lexists[x][!B(x)]$। तब किसी $n$ के
+  लिए $\Lambda_n = \Lambda_n', \lexists[x][!B(x)]^i$। हर बार
+  $\lexists[x][!B(x)]$ का अपचयन होने पर वह नए सूचकांक सहित आधार-वाक्य अनुक्रम
+  के दाएँ पक्ष पर बना रहता है; अतः विफलता शाखा में दाईं ओर आने पर उसका अनंत
+  बार अपचयन होता है। प्रत्येक पद $t \in \Domain{M}$ अंततः विफलता शाखा पर
+  ``केवल~$C_n$ के अचरों वाला ऐसा पहला पद जिसे दाईं ओर $\lexists[x][!B(x)]$
+  के किसी अपचयन में अभी प्रयुक्त नहीं किया गया'' बनता है। अतः प्रत्येक $t \in
+  \Domain{M}$ के लिए किसी~$n$ पर $!B(t) \in \Lambda_n$, और फलतः $!B(t) \in
+  \Xi$। आगमन परिकल्पना से प्रत्येक $t \in \Domain{M}$ के लिए
+  $\Sat/{M}{!B(t)}$। $\Sat{M}{}$ की परिभाषा से
+  $\Sat/{M}{\lexists[x][!B(x)]}$।
+
+  \item $!A \ident \lforall[x][!B(x)]$ वाली स्थितियाँ समान हैं और अभ्यास के
+  लिए छोड़ी जाती हैं।
+\end{enumerate}
+\end{proof}
+
+\begin{cor}\ollabel{cor:complete}
+\Log{G3c} की प्रमाण-खोज कलन-विधि पूर्ण है: यदि वह बीच में रुकती है या कभी
+समाप्त नहीं होती, तो आरंभिक अनुक्रम~$\Gamma \Sequent \Delta$ वैध नहीं है और
+इसलिए उसका कोई !!{proof} नहीं है।
+\end{cor}
+
+\begin{proof}
+  यदि कलन-विधि बीच में रुकती है या कभी समाप्त नहीं होती, तो ऐसी विफलता शाखा
+  है जिससे $\Struct{M}$ परिभाषित किया जा सकता है। \olref{lem:truth} से प्रत्येक
+  $!A \in \Gamma$ के लिए $\Sat{M}{!A}$ और प्रत्येक $!A \in \Delta$ के लिए
+  $\Sat/{M}{!A}$। (याद रखें कि $\Pi_0 = \Gamma$ और $\Lambda_0 = \Delta$,
+  इसलिए $\Gamma \subseteq \Theta$ और $\Delta \subseteq \Xi$।) अतः $\Gamma
+  \Sequent \Delta$ वैध नहीं है। \Log{G3c} की निर्दोषता से $\Gamma \Sequent
+  \Delta$ का कोई !!{proof} नहीं है।
+\end{proof}
+
+\begin{cor}
+\Log{G3c} पूर्ण है: यदि $\Gamma \Sequent \Delta$ वैध है, तो $\Log{G3c}
+\Proves \Gamma \Sequent \Delta$।
+\end{cor}
+
+\begin{proof}
+  हम प्रतिधनात्मक कथन सिद्ध करते हैं। मान लें $\Log{G3c} \Proves/ \Gamma
+  \Sequent \Delta$। तब प्रमाण-खोज कलन-विधि को बीच में रुकना होगा या कभी समाप्त
+  नहीं होना होगा, क्योंकि खोजने के लिए कोई !!{proof} नहीं है।
+  \olref{cor:complete} से $\Gamma \Sequent \Delta$ वैध नहीं है।
+\end{proof}
+
+
+\end{document}

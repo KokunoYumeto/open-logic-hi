@@ -1,0 +1,72 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: size-of-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{mat}{siz}
+
+\olsection{\printtoken{P}{structure}: उनका आकार व्यक्त करना}
+
+\begin{explain}
+संरचनाओं के कुछ गुणधर्म ऐसे हैं जिन्हें हम भाषा के अतार्किक चिह्नों का उपयोग
+किए बिना भी व्यक्त कर सकते हैं। उदाहरणतः ऐसे !!{sentence}s का निर्माण किया जा
+सकता है जो किसी !!a{structure} में तभी और केवल तभी सत्य हैं जब उस !!{structure} के !!{domain}
+में कम-से-कम, अधिक-से-अधिक, या ठीक किसी निश्चित संख्या~$n$ जितने
+!!{element}s हों।
+\end{explain}
+
+\begin{prop}
+!!{sentence}
+\begin{multline*}
+  !A_{\ge n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]]\\
+  \begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n])
+\end{aligned}
+\end{multline*}
+किसी !!a{structure}~$\Struct M$ में तभी और केवल तभी सत्य है जब~$\Domain M$
+में कम-से-कम~$n$ !!{element}s हों। फलतः $\Sat{M}{\lnot !A_{\ge n+1}}$ तभी
+और केवल तभी जब~$\Domain M$ में अधिक-से-अधिक~$n$ !!{element}s हों।
+
+\end{prop}
+
+\begin{prop}
+!!{sentence}
+\begin{multline*}
+!A_{= n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]] \\
+\begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n] \land {} \\
+\lforall[y][(\eq[y][x_1] \lor \dots \lor \eq[y][x_n]]))
+\end{aligned}
+\end{multline*}
+किसी !!a{structure}~$\Struct M$ में तभी और केवल तभी सत्य है जब~$\Domain M$
+में ठीक~$n$ !!{element}s हों।
+\end{prop}
+
+\begin{prop}
+कोई !!{structure} अनंत है, तभी और केवल तभी जब वह निम्न समुच्चय का प्रतिरूप है:
+\[
+\{!A_{\ge 1}, !A_{\ge 2}, !A_{\ge 3}, \dots \}.
+\]
+\end{prop}
+
+ऐसा कोई एक विशुद्ध तार्किक वाक्य नहीं जो~$\Struct
+M$ में तभी और केवल तभी सत्य
+हो जब~$\Domain M$ अनंत हो। किंतु अतार्किक !!{predicate}s वाले ऐसे
+!!{sentence}s का निर्माण किया जा सकता है जिनके केवल अनंत प्रतिरूप हों (यद्यपि प्रत्येक
+अनंत !!{structure} उनका प्रतिरूप नहीं होती)। किसी संरचना के परिमित होने का
+गुणधर्म और किसी संरचना के !!{nonenumerable} होने का गुणधर्म तो !!{sentence}s
+के किसी अनंत समुच्चय से भी व्यक्त नहीं किए जा सकते। ये तथ्य संहतता और
+लोवेनहाइम--स्कोलेम (L\"owenheim--Skolem) प्रमेयों से निष्पन्न होते हैं।
+
+\end{document}

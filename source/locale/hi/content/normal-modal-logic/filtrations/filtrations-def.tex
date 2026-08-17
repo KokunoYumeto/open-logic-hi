@@ -1,0 +1,174 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: filtrations-def
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{fil}{fil}
+
+\olsection{निस्यंदन}
+
+$\Gamma$ के माध्यम से $\mModel{M}$ का ``वह'' निस्यंदन परिभाषित करने के
+स्थान पर हम यह परिभाषित करते हैं कि कोई प्रतिरूप~$\mModel{M^*}$,
+$\mModel{M}$ का निस्यंदन कब माना जाता है। सभी निस्यंदनों में जगतों का
+समुच्चय~$W^*$ और मूल्यांकन~$V^*$ समान हैं। किंतु भिन्न निस्यंदनों के
+अभिगम्यता संबंध~$R^*$ भिन्न हो सकते हैं। फिर भी निस्यंदन माने जाने के लिए
+$R^*$ को कुछ शर्तें संतुष्ट करनी होती हैं। ये ठीक वे शर्तें हैं जिनकी हमें
+मुख्य परिणाम सिद्ध करने के लिए आवश्यकता होगी: यदि $!A \in \Gamma$, तो
+$\mSat{M}{!A}[w]$ तभी जब $\mSat{M^*}{!A}[{[w]}]$।
+
+\begin{defn}\ollabel{defn:filtration}
+  मान लें कि $\Gamma$ उपसूत्रों के अधीन संवृत है और $\mModel{M} =
+  \tuple{W, R, V}$। \emph{$\Gamma$ के माध्यम से $\mModel{M}$ का
+  निस्यंदन} ऐसा कोई प्रतिरूप $\mModel{M^*} = \tuple{W^*,R^*,V^*}$ है,
+  जहाँ:
+  \begin{enumerate}
+  \item $W^* = \Setabs{[w]}{w \in W}$;
+  \item \ollabel{defn:filtration-R}%
+    किन्हीं $u,v \in W$ के लिए:
+    \begin{enumerate}
+    \item \ollabel{defn:filtration-R1}%
+      यदि $Ruv$, तो $R^*[u][v]$;
+    \tagitem{prvBox}{\ollabel{defn:filtration-R2}%
+      यदि $R^*[u][v]$, तो किसी भी $\Box !A \in \Gamma$ के लिए,
+      यदि $\mSat{M}{\Box!A}[u]$, तो $\mSat{M}{!A}[v]$}{};
+    \tagitem{prvDiamond}{\ollabel{defn:filtration-R3}%
+      यदि $R^*[u][v]$, तो किसी भी $\Diamond !A \in \Gamma$ के लिए,
+      यदि $\mSat{M}{!A}[v]$, तो $\mSat{M}{\Diamond!A}[u]$।}{}
+    \end{enumerate}
+  \item $V^*(p) = \Setabs{[u]}{u \in V(p)}$.
+  \end{enumerate}
+\end{defn}
+
+$V^*(p)$ क्या है, इस पर विचार करना उपयोगी है: वह उन सभी जगतों~$w$ के
+तुल्यता-वर्गों~$[w]$ का समुच्चय है जहाँ $p$, $\mModel{M}$ में सत्य है।
+एक ओर, यदि $w \in V(p)$, तो इस परिभाषा से $[w] \in V^*(p)$। किंतु यह
+आवश्यक नहीं कि यदि $[w] \in V^*(p)$, तो $w \in V(p)$। यदि $[w] \in
+V^*(p)$, तो केवल यह प्रत्याभूत है कि किसी~$u \in V(p)$ के लिए $[w] =
+[u]$। निस्संदेह $[w] = [u]$ का अर्थ $w \equiv u$ है। अतः जब $[w] \in
+V^*(p)$, तब हम (केवल) यह निष्कर्ष निकाल सकते हैं कि किसी $u \in V(p)$
+के लिए $w \equiv u$।
+
+\begin{thm}\ollabel{thm:filtrations}
+  यदि $\mModel{M^*}$, $\Gamma$ के माध्यम से $\mModel{M}$ का निस्यंदन
+  है, तो प्रत्येक $!A \in \Gamma$ और $w \in W$ के लिए
+  $\mSat{M}{!A}[w]$ तभी जब $\mSat{M^*}{!A}[{[w]}]$।
+\end{thm}
+
+\begin{proof}
+  $!A$ पर आगमन से, इस तथ्य का उपयोग करते हुए कि $\Gamma$ उपसूत्रों के
+  अधीन संवृत है। चूँकि $!A \in \Gamma$ और $\Gamma$ उप-!!{formula}ों के
+  अधीन संवृत है, $!A$ के सभी उप-!!{formula} भी $\Gamma$ में हैं। अतः
+  प्रत्येक आगमनात्मक चरण में आगमनात्मक परिकल्पना $!A$ के उप-!!{formula}ों
+  पर लागू होती है।
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{न
+        $\mSat{M}{\indfrm}[w]$, न $\mSat{M^*}{\indfrm}[{[w]}]$।}}{}
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\indfrm}[w]$ और
+        $\mSat{M^*}{\indfrm}[{[w]}]$, दोनों।}}{}
+    \item \indcase{!A}{p}{बाएँ-से-दाएँ दिशा तुरंत मिलती है, क्योंकि
+      $\mSat{M}{\indfrm}[w]$ केवल तभी जब $w \in V(p)$; इससे $[w] \in
+      V^*(p)$, अर्थात् $\mSat{M^*}{\indfrm}[{[w]}]$। विलोमतः, मान लें
+      $\mSat{M^*}{\indfrm}[{[w]}]$, अर्थात् $[w] \in V^*(p)$। तब किसी
+      $v \in V(p)$ के लिए $w \equiv v$। निस्संदेह तब
+      $\mSat{M}{p}[v]$ भी। चूँकि $w \equiv v$, $w$ और $v$, $\Gamma$ के
+      उन्हीं !!{formula}ों को सत्य बनाते हैं। परिकल्पना से $p \in \Gamma$
+      और $\mSat{M}{p}[v]$, इसलिए $\mSat{M}{\indfrm}[w]$।}
+
+    \tagitem{prvNot}{\iftag{probNot}{अभ्यास।}{\indcase{!A}{\lnot
+          !B}{$\mSat{M}{\indfrm}[w]$ तभी जब $\mSat/{M}{!B}[w]$।
+          आगमनात्मक परिकल्पना से $\mSat/{M}{!B}[w]$ तभी जब
+          $\mSat/{M^*}{!B}[{[w]}]$। अंततः,
+          $\mSat/{M^*}{!B}[{[w]}]$ तभी जब
+          $\mSat{M^*}{\indfrm}[{[w]}]$।}}}{}
+        
+    \tagitem{prvAnd}{\iftag{probAnd}{अभ्यास।}{\indcase{!A}{(!B \land
+          !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब $\mSat{M}{!B}[w]$ और
+          $\mSat{M}{!C}[w]$। आगमनात्मक परिकल्पना से
+          $\mSat{M}{!B}[w]$ तभी जब $\mSat{M^*}{!B}[{[w]}]$, और
+          $\mSat{M}{!C}[w]$ तभी जब $\mSat{M^*}{!C}[{[w]}]$। तथा
+          $\mSat{M^*}{\indfrm}[{[w]}]$ तभी जब
+          $\mSat{M^*}{!B}[{[w]}]$ और $\mSat{M^*}{!C}[{[w]}]$।}}}{}
+
+    \tagitem{prvOr}{\iftag{probOr}{अभ्यास।}{\indcase{!A}{(!B \lor
+          !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब $\mSat{M}{!B}[w]$ या
+          $\mSat{M}{!C}[w]$। आगमनात्मक परिकल्पना से
+          $\mSat{M}{!B}[w]$ तभी जब $\mSat{M^*}{!B}[{[w]}]$, और
+          $\mSat{M}{!C}[w]$ तभी जब $\mSat{M^*}{!C}[{[w]}]$। तथा
+          $\mSat{M^*}{\indfrm}[{[w]}]$ तभी जब
+          $\mSat{M^*}{!B}[{[w]}]$ या $\mSat{M^*}{!C}[{[w]}]$।}}}{}
+
+    \tagitem{prvIf}{\iftag{probIf}{अभ्यास।}{\indcase{!A}{(!B \lif
+          !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब $\mSat/{M}{!B}[w]$ या
+          $\mSat{M}{!C}[w]$। आगमनात्मक परिकल्पना से
+          $\mSat{M}{!B}[w]$ तभी जब $\mSat{M^*}{!B}[{[w]}]$, और
+          $\mSat{M}{!C}[w]$ तभी जब $\mSat{M^*}{!C}[{[w]}]$। तथा
+          $\mSat{M^*}{\indfrm}[{[w]}]$ तभी जब
+          $\mSat/{M^*}{!B}[{[w]}]$ या $\mSat{M^*}{!C}[{[w]}]$।}}}{}
+
+    \tagitem{prvIff}{\iftag{probIff}{अभ्यास।}{\indcase{!A}{(!B \liff
+          !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब या तो
+          $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$, या
+          $\mSat/{M}{!B}[w]$ और $\mSat/{M}{!C}[w]$। आगमनात्मक परिकल्पना
+          से $\mSat{M}{!B}[w]$ तभी जब $\mSat{M^*}{!B}[{[w]}]$, और
+          $\mSat{M}{!C}[w]$ तभी जब $\mSat{M^*}{!C}[{[w]}]$। तथा
+          $\mSat{M^*}{\indfrm}[{[w]}]$ तभी जब या तो
+          $\mSat{M^*}{!B}[{[w]}]$ और $\mSat{M^*}{!C}[{[w]}]$, या
+          $\mSat/{M^*}{!B}[{[w]}]$ और
+          $\mSat/{M^*}{!C}[{[w]}]$।}}}{}
+
+    \tagitem{prvBox}{\iftag{probBox}{अभ्यास।}{\indcase{!A}{\Box
+          !B}{मान लें $\mSat{M}{\indfrm}[w]$; यह दिखाने के लिए कि
+          $\mSat{M^*}{\indfrm}[{[w]}]$, $v$ ऐसा मानें कि $R^*[w][v]$।
+          \olref{defn:filtration}\olref{defn:filtration-R2} से
+          $\mSat{M}{!B}[v]$, और आगमनात्मक परिकल्पना से
+          $\mSat{M^*}{!B}[{[v]}]$। चूँकि $v$ मनमाना था,
+          $\mSat{M^*}{\indfrm}[{[w]}]$ निकलता है।
+
+          विलोमतः, मान लें $\mSat{M^*}{\indfrm}[{[w]}]$, और $v$ ऐसा
+          मनमाना हो कि $Rwv$।
+          \olref{defn:filtration}\olref{defn:filtration-R1} से
+          $R^*[w][v]$, अतः $\mSat{M^*}{!B}[{[v]}]$; आगमनात्मक परिकल्पना
+          से $\mSat{M}{!B}[v]$, और $v$ के मनमाना होने से
+          $\mSat{M}{\indfrm}[w]$।}}}{}
+    
+    \tagitem{prvDiamond}{\iftag{probDiamond}{अभ्यास।}{\indcase{!A}{\Diamond
+          !B}{मान लें $\mSat{M}{\indfrm}[w]$। तब किसी $v \in W$ के लिए
+          $Rwv$ और $\mSat{M}{!B}[v]$। आगमनात्मक परिकल्पना से
+          $\mSat{M^*}{!B}[{[v]}]$, और
+          \olref{defn:filtration}\olref{defn:filtration-R1} से
+          $R^*[w][v]$। अतः $\mSat{M^*}{\indfrm}[{[w]}]$।
+
+          अब मान लें $\mSat{M^*}{\indfrm}[{[w]}]$। तब $R^*[w][v]$ वाले
+          किसी $[v] \in W^*$ के लिए $\mSat{M^*}{!B}[{[v]}]$। आगमनात्मक
+          परिकल्पना से $\mSat{M}{!B}[v]$।
+          \olref{defn:filtration}\olref{defn:filtration-R3} से
+          $\mSat{M}{\indfrm}[w]$।}}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[nml][fil][fil]{thm:filtrations} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+किसी प्रतिरूप के जगतों पर सत्यता के लिए जो सत्य है, वह प्रतिरूप में सत्यता
+और प्रतिरूपों के वर्ग में मान्यता के लिए भी सत्य है।
+
+\begin{cor}
+  मान लें कि $\Gamma$ उपसूत्रों के अधीन संवृत है। तब:
+  \begin{enumerate}
+  \item यदि $\mModel{M^*}$, $\Gamma$ के माध्यम से $\mModel{M}$ का
+    निस्यंदन है, तो किसी भी $!A \in \Gamma$ के लिए: $\mSat{M}{!A}$ तभी
+    जब $\mSat{M^*}{!A}$।
+  \item यदि $\mClass{C}$ प्रतिरूपों का वर्ग है और
+    $\Gamma(\mClass{C})$, $\mClass{C}$ के प्रतिरूपों के
+    $\Gamma$-निस्यंदनों का वर्ग है, तो कोई भी !!{formula}~$!A \in \Gamma$,
+    $\mClass{C}$ में तभी मान्य है जब वह $\Gamma(\mClass{C})$ में मान्य है।
+  \end{enumerate}
+\end{cor}
+
+
+
+\end{document}

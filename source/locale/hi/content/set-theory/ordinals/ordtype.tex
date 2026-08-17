@@ -1,0 +1,77 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ordinals}{ordtype}
+\olsection{क्रम-प्रकार के रूप में क्रमसूचक}
+
+प्रतिस्थापन से सुसज्जित होकर, और इस प्रकार अब $\ZFminus$ में काम करते हुए,
+हम अंततः अपना लक्षित परिणाम सिद्ध कर सकते हैं:
+
+\begin{thm}\ollabel{thmOrdinalRepresentation}
+प्रत्येक सुव्यवस्था किसी अद्वितीय क्रमसूचक के समाकृतिक है।
+\end{thm}
+
+\begin{proof}
+$\tuple{A, <}$ को सुव्यवस्था मानें। \olref[basic]{ordisoidentity} से वह
+अधिक-से-अधिक एक क्रमसूचक के समाकृतिक है। अतः विरोधाभास द्वारा प्रमाण के लिए
+मान लें कि $\tuple{A, <}$ \emph{किसी भी} क्रमसूचक के समाकृतिक नहीं है। पहले
+हम ``$\tuple{A, <}$ को यथासंभव छोटा बनाएँगे''। विस्तार से: यदि कोई उचित
+आरंभिक खंड $\tuple{A_a, <_a}$ किसी भी क्रमसूचक के समाकृतिक नहीं है, तो उस
+गुणधर्म वाला कोई लघुतम $a \in A$ है; तब $B = A_a$ और
+$\mathord{\lessdot} = \mathord{<_a}$ रखें। अन्यथा $B = A$ और
+$\mathord{\lessdot} = \mathord{<}$ रखें।
+
+परिभाषा से $B$ का प्रत्येक उचित आरंभिक खंड किसी क्रमसूचक के समाकृतिक है,
+जो ऊपर की तरह अद्वितीय है। अतः प्रतिस्थापन से निम्न समुच्चय का अस्तित्व है
+और वह फलन है:
+\[
+	f = \Setabs{\tuple{\beta, b}}{b \in B\text{ और }\ordeq{\beta}{\tuple{B_b, \lessdot_b}}}
+\]
+विरोधाभास पूर्ण करने के लिए हम दिखाएँगे कि किसी क्रमसूचक $\alpha$ के लिए
+$f$ एक समाकृतिकता $\alpha \to B$ है।
+
+स्पष्ट है कि $\ran{f} = B$। और \olref[iso]{lemordsegments} से $f$ क्रम को
+संरक्षित करता है; अर्थात $\gamma \in \beta$ तभी और केवल तभी जब
+$f(\gamma) \lessdot f(\beta)$। $\dom{f}$ को क्रमसूचक दिखाने के लिए
+\olref[basic]{corordtransitiveord} से उसकी संक्रमणशीलता दिखाना पर्याप्त है।
+अतः $\beta \in \dom{f}$ को नियत करें; अर्थात किसी $b$ के लिए
+$\ordeq{\beta}{\tuple{B_b, \lessdot_b}}$। यदि $\gamma \in \beta$, तो
+\olref[iso]{wellordinitialsegment} से $\gamma \in \dom{f}$; सामान्यीकरण
+करने पर $\beta \subseteq \dom{f}$।
+\end{proof}
+
+यह परिणाम उस निम्न परिभाषा की अनुमति देता है जिसे हम \olref[vn]{sec} से
+देना चाहते थे:
+
+\begin{defn}
+यदि $\tuple{A, <}$ सुव्यवस्था है, तो उसका क्रम-प्रकार $\ordtype{A, <}$ वह
+अद्वितीय क्रमसूचक $\alpha$ है जिसके लिए
+$\ordeq{\tuple{A, < }}{\alpha}$।
+\end{defn}
+
+इसके अतिरिक्त यह परिभाषा दो अच्छे सिद्धांतों की अनुमति देती है:
+
+\begin{cor}\ollabel{ordtypesworklikeyouwant}
+जहाँ $\tuple{A, <}$ और $\tuple{B, \lessdot}$ सुव्यवस्थाएँ हैं:
+\begin{align*}
+	\ordtype{A, <} = \ordtype{B, \lessdot}&\text{ तभी और केवल तभी जब }\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\ordtype{A, <} \in \ordtype{B, \lessdot}&\text{ तभी और केवल तभी जब किसी }b \in B\text{ के लिए }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}
+\end{align*}
+\end{cor}
+
+\begin{proof}
+समानता \olref[basic]{ordisoidentity} से मिलती है। दूसरे दावे को सिद्ध करने
+के लिए $\ordtype{A, <} = \alpha$ और $\ordtype{B, \lessdot} = \beta$
+मानें, तथा $f \colon \beta \to \tuple {B, \lessdot}$ को अपनी समाकृतिकता
+मानें। तब:
+\begin{align*}
+	\alpha \in \beta&\text{ तभी और केवल तभी जब }\funrestrictionto{f}{\alpha} \colon \alpha \to B_{f(\alpha)}\text{ समाकृतिकता है}\\
+	&\text{ तभी और केवल तभी जब }\ordeq{\tuple{A, <}}{\tuple{B_{f(\alpha)}, \lessdot_{f(\alpha)}}}\\
+	&\text{ तभी और केवल तभी जब किसी $b \in B$ के लिए }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}
+\end{align*}
+यह \olref[iso]{ordisounique}, \olref[iso]{wellordinitialsegment} और
+\olref[basic]{ordissetofsmallerord} से मिलता है।
+\end{proof}
+
+\end{document}

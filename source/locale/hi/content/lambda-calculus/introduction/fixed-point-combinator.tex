@@ -1,0 +1,41 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: fixed-point-combinator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{int}{fix}
+\olsection{अचल-बिंदु संयोजक}
+
+मान लें आपके पास कोई लैम्ब्डा पद $g$ है और आप ऐसा दूसरा पद $k$ चाहते हैं
+जिसमें $k$, ~$gk$ के $\beta$-तुल्य हो। हमारे संकेत-लिपि नियमों का उपयोग
+करते हुए पद
+\[
+\fn{diag}(x) = xx
+\]
+और
+\[
+l(x) = g(\fn{diag}(x))
+\]
+परिभाषित करें; दूसरे शब्दों में, $l$ पद $\lambd[x][g(xx)]$ है। $k$ पद
+$ll$ हो। तब
+\begin{align*}
+k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)]) \\
+& \red  g((\lambd[x][g(xx)])(\lambd[x][g(xx)])) \\
+& = gk.
+\end{align*}
+यदि हम
+\[
+Y = \lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
+\]
+लें, तो $Yg$ और $g(Yg)$ अपचयित होकर किसी समान पद में पहुँचते हैं; अतः $Yg
+\equiv_\beta g(Yg)$। इसे ``करी का संयोजक'' कहते हैं। यदि इसके बदले हम
+\[
+Y = (\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
+\]
+लें, तो वास्तव में $Yg$ अपचयित होकर $g(Yg)$ बनता है, जो अधिक प्रबल कथन
+है। $Y$ के इस दूसरे रूप को ``ट्यूरिंग का संयोजक'' कहते हैं।
+
+\end{document}

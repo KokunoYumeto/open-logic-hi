@@ -1,0 +1,181 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nat}{qua}
+
+\olsection{नियमित \usetoken{P}{proof} और प्रतिस्थापन}
+
+\Elim{\lexists} और~\Intro{\lforall} नियमों पर लागू होने वाली ``आइगेनचर
+शर्तों'' के कारण परिमाणकों के नियम कुछ जटिलताएँ उत्पन्न करते हैं। इन अनुमानों
+में !!{constant}~$c$ का कभी पुनः उपयोग न हो, यह सुनिश्चित करके इनमें से
+अधिकांश जटिलताओं को सँभाला जा सकता है। निम्नलिखित परिभाषा प्रस्तुत करें।
+
+\begin{defn}
+कोई प्राकृतिक निगमन !!{proof}~$\delta$ \emph{नियमित} है यदि
+\begin{enumerate}
+  \item कोई आइगेनचर~$a$, एक से अधिक \Elim{\lexists} या~\Intro{\lforall}
+  अनुमान के आइगेनचर के रूप में प्रयुक्त न हो, और
+  \item यदि $a$ किसी \Elim{\lexists} या~\Intro{\lforall} अनुमान का आइगेनचर
+  है, तो वह केवल क्रमशः गौण आधार-वाक्य या आधार-वाक्य तक जाने वाले निकटस्थ
+  उप-!!{proof} में आए।
+\end{enumerate}
+\end{defn}
+
+\begin{lem}\ollabel{lem:subst-regular} यदि $\delta$ नियमित है,~$!C$ पर
+समाप्त होता है, $c$ ऐसा !!a{constant} है जो~$\delta$ में आइगेनचर के रूप में
+प्रयुक्त नहीं, और $t$ ऐसा पद है जिसमें~$\delta$ का कोई आइगेनचर नहीं, तो~$c$
+की प्रत्येक उपस्थिति को~$t$ से बदलकर~$\delta$ से प्राप्त
+$\Subst{\delta}{t}{c}$ एक नियमित !!{proof} है। $\Subst{\delta}{t}{c}$ का
+अंतिम-!!{formula}, $\Subst{!C}{t}{c}$ है। यदि $!A^x$,~$\delta$ की खुली
+मान्यता है, तो $\Subst{!A}{t}{c}^x$,~$\Subst{\delta}{t}{c}$ की खुली मान्यता
+है।
+\end{lem}
+
+\begin{proof}
+  $\pheight{\delta}$ पर आगमन से। यदि $\pheight{\delta} = 0$, तो वह केवल
+  मान्यता~$!A^x$ से बना है। तब $\Subst{\delta}{t}{c}$,
+  ~ $\Subst{!A}{t}{c}^x$ है।
+
+  यदि $\pheight{\delta} > 0$, तो हम~$\delta$ के अंतिम अनुमान के अनुसार
+  स्थितियों में भेद करते हैं। प्रतिज्ञप्ति संयोजकों के नियमों की स्थितियाँ
+  सरल हैं और अभ्यास के रूप में छोड़ी जाती हैं। हम उन स्थितियों पर विचार करते
+  हैं जहाँ $\delta$ किसी परिमाणक अनुमान पर समाप्त होता है।
+  \begin{enumerate}
+    \item यदि अंतिम अनुमान $\Intro{\lforall}$ है, तो $\delta$ इस रूप का है
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta'$}
+    \DeduceC{$!A(a,c)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,c)]$}
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $\Subst{\delta'}{t}{c}$, $!A(a,t)$ का नियमित
+    !!{proof} है। चूँकि $a$,~$\delta$ का आइगेनचर है, इसलिए $a$,~$t$ में नहीं
+    आता। अतः $\Subst{\delta}{t}{c}$ का अंतिम अनुमान,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$!A(a,t)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,t)]$}
+    \DisplayProof
+    \]
+    सही है: चूँकि $t$ में~$a$ नहीं है, इसलिए न निष्कर्ष न कोई खुली मान्यता
+    ~ $a$ को समाहित करती है।
+    \item यदि अंतिम अनुमान $\Elim{\lforall}$ है, तो $\delta$ इस रूप का है
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta'$}
+    \DeduceC{$\lforall[x][!A(x,c)]$}
+    \RightLabel{\Elim{\lforall}}
+    \UnaryInfC{$!A(s(c),c)$}
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $\Subst{\delta'}{t}{c}$,
+    $\lforall[x][!A(x,t)]$ का नियमित !!{proof} है। (निष्कर्ष का पद~$s(c)$,
+    ~ $c$ को समाहित कर सकता है, पर यह आवश्यक नहीं।)
+    $\Subst{\delta}{t}{c}$ का अंतिम अनुमान,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$\lforall[x][!A(x,t)]$}
+    \RightLabel{\Elim{\lforall}}
+    \UnaryInfC{$!A(s(t),t)$}
+    \DisplayProof
+    \]
+    सही है और $!A(s(t),t) \ident \Subst{!A(s(c),c)}{t}{c}$।
+    \Intro{\lexists} की स्थिति भी इसी प्रकार है।
+  \item यदि अंतिम अनुमान $\Elim{\lexists}$ है, तो $\delta$ इस रूप का है
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta_1'$}
+    \DeduceC{$\lexists[x][!A(x,c)]$}
+    \AxiomC{$\Discharge{!A(a,c)}{x}$}
+    \RightLabel{$\delta_2'$}
+    \DeduceC{$!C$}
+    \DischargeRule{\Elim{\lexists}}{x}
+    \BinaryInfC{$!C$}
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $\Subst{\delta_1'}{t}{c}$ और
+    $\Subst{\delta_2'}{t}{c}$ क्रमशः $\lexists[x][!A(x,c)]$ और खुली
+    मान्यता~$!A(a,t)$ से $!C$ के नियमित !!{proof}s हैं। चूँकि $a$,~$\delta$
+    का आइगेनचर है, इसलिए $a$,~$t$ में नहीं आता। अतः
+    $\Subst{\delta}{t}{c}$ का अंतिम अनुमान,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$!A(a,t)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,t)]$}
+    \DisplayProof
+    \]
+    सही है: $\Subst{!A(x,t)}{a}{x} \ident \Subst{!A(a,c)}{t}{c}$, और न
+    निष्कर्ष~$!C$ न कोई खुली मान्यता~$a$ को समाहित करती है।
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:regular}
+यदि $\delta$, \Log{N1c} या \Log{N1i} में कोई !!a{proof} है, तो उसी संरचना
+(विशेषतः उसी !!{height}) वाला कोई नियमित !!{proof}~$\delta'$ है, जो
+$\delta$ से केवल आइगेनचरों के प्रतिस्थापन में भिन्न है।
+\end{prop}
+
+\begin{proof}
+केवल इस प्रमाण के लिए,~$\delta$ के किसी आइगेनचर अनुमान को \emph{स्वच्छ}
+कहें यदि उसका आइगेनचर किसी अन्य अनुमान का आइगेनचर न हो और उस अनुमान के
+निकटस्थ उप-!!{proof} के अतिरिक्त~$\delta$ में कहीं न आए; अन्यथा उसे
+\emph{मलिन} कहें। मान लें $n$,~$\delta$ में मलिन आइगेनचर अनुमानों की संख्या
+है। हम~$n$ पर आगमन से दिखाते हैं कि $\delta$ को आवश्यक नियमित
+!!{proof}~$\delta'$ में बदला जा सकता है। यदि $n=0$, तो~$\delta$ में सभी
+आइगेनचर अनुमान स्वच्छ हैं, अतः $\delta$ नियमित है और कुछ सिद्ध नहीं करना।
+अन्यथा कोई सर्वोच्च आइगेनचर अनुमान, मान लें \Intro{\lforall}, चुनें। उस पर
+समाप्त होने वाला~$\delta$ का उप-!!{proof}~$\delta_1$ इस रूप का है
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A(c)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+    \DisplayProof
+    \]
+ध्यान दें कि $c$ आइगेनचर है, इसलिए वह~$\lforall[x][!A(x)]$ या किसी खुली
+मान्यता में नहीं आता। प्रमाण $\delta_2$ नियमित है, क्योंकि उसमें कोई आइगेनचर
+अनुमान ही नहीं। मान लें $a$ ऐसा !!a{constant} है जो~$\delta$ में नहीं आता।
+\olref{lem:subst-regular} से $\Subst{\delta_2}{a}{c}$, $!A(a)$ का नियमित
+प्रमाण है। आइगेनचर शर्त से~$\delta_2$ की किसी खुली मान्यता में~$c$ नहीं आता,
+अतः~$\Subst{\delta_2}{a}{c}$ की किसी खुली मान्यता में~$a$ नहीं आता। इसलिए हम
+~$\Intro{\lforall}$ लागू कर सकते हैं। यदि~$\delta$ में $\delta_1$ को प्रमाण
+$\delta_1'$ से बदलें,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta_2}{a}{c}$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+    \DisplayProof
+    \]
+तो हमने एक मलिन आइगेनचर अनुमान को स्वच्छ अनुमान से बदल दिया है और एकमात्र
+अंतर आइगेनचर $c$ का~$a$ से प्रतिस्थापन है। फलित प्रमाण में $n-1$ मलिन
+आइगेनचर अनुमान हैं और परिणाम आगमन परिकल्पना से निष्पन्न होता है।
+\end{proof}
+
+\begin{prob}
+\olref{prop:regular} के प्रमाण में उस स्थिति का वर्णन कीजिए जहाँ सर्वोच्च
+आइगेनचर अनुमान~\Elim{\lexists} है।
+\end{prob}
+
+हम अभी सिद्ध प्रतिज्ञप्ति का स्पष्ट रूप से आह्वान नहीं करेंगे, किंतु मानेंगे
+कि विचाराधीन सभी !!{proof}s नियमित हैं---यदि वे न हों, तो आइगेनचर बदलकर
+उन्हें सदा नियमित बना सकते हैं।
+
+\Olref{lem:subst-regular} और \olref{prop:regular}, \Log{N2c}
+और~\Log{N2i} के लिए भी सत्य हैं। प्रमाण अभ्यास के रूप में छोड़ते हैं।
+
+\end{document}

@@ -1,0 +1,53 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{snd}
+
+\olsection{यथार्थता}
+
+कोई !!{derivation}-तंत्र यथार्थ कहलाता है यदि उसमें !!{derive} सब कुछ मान्य हो। मोडल तंत्रों पर विचार करते समय, अर्थात् ऐसी
+!!{derivation}यों में जहाँ \Ax{K} के अतिरिक्त कुछ !!{formula}ों $!A_1$,
+\dots,~$!A_n$ के दृष्टांत उपयोग किए जा सकते हैं, हम चाहते हैं कि प्रत्येक
+!!{derivable} सूत्र उस हर प्रतिरूप में सत्य हो जिसमें $!A_1$, \dots,
+$!A_n$ सत्य हैं।
+
+\begin{thm}[यथार्थता प्रमेय]\ollabel{thm:soundness}
+  यदि $!A_1$, \dots, $!A_n$ का प्रत्येक दृष्टांत क्रमशः प्रतिरूपों के
+  वर्गों $\mClass{C}_1$, \dots, $\mClass{C}_n$ में मान्य है, तो
+  $\Log{K}!A_1\dots !A_n \Proves !B$ से मिलता है कि $!B$, प्रतिरूपों के
+  वर्ग $\mClass{C}_1 \cap \dots \cap \mClass{C}_n$ में मान्य है।
+\end{thm}
+
+\begin{proof}
+  प्रमाणों की लंबाई पर आगमन से। संक्षेप के लिए
+  $\mClass{C}=\mClass{C}_1 \cap \dots \cap \mClass{C}_n$ रखें।
+  \begin{enumerate}
+  \item आगमन-आधार: यदि $!B$ का प्रमाण लंबाई~$1$ का है, तो वह या तो कोई
+    सर्वसत्यतात्मक दृष्टांत, \Ax{K}\iftag{prvDiamond}{ या~\Dual{}}{} का
+    दृष्टांत, अथवा $!A_1$, \dots,~$!A_n$ में से किसी का दृष्टांत है। पहले
+    मामले में \olref[syn][tau]{prop:valid-taut} से $!B$, $\mClass{C}$ में
+    मान्य है, क्योंकि सर्वसत्यतात्मक दृष्टांत प्रतिरूपों के \emph{किसी भी}
+    वर्ग में मान्य हैं। दूसरे मामले में भी
+    \olref[syn][sch]{prop:Kvalid}\iftag{prvDiamond}{ और
+    \olref[syn][sch]{prop:Dual-valid}}{} से यही मिलता है। अंततः तीसरे मामले
+    में, चूँकि $!B$, $\mClass{C}_i$ में मान्य और
+    $\mClass{C}\subseteq\mClass{C}_i$, इसलिए
+    \olref[syn][val]{prop:subset-class} से $!B$, $\mClass{C}$ में भी मान्य है।
+  \item आगमन-चरण: मान लें $!B$ का प्रमाण लंबाई $k>1$ का है। यदि $!B$ कोई
+    सर्वसत्यतात्मक दृष्टांत या $!A_1$, \dots, $!A_n$ में से किसी का दृष्टांत
+    है, तो पूर्ववर्ती चरण जैसा तर्क करें। अब मान लें $!B$, पूर्ववर्ती
+    !!{formula}ों $!C \lif !B$ और $!C$ से \MP{} द्वारा मिलता है। इन दोनों के
+    प्रमाणों की लंबाई $<k$ है और आगमन-परिकल्पना से वे $\mClass{C}$ में मान्य
+    हैं। \olref[syn][sch]{prop:soundMP} से $!B$ भी $\mClass{C}$ में मान्य है।
+    अंततः मान लें $!B$, $!C$ से \Nec{} द्वारा मिलता है (अतः
+    $!B=\Box!C$)। आगमन-परिकल्पना से $!C$, $\mClass{C}$ में मान्य है और
+    \olref[syn][val]{prop:Nec-rule} से~$!B$ भी।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,80 @@
+% Part: many-valued-logic
+% Chapter: sequent-calculus
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{seq}{int}
+
+\olsection{परिचय}
+
+शास्त्रीय तर्कशास्त्र का सीक्वेंट कलन एक दक्ष और सरल !!{derivation}-तंत्र
+है। यदि कोई बहुमूल्य तर्कशास्त्र परिमित संख्या में सत्य-मूल्यों वाले आव्यूह
+से परिभाषित हो, अर्थात् $V$ परिमित हो, तो उसके लिए सीक्वेंट कलन दिया जा
+सकता है। इसे करने का विचार शास्त्रीय मामले में सीक्वेंटों के अर्थ और
+अनुमान-नियमों के रूप पर विचार करने से मिलता है।
+
+अब स्मरण करें कि एक सीक्वेंट
+\begin{align*}
+    !A_1, \dots, !A_n & \Sequent !B_1, \dots, !B_n
+\intertext{की व्याख्या इस !!{formula} के रूप में की जा सकती है:}
+    (!A_1 \land \cdots \land !A_m) & \lif (!B_1 \lor \cdots \lor
+!B_n).
+\end{align*}
+दूसरे शब्दों में, कोई !!{valuation}~$\pAssign{v}$ किसी सीक्वेंट
+$\Gamma \Sequent \Delta$ को तभी \emph{संतुष्ट करता है} जब या तो किसी
+$!A \in \Gamma$ के लिए $\pValue{v}(!A) = \False$ हो, या किसी
+$!A \in \Delta$ के लिए $\pValue{v}(!A) = \True$ हो। इस व्याख्या पर आरंभिक
+सीक्वेंट $!A \Sequent !A$ सदैव संतुष्ट होते हैं, क्योंकि या तो
+$\pValue v(!A) = \True$ या $\pValue(!A) = \False$।
+
+यहाँ पार्श्व सूत्रों $\Gamma$, $\Delta$ को हटाकर $\Log{LK}$ में सशर्त के
+अनुमान-नियम दिए गए हैं:
+
+\begin{defish}
+    \Axiom$ \fCenter !A$
+    \Axiom$ !B \fCenter $
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$ !A \lif !B \fCenter $
+    \DisplayProof
+    \hfill
+    \Axiom$ !A \fCenter !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$ \fCenter !A \lif !B $
+    \DisplayProof
+\end{defish}
+
+यदि हम ऊपर दी गई सीक्वेंट की आर्थी व्याख्या लागू करें, तो
+$\LeftR{\lif}$ नियम कहता है कि यदि $\pValue v(!A) = \True$ और
+$\pValue v(!B) = \False$, तो $\pValue v(!A \lif !B) = \False$। इसी तरह
+$\RightR{\lif}$ नियम कहता है कि यदि या तो $\pValue v(!A) = \False$ या
+$\pValue v(!B) = \True$, तो $\pValue v(!A \lif !B) = \True$। और वास्तव
+में ये सशर्त कथन द्विसशर्त कथन हैं। $\LeftR{\land}$ और $\RightR{\lor}$
+नियमों के मानक सूत्रीकरण में संगत सशर्त कथन द्विसशर्त नहीं होंगे। किंतु इन
+नियमों के ऐसे वैकल्पिक रूप हैं जिनमें वे द्विसशर्त होते हैं:
+
+\begin{defish}
+    \Axiom$!A, !B, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \hfill
+    \Axiom$ \Gamma \fCenter \Delta, !A, !B$
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
+    \DisplayProof
+\end{defish}
+
+जब इस मूल विचार को किसी $n$-मूल्य तर्कशास्त्र पर लागू किया जाता है, तो दो
+के स्थान पर $n$ स्थानों वाला सीक्वेंट कलन प्राप्त होता है---प्रत्येक
+सत्य-मूल्य के लिए एक स्थान। $V = \{\False, \Undef, \True\}$ वाले किसी
+त्रिमूल्य तर्कशास्त्र में सीक्वेंट $\Gamma \mid \Pi \mid \Delta$ रूप का
+व्यंजक होता है। कोई !!{valuation}~$\pAssign v$ इसे तभी संतुष्ट करता है जब या
+तो किसी $!A \in \Gamma$ के लिए $\pValue{v}(!A) = \False$, या किसी
+$!A \in \Delta$ के लिए $\pValue{v}(!A) = \True$, या किसी $!A \in \Pi$
+के लिए $\pValue{v}(!A) = \Undef$ हो। फलतः आरंभिक सीक्वेंट
+$!A \mid !A \mid !A$ सदैव संतुष्ट होते हैं।
+
+\end{document}

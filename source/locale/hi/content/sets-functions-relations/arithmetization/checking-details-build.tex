@@ -1,0 +1,33 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0038.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen external identities needed by this standalone section.
+\makeatletter
+\expandafter\def\csname r@sfr:arith:int:sec\endcsname
+  {{arith.1}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:int:sec@cref\endcsname
+  {{[section][1][0]arith.1}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:def:linearorder\endcsname
+  {{rel.{16}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:def:linearorder@cref\endcsname
+  {{[defn][16][0]rel.{16}}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:cuts:realcompleteness\endcsname
+  {{arith.{6}}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:cuts:realcompleteness@cref\endcsname
+  {{[thm][6][0]arith.{6}}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:cuts:sec\endcsname
+  {{arith.4}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:cuts:sec@cref\endcsname
+  {{[section][4][0]arith.4}{}{}{}{}}
+\makeatother
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{क्रमित वलय और क्षेत्र}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{checking-details}
+\end{document}

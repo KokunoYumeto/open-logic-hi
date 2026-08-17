@@ -1,0 +1,61 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{con}
+
+\olsection{संगति}
+
+संगति !!{formula}ों के समुच्चयों का महत्त्वपूर्ण गुण है। !!{formula}ों का कोई
+समुच्चय असंगत है यदि उससे~$\lfalse$ जैसा कोई विरोधाभास !!{derivable} हो;
+अन्यथा वह संगत है। यदि कोई समुच्चय असंगत है, तो उसके सभी !!{formula} किसी
+प्रतिरूप के किसी जगत पर एक साथ सत्य नहीं हो सकते। पूर्णता प्रमेय के लिए हम
+विलोम सिद्ध करते हैं: प्रत्येक संगत समुच्चय किसी प्रतिरूप, अर्थात्
+``विहित प्रतिरूप'', के किसी जगत पर सत्य है।
+
+\begin{defn}
+  कोई समुच्चय $\Gamma$, तंत्र~$\Sigma$ के सापेक्ष \emph{संगत}, या जैसा हम
+  कहेंगे $\Sigma$-संगत, है, तभी जब $\Gamma
+  \Proves/[\Sigma] \lfalse$.
+\end{defn}
+
+उदाहरणार्थ, समुच्चय $\{\Box(p \lif q),\Box p,\lnot\Box q\}$ प्रतिज्ञप्तिक
+तर्कशास्त्र के सापेक्ष संगत है, पर \Log{K}-संगत नहीं। इसी तरह समुच्चय
+$\{\Diamond p, \Box\Diamond p \lif q, \lnot q\}$, \Log{K5}-संगत नहीं है।
+
+\begin{prop}\ollabel{prop:consistencyfacts}
+  मान लें $\Gamma$ !!{formula}ों का समुच्चय है। तब:
+  \begin{enumerate}
+  \item $\Gamma$, $\Sigma$-संगत तभी है जब कोई !!{formula}~$!A$ ऐसा हो कि
+    $\Gamma \Proves/[\Sigma]
+    !A$.
+  \item \ollabel{prop:consistencyfacts-b}%
+    $\Gamma \Proves[\Sigma] !A$ तभी जब $\Gamma \cup \{\lnot!A\}$
+    $\Sigma$-संगत नहीं है।
+  \item \ollabel{prop:consistencyfacts-c}%
+    यदि $\Gamma$, $\Sigma$-संगत है, तो प्रत्येक !!{formula} $!A$ के लिए या
+    तो $\Gamma \cup \{!A\}$, $\Sigma$-संगत है या
+    $\Gamma \cup \{\lnot!A\}$, $\Sigma$-संगत है।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  ये तथ्य शास्त्रीय प्रतिज्ञप्तिक तर्कशास्त्र से आसानी से मिलते हैं। हम
+  \olref{prop:consistencyfacts-c} का तर्क देते हैं। प्रतिधनात्मक रूप से मान
+  लें कि न $\Gamma \cup \{!A\}$, न $\Gamma \cup \{\lnot!A\}$,
+  $\Sigma$-संगत है। तब \olref{prop:consistencyfacts-b} से
+  $\Gamma,!A \Proves[\Sigma]\lfalse$ और
+  $\Gamma,\lnot!A \Proves[\Sigma]\lfalse$ दोनों। निगमन प्रमेय से
+  $\Gamma \Proves[\Sigma] !A \to \lfalse$ और
+  $\Gamma \Proves[\Sigma] \lnot!A \lif \lfalse$। किंतु
+  $(!A \lif \lfalse) \lif ((\lnot!A \lif \lfalse) \lif \lfalse)$ एक
+  सर्वसत्यतात्मक दृष्टांत है, अतः
+  \olref[prp]{prop:derivabilityfacts}\olref[prp]{prop:derivabilityfacts-ruleT},
+  $\Gamma \Proves[\Sigma] \lfalse$।
+\end{proof}
+
+\end{document}

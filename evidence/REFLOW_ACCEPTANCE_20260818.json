@@ -1,0 +1,51 @@
+{
+  "schema": "openlogic-hi-reflow-acceptance-v1",
+  "recorded_at": "2026-08-18T00:00:00+02:00",
+  "status": "ACCEPTED_REFLOWED_READER_FOR_PUBLICATION",
+  "scope": "Typesetting-only reflow of the already accepted 722/722 Hindi translation; no source or target prose was added, removed, or retranslated.",
+  "supersedes_layout": {
+    "pages": 902,
+    "paper": "US Letter",
+    "sha256": "CE0B2DA60462B16BD41246FBA43215D7A6961084EFA0B3B6D318ECD0519A14B9",
+    "reason": "The default narrow Memoir typeblock left excessive unused page area and did not resemble ordinary contemporary Hindi academic book composition."
+  },
+  "accepted_pdf": {
+    "path": "06_build/openlogic_hi_9620cc7/HI-OLP-COMPLETE-0722/open-logic-complete-hi-build.pdf",
+    "pages": 842,
+    "bytes": 6584887,
+    "sha256": "DB3018D15BC9AA597A3DCC71495A9C3D7E7071272BDCCBA85C3205FF17E93BE0",
+    "page_width_points": 595.28,
+    "page_height_points": 841.89,
+    "paper": "A4",
+    "pdf_title": "ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण",
+    "pdf_author": "Open Logic Project",
+    "pdf_subject": "ओपन लॉजिक परियोजना के जमे हुए स्रोत-वृक्ष का संपूर्ण हिंदी अनुवाद"
+  },
+  "layout": {
+    "document_class": "memoir 12pt a4paper openany",
+    "typeblock_mm": "160 x 235",
+    "side_margins_mm": "25 / 25",
+    "upper_lower_margins_mm": "25 / 37",
+    "rationale": "A4, a readable 12-point Devanagari face, and a substantially fuller typeblock follow the density of the inspected IGNOU and NCERT Hindi educational comparators while preserving chapter openings and mathematical display space."
+  },
+  "verification": {
+    "pypdf_reopen": "PASS_842_PAGES_A4_METADATA",
+    "text_sample_pages": "PASS_PAGES_1_TO_5_SEARCHABLE_HINDI",
+    "text_sample_characters": 11450,
+    "text_sample_devanagari_characters": 2914,
+    "text_sample_replacement_characters": 0,
+    "fonts": "PASS_NOTO_SERIF_DEVANAGARI_EMBEDDED_SUBSETTED_UNICODE_MAPPED",
+    "build_log": "PASS_ZERO_FATAL_UNDEFINED_UNRESOLVED_MISSING_CHARACTER_OR_RERUN_DIAGNOSTICS",
+    "representative_visual_pages_checked": [24, 237, 238, 239, 258, 400, 650, 840],
+    "representative_visual_result": "PASS_NO_CLIPPING_OVERLAP_BROKEN_SHAPING_OR_ABNORMAL_PAGE_DENSITY",
+    "full_842_page_rerender_performed": false
+  },
+  "inherited_translation_acceptance": "ACCEPTANCE.json remains controlling for 722/722 translation coverage, structural/formal audit, and same-writer semantic replay. Its 902-page visual claims apply only to the superseded layout and are not asserted for this reflow.",
+  "review_limits": {
+    "human_reviewed": false,
+    "peer_reviewed": false,
+    "critical_edition": false,
+    "pdf_ua_certified": false,
+    "same_writer_visual_review": true
+  }
+}

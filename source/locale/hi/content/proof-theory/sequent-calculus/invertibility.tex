@@ -1,0 +1,377 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: invertibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{seq}{inv}
+
+\olsection{नियमों की प्रतिलोम्यता}
+
+\begin{defn}
+A rule~$R$,
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+किसी प्रणाली में \emph{प्रतिलोम्य} है यदि जब भी $\Proves S$ हो, तब $i = 1$,
+\dots,~$n$ के लिए $\Proves[h_i] S_i$ हो। वह किसी प्रणाली में
+\emph{!!{height}-संरक्षक प्रतिलोम्य} (या \emph{!!{hp}-प्रतिलोम्य}) है यदि जब
+भी $\Proves_n S$ हो, तब $i = 1$, \dots,~$n$ के लिए $\Proves[n] S_i$ हो।
+\end{defn}
+
+\begin{lem}\ollabel{lem:G3c-invert}
+$\lnot$, $\land$, $\lor$ और $\lif$ के लिए \Log{G3c} के नियम
+!!{height}-संरक्षक प्रतिलोम्य हैं, अर्थात:
+\begin{enumerate}
+  \item \RightR{\lnot}: यदि $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, \lnot !A$, तो $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$।
+  \item \LeftR{\lnot}: यदि $\Log{G3c} \Proves[n] \Gamma, \lnot !A
+  \Sequent \Delta$, तो $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$।
+  \item \RightR{\land}: यदि $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \land !B$, तो $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A$ और $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !B$।
+  \item \LeftR{\land}: यदि $\Log{G3c} \Proves[n] \Gamma, !A \land !B
+  \Sequent \Delta$, तो $\Log{G3c} \Proves[n] !A, !B, \Gamma \Sequent
+  \Delta$।
+  \item \RightR{\lor}: यदि $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lor !B$, तो $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A, !B$।
+  \item \LeftR{\lor}: यदि $\Log{G3c} \Proves[n] !A \lor !B, \Gamma \Sequent
+  \Delta$, तो $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$ और $\Log{G3c} \Proves[n] !B, \Gamma \Sequent
+  \Delta$।
+  \item \RightR{\lif}: यदि $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lif !B$, तो $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta, !B$।
+  \item \LeftR{\lif}: यदि $\Log{G3c} \Proves[n] !A \lif !B, \Gamma
+  \Sequent \Delta$, तो $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$ और $\Log{G3c} \Proves[n] !B, \Gamma \Sequent \Delta$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+हमें दिखाना है कि \Log{G3c} के किसी भी नियम~$R$ के लिए, यदि~$R$ के
+निष्कर्ष~$S$ का कोई !!a{proof}~$\pi$ है, तो~$R$ के आधार-वाक्यों $S_i$ के
+!!{proof}s~$\pi_i$ भी हैं, जहाँ $\pheight{\pi_i} \le \pheight{\pi}$। नियम
+\LeftR{\land} पर विचार करें: मान लें कि $!A \land !B, \Gamma \Sequent
+\Delta$ रूप के अंतिम अनुक्रम वाला कोई !!a{proof}~$\pi$ है। हमें दिखाना है कि
+$!A, !B, \Gamma \Sequent \Delta$ का कोई !!a{proof} $\pi'$ है जिसके लिए
+$\pheight{\pi'} \le \pheight{\pi}$। इसे हम $n = \pheight{\pi}$ पर आगमन से
+करते हैं।
+
+यदि $n = 0$, तो $\pi$ में केवल अभिगृहीति $!A \land !B, \Gamma \Sequent
+\Delta$ है। \Log{G3c} में अभिगृहीतियाँ $!C, \Gamma \Sequent \Delta, !C$
+रूप की हैं, जहाँ $!C$ परमाण्विक है। दूसरे शब्दों में, $!C$, $!A \land !B$
+नहीं हो सकता। यदि $!A \land !B, \Gamma \Sequent \Delta$ अभिगृहीति है, तो
+कोई परमाण्विक $!C$, $\Gamma$ और~$\Delta$ दोनों का !!a{element} होना चाहिए।
+किंतु तब $!A, !B, \Gamma \Sequent \Delta$ भी अभिगृहीति है, और हमें अपना
+!!{proof}~$\pi'$ मिल गया (जिसकी !!{height} भी~$0$ है)।
+
+यदि $n>0$, तो वह किसी निगमन पर समाप्त होता है। हमें~$n$ के लिए कथन सिद्ध
+करना है, किंतु हम मान सकते हैं कि वह ऊँचाई~$<n$ के किसी भी !!{proof} के लिए
+सत्य है, प्रसंग भिन्न होने पर भी। दूसरे शब्दों में, किसी भी $k<n$ और किन्हीं
+$\Pi$ तथा $\Lambda$ के लिए, यदि $!A \land !B, \Pi \Sequent \Lambda$ का
+!!{height}~$k$ वाला !!a{proof} है, तो $!A, !B, \Pi \Sequent \Lambda$ का
+!!{height}~$\le k$ वाला !!a{proof} है।
+
+दो स्थितियाँ हैं: बाईं ओर का $!A \land !B$ या तो प्रमुख है, या नहीं। यदि वह
+प्रमुख है, तो अंतिम निगमन \LeftR{\land} है और निकटस्थ उप-!!{proof}~$\pi_1$,
+$!A, !B, \Gamma \Sequent \Delta$ पर समाप्त होता है। इस स्थिति में परिणाम
+सत्य है क्योंकि $\pheight{\pi_1} < \pheight{\pi}$।
+
+यदि $!A \land !B$ प्रमुख नहीं है, तो कोई अन्य !!{formula} प्रमुख है और $!A
+\land !B$ अंतिम निगमन के प्रसंग में है। तब आगमन परिकल्पना अंतिम नियम~$R$ के
+निकटस्थ उप-!!{proof}s पर लागू होती है, जिससे !!a{proof}~$\pi_1'$ अथवा दो
+!!{proof}s~$\pi_1'$ और~$\pi_2'$ मिलते हैं, जिनकी !!{height}, $\pi$ के
+निकटस्थ उप-!!{proof}s की ऊँचाई (या ऊँचाइयों) से अधिक नहीं। $\pi_1'$ और
+$\pi_2'$ के अंतिम अनुक्रमों में बाईं ओर के प्रसंग में $!A \land !B$ के बदले
+$!A, !B$ हैं। प्रमाण~$\pi'$ पाने के लिए नियम~$R$ लागू करें। उदाहरणतः मान लें
+कि $\pi$, ~\LeftR{\lif} पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A \land !B, \Gamma' \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A \land !B, \Gamma', !D \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!A \land !B, \Gamma', !C \lif !D \fCenter \Delta$
+\DisplayProof
+\]
+यहाँ बाईं ओर $!C \lif !D$ प्रमुख है, और बाईं ओर का प्रसंग $!A \land !B,
+\Gamma'$ है (अर्थात $\Gamma = \Gamma', !C \lif !D$)। आगमन परिकल्पना से
+क्रमशः $!A \land !B, \Gamma' \Sequent \Delta, !C$ और $!A \land !B,
+\Gamma', !D \Sequent \Delta$ के !!{proof}s $\pi_1'$ और $\pi_2'$ मिलते हैं।
+ये दोनों अनुक्रम फिर \LeftR{\lif} नियम के आधार-वाक्य बनकर~$\pi'$ दे सकते हैं:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!A, !B, \Gamma' \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!A, !B, \Gamma', !D \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!A, !B, \Gamma', !C \lif !D \fCenter \Delta$
+\DisplayProof
+\]
+हमारे पास
+\begin{align*}
+\pheight{\pi} & = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1\\
+\pheight{\pi'} & = \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1
+\intertext{परिभाषा से, और}
+\pheight{\pi_1'} & \le \pheight{\pi_1}\\
+\pheight{\pi_2'} & \le \pheight{\pi_2}
+\intertext{आगमन परिकल्पना से। अतः}
+\pheight{\pi'} & \le \pheight{\pi}.
+\end{align*}
+\end{proof}
+
+\begin{prob}
+\RightR{\lif} के लिए \olref{lem:G3c-invert} का प्रमाण दें।
+\end{prob}
+
+\begin{lem}\ollabel{lem:invert-quant}
+नियम \RightR{\lforall} और \LeftR{\lexists} निम्न अर्थ में
+!!{height}-संरक्षक प्रतिलोम्य हैं:
+\begin{enumerate}
+  \item यदि $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  \lforall[x][!A(x)]$, तो $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A(c)$; और
+  \item यदि $\Log{G3c} \Proves[n] \lexists[x][!A(x)], \Gamma \Sequent
+  \Delta$, तो $\Log{G3c} \Proves[n] !A(c), \Gamma \Sequent \Delta$,
+\end{enumerate}
+ऐसे प्रत्येक $c$ के लिए जो क्रमशः $\Gamma$, $\Delta$ और
+$\lforall[x][!A(x)]$ अथवा $\lexists[x][!A(x)]$ में न आता हो।
+\end{lem}
+
+\begin{proof}
+  हम (1) दिखाते हैं और (2) अभ्यास के लिए छोड़ते हैं। तर्क
+  \olref{lem:G3c-invert} के प्रमाण जैसा है। आगमन चरण में फिर दो स्थितियाँ
+  हैं। जिसमें $\lforall[x][!A(x)]$ प्रमुख है वह स्थिति फिर शीघ्र पूरी होती
+  है: अंतिम $\RightR{\lforall}$ निगमन का आधार-वाक्य अपेक्षित रूप $\Gamma
+  \Sequent \Delta, !A(a)$ का है, और उस पर समाप्त होने वाले निकटस्थ
+  उप-!!{proof}~$\pi_1$ के लिए $\pheight{\pi_1} < \pheight{\pi}$। इसके
+  अतिरिक्त, आइगेनचर प्रतिबंध से $a$, $\Gamma$, $\Delta$ या
+  $\lforall[x][!A(x)]$ में नहीं आता। चूँकि हम $\pi_1$ को नियमित मान सकते हैं,
+  इसलिए \olref[qua]{lem:subst-regular} से $\Subst{\pi_1}{c}{a}$ समान
+  !!{height} वाला $\Gamma \Sequent \Delta, !A(c)$ का !!a{proof} है।
+
+  दूसरी स्थिति में $\lforall[x][!A(x)]$ अंतिम निगमन में प्रमुख नहीं है; कोई
+  अन्य सूत्र प्रमुख है। हम फिर उदाहरण के रूप में एक स्थिति देखते हैं। मान
+  लें कि अंतिम निगमन~\RightR{\land} है। $\Delta$ का कोई !!{formula}
+  ~$!B \land !C$ रूप का है और प्रमुख है। !!{proof}~$\pi$ इस पर समाप्त होता है:
+  \[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+जहाँ $\Delta = \Delta', !B \land !C$। $c$ ऐसा !!a{constant} हो जो $\Delta$
+में न आता हो; तब स्पष्टतः वह $\Delta', !B$ अथवा $\Delta', !C$ में भी नहीं
+आता। अतः आगमन परिकल्पना $\pi_1$ और~$\pi_2$ पर लागू होती है; हमारे पास
+!!{proof}s~$\pi_1'$ और $\pi_2'$ हैं, जहाँ $\pheight{\pi_1'} \le
+\pheight{\pi_1}$ और $\pheight{\pi_2'} \le \pheight{\pi_2}$। $\Gamma
+\Sequent \Delta, !A(c)$ का अपेक्षित !!{proof}~$\pi'$ है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !A(c), !B$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta', !A(c), !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !A(c), !B \land !C$
+\DisplayProof
+\]
+जहाँ $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'})+1 \le
+\pheight{\pi}$।
+\end{proof}
+
+\Olref{lem:G3c-invert}, कट-विलोपन प्रमेय के प्रमाण में महत्त्वपूर्ण भूमिका
+निभाता है। किंतु उसका उपयोग निम्न दिखाने के लिए भी हो सकता है:
+
+\begin{prop}\ollabel{prop:G3c-cont-adm}
+\Log{G1c} के संकुचन नियम \LeftR{\Contraction} और
+\RightR{\Contraction}, \Log{G3c} में !!{height}-संरक्षक ग्राह्य हैं।
+\end{prop}
+
+\begin{proof}
+हम \RightR{\Contraction} और \LeftR{\Contraction} के लिए एक साथ तर्क देते
+हैं। मान लें कि $\pi$, \Log{G3c} में $\Gamma \Sequent \Delta, !A, !A$ अथवा
+$!A, !A, \Gamma \Sequent \Delta$ का !!a{proof} है। हमें दिखाना है कि
+क्रमशः $\Gamma \Sequent \Delta, !A$ अथवा $!A, \Gamma \Sequent \Delta$ का
+कोई \Log{G3c}-!!{proof}~$\pi'$ भी है, जहाँ $\pheight{\pi'} \le
+\pheight{\pi}$। इसे हम $n = \pheight{\pi}$ पर आगमन से करते हैं।
+
+यदि $n=0$, तो $\pi$ केवल अभिगृहीति है। किंतु यदि $\Gamma \Sequent \Delta,
+!A, !A$, \Log{G3c} की अभिगृहीति है, तो $\Gamma \Sequent \Delta, !A$ भी है:
+या तो कोई परमाण्विक~$!C$, $\Gamma$ और~$\Delta$ दोनों का !!a{element} है, या
+$!A$ परमाण्विक और~$\Gamma$ का !!a{element} है। यही तर्क तब लागू होता है जब
+अंतिम अनुक्रम $!A, !A, \Gamma \Sequent \Delta$ हो।
+
+यदि $n>0$, तो $\pi$ किसी नियम~$R$ पर समाप्त होता है। यदि $!A$ इस अंतिम
+निगमन में प्रमुख नहीं है, तो हम~$\pi$ के निकटस्थ उप-!!{proof}s पर आगमन
+परिकल्पना और परिणामी !!{proof}(s) पर वही नियम~$R$ लगाकर,
+\olref{lem:G3c-invert} के प्रमाण की तरह !!a{proof}~$\pi'$ पा सकते हैं। आगमन
+परिकल्पना यह है कि यदि $\Pi \Sequent \Lambda, !D, !D$ अथवा $!D, !D, \Pi
+\Sequent \Lambda$ का !!{height}~$k<n$ वाला !!a{proof} है, तो क्रमशः $\Pi
+\Sequent \Lambda, !D$ अथवा $!D, \Pi \Sequent \Lambda$ का
+!!{height}~$\le k$ वाला !!a{proof} है। (ध्यान दें कि प्रसंग अथवा संकुचित
+!!{formula}, $\Gamma$, $\Delta$ या~$!A$ से भिन्न होने पर भी आगमन परिकल्पना
+लागू होती है!)
+
+उदाहरणतः मान लें कि $R$, $\RightR{\land}$ है और $\pi$ इस पर समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B, !A, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta', !C, !A, !A$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A, !A$
+\DisplayProof
+\]
+जहाँ $\Delta = \Delta', !B \land !C$। आगमन परिकल्पना से क्रमशः $\Gamma
+\fCenter \Delta', !B, !A$ और $\Gamma \fCenter \Delta', !C, !A$ के
+!!{proof}s $\pi_1'$ और $\pi_2'$ मिलते हैं, जहाँ $\pheight{\pi_1'} \le
+\pheight{\pi_1}$ और $\pheight{\pi_2'} \le \pheight{\pi_2}$।
+!!{proof}~$\pi'$ है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !B, !A$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta', !C, !A$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
+\DisplayProof
+\]
+
+यदि $!A$ अंतिम निगमन में प्रमुख है, तो हम~$\pi$ के निकटस्थ उप-!!{proof}s पर
+प्रतिलोमन प्रमेयिका (\olref{lem:G3c-invert}), फिर आगमन परिकल्पना और फिर
+नियम~$R$ लगाते हैं। उदाहरणतः मान लें कि $\pi$, $\Gamma \Sequent \Delta,
+!A, !A$ सिद्ध करता है, $!A \ident (!B \land !C)$ है और अंतिम निगमन में
+प्रमुख है। तब $\pi$ इस प्रकार दिखता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C, !B \land !C$
+\DisplayProof
+\]
+$\Gamma \Sequent \Delta, !B, !B$ का !!a{proof}~$\pi_1'$ पाने के लिए
+\olref{lem:G3c-invert} को $\pi_1$ पर लगाएँ। (यह $\Gamma \Sequent \Delta,
+!C, !B$ का !!a{proof} भी देता है, किंतु हमें उसकी आवश्यकता नहीं।) इसी प्रकार
+~$\pi_2$ पर \olref{lem:G3c-invert} लगाकर हमें $\Gamma \Sequent \Delta, !C,
+!C$ का !!a{proof}~$\pi_2'$ मिलता है। क्योंकि \RightR{\land} का प्रतिलोमन
+!!{height}-संरक्षक है, $\pheight{\pi_1'} \le \pheight{\pi_1} <
+\pheight{\pi}$ और $\pheight{\pi_2'} \le \pheight{\pi_2} <
+\pheight{\pi}$। अतः आगमन परिकल्पना $\pi_1'$ और $\pi_2'$ पर लागू होती है:
+क्रमशः $\Gamma \Sequent \Delta, !B$ और $\Gamma \Sequent \Delta, !C$ के
+!!{proof}s~$\pi_1''$ और $\pi_2''$ हैं, जहाँ $\pheight{\pi_1''} \le
+\pheight{\pi_1'} \le \pheight{\pi_1}$ और $\pheight{\pi_2''} \le
+\pheight{\pi_2'} \le \pheight{\pi_2}$। तब !!{proof}~$\pi'$ है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$\Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C$
+\DisplayProof
+\]
+जहाँ $\pheight{\pi'} \le \pheight{\pi}$।
+
+जिन स्थितियों में !!{formula} प्रमुख है, उनमें परिमाणक नियमों के लिए हमें
+विशेष सावधानी रखनी होगी।
+
+मान लें कि $!A \ident \lforall[x][!B(x)]$ दाईं ओर प्रमुख है। तब $\pi$ इस पर
+समाप्त होता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, \lforall[x][!B(x)], !B(a)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)], \lforall[x][!B(x)]$
+\DisplayProof
+\]
+\olref{lem:invert-quant} से ऐसे किसी भी~$c$ के लिए, जो $\Gamma \fCenter
+\Delta, \lforall[x][!B(x)], !B(a)$ में न आता हो, $\Gamma \fCenter \Delta,
+!B(c), !B(a)$ का !!{height} $\le \pheight{\pi_1}$ वाला कोई
+!!a{proof}~$\pi_1'$ है। हम $\pi_1'$ को नियमित मान सकते हैं; अतः
+\olref[qua]{lem:subst-regular} से !!{proof} $\Subst{\pi_1'}{a}{c}$,
+$\Gamma \fCenter \Delta, !B(a), !B(a)$ का भी !!{height} $\le
+\pheight{\pi_1}$ वाला !!a{proof} है। अब आगमन परिकल्पना लागू होती है और हमें
+$\Gamma \fCenter \Delta, !B(a)$ का !!a{proof}~$\pi_1''$ देती है। ~$\pi'$
+पाने के लिए \RightR{\lforall} नियम लगाएँ:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B(a)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\DisplayProof
+\]
+जहाँ $\pheight{\pi'} \le \pheight{\pi}$।
+
+अब मान लें कि $!A \ident \lexists[x][!B(x)]$ है और दाईं ओर प्रमुख है। तब
+$\pi$ इस प्रकार दिखता है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)], !B(t)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)]$
+\DisplayProof
+\]
+आगमन परिकल्पना~$\pi_1$ पर लागू होती है और $\Gamma \Sequent \Delta,
+\lexists[x][!B(x)], !B$ का !!a{proof}~$\pi_1'$ है। (ध्यान दें कि यहाँ किसी
+प्रतिलोमन प्रमेयिका की आवश्यकता नहीं!) तब !!{proof}~$\pi'$ है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta,  \lexists[x][!B(x)], !B$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)]$
+\DisplayProof
+\]
+जहाँ $\pheight{\pi'} \le \pheight{\pi}$।
+\end{proof}
+
+\begin{prob}
+\LeftR{\Contraction} के लिए \olref{prop:G3c-cont-adm} के प्रमाण की रूपरेखा
+दें। $!A \ident (!B \land !C)$ और $!A \ident (!B \lif !C)$ की स्थितियों का
+वर्णन करें।
+\end{prob}
+
+\begin{prob}
+शेष परिमाणक स्थितियों, अर्थात जहाँ $!A \ident \lforall[x][!B(x)]$ और $!A
+\ident \lexists[x][!B(x)]$, में \LeftR{\Contraction} के लिए
+\olref{prop:G3c-cont-adm} के प्रमाण की रूपरेखा दें।
+\end{prob}
+
+
+\end{document}

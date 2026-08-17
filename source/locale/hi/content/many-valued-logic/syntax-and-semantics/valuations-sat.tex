@@ -1,0 +1,48 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: valuations-sat
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{syn}{val}
+
+\olsection{\usetoken{P}{valuation} और संतुष्टि}
+
+\begin{defn}[!!^{valuation}s] 
+$V$ सत्य-मानों का कोई समुच्चय हो। $\Lang{L}$ से~$V$ में कोई
+\emph{!!{valuation}} ऐसा फलन~$\pAssign{v}$ है जो भाषा के
+!!{propositional variable} को~$V$ का !!a{element} नियत करता है, अर्थात्
+$\pAssign{v} \colon \PVar \to V$।
+\end{defn}
+
+\begin{defn}\ollabel{defn:pValue}
+  किसी बहुमूल्य तर्कशास्त्र~$\Log L$ के सत्य-मानों के समुच्चय~$V$ में
+  !!a{valuation}~$\pAssign{v}$ दिए होने पर मूल्यांकन-फलन $\pValue{v}
+  \colon \Frm[L] \to V$ को आगमनतः इस प्रकार परिभाषित करें:
+  \begin{enumerate}
+    \item $\pValue{v}(\Obj p_n) = \pAssign{v}(\Obj p_n)$; 
+    \item यदि $\star$ कोई $0$-स्थानी संयोजक है, तो $\pValue{v}(\star)  = \tf{\star}[\Log L]$;
+    \item यदि $\star$ कोई $n$-स्थानी संयोजक है, तो
+    \[
+      \pValue{v}(\star(!A_1, \dots, !A_n)) = \tf{\star}[\Log L]
+      (\pValue{v}(!A_1), \dots, \pValue{v}(!A_n)).
+    \]
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}[संतुष्टि]
+\ollabel{defn:satisfaction} !!{formula}~$!A$ किसी
+  !!a{valuation}~$\pAssign{v}$ द्वारा \emph{संतुष्ट} है,
+  $\pSat{v}{!A}[\Log L]$, तभी और केवल तभी जब
+  $\pValue{v}(!A)[\Log L] \in V^+$, जहाँ $V^+$, ~$\Log L$ के निर्दिष्ट
+  सत्य-मानों का समुच्चय है।
+  
+  ``$\pSat{v}{!A}[\Log L]$ नहीं'' के अर्थ में हम
+  $\pSat/{v}{!A}[\Log L]$ लिखते हैं। यदि $\Gamma$ !!{formula} का कोई
+  समुच्चय है, तो $\pSat{v}{\Gamma}[\Log L]$ तभी और केवल तभी जब प्रत्येक
+  ~$!A \in \Gamma$ के लिए $\pSat{v}{!A}[\Log L]$।
+\end{defn}
+
+\end{document}

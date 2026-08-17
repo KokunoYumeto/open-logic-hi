@@ -1,0 +1,118 @@
+% Part: propositional-logic
+% Chapter: propositional-logic 
+% Section: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pl}{prp}{com}
+
+\olsection{प्रतिज्ञप्ति तर्कशास्त्र की पूर्णता}
+
+\begin{defn}
+\ollabel{def:MaxCon}
+!!{formula}s का समुच्चय $\Gamma$ \emph{अधिकतम संगत} है यदि वह संगत है और
+यदि $\Delta$ ऐसा संगत समुच्चय है कि $\Gamma \subseteq \Delta$, तो $\Gamma
+= \Delta$।
+\end{defn}
+
+\begin{lem}[सत्यता लेम्मा]
+  \ollabel{lem:truth}
+मान लें $\Gamma$ अधिकतम संगत है; तब:
+\begin{enumerate}
+\item \ollabel{lem:truth-1} $!A \in \Gamma$ तभी और केवल तभी जब $\lnot !A
+  \notin \Gamma$;
+\item \ollabel{lem:truth-2} $\Gamma \Proves !A$ तभी और केवल तभी जब $!A \in \Gamma$; 
+\item \ollabel{lem:truth-3} $!A \lif !B \in \Gamma$ तभी और केवल तभी जब
+  या तो $!A \notin \Gamma$ या $!B \in \Gamma$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+\begin{enumerate}
+\item मान लें $!A \in \Gamma$। यदि $\lnot !A \in \Gamma$ भी, तो $\Gamma$
+  असंगत है; और यदि न $!A$ न $\lnot!A$, $\Gamma$ में है, तो
+  \olref[axd]{prop:phi} से $\Gamma\cup\{!A\}$ और $\Gamma \cup \{\lnot
+  !A\}$ में से कोई एक संगत है, जिसका अर्थ है कि $\Gamma$ अधिकतम नहीं है।
+  दूसरी दिशा भी इसी प्रकार सिद्ध होती है।
+\item यदि $!A \in \Gamma$, तो निस्संदेह $\Gamma \Proves !A$। दूसरी ओर
+  मान लें $\Gamma \Proves !A$। यदि $!A \notin \Gamma$, तो
+  \olref{lem:truth-1} से $\lnot !A \in \Gamma$। अतः $\Gamma \Proves !A$
+  और $\Gamma \Proves \lnot !A$, जो विरोधाभास है।
+\item अभ्यास।
+\end{enumerate}
+\end{proof}
+
+\olref{lem:truth}\olref{lem:truth-2} की बाएँ-से-दाएँ दिशा दिखाती है कि
+$\Gamma$ \emph{निगमनात्मक रूप से संवृत} है, अर्थात् सभी~$!A$ के लिए यदि
+$\Gamma \Proves !A$, तो $!A \in \Gamma$।
+
+\begin{prob}
+  \olref{lem:truth} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\begin{thm}[पूर्णता]
+\ollabel{thm:completeness} 
+यदि $\Gamma$ संगत है, तो $\Gamma$ संतुष्टनीय है।
+\end{thm}
+
+\begin{proof}
+मान लें $!A_0$, $!A_1$,~\dots भाषा के सभी !!{formula}s की सर्वग्राही सूची
+है। हम !!{formula}s के समुच्चयों का बढ़ता अनुक्रम $\Gamma_0$,
+$\Gamma_1$,~\dots निम्न प्रकार पुनरावर्ती रूप से परिभाषित करते हैं:
+\begin{align*}
+\Gamma_0 & = \Gamma\\
+\Gamma_{n+1} &  =
+\begin{cases}
+  \Gamma_n \cup \{!A_n\} & \text{यदि $\Gamma_n \cup \{!A_n\}$ संगत है;}\\
+  \Gamma_n \cup \{\lnot !A_n\} & \text{अन्यथा।}
+\end{cases}
+\end{align*}
+फिर परिभाषित करें:
+\[
+\Gamma^* = \bigcup_{0\le n}\Gamma_n.
+\]
+अब प्रमाण बारी-बारी से निम्नलिखित तथ्य स्थापित करके आगे बढ़ता है:
+\begin{enumerate}
+\item प्रत्येक $n$ के लिए समुच्चय $\Gamma_n$ संगत है ($n$ पर आगमन और
+  \olref[axd]{prop:phi} के उपयोग से);
+\item $\Gamma^*$ संगत है;
+\item $\Gamma^*$ अधिकतम है।
+\end{enumerate}
+फिर मूल्यांकन $v$ को $v(p_i) = \True$ तभी और केवल तभी रखकर परिभाषित करें जब
+$p_i \in \Gamma^*$। इसके बाद $!A$ पर आगमन से दिखाया जाता है कि अधिक जटिल
+!!{sentence}s के लिए भी $\Gamma^*$ की सदस्यता, $v$ के अनुसार सत्यता से मेल
+खाती है: $\overline{v}(!A) = \True$ तभी और केवल तभी जब $!A \in \Gamma^*$।
+विशेषतः $v$, $\Gamma^*$ को संतुष्ट करता है और चूँकि $\Gamma \subseteq
+\Gamma^*$, इसलिए इच्छानुसार $\Gamma$ भी संतुष्टनीय है।
+\end{proof}
+
+\begin{cor}
+यदि $\Gamma \Entails !A$, तो $\Gamma \Proves !A$।
+\end{cor}
+
+\begin{proof}
+यदि $\Gamma\Proves/ !A$, तो \olref[axd]{prop:prov-incons} से $\Gamma \cup
+\{\lnot !A\}$ संगत है। अतः पूर्णता प्रमेय से $\Gamma \cup \{\lnot !A\}$
+संतुष्टनीय है और $\Gamma \Entails/ !A$।
+\end{proof}
+
+\begin{prop}[संहतता प्रमेय]
+\ollabel{prop:compactness}
+$\Gamma$ तभी और केवल तभी संतुष्टनीय है जब $\Gamma$ का प्रत्येक \emph{परिमित}
+उपसमुच्चय $\Gamma_0$ संतुष्टनीय हो।
+\end{prop}
+
+\begin{proof}
+$\Gamma$ तभी और केवल तभी असंतुष्टनीय है जब वह असंगत है, तभी और केवल तभी जब
+  $\Gamma$ का कोई परिमित उपसमुच्चय $\Gamma_0$ असंगत है, और तभी और केवल तभी
+  जब $\Gamma$ का कोई परिमित उपसमुच्चय $\Gamma_0$ असंतुष्टनीय है।
+\end{proof}
+
+\begin{cor}
+$\Gamma \Entails !A$ तभी और केवल तभी जब $\Gamma$ के किसी परिमित उपसमुच्चय
+$\Gamma_0$ के लिए $\Gamma_0 \Entails !A$।
+\end{cor}
+
+\end{document}

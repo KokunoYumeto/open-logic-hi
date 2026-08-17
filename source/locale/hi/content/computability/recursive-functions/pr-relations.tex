@@ -1,0 +1,171 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: pr-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cmp}{rec}{prr}
+\olsection{आदिम पुनरावर्ती संबंध}
+
+
+\begin{defn}
+किसी संबंध $R(\vec x)$ को आदिम पुनरावर्ती कहते हैं यदि उसका अभिलाक्षणिक
+फलन
+\[
+\Char{R}(\vec x) = \left\{
+  \begin{array}{ll}
+  1 & \mbox{यदि $R(\vec x)$} \\
+  0 & \mbox{अन्यथा}
+  \end{array}
+\right.
+\]
+आदिम पुनरावर्ती हो।
+\end{defn}
+
+दूसरे शब्दों में, जब हम किसी आदिम पुनरावर्ती संबंध $R(\vec x)$ की बात
+करते हैं, तो हमारा आशय $\Char{R}(\vec
+x) = 1$ रूप के संबंध से होता है,
+जहाँ $\Char{R}$ ऐसा आदिम पुनरावर्ती फलन है जो किसी भी निवेश पर 1 या 0
+लौटाता है। मसलन, संबंध $\fn{IsZero}(x)$, जो तभी और केवल तभी मान्य है जब
+$x = 0$, उस फलन $\Char{\fn{IsZero}}$ के संगत है जिसे आदिम पुनरावर्तन से
+इस प्रकार परिभाषित किया गया है:
+\begin{align*}
+\Char{\fn{IsZero}}(0) & = 1,\\
+\Char{\fn{IsZero}}(x+1) & = 0.
+\end{align*}
+
+यह स्पष्ट होना चाहिए कि संबंधों का अन्य आदिम पुनरावर्ती फलनों के साथ
+संयोजन किया जा सकता है। अतः निम्न भी आदिम पुनरावर्ती हैं:
+\begin{enumerate}
+\item समता संबंध $x = y$, जिसे $\fn{IsZero}(\left|x -
+  y\right|)$ से परिभाषित किया गया है।
+\item छोटा-या-बराबर संबंध $x \leq y$, जिसे $\fn{IsZero}(x
+  \tsub y)$ से परिभाषित किया गया है।
+\end{enumerate}
+
+
+\begin{prop}
+  आदिम पुनरावर्ती संबंधों का समुच्चय बूलीय संक्रियाओं के अधीन संवृत है;
+  अर्थात् यदि $P(\vec x)$ और $Q(\vec x)$ आदिम पुनरावर्ती हैं, तो निम्न
+  भी आदिम पुनरावर्ती हैं:
+  \begin{enumerate}
+  \item $\lnot P(\vec x)$
+  \item $P(\vec x) \land Q(\vec x)$
+  \item $P(\vec x) \lor Q(\vec x)$
+  \item $P(\vec x) \lif Q(\vec x)$
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  मान लें कि $P(\vec x)$ और $Q(\vec x)$ आदिम पुनरावर्ती हैं, अर्थात्
+  उनके अभिलाक्षणिक फलन $\Char{P}$ और $\Char{Q}$ ऐसे हैं। हमें दिखाना है
+  कि $\lnot P(\vec x)$ इत्यादि के अभिलाक्षणिक फलन भी आदिम पुनरावर्ती हैं।
+  \[
+  \Char{\lnot P}(\vec x) = \begin{cases}
+    0 & \text{यदि $\Char{P}(\vec x) = 1$}\\
+    1 & \text{अन्यथा}
+  \end{cases}
+  \]
+  हम $\Char{\lnot P}(\vec x)$ को $1 \tsub \Char{P}(\vec x)$ के रूप
+  में परिभाषित कर सकते हैं।
+  \[
+  \Char{P \land Q}(\vec x) = \begin{cases}
+    1 & \text{यदि $\Char{P}(\vec x) = \Char{Q}(\vec x) = 1$}\\
+    0 & \text{अन्यथा}
+  \end{cases}
+  \]
+  हम $\Char{P \land Q}(\vec x)$ को $\Char{P}(\vec x) \cdot
+  \Char{Q}(\vec x)$ अथवा $\fn{min}(\Char{P}(\vec x), \Char{Q}(\vec
+  x))$ के रूप में परिभाषित कर सकते हैं। इसी प्रकार,
+  \begin{align*}
+    \Char{P \lor Q}(\vec x) & = \fn{max}(\Char{P}(\vec x), \Char{Q}(\vec x)) \text{ और}\\
+    \Char{P \lif Q}(\vec x) & = \fn{max}(1 \tsub
+  \Char{P}(\vec x), \Char{Q}(\vec x)).
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+  आदिम पुनरावर्ती संबंधों का समुच्चय परिबद्ध परिमाणीकरण के अधीन संवृत
+  है; अर्थात् यदि $R(\vec x, z)$ कोई आदिम पुनरावर्ती संबंध है, तो निम्न
+  संबंध भी ऐसे हैं:
+  \begin{align*}
+    & \bforall{z < y}{R(\vec x, z)} \text{ और}\\
+    & \bexists{z < y}{R(\vec x, z)}.
+  \end{align*}
+  $\bforall{z < y}{R(\vec x, z)}$, $\vec x$ और $y$ के लिए तभी और केवल
+  तभी मान्य है जब $R(\vec x, z)$ प्रत्येक~$z$ के लिए मान्य हो जो~$y$ से
+  छोटा है; और $\bexists{z < y}{R(\vec x, z)}$ के लिए भी इसी प्रकार।
+\end{prop}
+
+\begin{proof}
+  परिपाटी से हम $\bforall{z < 0}{R(\vec x, z)}$ को सत्य मानते हैं
+  (इस सरल कारण से कि कोई $z$,~$0$ से छोटा नहीं है) और
+  $\bexists{z < 0}{R(\vec x, z)}$ को असत्य मानते हैं। कोई परिबद्ध
+  सार्विक परिमाणक ठीक परिमित गुणनफल या पुनरावृत्त न्यूनतम की तरह काम करता
+  है; अर्थात् यदि $P(\vec x, y) \defiff \bforall{z <
+  y}{R(\vec x, z)}$, तो $\Char{P}(\vec x, y)$ को इस प्रकार परिभाषित
+  किया जा सकता है:
+  \begin{align*}
+    \Char{P}(\vec x, 0) & = 1\\
+    \Char{P}(\vec x, y+1) & =
+    \fn{min}(\Char{P}(\vec x, y), \Char{R}(\vec x, y)).
+  \end{align*}
+  परिबद्ध अस्तित्वात्मक परिमाणीकरण को इसी प्रकार $\fn{max}$ का उपयोग
+  करके परिभाषित किया जा सकता है। वैकल्पिक रूप से, तुल्यता
+  $\bexists{z < y}{R(\vec x, z)}
+  \liff \lnot \bforall{z < y}{\lnot R(\vec x, z)}$ का उपयोग करके उसे
+  परिबद्ध सार्विक परिमाणीकरण से परिभाषित किया जा सकता है। ध्यान दें कि,
+  मसलन, $\bexists{x \leq y}{\dots
+  x\dots}$ रूप का परिबद्ध परिमाणक
+  $\bexists{x < y+1}{\dots x \dots}$ के तुल्य है।
+\end{proof}
+
+\begin{prob}
+  दिखाएँ कि त्रि-स्थानी संबंध $x \equiv y \mod n$ (मापांक~$n$ में
+  सर्वांगसमता) आदिम पुनरावर्ती है।
+\end{prob}
+
+एक अन्य उपयोगी आदिम पुनरावर्ती फलन सप्रतिबंध फलन $\fn{cond}(x,y,z)$ है,
+जिसे इस प्रकार परिभाषित किया गया है:
+\begin{align*}
+  \fn{cond}(x,y,z) & = \begin{cases}
+  y & \text{यदि $x = 0$} \\
+  z & \text{अन्यथा}.
+\end{cases}
+\intertext{इसे पुनरावर्ती रूप से इस प्रकार परिभाषित किया गया है:}
+\fn{cond}(0,y,z) & = y,\\
+\fn{cond}(x+1,y,z) & = z.
+\end{align*}
+इसका उपयोग आदिम पुनरावर्ती संबंधों से आदिम पुनरावर्ती फलनों की
+प्रकरणानुसार परिभाषाओं को उचित ठहराने के लिए किया जा सकता है:
+
+\begin{prop}
+यदि $g_0(\vec x)$, \dots,~$g_m(\vec x)$ आदिम पुनरावर्ती फलन हैं और
+$R_0(\vec
+x)$, \dots, $R_{m-1}(\vec x)$ आदिम पुनरावर्ती संबंध हैं, तो
+निम्न प्रकार परिभाषित फलन $f$
+\[
+f(\vec x) = \begin{cases}
+    g_0(\vec x) & \text{यदि $R_0(\vec{x})$} \\
+    g_1(\vec x) & \text{यदि $R_1(\vec{x})$ और $R_0(\vec{x})$ नहीं} \\
+    \vdots & \\
+    g_{m-1}(\vec x) & \text{यदि $R_{m-1}(\vec{x})$ और पिछले में से कोई
+      मान्य नहीं}
+    \\
+    g_m(\vec x) & \mbox{अन्यथा}
+\end{cases}
+\]
+भी आदिम पुनरावर्ती है।
+\end{prop}
+
+\begin{proof}
+  जब $m = 1$, तब यह केवल निम्न प्रकार परिभाषित फलन है:
+  \[
+  f(\vec x) = \fn{cond}(\Char{\lnot R_0}(\vec x),g_0(\vec x),g_1(\vec
+  x)).
+  \]
+  $m$, $1$ से बड़ा होने पर इस रूप की परिभाषाओं का संयोजन भर करना होता है।
+\end{proof}
+\end{document}

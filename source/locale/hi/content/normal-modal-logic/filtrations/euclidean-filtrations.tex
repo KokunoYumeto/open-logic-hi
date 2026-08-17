@@ -1,0 +1,133 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: euclidean-filtrations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{fil}{euc}
+
+\olsection{यूक्लिडीय प्रतिरूपों के निस्यंदन}
+
+\olref[acc]{sec} का दृष्टिकोण उन प्रतिरूपों के लिए काम नहीं करता जो
+यूक्लिडीय, या सीरियल और यूक्लिडीय हैं। \olref{fig:ser-eucl} के ऊपर वाले
+प्रतिरूप पर विचार करें, जो यूक्लिडीय और सीरियल, दोनों है। $\Gamma = \{p,
+\Box p \}$ रखें। $\Gamma$ के माध्यम से निस्यंदन लेते समय $[w_1] =
+[w_3]$, क्योंकि $w_1$ और $w_3$ ही वे जगत हैं जो $\Gamma$ पर सहमत हैं।
+प्रत्येक निस्यंदन में $\mModel{M}$ से उत्तराधिकार में मिला तीर भी होगा,
+जैसा \olref{fig:ser-eucl2} में दर्शाया गया है। वह प्रतिरूप यूक्लिडीय नहीं
+है। इसके अतिरिक्त, हम उसे यूक्लिडीय बनाने के लिए उसमें तीर नहीं जोड़ सकते।
+हमें $[w_2]$ और $[w_4]$ के बीच दोनों दिशाओं में तीर जोड़ने होंगे, और फिर
+$w_2$ और~$w_5$ के बीच भी। किंतु $\Box p$, $w_2$ पर सत्य होना चाहिए,
+जबकि $p$, $w_5$ पर असत्य है।
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1)
+          [label={left: \mFalse{p}},
+            label={below: $\mSat{{}}{\Box p}$}] {$w_1$}; 
+    \node[world] (w2)
+          [label={right: \mTrue{p}},
+            label = {below: $\mSat{{}}{\Box p}$},
+            right=of w1] {$w_2$}; 
+    \draw[->] (w1) to (w2);
+    \node[world] (w3)
+          [label={left: \mFalse{p}},
+            label={below: $\mSat{{}}{\Box p}$},
+            below=of w1] {$w_3$}; 
+    \node[world] (w4)
+          [label={right:\mTrue{p}},
+            label={below: $\mSat/{{}}{\Box p}$},
+            right=of w3] {$w_4$};
+    \draw[->] (w3) to (w4);
+    \draw[reflexive above] (w4) to (w4);     
+    \node[world] (w5)
+          [label={right: \mFalse{p}},
+            label=below:$\mSat/{{}}{\Box p}$,
+            right=of w4] {$w_5$}; 
+    \draw[->, bend left] (w4) to (w5);
+    \draw[->, bend left] (w5) to (w4);
+    \draw[reflexive above] (w5) to (w5);     
+  \end{tikzpicture}
+  \caption{एक सीरियल और यूक्लिडीय प्रतिरूप।}
+  \ollabel{fig:ser-eucl}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[modal,every text node part/.style={align=center}]
+    \node[world] (w1)
+          [label={left: \mFalse{p}},
+            label={right:$[w_1]=[w_3]$},
+            label={below: $\mSat{{}}{\Box p}$}] {$[w_1]$}; 
+    \node[world] (w2)
+         [label={right: \mTrue{p}},
+           label = {below: $\mSat{{}}{\Box p}$},
+           right=of w1, yshift=1.5cm] {$[w_2]$}; 
+    \draw[->] (w1) to (w2);
+    \node[world] (w4)
+         [label={right:\mTrue{p}},
+           label={below: $\mSat/{{}}{\Box p}$},
+           right=of w1,yshift=-1.5cm] {$[w_4]$};
+    \draw[->] (w1) to (w4);
+    \draw[reflexive above] (w4) to (w4);     
+    \node[world] (w5)
+         [label={right: \mFalse{p}},
+             label=below:$\mSat/{{}}{\Box p}$,
+             right=of w4] {$[w_5]$}; 
+    \draw[->, bend left] (w4) to (w5);
+    \draw[->, bend left] (w5) to (w4);
+    \draw[reflexive above] (w5) to (w5);     
+  \end{tikzpicture}
+  \caption{\olref{fig:ser-eucl} के प्रतिरूप का निस्यंदन।}
+  \ollabel{fig:ser-eucl2}
+\end{figure}
+
+विशेषतः, यूक्लिडीय निस्यंदन पाने के लिए उप-!!{formula}ों के अधीन संवृत
+मनमाने $\Gamma$ के माध्यम से निस्यंदनों पर विचार करना पर्याप्त नहीं है।
+इसके स्थान पर हमें ऐसे समुच्चयों $\Gamma$ पर विचार करना होगा जो
+\emph{मोडलतः संवृत} हैं (\olref[pre]{defn:modallyclosed} देखें)। वाक्यों
+के ऐसे समुच्चय अपरिमित होते हैं, इसलिए वे तुरंत परिमित प्रतिरूप गुण या
+संबद्ध तंत्र की निर्णेयता नहीं देते।
+
+\begin{thm}\ollabel{thm:modal-closed-filt}
+  मान लें कि $\Gamma$ मोडलतः संवृत है, $\mModel{M}=\tuple{W,R,V}$, और
+  $\mModel{M^*} = \tuple{W^*,R^*,V^*}$, $\mModel{M}$ का स्थूलतम
+  निस्यंदन है।
+  \begin{enumerate}
+  \item यदि $\mModel{M}$ सममित है, तो $\mModel{M^*}$ भी।
+  \item यदि $\mModel{M}$ संक्रमणशील है, तो $\mModel{M^*}$ भी।
+  \item यदि $\mModel{M}$ यूक्लिडीय है, तो $\mModel{M^*}$ भी।
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+  \item यदि $\mModel{M^*}$ स्थूलतम निस्यंदन है, तो परिभाषा से
+    $R^*[u][v]$ तभी सत्य है जब $C_1(u,v)$। संक्रमणशीलता के लिए $C_1(u,v)$
+    और $C_1(v,w)$ मान लें; हमें $C_1(u,w)$ दिखाना है।
+    \iftag{prvBox}{मान लें $\mSat{M}{\Box !A}[u]$; तब
+      $\mSat{M}{\Box\Box!A}[u]$, क्योंकि \Ax{4} सभी संक्रमणशील
+      प्रतिरूपों में मान्य है; संवृत्ति से $\Box\Box!A \in \Gamma$, अतः
+      $C_1(u,v)$ से $\mSat{M}{\Box!A}[v]$ भी, और $C_1(v,w)$ से
+      $\mSat{M}{!A}[w]$ भी।}{}
+    \iftag{prvDiamond}{मान लें $\mSat{M}{!A}[w]$; तब $C_1(v,w)$ से
+      $\mSat{M}{\Diamond !A}[v]$, क्योंकि मोडल संवृत्ति से $\Diamond !A
+      \in \Gamma$। $C_1(u,v)$ से $\mSat{M}{\Diamond\Diamond !A}[u]$
+      मिलता है, क्योंकि मोडल संवृत्ति से $\Diamond\Diamond!A \in
+      \Gamma$। चूँकि $\Ax{4}_\Diamond$ सभी संक्रमणशील प्रतिरूपों में
+      मान्य है, $\mSat{M}{\Diamond!A}[u]$।}{}
+  \item अभ्यास। इस तथ्य का उपयोग कीजिए कि \Ax{5} और $\Ax{5_\Diamond}$,
+    दोनों सभी यूक्लिडीय प्रतिरूपों में मान्य हैं।
+  \item अभ्यास। इस तथ्य का उपयोग कीजिए कि \Ax{B} और $\Ax{B_\Diamond}$,
+    सभी सममित प्रतिरूपों में मान्य हैं।
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[nml][fil][euc]{thm:modal-closed-filt} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\end{document}

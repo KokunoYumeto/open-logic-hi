@@ -1,0 +1,23 @@
+% Target-only integrated chapter build wrapper for HI-OLP-AXD-CHAPTER-0001.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{xr-hyper}
+\externaldocument{soundness-external-labels}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{3em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{प्रथम-कोटि तर्कशास्त्र: अभिगृहीतीय निगमन}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\RenewDocumentCommand \Hyp {} {मान्यता}
+\renewcommand*{\theolchapter}{axd}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{axiomatic-deduction}
+\end{document}

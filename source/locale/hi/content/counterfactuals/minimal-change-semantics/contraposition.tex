@@ -1,0 +1,62 @@
+% Part: counterfactuals
+% Chapter: minimal-change-semantics
+% Section: transitivity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cnt}{min}{cpo}
+
+\olsection{प्रतिधनात्मकता}
+
+भौतिक और कठोर सशर्त अपने प्रतिधनात्मक के समतुल्य होते हैं। प्रतितथ्यात्मक
+सशर्त ऐसे नहीं होते। क्राट्ज़र का यह उदाहरण देखें:
+\begin{quote}
+  यदि ग्योथे 1832 में न मरे होते, तो वे अब (फिर भी) मृत होते।
+
+  यदि ग्योथे अब मृत न होते, तो वे 1832 में मरे होते।
+\end{quote}
+पहला वाक्य सत्य है: मनुष्य सैकड़ों वर्ष नहीं जीते। दूसरा स्पष्टतः असत्य
+है: यदि ग्योथे अब मृत न होते, तो वे अभी जीवित होते और इसलिए 1832 में मर
+नहीं सकते थे।
+
+\begin{ex}\ollabel{ex:contraposition-counterex}
+  गोलक अर्थविज्ञान प्रतिधनात्मकता को अमान्य करता है; अर्थात हमारे पास $p
+  \cif q \Entails/ \lnot q \cif \lnot p$ है। $p$ को ``ग्योथे 1832 में
+  नहीं मरे'' और $q$ को ``ग्योथे अब मृत हैं'' मानें। इसे हम ऐसे प्रतिरूप
+  $\mModel{M_1} = \tuple{W, O, V}$ में निरूपित कर सकते हैं जिसमें $W =
+  \{w, w_1, w_2\}$, $O = \{\{w\}, \{w, w_1\}, \{w, w_1, w_2\}\}$,
+  $V(p) = \{w_1, w_2\}$ और $V(q) = \{w, w_1\}$। अतः $w$ वास्तविक
+  जगत है, जहाँ ग्योथे 1832 में मरे और अब भी मृत हैं; $w_1$ वह (निकट)
+  जगत है, जहाँ ग्योथे, मान लें, 1833 में मरे और अब भी मृत हैं; और $w_2$
+  वह (दूरस्थ) जगत है, जहाँ ग्योथे अब भी जीवित हैं।
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.6,layerwidth=1.5]\tiny
+  \spheresystem{3}
+  \begin{scope}
+    \clip \propositionplot{0}{.8}{50}{4.5} -- (4.5,-4.5) -- (-4.5,-4.5) -- (-4.5,4.5) -- (4.5,4.5);
+    \spherelayer{3}
+  \end{scope}
+  \propositionintersect{0}{2}{110}{5.5}
+  \proposition{0}{.8}{50}{4.5}
+  \path (0,0) node[world] {$w$};
+  \spherepos{0}{2}{node[world] {$w_1$}}
+  \spherepos{-50}{3}{node[world] {$w_2$}}
+  \spherepos{28}{3}{node {$q$}}
+  \spherepos{42}{3}{node {$\lnot q$}}
+  \spherepos{-55}{4}{node {$p$}}
+  \spherepos{-67}{4}{node {$\lnot p$}}
+\end{tikzpicture}
+\caption{प्रतिधनात्मकता का प्रतिदृष्टांत}
+\ollabel{fig:contraposition}
+\end{center}
+\end{figure}
+एक $p$-स्वीकारी गोलक $S = \{w, w_1\}$ है और उसके सभी जगतों में
+$p \lif q$ सत्य है, अतः $\mSat{M}{p \cif q}[w]$। किंतु $\lnot q$-स्वीकारी
+गोलक $\{w, w_1, w_2\}$ में एक जगत, अर्थात~$w_2$, ऐसा है जहाँ $q$ असत्य
+और $p$ सत्य है, अतः $\mSat/{M}{\lnot q \lif \lnot p}[w_2]$।
+\end{ex}
+
+\end{document}

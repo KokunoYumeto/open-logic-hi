@@ -1,0 +1,157 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: sequents
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nat}{seq}
+
+\olsection{अनुक्रमों सहित प्राकृतिक निगमन: \Log{N2c} और~\Log{N2i}}
+
+\Log{G1c} या \Log{G1i} में !!^a{proof}~$\delta$ दिखाता है कि उसका
+अंतिम-!!{formula}~$!A$ उसकी खुली मान्यताओं से निष्पन्न होता है। यदि $\Gamma$,
+!!{formula}s~$!B$ का वह समुच्चय है जहाँ $!B^x$,~$\delta$ में खुली मान्यता
+के रूप में आता है, तो इसे $\delta \Proves \Gamma \Sequent !A$ लिख सकते हैं।
+इससे संकेत मिलता है कि हम अनुक्रमों के लिए भी प्राकृतिक निगमन प्रणाली
+सूत्रबद्ध कर सकते हैं। ऐसी प्रणाली में प्रत्येक अनुक्रम यह जानकारी रखता है
+कि दाईं ओर का !!{formula} किन खुली मान्यताओं पर निर्भर है, अर्थात् अनुक्रम पर
+समाप्त होने वाले उप-!!{proof} में कौन-सी मान्यताएँ खुली हैं। यह अनुक्रमों
+सहित प्राकृतिक निगमन, या ``अनुक्रम शैली में'' प्राकृतिक निगमन है, और हम
+फलित प्रणालियों को \Log{N2c} तथा~\Log{N2i} कहते हैं।
+
+\Log{N1} और \Log{N2} के बीच संगति को अधिक निकट बनाने के लिए बाईं ओर के
+समुच्चयों~$\Gamma$ को चिह्नित !!{formula}s~$x:!B$ से बना लें। चूँकि \Log{N1}
+के नियम केवल आधार-वाक्यों के !!{formula}s, अर्थात् निकटस्थ उप-!!{proof}s के
+अंतिम-!!{formula}s, पर काम करते हैं, इसलिए \Log{N2} के नियम केवल अनुक्रम के
+अनुवर्ती पर काम करते हैं। अतः अनुक्रमों के बाईं ओर के चिह्नित सूत्रों को हम
+केवल प्रसंग कह सकते हैं।
+
+मान्यताओं के स्थान पर \Log{N2} प्रमाणों के सबसे ऊपर के अनुक्रम इस रूप के
+अभिगृहीत होते हैं
+\[x:!A \Sequent !A.\]
+नियम ठीक \Log{N1} के नियमों के अनुरूप हैं और \olref{tab:N2} में दिए गए हैं।
+
+\subfile{rules-N2}
+
+क्योंकि हमें (\Log{N1c} और \Log{N1i} की तरह) यह अनुमति देनी है कि नियम
+\Intro{\lif}, \Intro{\lnot}, \Elim{\lor} और \Elim{\lexists} मान्यताओं को
+वास्तव में मुक्त कर सकते हैं, पर ऐसा आवश्यक नहीं, इसलिए हम \Log{N2c}
+और~\Log{N2i} में संबद्ध नियमों के सही अनुप्रयोग तब भी स्वीकार करते हैं जब
+संबद्ध प्रसंग !!{formula}s $!A$, $!B$ और $!A(a)$ संबद्ध आधार-वाक्य के प्रसंग
+में उपस्थित न हों।
+
+\begin{prop}
+यदि $\delta$,~$!A$ का \Log{N1c} या \Log{N1i} में कोई !!a{proof} है, तो
+~\Log{N2c} (\Log{N2i}) में $\Gamma \Sequent !A$ का कोई !!a{proof}~$\delta'$
+है, जहाँ $\Gamma$ उन सभी~$x:!B$ का समुच्चय है जिनके लिए $!B^x$,~$\delta$ की
+खुली मान्यता है।
+\end{prop}
+
+\begin{proof}
+  $n=\pheight{\delta}$ पर आगमन से। यदि $n=0$, तो $\delta$ अकेली खुली
+  मान्यता~$!A^x$ है। तब $\Gamma = \{x:!A\}$ और $\Gamma \Sequent !A$,
+  \Log{N2c} या~\Log{N2i} का अभिगृहीत है।
+
+  यदि $n>0$, तो हम~$\delta$ के अंतिम अनुमान के अनुसार स्थितियों में भेद करते
+  हैं। हम केवल एक स्थिति की चर्चा करते हैं; शेष अभ्यास के रूप में छोड़ी जाती
+  हैं।
+
+  मान लें अंतिम अनुमान $\Intro{\lif}$ है। तब $\delta$ का अंत है
+  \[
+  \AxiomC{$\Discharge{!B}{x}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \DischargeRule{\Intro{\lif}}{x}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \]
+  आगमन परिकल्पना से~\Log{N2c} (\Log{N2i}) में $\Gamma' \Sequent !C$ का कोई
+  !!a{proof}~$\delta_1'$ है, जहाँ $\Gamma'$ वे चिह्नित मान्यताएँ हैं जो
+  ~\delta_1$ में खुली हैं। यदि $!B^x$, $\delta_1$ की खुली मान्यता है, तो उसे
+  \Intro{\lif} अनुमान पर मुक्त किया जाता है और~$\delta$ की खुली मान्यताएँ
+  $\Gamma = \Gamma' \setminus \{x:!B\}$ हैं। दूसरे शब्दों में $\delta_1'$,
+  ~ $x:!B, \Gamma \Sequent !C$ का !!a{proof} है और हम $\delta'$ को यह ले
+  सकते हैं
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \Deduce$x:B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  यदि $!B^x$,~$\delta_1$ की खुली मान्यता नहीं है, तो \Intro{\lif} कोई
+  मान्यता मुक्त नहीं करता और $\delta$ तथा $\delta_1$ की खुली मान्यताएँ समान
+  हैं। चूँकि~\Log{N2c} और~\Log{N2i} में \Intro{\lif} के आधार-वाक्य में
+  प्रसंग सूत्र $x:!B$ का उपस्थित होना आवश्यक नहीं, हम $\delta'$ को यह ले
+  सकते हैं
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+
+  वे स्थितियाँ भी इसी प्रकार हैं जहाँ $\delta$ किसी अन्य नियम पर समाप्त होता
+  है।
+\end{proof}
+
+\begin{prop}
+यदि $\delta$, $\Gamma \Sequent !A$ का \Log{N2c} या \Log{N2i} में कोई
+!!a{proof} है, तो \Log{N1c} (\Log{N1i}) में कोई !!a{proof}~$\delta'$ है
+जिसका अंतिम-!!{formula}~$!A$ और प्रत्येक $x:!B \in \Gamma$ के लिए खुली
+मान्यता $!B^x$ है।
+\end{prop}
+
+\begin{proof}
+  हम फिर~$\delta$ की !!{height}~$n$ पर आगमन से आगे बढ़ते हैं। यदि $n=0$,
+  तो $\delta$ अभिगृहीत $x:!A \Sequent !A$ है। !!{proof}~$\delta'$ मान्यता
+  ~$!A^x$ है।
+
+  यदि $n>0$, तो हम~$\delta$ के अंतिम अनुमान के अनुसार स्थितियों में भेद करते
+  हैं। उदाहरणतः यदि वह अनुमान~$\Intro{\lif}$ है, तो $\delta$ का अंत है
+  \[
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \quad\text{ या }\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  आगमन परिकल्पना से~\Log{N1c} (\Log{N1i}) में~$!C$ का कोई !!a{proof} है।
+  पहली स्थिति में $!B^x$,~$\delta'$ की खुली मान्यता है; दूसरी में नहीं। हम
+  !!{proof}~$\delta'$ को यह ले सकते हैं
+  \[
+  \bottomAlignProof
+  \AxiomC{$\Discharge{!B}{x}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \DischargeRule{\Intro{\lif}}{x}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \quad\text{ या }\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \RightLabel{\Intro{\lif}}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \]
+  क्रमशः।
+\end{proof}
+
+\end{document}

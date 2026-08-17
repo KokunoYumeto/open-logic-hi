@@ -1,0 +1,114 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: truth-at-w
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{aml}{el}{trw}
+
+\olsection{किसी जगत पर सत्यता}
+
+सामान्य मोडल तर्कशास्त्र की ही तरह प्रत्येक ज्ञानात्मक प्रतिरूप निर्धारित
+करता है कि उसमें कौन-से !!{formula} किन जगतों पर सत्य माने जाते हैं।
+संबंधात्मक अर्थविज्ञान की मूल धारणा के लिए हम वही संकेत-पद्धति---``प्रतिरूप
+$\mModel{M}$, !!{formula}~$!A$ को जगत~$w$ पर सत्य बनाता है''---अपनाते हैं।
+यह संबंध आगमनात्मक रूप से परिभाषित होता है और सभी गैर-मोडल संकारकों के लिए
+सामान्य मोडल मामले के समान है।
+
+\begin{defn}\ollabel{defn:mmodels}
+  किसी $\mModel M$ में \emph{!!{formula}~$!A$ की $w$ पर सत्यता}, जिसे
+  $\mSat{M}{!A}[w]$ से लिखते हैं, आगमनात्मक रूप से इस प्रकार परिभाषित है:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ कभी नहीं।}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ सदैव।}}{}
+  \item $\mSat{M}{p}[w]$ तभी जब $w \in V(p)$।
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat/{M}{!B}[w]$।}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$।}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ या $\mSat{M}{!C}[w]$} (या दोनों)।}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat/{M}{!B}[w]$ या $\mSat{M}{!C}[w]$।}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    या तो $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$ दोनों, या
+    न $\mSat{M}{!B}[w]$ न $\mSat{M}{!C}[w]$।}}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $R_a ww'$ वाले प्रत्येक $w' \in W$ के लिए $\mSat{M}{!B}[w']$।}
+  \end{enumerate} 
+\end{defn}
+
+पर अब हमें अपने अभिगम्यता संबंधों पर लगे प्रतिबंधों के बारे में विचार करना
+होगा। उपवाक्य~\olref{defn:sub:mmodels-box} के अनुसार, जब $R_a ww'$ वाला कोई
+~$w'$ न हो, तब !!{formula}~$\Knows_a !B$, $w$ पर सत्य है। यह सामान्य मोडल
+तर्कशास्त्र वाला ही उपवाक्य है: जब किसी जगत का कोई उत्तरवर्ती न हो, तब सभी
+$\Box$-सूत्र वहाँ रिक्ततः सत्य होते हैं। यदि हम $\Knows$ को \emph{ज्ञान}
+का निरूपण मानें, तो यह अत्यंत असहज लगता है। आखिर हम सामान्यतः मानते हैं कि
+ऐसी \emph{कोई} परिस्थिति नहीं हो सकती जिसमें कोई कर्ता $!A$ और $\lnot !A$
+दोनों को एक ही समय जानता हो।
+
+एक समाधान यह सुनिश्चित करना है कि ज्ञानात्मक तर्कशास्त्र में हमारा
+अभिगम्यता संबंध सदैव \emph{स्वपरावर्ती} हो। मोटे तौर पर यह इस विचार के
+अनुरूप है कि वास्तविक जगत किसी कर्ता की सूचना के संगत है। वास्तव में
+ज्ञानात्मक तर्कशास्त्र सामान्यतः S5 का उपयोग करते हैं, किंतु $\Knows_a$
+संबंध से ठीक क्या निरूपित करना है, इसके अनुसार कुछ तर्कशास्त्र दुर्बलतर
+तंत्रों का उपयोग कर सकते हैं।
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}}]{$w_1$}; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mTrue{q}},
+        above right=of w1]{$w_2$}; 
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}},
+        below right=of w1] {$w_3$};
+      \draw[<->] (w1) to node {$a$} (w2);
+      \draw[->,loop left] (w1) to node {$a,b$} (w1);
+      \draw[<->] (w1) to [swap] node {$b$} (w3);
+      \draw[->,loop above] (w2) to node {$a,b$} (w2) ;
+      \draw[->,loop below] (w3) to node {$a,b$} (w3) ;
+    \end{tikzpicture}
+  \end{center}
+  \caption{एक सरल ज्ञानात्मक प्रतिरूप।}
+  \ollabel{fig:simple}
+\end{figure}
+
+\begin{prob}
+  विचार कीजिए कि \olref[aml][el][trw]{fig:simple} में निम्नलिखित में से
+  कौन-से कथन मान्य हैं:
+  \begin{enumerate}
+    \item $\mSat{M}{\lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_a \lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_b \lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_b q \lor \Knows_b \lnot q}[w_2]$;
+    \item $\mSat{M}{\Knows_a( \Knows_b q \lor \Knows_b \lnot q)}[w_2]$;
+    \item $\mSat{M}{\EKnows_{\{a,b\}} \lnot q}[w_3]$;
+    \end{enumerate}
+\end{prob}
+
+अब जबकि हमने किसी जगत पर सत्यता की मूल परिभाषा दे दी है, सामान्य मोडल
+तर्कशास्त्र की अन्य अर्थवैज्ञानिक धारणाएँ---जैसे मोडल मान्यता और
+निष्कर्षण---मोडल संकारकों की इस नई व्याख्या पर सीधे लागू हो जाती हैं।
+
+अब हम सार्वज्ञान संकारक~$\CKnows_G$ की सत्यता-शर्तें भी दे सकते हैं।
+\olref[sfr][rel][ops]{sec} से स्मरण करें कि किसी संबंध~$R$ का
+\emph{संक्रमणशील संवरण}~$R^+$ इस प्रकार परिभाषित है:
+\begin{align*}
+  R^+ &= \bigcup_{ n \in \mathbb{N}} R^n, 
+\intertext{जहाँ}
+  R^0 & = R \text{ और}\\ 
+  R^{n+1} & = \Setabs{\tuple{x, z}}{\exists y (R^n xy \land Ryz)}.
+\end{align*}
+तब, जहाँ $G$ कर्ताओं का समूह है, हम $R_G = ( \bigcup_{b \in G} R_b )^+$
+को सभी कर्ताओं के अभिगम्यता संबंधों के संघ का संक्रमणशील संवरण परिभाषित
+करते हैं।
+
+\begin{defn}
+यदि $G' \subseteq G$, तो $\mSat{M}{\CKnows_{G'} !A}[w]$ तभी जब
+$R_{G'} w w'$ वाले प्रत्येक $w'$ के लिए $\mSat{M}{!A}[w']$।
+\end{defn}
+
+\end{document}

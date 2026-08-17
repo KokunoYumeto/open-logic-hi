@@ -1,0 +1,213 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ord-arithmetic}{add}
+\olsection{क्रमसूचक योग}
+
+मान लें कि हम $\alpha$ और $\beta$ को जोड़ना चाहते हैं। हम $\alpha$ की एक
+प्रति के ठीक बाद $\beta$ की एक प्रति रख सकते हैं। (हमें \emph{प्रतियाँ}
+लेनी होंगी, क्योंकि \olref[ordinals][basic]{ordinalsaresubsets} से जानते हैं
+कि या तो $\alpha \subseteq \beta$ अथवा $\beta \subseteq \alpha$।) इसका सहज
+प्रभाव चरणों के एक $\alpha$-अनुक्रम से गुजरना और \emph{फिर} एक
+$\beta$-अनुक्रम से गुजरना है। परिणामी अनुक्रम सुव्यवस्थित होगा; अतः
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} से वह किसी (अद्वितीय)
+क्रमसूचक के समाकृतिक है। उस क्रमसूचक को $\alpha$ और $\beta$ का \emph{योग}
+माना जा सकता है।
+
+क्रमसूचक योग के पीछे यही सहज विचार है। उसे कठोर रूप से परिभाषित करने के लिए
+हम समुच्चयों की \emph{प्रतियाँ} लेने के विचार से आरंभ करते हैं। यहाँ विचार
+यह है कि कौन-सी वस्तु कहाँ से आई इसका पता रखने के लिए मनमाने चिह्न $0$ और
+$1$ उपयोग किए जाएँ:
+
+\begin{defn}\ollabel{defdissum}
+$A$ और $B$ का \emph{असंयुक्त योग}
+$A \disjointsum B = (A\times \{0\}) \cup (B \times \{1\})$ है।
+\end{defn}
+
+अब क्रमसूचकों के युग्मों पर एक क्रम परिभाषित करें:
+
+\begin{defn}
+किन्हीं क्रमसूचकों $\alpha_1, \alpha_2, \beta_1, \beta_2$ के लिए कहें:
+\begin{align*}
+	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}
+	\text{ तभी और केवल तभी जब }&
+	\text{या तो $\alpha_2 \in \beta_2$}\\
+	& \text{अथवा $\alpha_2 = \beta_2$ और $\alpha_1 \in \beta_1$, दोनों}
+\end{align*} 
+\end{defn}
+
+यह \emph{प्रतिलोम शब्दकोशीय} क्रम है, क्योंकि क्रम पहले दूसरे अवयव और फिर
+पहले अवयव से किया जाता है। अब याद करें कि हम $\alpha \ordplus \beta$ को
+$\alpha$ की प्रति के बाद $\beta$ की प्रति वाले क्रम का क्रम-प्रकार परिभाषित
+करना चाहते थे। इसके लिए हम कहते हैं:
+
+\begin{defn}\ollabel{defordplus}
+किन्हीं क्रमसूचकों $\alpha$, $\beta$ का योग
+$\alpha \ordplus \beta = \ordtype{\alpha \disjointsum \beta,
+\rlexless}$ है।
+\end{defn}
+\noindent
+ध्यान दें कि यहाँ हमने संकेतन का थोड़ा दुरुपयोग किया है; कठोर रूप में
+``$\rlexless$'' के स्थान पर
+``$\Setabs{\tuple{x,y}\in \alpha\disjointsum\beta}{x \rlexless y}$''
+लिखना चाहिए। किंतु संक्षेप के लिए आगे भी संकेतन का यह दुरुपयोग करते रहेंगे।
+
+निम्न परिणाम \olref[ordinals][ordtype]{thmOrdinalRepresentation} के साथ
+पुष्टि करता है कि हमारी परिभाषा सुगठित है:
+
+\begin{lem}\ollabel{ordsumlessiswo} 
+किन्हीं क्रमसूचकों $\alpha$ और $\beta$ के लिए
+$\tuple{\alpha \disjointsum \beta, \rlexless}$ सुव्यवस्था है।
+\end{lem}
+
+\begin{proof}
+स्पष्टतः $\rlexless$, $\alpha \disjointsum \beta$ पर संबद्ध है। उसकी
+सुस्थापितता दिखाने के लिए कोई रिक्तेतर
+$X \subseteq \alpha \disjointsum \beta$ नियत करें। $Y$ को $X$ का वह
+उपसमुच्चय मानें जिसके सदस्यों का दूसरा निर्देशांक यथासंभव छोटा है; अर्थात
+$Y = \Setabs{\tuple{\gamma, i} \in X}{(\forall \tuple{\delta, j} \in X)i
+\leq j}$। अब $Y$ का लघुतम प्रथम निर्देशांक वाला अवयव चुनें।
+\end{proof}
+\noindent 
+इस प्रकार हमारे पास क्रमसूचक योग की अच्छी, स्पष्ट परिभाषा है। एक
+अनाश्चर्यजनक तथ्य यह है (याद करें कि
+\olref[z][infinity-again]{defnomega} से $1 = \{0\}$):
+\begin{prop}
+किसी भी क्रमसूचक $\alpha$ के लिए
+$\alpha \ordplus 1 = \ordsucc{\alpha}$।
+\end{prop}
+
+\begin{proof}
+$\ordsucc{\alpha} = \alpha \cup \{\alpha\}$ से
+$\alpha\disjointsum1 = (\alpha \times \{0\}) \disjointsum
+(\{0\} \times \{1\})$ में उस समाकृतिकता $f$ पर विचार करें जो
+$\gamma \in \alpha$ के लिए $f(\gamma) = \tuple{\gamma, 0}$ और
+$f(\alpha) = \tuple{0, 1}$ से दी गई है।
+\end{proof}
+\noindent
+इसके अतिरिक्त यह दिखाना सरल है कि योग कुछ पुनरावर्ती शर्तों का पालन करता है:
+
+\begin{lem}\ollabel{ordadditionrecursion}
+किन्हीं क्रमसूचकों $\alpha, \beta$ के लिए हमारे पास है:
+\begin{align*}
+	\alpha\ordplus 0 &= \alpha\\
+	\alpha \ordplus  (\beta\ordplus 1) &= (\alpha \ordplus  \beta) \ordplus  1\\
+	\alpha  \ordplus  \beta &= \supstrict_{\delta < \beta}(\alpha \ordplus  \delta) && \text{यदि $\beta$ सीमा क्रमसूचक है}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+हम प्रत्येक मामला जाँचते हैं; पहले:
+\begin{align*}
+	\alpha \ordplus  0 
+	& = \ordtype{(\alpha \times \{0\}) \cup (0 \times \{1\}), \rlexless} \\
+	&= \ordtype{(\alpha \times \{0\}) \cup \{0\}, \rlexless}\\
+	&= \alpha\\
+	\alpha \ordplus (\beta \ordplus  1) 
+	%&= \ordtype{(\alpha\times \{0\}) \cup (\ordtype{\beta \ordplus  1}\times \{1\}), \rlexless} \\
+	&= \ordtype{(\alpha\times \{0\}) \cup (\ordsucc{\beta}\times \{1\}), \rlexless} \\
+	&= \ordtype{(\alpha\times \{0\}) \cup (\beta \times \{1\}), \rlexless} \ordplus 1\\
+	&= (\alpha \ordplus  \beta) \ordplus  1
+\end{align*}
+अब $\beta \neq \emptyset$ को सीमा मानें। यदि $\delta < \beta$, तो
+$\delta\ordplus 1 < \beta$ भी; अतः $\alpha \ordplus \delta$,
+$\alpha \ordplus \beta$ का उचित आरंभिक खंड है। इसलिए
+$\alpha \ordplus \beta$, $X = \Setabs{\alpha \ordplus \delta}{\delta <
+\beta}$ का कठोर ऊपरी परिबंध है। इसके अतिरिक्त यदि
+$\alpha \leq \gamma < \alpha \ordplus \beta$, तो स्पष्टतः किसी
+$\delta < \beta$ के लिए $\gamma = \alpha \ordplus \delta$। अतः
+$\alpha \ordplus \beta =
+\supstrict_{\delta< \beta}(\alpha\ordplus \delta)$।
+\end{proof}
+
+किंतु एक उल्लेखनीय तथ्य यह है। क्रमसूचक योग परिभाषित करने के लिए हम
+\emph{इसके बजाय} बस परिमितेतर पुनरावर्तन प्रमेय का उपयोग करके ठीक
+\olref{ordadditionrecursion} में दिए पुनरावर्तन समीकरण निर्धारित कर सकते थे
+(हालाँकि ``$\beta \ordplus 1$'' के बजाय ``$\ordsucc{\beta}$'' का उपयोग
+करते)।
+
+अतः क्रमसूचकों पर संक्रियाएँ परिभाषित करने के दो भिन्न ढंग हैं। किसी
+सुव्यवस्थित समुच्चय को स्पष्टतः बनाकर और उसके क्रम-प्रकार पर विचार करके हम
+उन्हें \emph{संश्लेषणात्मक} रूप से परिभाषित कर सकते हैं। अथवा केवल पुनरावर्तन
+समीकरण निर्धारित करके उन्हें \emph{पुनरावर्ती} रूप से परिभाषित कर सकते हैं।
+किंतु सही ढंग से करने पर परिणाम समान है। क्योंकि
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} गारंटी देता है कि ये
+पुनरावर्तन समीकरण \emph{अद्वितीय} क्रमसूचक निर्धारित करते हैं।
+
+कई अर्थों में क्रमसूचक अंकगणित प्राकृतिक संख्याओं के योग जैसा ही व्यवहार
+करता है। उदाहरणतः हम निम्न सिद्ध कर सकते हैं:
+
+\begin{lem}\ollabel{ordinaladditionisnice}
+यदि $\alpha, \beta, \gamma$ क्रमसूचक हैं, तो:
+\begin{enumerate}
+	\item\ollabel{ordaddition1} यदि $\beta < \gamma$, तो
+	$\alpha \ordplus \beta < \alpha \ordplus \gamma$;
+	\item\ollabel{ordaddition2} यदि
+	$\alpha \ordplus \beta = \alpha\ordplus \gamma$, तो $\beta = \gamma$;
+	\item\ollabel{ordaddition3}  $\alpha \ordplus  (\beta \ordplus
+	\gamma) = (\alpha \ordplus \beta) \ordplus \gamma$; अर्थात योग
+	साहचर्यात्मक है;
+	\item\ollabel{ordaddition4} यदि $\alpha \leq \beta$, तो
+	$\alpha \ordplus \gamma \leq \beta \ordplus \gamma$।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+हम \olref{ordaddition3} सिद्ध करते हैं और शेष अभ्यास के लिए छोड़ते हैं।
+प्रमाण $\gamma$ पर सरल परिमितेतर आगमन द्वारा है, जिसमें
+\olref{ordadditionrecursion} का उपयोग होता है। जब $\gamma = 0$:
+\[
+(\alpha \ordplus  \beta) \ordplus  0 = \alpha \ordplus  \beta  = \alpha \ordplus  (\beta \ordplus  0)
+\]
+जब $\gamma = \delta\ordplus 1$, आगमन के लिए मान लें कि
+$(\alpha \ordplus \beta) \ordplus \delta
+= \alpha \ordplus (\beta \ordplus \delta)$; अब
+\olref{ordadditionrecursion} का तीन बार उपयोग करके:
+\begin{align*}
+	(\alpha \ordplus  \beta) \ordplus  (\delta \ordplus  1) & = ((\alpha \ordplus  \beta) \ordplus  \delta)\ordplus 1\\
+	& = (\alpha \ordplus  (\beta \ordplus  \delta)) \ordplus  1\\
+	& = \alpha \ordplus  ((\beta \ordplus  \delta)\ordplus 1)\\
+	& = \alpha \ordplus  (\beta \ordplus  (\delta\ordplus 1))
+\end{align*}	
+जब $\gamma$ सीमा क्रमसूचक है, आगमन के लिए मान लें कि यदि
+$\delta \in \gamma$, तो
+$(\alpha \ordplus \beta) \ordplus \delta
+= \alpha \ordplus (\beta \ordplus \delta)$; अब:
+\begin{align*}
+	(\alpha \ordplus  \beta) \ordplus  \gamma & = \supstrict_{\delta < \gamma}((\alpha \ordplus  \beta) \ordplus  \delta) \\
+	&= \supstrict_{\delta < \gamma}(\alpha \ordplus  (\beta \ordplus  \delta))\\
+	&= \alpha \ordplus  \supstrict_{\delta < \gamma}(\beta \ordplus  \delta)\\
+	& = \alpha \ordplus  (\beta \ordplus  \gamma)
+\end{align*}
+\end{proof}
+
+\begin{prob}
+\olref[sth][ord-arithmetic][add]{ordinaladditionisnice} का शेष सिद्ध कीजिए।
+\end{prob}
+
+इन अर्थों में क्रमसूचक योग बहुत परिचित होना चाहिए। किंतु एक निर्णायक अर्थ
+में क्रमसूचक योग प्राकृतिक संख्याओं के योग जैसा \emph{नहीं} है।
+
+\begin{prop}\ollabel{ordsumnotcommute}
+क्रमसूचक योग क्रमविनिमेय {नहीं} है;
+$1 \ordplus \omega = \omega < \omega \ordplus 1$।
+\end{prop}
+
+\begin{proof}
+ध्यान दें कि
+$1 \ordplus \omega = \supstrict_{n < \omega} (1 \ordplus n)
+= \omega \in \omega \cup \{\omega\} = \ordsucc{\omega}
+= \omega \ordplus 1$।
+\end{proof}
+\noindent 
+यह आरंभ में आश्चर्यजनक लगे, किंतु \emph{लगना नहीं चाहिए}। एक ओर
+$1 \ordplus \omega$ पर विचार करते समय आप सभी प्राकृतिक संख्याओं के
+\emph{पहले} एक अतिरिक्त अवयव रखने से मिले क्रम-प्रकार के विषय में सोचते हैं।
+\olref[sfr][infinite][hilbert]{sec} में हिल्बर्ट के होटल के साथ किए तर्क की
+तरह सहजतः इस अतिरिक्त प्रथम अवयव से समग्र क्रम-प्रकार पर कोई प्रभाव नहीं
+पड़ना चाहिए। दूसरी ओर $\omega \ordplus 1$ पर विचार करते समय आप सभी
+प्राकृतिक संख्याओं के \emph{बाद} एक अतिरिक्त अवयव रखने से मिले क्रम-प्रकार
+के विषय में सोचते हैं। और वह मूलतः भिन्न वस्तु है!{}
+
+\end{document}

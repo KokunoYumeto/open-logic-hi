@@ -1,0 +1,105 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{spine}{Valphabasic}
+\olsection{चरणों के मूल गुण}
+
+$V_\alpha$ की परिभाषा का आधारभूत महत्त्व स्पष्ट करने के लिए हम उनके विषय
+में कुछ मूल परिणाम प्रस्तुत करेंगे। एक परिभाषा से आरंभ करें:\footnote{
+``सामर्थ्यवान'' (potent) के लिए कोई मानक शब्दावली नहीं; यह
+\citet{ButtonLT1} द्वारा प्रयुक्त नाम का अनुवाद है।}
+\begin{defn}
+	समुच्चय $A$ \emph{सामर्थ्यवान} तभी और केवल तभी है जब
+	$\forall x((\exists y \in A)x \subseteq y \lif x \in A)$।
+\end{defn}
+\begin{lem}\ollabel{Valphabasicprops}
+प्रत्येक क्रमसूचक $\alpha$ के लिए:
+\begin{enumerate}
+	\item\ollabel{Valphatrans} प्रत्येक $V_\alpha$ संक्रमणशील है।
+	\item\ollabel{Valphapotent} प्रत्येक $V_\alpha$ सामर्थ्यवान है।
+	\item\ollabel{Valphacum} यदि $\gamma \in \alpha$, तो
+	$V_\gamma \in V_\alpha$ (और इसलिए \olref{Valphatrans} से
+	$V_\gamma \subseteq V_\alpha$ भी)।
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+हम इसे (युगपत) परिमितेतर आगमन से सिद्ध करते हैं। आगमन के लिए मान लें कि
+प्रत्येक क्रमसूचक $\beta < \alpha$ के लिए
+\olref{Valphatrans}--\olref{Valphacum} लागू होते हैं।
+
+$\alpha = \emptyset$ का मामला तुच्छ है।
+
+मान लें $\alpha = \ordsucc{\beta}$। \olref{Valphacum} दिखाने के लिए, यदि
+$\gamma \in \alpha$, तो परिकल्पना से $V_\gamma \subseteq V_\beta$, अतः
+$V_\gamma \in \Pow{V_\beta} = V_\alpha$। \olref{Valphapotent} दिखाने के
+लिए मान लें $A \subseteq B \in V_\alpha$, अर्थात
+$A \subseteq B \subseteq V_\beta$; तब $A \subseteq V_\beta$, इसलिए
+$A \in V_\alpha$। \olref{Valphatrans} दिखाने के लिए ध्यान दें कि यदि
+$x \in A \in V_\alpha$, तो $A \subseteq V_\beta$, अतः
+$x \in V_\beta$; परिकल्पना से $V_\beta$ संक्रमणशील है, इसलिए
+$x \subseteq V_\beta$ और इस प्रकार $x \in V_\alpha$।
+
+मान लें $\alpha$ सीमा क्रमसूचक है। \olref{Valphacum} दिखाने के लिए, यदि
+$\gamma \in \alpha$, तो $\gamma \in \ordsucc{\gamma} \in \alpha$;
+इसलिए मान्यता से $V_\gamma \in V_{\ordsucc{\gamma}}$, और फलतः
+$V_\gamma \in \bigcup_{\beta \in \alpha} V_\beta = V_\alpha$।
+\olref{Valphatrans} और \olref{Valphapotent} दिखाने के लिए बस देखें कि
+संक्रमणशील (क्रमशः सामर्थ्यवान) समुच्चयों का सम्मिलन संक्रमणशील (क्रमशः
+सामर्थ्यवान) होता है।
+\end{proof}
+
+\begin{lem}\ollabel{Valphanotref}
+प्रत्येक क्रमसूचक $\alpha$ के लिए $V_\alpha \notin V_\alpha$।
+\end{lem}
+
+\begin{proof}
+परिमितेतर आगमन से। स्पष्टतः $V_\emptyset \notin V_\emptyset$।
+
+यदि $V_{\ordsucc{\alpha}} \in V_{\ordsucc{\alpha}} = \Pow{V_\alpha}$,
+तो $V_{\ordsucc{\alpha}} \subseteq V_\alpha$; और चूँकि
+\olref{Valphabasicprops} से $V_\alpha \in V_{\ordsucc{\alpha}}$, इसलिए
+$V_\alpha \in V_\alpha$। इसके विपरीत: यदि
+$V_\alpha \notin V_\alpha$, तो
+$V_{\ordsucc{\alpha}} \notin V_{\ordsucc{\alpha}}$।
+
+यदि $\alpha$ सीमा है और
+$V_\alpha \in V_\alpha = \bigcup_{\beta \in \alpha}V_\beta$, तो किसी
+$\beta \in \alpha$ के लिए $V_\alpha \in V_\beta$; किंतु तब
+$V_\beta \in V_\alpha$ भी, जिससे \olref{Valphabasicprops} (दो बार) द्वारा
+$V_\beta \in V_\beta$। इसके विपरीत यदि सभी $\beta \in \alpha$ के लिए
+$V_\beta \notin V_\beta$, तो $V_\alpha \notin V_\alpha$।
+\end{proof}
+
+\begin{cor}
+किन्हीं क्रमसूचकों $\alpha, \beta$ के लिए: $\alpha \in \beta$ तभी और
+केवल तभी जब $V_\alpha \in V_\beta$।
+\end{cor}
+
+\begin{proof}
+\Olref{Valphabasicprops} एक दिशा देता है। इसके विपरीत मान लें
+$V_\alpha \in V_\beta$। तब \olref{Valphanotref} से
+$\alpha \neq \beta$; और $\beta \notin \alpha$, क्योंकि अन्यथा
+$V_\beta \in V_\alpha$ और फिर \olref{Valphabasicprops} (दो बार) से
+$V_\beta \in V_\beta$, जो \olref{Valphanotref} के विरुद्ध है। अतः त्रिकोटी
+से $\alpha \in \beta$।
+\end{proof}
+\noindent
+यह सब हमें प्रत्येक $V_\alpha$ को पदानुक्रम का $\alpha$वाँ चरण मानने देता
+है। कारण यह है।
+
+निश्चय ही हमारे $V_\alpha$ को \emph{पुनरावर्ती} प्रक्रिया में बना माना जा
+सकता है, क्योंकि क्रमसूचकों का हमारा उपयोग पुनरावृत्ति की धारणा का अनुसरण
+करता है। इसके अतिरिक्त यदि एक चरण दूसरे से पहले बना, अर्थात
+$V_\beta \in V_\alpha$, अर्थात $\beta \in \alpha$, तो हमारी निर्माण
+प्रक्रिया \emph{संचयी} है, क्योंकि $V_\beta \subseteq V_\alpha$। अंततः हम
+वास्तव में पहले के किसी चरण पर उपलब्ध समुच्चयों के \emph{सभी} संभव संग्रह
+बना रहे हैं, क्योंकि प्रत्येक उत्तरवर्ती चरण $V_{\ordsucc{\alpha}}$ अपने
+पूर्ववर्ती $V_\alpha$ का घात समुच्चय है।
+
+संक्षेप में: $\ZFminus$ के साथ समुच्चयों के संचयी-पुनरावर्ती पदानुक्रम की
+अपनी दृष्टि को व्यक्त करने का काम \emph{लगभग} पूरा है। (यद्यपि निश्चय ही
+प्रतिस्थापन का औचित्य देना अब भी शेष है।)
+
+\end{document}

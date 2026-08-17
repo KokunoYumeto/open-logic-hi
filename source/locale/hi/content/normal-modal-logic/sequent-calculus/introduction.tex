@@ -1,0 +1,48 @@
+% Part: normal-modal-logic
+% Chapter: sequent-calculus
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{seq}{int}
+
+\olsection{परिचय}
+
+प्रतिज्ञप्तिक तर्कशास्त्र के सीक्वेंट कलन को ऐसे अतिरिक्त नियमों से विस्तृत
+किया जा सकता है जो \iftag{prvBox}{$\Box$\iftag{prvDiamond}{ और~}{}}{}%
+\iftag{prvDiamond}{$\Diamond$}{} पर कार्य करते हैं। उदाहरणार्थ,
+$\Log{K}$ के लिए हमारे पास \Log{LK} के साथ ये नियम हैं:
+\[
+  \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
+    \Axiom$\Gamma \fCenter \Delta, !A$
+    \RightLabel{$\Box$}
+    \UnaryInf$\Box\Gamma \fCenter \Diamond\Delta, \Box!A$
+    \DisplayProof  
+    \qquad
+    \Axiom$!A, \Gamma \fCenter \Delta$
+    \RightLabel{$\Diamond$}
+    \UnaryInf$\Diamond!A, \Box\Gamma \fCenter \Diamond\Delta$
+    \DisplayProof
+}{% only Box primitive
+\Axiom$\Gamma \fCenter !A$
+\RightLabel{$\Box$}
+\UnaryInf$\Box\Gamma \fCenter \Box!A$
+\DisplayProof
+}}{% only <> primitive
+  \Axiom$!A \fCenter \Delta$
+  \RightLabel{$\Diamond$}
+  \UnaryInf$\Diamond!A \fCenter \Diamond\Delta$
+  \DisplayProof
+}
+\]
+$\Log{K}$ के विस्तारों के लिए और अतिरिक्त नियम भी जोड़ने होते हैं।
+
+हर मोडल तर्कशास्त्र का ऐसा सीक्वेंट कलन नहीं होता। यहाँ तक कि $\Log{S5}$,
+जो अर्थवैज्ञानिक रूप से सरल है (उसे अभिगम्यता संबंधों का तनिक भी उपयोग किए
+बिना परिभाषित किया जा सकता है), के लिए भी \Log{LK} से मिलने वाला ऐसा
+सीक्वेंट कलन ज्ञात नहीं है जो नियम~\Cut{} के बिना पूर्ण हो। किंतु उसका एक
+कर्तन-मुक्त पूर्ण \emph{हाइपरसीक्वेंट} कलन है।
+
+\end{document}

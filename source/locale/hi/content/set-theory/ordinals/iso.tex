@@ -1,0 +1,172 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ordinals}{iso}
+\olsection{क्रम-समाकृतिकताएँ}
+
+सुव्यवस्था \emph{कितनी} सुदृढ़ है यह समझाने के लिए हम सुव्यवस्थाओं की तुलना
+की एक विधि प्रस्तुत करने से आरंभ करेंगे।
+
+\begin{defn}
+\emph{सुव्यवस्था} ऐसा युग्म $\tuple{A, <}$ है कि $<$, $A$ को सुव्यवस्थित
+करता है। सुव्यवस्थाएँ $\tuple{A, <}$ और $\tuple{B, \lessdot}$
+\emph{क्रम-समाकृतिक} तभी और केवल तभी हैं जब कोई !!a{bijection}
+$f \colon A \to B$ ऐसा हो कि: $x < y$ तभी और केवल तभी जब
+$f(x) \lessdot f(y)$। इस स्थिति में हम
+$\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}$ लिखते हैं और $f$ को
+\emph{क्रम-समाकृतिकता} कहते हैं।
+\end{defn}
+\noindent
+आगे संक्षेप के लिए हम ``क्रम-समाकृतिकताओं'' के बजाय ``समाकृतिकताओं'' की बात
+करेंगे। सहजतः समाकृतिकताएँ संरचना-संरक्षक !!{bijection}s हैं। समाकृतिकताओं
+के कुछ सरल तथ्य ये हैं।
+
+\begin{lem}\ollabel{isoscompose}
+समाकृतिकताओं के संयोजन समाकृतिकताएँ होते हैं; अर्थात यदि $f \colon A \to B$
+और $g \colon B \to C$ समाकृतिकताएँ हैं, तो
+$(g \circ f) \colon A \to C$ समाकृतिकता है।
+\end{lem}
+\begin{prob}
+	\olref[sth][ordinals][iso]{isoscompose} सिद्ध कीजिए।
+\end{prob}
+\begin{proof}
+अभ्यास के लिए छोड़ा गया।
+\end{proof}
+\begin{cor}\ollabel{ordisoisequiv}
+	$\ordeq{X}{Y}$ एक तुल्यता संबंध है।
+\end{cor}
+\begin{prop}\ollabel{ordisounique}
+यदि $\tuple{A, <}$ और $\tuple{B, \lessdot}$ समाकृतिक सुव्यवस्थाएँ हैं, तो
+उनके बीच समाकृतिकता अद्वितीय है।
+\end{prop}
+
+\begin{proof}
+$f$ और $g$ को $A \to B$ समाकृतिकताएँ मानें। हम परिणाम को आगमन द्वारा,
+अर्थात \olref[wo]{propwoinduction} का उपयोग करके, सिद्ध करेंगे। $a\in A$
+को नियत करें और (आगमन के लिए) मान लें कि $(\forall b < a)f(b) = g(b)$।
+$x \in B$ को नियत करें।
+
+यदि $x \lessdot f(a)$, तो $f^{-1}(x) < a$, अतः $f$ और $g$ के
+समाकृतिकताएँ होने से $g(f^{-1}(x)) \lessdot g(a)$। किंतु चूँकि
+$f^{-1}(x) < a$, हमारी मान्यता से
+$x =f(f^{-1}(x)) = g(f^{-1}(x))$। अतः $x \lessdot g(a)$। इसी प्रकार यदि
+$x \lessdot g(a)$, तो $x \lessdot f(a)$।
+
+सामान्यीकरण करने पर
+$(\forall x \in B)(x \lessdot f(a) \liff x \lessdot g(a))$। अतः
+\olref[sfr][rel][ord]{prop:extensionality-strictlinearorders} से
+$f(a) = g(a)$। इसलिए \olref[wo]{propwoinduction} से
+$(\forall a \in A)f(a) = g(a)$।
+\end{proof}\noindent 
+यह इस बात का कुछ आभास देता है कि सुव्यवस्थाएँ सुदृढ़ हैं। इसे आगे समझाने के
+लिए कुछ और संकेतन प्रस्तुत करना सहायक होगा।
+
+\begin{defn}
+जब $\tuple{A, <}$ कोई सुव्यवस्था और $a \in A$ हो, तब
+$A_a = \Setabs{x \in A}{x < a}$ रखें। हम कहते हैं कि $A_a$, $A$ का उचित
+\emph{आरंभिक खंड} है (और $A$ को स्वयं $A$ का अनुचित आरंभिक खंड मानते हैं)।
+$<_a$ को आरंभिक खंड पर $<$ का प्रतिबंध, अर्थात
+$\funrestrictionto{\mathord{<}}{A_a^2}$, मानें।
+\end{defn}
+\noindent
+इस संकेतन से हम यह कथन और प्रमाण दे सकते हैं कि कोई सुव्यवस्था अपने किसी
+उचित आरंभिक खंड के समाकृतिक नहीं है।
+
+\begin{lem}\ollabel{wellordnotinitial}
+यदि $\tuple{A, <}$ कोई सुव्यवस्था है और $a \in A$, तो
+$\ordneq{\tuple{A, <}}{\tuple{A_a, <_a}}$ 
+\end{lem}
+
+\begin{proof}
+विरोधाभास द्वारा प्रमाण के लिए मान लें कि $f \colon A \to A_a$ कोई
+समाकृतिकता है। चूँकि $f$ द्विएकी है और $A_a \subsetneq A$, इसलिए
+\olref[wo]{wo:strictorder} का उपयोग करके $b \in A$ को $A$ का ऐसा
+$<$-लघुतम !!{element} मानें कि $b \neq f(b)$। हम दिखाएँगे कि
+$(\forall x \in A)(x<b \liff x < f(b))$; इससे
+\olref[sfr][rel][ord]{prop:extensionality-strictlinearorders} द्वारा
+$b = f(b)$ निष्पन्न होगा और विरोधाभास पूर्ण होगा।
+
+मान लें $x < b$। $b$ के चयन से $x = f(x)$। और $f$ समाकृतिकता है, इसलिए
+$f(x) < f(b)$। अतः $x < f(b)$।
+
+मान लें $x < f(b)$। चूँकि $f$ समाकृतिकता है, $f^{-1}(x) < b$; अतः $b$ के
+चयन से $f^{-1}(x) = x$। इसलिए $x < b$।
+\end{proof}
+
+हमारा अगला परिणाम मोटे तौर पर दिखाता है कि किसी समाकृतिकता का ``आरंभिक
+खंड'' समाकृतिकता है:
+
+\begin{lem}\ollabel{wellordinitialsegment}
+$\tuple{A, <}$ और $\tuple{B, \lessdot}$ सुव्यवस्थाएँ हों। यदि
+$f \colon A \to B$ समाकृतिकता और $a \in A$ है, तो
+$\funrestrictionto{f}{A_{a}} : A_a \to B_{f(a)}$ समाकृतिकता है।
+\end{lem}
+
+\begin{proof}
+चूँकि $f$ समाकृतिकता है:
+	%Since $f$ is an isomorphism, $b < a$ iff $f(b) \lessdot f(a)$, so that 
+\begin{align*}
+	\funimage{f}{A_a} &= \funimage{f}{\Setabs{x \in A}{x < a}}\\
+	&= \funimage{f}{\Setabs{f^{-1}(y) \in A}{f^{-1}(y) < a}} \\
+	&= \Setabs{y \in B}{y \lessdot f(a)} \\
+	&=B_{f(a)} 
+\end{align*}
+और $\funrestrictionto{f}{A_a}$ क्रम को संरक्षित करता है, क्योंकि $f$ करता
+है।
+\end{proof}
+
+हमारे अगले दो परिणाम स्थापित करते हैं कि सुव्यवस्थाएँ सदा तुलनीय हैं:
+
+\begin{lem}\ollabel{lemordsegments}
+$\tuple{A, <}$ और $\tuple{B, \lessdot}$ सुव्यवस्थाएँ हों। यदि
+$\ordeq{\tuple{A_{a_1}, <_{a_1}}}{\tuple{B_{b_1}, \lessdot_{b_1}}}$
+और $\ordeq{\tuple{A_{{a_2}}, <_{a_2}}}{\tuple{B_{{b_2}},
+\lessdot_{b_2}}}$, तो ${a_1} < {a_2} \text{ तभी और केवल तभी जब }
+{b_1} \lessdot {b_2}$।
+\end{lem}
+
+\begin{proof}
+हम \emph{बाएँ से दाएँ} सिद्ध करेंगे; दूसरी दिशा समान है। मान लें कि
+$\ordeq{\tuple{A_{a_1}, <_{a_1}}}{\tuple{B_{b_1}, \lessdot_{b_1}}}$ और
+$\ordeq{\tuple{A_{{a_2}}, <_{a_2}}}{\tuple{B_{{b_2}},
+\lessdot_{b_2}}}$ दोनों हैं, जहाँ $f \colon A_{{a_2}} \to B_{{b_2}}$
+हमारी समाकृतिकता है। ${a_1} < {a_2}$ मानें; तब
+\olref{wellordinitialsegment} से
+$\ordeq{\tuple{A_{a_1}, <_{a_1}}}{\tuple{B_{f({a_1})},
+\lessdot_{f({a_1})}}}$। अतः
+$\ordeq{\tuple{B_{b_1}, \lessdot_{b_1}}}{\tuple{B_{f({a_1})},
+\lessdot_{f({a_1})}}}$ और इसलिए \olref{wellordnotinitial} से
+${b_1} = f({a_1})$। अब ${b_1} \lessdot {b_2}$, क्योंकि $f$ का प्रांत
+$B_{{b_2}}$ है।
+\end{proof}
+
+\begin{thm}\ollabel{thm:woalwayscomparable}
+किन्हीं दो सुव्यवस्थाओं में एक दूसरी के किसी आरंभिक खंड (आवश्यक नहीं कि
+उचित हो) के समाकृतिक है।
+\end{thm}
+
+\begin{proof}
+$\tuple{A, <}$ और $\tuple{B, \lessdot}$ को सुव्यवस्थाएँ मानें। पृथक्करण का
+उपयोग करते हुए रखें:
+\[
+	f = \Setabs{\tuple{a, b} \in A \times B}{
+		\ordeq{\tuple{A_a, <_a}}{\tuple{B_b, \lessdot_b}}}.
+\]
+\olref{lemordsegments} से सभी
+$\tuple{a_1, b_1}, \tuple{a_2, b_2} \in f$ के लिए $a_1 < a_2$ तभी और
+केवल तभी जब $b_1 \lessdot b_2$। अतः
+$f \colon \dom{f} \to \ran{f}$ समाकृतिकता है।
+
+यदि $a_2 \in \dom{f}$ और $a_1 < a_2$, तो
+\olref{wellordinitialsegment} से $a_1 \in \dom{f}$; अतः $\dom{f}$,
+$A$ का आरंभिक खंड है। इसी प्रकार $\ran{f}$, $B$ का आरंभिक खंड है। विरोधाभास
+द्वारा प्रमाण के लिए मान लें कि दोनों \emph{उचित} आरंभिक खंड हैं। तब $a$ को
+$A \setminus \dom{f}$ का $<$-लघुतम !!{element} मानें, जिससे
+$\dom{f} = A_a$; और $b$ को $B \setminus \ran{f}$ का $\lessdot$-लघुतम
+!!{element} मानें, जिससे $\ran{f} = B_b$। अतः
+$f \colon A_a \to B_b$ समाकृतिकता है और इसलिए $\tuple{a, b} \in f$;
+यह विरोधाभास है।
+\end{proof}
+
+\end{document}

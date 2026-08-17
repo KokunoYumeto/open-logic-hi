@@ -1,0 +1,59 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ord-arithmetic}{expo}
+\olsection{क्रमसूचक घातांक}
+
+अब हम क्रमसूचक घातांक की ओर बढ़ते हैं। दुर्भाग्य से क्रमसूचक घातांक की कोई
+\emph{सुंदर} संश्लेषणात्मक परिभाषा नहीं है।
+
+निश्चय ही स्पष्ट संश्लेषणात्मक परिभाषाएँ \emph{हैं}। एक परिभाषा यह है।
+$\text{finfun}(\alpha,\beta)$ उन सभी फलनों $f \colon \alpha \to \beta$
+का समुच्चय हो जिनके लिए $\Setabs{\gamma \in
+\alpha}{f(\gamma) \neq 0}$ किसी प्राकृतिक संख्या के साथ समसंख्य हो।
+$\text{finfun}(\alpha,\beta)$ पर सुव्यवस्था इस प्रकार परिभाषित करें: $f
+\sqsubset g$ तभी जब $f \neq g$ और $f(\gamma_0) < g(\gamma_0)$, जहाँ
+$\gamma_0 = \text{max}\Setabs{\gamma \in \alpha}{f(\gamma) \neq
+g(\gamma)}$। तब हम $\ordexpo{\alpha}{\beta}$ को
+$\ordtype{\text{finfun}(\alpha, \beta), \sqsubset}$ के रूप में परिभाषित
+कर सकते हैं। पॉटर इस स्पष्ट परिभाषा का उपयोग करते हैं और तुरंत समझाते हैं:
+\begin{quote}
+	इस क्रम का चयन केवल ऐसी क्रमसूचक घातांक की परिभाषा पाने की हमारी इच्छा
+	से निर्धारित होता है जो उपयुक्त पुनरावर्ती शर्त का पालन करे\ldots;
+	और इसकी कल्पना क्रमित योग या क्रमित गुणनफल की अपेक्षा कहीं कठिन है।
+	\citep[p.~199]{Potter2004}
+\end{quote}
+ठीक यही बात है। हमने योग को ``$\alpha$ की एक प्रति जिसके बाद $\beta$ की
+एक प्रति हो'' और गुणन को ``$\alpha$ की प्रतियों का एक $\beta$-अनुक्रम''
+बताया था। किंतु $\text{finfun}(\alpha, \gamma)$ के बारे में कहने के लिए
+हमारे पास ऐसा कोई संक्षिप्त वर्णन नहीं है। इसलिए इसके बदले हम क्रमसूचक
+घातांक की परिभाषा सीधे परिमितेतर पुनरावर्तन \emph{द्वारा} देंगे, अर्थात्:
+
+\begin{defn}\ollabel{ordexporecursion}
+\begin{align*}
+	\ordexpo{\alpha}{0} &= 1\\
+	\ordexpo{\alpha}{\beta\ordplus 1} &=\ordexpo{\alpha}{\beta} \ordtimes \alpha\\
+	\ordexpo{\alpha}{\beta} &= \bigcup_{\delta < \beta}\ordexpo{\alpha}{\delta}& & \text{जब $\beta$ सीमा क्रमसूचक हो}
+\end{align*}
+\end{defn}
+
+यदि हम समुच्चय सिद्धांतकारों \emph{के रूप में} काम कर रहे होते, तो शायद
+क्रमसूचक घातांक के कुछ गुणों का अन्वेषण करना चाहते। किंतु इसके अतिरिक्त
+कहने को अधिक कुछ नहीं है, सिवाय इस अपेक्षित तथ्य के कि क्रमसूचक घातांक
+क्रमविनिमेय नहीं है। अतः $\ordexpo{2}{\omega} =
+\bigcup_{\delta < \omega}\ordexpo{2}{\delta} = \omega$, जबकि
+$\ordexpo{\omega}{2} = \omega \ordtimes \omega$। पर हमें घातांक के
+क्रमविनिमेय होने की \emph{अपेक्षा} भी नहीं करनी चाहिए, क्योंकि प्राकृतिक
+संख्याओं के लिए भी वह क्रमविनिमेय नहीं है:
+$\ordexpo{2}{3} = 8 < 9 = \ordexpo{3}{2}$।
+
+\begin{prob}
+परिमितेतर आगमन का उपयोग करके सिद्ध कीजिए कि यदि हम
+$\ordexpo{\alpha}{\beta} = \ordtype{\text{finfun}(\alpha, \beta),
+\sqsubset}$ परिभाषित करें, तो हमें
+\olref[sth][ord-arithmetic][expo]{ordexporecursion} के पुनरावर्तन समीकरण
+प्राप्त होते हैं।
+\end{prob}
+
+\end{document}

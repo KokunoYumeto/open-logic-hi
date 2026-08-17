@@ -1,0 +1,152 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: systems-distinct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{dis}
+
+\olsection{तंत्रों की भिन्नता दिखाना}
+
+\olref[prs]{sec} में हमने देखा कि कैसे सिद्ध किया जाए कि मोडल तर्कशास्त्र के
+दो तंत्र वास्तव में एक ही तंत्र हैं। \olref[snd]{thm:soundness} हमें यह
+दिखाने देता है कि दो मोडल तंत्र $\Sigma$ और $\Sigma'$ भिन्न हैं: ऐसा
+!!a{formula}~$!A$ खोजकर जिसके लिए $\Sigma' \Proves !A$ हो, किंतु जो
+$\Sigma$ के किसी प्रतिरूप में असत्य हो।
+
+\begin{prop}
+  $\Log{KD} \subsetneq \Log{KT}$
+\end{prop}
+
+\begin{proof} यह इस अर्थवैज्ञानिक तथ्य का वाक्यविन्यासगत समकक्ष है कि सभी
+  स्वपरावर्ती संबंध सीरियल होते हैं। $\Log{KD} \subseteq \Log{KT}$ दिखाने
+  के लिए हमें देखना है कि $\Log{KD} \Proves !B$ से $\Log{KT} \Proves !B$
+  निकलता है। यह $\Log{KT} \Proves \Log{D}$ से मिलता है, जैसा
+  \olref[prs]{prop:S5facts}\olref[prs]{prop:S5facts-KT-D} में दिखाया गया
+  है। समावेशन उचित है, यह दिखाने के लिए यथार्थता
+  (\olref[snd]{thm:soundness}) के अनुसार इतना पर्याप्त है कि \Log{KD} का
+  ऐसा प्रतिरूप प्रस्तुत किया जाए जिसमें \Ax{T}, अर्थात् $\Box p \lif p$,
+  असत्य हो (यह सरल कार्य अभ्यास के लिए छोड़ा गया है), क्योंकि तब यथार्थता
+  से $\Log{KD} \Proves/ \Box p \lif p$।
+\end{proof}
+
+\begin{prop}
+  $\Log{KB} \neq \Log{K4}$. 
+\end{prop}
+
+\begin{proof}
+  हम ऐसा सममित प्रतिरूप बनाते हैं जिसमें \Ax{4} का कोई दृष्टांत असत्य हो;
+  क्योंकि वह दृष्टांत स्पष्टतः \Log{K4} में !!{derivable} है किंतु
+  \Log{KB} में नहीं, इससे $\Log{K4} \nsubseteq \Log{KB}$ निकलेगा।
+  \olref{fig:Bnot4} के सममित प्रतिरूप $\mModel{M}$ पर विचार करें। चूँकि
+  प्रतिरूप सममित है, \Ax{K} और~\Ax{B}, $\mModel{M}$ में सत्य हैं (क्रमशः
+  \olref[syn][sch]{prop:Kvalid} और
+  \olref[frd][acc]{thm:soundschemas} के अनुसार)। किंतु
+  $\mSat/{M}{\Box p \lif \Box\Box p}[w_1]$।
+\end{proof}
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1) [label=above:\mFalse{p},
+    label={below:$\mSat{{}}{\Box p}$\\ $\mSat/{{}}{\Box\Box p}$}] {$w_1$}; 
+    \node[world] (w2) [label=above:\mTrue{p},
+      label=below:$\mSat/{{}}{\Box p}$, right=of w1]{$w_2$}; 
+    \draw[->, bend left] (w1) to (w2); 
+    \draw[->, bend left] (w2) to (w1); 
+  \end{tikzpicture}
+  \caption{\Ax{4} के किसी दृष्टांत को असत्य बनाने वाला सममित प्रतिरूप।}
+  \ollabel{fig:Bnot4}
+\end{figure}
+ 
+\begin{thm}\ollabel{thm:KTBnot45}
+  $\Log{KTB} \Proves/ \Log{4}$ और $\Log{KTB} \Proves/ \Log{5}$।
+\end{thm}
+
+\begin{proof}
+  \olref[frd][acc]{thm:soundschemas} से हम जानते हैं कि \Ax{T} और
+  \Ax{B} के सभी दृष्टांत (क्रमशः) प्रत्येक स्वपरावर्ती सममित प्रतिरूप में
+  सत्य हैं। अतः यथार्थता के अनुसार ऐसा स्वपरावर्ती सममित प्रतिरूप खोजना
+  पर्याप्त है जिसमें कोई ऐसा जगत हो जहाँ \Ax{4} का कोई दृष्टांत असत्य हो;
+  और इसी प्रकार \Ax{5} के लिए भी। दोनों दावों के लिए हम एक ही प्रतिरूप
+  लेते हैं। \olref{fig:KTBnot45} के सममित, स्वपरावर्ती प्रतिरूप पर विचार
+  करें। तब $\mSat/{M}{\Box p \to \Box \Box p}[w_1]$, अतः \Ax{4},
+  $w_1$ पर असत्य है। इसी प्रकार $\mSat/{M}{\Diamond
+    \lnot p \lif \Box \Diamond \lnot p}[w_2]$, अतः $!A = \lnot p$
+  वाला \Ax{5} का दृष्टांत $w_2$ पर असत्य है।
+\end{proof}
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1) [label={right:\mTrue{p}},
+      label={below: $\mSat{{}}{\Box p}$\\
+        $\mSat/{{}}{\Box\Box p}$\\
+        $\mSat/{{}}{\Diamond\lnot p}$}] {$w_1$};
+    \draw[reflexive above] (w1) to (w1);
+    \node[world] (w2) [label={right:\mTrue{p}}, label={below:
+        $\mSat{{}}{\Diamond\lnot p}$\\
+        $\mSat/{{}}{\Box\Diamond\lnot p}$}, right=of w1] {$w_2$} ;
+    \draw[reflexive above] (w2) to (w2);
+    \node[world] (w3) [label={right:\mFalse{p}},right=of w2] {$w_3$};
+    \draw[reflexive above] (w3) to (w3);
+    \draw[->, bend left] (w1) to (w2);  
+    \draw[->, bend left] (w2) to (w3);  
+    \draw[->, bend left] (w3) to (w2);  
+    \draw[->, bend left] (w2) to (w1);  
+  \end{tikzpicture}
+  \caption{\olref{thm:KTBnot45} का प्रतिरूप।}
+  \ollabel{fig:KTBnot45}
+\end{figure}
+
+\begin{thm}\ollabel{thm:KD5not4}
+  $\Log{KD5} \neq \Log{KT4} = \Log{S4}$.
+\end{thm}
+
+\begin{proof}
+  \olref[frd][acc]{thm:soundschemas} से हम जानते हैं कि \Ax{D} और~\Ax{5}
+  के सभी दृष्टांत सभी सीरियल यूक्लिडीय प्रतिरूपों में सत्य हैं। इसलिए ऐसा
+  सीरियल यूक्लिडीय प्रतिरूप खोजना पर्याप्त है जिसमें कोई ऐसा जगत हो जहाँ
+  \Ax{4} का कोई दृष्टांत असत्य हो। \olref{fig:KD5not4} के प्रतिरूप पर
+  विचार करें और ध्यान दें कि $\mSat/{M}{\Box p
+  \lif \Box\Box p}[w_1]$। 
+\end{proof}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w2) [label=north west:\mTrue{p}]{$w_2$} ;
+    \draw[reflexive left] (w2) to (w2);
+    \node[world] (w1) [label=right:\mFalse{p},
+      label=below:{$\mSat{{}}{\Box p}, \mSat/{{}}{\Box\Box p}$},
+      below right=of w2]{$w_1$};
+    \node[world] (w3) [label=north east:\mTrue{p}, above right=of w1]{$w_3$} ;
+    \draw[reflexive right] (w3) to (w3);
+    \node[world] (w4) [label=right:\mFalse{p},above right=of w2]{$w_4$};
+    \draw[reflexive above] (w4) to (w4);
+    \draw[->] (w1) to (w2);  
+    \draw[->] (w1) to (w3);  
+    \draw[->, bend left=15] (w2) to (w3);
+    \draw[->, bend left=15] (w3) to (w2);  
+    \draw[->, bend left=15] (w2) to (w4);
+    \draw[->, bend left=15] (w4) to (w2);  
+    \draw[->, bend left=15] (w3) to (w4);
+    \draw[->, bend left=15] (w4) to (w3);  
+  \end{tikzpicture}
+  \caption{\olref{thm:KD5not4} का प्रतिरूप।}
+  \ollabel{fig:KD5not4}
+\end{figure}
+
+\begin{prob}
+  $3$ जगतों वाले किसी प्रतिरूप का उपयोग करके
+  \olref[nml][prf][dis]{thm:KD5not4} का कोई वैकल्पिक प्रमाण दीजिए।
+\end{prob}
+
+\begin{prob}
+  ऐसा एक स्वपरावर्ती संक्रमणशील प्रतिरूप दीजिए जो दोनों
+  $\Log{KT4} \Proves/ \Ax{B}$ और $\Log{KT4} \Proves/ \Ax{5}$ दिखाए।
+\end{prob}
+
+\end{document}

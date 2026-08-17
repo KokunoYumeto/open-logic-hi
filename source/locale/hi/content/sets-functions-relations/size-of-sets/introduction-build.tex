@@ -1,0 +1,15 @@
+% Target-only standalone build wrapper for HI-OLP-0020.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% \jobname is useful build metadata but is not reader-facing Hindi.
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{परिचय}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{introduction}
+\end{document}

@@ -1,0 +1,84 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: eta
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{syn}{eta}
+\olsection{$\eta$-परिवर्तन}
+
+$\lambda$-पदों पर एक और संबंध है। \olref[fv]{sec} में हमने
+$\lambd[x][(fx)]$ का उदाहरण उपयोग किया था, जो कोई तर्क स्वीकार करके उस पर
+$f$ लागू करता है। दूसरे शब्दों में, यह~$f$ वाला ही फलन है:
+$\lambd[x][(fx)]N$ और $fN$ दोनों अपचयित होकर~$fN$ बनते हैं। इस विचार को
+निरूपित करने के लिए हम $\eta$-अपचयन (और $\eta$-विस्तार) उपयोग करते हैं।
+
+\begin{defn}[$\eta$-संकुचन, $\eredone$]
+  \ollabel{defn:beredone}
+  \emph{$\eta$-संकुचन} ($\eredone$) पदों पर वह सबसे छोटा संगत संबंध है जो
+  निम्न शर्त संतुष्ट करता है:
+  \[
+    \lambd[x][M x] \eredone M \text{ बशर्ते } x \notin FV(M)
+  \]
+\end{defn}
+
+\begin{defn}[$\beta\eta$-अपचयन, $\bered$] \ollabel{defn:bered}
+  \emph{$\beta\eta$-अपचयन} ($\bered$) पदों पर वह सबसे छोटा परावर्ती और
+  संक्रामक संबंध है जिसमें $\bredone$ और $\eredone$ समाहित हैं; अर्थात्
+  परावर्तिता और संक्रामकता के नियमों के साथ निम्न दो नियम:
+  \begin{enumerate}
+  \item यदि $M \bredone N$, तो $M \bered N$। \ollabel{defn:bered3}
+  \item यदि $M \eredone N$, तो $M \bered N$। \ollabel{defn:bered4}
+  \end{enumerate}
+    
+\end{defn}
+
+\begin{defn}
+  हम तुल्यता-संबंध $\equal$ को $\eta$-परिवर्तन नियम से विस्तारित करते हैं:
+  \[
+  \lambd[x][f x] \equal f
+  \]
+  और विस्तारित संबंध को $\equal[\eta]$ से दर्शाते हैं।
+\end{defn}
+
+$\eta$-तुल्यता महत्त्वपूर्ण है, क्योंकि वह लैम्ब्डा पदों की विस्तारिकता से
+संबंधित है:
+
+\begin{defn}[विस्तारिकता]
+  हम तुल्यता-संबंध $\equal$ को (\ext) नियम से विस्तारित करते हैं:
+  \begin{center}
+  यदि $Mx \equal Nx$, तो $M \equal N$, बशर्ते $x \notin FV(MN)$।
+  \end{center}
+  और विस्तारित संबंध को $\equal[\ext]$ से दर्शाते हैं।
+\end{defn}
+
+मोटे तौर पर यह नियम कहता है कि फलनों के रूप में देखे गए दो पद समान माने
+जाने चाहिए यदि समान तर्क पर उनका व्यवहार समान हो।
+
+अब हम सिद्ध करते हैं कि $\eta$ नियम ठीक विस्तारिकता देता है, और कुछ नहीं।
+
+\begin{thm}
+  $M \equal[\ext] N$ तभी और केवल तभी जब $M \equal[\eta] N$।
+\end{thm}
+
+\begin{proof}
+  पहले हम सिद्ध करते हैं कि $\equal[\eta]$ विस्तारिकता नियम के अधीन संवृत
+  है। अर्थात् $ext$ नियम $\equal[\eta]$ में कुछ नहीं जोड़ता। तब
+  $\equal[\eta]$ में $\equal[\ext]$ समाहित है, और यदि $M \equal[\ext] N$,
+  तो $M \equal[\eta] N$।
+
+  यह सिद्ध करने के लिए कि $\equal[\eta]$, ~\ext{} के अधीन संवृत है, ध्यान
+  दें कि \ext{} नियम द्वारा व्युत्पन्न किसी भी $M \equal N$ के लिए
+  पूर्वाधार $Mx \equal[\eta] Nx$ है। तब $\equal$ के किसी नियम से
+  $\lambd[x][Mx] \equal[\eta] \lambd[x][Nx]$; दोनों पक्षों पर $\eta$ लागू
+  करने से $M \equal[\eta] N$ मिलता है।
+
+  इसी प्रकार हम सिद्ध करते हैं कि $\eta$ नियम $\equal[ext]$ में समाहित है।
+  $x \notin FV(M)$ वाले किन्हीं $\lambd[x][Mx]$ और $M$ के लिए
+  $(\lambd[x][Mx])x \equal[\ext] Mx$; अतः \ext{} नियम से
+  $\lambd[x][Mx] \equal[\ext] M$।
+\end{proof}
+
+\end{document}

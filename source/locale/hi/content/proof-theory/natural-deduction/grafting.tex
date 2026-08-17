@@ -1,0 +1,83 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: grafting
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nat}{gra}
+
+\olsection{\usetoken{P}{proof} की कलमबंदी}
+
+\Log{N1c} और~\Log{N1i} में !!^{proof}, मान्यताओं~$!B$ से !!{formula}s~$!A$
+के !!{proof}s हैं। मान लें स्वयं $!B$ का कोई !!a{proof} है। हम~$!B$ के
+!!{proof} को~$!B$ से $!A$ के !!{proof} के साथ कैसे मिलाएँ कि~$!A$ का ऐसा
+!!a{proof} मिले जो मान्यता~$!B$ का उपयोग न करे?
+
+एक विकल्प है~\Intro{\lif} लागू करके~$!A$ के !!{proof} से मान्यता~$!B$ को
+मुक्त करना। फिर~$!B \lif !A$ के फलित !!{proof} को~$!B$ के !!{proof} के साथ
+मिलाकर यह मिलता है
+\[
+\AxiomC{$\Discharge{!B}{x}$}
+\DeduceC{$!A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!A$}
+\DisplayProof
+\]
+यह सीधा है, किंतु कुछ असुंदर: $\lif$ को प्रस्तुत करके तुरंत उसका विलोपन ही
+क्यों करें? $!B \lif !A$ से होकर इस प्रकार के ``चक्कर'' से बचना संभव होना
+चाहिए। (वास्तव में उन्हें सदा टाला जा सकता है, यही प्रसामान्यीकरण प्रमेय की
+विषयवस्तु है।)
+
+\Log{N1c} और~\Log{N1i} में इस मामले में हम इसे काफ़ी सरलता से टाल सकते हैं:
+मान्यताओं~$!B^x$ को केवल~$!B$ के पूरे !!{proof} से बदल सकते हैं। अन्य
+!!{proof}s की मान्यताओं पर !!{proof}s की यह ``कलमबंदी'' काफ़ी उपयोगी है,
+अतः हम इसे परिभाषा के रूप में दर्ज करते हैं।
+
+\begin{defn}
+यदि $\delta_1$, खुली मान्यता~$!B^x$ से~$!A$ का कोई
+\Log{N1c}-!!{proof} (या \Log{N1i}-!!{proof}) है और $\delta_2$,~$!B$ का
+कोई \Log{N1c}-!!{proof} (\Log{N1i}-!!{proof}) है, तो
+$\Subst{\delta_1}{\delta_2}{!B^x}$ वह परिणाम है जो~$\delta_1$ में~$!B^x$
+की प्रत्येक अमुक्त उपस्थिति को~$\delta_2$ से बदलने पर मिलता है।
+\end{defn}
+
+बशर्ते $\delta_1$ और $\delta_2$ में एक ही चिह्न वाले भिन्न मान्यता
+!!{formula}s न हों और~$\delta_2$ की किसी खुली मान्यता में~$\delta_1$ का कोई
+आइगेनचर न हो, फलित $\Subst{\delta_1}{\delta_2}{!B^x}$ एक सही !!{proof} है
+और उसकी खुली मान्यताएँ $\delta_1$ तथा~$\delta_2$ की खुली मान्यताएँ हैं।
+!!{proof}s की कलमबंदी करते समय ये शर्तें सामान्यतः संतुष्ट होंगी। पहली तब
+संतुष्ट होती है जब $\delta_1$ और $\delta_2$ किसी बड़े !!{proof} के उपप्रमाण
+हों। यदि दूसरी संतुष्ट न हो, तो~$\delta_1$ के आइगेनचरों के नाम बदलकर उसे
+संतुष्ट कर सकते हैं।
+
+एक संगत परिभाषा \Log{N2c} और~\Log{N2i} पर लागू होती है।
+
+\begin{defn}
+यदि $\delta_1$,~$x:!B, \Gamma_1 \Sequent !A$ का कोई
+\Log{N2c}-!!{proof} (या \Log{N2i}-!!{proof}) है और $\delta_2$,
+~$\Gamma_2 \Sequent !B$ का कोई \Log{N1c}-!!{proof}
+(\Log{N1i}-!!{proof}) है, तो $\Subst{\delta_1}{\delta_2}{x:!B}$ वह परिणाम
+है जो~$\delta_1$ के प्रत्येक अभिगृहीत $x:!B \Sequent !B$ को~$\delta_2$ से
+बदलकर और ऐसे अभिगृहीतों के नीचे प्रत्येक अनुक्रम के प्रसंग में $\Gamma_2$
+जोड़कर मिलता है।
+\end{defn}
+
+\begin{prop}
+यदि $\delta_1 \Proves x:!B, \Gamma_1 \Sequent !A$ और $\delta_2 \Proves
+\Gamma_2 \Sequent !B$, तो $\Subst{\delta_1}{\delta_2}{x:!B} \Proves
+\Gamma_1, \Gamma_2 \Sequent !A$, बशर्ते~$\delta_1$ का कोई आइगेनचर
+~$\Gamma_2$ में न आए।
+\end{prop}
+
+
+\begin{proof}
+  $\pheight{\delta}$ पर आगमन से।
+\end{proof}
+
+\end{document}

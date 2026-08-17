@@ -1,0 +1,75 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: truth-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{tru}
+
+\olsection{सत्यता लेम्मा}
+
+निम्न लेम्मा विहित प्रतिरूप में संतुष्टि को इस बात से जोड़ता है कि कौन-से
+!!{formula} अभाज्य समुच्चय~$\Delta$ के !!{element} हैं।
+
+\begin{lem}\ollabel{lem:truth}
+  यदि $\Delta$ अभाज्य है, तो $\mSat{M(\Delta)}{!A}[\sigma]$ तभी जब
+  $\Delta(\sigma) \Proves !A$।
+\end{lem}
+
+\begin{proof}
+  ~$!A$ पर आगमन द्वारा।
+  \begin{enumerate}
+    \item \indcase{!A}{\lfalse}{चूँकि $\Delta(\sigma)$ अभाज्य है, वह संगत
+      है; अतः $\Delta(\sigma) \Proves/ \indfrm$। परिभाषा से
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}
+      \item \indcase{!A}{p}{$\mSat{{}}{}$ की परिभाषा से
+        $\mSat{M(\Delta)}{\indfrm}[\sigma]$ तभी जब $\sigma \in V(p)$;
+        अर्थात $\Delta(\sigma) \Proves \indfrm$।}
+      \item \indcase!{!A}{\lnot !B}{}
+      \item \indcase{!A}{!B \land
+        !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ तभी जब
+        $\mSat{M(\Delta)}{!B}[\sigma]$ और
+        $\mSat{M(\Delta)}{!C}[\sigma]$। आगमन-परिकल्पना से
+        $\mSat{M(\Delta)}{!B}[\sigma]$ तभी जब
+        $\Delta(\sigma) \Proves !B$, और~$!C$ के लिए भी इसी प्रकार। किंतु
+        $\Delta(\sigma) \Proves !B$ और $\Delta(\sigma) \Proves !C$ तभी
+        जब $\Delta(\sigma) \Proves \indfrm$।}
+      \item \indcase{!A}{!B \lor
+        !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ तभी जब
+        $\mSat{M(\Delta)}{!B}[\sigma]$ या
+        $\mSat{M(\Delta)}{!C}[\sigma]$। आगमन-परिकल्पना से यह तभी जब
+        $\Delta(\sigma) \Proves !B$ या $\Delta(\sigma) \Proves !C$। अब
+        दिखाना है कि यह तभी जब $\Delta(\sigma) \Proves \indfrm$। बाएँ से
+        दाएँ दिशा स्पष्ट है। दाएँ से बाएँ दिशा इस तथ्य से मिलती है कि
+        $\Delta(\sigma)$ अभाज्य है।}
+      \item \indcase{!A}{!B \lif !C}{पहले बाएँ से दाएँ दिशा का
+        प्रतिधनात्मक रूप लें। मान लें
+        $\Delta(\sigma) \Proves/ !B \lif !C$। तब
+        $\Delta(\sigma) \cup \{!B\} \Proves/ !C$ भी। चूँकि किसी~$n$ के
+        लिए $\tuple{!B, !C}$, $\tuple{!B_n, !C_n}$ है, इसलिए
+        $\Delta(\sigma.n) = (\Delta(\sigma) \cup \{!B\})^*$; और
+        $\Delta(\sigma.n) \Proves !B$, पर
+        $\Delta(\sigma.n) \Proves/ !C$। आगमन-परिकल्पना से
+        $\mSat{M(\Delta)}{!B}[\sigma.n]$ और
+        $\mSat/{M(\Delta)}{!C}[\sigma.n]$। चूँकि
+        $R\sigma(\sigma.n)$, इसका अर्थ है कि
+        $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।
+
+        अब मान लें $\Delta(\sigma) \Proves !B \lif !C$, और
+        $R\sigma\sigma'$ हो। चूँकि
+        $\Delta(\sigma) \subseteq \Delta(\sigma')$, इसलिए यदि
+        $\Delta(\sigma') \Proves !B$, तो
+        $\Delta(\sigma') \Proves !C$। दूसरे शब्दों में, $R\sigma\sigma'$
+        वाले प्रत्येक $\sigma'$ के लिए या तो
+        $\Delta(\sigma') \Proves/ !B$ अथवा
+        $\Delta(\sigma') \Proves !C$। आगमन-परिकल्पना से इसका अर्थ है कि
+        जब भी $R\sigma\sigma'$, तब या तो
+        $\mSat/{M(\Delta)}{!B}[\sigma']$ अथवा
+        $\mSat{M(\Delta)}{!C}[\sigma']$; अर्थात
+        $\mSat{M(\Delta)}{\indfrm}[\sigma]$।}
+  \end{enumerate}
+\end{proof}
+
+\end{document}

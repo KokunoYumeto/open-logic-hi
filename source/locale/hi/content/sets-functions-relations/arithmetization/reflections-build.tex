@@ -1,0 +1,31 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0037.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen external identities needed by this standalone section.
+\makeatletter
+\expandafter\def\csname r@sfr:arith:cauchy:sec\endcsname
+  {{arith.7}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:cauchy:sec@cref\endcsname
+  {{[section][7][0]arith.7}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ref:sec\endcsname
+  {{rel.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ref:sec@cref\endcsname
+  {{[section][2][0]rel.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:imp:sec\endcsname
+  {{set.3}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:imp:sec@cref\endcsname
+  {{[section][3][0]set.3}{}{}{}{}}
+\makeatother
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{दार्शनिक विचार}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{reflections}
+\end{document}

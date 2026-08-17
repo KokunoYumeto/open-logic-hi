@@ -1,0 +1,184 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{replacement}{refproofs}
+\olsection{परिशिष्ट: प्रतिस्थापन से संबंधित परिणाम}
+
+इस अनुभाग में हम $\ZF$ के भीतर परावर्तन सिद्ध करेंगे। हम वह अर्थ भी सिद्ध
+करेंगे जिसमें परावर्तन प्रतिस्थापन के समतुल्य है। और इस सबका परावर्तन/
+प्रतिस्थापन की शक्ति से संबंधित एक रोचक परिणाम सिद्ध करेंगे। \emph{चेतावनी:
+यह इस पाठ्यपुस्तक का निस्संदेह सबसे उन्नत गणितीय अंश है।}
+
+हम एक उपप्रमेय से आरंभ करेंगे जो संक्षेप के लिए चरों या वस्तुओं के अनुक्रमों
+से निपटने हेतु \emph{ऊपरी रेखा} की संकेत-युक्ति अपनाता है। अतः
+``$\overline{a}_k$'', ``$a_{k_1}$, \dots, $a_{k_n}$'' का संक्षेप है, जहाँ
+$n$ प्रसंग से निर्धारित होता है।
+
+\begin{lem}\ollabel{lemreflection}
+प्रत्येक $1 \leq i \leq k$ के लिए $\phi_i(\overline{v}_i, x)$ को सूत्र
+मानें। तब प्रत्येक $\alpha$ के लिए कोई $\beta > \alpha$ ऐसा है कि किन्हीं
+$\overline{a}_1, \ldots, \overline{a}_k \in V_\beta$ और प्रत्येक
+$1 \leq i \leq k$ के लिए:
+\[
+	\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V_\beta) \phi_i(\overline{a}_i, x)
+\]
+\end{lem}
+
+\begin{proof}
+हम पद $\mu$ को इस प्रकार परिभाषित करते हैं:
+$\mu(\overline{a}_1, \ldots, \overline{a}_k)$ वह लघुतम चरण $V$ है जो
+प्रत्येक $1 \leq i \leq k$ के लिए निम्न सभी सशर्तों को संतुष्ट करता है:
+\[
+\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V) \phi_i(\overline{a}_i, x))
+\]
+यह पुष्टि करना सरल है कि सभी
+$\overline{a}_1, \ldots, \overline{a}_k$ के लिए
+$\mu(\overline{a}_1, \ldots, \overline{a}_k)$ का अस्तित्व है। अब
+प्रतिस्थापन और अपने पुनरावर्तन प्रमेय का उपयोग करके परिभाषित करें:
+\begin{align*}
+	S_0 & = V_{\alpha+1}\\
+	S_{n+1} & = S_n \cup \bigcup
+	\Setabs{\mu(\overline{a}_1, \ldots, \overline{a}_k)}
+	{\overline{a}_1, \ldots, \overline{a}_k \in S_n} \\
+	S &= \bigcup_{m < \omega} S_n.
+\end{align*}
+प्रत्येक $S_n$, और इसलिए स्वयं $S$, $V_\alpha$ के बाद का चरण है। अब
+$\overline{a}_1$, \dots,~$\overline{a}_k \in S$ को नियत करें; अतः कोई
+$n < \omega$ ऐसा है कि
+$\overline{a}_1$, \dots, $\overline{a}_k \in S_n$। कोई
+$1 \leq i \leq k$ नियत करें और मान लें
+$\exists x \phi_i(\overline{a}_i,x)$। तब रचना से
+$(\exists x \in \mu(\overline{a}_1, \ldots,
+\overline{a}_k))\phi_i(\overline{a}_i, x)$, अतः
+$(\exists x \in S_{n+1})\phi_i(\overline{a}_i, x)$ और फलतः
+$(\exists x \in S)\phi_i(\overline{a}_i, x)$। इसलिए $S$ हमारा
+$V_\beta$ है।
+\end{proof}
+\noindent 
+अब हम \olref[sth][replacement][ref]{reflectionschema} को काफ़ी सीधे सिद्ध
+कर सकते हैं:
+
+\begin{proof}[प्रमाण]
+$\alpha$ को नियत करें। सामान्यता खोए बिना हम मान सकते हैं कि $\phi$ के
+एकमात्र संयोजक $\exists$, $\lnot$ और $\land$ हैं (क्योंकि ये अभिव्यक्ति के
+लिए पर्याप्त हैं)। $\psi_1, \ldots, \psi_k$ को $\phi$ के सभी उपसूत्रों की
+जटिलता के क्रम में गणना मानें, ताकि $\psi_k = \phi$।
+\olref{lemreflection} से कोई $\beta > \alpha$ ऐसा है कि किसी भी
+$\overline{a}_i \in V_\beta$ और प्रत्येक $1 \leq i \leq k$ के लिए:
+\begin{align}\label{reflectionnicelybehaved}
+	\exists x\psi_i(\overline{a}_i, x) \rightarrow 
+	(\exists x \in V_\beta) \psi_i(\overline{a}_i, x)\tag{*}
+\end{align}
+$\psi_i$ की जटिलता पर आगमन से हम दिखाएँगे कि किसी भी
+$\overline{a}_i \in V_\beta$ के लिए
+$\psi_i(\overline{a}_i) \leftrightarrow
+\psi_i^{V_\beta}(\overline{a}_i)$। यदि $\psi_i$ परमाण्विक है, तो यह तुच्छ
+है। द्विसशर्त यह भी स्थापित करता है कि जब $\psi_i$ इस गुण को संतुष्ट करने
+वाले उपसूत्रों का निषेध या संयोजन हो, तो स्वयं $\psi_i$ यह गुण संतुष्ट करता
+है। अतः एकमात्र रोचक मामला परिमाणीकरण का है।
+$\overline{a}_i \in V_\beta$ को नियत करें; तब:
+\begin{align*}
+	(\exists x \psi_i(\overline{a}_i, x))^{V_\beta}
+	&\text{ तभी और केवल तभी जब }
+	(\exists x \in V_\beta)\psi_i^{V_\beta}(\overline{a}_i, x)
+	&&\text{परिभाषा से}\\
+	&\text{ तभी और केवल तभी जब }
+	(\exists x \in V_\beta)\psi_i(\overline{a}_i,  x)
+	&&\text{परिकल्पना से}\\
+	&\text{ तभी और केवल तभी जब }
+	\exists x \psi_i(\overline{a}_i, x)
+	&&\text{\eqref{reflectionnicelybehaved} से}
+\end{align*}
+इससे आगमन पूर्ण होता है; $\psi_k = \phi$ होने से परिणाम निष्पन्न होता है।
+\end{proof}
+
+हमने $\ZF$ में परावर्तन सिद्ध किया। हमारा प्रमाण मूलतः
+\citet{Montague1961} का अनुसरण करता है। अब हम $\Z$ में सिद्ध करना चाहते हैं
+कि परावर्तन से प्रतिस्थापन निष्पन्न होता है। प्रमाण एक सरलीकरण के साथ
+\citet{Levy1960} का अनुसरण करता है।
+
+चूँकि हम $\Z$ में काम कर रहे हैं, परावर्तन को ठीक ऊपर दिए रूप में प्रस्तुत
+नहीं कर सकते। आखिर हमने परावर्तन को ``$V_\alpha$'' संकेतन से सूत्रित किया
+और उसे $\Z$ में परिभाषित नहीं किया जा सकता
+(\olref[sth][spine][zf]{sec} देखें)। अतः इसके बजाय हम प्रतिस्थापन का प्रकटतः
+अधिक दुर्बल सूत्रीकरण इस प्रकार देंगे:
+
+\begin{defish}
+\emph{दुर्बल परावर्तन।} किसी भी सूत्र $\phi$ के लिए ऐसा संक्रमणशील समुच्चय
+$S$ है कि $0$, $1$ और $\phi$ के सभी प्राचल $S$ के !!{element}s हैं, और
+$(\forall \overline{x} \in S)(\phi \liff \phi^S)$।
+\end{defish}
+
+इसका उपयोग करके प्रतिस्थापन सिद्ध करने के लिए पहले हम
+\citet[Theorem 2 के प्रथम भाग]{Levy1960} का अनुसरण करके दिखाएँगे कि दो
+सूत्रों को एक साथ ``परावर्तित'' किया जा सकता है:
+
+\begin{lem}[$\Z + \text{दुर्बल परावर्तन}$ में]\ollabel{lem:reflect}
+किन्हीं सूत्रों $\psi, \chi$ के लिए ऐसा संक्रमणशील समुच्चय $S$ है कि $0$
+और $1$ (और सूत्रों के सभी प्राचल) $S$ के !!{element}s हैं, और
+$(\forall \overline{x} \in S)((\psi \liff \psi^S) \land
+(\chi \liff \chi^S))$।
+\end{lem}
+
+\begin{proof}
+$\phi$ को सूत्र $(z = 0 \land \psi) \lor (z = 1 \land \chi)$ मानें।
+
+यहाँ हम संक्षेप का उपयोग करते हैं; ``$z = 0$'' को
+``$\forall t\, t \notin z$'' और ``$z =1$'' को
+``$\forall s(s \in z \liff \forall t\, t \notin s)$'' लिखकर विस्तृत करना
+चाहिए। किंतु चूँकि $0, 1 \in S$ और $S$ संक्रमणशील है, ये सूत्र $S$ के लिए
+\emph{निरपेक्ष} हैं; अर्थात उनके परिमाणकों को $S$ तक सीमित करें या न करें,
+वे उसी वस्तु पर लागू होंगे।\footnote{अधिक औपचारिक रूप में, $\xi$ को इन
+सूत्रों में से कोई एक मानकर $\xi(z) \liff \xi^S(z)$।}
+
+दुर्बल परावर्तन से हमारे पास कोई उपयुक्त $S$ ऐसा है कि:
+\begin{align*}
+	(\forall z, \overline{x} \in S)(&\phi \liff \phi^S)\\
+	\text{अर्थात }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi)) \liff {}\\
+	&\phantom{(}((z = 0 \land \psi) \lor (z = 1 \land \chi))^S)\\
+	\text{अर्थात }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi))\liff {}\\
+	&\phantom{(}((z = 0 \land \psi^S) \lor (z = 1 \land \chi^S)))\\
+	\text{अर्थात }(\forall \overline{x} \in S)(&(\psi \liff \psi^S) \land (\chi \liff \chi^S))
+\end{align*}
+दूसरे दावे से तीसरा निष्पन्न होता है, क्योंकि ``$z = 0$'' और ``$z=1$'',
+$S$ के लिए निरपेक्ष हैं; चौथा दावा $0 \neq 1$ से निष्पन्न होता है।
+\end{proof}\noindent
+अब हम \citet[Theorem 6]{Levy1960} का अनुसरण और सरलीकरण करके प्रतिस्थापन
+प्राप्त कर सकते हैं:
+
+\begin{thm}[$\Z$ + दुर्बल परावर्तन में]\label{thm:replacement}
+किसी भी सूत्र $\phi(v,w)$ और किसी भी $A$ के लिए यदि
+$(\forall x \in A)\lexists![y][\phi(x,y)]$, तो
+$\Setabs{y}{(\exists x \in A)\phi(x,y}$ का अस्तित्व है।
+\end{thm}
+
+\begin{proof}
+ऐसे $A$ को नियत करें कि $(\forall x \in A)\lexists![y][\phi(x,y)]$, और
+सूत्र परिभाषित करें:
+\begin{align*}
+	\psi &\text{ है } (\phi(x, z) \land A = A)\\
+	\chi &\text{ है } \lexists[y][\phi(x, y)]
+\end{align*}
+\olref{lem:reflect} का उपयोग करते हुए, चूँकि $A$, $\psi$ का प्राचल है,
+ऐसा संक्रमणशील~$S$ है कि $0, 1, A \in S$ (अन्य सभी प्राचलों सहित), और:
+\[
+	(\forall x,z \in S)((\psi \liff \psi^S) \land (\chi \liff \chi^S))
+\]
+अतः विशेषतः:
+\begin{align*}
+	(\forall  x, z \in S)(&\phi(x, z) \liff \phi^S(x, z))\\
+	(\forall x \in S)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi^S(x, y)) 
+\end{align*}
+इन्हें मिलाकर और यह देखकर कि $A \in S$ तथा $S$ की संक्रमणशीलता से
+$A \subseteq S$:
+\begin{align*}
+	(\forall x \in A)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi(x, y))
+\end{align*}
+अब $(\forall x \in A)(\lexists![y \in S])\phi(x, y)$, क्योंकि
+$(\forall x \in A)\lexists![y][\phi(x, y)]$। अब पृथक्करण से
+$\Setabs{y \in S}{(\exists x \in A) \phi(x, y)} =
+\Setabs{y}{(\exists x \in A) \phi(x, y)}$।
+\end{proof}
+
+\end{document}

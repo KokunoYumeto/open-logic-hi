@@ -1,0 +1,133 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: size-of-domain
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{syn}{siz}
+
+\olsection{अनंत और \usetoken{S}{enumerable}
+  \usetoken{P}{domain} का वर्णन}
+
+समुच्चय~$M$ (डेडेकिंड) अनंत है तभी और केवल तभी जब कोई ऐसा !!a{injective}
+फलन~$f\colon M \to M$ हो जो !!{surjective} न हो, अर्थात् जिसके लिए
+$\ran{f} \neq M$। प्रथम-कोटि तर्कशास्त्र में हम एक-स्थानी
+!!{function}~$f$ पर विचार कर सकते हैं और कह सकते हैं कि
+!!a{structure}~$\Struct{M}$ में उसे दिया गया फलन~$\Assign{f}{M}$,
+!!{injective} है और $\ran{f} \neq \Domain{M}$:
+\[
+\lforall[x][\lforall[y][(\eq[f(x)][f(y)] \to \eq[x][y])]] \land
+\lexists[y][\lforall[x][\eq/[y][f(x)]]].
+\]
+यदि $\Struct{M}$ इस !!{sentence} को संतुष्ट करता है, तो
+$\Assign{f}{M}: \Domain{M} \to \Domain{M}$ !!{injective} है, अतः
+$\Domain{M}$ अनंत होना चाहिए। यदि $\Domain{M}$ अनंत है और इसलिए ऐसा फलन
+अस्तित्व में है, तो हम $\Assign{f}{M}$ को वही फलन मान सकते हैं और
+$\Struct{M}$ इस !!{sentence} को संतुष्ट करेगा। किंतु इसके लिए हमारी भाषा में
+वह अतार्किक चिह्न~$f$ होना चाहिए जिसका हम इस प्रयोजन के लिए उपयोग करते हैं।
+द्वितीय-कोटि तर्कशास्त्र में हम सीधे कह सकते हैं कि ऐसा फलन \emph{अस्तित्व
+में है}। अब इसके लिए~$f$ आवश्यक नहीं है, और हमें शुद्ध द्वितीय-कोटि
+तर्कशास्त्र का यह !!{sentence} मिलता है:
+\[
+\fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
+      \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])].
+\]
+$\Sat{M}{\fn{Inf}}$ तभी और केवल तभी जब $\Domain{M}$ अनंत है। तब हम
+$\fn{Fin} \ident \lnot \fn{Inf}$ परिभाषित कर सकते हैं;
+$\Sat{M}{\fn{Fin}}$ तभी और केवल तभी जब $\Domain{M}$ परिमित है। शुद्ध
+प्रथम-कोटि तर्कशास्त्र का कोई एक !!{sentence} यह व्यक्त नहीं कर सकता कि
+!!{domain} अनंत है, यद्यपि ऐसे वाक्यों का कोई अनंत समुच्चय ऐसा कर सकता है।
+शुद्ध प्रथम-कोटि तर्कशास्त्र के !!{sentence} का ऐसा कोई समुच्चय नहीं है जो
+किसी !!a{structure} में तभी और केवल तभी संतुष्ट हो जब उसका प्रांत परिमित हो।
+
+\begin{prop}
+$\Sat{M}{\fn{Inf}}$ तभी और केवल तभी जब $\Domain{M}$ अनंत है।
+\end{prop}
+
+\begin{proof}
+$\Sat{M}{\fn{Inf}}$ तभी और केवल तभी जब
+  $\Sat{M}{\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
+    \land \lexists[y][\lforall[x][\eq/[y][u(x)]]]}[s]$, किसी~$s$ के लिए।
+  यदि ऐसा है, तो $s(u)$ !!a{injective} फलन है और कोई $y \in \Domain{M}$,
+  ~$s(u)$ के परिसर में नहीं है। इसके विपरीत, यदि कोई !!a{injective}
+  $f\colon \Domain{M} \to \Domain{M}$ ऐसा है कि $\ran{f} \neq
+  \Domain{M}$, तो $s(u) = f$ ऐसा ही चर-नियतन है।
+\end{proof}
+
+समुच्चय $M$ !!{enumerable} है यदि उसके !!{element} का ऐसा परिगणन हो:
+\[
+m_0, m_1, m_2, \dots
+\]
+(बिना पुनरावृत्ति के, किंतु संभवतः परिमित)। ऐसा परिगणन तभी और केवल तभी
+अस्तित्व में है जब कोई !!a{element} $z \in M$ और फलन $f\colon M \to M$ ऐसा
+हो कि $z$, $f(z)$, $f(f(z))$, \dots, ही~$M$ के सभी !!{element} हों। यदि
+परिगणन अस्तित्व में है, तो $z = m_0$ और $f(m_k) = m_{k+1}$ (अथवा यदि $m_k$
+परिगणन का अंतिम !!{element} है तो $f(m_k) = m_k$) अपेक्षित !!{element} और
+फलन हैं। दूसरी ओर, यदि ऐसे $z$ और $f$ अस्तित्व में हैं, तो $z$, $f(z)$,
+$f(f(z))$, \dots, ~$M$ का परिगणन है और $M$ !!{enumerable} है। हम
+द्वितीय-कोटि तर्कशास्त्र में $z$ और~$f$ का अस्तित्व व्यक्त करके ऐसा
+!!{sentence} बना सकते हैं जो किसी !!a{structure} में तभी और केवल तभी सत्य
+हो जब वह !!{structure}, !!{enumerable} हो:
+\[
+\fn{Count} \ident
+\lexists[z][\lexists[u][\lforall[X][((X(z) \land
+      \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
+\]
+
+\begin{prop}
+$\Sat{M}{\fn{Count}}$ तभी और केवल तभी जब $\Domain{M}$ !!{enumerable} है।
+\end{prop}
+
+\begin{proof}
+मान लें $\Domain{M}$ !!{enumerable} है और $m_0$, $m_1$, \dots, उसका
+परिगणन है। पुनरावृत्तियाँ हटाकर हम सुनिश्चित कर सकते हैं कि कोई $m_k$ दो
+बार न आए। $f(m_k) = m_{k+1}$ परिभाषित करें और $s(z) = m_0$ तथा $s(u) = f$
+मानें। हम दिखाते हैं कि
+\[
+\Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
+    \lif \lforall[x][X(x)])]}[s]
+\]
+मान लें $M \subseteq \Domain{M}$ स्वेच्छ है। आगे मान लें कि
+$\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif
+X(u(x)))])}[\Subst{s}{M}{X}]$। तब $\Subst{s}{M}{X}(z) \in M$, और जब भी
+$x \in M$ हो, तब $(\Subst{s}{M}{X}(u))(x) \in M$ भी। दूसरे शब्दों में,
+चूँकि $\varAssign{\Subst{s}{M}{X}}{s}{X}$, इसलिए $m_0 \in M$; और यदि
+$x \in M$ तो $f(x) \in M$। अतः $m_0 \in M$, $m_1 = f(m_0) \in M$,
+$m_2 = f(f(m_0)) \in M$, आदि। इसलिए $M = \Domain{M}$ और इस कारण
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$। चूँकि $M \subseteq
+\Domain{M}$ स्वेच्छ था, प्रमाण पूरा हुआ:
+$\Sat{M}{\fn{Count}}$.
+
+अब मान लें कि $\Sat{M}{\fn{Count}}$, अर्थात्
+\[
+\Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
+    \lif \lforall[x][X(x)])]}[s]
+\]
+किसी~$s$ के लिए। $m = s(z)$ और $f = s(u)$ मानें और $M = \{m, f(m),
+f(f(m)), \dots\}$ पर विचार करें। इस प्रकार परिभाषित $M$ स्पष्टतः
+!!{enumerable} है। तब
+\[
+\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
+    \lif \lforall[x][X(x)]}[\Subst{s}{M}{X}]
+\]
+परिकल्पना से। साथ ही $\Sat{M}{X(z)}[\Subst{s}{M}{X}]$, क्योंकि $M \ni m =
+\Subst{s}{M}{X}(z)$; और $\Sat{M}{\lforall[x][(X(x) \lif
+X(u(x)))]}[\Subst{s}{M}{X}]$ भी, क्योंकि जब भी $x \in M$ हो, तब
+$f(x) \in M$ भी। अतः पूर्वपक्ष और सप्रतिबंध, दोनों संतुष्ट हैं, इसलिए
+उत्तरपक्ष भी संतुष्ट होना चाहिए:
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$। किंतु इसका अर्थ है कि
+$M = \Domain{M}$; और चूँकि परिभाषा से $M$ !!{enumerable} है, इसलिए
+$\Domain{M}$ भी !!{enumerable} है।
+\end{proof}
+
+\begin{prob}
+!!{sentence} $\fn{Inf} \land \fn{Count}$ उन्हीं और केवल उन्हीं प्रांतों में
+सत्य है जो !!{denumerable} हैं। $\fn{Count}$ की परिभाषा को इस प्रकार बदलें
+कि वह कोई भिन्न !!{sentence} बन जाए जो सीधे यह व्यक्त करे कि प्रांत
+!!{denumerable} है, और सिद्ध करें कि वह ऐसा करता है।
+\end{prob}
+
+\end{document}
+

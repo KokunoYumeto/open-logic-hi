@@ -1,0 +1,33 @@
+% Target-only integrated chapter build wrapper for HI-OLP-CMP-REC-CHAPTER-0001.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\setlength{\emergencystretch}{5em}
+\raggedbottom
+\hypersetup{pdflang={hi-IN}}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{पुनरावर्ती फलन}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{rec}
+\AtBeginDocument{%
+  \renewcommand*{\crefrangeconjunction}{ से\nobreakspace}%
+  \renewcommand*{\crefpairconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddleconjunction}{, }%
+  \renewcommand*{\creflastconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefpairgroupconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddlegroupconjunction}{, }%
+  \renewcommand*{\creflastgroupconjunction}{, और\nobreakspace}%
+}
+
+\begin{document}
+\tagtrue{FOL}
+\tagtrue{TMs}
+\subfile{recursive-functions}
+\renewcommand*{\olpath}{../../../05_translation/openlogic_hi_9620cc7}
+\end{document}

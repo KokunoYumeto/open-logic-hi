@@ -1,0 +1,55 @@
+{
+  "schema": "openlogic-hi-zenodo-publication-receipt-v3",
+  "verified_at": "2026-08-18T01:52:26+02:00",
+  "status": "PASS_PUBLIC_ANONYMOUS_READBACK",
+  "release_id": "HI-OLP-PUB-0005",
+  "record_id": 21987019,
+  "doi": "10.5281/zenodo.21987019",
+  "concept_doi": "10.5281/zenodo.21920511",
+  "record_url": "https://zenodo.org/records/21987019",
+  "title": "ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण (722/722)",
+  "version": "2026-08-18 — A4 पुनर्प्रवाह सहित संपूर्ण हिंदी अनुवाद, 722/722",
+  "publication_date": "2026-08-18",
+  "language": "hin",
+  "license": "cc-by-4.0",
+  "coverage": {
+    "translated_source_files": 722,
+    "source_denominator_files": 722,
+    "source_english_word_tokens": 444479,
+    "reader_pages": 842
+  },
+  "files": [
+    {
+      "name": "00_OpenLogic_Project_Hindi_COMPLETE_722-of-722.pdf",
+      "bytes": 6584887,
+      "sha256": "DB3018D15BC9AA597A3DCC71495A9C3D7E7071272BDCCBA85C3205FF17E93BE0",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "01_OpenLogic_Project_Hindi_COMPLETE_PROVENANCE.zip",
+      "bytes": 22070911,
+      "sha256": "9337C8FE89A875C68F288E0B4AD4ACB084BFF33C72589895204679AD770BE333",
+      "anonymous_readback": "PASS"
+    },
+    {
+      "name": "02_SHA256SUMS.txt",
+      "bytes": 234,
+      "sha256": "CEE11537CDD3EBD249C4DA25BF53A043A7AEE6BCAD2A3FF22DE3A4C77F23717F",
+      "anonymous_readback": "PASS"
+    }
+  ],
+  "concept_doi_resolves_to_this_version": true,
+  "predecessor_record_id": 21985316,
+  "predecessor_preserved_as_version_history": true,
+  "source_commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "source_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
+  "caveats": {
+    "complete_open_logic_translation": true,
+    "remaining_source_files": 0,
+    "human_reviewed": false,
+    "peer_reviewed": false,
+    "critical_edition": false,
+    "pdf_ua_certified": false
+  },
+  "credential_handling": "The local token was read only in process memory, never printed or persisted, and was absent from the published archives by filename and content checks."
+}

@@ -1,0 +1,127 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{cardinals}{cardsasords}
+\olsection{क्रमसूचकों के रूप में कार्डिनल}
+
+वास्तव में कार्डिनलों का हमारा सिद्धांत क्रमसूचकों के हमारे सिद्धांत का
+(निर्लज्जतापूर्वक) उपयोग करेगा। अर्थात् हम कार्डिनलों को कुछ विशिष्ट
+क्रमसूचकों के रूप में ही परिभाषित करेंगे। विशेषतः हम निम्न परिभाषा देंगे:
+
+\begin{defn}\ollabel{defcardinalasordinal}
+यदि $A$ को सुव्यवस्थित किया जा सकता है, तो $\card{A}$ वह लघुतम क्रमसूचक
+$\gamma$ है जिसके लिए $\cardeq{A}{\gamma}$। किसी भी क्रमसूचक $\gamma$ के
+लिए हम कहते हैं कि $\gamma$ एक \emph{कार्डिनल} है तभी जब
+$\gamma = \card{\gamma}$।
+\end{defn}
+
+हमने अभी ``$A$ को सुव्यवस्थित किया जा सकता है'' वाक्यांश का उपयोग किया।
+गणित में लगभग हमेशा की तरह यहाँ यह मोडल कथन किसी अस्तित्वपरक दावे का केवल
+अनौपचारिक रूप है: ``$A$ को सुव्यवस्थित किया जा सकता है'' कहने का अर्थ केवल
+इतना है कि ``कोई ऐसा संबंध है जो $A$ को सुव्यवस्थित करता है''।
+
+किंतु \olref{defcardinalasordinal} में एक अड़चन है। हम चाहेंगे कि
+\emph{प्रत्येक} समुच्चय का कोई आकार हो, अर्थात् प्रत्येक $A$ के लिए
+$\card{A}$ का अस्तित्व हो। किंतु हमारी अभी दी गई परिभाषा एक सशर्त वाक्य से
+आरंभ होती है: ``\emph{यदि} $A$ को सुव्यवस्थित किया जा सकता है\ldots''। यदि
+कोई ऐसा समुच्चय $A$ हो जिसे सुव्यवस्थित नहीं किया जा सकता, तो हमारी परिभाषा
+$\card{A}$ नामक किसी वस्तु को परिभाषित ही नहीं करेगी।
+
+अतः \olref{defcardinalasordinal} का उपयोग करने के लिए हमें यह प्रत्याभूति
+चाहिए कि प्रत्येक समुच्चय को सुव्यवस्थित किया जा सकता है। दुर्भाग्य से
+$\ZF$ में यह प्रत्याभूति उपलब्ध नहीं है। इसलिए यदि हम
+\olref{defcardinalasordinal} का उपयोग करना चाहते हैं, तो कोई नया अभिगृहीत
+जोड़ने के अतिरिक्त कोई विकल्प नहीं है, जैसे:
+\begin{axiom}[Well-Ordering]
+प्रत्येक समुच्चय को सुव्यवस्थित किया जा सकता है।
+\end{axiom}
+हम \olref[choice][]{chap} में चर्चा करेंगे कि सुव्यवस्था अभिगृहीत स्वीकार्य
+है या नहीं। किंतु अब से हम इसका मुक्त रूप से उपयोग करेंगे। इसके उपयोग से यह
+सिद्ध करना बहुत सीधा है कि (\olref{defcardinalasordinal} में परिभाषित)
+कार्डिनलों का अस्तित्व है और वे सुव्यवस्थित ढंग से व्यवहार करते हैं:
+
+\begin{lem}\ollabel{lem:CardinalsExist}
+प्रत्येक समुच्चय $A$ के लिए:
+\begin{enumerate}
+	\item\ollabel{cardaexists} $\card{A}$ का अस्तित्व है और वह अद्वितीय है;
+	\item\ollabel{cardaapprox}  $\cardeq{\card{A}}{A}$;
+	\item\ollabel{cardaidem}  $\card{A}$ एक कार्डिनल है, अर्थात्
+	$\card{A} = \card{\card{A}}$;
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$A$ को नियत करें। सुव्यवस्था से कोई सुव्यवस्था $\tuple{A, R}$ है।
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} से $\tuple{A,R}$
+किसी अद्वितीय क्रमसूचक $\beta$ के समाकृतिक है। अतः
+$\cardeq{A}{\beta}$। परिमितेतर आगमन से कोई अद्वितीय लघुतम क्रमसूचक
+$\gamma$ है जिसके लिए $\cardeq{A}{\gamma}$। अतः $\card{A}=\gamma$,
+जिससे \olref{cardaexists} और \olref{cardaapprox} स्थापित होते हैं।
+\olref{cardaidem} स्थापित करने के लिए ध्यान दें कि यदि $\delta \in
+\gamma$, तो $\gamma$ के हमारे चयन से $\cardless{\delta}{A}$, और इसलिए
+$\cardless{\delta}{\gamma}$ भी, क्योंकि समसंख्यता एक तुल्यता संबंध है
+(\olref[sfr][siz][equ]{equinumerosityisequi})। अतः
+$\gamma=\card{\gamma}$।
+%So, for reductio, suppose that there is some ordinal $\delta \in \gamma$ such that $\cardeq{\gamma}{\delta}$. Then, $\cardeq{\cardeq{A}{\gamma}}{\delta}$ so that $\cardeq{A}{\delta}$ by \olref[sfr][set][equ]{equinumerosityisequi}, which contradicts the choice of $\gamma$ as the least ordinal such that $\cardeq{A}{\gamma}$. 
+\end{proof}
+
+अगला परिणाम कैंटर के सिद्धांत की, और उसके अतिरिक्त भी, प्रत्याभूति देता है।
+(ध्यान दें कि कार्डिनल अपना क्रम क्रमसूचकों से प्राप्त करते हैं, अर्थात्
+$\cardfont{a} < \cardfont{b}$ तभी जब $\cardfont{a} \in \cardfont{b}$। इसे
+सूत्रबद्ध करते समय जिन वस्तुओं को हम कार्डिनल जानते हैं, उनके लिए फ़्राक्टूर
+अक्षरों का उपयोग करेंगे। यह पर्याप्त मानक प्रथा है। एक सामान्य विकल्प
+यूनानी अक्षरों का उपयोग करना है, क्योंकि कार्डिनल क्रमसूचक होते हैं, किंतु
+उन्हें वर्णमाला के मध्य से चुनना, जैसे $\kappa, \lambda$।):
+\begin{lem}\ollabel{lem:CardinalsBehaveRight}
+किन्हीं समुच्चयों $A$ और $B$ के लिए:
+\begin{align*}
+	\cardeq{A}{B} &\text{ तभी जब } \card{A} = \card{B}\\
+	\cardle{A}{B} &\text{ तभी जब } \card{A} \leq \card{B}\\
+	\cardless{A}{B}&\text{ तभी जब } \card{A} < \card{B}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+हम दूसरे दावे की बाएँ-से-दाएँ दिशा सिद्ध करेंगे (अन्य स्थितियाँ समान हैं
+और अभ्यास के लिए छोड़ी गई हैं)। अतः निम्न आरेख पर विचार करें:
+\begin{center}
+	\begin{tikzpicture}
+	\node (nodea) {$A$};
+	\node[right = 6em of nodea] (nodeb) {$B$};
+	\node[below = 2em of nodea] (nodecarda) {$\card{A}$};
+	\node[below = 2em of nodeb] (nodecardb) {$\card{B}$};
+	\draw[->] (nodea)--(nodeb);
+	\draw[<->] (nodea)--(nodecarda);
+	\draw[<->] (nodeb)--(nodecardb);
+	\draw[->, dashed] (nodecarda)--(nodecardb);
+\end{tikzpicture}
+\end{center}
+दो सिरों वाले तीर !!{bijection}ों को दर्शाते हैं, जिनके अस्तित्व की
+प्रत्याभूति \olref{lem:CardinalsExist} से मिलती है। $\cardle{A}{B}$ मानने
+पर कोई !!a{injection} $A\to B$ है। अब $\card{A}$ से $A$, फिर $B$, और फिर
+$\card{B}$ तक तीरों का अनुसरण करके हमें कोई !!a{injection}
+$\card{A}\to\card{B}$ (टूटा हुआ तीर) मिलता है।
+\end{proof}\noindent
+\olref{lem:CardinalsBehaveRight} का उपयोग श्रेडर--बर्नस्टीन को फिर से
+सिद्ध करने में भी कर सकते हैं। यह दावा है कि यदि $\cardle{A}{B}$ और
+$\cardle{B}{A}$, तो $\cardeq{A}{B}$। हमने इसे
+\olref[sfr][siz][sb]{thm:schroder-bernstein} के रूप में कहा था, किंतु पहले
+इसे---कुछ प्रयास के साथ---\olref[sfr][infinite][card-sb]{sec} में सिद्ध
+किया था। अब विचार करें:
+
+\begin{proof}[श्रेडर--बर्नस्टीन का पुनः प्रमाण]
+यदि $\cardle{A}{B}$ और $\cardle{B}{A}$, तो
+\olref{lem:CardinalsBehaveRight} से $\card{A}\leq\card{B}$ और
+$\card{B}\leq\card{A}$। अतः त्रिविभाजन और
+\olref{lem:CardinalsBehaveRight} से $\card{A}=\card{B}$ और
+$\cardeq{A}{B}$।
+\end{proof}
+\noindent
+यद्यपि यह बहुत सरल प्रमाण है, यह अप्रत्यक्ष रूप से प्रतिस्थापन
+(\olref[ordinals][ordtype]{thmOrdinalRepresentation} पाने के लिए) और
+सुव्यवस्था (\olref{lem:CardinalsBehaveRight} की प्रत्याभूति के लिए) दोनों
+पर निर्भर है। इसके विपरीत \olref[sfr][infinite][card-sb]{sec} का प्रमाण
+कहीं अधिक स्वावलंबी था (वास्तव में उसे $\Zminus$ में पूरा किया जा सकता है)।
+
+\end{document}

@@ -1,0 +1,68 @@
+% Part: second-order-logic
+% Chapter: metatheory
+% Section: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{met}{com}
+
+\olsection{द्वितीय-कोटि तर्कशास्त्र संहत नहीं है}
+
+\begin{explain}
+!!{sentence} के किसी समुच्चय~$\Gamma$ को \emph{परिमिततः संतुष्ट्य} कहें यदि
+उसका प्रत्येक परिमित उपसमुच्चय संतुष्ट्य हो। प्रथम-कोटि तर्कशास्त्र में यह
+गुण है कि यदि !!{sentence} का कोई समुच्चय~$\Gamma$ परिमिततः संतुष्ट्य है,
+तो वह संतुष्ट्य है। इस गुण को \emph{संहतता} कहते हैं। अनुगमन की भाषा में
+इसका एक तुल्य रूप है: यदि $\Gamma \Entails !A$, तो किसी परिमित
+उपसमुच्चय~$\Gamma_0 \subseteq \Gamma$ के लिए पहले ही $\Gamma_0 \Entails
+!A$। इस रूप में यह पूर्णता प्रमेय का तात्कालिक उपप्रमेय है: यदि $\Gamma
+\Entails !A$, तो पूर्णता से $\Gamma \Proves !A$। किंतु कोई !!{derivation},
+~$\Gamma$ के केवल परिमित रूप से अनेक !!{sentence} का ही उपयोग कर सकता है।
+
+द्वितीय-कोटि तर्कशास्त्र के लिए संहतता सत्य नहीं है। द्वितीय-कोटि
+!!{sentence} के ऐसे समुच्चय हैं जो परिमिततः संतुष्ट्य तो हैं, किंतु संतुष्ट्य
+नहीं; और जो किसी~$!A$ का अनुगमन करते हैं, जबकि उनका कोई परिमित उपसमुच्चय
+उस~$!A$ का अनुगमन नहीं करता।
+\end{explain}
+
+
+\begin{thm}
+\ollabel{thm:sol-undecidable}
+द्वितीय-कोटि तर्कशास्त्र संहत नहीं है।
+\end{thm}
+
+\begin{proof}
+स्मरण करें कि
+\[
+\fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
+      \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])]
+\]
+किसी !!a{structure} में तभी और केवल तभी संतुष्ट होता है जब उसका प्रांत
+अनंत हो। $!A^{\ge n}$ ऐसा वाक्य हो जो कहता है कि प्रांत में कम-से-कम
+$n$ !!{element} हैं; उदाहरणार्थ,
+\[
+!A^{\ge n} \ident \lexists[x_1][\dots\lexists[x_n][(\eq/[x_1][x_2]
+    \land \eq/[x_1][x_3] \land \dots \land \eq/[x_{n-1}][x_n])]].
+\]
+!!{sentence} के इस समुच्चय पर विचार करें:
+\[
+\Gamma = \{\lnot \fn{Inf}, !A^{\ge 1}, !A^{\ge 2}, !A^{\ge 3}, \dots\}.
+\]
+यह परिमिततः संतुष्ट्य है, क्योंकि किसी भी परिमित उपसमुच्चय~$\Gamma_0
+\subseteq \Gamma$ के लिए कोई ऐसा $k$ है कि $!A^{\ge k} \in \Gamma$,
+पर $n>k$ के लिए कोई $!A^{\ge n} \in \Gamma$ नहीं है। यदि $\Domain{M}$
+में $k$ !!{element} हों, तो $\Sat{M}{\Gamma_0}$। किंतु $\Gamma$ संतुष्ट्य
+नहीं है: यदि $\Sat{M}{\lnot \fn{Inf}}$, तो $\Domain{M}$ परिमित होना चाहिए,
+मान लें उसका आकार~$k$ है। तब $\Sat/{M}{!A^{\ge k+1}}$।
+\end{proof}
+
+\begin{prob}
+ऐसे समुच्चय~$\Gamma$ और !!a{sentence}~$!A$ का उदाहरण दें कि
+$\Gamma \Entails !A$, पर प्रत्येक परिमित उपसमुच्चय~$\Gamma_0 \subseteq
+\Gamma$ के लिए $\Gamma_0 \Entails/ !A$।
+\end{prob}
+
+
+\end{document}

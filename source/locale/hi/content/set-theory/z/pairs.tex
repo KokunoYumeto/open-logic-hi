@@ -1,0 +1,74 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{z}{pairs}
+\olsection{युग्म}
+
+विचार करने योग्य अगला अभिगृहीत यह है:
+
+\begin{axiom}[युग्म]
+किन्हीं समुच्चयों $a, b$ के लिए समुच्चय $\{a, b\}$ का अस्तित्व है।
+\[
+	\forall a \forall b \exists P \forall x (x \in P \liff (x = a \lor x = b))
+\]
+\end{axiom}
+
+पुनरावर्ती अवधारणा से इस अभिगृहीत का औचित्य इस प्रकार दिया जा सकता है।
+मान लें कि $a$ चरण $S$ पर और $b$ चरण $T$ पर उपलब्ध है। $M$ को $S$ और
+$T$ में से जो बाद में आता है वह चरण मानें। चूँकि $a$ और $b$ दोनों चरण $M$
+पर उपलब्ध हैं, समुच्चय $\{a,b\}$ एक संभव संग्रह है जो $M$ के बाद किसी भी
+चरण पर उपलब्ध है (दोनों में जो बड़ा हो)।
+
+पर रुकिए!{} यह क्यों मानें कि $M$ के बाद कोई चरण \emph{है}? यदि कोई नहीं,
+तो हमारा औचित्य विफल होगा। अतः युग्म का औचित्य देने के लिए
+\olref[sth][z][story]{sec} की कथा में एक और सिद्धांत जोड़ना होगा:
+\begin{enumerate}
+	\item[] \stagessucc. कोई अंतिम चरण नहीं है।
+\end{enumerate}
+क्या यह सिद्धांत उचित है? शोएनफ़ील्ड की कथा में कहीं भी \emph{स्पष्टतः}
+नहीं कहा गया कि कोई अंतिम चरण नहीं है। फिर भी यदि वह (ठीक-ठीक कहें तो)
+हमारी कथा में एक अतिरिक्त जोड़ है, तो भी वह इस मूल विचार के अनुकूल है कि
+समुच्चय चरणों में बनते हैं। आगे हम इसे बस स्वीकार करेंगे। और इसलिए युग्म का
+अभिगृहीत भी स्वीकार करेंगे।
+
+इस नए अभिगृहीत से हम और बहुत-से समुच्चयों का अस्तित्व सिद्ध कर सकते हैं।
+उदाहरणतः:
+
+\begin{prop}\ollabel{prop:pairsconsequences}
+किन्हीं समुच्चयों $a$ और $b$ के लिए निम्न समुच्चयों का अस्तित्व है:
+	\begin{enumerate}
+		\item\ollabel{singleton} $\{a\}$
+		\item\ollabel{binunion} $a \cup b$
+		\item\ollabel{tuples} $\tuple{a, b}$
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\olref{singleton}. युग्म से $\{a, a\}$ का अस्तित्व है, जो विस्तारिता से
+$\{a\}$ है।
+
+\olref{binunion}. युग्म से $\{a, b\}$ का अस्तित्व है। अब सम्मिलन से
+$a \cup b = \bigcup \{a, b\}$ का अस्तित्व है।
+
+\olref{tuples}. \olref{singleton} से $\{a\}$ का अस्तित्व है। युग्म से
+$\{a, b\}$ का अस्तित्व है। अब फिर युग्म से
+$\{\{a\}, \{a, b\}\} = \tuple{a, b}$ का अस्तित्व है।
+\end{proof}
+
+\begin{prob}
+दिखाइए कि किन्हीं समुच्चयों $a, b, c$ के लिए समुच्चय $\{a, b, c\}$ का
+अस्तित्व है।
+\end{prob}
+
+\begin{prob}
+दिखाइए कि किन्हीं समुच्चयों $a_1, \ldots, a_n$ के लिए समुच्चय
+$\{a_1, \ldots, a_n\}$ का अस्तित्व है।
+\end{prob}
+
+%\begin{proof} By two applications of Pairs, $\{\{a_1, a_2\}, \{a_1,
+%   a_3\}\}$ exists. By Union and Extensionality, $\bigcup \{\{a_1,
+%   a_2\}, \{a_1, a_3\}\} = \{a_1, a_2, a_3\}$ exists. Repeat this
+%   trick as often as necessary. \end{proof}
+
+\end{document}

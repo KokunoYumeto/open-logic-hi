@@ -1,0 +1,64 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: representing-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{req}{rel}
+
+\olsection{संबंधों का निरूपण}
+
+आइए बताएँ कि किसी \emph{संबंध} के निरूपणीय होने का क्या अर्थ है।
+
+\begin{defn}
+\ollabel{defn:representing-relations} प्राकृतिक संख्याओं पर संबंध
+$R(x_0,\dots,x_k)$ {\em $\Th{Q}$ में निरूपणीय} है यदि कोई सूत्र
+$!A_R(x_0,\dots,x_k)$ ऐसा हो कि जब भी $R(n_0,\dots,n_k)$ सत्य हो,
+$\Th{Q}$,~$!A_R(\num{n_0},\dots,\num{n_k})$ को सिद्ध करे, और जब भी
+$R(n_0,\dots,n_k)$ असत्य हो, $\Th{Q}$,~$\lnot !A_R(\num{n_0},
+\dots, \num{n_k})$ को सिद्ध करे।
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:representing-rels} कोई संबंध $\Th{Q}$ में तभी और केवल तभी
+निरूपणीय है जब वह संगणनीय है।
+\end{thm}
+
+\begin{proof}
+आगे की दिशा के लिए मान लें कि सूत्र $!A_R(x_0,\dots,x_k)$ संबंध
+$R(x_0,\dots,x_k)$ का निरूपण करता है। $R$ को संगणित करने की एक
+कलन-विधि यह है: निवेश $n_0$, \dots,~$n_k$ पर एक साथ
+$!A_R(\num{n_0}, \dots, \num{n_k})$ के प्रमाण और
+$\lnot !A_R(\num{n_0}, \dots, \num{n_k})$ के प्रमाण की खोज करें। हमारी
+मान्यता के अनुसार खोज को दोनों में से कोई एक अवश्य मिलेगा; यदि पहला मिले,
+तो ``हाँ'' बताएँ, अन्यथा ``नहीं''।
+
+दूसरी दिशा में मान लें कि $R(x_0, \dots, x_k)$ संगणनीय है। परिभाषा के
+अनुसार इसका अर्थ है कि फलन $\Char{R}(x_0, \dots, x_k)$ संगणनीय है।
+\olref[int]{thm:representable-iff-comp} के अनुसार $\Char{R}$ का निरूपण
+किसी सूत्र, मान लें $!A_{\Char{R}}(x_0, \dots, x_k, y)$, द्वारा होता है।
+$!A_R(x_0, \dots, x_k)$ को सूत्र
+$!A_{\Char{R}}(x_0, \dots, x_k, \num{1})$ मानें। तब किन्हीं भी
+$n_0$, \dots,~$n_k$ के लिए, यदि $R(n_0, \dots, n_k)$ सत्य है, तो
+$\Char{R}(n_0, \dots, n_k) = 1$; उस स्थिति में $\Th{Q}$,
+$!A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, \num{1})$ को सिद्ध करता है,
+और इसलिए $\Th{Q}$,~$!A_R(\num{n_0}, \dots, \num{n_k})$ को सिद्ध करता है।
+दूसरी ओर यदि $R(n_0, \dots, n_k)$ असत्य है, तो
+$\Char{R}(n_0, \dots, n_k) = 0$। इसका अर्थ है कि $\Th{Q}$ सिद्ध करता है
+\[
+\lforall[y][(!A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, y) \lif y =
+  \num{0})].
+\]
+चूँकि $\Th{Q}$,~$\eq/[\num{0}][\num{1}]$ को सिद्ध करता है, इसलिए
+$\Th{Q}$,~$\lnot !A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, \num{1})$
+को सिद्ध करता है और इस प्रकार
+$\lnot !A_R(\num{n_0}, \dots, \num{n_k})$ को भी सिद्ध करता है।
+\end{proof}
+
+\begin{prob}
+दिखाएँ कि यदि $R$,~$\Th{Q}$ में निरूपणीय है, तो $\Char{R}$ भी निरूपणीय है।
+\end{prob}
+
+\end{document}

@@ -1,0 +1,109 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ord-arithmetic}{mult}
+
+\olsection{क्रमसूचक गुणन}
+
+अब हम क्रमसूचक गुणन की ओर आते हैं और इसे क्रमसूचक योग की तरह लेते हैं। मान
+लें कि हम $\alpha$ को~$\beta$ से गुणा करना चाहते हैं। इसके लिए आप चौड़ाई
+$\alpha$ और ऊँचाई $\beta$ वाले आयताकार जाल की कल्पना कर सकते हैं; $\alpha$
+और $\beta$ का गुणनफल प्रत्येक पंक्ति के साथ चलने, फिर अगली पंक्ति से
+गुजरने\ldots{} और इसी तरह पूरे जाल से गुजरने का परिणाम है। दूसरे शब्दों में
+$\beta$ के \emph{प्रत्येक} अवयव को $\alpha$ की एक प्रति से बदलने पर
+$\alpha$ और $\beta$ का गुणनफल मिलता है।
+
+इसे औपचारिक रूप देने के लिए हम $\alpha$ और $\beta$ के कार्तीय गुणनफल पर बस
+प्रतिलोम शब्दकोशीय क्रम का उपयोग करते हैं:
+
+\begin{defn}
+किन्हीं क्रमसूचकों $\alpha, \beta$ का गुणनफल
+$\alpha \ordtimes \beta = \ordtype{\alpha \times \beta, \rlexless}$ है।
+\end{defn}
+\noindent
+हमें फिर पुष्टि करनी होगी कि यह सुगठित परिभाषा है:
+
+\begin{lem}\ollabel{ordtimeslessiswo}
+किन्हीं क्रमसूचकों $\alpha$ और $\beta$ के लिए
+$\tuple{\alpha \times \beta, \rlexless}$ सुव्यवस्था है।
+\end{lem}
+
+\begin{proof}
+ठीक \olref[add]{ordsumlessiswo} की तरह।
+\end{proof}
+\noindent
+और यह सिद्ध करना कठिन नहीं कि गुणन इस प्रकार व्यवहार करता है:
+
+\begin{lem}\ollabel{ordtimesrecursion}
+किन्हीं क्रमसूचकों $\alpha, \beta$ के लिए:
+\begin{align*}
+	\alpha \ordtimes 0 &= 0\\
+	\alpha \ordtimes (\beta \ordplus 1) &= 
+		(\alpha \ordtimes \beta) \ordplus \alpha\\
+	\alpha  \ordtimes \beta &= 
+		\supstrict_{\delta < \beta}(\alpha \ordtimes \delta) && 
+		\text{जब $\beta$ सीमा क्रमसूचक हो।}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+अभ्यास के लिए छोड़ा गया।
+\end{proof}
+
+वास्तव में योग की तरह हम सीधी परिभाषा देने के बजाय इन पुनरावर्तन समीकरणों
+से क्रमसूचक गुणन परिभाषित कर सकते थे। समानतः योग की तरह कुछ व्यवहार परिचित
+है:
+
+\begin{lem}\ollabel{ordinalmultiplicationisnice}
+यदि $\alpha, \beta, \gamma$ क्रमसूचक हैं, तो:
+\begin{enumerate}
+	\item\ollabel{ordtimes1} यदि $\alpha \neq 0$ और $\beta < \gamma$,
+	तो $\alpha \ordtimes \beta < \alpha \ordtimes \gamma$;
+	\item\ollabel{ordtimes2} यदि $\alpha \neq 0$ और
+	$\alpha \ordtimes \beta = \alpha\ordtimes\gamma$, तो
+	$\beta = \gamma$;
+	\item\ollabel{ordtimes3}  $\alpha \ordtimes (\beta \ordtimes
+	\gamma) = (\alpha \ordtimes \beta) \ordtimes \gamma$;
+	\item\ollabel{ordtimes4} यदि $\alpha \leq \beta$, तो
+	$\alpha \ordtimes \gamma \leq \beta \ordtimes \gamma$;
+	\item\ollabel{ordtimes5}  $\alpha \ordtimes (\beta \ordplus
+	\gamma) = (\alpha \ordtimes \beta )\ordplus (\alpha\ordtimes
+	\gamma)$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+अभ्यास के लिए छोड़ा गया।
+\end{proof}
+
+आप इच्छानुसार अन्य परिणाम सिद्ध कर सकते हैं (या खोज सकते हैं)। किंतु
+\olref[ord-arithmetic][add]{ordsumnotcommute} को देखते हुए निम्न आश्चर्यजनक
+नहीं होना चाहिए:
+
+\begin{prop}
+क्रमसूचक गुणन क्रमविनिमेय नहीं है:
+$2 \ordtimes \omega = \omega < \omega \ordtimes 2$।
+\end{prop}
+
+\begin{proof}
+$2 \ordtimes \omega = \supstrict_{n < \omega}(2\ordtimes  n) = \omega \in \supstrict_{n < \omega}(\omega \ordplus n) = \omega \ordplus \omega = \omega \ordtimes 2$.
+\end{proof}
+\noindent 
+फिर सहज औचित्य काफ़ी सीधा है। $2 \ordtimes \omega$ परिकलित करने के लिए आप
+प्रत्येक प्राकृतिक संख्या को दो सत्ताओं से बदलते हैं। यदि आप सभी ``आधी''
+संख्याएँ प्राकृतिक संख्याओं में डाल दें, अर्थात
+$\Setabs{\nicefrac{n}{2}}{n \in \omega}$ पर स्वाभाविक क्रम देखें, तो वही
+क्रम-प्रकार मिलेगा। इस रूप में क्रम-प्रकार स्पष्टतः स्वयं $\omega$ के समान
+है। किंतु $\omega \ordtimes 2$ परिकलित करने के लिए आप $\omega$ की दो
+प्रतियाँ एक के बाद एक रखते हैं।
+
+\begin{prob}
+सिद्ध कीजिए:
+\olref[sth][ord-arithmetic][mult]{ordtimeslessiswo},
+\olref[sth][ord-arithmetic][mult]{ordtimesrecursion},
+और
+\olref[sth][ord-arithmetic][mult]{ordinalmultiplicationisnice}।
+\end{prob}
+
+\end{document}

@@ -1,0 +1,47 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0053.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+% Frozen reference into the Sets chapter, absent from this chapter-only PDF.
+\makeatletter
+\expandafter\def\csname r@sfr:set:rus:thm:russells-paradox\endcsname
+  {{1.{29}}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:rus:thm:russells-paradox@cref\endcsname
+  {{[thm][29][1]1.{29}}{}{}{}{}}
+% Frozen references into the advanced variants omitted by this elementary driver.
+\expandafter\def\csname r@sfr:siz:enm-alt:sec\endcsname
+  {{siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:sec@cref\endcsname
+  {{[section][11][1]siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:defn:enumerable\endcsname
+  {{siz.{27}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:defn:enumerable@cref\endcsname
+  {{[defn][27][1]siz.{27}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:sec\endcsname
+  {{siz.12}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:sec@cref\endcsname
+  {{[section][12][1]siz.12}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:red-alt:sec\endcsname
+  {{siz.13}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:red-alt:sec@cref\endcsname
+  {{[section][13][1]siz.13}{}{}{}{}}
+\makeatother
+\AtBeginEnvironment{thebibliography}{\raggedright}
+\pdfstringdefDisableCommands{%
+  \def\usetoken#1#2{गणनीय}%
+  \def\printtoken#1#2{अगणनीय}%
+}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{समुच्चयों का आकार}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{siz}
+
+\begin{document}
+\nocite{Frege1953}
+\subfile{size-of-sets}
+\end{document}

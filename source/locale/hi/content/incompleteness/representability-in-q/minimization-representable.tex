@@ -1,0 +1,253 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: minimization-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{req}{min}
+\olsection{नियमित न्यूनीकरण $\Th{Q}$ में निरूपणीय है}
+
+अपरिबद्ध खोज पर विचार करें। मान लें कि $g(x, z)$ नियमित है और~$\Th{Q}$
+में, मान लें !!{formula}~$!A_g(x, z, y)$ द्वारा, निरूपणीय है। $f$ को
+$f(z) = \umin{x}{[g(x, z) = 0]}$ द्वारा परिभाषित करें। हम~$f$ का निरूपण
+करने वाला कोई !!a{formula}~$!A_f(z, y)$ खोजना चाहते हैं। $f(z)$ का मान वह
+संख्या~$x$ है जो (क) $g(x, z) = 0$ को संतुष्ट करती है और (ख) ऐसी सबसे छोटी
+संख्या है, अर्थात् प्रत्येक $w < x$ के लिए $g(w, z) \neq 0$। अतः निम्न
+सूत्र स्वाभाविक चुनाव है:
+\[
+!A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
+  !A_g(w, z, \Obj 0))].
+\]
+निस्संदेह सामान्य मामले में हमें $z$ के स्थान पर $z_0$, \dots, $z_k$
+रखने होंगे।
+
+प्रमाण में फिर उन बातों के बारे में कुछ उपपत्तियाँ आएँगी जिन्हें सिद्ध
+करने के लिए $\Th{Q}$ पर्याप्त प्रबल है।
+
+\begin{lem}
+\ollabel{lem:succ} प्रत्येक !!{constant}~$a$ और प्रत्येक प्राकृतिक
+संख्या~$n$ के लिए
+\[
+\Th{Q} \Proves \eq[(a' + \num n)][(a + \num n)'].
+\]
+\end{lem}
+
+\begin{proof}
+सामान्यतः प्रमाण $n$ पर आगमन द्वारा है। आधार मामले में $n = 0$; हमें
+दिखाना है कि $\Th{Q}$,~$\eq[(a' + \Obj 0)][(a + \Obj 0)']$ को सिद्ध करता
+है। किंतु हमारे पास है:
+\begin{align}
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][a'] \quad \text{अभिगृहीत $Q_4$ से}
+  \ollabel{step1}\\
+  \Th{Q} & \Proves  \eq[(a + \Obj 0)][a] \quad \text{अभिगृहीत $Q_4$ से}
+  \ollabel{step2} \\
+  \Th{Q} & \Proves \eq[(a + \Obj 0)'][a'] \quad \text{\olref{step2} से}
+  \ollabel{step3} \\
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][(a + \Obj 0)'] \quad
+  \text{\olref{step1} और \olref{step3} से।}\notag
+\end{align}
+आगमन चरण में हम मान सकते हैं कि हमने
+$\Th{Q} \Proves \eq[(a' + \num n)][(a + \num n)']$ दिखा दिया है। चूँकि
+$\num{n+1}$,~$\num{n}'$ है, हमें दिखाना है कि $\Th{Q}$,
+$\eq[(a' + \num{n}')][(a + \num{n}')']$ को सिद्ध करता है। हमारे पास है:
+\begin{align}
+  \Th{Q} & \Proves \eq[(a' + \num n')][(a' + \num n)'] \quad
+  \text{अभिगृहीत $!Q_5$ से} \ollabel{step5}\\
+  \Th{Q} & \Proves \eq[(a' + \num n')][(a + \num n')'] \quad
+  \text{आगमन परिकल्पना} \ollabel{step6}\\
+  \Th{Q} & \Proves \eq[(a' + \num n)'][(a + \num n')'] \quad
+  \text{\olref{step5} और \olref{step6} से।} \notag
+\end{align}
+\end{proof}
+
+यह फिर उल्लेखनीय है कि यह उस कथन से दुर्बल है जिसके अनुसार $\Th{Q}$,
+$\lforall[x][\lforall[y][(x' + y) = (x + y)']]$ को सिद्ध करता है। यद्यपि
+यह !!{sentence},~$\Struct{N}$ में सत्य है, $\Th{Q}$ इसे सिद्ध नहीं करता।
+
+\begin{lem}
+\ollabel{lem:less-zero}
+$\Th{Q} \Proves \lforall[x][\lnot x < \Obj 0]$।
+\end{lem}
+
+\begin{proof}
+हम प्रमाण अनौपचारिक रूप से देते हैं (अर्थात् औपचारिक !!{derivation} बनाने
+के केवल संकेत देते हैं)।
+
+हमें स्वेच्छ~$a$ के लिए $\lnot a < \Obj 0$ सिद्ध करना है। $<$ की परिभाषा
+से हमें $\Th{Q}$ में
+$\lnot \lexists[y][\eq[(y'+a)][\Obj 0]]$ सिद्ध करना होगा। हम
+$\lexists[y][\eq[(y'+a)][\Obj 0]]$ मानकर विरोधाभास सिद्ध करेंगे। मान लें
+$\eq[(b'+a)][\Obj 0]$। $!Q_3$ का उपयोग करके हमारे पास
+$\eq[a][\Obj 0] \lor \lexists[y][\eq[a][y']]$ है। हम मामलों में भेद करते
+हैं।
+
+मामला 1: $\eq[a][\Obj 0]$ लागू है। $\eq[(b'+a)][\Obj 0]$ से हमारे पास
+$\eq[(b' + \Obj 0)][\Obj 0]$ है। $\Th{Q}$ के अभिगृहीत~$!Q_4$ से हमारे
+पास $\eq[(b' + \Obj 0)][b']$ है, और इसलिए $\eq[b'][\Obj 0]$। किंतु
+अभिगृहीत~$!Q_2$ से हमारे पास $\eq/[b'][\Obj 0]$ भी है, जो विरोधाभास है।
+
+मामला 2: किसी $c$ के लिए $\eq[a][c']$। किंतु तब हमारे पास
+$\eq[(b' + c')][\Obj 0]$ है। अभिगृहीत~$!Q_5$ से हमारे पास
+$\eq[(b' + c)'][\Obj 0]$ है, जो फिर अभिगृहीत~$Q_2$ के विरुद्ध है।
+\end{proof}
+
+\begin{lem}
+\ollabel{lem:less-nsucc}
+प्रत्येक प्राकृतिक संख्या~$n$ के लिए
+  \[
+  \Th{Q} \Proves
+  \lforall[x][(x < \num {n+1} \lif (\eq[x][\Obj 0] \lor \dots \lor
+    \eq[x][\num n]))].
+  \]
+\end{lem}
+
+\begin{proof}
+हम~$n$ पर आगमन का उपयोग करते हैं। आधार मामले $n = 0$ पर विचार करें। उस
+मामले में हमें स्वेच्छ~$a$ के लिए
+$a < \num 1 \lif \eq[a][\Obj 0]$ दिखाना है। मान लें $a < \num 1$। तब
+$<$ के परिभाषक अभिगृहीत से हमारे पास
+$\lexists[y][\eq[(y'+a)][\Obj 0']]$ है (क्योंकि
+$\num 1 \ident \Obj 0'$)।
+
+मान लें कि $b$ में यह गुण है, अर्थात् हमारे पास
+$\eq[(b'+a)][\Obj 0']$ है। हमें $\eq[a][\Obj 0]$ दिखाना है। अभिगृहीत~$!Q_3$
+से या तो $\eq[a][\Obj 0]$, अथवा कोई $c$ ऐसा है कि $\eq[a][c']$। पहले
+मामले में कुछ सिद्ध करना शेष नहीं। अतः मान लें $\eq[a][c']$। तब हमारे पास
+$\eq[(b' + c')][\Obj 0']$ है। $\Th{Q}$ के अभिगृहीत~$!Q_5$ से हमारे पास
+$\eq[(b'+c)'][\Obj 0']$ है। अभिगृहीत~$!Q_1$ से हमारे पास
+$\eq[(b' + c)][\Obj 0]$ है। किंतु अभिगृहीत~$!Q_8$ से इसका अर्थ है कि
+$c < \Obj 0$, जो \olref{lem:less-zero} के विरुद्ध है।
+
+अब आगमन चरण लें। $n$ का मामला मानकर हम $n+1$ का मामला सिद्ध करते हैं।
+अतः मान लें $a < \num {n+2}$। फिर $!Q_3$ का उपयोग करके हम दो मामलों में
+भेद कर सकते हैं: $\eq[a][\Obj 0]$, अथवा किसी $b$ के लिए $\eq[a][b']$।
+पहले मामले में
+$\eq[a][\Obj 0] \lor \dots \lor \eq[a][\num{n+1}]$ तुच्छतः निकलता है।
+दूसरे मामले में हमारे पास $b' < \num {n+2}$, अर्थात्
+$b' < \num{n+1}'$ है। अभिगृहीत~$!Q_8$ से किसी $c$ के लिए
+$\eq[(c'+b')][\num{n+1}']$। अभिगृहीत $!Q_5$ से
+$\eq[(c'+b)'][\num{n+1}']$। अभिगृहीत~$!Q_1$ से
+$\eq[(c'+b)][\num{n+1}]$, और इसलिए अभिगृहीत~$!Q_8$ से
+$b < \num{n+1}$। आगमन परिकल्पना से
+$\eq[b][\Obj 0] \lor \dots \lor \eq[b][\num{n}]$। इससे तर्क द्वारा
+$\eq[b'][\Obj 0'] \lor \dots \lor \eq[b'][\num{n}']$ मिलता है, और
+$\eq[a][b']$ होने से
+$\eq[a][\num{1}] \lor \dots \lor \eq[a][\num{n+1}]$।
+\end{proof}
+
+\begin{lem}
+  \ollabel{lem:trichotomy} प्रत्येक प्राकृतिक संख्या~$m$ के लिए
+  \[
+  \Th{Q} \Proves
+  \lforall[y][((y < \num{m} \lor \num{m} < y) \lor \eq[y][\num{m}])].
+  \]
+\end{lem}
+
+\begin{proof}
+प्रमाण~$m$ पर आगमन द्वारा है। पहले $m=0$ का मामला लें। $!Q_3$ से
+$\Th{Q} \Proves
+\lforall[y][(\eq[y][\Obj 0] \lor \lexists[z][\eq[y][z']])]$। $a$ को
+स्वेच्छ मानें। तब या तो $\eq[a][\Obj 0]$, अथवा किसी~$b$ के लिए
+$\eq[a][b']$। पहले मामले में हमारे पास
+$(a < \Obj 0 \lor \Obj 0 < a) \lor \eq[a][\Obj 0]$ भी है। किंतु यदि
+$\eq[a][b']$, तो~$\eq$ के तर्क से
+$\eq[(b' + \Obj 0)][(a + \Obj 0)]$। $!Q_4$ से
+$\eq[(a + \Obj 0)][a]$, अतः हमारे पास $\eq[(b' + \Obj 0)][a]$ और फलतः
+$\lexists[z][\eq[(z' + \Obj 0)][a]]$ है। $!Q_8$ में $<$ की परिभाषा से
+$\Obj 0 < a$। यदि $\Obj 0 < a$, तो
+$(\Obj 0 < a \lor a < \Obj 0) \lor \eq[a][\Obj 0]$ भी।
+
+अब मान लें कि हमारे पास
+\begin{align*}
+  \Th{Q} & \Proves \lforall[y][((y < \num{m} \lor \num{m} < y) \lor
+    \eq[y][\num{m}])]
+  \intertext{है और हम दिखाना चाहते हैं कि}
+  \Th{Q} & \Proves \lforall[y][((y < \num{m+1} \lor \num{m+1} < y) \lor
+    \eq[y][\num{m+1}])].
+\end{align*}
+$a$ को स्वेच्छ मानें। $!Q_3$ से या तो $\eq[a][\Obj 0]$, अथवा किसी~$b$
+के लिए $\eq[a][b']$। पहले मामले में $!Q_4$ से हमारे पास
+$\eq[\num{m}' + a][\num{m+1}]$ है, और इसलिए $!Q_8$ से
+$a < \num{m+1}$।
+
+अब दूसरे मामले $\eq[a][b']$ पर विचार करें। आगमन परिकल्पना से
+$(b < \num{m} \lor \num{m} < b) \lor \eq[b][\num{m}]$।
+
+पहला वियोज्य $b < \num{m}$,~$!Q_8$ से,
+$\lexists[z][\eq[(z' + b)][\num{m}]]$ के समतुल्य है। मान लें $c$ में यह
+गुण है। यदि $\eq[(c' + b)][\num{m}]$, तो
+$\eq[(c' + b)'][\num{m}']$ भी। $!Q_5$ से
+$\eq[(c' + b)'][(c' + b')]$। अतः $\eq[(c' + b')][\num{m}']$। $c'$ पर
+अस्तित्वात्मक व्यापकीकरण करके और $\num{m}' \ident \num{m+1}$ ध्यान में
+रखकर हमें $\lexists[u][\eq[(u' + b')][\num{m+1}]]$ मिलता है। अतः यदि
+$b < \num{m}$, तो $b' < \num{m+1}$ और इसलिए $a < \num{m+1}$।
+
+अब मान लें $\num{m} < b$, अर्थात्
+$\lexists[z][\eq[(z' + \num{m})][b]]$। मान लें $c$ ऐसा~$z$ है, अर्थात्
+$\eq[(c' + \num{m})][b]$। तर्क से $\eq[(c' + \num{m})'][b']$। $!Q_5$
+से $\eq[(c' + \num{m}')][b']$। चूँकि $\eq[a][b']$ और
+$\num{m}' \ident \num{m+1}$, इसलिए
+$\eq[(c' + \num{m+1})][a]$। $!Q_8$ से $\num{m+1} < a$।
+
+अंततः मान लें $\eq[b][\num{m}]$। तब तर्क से
+$\eq[b'][\num{m}']$, और इसलिए $\eq[a][\num{m+1}]$।
+
+इस प्रकार $m$ और~$b$ के मामले के प्रत्येक वियोज्य से हम $m+1$ और~$a$ के
+लिए संगत वियोज्य प्राप्त कर सकते हैं।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-minimization}
+यदि $!A_g(x, z, y)$,~$\Th{Q}$ में $g(x, z)$ का निरूपण करता है, तो
+\[
+!A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
+  !A_g(w, z, \Obj 0))]
+\]
+$f(z) = \umin{x}{[g(x, z) = 0]}$ का निरूपण करता है।
+\end{prop}
+
+\begin{proof}
+पहले हम दिखाते हैं कि यदि $f(n) = m$, तो
+$\Th{Q} \Proves !A_f(\num n, \num m)$, अर्थात्
+\begin{align}
+  \Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0) \land \lforall[w][(w <
+    \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]. \notag
+  \intertext{चूँकि $!A_g(x, z, y)$,~$g(x, z)$ का निरूपण करता है और
+    $f(n) = m$ हो तो $g(m, n) = 0$, हमारे पास है}
+\Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0). \notag
+\intertext{यदि $f(n) = m$, तो प्रत्येक $k < m$ के लिए $g(k, n) \neq 0$। अतः}
+\Th{Q} & \Proves \lnot !A_g(\num{k}, \num{n}, \Obj 0). \notag
+\intertext{हमें मिलता है}
+\Th{Q} & \Proves \lforall[w][(w < \num{m} \lif \lnot
+  !A_g(w, \num{n}, \Obj 0))]. \ollabel{rep-less}
+\end{align}
+यदि $m = 0$ हो तो यह \olref{lem:less-zero} से, अन्यथा
+\olref{lem:less-nsucc} से मिलता है।
+
+अब दिखाएँ कि यदि $f(n) = m$, तो
+$\Th{Q} \Proves
+\lforall[y][(!A_f(\num{n}, y) \lif \eq[y][\num{m}])]$। हम फिर तर्क को
+अनौपचारिक रूप में रेखांकित करते हैं और औपचारिकीकरण पाठक पर छोड़ते हैं।
+
+मान लें $!A_f(\num{n}, b)$। इससे हमें (क)
+$!A_g(b, \num{n}, \Obj 0)$ और (ख)
+$\lforall[w][(w < b \lif \lnot !A_g(w, \num{n}, \Obj 0))]$ मिलते हैं।
+\olref{lem:trichotomy} से
+$(b < \num{m} \lor \num{m} < b) \lor \eq[b][\num{m}]$। हम दिखाएँगे कि
+$b < \num{m}$ और $\num{m} < b$, दोनों विरोधाभास तक पहुँचाते हैं।
+
+यदि $\num{m} < b$, तो (ख) से
+$\lnot !A_g(\num{m}, \num{n}, \Obj 0)$। किंतु $m = f(n)$, इसलिए
+$g(m, n) = 0$; और चूँकि $!A_g$,~$g$ का निरूपण करता है, इसलिए
+$\Th{Q} \Proves !A_g(\num{m}, \num{n}, \Obj 0)$। अतः हमें विरोधाभास
+मिलता है।
+
+अब मान लें $b < \num{m}$। चूँकि \olref{rep-less} से
+$\Th{Q} \Proves \lforall[w][(w < \num{m} \lif \lnot
+  !A_g(w, \num{n}, \Obj 0))]$, हमें
+$\lnot !A_g(b, \num{n}, \Obj 0)$ मिलता है। यह फिर (क) के विरुद्ध है।
+\end{proof}
+
+\end{document}

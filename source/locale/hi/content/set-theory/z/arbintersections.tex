@@ -1,0 +1,61 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{z}{arbintersections}
+\olsection{परिशिष्ट: संवृति, समुच्चय-निर्माण और सर्वनिष्ठ}
+
+\olref[sth][z][milestone]{sec} में हमने सुझाव दिया था कि आपको
+\olref[sfr][][]{part} के सहज कार्य को पीछे देखकर जाँचना चाहिए कि उसे
+$\Zminus$ में किया जा सकता है। यदि आपने यह सुझाव माना, तो संभवतः \emph{एक}
+बिंदु ने आपको उलझाया होगा: डेडेकिंड द्वारा \emph{संवृतियों} के विवेचन में
+\emph{सर्वनिष्ठ} का उपयोग।
+
+\olref[sfr][infinite][dedekind]{Closure} से याद करें कि
+\begin{align*}
+  \closureofunder{f}{o} & = \bigcap\Setabs{X}{o \in X \text{ और $X$,
+$f$-संवृत है}}.
+\intertext{इसका सामान्य आकार इस रूप की परिभाषा है:}
+  C & = \bigcap\Setabs{X}{\phi(X)}.
+\end{align*}
+किंतु इससे खतरे की घंटी बजनी चाहिए: चूँकि सहज समुच्चय-निर्माण विफल होता है,
+इसकी कोई गारंटी नहीं कि $\Setabs{X}{\phi(X)}$ का अस्तित्व है। अतः ऐसी
+परिभाषाएँ ख़तरनाक रूप से \emph{बेईमानी} जैसी दिखती हैं।
+
+सौभाग्य से वे बेईमानी नहीं; अथवा यदि अपने वर्तमान रूप में वे \emph{बेईमानी}
+हैं, तो थोड़े ईमानदार श्रम से उन्हें निर्दोष बनाया जा सकता है। उस ईमानदार
+श्रम का पूर्वसंकेत \olref[sth][z][sep]{prop:intersectionsexist} में था, जहाँ
+हमने समझाया कि किसी भी $A \neq \emptyset$ के लिए $\bigcap A$ का अस्तित्व
+क्यों है। किंतु अब इसे स्पष्टतः लिखेंगे।
+
+विस्तारिता को मानकर यदि हम $C$ को $\bigcap\Setabs{X}{\phi(X)}$ के रूप में
+परिभाषित करना चाहें, तो वास्तव में हम केवल ऐसी वस्तु $C$ माँग रहे हैं जो
+निम्न का पालन करे:
+\begin{equation}\ollabel{bicondelimarbintersection}
+	\forall x(x \in C \liff \forall X(\phi(X) \lif x \in X))\tag{*}
+\end{equation}
+अब मान लें कि ऐसा \emph{कोई} समुच्चय $S$ है कि $\phi(S)$। तब
+\olref{bicondelimarbintersection} पाने के लिए हम \emph{पृथक्करण} का उपयोग
+करके $C$ को बस इस प्रकार परिभाषित कर सकते हैं:
+\[
+	C = \Setabs{x \in S}{\forall X(\phi(X) \lif x \in X)}.
+\]
+यह जाँचना अभ्यास के लिए छोड़ते हैं कि यह परिभाषा अपेक्षानुसार
+\olref{bicondelimarbintersection} देती है।
+%  fix $x$. First suppose that $x \in C$, as (re)defined; then both $x
+%  \in S$ and $\forall X(\phi(X) \lif x \in X)$; but since
+%  $\phi(S)$, this reduces to the condition that $\forall X(\phi(X)
+%  \lif x \in X)$. Conversely, suppose $\forall X(\phi(X) \lif
+%  x \in X)$; then, since $\phi(S)$, we also have that $x \in S$; so
+%  $x \in c$, as (re)defined. 
+यह सामान्य रणनीति सर्वनिष्ठों को परिभाषित करने में सहज समुच्चय-निर्माण के
+किसी भी प्रतीयमान उपयोग से बचने देगी। जिस विशेष मामले से यह विचार-क्रम आरंभ
+हुआ, अर्थात $\closureofunder{f}{o}$, में यह इस प्रकार काम करेगा।
+\olref[sfr][infinite][dedekind]{closureproperties} के प्रमाण का आरंभ हमने
+यह देखकर किया था कि $o \in \ran{f}\cup\{o\}$ और $\ran{f} \cup \{o\}$,
+$f$-संवृत है। अतः अपनी वांछित वस्तु को इस प्रकार परिभाषित कर सकते हैं:
+\[
+	\closureofunder{f}{o} = \Setabs{x \in \ran{f} \cup \{o\}}{(\forall X \ni o)(X \text{ $f$-संवृत है} \lif x \in X)}.
+\]
+
+\end{document}

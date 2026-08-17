@@ -1,0 +1,23 @@
+% Target-only standalone build wrapper for HI-OLP-0021.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen section identity for the alternative version, which is outside this
+% standalone unit. Empty destination fields avoid inventing a local link.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:enm-alt:sec\endcsname
+  {{siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:sec@cref\endcsname
+  {{[section][11][0]siz.11}{}{}{}{}}
+\makeatother
+% \jobname is useful build metadata but is not reader-facing Hindi.
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{गणन और गणनीय समुच्चय}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{enumerability}
+\end{document}

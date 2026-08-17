@@ -1,0 +1,31 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0048.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{दार्शनिक विचार}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+% Frozen cross-references needed by this standalone defect-check build.  Keep
+% the visible numbers/types from the audited English control while leaving PDF
+% destination fields empty, since their targets live outside this unit.  They
+% are seeded after \begin{document} so the package initialization cannot clear
+% them before the translated section is read.
+\makeatletter
+\expandafter\def\csname r@sfr:rel:set:sec\endcsname
+  {{2.1}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:set:sec@cref\endcsname
+  {{[section][1][2]2.1}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:pai:wienerkuratowski\endcsname
+  {{1.{23}}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:pai:wienerkuratowski@cref\endcsname
+  {{[defn][23][1]1.{23}}{}{}{}{}}
+\makeatother
+\subfile{reflections}
+\end{document}

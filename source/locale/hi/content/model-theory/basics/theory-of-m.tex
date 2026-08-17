@@ -1,0 +1,67 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: theory-of-m
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{thm}
+
+\section{किसी \printtoken{S}{structure} का सिद्धांत}
+
+प्रत्येक !!{structure}~$\Struct{M}$ कुछ !!{sentence}s को सत्य और कुछ को
+असत्य करती है। जिन सभी !!{sentence}s को वह सत्य करती है, उनके समुच्चय को
+उसका \emph{सिद्धांत} कहते हैं। वह समुच्चय वास्तव में एक सिद्धांत है,
+क्योंकि उससे निष्पन्न होने वाली प्रत्येक बात उसके सभी प्रतिरूपों में सत्य होनी
+चाहिए, जिनमें~$\Struct{M}$ भी सम्मिलित है।
+
+\begin{defn}
+  कोई !!a{structure}~$\Struct M$ दी गई हो। $\Struct{M}$ का
+  \emph{सिद्धांत}, उन !!{sentence}s का समुच्चय $\Theory{M}$ है जो
+  $\Struct{M}$ में सत्य हैं, अर्थात् $\Theory{M} =
+  \Setabs{!A}{\Sat{M}{!A}}$.
+\end{defn}
+
+हम ``सिद्धांत'' पद का अनौपचारिक उपयोग उन !!{sentence}s के समुच्चयों के लिए
+भी करते हैं जिनकी कोई अभिप्रेत व्याख्या हो, चाहे वे निगमन के अधीन संवृत हों या
+नहीं।
+
+\begin{prop}
+प्रत्येक $\Struct{M}$ के लिए $\Theory{M}$ पूर्ण है।
+\end{prop}
+
+\begin{proof}
+किसी भी !!{sentence}~$!A$ के लिए या तो $\Sat{M}{!A}$ अथवा
+$\Sat{M}{\lnot !A}$, इसलिए या तो $!A \in \Theory{M}$ अथवा
+$\lnot !A \in \Theory{M}$।
+\end{proof}
+
+\begin{prop}\ollabel{prop:equiv}
+  यदि $\Struct{N} \models !A$ प्रत्येक $!A \in \Theory{M}$ के लिए, तो
+  $\Struct{M} \elemequiv \Struct{N}$।
+\end{prop}
+
+\begin{proof}
+चूँकि $\Sat{N}{!A}$ सभी $!A \in \Theory{M}$ के लिए, $\Theory{M} \subseteq
+\Theory{N}$। यदि $\Sat{N}{!A}$, तो $\Sat/{N}{\lnot !A}$, इसलिए $\lnot !A
+\notin \Theory{M}$। चूँकि $\Theory{M}$ पूर्ण है, $!A \in
+\Theory{M}$। अतः $\Theory{N} \subseteq \Theory{M}$, और इसलिए
+$\Struct{M} \elemequiv \Struct{N}$।
+\end{proof}
+
+\begin{rem}\ollabel{remark:R}
+  $\Struct{R} = \langle\Real, <\rangle$ पर विचार करें। यह वह
+  !!{structure} है जिसका प्रांत वास्तविक संख्याओं का समुच्चय $\Real$ है,
+  और जिसकी !!{language} में केवल एक द्वि-स्थानीय !!{predicate} है जिसकी
+  व्याख्या वास्तविक संख्याओं पर $<$ संबंध के रूप में होती है। स्पष्टतः
+  $\Struct{R}$ !!{nonenumerable} है; किंतु $\Theory{R}$ के स्पष्टतः संगत
+  होने से, ल्योवेनहाइम--स्कोलेम (L\"owenheim--Skolem) प्रमेय के अनुसार उसका
+  कोई !!a{enumerable} प्रतिरूप है, मान लें $\Struct{S}$।
+  \olref{prop:equiv} से $\Struct{R}
+  \equiv \Struct{S}$। फिर भी $\Struct{R}$ और $\Struct{S}$ समरूपी नहीं हैं,
+  अतः इससे दिखता है कि \olref[iso]{thm:isom} का विलोम सामान्यतः विफल होता
+  है।
+\end{rem}
+
+\end{document}

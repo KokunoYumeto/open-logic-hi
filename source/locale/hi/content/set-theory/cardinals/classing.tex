@@ -1,0 +1,184 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{cardinals}{classing}
+\olsection{परिमित, \usetoken{S}{enumerable}, \usetoken{S}{nonenumerable}}
+
+अब जबकि कार्डिनलों से हमारा परिचय हो गया है, कार्डिनलों की विभिन्न
+किस्मों पर कुछ समय चर्चा करना उपयोगी है; विशेषतः परिमित, !!{enumerable}
+और !!{nonenumerable} कार्डिनलों पर।
+
+हमारे पहले दो परिणामों से निष्पन्न होगा कि परिमित कार्डिनल ठीक परिमित
+क्रमसूचक होंगे, जिन्हें हमने \olref[z][infinity-again]{defnomega} में
+अपनी \emph{प्राकृतिक संख्याओं} के रूप में परिभाषित किया था:
+
+\begin{prop}\ollabel{finitecardisoequal}
+मान लें $n,m\in\omega$। तब $n=m$ तभी जब $\cardeq{n}{m}$।
+\end{prop}
+
+\begin{proof}
+\emph{बाएँ-से-दाएँ} दिशा तुच्छ है। \emph{दाएँ-से-बाएँ} दिशा सिद्ध करने के
+लिए मान लें कि $n\neq m$ होते हुए भी $\cardeq{n}{m}$। त्रिविभाजन से या तो
+$n\in m$ या $m\in n$; व्यापकता खोए बिना $n\in m$ मान लें। तब
+$n\subsetneq m$ और कोई !!a{bijection} $f\colon m\to n$ है, इसलिए $m$
+डेडेकिंड-अनंत है, जो
+\olref[z][infinity-again]{naturalnumbersarentinfinite} के विरुद्ध है।
+\end{proof}
+
+\begin{cor}\ollabel{naturalsarecardinals}
+यदि $n\in\omega$, तो $n$ एक कार्डिनल है।
+\end{cor}
+
+\begin{proof}
+तत्काल।
+\end{proof}
+\noindent
+इससे यह भी निष्पन्न होता है कि किसी कार्डिनल को ``परिमित'' या ``अनंत'' कहने
+के अर्थ की कई उचित धारणाएँ परस्पर समान हैं:
+\begin{thm}\ollabel{generalinfinitycharacter}किसी भी समुच्चय $A$ के लिए निम्न कथन तुल्य हैं:
+\begin{enumerate}
+	\item\ollabel{card:notinomega} $\card{A} \notin \omega$, अर्थात्
+	$A$ कोई प्राकृतिक संख्या नहीं है;
+	\item\ollabel{card:omegaplus} $\omega \leq \card{A}$;
+	\item\ollabel{card:infinite} $A$ डेडेकिंड-अनंत है।
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter},
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} और
+\olref{naturalsarecardinals} से।
+\end{proof}
+
+इससे उन कुछ धारणाओं की निम्न \emph{परिभाषा} उचित ठहरती है जिनका उपयोग हमने
+\olref[sfr][][]{part} में कुछ अनौपचारिक ढंग से किया था:
+
+\begin{defn}\ollabel{defnfinite}
+हम कहते हैं कि $A$ \emph{परिमित} है तभी जब $\card{A}$ कोई प्राकृतिक
+संख्या है, अर्थात् $\card{A}\in\omega$। अन्यथा हम कहते हैं कि $A$
+\emph{अनंत} है।
+\end{defn}
+\noindent 
+किंतु ध्यान दें कि यह परिभाषा $\ZFC$ की पृष्ठभूमि में प्रस्तुत की गई है।
+आखिर प्रत्येक समुच्चय की कार्डिनलता की प्रत्याभूति के लिए हमें सुव्यवस्था
+की आवश्यकता थी। और वास्तव में सुव्यवस्था के बिना कोई ऐसा समुच्चय हो सकता
+है जो न परिमित हो, न डेडेकिंड-अनंत। हम \olref[choice][]{chap} में इस प्रकार
+के प्रश्न पर लौटेंगे। अभी हम सुव्यवस्था पर निर्भर रहना जारी रखते हैं।
+
+अब परिमित कार्डिनलों से अनंत कार्डिनलों की ओर बढ़ें। यहाँ दो प्राथमिक तथ्य
+हैं:
+
+\begin{cor}\ollabel{omegaisacardinal}
+$\omega$ लघुतम अनंत कार्डिनल है।
+\end{cor}
+
+\begin{proof}
+$\omega$ एक कार्डिनल है, क्योंकि $\omega$ डेडेकिंड-अनंत है और यदि किसी
+$n\in\omega$ के लिए $\cardeq{\omega}{n}$ होता, तो $n$ डेडेकिंड-अनंत होता,
+जो \olref[z][infinity-again]{naturalnumbersarentinfinite} के विरुद्ध है।
+अब परिभाषा से $\omega$ लघुतम अनंत कार्डिनल है।
+\end{proof}
+
+\begin{cor}
+प्रत्येक अनंत कार्डिनल एक सीमा क्रमसूचक है।
+\end{cor}
+
+\begin{proof}
+$\alpha$ को एक अनंत उत्तरवर्ती क्रमसूचक मानें, अतः किसी $\beta$ के लिए
+$\alpha=\beta\ordplus 1$। \olref{finitecardisoequal} से $\beta$ भी अनंत
+है, अतः \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} से
+$\cardeq{\beta}{\beta\ordplus 1}$। अब
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} से
+$\card{\beta}=\card{\beta\ordplus 1}=\card{\alpha}$, इसलिए
+$\alpha\neq\card{\alpha}$।
+\end{proof}
+
+\olref[sfr][siz][enm-alt]{defn:enumerable} में ही हमने बताया था कि हम
+!!{enumerable} और !!{nonenumerable} अनंत समुच्चयों में अंतर कर सकते हैं।
+वह परिभाषा स्वाभाविक रूप से निम्न परिणाम देती है:
+
+\begin{prop}
+$A$ !!{enumerable} है तभी जब $\card{A}\leq\omega$, और $A$
+!!{nonenumerable} है तभी जब $\omega<\card{A}$।
+\end{prop}
+
+\begin{proof}
+त्रिविभाजन से दोनों दावे तुल्य हैं, अतः यह सिद्ध करना पर्याप्त है कि $A$
+!!{enumerable} है तभी जब $\card{A}\leq\omega$। \emph{दाएँ-से-बाएँ} दिशा
+के लिए: यदि $\card{A}\leq\omega$, तो
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} और
+\olref{omegaisacardinal} से $\cardle{A}{\omega}$। \emph{बाएँ-से-दाएँ}
+दिशा के लिए: मान लें $A$ !!{enumerable} है; तब
+\olref[sfr][siz][enm-alt]{defn:enumerable} से तीन संभव स्थितियाँ हैं:
+\begin{enumerate}
+	\item यदि $A=\emptyset$, तो \olref{naturalsarecardinals} और
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} से
+	$\card{A}=0\in\omega$।
+	\item यदि $\cardeq{n}{A}$, तो \olref{naturalsarecardinals} और
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} से
+	$\card{A}=n\in\omega$।
+	\item यदि $\cardeq{\omega}{A}$, तो \olref{omegaisacardinal} से
+	$\card{A}=\omega$।
+\end{enumerate}
+अतः सभी स्थितियों में $\card{A}\leq\omega$।
+\end{proof}
+\noindent
+वास्तव में $\omega$ का स्थान विशेष है। यद्यपि अनेक गणनीय क्रमसूचक हैं:
+
+\begin{cor}
+$\omega$ एकमात्र !!{enumerable} अनंत कार्डिनल है।
+\end{cor}
+
+\begin{proof}
+$\cardfont{a}$ को कोई !!a{enumerable} अनंत कार्डिनल मानें। चूँकि
+$\cardfont{a}$ अनंत है, $\omega\leq\cardfont{a}$। चूँकि $\cardfont{a}$
+!!a{enumerable} कार्डिनल है,
+$\cardfont{a}=\card{\cardfont{a}}\leq\omega$। अतः त्रिविभाजन से
+$\cardfont{a}=\omega$। \end{proof}
+
+निस्संदेह अनंततः अनेक कार्डिनल हैं। इसलिए हम पूछ सकते हैं:
+\emph{कितने कार्डिनल हैं?} निम्न परिणाम दिखाते हैं कि शायद हमें इस प्रश्न
+पर पुनर्विचार करना चाहिए।
+
+\begin{prop}\ollabel{unioncardinalscardinal}
+यदि $X$ का प्रत्येक सदस्य कार्डिनल है, तो $\bigcup X$ एक कार्डिनल है।
+\end{prop}
+
+\begin{proof}
+यह जाँचना सरल है कि $\bigcup X$ एक क्रमसूचक है। मान लें $\alpha\in
+\bigcup X$ एक क्रमसूचक है; तब किसी कार्डिनल $\cardfont{b}$ के लिए
+$\alpha\in\cardfont{b}\in X$। चूँकि $\cardfont{b}$ एक कार्डिनल है,
+$\cardless{\alpha}{\cardfont{b}}$। चूँकि
+$\cardfont{b}\subseteq\bigcup X$, हमारे पास
+$\cardle{\cardfont{b}}{\bigcup X}$ है, और इसलिए
+$\cardneq{\alpha}{\bigcup X}$। सामान्यीकरण से $\bigcup X$ एक कार्डिनल है।
+\end{proof} 
+
+\begin{thm}\ollabel{lem:NoLargestCardinal}
+कोई महत्तम कार्डिनल नहीं है।
+\end{thm}
+
+\begin{proof}
+किसी भी कार्डिनल $\cardfont{a}$ के लिए कैंटर का प्रमेय
+(\olref[sfr][siz][car]{thm:cantor}) और
+\olref[cardinals][cardsasords]{lem:CardinalsExist} से निष्पन्न होता है कि
+$\cardfont{a}<\card{\Pow{\cardfont{a}}}$।
+\end{proof}
+
+\begin{thm}
+सभी कार्डिनलों का समुच्चय अस्तित्व में नहीं है।
+\end{thm}
+
+\begin{proof}
+विरोधाभास द्वारा मान लें $C=\Setabs{\cardfont{a}}{\cardfont{a}\text{
+एक कार्डिनल है}}$। \olref{unioncardinalscardinal} से $\bigcup C$ एक
+कार्डिनल है, अतः \olref{lem:NoLargestCardinal} से कोई कार्डिनल
+$\cardfont{b}>\bigcup C$ है। परिभाषा से $\cardfont{b}\in C$, इसलिए
+$\cardfont{b}\subseteq\bigcup{C}$, और इस प्रकार
+$\cardfont{b}\leq\bigcup C$, जो विरोधाभास है।
+\end{proof}
+
+इसकी तुलना रसेल के विरोधाभास और बुराली--फ़ोर्टी दोनों से कीजिए।
+
+\end{document}

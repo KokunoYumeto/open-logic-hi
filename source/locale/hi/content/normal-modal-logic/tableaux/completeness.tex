@@ -1,0 +1,216 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{tab}{cpl}
+
+\olsection{\Log{K} के लिए पूर्णता}
+
+\begin{explain}
+  !!{tableau} की विधि की पूर्णता दिखाने के लिए हमें दिखाना है कि जब भी
+  $\Gamma \Proves !A$ दिखाने वाला कोई संवृत !!{tableau} न हो, तब
+  $\Gamma \Entails/ !A$, अर्थात् कोई प्रतिप्रतिरूप हो। किंतु ``कोई संवृत
+  !!{tableau} नहीं है'' का अर्थ है कि उसे बनाने का हर संभावित प्रयास संवृत
+  होने में विफल होना चाहिए। युक्ति यह देखना है कि यदि ऐसा हर ढंग संवृत होने
+  में विफल हो, तो कोई विशिष्ट, \emph{व्यवस्थित और समग्र} ढंग भी विफल होगा।
+  और यदि कोई संवृत !!{tableau} विद्यमान हो, तो यह व्यवस्थित और समग्र ढंग
+  संवृत हो जाएगा। एक ही टैब्लो की खुली शाखाओं में प्रतिप्रतिरूप परिभाषित
+  करने के लिए आवश्यक सारी सूचना होगी। इस टैब्लो की किसी खुली शाखा से मिला
+  प्रतिप्रतिरूप उस शाखा पर प्रयुक्त सभी उपसर्गों को जगत बनाएगा, और कोई
+  !!a{propositional variable}~$p$, $\sigma$ पर तभी सत्य होगा जब
+  $\sFmla{\True}{p}[\sigma]$ शाखा पर आता हो।
+\end{explain}
+
+\begin{defn}
+  किसी !!a{tableau} की शाखा \emph{पूर्ण} कहलाती है यदि जब भी उसमें ऐसा
+  उपसर्गयुक्त !!{formula} $\sFmla{S}{!A}[\sigma]$ हो जिस पर कोई नियम लगाया
+  जा सकता है, तब उसमें यह भी हो:
+  \begin{enumerate}
+    \item प्रतिज्ञप्तिक स्तंभन-नियमों की स्थिति में नियम के संबद्ध
+      निष्कर्ष बने उपसर्गयुक्त !!{formula};
+    \item प्रतिज्ञप्तिक शाखन-नियमों की स्थिति में संबद्ध निष्कर्ष
+      !!{formula}ों में से कोई एक;
+    \item नया उपसर्ग अपेक्षित करने वाले मोडल नियमों की स्थिति में
+      कम-से-कम एक संभावित निष्कर्ष;
+    \item प्रयुक्त उपसर्ग अपेक्षित करने वाले मोडल नियमों की स्थिति में
+      शाखा पर आने वाले प्रत्येक उपसर्ग के लिए संबद्ध निष्कर्ष।
+  \end{enumerate}
+\end{defn}
+
+\begin{explain}
+उदाहरणार्थ, किसी पूर्ण शाखा में जब भी $\sFmla{\True}{!B \land !C}$ हो,
+तब $\sFmla{\True}{!B}[\sigma]$ और $\sFmla{\True}{!C}[\sigma]$, दोनों
+होते हैं। यदि उसमें $\sFmla{\True}{!B \lor !C}[\sigma]$ हो, तो उसमें
+$\sFmla{\False}{!B}[\sigma]$ और $\sFmla{\True}{!C}[\sigma]$ में से
+कम-से-कम एक होता है। यदि उसमें \iftag{prvBox}
+{$\sFmla{\False}{\Box}[\sigma]$} {$\sFmla{\True}{\Diamond}[\sigma]$} हो,
+तो उसमें कम-से-कम एक~$n$ के लिए \iftag{prvBox}
+{$\sFmla{\False}{\Box}[\sigma.n]$}
+{$\sFmla{\True}{\Diamond}[\sigma.n]$} भी होता है। और जब भी उसमें
+\iftag{prvBox} {$\sFmla{\True}{\Box}[\sigma]$}
+{$\sFmla{\False}{\Diamond}[\sigma]$} हो, तब शाखा पर $\sigma.n$ प्रयुक्त
+होने वाले प्रत्येक~$n$ के लिए उसमें \iftag{prvBox}
+{$\sFmla{\True}{\Box}[\sigma.n]$}
+{$\sFmla{\False}{\Diamond}[\sigma.n]$} भी होता है।
+\end{explain}
+
+\begin{prop}\ollabel{prop:complete-tableau}
+  प्रत्येक परिमित $\Gamma$ का ऐसा !!a{tableau} है जिसमें हर शाखा पूर्ण है।
+\end{prop}
+
+\begin{proof}
+  $\Gamma$ के किसी !!a{tableau} की खुली शाखा पर विचार करें। शाखा में ऐसे
+  परिमिततः अनेक उपसर्गयुक्त !!{formula} हैं जिन पर कोई नियम लगाया जा सकता
+  है। किसी नियत क्रम (जैसे ऊपर से नीचे) में, इन उपसर्गयुक्त !!{formula}ों में
+  से प्रत्येक ऐसे सूत्र के लिए जिस पर शर्तें (1)--(4) पहले से सत्य नहीं
+  हैं, शाखा बढ़ाने हेतु उस पर लागू हो सकने वाले नियम लगाएँ। कुछ स्थितियों
+  में इससे शाखन होगा; बच गए सभी उपसर्गयुक्त !!{formula}ों के लिए प्रत्येक
+  परिणामी शाखा के सिरे पर नियम लगाएँ। चूँकि उपसर्गयुक्त !!{formula}ों की
+  संख्या परिमित है और शाखा पर प्रयुक्त उपसर्गों की संख्या परिमित है, यह
+  प्रक्रिया अंततः मूल शाखा को विस्तृत करने वाली (संभवतः अनेक) शाखाएँ देती
+  है। प्रत्येक पर यह प्रक्रिया लगाएँ और दोहराएँ। किंतु निर्माण से हर शाखा
+  संवृत है।
+\end{proof}
+
+\begin{thm}[पूर्णता]
+  \ollabel{thm:tableau-completeness}
+  यदि $\Gamma$ का कोई संवृत !!{tableau} नहीं है, तो $\Gamma$ संतोषणीय है।
+\end{thm}
+
+\begin{proof}
+प्रतिज्ञप्ति से $\Gamma$ का ऐसा !!a{tableau} है जिसमें हर शाखा पूर्ण है।
+चूँकि उसका कोई संवृत !!{tableau} नहीं है, उसका ऐसा !!a{tableau} है जिसमें
+कम-से-कम एक शाखा खुली और पूर्ण है। $\Delta$ उस शाखा के उपसर्गयुक्त
+!!{formula}ों का समुच्चय हो और $P(\Delta)$ उसमें आने वाले उपसर्गों का
+समुच्चय हो।
+
+हम प्रतिरूप~$\mModel{M(\Delta)} = \tuple{P(\Delta), R, V}$ परिभाषित
+करते हैं, जहाँ जगत $\Delta$ में आने वाले उपसर्ग हैं और अभिगम्यता संबंध
+यह है:
+\[
+R\sigma\sigma' \quad \text{तभी जब} \quad
+\sigma'=\sigma.n \quad \text{किसी~$n$ के लिए}
+\]
+और
+\[
+V(p) = \Setabs{\sigma}{\sFmla{\True}{p}[\sigma] \in \Delta}.
+\]
+हम $!A$ पर आगमन से दिखाते हैं कि यदि $\sFmla{\True}{!A}[\sigma] \in
+\Delta$, तो $\mSat{M(\Delta)}{!A}[\sigma]$; और यदि
+$\sFmla{\False}{!A}[\sigma] \in \Delta$, तो
+$\mSat/{M(\Delta)}{!A}[\sigma]$।
+
+\begin{enumerate}
+  \item \indcase{!A}{p}{यदि $\sFmla{\True}{\indfrm}[\sigma] \in
+    \Delta$, तो $V$ की परिभाषा से $\sigma \in V(p)$, और इसलिए
+    $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+    यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो
+    $\sFmla{\True}{\indfrm}[\sigma] \notin \Delta$, क्योंकि अन्यथा शाखा
+    संवृत होती। अतः $\sigma \notin V(p)$ और इसलिए
+    $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}
+  \item \indcase{!A}{\lnot !B}{\iftag{probNot}{अभ्यास।}{यदि
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण होने
+      से $\sFmla{\False}{!B}[\sigma] \in \Delta$। आगमनात्मक परिकल्पना से
+      $\mSat/{M(\Delta)}{!B}[\sigma]$, अतः
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+      यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण
+      होने से $\sFmla{\True}{!B}[\sigma] \in \Delta$। आगमनात्मक परिकल्पना
+      से $\mSat{M(\Delta)}{!B}[\sigma]$, अतः
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}}
+  \item \indcase{!A}{!B \land !C}{\iftag{probAnd}{अभ्यास।}{यदि
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण होने
+      से $\sFmla{\True}{!B}[\sigma] \in \Delta$ और
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$, दोनों। आगमनात्मक परिकल्पना
+      से $\mSat{M(\Delta)}{!B}[\sigma]$ और
+      $\mSat{M(\Delta)}{!C}[\sigma]$। अतः
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+      यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण
+      होने से या तो $\sFmla{\False}{!B}[\sigma] \in \Delta$, या
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$। आगमनात्मक परिकल्पना से या
+      तो $\mSat/{M(\Delta)}{!B}[\sigma]$, या
+      $\mSat/{M(\Delta)}{!B}[\sigma]$। अतः
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}}
+  \item \indcase{!A}{!B \lor !C}{\iftag{probOr}{अभ्यास।}{यदि
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण होने
+      से या तो $\sFmla{\True}{!B}[\sigma] \in \Delta$, या
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$। आगमनात्मक परिकल्पना से या
+      तो $\mSat{M(\Delta)}{!B}[\sigma]$, या
+      $\mSat{M(\Delta)}{!C}[\sigma]$। अतः
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+      यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण
+      होने से $\sFmla{\False}{!B}[\sigma] \in \Delta$ और
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$, दोनों। आगमनात्मक परिकल्पना
+      से $\mSat/{M(\Delta)}{!B}[\sigma]$ और
+      $\mSat/{M(\Delta)}{!B}[\sigma]$, दोनों। अतः
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}}
+  \item \indcase{!A}{!B \lif !C}{\iftag{probIf}{अभ्यास।}{यदि
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण होने
+      से या तो $\sFmla{\False}{!B}[\sigma] \in \Delta$, या
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$। आगमनात्मक परिकल्पना से या
+      तो $\mSat/{M(\Delta)}{!B}[\sigma]$, या
+      $\mSat{M(\Delta)}{!C}[\sigma]$। अतः
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+      यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण
+      होने से $\sFmla{\True}{!B}[\sigma] \in \Delta$ और
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$, दोनों। आगमनात्मक परिकल्पना
+      से $\mSat{M(\Delta)}{!B}[\sigma]$ और
+      $\mSat/{M(\Delta)}{!B}[\sigma]$, दोनों। अतः
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}}
+  \item \indcase{!A}{\Box !B}{\iftag{probBox}{अभ्यास।}{यदि
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण होने
+      से शाखा पर प्रयुक्त प्रत्येक $\sigma.n$ के लिए
+      $\sFmla{\True}{!B}[\sigma.n] \in \Delta$, अर्थात् प्रत्येक ऐसे
+      $\sigma' \in P(\Delta)$ के लिए जिसके लिए $R\sigma\sigma'$।
+      आगमनात्मक परिकल्पना से प्रत्येक ऐसे $\sigma'$ के लिए
+      $\mSat{M(\Delta)}{!B}[\sigma']$ जिसके लिए $R\sigma\sigma'$। अतः
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+      यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण
+      होने से किसी $\sigma.n$ के लिए
+      $\sFmla{\False}{!B}[\sigma.n] \in \Delta$। आगमनात्मक परिकल्पना से
+      $\mSat/{M(\Delta)}{!B}[\sigma.n]$। चूँकि $R\sigma(\sigma.n)$, ऐसा
+      कोई~$\sigma'$ है कि $\mSat/{M(\Delta)}{!B}[\sigma']$। अतः
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}}
+  \item \indcase{!A}{\Diamond !B}{\iftag{probDiamond}{अभ्यास।}{यदि
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण होने
+      से किसी $\sigma.n$ के लिए $\sFmla{\True}{!B}[\sigma.n] \in
+      \Delta$। आगमनात्मक परिकल्पना से
+      $\mSat{M(\Delta)}{!B}[\sigma.n]$। चूँकि $R\sigma(\sigma.n)$, ऐसा
+      कोई~$\sigma'$ है कि $\mSat{M(\Delta)}{!B}[\sigma']$। अतः
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$।
+
+      यदि $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, तो शाखा के पूर्ण
+      होने से शाखा पर प्रयुक्त प्रत्येक $\sigma.n$ के लिए
+      $\sFmla{\False}{!B}[\sigma.n] \in \Delta$, अर्थात् प्रत्येक ऐसे
+      $\sigma' \in P(\Delta)$ के लिए जिसके लिए $R\sigma\sigma'$।
+      आगमनात्मक परिकल्पना से प्रत्येक ऐसे $\sigma'$ के लिए
+      $\mSat/{M(\Delta)}{!B}[\sigma']$ जिसके लिए $R\sigma\sigma'$। अतः
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$।}}
+\end{enumerate}
+चूँकि $\Gamma \subseteq \Delta$, इसलिए $\mSat{M(\Delta)}{\Gamma}$।
+\end{proof}
+
+\begin{prob}
+\olref[nml][tab][cpl]{thm:tableau-completeness} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\begin{cor}
+\ollabel{cor:entailment-completeness}
+यदि $\Gamma \Entails !A$, तो $\Gamma \Proves !A$।
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:weak-completeness}
+यदि $!A$ सभी प्रतिरूपों में सत्य है, तो $\Proves !A$।
+\end{cor}
+
+\end{document}

@@ -1,0 +1,21 @@
+% Target-only first-order-logic profile build wrapper for HI-OLP-0095.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{xr-hyper}
+% Import the exact frozen English-control label used by this standalone
+% defect-check reader; the translated source itself stays intact.
+\externaldocument{soundness-external-labels}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\setlength{\emergencystretch}{2em}
+\firmlists
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{स्वाभाविक निगमन: तादात्म्य सहित सुदृढ़ता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{soundness-identity}
+\end{document}

@@ -1,0 +1,149 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{card-arithmetic}{opps}
+\olsection{मूल संक्रियाओं की परिभाषा}
+
+चूँकि हमें क्रम का ध्यान रखने की आवश्यकता नहीं है, कार्डिनल अंकगणित की
+परिभाषा क्रमसूचक अंकगणित की अपेक्षा कुछ सरल है। हम योग, गुणन और घातांक को
+एक साथ परिभाषित करेंगे।
+
+\begin{defn}
+जब $\cardfont{a}$ और $\cardfont{b}$ कार्डिनल हों:
+\begin{align*}
+	\cardfont{a} \cardplus \cardfont{b} &\defis 
+	\card{\cardfont{a} \disjointsum \cardfont{b}}\\
+	\cardfont{a} \cardtimes \cardfont{b} &\defis 
+	\card{\cardfont{a} \times \cardfont{b}}\\
+	\cardexpo{\cardfont{a}}{\cardfont{b}} &\defis 
+	\card{\funfromto{\cardfont{b}}{\cardfont{a}}}
+\end{align*}
+जहाँ $\funfromto{X}{Y}=\Setabs{f}{f\text{ एक फलन है }X\to Y}$।
+(यह दिखाना सरल है कि किन्हीं समुच्चयों $X$ और $Y$ के लिए
+$\funfromto{X}{Y}$ का अस्तित्व है; इसे हम अभ्यास के लिए छोड़ते हैं।)
+\end{defn}
+
+\begin{prob}
+$\Zminus$ में सिद्ध कीजिए कि किन्हीं समुच्चयों $X$ और $Y$ के लिए
+$\funfromto{X}{Y}$ का अस्तित्व है। $\ZF$ में काम करते हुए
+\olref[sth][ord-arithmetic][using-addition]{rankcomputation} की रीति से
+$\setrank{X}$ और $\setrank{Y}$ से $\setrank{\funfromto{X}{Y}}$ परिकलित
+कीजिए।
+\end{prob}
+
+इस परिभाषा की व्याख्या सहायक हो सकती है। योग के विषय में: इसमें
+\olref[ord-arithmetic][add]{defdissum} में परिभाषित असंयुक्त योग
+$\disjointsum$ की धारणा का उपयोग होता है; और यह देखना सरल है कि यह परिभाषा
+परिमित स्थितियों में सही परिणाम देती है। गुणन के विषय में:
+\olref[sfr][set][pai]{cardnmprod} हमें बताता है कि यदि $A$ के $n$ सदस्य और
+$B$ के $m$ सदस्य हों, तो $A\times B$ के $n\cdot m$ सदस्य होते हैं, इसलिए
+हमारी परिभाषा इस विचार का केवल परिमितेतर गुणन तक सामान्यीकरण करती है। घातांक
+भी समान है: हम इस विचार का केवल परिमित से परिमितेतर तक सामान्यीकरण कर रहे
+हैं। वास्तव में कुछ अर्थों में परिमितेतर कार्डिनल अंकगणित ``साधारण''
+अंकगणित से परिमितेतर क्रमसूचक अंकगणित की अपेक्षा कहीं अधिक मिलता है:
+
+\begin{prop}\ollabel{cardplustimescommute}
+$\cardplus$ और $\cardtimes$ क्रमविनिमेय और साहचर्यात्मक हैं।
+\end{prop}
+
+\begin{proof}
+क्रमविनिमेयता के लिए
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} से यह देखना
+पर्याप्त है कि $\cardeq{(\cardfont{a}\disjointsum
+\cardfont{b})}{(\cardfont{b}\disjointsum\cardfont{a})}$ और
+$\cardeq{(\cardfont{a}\times\cardfont{b})}{(\cardfont{b}\times
+\cardfont{a})}$। साहचर्यता को हम अभ्यास के लिए छोड़ते हैं।
+\end{proof}
+
+\begin{prob}
+सिद्ध कीजिए कि $\cardplus$ और $\cardtimes$ साहचर्यात्मक हैं।
+\end{prob}
+
+\begin{prop}
+$A$ अनंत है तभी जब
+$\card{A}\cardplus 1=1\cardplus\card{A}=\card{A}$।
+\end{prop}
+
+\begin{proof}
+\olref[cardinals][classing]{generalinfinitycharacter} की तरह,
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter} और
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} से।
+\end{proof}
+
+इससे स्पष्ट होता है कि क्रमसूचक और कार्डिनल योग/गुणन के लिए हमें भिन्न
+चिह्नों का उपयोग क्यों करना पड़ता है: ये वास्तव में \emph{भिन्न} संक्रियाएँ
+हैं। अगले दो परिणाम दिखाते हैं कि क्रमसूचक और कार्डिनल घातांक भी भिन्न
+संक्रियाएँ हैं। (याद करें कि \olref[z][infinity-again]{defnomega} से
+$2=\{0,1\}$ निष्पन्न होता है):
+
+\begin{lem}\ollabel{lem:SizePowerset2Exp}
+किसी भी $A$ के लिए $\card{\Pow{A}}=\cardexpo{2}{\card{A}}$।
+\end{lem}
+
+\begin{proof}
+प्रत्येक उपसमुच्चय $B\subseteq A$ के लिए
+$\chi_B\in\funfromto{A}{2}$ इस प्रकार दिया हो:
+\begin{align*}
+	\chi_{B}(x) &\defis
+	\begin{cases}
+		1 & \text{यदि }x\in B\\
+		0 & \text{अन्यथा।}
+	\end{cases}
+\end{align*}
+अब $f(B)=\chi_B$ रखें; इससे कोई !!a{bijection}
+$f\colon\Pow{A}\to\funfromto{A}{2}$ परिभाषित होता है। अतः
+$\cardeq{\Pow{A}}{\funfromto{A}{2}}$। फलतः
+$\cardeq{\Pow{A}}{\funfromto{\card{A}}{2}}$, इसलिए
+$\card{\Pow{A}}=\card{\funfromto{\card{A}}{2}}=2^{\card{A}}$।
+\end{proof}
+
+यह संक्षिप्त प्रमाण वस्तुतः \olref[sfr][siz][red-alt]{sec} की चर्चा को
+अपने में समेट लेता है। वहाँ हमने दिखाया था कि $\Pow{\omega}$ की अगणनीयता
+को अनंत द्विआधारी शृंखलाओं के समुच्चय $\Bin^\omega$ की अगणनीयता तक कैसे
+``घटाया'' जाए। वस्तुतः $\Bin^\omega$ केवल $\funfromto{\omega}{2}$ है; और
+पिछले प्रमाण ने दिखाया कि \olref[sfr][siz][red-alt]{sec} में प्रयुक्त तर्क
+$\omega$ के स्थान पर किसी भी समुच्चय $A$ के साथ चलेगा। यह परिणाम कार्डिनल
+घातांक के बारे में एक त्वरित तथ्य भी देता है:
+
+\begin{cor}\ollabel{cantorcor}
+किसी भी कार्डिनल $\cardfont{a}$ के लिए
+$\cardfont{a}<\cardexpo{2}{\cardfont{a}}$।
+\end{cor}
+
+\begin{proof}
+कैंटर के प्रमेय (\olref[sfr][siz][car]{thm:cantor}) और
+\olref{lem:SizePowerset2Exp} से।
+\end{proof}
+\noindent
+अतः $\omega<\cardexpo{2}{\omega}$। किंतु ध्यान दें: यह \emph{कार्डिनल}
+घातांक के बारे में परिणाम है। इसकी तुलना \emph{क्रमसूचक} घातांक से करनी
+चाहिए, क्योंकि बाद वाली स्थिति में $\omega=\ordexpo{2}{\omega}$
+(\olref[ord-arithmetic][expo]{sec} देखें)।
+
+कार्डिनल घातांक की चर्चा करते हुए हम उस ``ढंग'' के बारे में भी कुछ अधिक
+सटीक हो सकते हैं जिसमें $\Real$ !!{nonenumerable} है।
+
+\begin{thm}\ollabel{continuumis2aleph0}
+$\card{\Real} = \cardexpo{2}{\omega}$
+\end{thm}
+
+\begin{proof}[प्रमाण की रूपरेखा]
+इसे सिद्ध करने के अनेक ढंग हैं। सबसे सीधा ढंग यह तर्क देना है कि
+$\cardle{\Pow{\omega}}{\Real}$ और $\cardle{\Real}{\Pow{\omega}}$, फिर
+श्रेडर--बर्नस्टीन से $\cardeq{\Real}{\Pow{\omega}}$ निष्कर्षित करना, और
+\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} से
+$\card{\Real}=\cardexpo{2}{\omega}$ निष्कर्षित करना। अंतःक्षेप
+$f\colon\Pow{\omega}\to\Real$ और
+$g\colon\Real\to\Pow{\omega}$ परिभाषित करना हम एक (ज्ञानवर्धक) अभ्यास के
+रूप में छोड़ते हैं।
+\end{proof}
+
+\begin{prob}
+यह दिखाकर कि $\cardle{\Pow{\omega}}{\Real}$ और
+$\cardle{\Real}{\Pow{\omega}}$, 
+\olref[sth][card-arithmetic][opps]{continuumis2aleph0} का प्रमाण पूरा
+कीजिए।
+\end{prob}
+
+\end{document}

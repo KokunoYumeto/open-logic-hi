@@ -1,0 +1,87 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: simple-S5
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{tab}{s5}
+
+\olsection{\Log{S5} के लिए सरल \usetoken{P}{tableau}}
+
+\Log{S5} सार्विक प्रतिरूपों के वर्ग के सापेक्ष यथार्थ और पूर्ण है, अर्थात्
+ऐसे प्रतिरूपों के वर्ग के सापेक्ष जिनमें प्रत्येक जगत प्रत्येक जगत से
+अभिगम्य है। सार्विक प्रतिरूपों में अभिगम्यता संबंध से अंतर नहीं पड़ता:
+``ऐसा जगत~$w$ है जहाँ $\mSat{M}{!A}[w]$'' तभी सत्य है जब ऐसा $w$ है जो
+$u$ से अभिगम्य है। अतः \Log{S5} में हम प्रतिरूप को केवल जगतों के समुच्चय
+और मूल्यांकन~$V$ के रूप में परिभाषित कर सकते हैं। इससे संकेत मिलता है कि
+हम !!{tableau} नियमों को भी सरल कर सकते हैं। सामान्य स्थिति में हम धन
+पूर्णांकों के अनुक्रमों को उपसर्ग लेते हैं, ताकि हिसाब रख सकें कि कौन-से
+उपसर्ग ऐसे जगतों को नाम देते हैं जो दूसरों से अभिगम्य हैं: $\sigma.n$,
+$\sigma$ से अभिगम्य जगत को नाम देता है। किंतु \Log{S5} में कोई भी जगत
+किसी भी जगत से अभिगम्य है, अतः ऐसा हिसाब रखने की आवश्यकता नहीं। इसके
+स्थान पर हम धन पूर्णांकों को उपसर्ग बना सकते हैं। सरल किए गए नियम
+\olref{tab:rules-S5} में दिए गए हैं।
+
+\begin{table}
+  \begin{center}
+    \def\arraystretch{3}\def\fCenter{}
+    \begin{tabular}{|c|c|}
+    \hline
+    \iftag{prvBox}{
+      \AxiomC{\sFmla{\True}{\Box !A}[n]}
+      \RightLabel{\TRule{\True}{\Box}}
+      \UnaryInfC{\sFmla{\True}{!A}[m]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Box !A}[n]}
+      \RightLabel{\TRule{\False}{\Box}}
+      \UnaryInfC{\sFmla{\False}{!A}[m]}
+      \DisplayProof\\
+      $m$ प्रयुक्त है & $m$ नया है
+      \\[1ex]
+      \hline}{}
+    \iftag{prvDiamond}{
+      \AxiomC{\sFmla{\True}{\Diamond !A}[n]}
+      \RightLabel{\TRule{\True}{\Diamond}}
+      \UnaryInfC{\sFmla{\True}{!A}[m]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Diamond !A}[n]}
+      \RightLabel{\TRule{\False}{\Diamond}}
+      \UnaryInfC{\sFmla{\False}{!A}[m]}
+      \DisplayProof\\
+      $m$ नया है & $m$ प्रयुक्त है
+      \\[1ex]
+      \hline}{}
+    \end{tabular}
+  \end{center}
+  \caption{\Log{S5} के सरल किए गए नियम।}
+  \ollabel{tab:rules-S5}
+\end{table}
+
+\begin{ex}
+  हम ऐसा सरल किया गया संवृत टैब्लो देते हैं जो $\Log{S5} \Proves
+  \Ax{5}$, अर्थात् $\Diamond!A \lif \Box\Diamond!A$, दिखाता है।
+  \begin{oltableau}
+    [\pFmla{\False}{\Diamond\formula{A} \lif \Box\Diamond \formula{A}}{1},
+      just = \TAss
+      [\pFmla{\True}{\Diamond \formula{A}}{1}, just = {\TRule{\False}{\lif}[1]}
+        [\pFmla{\False}{\Box\Diamond \formula{A}}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\False}{\Diamond \formula{A}}{2},
+            just = {\TRule{\False}{\Box}[3]}
+            [\pFmla{\True}{\formula{A}}{3},
+              just = {\TRule{\True}{\Diamond}[2]}
+                [\pFmla{\False}{\formula{A}}{3},
+                  just = {\TRule{\False}{\Diamond}[4]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+\end{ex}
+
+\end{document}

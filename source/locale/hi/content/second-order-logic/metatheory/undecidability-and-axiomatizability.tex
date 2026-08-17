@@ -1,0 +1,54 @@
+% Part: second-order-logic
+% Chapter: metatheory
+% Section: undecidability-and-axiomatizability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{met}{nax}
+
+\olsection{द्वितीय-कोटि तर्कशास्त्र अभिगृहीतीकरणीय नहीं है}
+
+
+\begin{thm}
+\ollabel{thm:sol-undecidable}
+द्वितीय-कोटि तर्कशास्त्र अनिर्णेय है।
+\end{thm}
+
+\begin{proof}
+कोई प्रथम-कोटि !!{sentence}, प्रथम-कोटि तर्कशास्त्र में तभी और केवल तभी
+वैध है जब वह द्वितीय-कोटि तर्कशास्त्र में वैध हो; और प्रथम-कोटि तर्कशास्त्र
+अनिर्णेय है।
+\end{proof}
+
+\begin{thm}
+\ollabel{cor:sol-not-axiomatizable}
+द्वितीय-कोटि तर्कशास्त्र के लिए कोई ध्वनि और पूर्ण !!{derivation} पद्धति
+नहीं है।
+\end{thm}
+
+\begin{proof}
+मान लें $!A$ अंकगणित की भाषा का कोई !!a{sentence} है। $\Sat{N}{!A}$ तभी
+और केवल तभी जब $\Th{PA^2} \Entails !A$। $!P$, ~$\Th{PA^2}$ के नौ
+अभिगृहीतों का संयोजन हो। $\Th{PA^2} \Entails !A$ तभी और केवल तभी जब
+$\Entails !P \lif !A$, अर्थात् $\Sat{M}{!P \lif !A$}। अब उस
+!!{sentence} पर विचार करें
+$\lforall[z][\lforall[u][\lforall[u'][\lforall[u''][\lforall[L][(!P' \lif !A')]]]]]$,
+जो $\Obj{0}$ को $z$ से, $\prime$ को एक-स्थानी फलन-चर $u$ से, $+$ और
+$\times$ को क्रमशः दो-स्थानी फलन-चरों $u'$ और $u''$ से तथा $<$ को
+दो-स्थानी संबंध-चर~$L$ से बदलकर, फिर सार्वत्रिक परिमाणीकरण लगाकर प्राप्त
+होता है। यह शुद्ध द्वितीय-कोटि तर्कशास्त्र का वैध वाक्य तभी और केवल तभी है
+जब मूल वाक्य वैध था, तभी और केवल तभी जब $\Th{PA^2} \Entails !A$, और तभी
+और केवल तभी जब $\Sat{N}{!A}$। अतः यदि द्वितीय-कोटि तर्कशास्त्र के लिए कोई
+ध्वनि और पूर्ण प्रमाण-पद्धति होती, तो हम उसका उपयोग~$\Struct{N}$ में सत्य
+!!{sentence} का संगणनीय परिगणन $f\colon \Nat \to \Sent[L_A]$ परिभाषित
+करने के लिए कर सकते थे। यह फलन~$\Th{Q}$ में किसी प्रथम-कोटि
+सूत्र~$!B_f(x, y)$ द्वारा निरूपणीय होता। तब !!{formula}
+~$\lexists[x][!B_f(x, y)]$, ~$\Struct{N}$ के सत्य प्रथम-कोटि !!{sentence}
+के समुच्चय को परिभाषित करता, जो टार्स्की के प्रमेय का खंडन है।
+\end{proof}
+
+
+
+\end{document}

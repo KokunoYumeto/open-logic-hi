@@ -1,0 +1,96 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: well-behaved-machines
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{mac}{dis}
+\olsection{अनुशासित मशीनें}
+
+\begin{explain}
+अनुभाग \olref[hal]{sec} में हमने ऐसी ट्यूरिंग मशीनों पर विचार किया जिनकी
+एक निर्दिष्ट विराम-अवस्था~$h$ होती है---यदि ऐसी मशीनें रुकती हैं, तो
+अवस्था~$h$ में ही रुकती हैं। इस अर्थ में एकल विराम-अवस्था वाली मशीनें
+सामान्य ट्यूरिंग मशीनों के लिए हमारी अनुमति की अपेक्षा अधिक
+``अनुशासित'' हैं। ट्यूरिंग मशीनों के व्यवहार पर अन्य प्रतिबंध भी लगाए
+जा सकते हैं। उदाहरणार्थ, हमने ट्यूरिंग मशीनों को खाना~$0$ पर पट्टी-अंत
+चिह्नक मिटाने अथवा खाना~$0$ से बाईं ओर जाने का प्रयास करने से भी नहीं
+रोका है। (हमारी परिभाषा कहती है कि इस स्थिति में शीर्ष केवल खाना~$0$ पर
+रहता है; अन्य परिभाषाओं में मशीन रुक जाती है।) इसी प्रकार कभी-कभी यह
+मान पाना वांछनीय होता है कि यदि ट्यूरिंग मशीन रुकती है, तो खाना~$1$ पर
+रुकती है।
+\end{explain}
+
+\begin{defn}\ollabel{defn:disciplined}
+ट्यूरिंग मशीन~$M$ \emph{अनुशासित} है, तभी और केवल तभी जब
+\begin{enumerate}
+    \item उसकी एक निर्दिष्ट एकल विराम-अवस्था~$h$ है,
+    \item यदि वह रुकती है, तो खाना~$1$ पढ़ते हुए रुकती है,
+    \item वह $\TMendtape$ प्रतीक कभी नहीं मिटाती, जो खाना~$0$ पर है, और
+    \item वह खाना~$0$ से बाईं ओर जाने का कभी प्रयास नहीं करती।
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+हम पहले ही चर्चा कर चुके हैं कि किसी भी ट्यूरिंग मशीन को समान व्यवहार
+वाली, किंतु निर्दिष्ट विराम-अवस्था वाली मशीन में बदला जा सकता है। इसके
+लिए केवल एक नई अवस्था~$h$ जोड़ते हैं और निर्देश $\delta(q, \sigma) = \tuple{h, \sigma, N}$
+प्रत्येक ऐसे युग्म $\tuple{q,\sigma}$ के लिए
+जोड़ते हैं जहाँ मूल $\delta$ अपरिभाषित है। यह सत्य
+है, यद्यपि इसका प्रमाण श्रमसाध्य है, कि किसी भी ट्यूरिंग मशीन~$M$ को ऐसी
+अनुशासित ट्यूरिंग मशीन~$M'$ में बदला जा सकता है जो उन्हीं आगतों पर रुकती
+और वही निर्गत उत्पन्न करती है। उदाहरणार्थ, यदि ट्यूरिंग मशीन रुकती है और
+खाना~$1$ पर नहीं है, तो कुछ निर्देश जोड़कर शीर्ष को बाईं ओर तब तक चला
+सकते हैं जब तक उसे पट्टी-अंत चिह्नक न मिल जाए; फिर उसे एक खाना दाईं ओर
+ले जाकर मशीन रोक सकते हैं। अन्य शर्तों को कैसे पूरा किया जाए, इस पर आप
+विचार करें।
+\end{explain}
+
+\begin{ex}
+    \olref{fig:adder-disc} में हम \olref[una]{ex:adder} की योग मशीन को
+    अनुशासित मशीन में बदलते हैं।
+    \begin{figure}\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (H) [left of=D] {$h$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+           edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+        edge node {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (H);
+\end{tikzpicture}
+\]\caption{एक अनुशासित योग मशीन}
+\ollabel{fig:adder-disc}
+\end{figure}
+\end{ex}
+
+\begin{prop}\ollabel{prop:disciplined} प्रत्येक ट्यूरिंग मशीन~$M$ के लिए
+एक अनुशासित ट्यूरिंग मशीन~$M'$ है जो निर्गत~$O$ के साथ रुकती है यदि
+$M$ निर्गत~$O$ के साथ रुकती है, और नहीं रुकती यदि $M$ नहीं रुकती। विशेष
+रूप से, ट्यूरिंग मशीन द्वारा संगणनीय प्रत्येक फलन
+$f\colon\Nat^n \to \Nat$ किसी अनुशासित ट्यूरिंग मशीन द्वारा भी संगणनीय
+है।
+\end{prop}
+
+\begin{prob}\label{tur:mac:dis:prob:disc-succ}
+$f(x) = x+1$ संगणित करने वाली एक अनुशासित मशीन दें।
+\end{prob}
+
+
+\begin{prob}\label{tur:mac:dis:prob:copier}
+ऐसी अनुशासित मशीन खोजें जो आगत $\TMstroke^n$ पर आरंभ किए जाने पर निर्गत
+$\TMstroke^n \concat \TMblank \concat \TMstroke^n$ उत्पन्न करे।
+\end{prob}
+
+\end{document}

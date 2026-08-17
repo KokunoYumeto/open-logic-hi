@@ -1,0 +1,88 @@
+% Target-only integrated five-chapter build wrapper for
+% HI-OLP-INC-PART-CONTIGUOUS-0001.
+\documentclass[openany]{memoir}
+\usepackage{subfiles}
+\usepackage{fontspec}
+\ifdefined\XeTeXgenerateactualtext
+  \XeTeXgenerateactualtext=1
+\fi
+\setmainfont[
+  Path=../../fonts/,
+  BoldFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldFeatures={FakeBold=2},
+  ItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  ItalicFeatures={FakeSlant=0.2},
+  BoldItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldItalicFeatures={FakeBold=2,FakeSlant=0.2},
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+\setsansfont[
+  Path=../../fonts/,
+  BoldFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldFeatures={FakeBold=2},
+  ItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  ItalicFeatures={FakeSlant=0.2},
+  BoldItalicFont=NotoSerifDevanagari-wdth-wght.ttf,
+  BoldItalicFeatures={FakeBold=2,FakeSlant=0.2},
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+\newfontfamily\hindifont[
+  Path=../../fonts/,
+  Script=Devanagari,
+  Language=Hindi
+]{NotoSerifDevanagari-wdth-wght.ttf}
+
+\newcommand*{\olpath}{../../../..}
+\newcommand*{\ollangid}{hi}
+\newcommand*{\ollanguage}{hindi}
+\input{\olpath/sty/open-logic.sty}
+\input{\olpath/sty/open-logic-debug.sty}
+% Keep legacy TeX math accents (notably \bar in \Th{\bar Q}) in the
+% Computer Modern operators family rather than the Devanagari text font.
+\SetSymbolFont{operators}{normal}{OT1}{cmr}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{cmr}{bx}{n}
+\SetMathAlphabet{\mathrm}{normal}{OT1}{cmr}{m}{n}
+\SetMathAlphabet{\mathrm}{bold}{OT1}{cmr}{bx}{n}
+\SetMathAlphabet{\mathbf}{normal}{OT1}{cmr}{bx}{n}
+\SetMathAlphabet{\mathbf}{bold}{OT1}{cmr}{bx}{n}
+\usepackage{xr-hyper}
+\externaldocument{C:/Users/Floris/Documents/interlanguage/03_projects/language_management/south_asian/hindi_complete_open_math_20260812/06_build/openlogic_hi_9620cc7/HI-OLP-CMP-REC-CHAPTER-0001/recursive-functions-build}
+\externaldocument{C:/Users/Floris/Documents/interlanguage/03_projects/language_management/south_asian/hindi_complete_open_math_20260812/06_build/openlogic_hi_9620cc7/HI-OLP-AXD-CHAPTER-0001/axiomatic-deduction-build}
+\externaldocument{C:/Users/Floris/Documents/interlanguage/03_projects/language_management/south_asian/hindi_complete_open_math_20260812/06_build/openlogic_hi_9620cc7/HI-OLP-0096/natural-deduction-build}
+\externaldocument{C:/Users/Floris/Documents/interlanguage/03_projects/language_management/south_asian/hindi_complete_open_math_20260812/06_build/openlogic_hi_9620cc7/HI-OLP-0082/sequent-calculus-build}
+\externaldocument{C:/Users/Floris/Documents/interlanguage/03_projects/language_management/south_asian/hindi_complete_open_math_20260812/06_build/openlogic_hi_9620cc7/HI-OLP-TAB-CHAPTER-0001/tableaux-build}
+
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{अपूर्णता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\setlength{\emergencystretch}{5em}
+\raggedbottom
+\hypersetup{pdflang={hi-IN}}
+\AtBeginDocument{%
+  \def\OLTlinkname{https://github.com/OpenLogicProject/OpenLogic}%
+  \renewcommand*{\crefrangeconjunction}{ से\nobreakspace}%
+  \renewcommand*{\crefpairconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddleconjunction}{, }%
+  \renewcommand*{\creflastconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefpairgroupconjunction}{ और\nobreakspace}%
+  \renewcommand*{\crefmiddlegroupconjunction}{, }%
+  \renewcommand*{\creflastgroupconjunction}{, और\nobreakspace}%
+}
+% Run after package begin-document hooks: the source uses \Th{\bar T}, and
+% XeTeX's legacy \bar otherwise requests absent slot 22 from the Devanagari
+% bold family.  \overline is the same mathematical notation without that loss.
+\AddToHook{begindocument/end}{\renewcommand*{\bar}[1]{\overline{#1}}}
+\pagestyle{openlogic}
+
+\begin{document}
+\subfile{incompleteness}
+\end{document}

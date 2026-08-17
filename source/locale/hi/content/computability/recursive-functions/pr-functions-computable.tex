@@ -1,0 +1,44 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: pr-functions-computable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cmp}{rec}{cmp}
+\olsection{आदिम पुनरावर्ती फलन संगणनीय हैं}
+
+मान लें कि कोई फलन $h$ आदिम पुनरावर्तन द्वारा इस प्रकार परिभाषित है:
+\begin{eqnarray*}
+h(\vec x, 0)     & = & f(\vec x) \\
+h(\vec x, y + 1) & = & g(\vec x, y, h(\vec x, y))
+\end{eqnarray*}
+और मान लें कि फलन $f$ तथा $g$ संगणनीय हैं। ($\vec x$ का उपयोग हम
+$x_0$, \dots, $x_{k-1}$ को संक्षेप में लिखने के लिए करते हैं।)
+तब $h(\vec
+x, 0)$ को स्पष्टतः संगणित किया जा सकता है, क्योंकि वह केवल
+$f(\vec x)$ है, जिसे हमने संगणनीय माना है। फिर $h(\vec x, 1)$ को भी
+संगणित किया जा सकता है, क्योंकि $1 = 0 + 1$ और इसलिए $h(\vec x, 1)$
+केवल यह है:
+\begin{align*}
+ h(\vec x, 1) & = g(\vec x, 0, h(\vec x, 0)) =  g(\vec x, 0, f(\vec x)).
+\intertext{हम इसी प्रकार आगे बढ़कर इन्हें संगणित कर सकते हैं:}
+h(\vec x, 2) & = g(\vec x, 1, h(\vec x, 1)) = g(\vec x, 1, g(\vec x, 0, f(\vec x)))\\
+h(\vec x, 3) & = g(\vec x, 2, h(\vec x, 2)) = g(\vec x, 2, g(\vec x, 1, g(\vec x, 0, f(\vec x))))\\
+h(\vec x, 4) & = g(\vec x, 3, h(\vec x, 3)) = g(\vec x, 3, g(\vec x, 2, g(\vec x, 1, g(\vec x, 0, f(\vec x)))))\\
+& \vdots
+\end{align*}
+अतः सामान्यतः $h(\vec x, y)$ संगणित करने के लिए $h(\vec x, 0)$,
+$h(\vec x, 1)$, \dots{} को क्रमशः संगणित करते जाएँ, जब तक हम
+$h(\vec x, y)$ तक न पहुँचें।
+
+इस प्रकार, यदि फलन $f$ और $g$ संगणनीय हैं, तो आदिम पुनरावर्ती परिभाषा
+एक नया संगणनीय फलन देती है। इसी तरह, यदि फलन $f$ और $g_i$ संगणनीय हैं,
+तो फलनों के संयोजन से भी संगणनीय फलन मिलता है।
+
+चूँकि मूल फलन $\Zero$, $\Succ$ और $\Proj{n}{i}$ संगणनीय हैं, और संयोजन
+तथा आदिम पुनरावर्तन संगणनीय फलनों से संगणनीय फलन देते हैं, इसलिए प्रत्येक
+आदिम पुनरावर्ती फलन संगणनीय है।
+
+\end{document}

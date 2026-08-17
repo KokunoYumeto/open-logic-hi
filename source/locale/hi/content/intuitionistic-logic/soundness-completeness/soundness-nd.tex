@@ -1,0 +1,153 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: soundness-nd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{snd}
+
+\olsection{प्राकृतिक निगमन की यथार्थता}
+
+अब हम संबंधात्मक अर्थविज्ञान के सापेक्ष प्राकृतिक निगमन की यथार्थता सिद्ध
+करेंगे; अर्थात दिखाएँगे कि यदि कोई !!{formula} मान्यताओं के किसी समुच्चय से
+!!{derivable} है, तो उस मान्यता-समुच्चय से वह !!{formula} निष्पन्न होता है।
+
+\begin{thm}[यथार्थता]
+  \ollabel{thm:soundness}
+  यदि $\Gamma \Proves !A$, तो $\Gamma \Entails !A$।
+\end{thm}
+
+\begin{proof}
+  हम सिद्ध करते हैं कि यदि $\Gamma \Proves !A$, तो
+  $\Gamma \Entails !A$। प्रमाण~$\Gamma$ से~$!A$ की !!{derivation} पर
+  आगमन द्वारा है।
+  
+  \begin{enumerate}
+  \item यदि !!{derivation} केवल मान्यता~$!A$ से बनी है, तो
+    $!A \Proves !A$, और हमें $!A \Entails !A$ दिखाना है। मान लें
+    $\mSat{M}{!A}[w]$। तब तुच्छतः $\mSat{M}{!A}[w]$।
+
+  \item !!{derivation} $\Intro{\land}$ पर समाप्त होती है:
+    \iftag{probAnd}{अभ्यास।}{!!{undischarged} मान्यताओं~$\Gamma$ से पूर्वाधार
+      $!B$ की और !!{undischarged} मान्यताओं~$\Delta$ से~$!C$ की
+      !!{derivation}याँ दिखाती हैं कि $\Gamma \Proves !B$ और
+      $\Delta \Proves !C$। आगमन-परिकल्पना से $\Gamma \Entails !B$ और
+      $\Delta \Entails !C$। हमें
+      $\Gamma \cup \Delta \Entails !A \land !B$ दिखाना है, क्योंकि पूरी
+      !!{derivation} की !!{undischarged} मान्यताएँ $\Gamma$ और $\Delta$ साथ
+      मिलकर हैं। अतः मान लें $\mSat{M}{\Gamma \cup \Delta}[w]$। तब
+      $\mSat{M}{\Gamma}[w]$ भी। चूँकि $\Gamma \Entails !B$,
+      $\mSat{M}{!B}[w]$। इसी प्रकार $\mSat{M}{!C}[w]$। अतः
+      $\mSat{M}{!B \land !C}[w]$।}
+
+  \item !!{derivation} $\Elim{\land}$ पर समाप्त होती है:
+    \iftag{probAnd}{अभ्यास।}{!!{undischarged} मान्यताओं $\Gamma$ से पूर्वाधार
+        $!B \land !C$ की !!{derivation} दिखाती है कि
+        $\Gamma \Proves !B \land !C$। आगमन-परिकल्पना से
+        $\Gamma \Entails !B \land !C$। हमें $\Gamma \Entails !B$ दिखाना
+        है। अतः मान लें $\mSat{M}{\Gamma}[w]$। चूँकि
+        $\Gamma \Entails !B \land !C$, इसलिए
+        $\mSat{M}{!B \land !C}[w]$। तब $\mSat{M}{!B}[w]$ भी। इसी प्रकार यदि
+        $\Elim\land$ का निष्कर्ष~$!C$ है, तो $\Gamma \Entails !C$।}
+
+  \item !!{derivation} $\Intro{\lor}$ पर समाप्त होती है:
+    \iftag{probOr}{अभ्यास।}{मान लें कि पूर्वाधार $!B$ है और~$!B$ पर समाप्त
+      होने वाली !!{derivation} की !!{undischarged} मान्यताएँ $\Gamma$ हैं। तब
+      $\Gamma \Proves !B$, और आगमन-परिकल्पना से
+      $\Gamma \Entails !B$। हमें $\Gamma \Entails !B \lor !C$ दिखाना है।
+      मान लें $\mSat{M}{\Gamma}[w]$। चूँकि $\Gamma \Entails !B$,
+      $\mSat{M}{!B}[w]$। तब $\mSat{M}{!B \lor !C}[w]$ भी। इसी प्रकार यदि
+      पूर्वाधार~$!C$ है, तो $\Gamma \Entails !C$।}
+    
+  \item !!{derivation}~$\Elim{\lor}$ पर समाप्त होती है:
+    \iftag{probOr}{अभ्यास।}{पूर्वाधारों पर समाप्त होने वाली
+      !!{derivation}याँ: !!{undischarged} मान्यताओं~$\Gamma$ से
+      $!B \lor !C$ की, !!{undischarged} मान्यताओं
+      $\Delta_1 \cup \{!B\}$ से $!D$ की, और !!{undischarged} मान्यताओं
+      $\Delta_2 \cup \{!C\}$ से $!D$ की हैं। अतः
+      $\Gamma \Proves !B \lor !C$, $\Delta_1 \cup \{!B\} \Proves !D$
+      और $\Delta_2 \cup \{!C\} \Proves !D$। आगमन-परिकल्पना से
+      $\Gamma \Entails !B \lor !C$, $\Delta_1 \cup \{!B\} \Entails !D$
+      और $\Delta_2 \cup \{!C\} \Entails !D$। हमें
+      $\Gamma \cup \Delta_1 \cup \Delta_2 \Entails !D$ सिद्ध करना है।
+
+    मान लें $\mSat{M}{\Gamma \cup \Delta_1 \cup \Delta_2}[w]$। तब
+    $\mSat{M}{\Gamma}[w]$; और चूँकि $\Gamma \Entails !B \lor !C$,
+    $\mSat{M}{!B \lor !C}[w]$। $\mSat{M}{}$ की परिभाषा से या तो
+    $\mSat{M}{!B}[w]$ या $\mSat{M}{!C}[w]$। अतः मामलों में भेद करें:
+    (a)~$\mSat{M}{!B}$[w]। तब $\mSat{M}{\Delta_1 \cup \{!B\}}[w]$।
+    चूँकि $\Delta_1 \cup !B \Entails !D$, इसलिए $\mSat{M}{!D}[w]$।
+    (b)~$\mSat{M}{!C}[w]$। तब $\mSat{M}{\Delta_2 \cup \{!C\}}[w]$।
+    चूँकि $\Delta_2 \cup !C \Entails !D$, इसलिए $\mSat{M}{!D}[w]$। अतः
+    दोनों मामलों में $\mSat{M}{!D}[w]$, जैसा हमें दिखाना था।}
+
+  \item !!{derivation} $\Intro{\lif}$ पर समाप्त होकर~$!B\lif !C$ निष्कर्ष
+    देती है। तब पूर्वाधार~$!C$ है और उस पूर्वाधार पर समाप्त होने वाली
+    !!{derivation} की !!{undischarged} मान्यताएँ
+    ~$\Gamma \cup \{!B\}$ हैं। अतः
+    $\Gamma \cup \{!B\} \Proves !C$, और आगमन-परिकल्पना से
+    $\Gamma \cup \{!B\} \Entails !C$। हमें
+    $\Gamma \Entails !B \lif !C$ दिखाना है।
+
+    मान लें $\mSat{M}{\Gamma}[w]$। हमें दिखाना है कि $Rww'$ वाले सभी
+    $w'$ के लिए, यदि $\mSat{M}{!B}[w']$ तो $\mSat{M}{!C}[w']$। अतः मान लें
+    $Rww'$ और $\mSat{M}{!B}[w']$।
+    \olref[sem][rel]{prop:true-monotonic} से
+    $\mSat{M}{\Gamma}[w']$। चूँकि $\Gamma \cup \{!B\} \Entails !C$,
+    $\mSat{M}{!C}[w']$, जैसा हमें दिखाना था।
+
+  \item !!{derivation} $\Elim{\lif}$ पर समाप्त होती है और निष्कर्ष~$!C$
+    है। पूर्वाधार $!B \lif !C$ और $!B$ हैं, जिनकी !!{derivation}याँ
+    क्रमशः !!{undischarged} मान्यताओं $\Gamma$, $\Delta$ से हैं। अतः
+    $\Gamma \Proves !B \lif !C$ और $\Delta \Proves !B$।
+    आगमन-परिकल्पना से $\Gamma \Entails !B \lif !C$ और
+    $\Delta \Entails !B$। हमें $\Gamma \cup \Delta \Entails !C$ दिखाना
+    है।
+
+    मान लें $\mSat{M}{\Gamma \cup \Delta}[w]$। चूँकि
+    $\mSat{M}{\Gamma}[w]$ और $\Gamma \Entails !B \lif !C$,
+    $\mSat{M}{!B \lif !C}[w]$। परिभाषा से इसका अर्थ है कि $Rww'$ वाले सभी
+    $w'$ के लिए, यदि $\mSat{M}{!B}[w']$ तो $\mSat{M}{!C}[w']$। चूँकि $R$
+    स्वपरावर्ती है, $w$ भी उन $w'$ में है जिनके लिए $Rww'$; अर्थात यदि
+    $\mSat{M}{!B}[w]$ तो $\mSat{M}{!C}[w]$। चूँकि
+    $\mSat{M}{\Delta}[w]$ और $\Delta \Entails !B$,
+    $\mSat{M}{!B}[w]$। अतः $\mSat{M}{!C}[w]$, जैसा हमें दिखाना था।
+
+  \item !!{derivation} $\FalseInt$ पर समाप्त होकर~$!A$ निष्कर्ष देती है।
+    पूर्वाधार $\lfalse$ है और पूर्वाधार की !!{derivation} की
+    !!{undischarged} मान्यताएँ~$\Gamma$ हैं। तब
+    $\Gamma \Proves \lfalse$। आगमन-परिकल्पना से
+    $\Gamma \Entails \lfalse$। हमें $\Gamma \Entails !A$ दिखाना है।
+
+    हम अप्रत्यक्ष विधि अपनाते हैं। यदि $\Gamma \Entails/ !A$, तो कोई
+    प्रतिरूप~$\mModel{M}$ और जगत~$w$ ऐसा है कि
+    $\mSat{M}{\Gamma}[w]$ और $\mSat/{M}{!A}[w]$। चूँकि
+    $\Gamma \Entails \lfalse$, इसलिए $\mSat{M}{\lfalse}[w]$। किंतु यह
+    असंभव है, क्योंकि परिभाषा से $\mSat/{M}{\lfalse}[w]$। अतः
+    $\Gamma \Entails !A$।
+  \item !!{derivation} $\Intro\lnot$ पर समाप्त होती है: अभ्यास।
+  \item !!{derivation} $\Elim\lnot$ पर समाप्त होती है: अभ्यास।
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[int][sc][snd]{thm:soundness} का प्रमाण पूरा कीजिए।
+  $\Intro\lnot$ और $\Elim\lnot$ के मामलों के लिए
+  \olref[int][sem][rel]{defn:true-at-w} में $\mSat{M}{\lnot !A}[w]$ की
+  परिभाषा का उपयोग कीजिए; अर्थात $\lnot !A$ को $!A \lif \lfalse$ द्वारा
+  परिभाषित न मानिए।
+\end{prob}
+
+\begin{prob}
+  दिखाइए कि निम्न !!{formula} अंतःप्रज्ञावादी तर्कशास्त्र में !!{derivable}
+  नहीं हैं:
+  \begin{enumerate}
+    \item $(!A \lif !B) \lor (!B \lif !A)$
+    \item $(\lnot\lnot !A \lif !A) \lif (!A \lor \lnot !A)$
+    \item $(!A \lif !B \lor !C) \lif \bigl((!A \lif !B)\lor(!A \lif !C)\bigr)$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

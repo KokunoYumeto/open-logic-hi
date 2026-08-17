@@ -1,0 +1,75 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sem}{sem}
+
+\olsection{अर्थवैज्ञानिक धारणाएँ}
+
+\begin{defn}
+  हम कहते हैं कि $!A$ \emph{प्रतिरूप $\mModel{M} = \tuple{W,R,V}$ में
+  सत्य है}, $\mSat{M}{!A}$, तभी जब प्रत्येक $w \in W$ के लिए
+  $\mSat{M}{!A}[w]$। $!A$ \emph{मान्य} है, $\Entails !A$, तभी जब वह सभी
+  प्रतिरूपों में सत्य हो। हम कहते हैं कि !!{formula}ों के समुच्चय~$\Gamma$ से
+  ~$!A$ \emph{निष्पन्न होता है}, $\Gamma \Entails !A$, तभी जब प्रत्येक
+  प्रतिरूप~$\mModel{M}$ और प्रत्येक ऐसे~$w$ के लिए जिसके लिए
+  $\mSat{M}{\Gamma}[w]$, हमारे पास $\mSat{M}{!A}[w]$ हो।
+\end{defn}
+
+\begin{prop}\ollabel{prop:sat-entails}
+  \begin{enumerate}
+  \item\ollabel{prop:sat-entails1} यदि $\mSat{M}{\Gamma}[w]$ और
+    $\Gamma \Entails !A$, तो $\mSat{M}{!A}[w]$।
+  \item\ollabel{prop:sat-entails2} यदि $\mSat{M}{\Gamma}$ और
+    $\Gamma \Entails !A$, तो $\mSat{M}{!A}$।
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item मान लें $\mSat{M}{\Gamma}$। चूँकि $\Gamma \Entails !A$, हम जानते
+    हैं कि यदि $\mSat{M}{\Gamma}[w]$, तो $\mSat{M}{!A}[w]$। चूँकि प्रत्येक
+    $u \in W$ के लिए $\mSat{M}{\Gamma}[u]$, इसलिए
+    $\mSat{M}{\Gamma}[w]$। अतः $\mSat{M}{!A}[w]$।
+  \item \olref{prop:sat-entails1} से तत्काल मिलता है।
+  \end{enumerate}
+\end{proof}
+
+
+\begin{defn}\ollabel{defn:restrict}
+  मान लें कि $\mModel{M}$ कोई संबंधात्मक प्रतिरूप और $w \in W$ है।
+  ~$\mModel{M}$ का~$w$ तक \emph{प्रतिबंध}
+  $\mModel{M}_w=\tuple{W_w, R_w, V_w}$ इस प्रकार दिया जाता है:
+  \begin{align*}
+    W_w & = \Setabs{u \in W}{Rwu},\\
+    R_w  & = R \cap (W_w)^2, \text{ और}\\
+    V_w(p) & = V(p) \cap W_w.
+  \end{align*}
+\end{defn}
+
+\begin{prop}\ollabel{prop:restrict}
+  $\mSat{M}{!A}[w]$ iff $\mSat{M_w}{!A}$.
+\end{prop}
+
+\begin{prob}
+  \olref[int][sem][sem]{prop:restrict} सिद्ध कीजिए।
+\end{prob}
+
+\begin{prop}
+  मान लें कि प्रत्येक ऐसे प्रतिरूप~$\mModel{M}$ के लिए जिसके लिए
+  $\mSat{M}{\Gamma}$, हमारे पास $\mSat{M}{!A}$ है। तब
+  $\Gamma \Entails !A$।
+\end{prop}
+
+\begin{proof}
+  मान लें कि $\mSat{M}{\Gamma}[w]$। प्रत्येक~$!B \in \Gamma$ पर
+  \olref{prop:restrict} लागू करने से $\mSat{M_w}{\Gamma}$। मान्यता से
+  $\mSat{M_w}{!A}$। पुनः \olref{prop:restrict} से
+  $\mSat{M}{!A}[w]$ मिलता है।
+\end{proof}
+
+\end{document}

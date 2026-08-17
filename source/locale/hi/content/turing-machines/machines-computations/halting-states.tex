@@ -1,0 +1,77 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: halting-states
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{mac}{hal}
+\olsection{विराम-अवस्थाएँ}
+
+\begin{explain}
+यद्यपि हमने अपनी मशीनों को केवल तभी रुकने के लिए परिभाषित किया है जब
+निष्पादित करने हेतु कोई निर्देश न हो, ट्यूरिंग मशीनों के सामान्य
+निरूपणों में एक समर्पित \emph{विराम-अवस्था}~$h$ होती है, ऐसी कि
+$h \in Q$।
+
+विराम-अवस्था के पीछे का विचार सरल है: जब मशीन अपनी क्रिया पूरी कर चुकी
+होती है (वह आगत स्वीकार करने को तैयार होती है अथवा निर्गत लिख चुकी होती
+है), तब वह अवस्था~$h$ में जाती है और वहाँ रुकती है। कुछ मशीनों में दो
+विराम-अवस्थाएँ होती हैं---एक आगत को स्वीकार करती है और दूसरी उसे
+अस्वीकार करती है।
+\end{explain}
+
+\begin{ex}\emph{विराम-अवस्थाएँ}।
+इस धारणा को स्पष्ट करने के लिए सम मशीन में एक परिवर्तन से आरंभ करें।
+आगत सम होने पर मशीन को अवस्था~$q_0$ में रुकवाने के स्थान पर हम मशीन को
+किसी विराम-अवस्था में भेजने वाला निर्देश जोड़ सकते हैं।
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial, state]         (A)                     {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below of=A] {$h$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (B)
+  	    edge node {\TMtrans{\TMblank}{\TMblank}{N}} (C)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{R}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (A);
+\end{tikzpicture}
+\]
+
+उदाहरण को और बढ़ाएँ। जब मशीन निर्धारित करती है कि आगत विषम है, तब वह
+कभी नहीं रुकती। चक्रकारी निर्देश को अस्वीकार-अवस्था~$r$ में जाने वाले
+निर्देश से बदलकर मशीन में एक \emph{अस्वीकार-अवस्था} सम्मिलित कर सकते
+हैं।
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)                     {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below of=A] {$h$};
+  \node[state]         (D) [below of=B] {$r$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (B)
+  	    edge node {\TMtrans{\TMblank}{\TMblank}{N}} (C)
+        (B) edge node {\TMtrans{\TMblank}{\TMblank}{N}} (D)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (A);
+\end{tikzpicture}
+\]
+\end{ex}
+
+\begin{explain}
+इस प्रकार की स्थितियों में समर्पित विराम-अवस्था जोड़ना लाभकारी हो सकता
+है, क्योंकि उससे यह स्पष्ट होता है कि मशीन किन आगतों को स्वीकार या
+अस्वीकार करती है। किंतु यह ध्यान रखना महत्त्वपूर्ण है कि समर्पित
+विराम-अवस्था जोड़ने से संगणन-शक्ति में कोई वृद्धि नहीं होती। इसी प्रकार,
+रुकने की कम आकारिक धारणा के अपने लाभ हैं। इस अध्याय में अब तक प्रयुक्त
+रुकने की परिभाषा \emph{विराम समस्या} के प्रमाण को सहज और प्रदर्शित करने
+में सरल बनाती है। इसी कारण हम अपनी मूल परिभाषा जारी रखते हैं।
+\end{explain}
+
+\end{document}

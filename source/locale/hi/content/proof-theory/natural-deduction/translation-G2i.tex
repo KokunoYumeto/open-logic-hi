@@ -1,0 +1,202 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: translation-G2i
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nat}{tgi}
+
+\olsection{\Log{G2i} से \Log{N2i} में अनुवाद}
+
+\Log{G2i} में अनुक्रमों के पूर्वपक्ष !!{formula}s के बहुसमुच्चय~$\Gamma$ हैं,
+जबकि \Log{N2i} में अनुक्रमों के पूर्वपक्ष चिह्नित सूत्रों के ऐसे
+समुच्चय~$\Gamma'$ हैं जिनमें प्रत्येक चिह्न केवल एक बार आता है। कहें कि
+चिह्नित !!{formula}s का कोई समुच्चय~$\Gamma'$, बहुसमुच्चय~$\Gamma$ के
+\emph{अनुरूप है}, यदि प्रत्येक !!{formula}~$!A$ के लिए~$\Gamma'$ में $x :
+!A$ रूप के !!{element}s की संख्या,~$\Gamma$ में~$!A$ की बहुलता (अर्थात्~$!A$
+की प्रतियों की संख्या) से कम या बराबर हो।
+
+\begin{prop}\ollabel{prop:G2i-to-N2i}
+यदि $\Log{G2i} + \Cut \Proves \Gamma \Sequent \Delta$, तो $\Log{N2i}
+\Proves \Gamma' \Sequent !C$, जहाँ $\Delta$ रिक्त होने पर $!C \ident
+\lfalse$ और अन्यथा $\Delta = \{!A\}$, तथा $\Gamma'$,~$\Gamma$ के अनुरूप है।
+\end{prop}
+
+\begin{proof}
+  हम दिखाते हैं कि यदि $\pi$,~\Log{G2ci} में $\Gamma \Sequent \Delta$ का
+  कोई !!a{proof} है, तो~$\Gamma$ के अनुरूप कोई~$\Gamma'$ और~\Log{N2i} में
+  ~ $\Gamma' \Sequent !C$ का कोई !!a{proof}~$\delta$ है। यह हम $n =
+  \pheight{\pi}$ पर आगमन से करते हैं।
+
+  यदि $n = 0$, तो $\pi$ कोई अभिगृहीत है। यदि वह अभिगृहीत $\lfalse \Sequent
+  \quad$ है, तो $\delta$ अभिगृहीत $x:\lfalse \Sequent \lfalse$ है, अर्थात्
+  $\Gamma' = \{x:\lfalse\}$ और $!C \ident \lfalse$। यदि $\pi$, $!A \Sequent
+  !A$ रूप का अभिगृहीत है, तो $\delta$, $x: !A \Sequent !A$ है।
+  
+  यदि $n>0$, तो $\pi$ किसी नियम~$R$ पर समाप्त होता है। आगमन परिकल्पना
+  प्रत्याभूत करती है कि~\Log{N2c} में उस नियम के आधार-वाक्यों के अनुरूप
+  अनुक्रमों के !!{proof}s हैं। हम मान सकते हैं कि उन प्रमाणों के सभी
+  मुक्तिकरण चिह्न भिन्न हैं और कोई चिह्न $x$, यदि कहीं मुक्त होता है, तो केवल
+  उसे मुक्त करने वाले अनुमान के ऊपर आता है (आवश्यक होने पर पुनः चिह्नित करके)।
+  फिर हम दिखाते हैं कि इन !!{proof}s को मिलाकर उपयुक्त $\Gamma' \Sequent !C$
+  के प्रमाण कैसे दिए जा सकते हैं। हम~$R$ के अनुसार स्थितियों में भेद करते हैं।
+
+  \begin{enumerate}
+    \item यदि $R$, \RightR{\Weakening} है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$\Gamma \fCenter !A$
+    \DisplayProof
+    \]
+    $\pi_1$ पर लागू आगमन परिकल्पना~$\Gamma' \Sequent \lfalse$ का कोई
+    !!a{proof} देती है। $\Gamma' \Sequent !A$ का !!a{proof} पाने के लिए हम
+    $\FalseInt$ लागू करते हैं।
+    \item यदि $R$, \LeftR{\Weakening} है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    $\pi_1$ पर लागू आगमन परिकल्पना~$\Gamma' \Sequent !C$ का कोई !!a{proof}
+    देती है, जिसे हम $\delta$ लेते हैं। ध्यान दें कि यदि $\Gamma'$, $\Gamma$
+    के अनुरूप है, तो वह $!A, \Gamma$ के भी अनुरूप है, क्योंकि $\Gamma'$ में
+    $x : !A$ की संख्या~$\Gamma$ में~$!A$ की प्रतियों की संख्या से अधिक नहीं,
+    और इसलिए $\Gamma \cup \{!A\}$ में $!A$ की प्रतियों की संख्या से भी अधिक
+    नहीं है।
+    \item यदि $R$, \LeftR{\Contraction} है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, !A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Contraction}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    $\pi_1$ पर लागू आगमन परिकल्पना~$\Pi, \Gamma' \Sequent !C$ का कोई
+    !!a{proof} देती है, जहाँ $\Pi \subseteq \{x : !A, y:!A\}$। यदि $\Pi =
+    \{x : !A, y:!A\}$, तो~$\pi_1$ के सभी चिह्नित !!{formula}s $y:!A$ को
+    $x:!A$ से बदलें। चूँकि $x$,~$\pi_1$ के अंतिम अनुक्रम के प्रसंग में आता है,
+    हम मान सकते हैं कि~$\pi_1$ का कोई अनुमान~$x:!B$ रूप का !!a{formula}
+    मुक्त नहीं करता, अर्थात्~$\pi_1$ में किसी अनुक्रम के बाईं ओर कोई $x:!B$
+    सक्रिय नहीं है। फलतः परिणाम अब भी~\Log{N2i} में !!a{proof} है।
+    \item यदि $R$, $\RightR{\lif}$ है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, \Gamma \fCenter !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\Gamma \fCenter !A \lif !B$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $x: !A, \Gamma' \Sequent !B$ या $\Gamma' \Sequent
+    !B$ का कोई !!a{proof}~$\delta_1$ है, जहाँ $\Gamma'$,~$\Gamma$ के अनुरूप
+    है। हम $\delta_1$ और \Intro{\lif} के एक अनुप्रयोग को $\delta$ ले सकते
+    हैं।
+    \item यदि $R$, \LeftR{\lif} है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$!B, \Gamma_2 \fCenter \Delta$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma_1, \Gamma_2 \fCenter \Delta$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना $\Gamma_1' \Sequent !A$ का !!{proof} $\delta_1$ और $x:
+    !B, \Gamma_2' \Sequent !C$ अथवा $\Gamma_2' \Sequent !C$ का !!{proof}
+    $\delta_2$ देती है। यदि $\delta_2$ दूसरे रूप का है, तो $\delta_2$ स्वयं
+    ~ $\delta$ हो सकता है। अन्यथा हम~$\pi_1$ के सभी सूत्रों और मुक्तिकरण
+    चिह्नों को पुनः चिह्नित करके सुनिश्चित कर सकते हैं कि कोई चिह्न
+    $\delta_1$ और~$\delta_2$ दोनों में न आए। तब $\Gamma_1' \cup \Gamma_2'$,
+    $\Gamma_1 \cup \Gamma_2$ के अनुरूप है। चूँकि $x:!B$,~$\delta_2$ के अंतिम
+    अनुक्रम में आता है, इसलिए $\delta_2$ में मुक्तिकरण चिह्न~$x$ वाले किसी
+    अनुमान में $x:!B$ सक्रिय नहीं हो सकता।~$\delta_2$ के प्रत्येक अभिगृहीत
+    $x:!B \Sequent !B$ को !!{proof}~$\delta_3$ से बदलें
+    \[
+    \Axiom$x: !A \lif !B \fCenter !A \lif !B$
+    \AxiomC{}
+    \RightLabel{$\delta_1$}
+    \Deduce$\Gamma_1' \fCenter !A$
+    \RightLabel{\Elim{\lif}}
+    \BinaryInf$x: !A \lif !B \fCenter !B$
+    \DisplayProof
+    \]
+    और~$\delta_2$ में $x:!B$ की प्रत्येक उपस्थिति को $x:!A \lif !B$ से
+    बदलें। परिणाम $\Subst{\delta_2}{\delta_3}{x:!B}$,
+    $x:!A \lif !B, \Gamma_1', \Gamma_2' \Sequent !C$ का !!a{proof} है।
+    \item यदि $R$, \RightR{\land} है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma_2 \fCenter !B$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A \land !B$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना $\Gamma_1' \Sequent !A$ का प्रमाण $\delta_1$ और
+    $\Gamma_2' \Sequent !A$ का $\delta_2$ देती है।~$\pi_2$ में सभी सूत्रों
+    और मुक्तिकरण चिह्नों को पुनः चिह्नित करके हम सुनिश्चित कर सकते हैं कि कोई
+    चिह्न $\delta_1$ तथा $\delta_2$ दोनों में न आए। तब $\Gamma_1' \cup
+    \Gamma_2'$, $\Gamma_1 \cup \Gamma_2$ के अनुरूप है। $\delta_1$
+    और~$\delta_2$ के अंतिम अनुक्रमों पर $\Intro{\land}$ लागू करके हमें
+    !!a{proof}~$\delta$ मिलता है।
+    \item यदि $R$, $\LeftR{\land}$ है, तो उदाहरणतः $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $x: !A, \Gamma' \Sequent !C$ या $\Gamma' \Sequent
+    !C$ का कोई !!a{proof}~$\delta_1$ है, जहाँ $\Gamma'$,~$\Gamma$ के अनुरूप
+    है। दूसरी स्थिति में हम $\delta_1$ को $\delta$ ले सकते हैं। पहली स्थिति
+    में ध्यान दें कि $x:!A$ अंतिम अनुक्रम में आता है, इसलिए $\delta_1$ में
+    मुक्तिकरण चिह्न~$x$ वाले किसी अनुमान में $x:!A$ सक्रिय नहीं है। प्रत्येक
+    अभिगृहीत $x:!A \Sequent !A$ को !!{proof}~$\delta_2$ से बदलें
+    \[
+    \Axiom$x: !A \land !B \fCenter !A \land !B$
+    \RightLabel{\Elim{\land}}
+    \UnaryInf$x: !A \land !B \fCenter !A$
+    \DisplayProof
+    \]
+    और $x:!A$ की प्रत्येक उपस्थिति को $x:!A \land !B$ से बदलें, अर्थात्
+    $\Subst{\delta_1}{\delta_2}{x:!A}$ पर विचार करें। यह $x:!A \land !B,
+    \Gamma' \Sequent !C$ का !!a{proof} है।
+    \item यदि $R$, \Cut है, तो $\pi$ का अंत है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$!A, \Gamma_2 \fCenter \Delta$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_1, \Gamma_2 \fCenter \Delta$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना $\Gamma_1' \Sequent !A$ का प्रमाण~$\delta_1$ और
+    $x:!A, \Gamma_2' \Sequent !C$ अथवा $\Gamma_2' \Sequent !C$ का
+    प्रमाण~$\delta_2$ देती है। दूसरी स्थिति में $\delta$ को~$\delta_2$
+    लें। अन्यथा $\delta_2$ के प्रत्येक अभिगृहीत $x:!A \Sequent !A$ को
+    $\delta_1$ से बदलें; इससे $\Gamma_1', \Gamma_2' \Sequent !C$ का
+    !!a{proof}~$\delta$, अर्थात्~$\Subst{\delta_2}{\delta_1}{x:!A}$,
+    प्राप्त होता है।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

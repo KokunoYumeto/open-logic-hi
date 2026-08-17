@@ -1,0 +1,142 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: rosser-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{inp}{ros}
+
+\olsection{रॉसर का प्रमेय}
+
+क्या हम ग्योडेल (G\"odel) के प्रमाण को संशोधित करके अधिक प्रबल परिणाम पा
+सकते हैं, जिसमें ``$\omega$-संगत'' के स्थान पर केवल ``संगत'' हो? रॉसर
+(Rosser) की खोजी हुई एक युक्ति से उत्तर ``हाँ'' है। रॉसर की युक्ति
+$\OProv[\Th{T}](y)$ के स्थान पर ``संशोधित'' !!{derivability} विधेय
+$\ORProv_T(y)$ का उपयोग करना है।
+
+\begin{thm}
+\ollabel{thm:rosser}
+$\Th{T}$,~$\Th{Q}$ का कोई संगत, !!{axiomatizable} विस्तार हो। तब
+$\Th{T}$ पूर्ण नहीं है।
+\end{thm}
+
+\begin{proof}
+याद करें कि $\OProv[\Th{T}](y)$ को
+$\lexists[x][\OPrf[\Th{T}](x, y)]$ के रूप में परिभाषित किया जाता है, जहाँ
+$\OPrf[\Th{T}](x, y)$ उस निर्णेय संबंध का निरूपण करता है जो तभी और केवल
+तभी लागू होता है जब $x$, ग्योडेल (G\"odel) संख्या~$y$ वाले !!{sentence} की किसी
+!!a{derivation} की ग्योडेल (G\"odel) संख्या हो। वह संबंध भी निर्णेय है जो $x$ और~$y$
+के बीच तब लागू होता है जब $x$, ग्योडेल (G\"odel) संख्या~$y$ वाले वाक्य के किसी
+\emph{खंडन} की ग्योडेल (G\"odel) संख्या हो। $\fn{not}(x)$ को वह आदिम पुनरावर्ती फलन
+मानें जो यह करता है: यदि $x$ किसी सूत्र $!A$ का कूट है, तो
+$\fn{not}(x)$,~$\lnot !A$ का कूट है। तब $\Refut[\Th{T}](x, y)$ तभी और केवल
+तभी लागू होता है जब $\Prf[\Th{T}](x, \fn{not}(y))$। उसका निरूपण
+$\ORefut[\Th{T}](x, y)$ करे। तब यदि $\Th{T} \Proves \lnot !A$ और
+$\delta$ कोई संगत !!{derivation} है, तो
+$\Th{Q} \Proves \ORefut[\Th{T}](\gn{\delta}, \gn{!A})$। हम
+$\ORProv[\Th{T}](y)$ को इस प्रकार परिभाषित करते हैं:
+\[
+\lexists[x][(\OPrf[\Th{T}](x,y) \land \lforall[z][(z < x \lif \lnot
+  \ORefut[\Th{T}](z,y))])].
+\]
+मोटे तौर पर $\ORProv[\Th{T}](y)$ कहता है, ``$\Th{T}$ में $y$ का कोई
+प्रमाण है, और $y$ का इससे छोटा कोई खंडन नहीं है।'' यदि $\Th{T}$ संगत हो,
+तो $\ORProv[\Th{T}](y)$ उन्हीं संख्याओं के लिए सत्य है जिनके लिए
+$\OProv[\Th{T}](y)$ सत्य है; किंतु~$\Th{T}$ में \emph{सिद्धता} की दृष्टि
+से (और अब हम जानते हैं कि सत्यता और सिद्धता में अंतर है!) दोनों के गुण
+अलग हैं। यदि $\Th{T}$ \emph{अ}संगत है, तो दोनों समान संख्याओं के लिए लागू
+\emph{नहीं} होते!{} ($\ORProv[\Th{T}](y)$ को प्रायः ``$y$ रॉसर-सिद्ध है''
+पढ़ा जाता है। चूँकि अभी की चर्चा के अनुसार रॉसर-सिद्धता कोई विशेष प्रकार की
+सिद्धता नहीं है---असंगत सिद्धांतों में ऐसे !!{sentence}s होते हैं जो सिद्ध
+तो हैं, किंतु रॉसर-सिद्ध नहीं---यह भ्रमकारी हो सकता है। भ्रम से बचने के
+लिए आप इसके स्थान पर ``$y$ श्मूवेबल है'' पढ़ सकते हैं।)
+
+नियत-बिंदु उपपत्ति से कोई सूत्र $!R_\Th{T}$ ऐसा है कि
+\begin{equation}
+  \Th{Q} \Proves !R_\Th{T} \liff \lnot \ORProv[\Th{T}](\gn{!R_\Th{T}}).
+  \ollabel{RT}
+\end{equation}
+\olref[1in]{thm:first-incompleteness} के प्रमाण के विपरीत, यहाँ हमारा दावा
+है कि यदि $\Th{T}$ संगत है, तो $\Th{T}$ न $!R_\Th{T}$ को !!{derive} करता है,
+और $\Th{T}$ न $\lnot !R_\Th{T}$ को !!{derive} करता है। (दूसरे शब्दों में हमें
+$\omega$-संगतता की मान्यता नहीं चाहिए।)
+
+पहले दिखाएँ कि $\Th{T} \Proves/ !R_{\Th{T}}$। मान लें वह इसे सिद्ध करता
+है; तब~$T$ से~$!R_{\Th{T}}$ की कोई !!a{derivation} है। उसकी ग्योडेल (G\"odel) संख्या
+$n$ मानें। तब
+$\Th{Q} \Proves \OPrf[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$, क्योंकि
+$\OPrf[\Th{T}]$,~$\Th{Q}$ में $\Prf[\Th{T}]$ का निरूपण करता है। इसके
+अतिरिक्त प्रत्येक $k < n$ के लिए $k$,~$\lnot !R_{\Th{T}}$ की किसी
+!!a{derivation} की ग्योडेल (G\"odel) संख्या नहीं है, क्योंकि $\Th{T}$ संगत है। अतः
+प्रत्येक $k < n$ के लिए
+$\Th{Q} \Proves \lnot \ORefut[\Th{T}](\num{k}, \gn{!R_{\Th{T}}})$।
+\olref[req][min]{lem:less-nsucc} से
+$\Th{Q} \Proves \lforall[z][(z < \num{n} \lif \lnot \ORefut[\Th{T}](z,
+  \gn{!R_{\Th{T}}}))]$। अतः
+\[
+\Th{Q} \Proves \lexists[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \land \lforall[z][(z
+    < x \lif \lnot \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])],
+\]
+किंतु यह केवल $\ORProv[\Th{T}](\gn{!R_{\Th{T}}})$ है। \olref{RT} से
+$\Th{Q} \Proves \lnot !R_{\Th{T}}$। चूँकि $\Th{T}$,~$\Th{Q}$ का विस्तार
+है, इसलिए $\Th{T} \Proves \lnot !R_{\Th{T}}$ भी। हमने मान लिया था कि
+$\Th{T} \Proves !R_{\Th{T}}$, अतः $\Th{T}$ असंगत होगा, जो प्रमेय की
+मान्यता के विरुद्ध है।
+
+अब दिखाएँ कि $\Th{T} \Proves/ \lnot !R_{\Th{T}}$। फिर मान लें कि वह इसे
+सिद्ध करता है और $n$,~$\lnot !R_{\Th{T}}$ की किसी !!a{derivation} की
+ग्योडेल (G\"odel) संख्या है। तब $\Refut[\Th{T}](n, \Gn{!R_{\Th{T}}})$ लागू होता है;
+और चूँकि $\ORefut[\Th{T}]$,~$\Th{Q}$ में $\Refut[\Th{T}]$ का निरूपण करता
+है, इसलिए
+$\Th{Q} \Proves \ORefut[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$। हम फिर
+दिखाएँगे कि तब $\Th{T}$ असंगत होगा, क्योंकि वह~$!R_{\Th{T}}$ को भी
+!!{derive} करेगा। चूँकि
+\begin{align*}
+\Th{Q} & \Proves !R_{\Th{T}} \liff \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}),
+\intertext{और चूँकि $\Th{T}$,~$\Th{Q}$ का विस्तार है, इतना दिखाना पर्याप्त है कि}
+\Th{Q} & \Proves \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}).
+\end{align*}
+!!{sentence} $\lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}})$, अर्थात्
+\begin{align*}
+  \lnot & \lexists[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \land
+    \lforall[z][(z < x \lif \lnot \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])],
+  \intertext{तार्किकतः इसके समतुल्य है:}
+  & \lforall[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \lif
+    \lexists[z][(z < x \land \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])].
+\end{align*}
+हम तर्क और $\Th{Q}$ द्वारा !!{derive} किए जाने वाले तथ्यों का उपयोग करके
+अनौपचारिक तर्क देते हैं। मान लें $x$ स्वेच्छ है और
+$\OPrf[\Th{T}](x, \gn{!R_{\Th{T}}})$। हम पहले ही जानते हैं कि
+$\Th{T} \Proves/ !R_{\Th{T}}$; अतः प्रत्येक $k$ के लिए
+$\Th{Q} \Proves \lnot \OPrf[\Th{T}](\num{k}, \gn{!R_{\Th{T}}})$। इसलिए
+प्रत्येक $k$ के लिए $\eq/[x][\num{k}]$ निकलता है। विशेषतः हमारे पास
+(क) $\eq/[x][\num{n}]$ है। हमारे पास
+$\lnot(\eq[x][\num{0}] \lor \eq[x][\num{1}] \lor \dots \lor
+\eq[x][\num{n-1}])$ भी है, और इसलिए
+\olref[req][min]{lem:less-nsucc} से (ख) $\lnot(x < \num{n})$।
+\olref[req][min]{lem:trichotomy} से $\num{n} < x$। चूँकि
+$\Th{Q} \Proves \ORefut[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$, हमारे पास
+$\num{n} < x \land \ORefut[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$ है, और
+उससे $\lexists[z][(z < x \land
+\ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))]$। चूँकि $x$ स्वेच्छ था, हमें
+आवश्यकतानुसार मिलता है कि
+\[
+\lforall[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \lif
+  \lexists[z][(z < x \land \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])].
+\]
+\end{proof}
+
+\begin{prob}
+प्राकृतिक संख्याओं के दो समुच्चय $A$ और $B$ \emph{संगणनीयतः अवियोज्य}
+कहलाते हैं यदि ऐसा कोई !!{decidable} समुच्चय~$X$ न हो कि
+$A \subseteq X$ और $B \subseteq \Complement{X}$
+($\Complement{X}$,~$X$ का पूरक $\Nat \setminus X$ है)। $\Th{T}$ को
+$\Th{Q}$ का कोई संगत !!{axiomatizable} विस्तार मानें। मान लें $A$ उन
+!!{sentence}s की ग्योडेल (G\"odel) संख्याओं का समुच्चय है जो~$\Th{T}$ में सिद्ध हैं,
+और $B$ उन वाक्यों की ग्योडेल (G\"odel) संख्याओं का समुच्चय है जो~$\Th{T}$ में खंडनीय
+हैं। सिद्ध करें कि $A$ और~$B$ संगणनीयतः अवियोज्य हैं।
+\end{prob}
+
+\end{document}

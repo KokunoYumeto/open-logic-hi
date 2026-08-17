@@ -1,0 +1,30 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{int}{com}
+\olsection{\usetoken{S}{lambda definable} फलन संयोजन के अधीन संवृत हैं}
+
+\begin{lem}
+!!{lambda definable} फलन संयोजन के अधीन संवृत हैं।
+\end{lem}
+
+\begin{proof}
+मान लें $f$ को $h$, $g_0,$ \dots,~$g_{k-1}$ से संयोजन द्वारा परिभाषित किया
+गया है। यदि $h$, $g_0$, \dots,~$g_{k-1}$ क्रमशः $H$, $G_0$,
+\dots,~$G_{k-1}$ द्वारा !!{lambda defined} हैं, तो हमें ऐसा पद~$F$ खोजना है
+जो~$f$ को !!{lambda define} करे। किंतु हम~$F$ को सीधे इस प्रकार परिभाषित
+कर सकते हैं:
+\[
+F(x_0, \dots, x_{l-1}) = H(G_0(x_0, \dots, x_{l-1}),
+\dots, G_{k-1}(x_0, \dots, x_{l-1})).
+\]
+दूसरे शब्दों में, लैम्ब्डा कलन की भाषा संयोजन को निरूपित करने के लिए अत्यंत
+उपयुक्त है।
+\end{proof}
+
+\end{document}

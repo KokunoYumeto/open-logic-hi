@@ -1,0 +1,190 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{pty}{red}
+
+\olsection{अपचयन}
+
+प्राकृतिक निगमन !!{derivation}s में किसी !!a{introduction} नियम के बाद आने वाला
+!!a{elimination} नियम ऐसा चक्कर है जिसका ``अपचयन'' किया जा सकता है। उदाहरणतः
+$\Intro{\land}$ के बाद $\Elim{\land}$ आने पर दोनों ``निरस्त'' हो जाते हैं,
+क्योंकि $\Elim{\land}$ का निष्कर्ष सदा उस संयोजन के संयोज्यों में से एक है
+जिसे \Intro{\land} उत्पन्न करता है, और $\Intro{\land}$ के आधार-वाक्य दोनों
+संयोज्य हैं। अतः यदि हमें किसी संयोज्य की !!a{derivation} चाहिए, तो संयोजन को
+प्रस्तुत करके फिर उसका विलोपन करने के बजाय सीधे उसी !!{derivation} का उपयोग कर
+सकते हैं। हमें मिलता है
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$\Intro{\land}$}
+  \BinaryInfC{$!A_1 \land !A_2$}
+  \RightLabel{$\Elim{\land}_i$}
+  \UnaryInfC{$!A_i$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta_i$}
+  \DeduceC{$!A_i$}
+  \DisplayProof
+\end{gather*}
+
+इस सरलीकरण से सुझाया गया ऐसा ही अपचयन-संबंध संबंधित प्रमाण पदों पर माना जा
+सकता है। यदि $N_1$,~$\delta_1$ का और $N_2$,~$\delta_2$ का प्रमाण पद है, तो कह
+सकते हैं कि बाएँ प्रमाण का प्रमाण पद (एक चरण में) दाएँ प्रमाण के प्रमाण पद में
+अपचयित होता है:
+\[
+  \proj{i}{\pair{N_1, N_2}} \redone N_i
+\]
+प्रकारित लैम्ब्डा कलन में यह गुणनफल प्रकार का \emph{बीटा-अपचयन} नियम है।
+
+प्राकृतिक निगमन में \Intro{\land} के बाद \Elim{\land} जैसे, अर्थात् अपचयन के
+अधीन, अनुमान-युग्म को \emph{कट} कहते हैं। प्रकारित लैम्ब्डा कलन में
+$\redone$ की बाईं ओर के पद को \emph{अपचय्य} और दाईं ओर के पद को
+\emph{अपचयफल} कहते हैं। अप्रकारित लैम्ब्डा कलन, जहाँ केवल
+$(\lambd[x][N])Q$ को अपचय्य माना जाता है, के विपरीत प्रकारित लैम्ब्डा कलन में
+वाक्यविन्यास को $\pair{N}{M}$, $\proj{i}{N}$, $\inj{i}{!A}{N}$,
+$\dcase{N}{x_1}{M_1}{x_2}{M_2}$ और $\abort{!A}{N}$ वाले पदों तथा संगत
+अपचय्यों तक विस्तृत किया जाता है।
+
+इसी प्रकार विकल्प के लिए अपचयन है:
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\delta_i$}
+  \DeduceC{$!C$}
+  \DisplayProof
+\end{gather*}
+यह प्रमाण पदों के निम्न अपचयन के अनुरूप है:
+\begin{gather*}
+  \dcase{\inj[!A_i]{i}{M}}{x_1}{N_1}{x_2}{N_2} \redone \Subst{N_i}{M}{x_i}
+\end{gather*}
+जहाँ $M$,~$\delta$ का और $N_i$,~$\delta_i$ का प्रमाण पद है। यह योग प्रकारों
+का बीटा-अपचयन नियम है। यहाँ $\Subst{M}{N_i}{x}$ का अर्थ $M$ में चर~$x$ की
+सभी मुक्त आवृत्तियों को~$N_i$ से बदलना है।
+
+फलन प्रकार का अपचयन $\Intro\lif$ के बाद आने वाले $\Elim\lif$ के चक्कर को
+हटाने के अनुरूप है।
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{$\Discharge{!A}{x}$}
+  \RightLabel{$\delta$}
+  \DeduceC{$!B$}
+  \DischargeRule{$\Intro{\lif}$}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{}
+  \RightLabel{$\delta'$}
+  \DeduceC{$!A$}
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInfC{$!B$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta'$}
+  \DeduceC{$!A$}
+  \RightLabel{$\delta$}
+  \DeduceC{$!B$}
+  \DisplayProof
+\end{gather*}
+प्रमाण पदों के लिए यह साधारण बीटा-अपचयन है:
+\begin{gather*}
+  (\lambd[\typeof{x}{!A}][N]M)
+  \redone \Subst{N}{M}{x}
+\end{gather*}
+
+!!{proof}s पर अपचयन रूपांतरणों के अतिरिक्त हम क्रम-विनिमय रूपांतरणों पर विचार
+कर सकते हैं। ये ऐसे (उप-)!!{proof}s पर लागू होते हैं जो \Elim{\lor} के बाद
+किसी अन्य !!{elimination} नियम पर समाप्त होते हैं, उदाहरणतः:
+\begin{multline*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \\
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C_i$}
+  \DisplayProof
+\end{multline*}
+यदि $\delta$, $\delta_1$ और $\delta_2$ के प्रमाण पद क्रमशः $M$, $N_1$ और
+$N_2$ हैं, तो प्रमाण पदों, अर्थात् $\lambd$ पदों, का संगत अपचयन नियम है:
+\[
+  \proj{i}{\dcase{M}{x_1}{N_1}{x_2}{N_2}} \redone 
+\dcase{M}{x_1}{\proj{i}{N_1}}{x_2}{\proj{i}{N_2}}
+\]
+
+निश्चय ही हम चक्करों को केवल !!{proof}s के अंत से ही नहीं, बल्कि चक्कर पर
+समाप्त होने वाले उप-!!{proof} पर अपचयन रूपांतरण लगाकर !!{proof}s के भीतर से भी
+हटा सकते हैं। इसी प्रकार $\beta$-अपचयन, $\lambd$-पदों के उपपदों पर लागू होता
+है। यदि $N$, $M$ का उपपद और $N \redone N'$ है, तो~$M$ में उपपद $N$ को $N'$
+से बदलकर $M'$ पा सकते हैं। उस स्थिति में $M \redone M'$ भी लिखते हैं। यदि
+कोई अनुक्रम $M = M_1 \redone M_2 \redone M_2 \redone \dots \redone M_k =
+M'$ है ($k=1$, अर्थात् $M = M'$, वाली स्थिति सहित), तो $M \red M'$ लिखते हैं।
+
+जिस !!{proof} के किसी उप-!!{proof} पर कोई रूपांतरण लागू नहीं किया जा सकता, उसे
+\emph{प्रसामान्य} कहते हैं। इसी प्रकार जिस $\lambd$-पद के किसी उपपद पर कोई
+रूपांतरण लागू नहीं किया जा सकता, उसे \emph{प्रसामान्य} कहते हैं। प्रसामान्य
+$\lambd$-पद को \emph{प्रसामान्य रूप} भी कहते हैं।
+
+\end{document}

@@ -1,0 +1,329 @@
+% Part: turing-machines
+% Chapter: undecidability
+% Section: verification
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{und}{ver}
+\olsection{निरूपण का सत्यापन}
+
+\begin{explain}
+यह सत्यापित करने के लिए कि हमारा निरूपण काम करता है, हमें दो बातें
+सिद्ध करनी हैं। पहले हमें दिखाना है कि यदि $M$ आगत~$w$ पर रुकती है, तो
+$!T(M, w) \lif !E(M, w)$ वैध है। फिर हमें इसका विपरीत सिद्ध करना है,
+अर्थात् यदि $!T(M, w) \lif !E(M, w)$ वैध है, तो आगत~$w$ पर चलाने पर
+$M$ वास्तव में अंततः रुकती है।
+
+इन दोनों बातों को सिद्ध करने की रणनीतियाँ बहुत भिन्न हैं। पहले परिणाम
+के लिए हमें दिखाना है कि प्रथम-कोटि तर्कशास्त्र का !!a{sentence}
+(अर्थात् $!T(M, w) \lif !E(M, w)$) वैध है। ऐसा करने की सबसे सरल रीति
+!!a{derivation} देना है। किंतु हमारे प्रमाण को सभी $M$ और $w$ के लिए
+काम करना है, इसलिए वास्तव में कोई एक !!{sentence} नहीं है जिसके लिए
+हमें !!a{derivation} देना हो, बल्कि ऐसे वाक्य अनंततः अनेक हैं।
+अतः अधिकतम इतना किया जा सकता है कि आगमन से सिद्ध करें: $M$ और~$w$ चाहे
+जैसे हों और आगत~$w$ पर $M$ को रुकने में चाहे जितने चरण लगें,
+$!T(M, w) \lif !E(M, w)$ की !!a{derivation} होगी।
+
+स्वाभाविक है कि हमारा आगमन उन चरणों की संख्या पर चलेगा जो $M$ किसी
+रुकने वाले विन्यास तक पहुँचने से पहले लेती है। आगमनात्मक प्रमाण में हम
+स्थापित करेंगे कि आगत~$w$ पर $M$ के निष्पादन के प्रत्येक चरण~$n$ के लिए
+$!T(M, w) \Entails !C(M, w, n)$, जहाँ $!C(M, w, n)$ आगत~$w$ पर चलाई
+गई $M$ के $n$ चरणों के बाद वाले विन्यास का ठीक वर्णन करता है। अब यदि
+$M$ आगत~$w$ पर, मान लें, $n$ चरणों के बाद रुकती है, तो $!C(M, w, n)$
+रुकने वाले विन्यास का वर्णन करेगा। हम यह भी दिखाएँगे कि जब भी
+$!C(M, w, n)$ रुकने वाले विन्यास का वर्णन करता है, तब
+$!C(M, w, n) \Entails !E(M, w)$। अतः यदि $M$ आगत~$w$ पर रुकती है, तो
+किसी~$n$ के लिए $M$, $n$ चरणों के बाद रुकने वाले विन्यास में होगी। फलतः
+$!T(M, w) \Entails !C(M, w, n)$, जहाँ $!C(M, w, n)$ रुकने वाले विन्यास
+का वर्णन करता है; और चूँकि उस दशा में
+$!C(M, w, n) \Entails !E(M, w)$, हमें $T(M, w) \Entails !E(M, w)$
+मिलता है, अर्थात् $\Entails !T(M, w) \lif !E(M, w)$।
+
+विपरीत दिशा की रणनीति बहुत भिन्न है। यहाँ हम मानते हैं कि
+$\Entails !T(M, w) \lif !E(M, w)$ और हमें सिद्ध करना है कि $M$
+आगत~$w$ पर रुकती है। परिकल्पना से मिलता है कि
+$!T(M, w) \Entails !E(M, w)$, अर्थात् हर उस !!{structure} में
+$!E(M, w)$ सत्य है जिसमें $!T(M, w)$ सत्य है। इसलिए हम
+!!a{structure}~$\Struct{M}$ का वर्णन करेंगे जिसमें $!T(M, w)$ सत्य है:
+उसका प्रांत $\Nat$ होगा, और सभी $\Obj Q_q$ तथा $\Obj S_\sigma$ की
+व्याख्या आगत~$w$ पर $M$ के निष्पादन के दौरान आने वाले विन्यासों द्वारा
+दी जाएगी। उदाहरणार्थ, $\Sat{M}{\Obj Q_q(\num{m}, \num{n})}$ तभी जब
+आगत~$w$ पर $n$ चरणों तक चलाए जाने पर $T$, अवस्था~$q$ में हो और
+खाना~$m$ पढ़ रही हो। अब परिकल्पना के अनुसार
+$!T(M, w) \Entails !E(M, w)$, और रचना के अनुसार
+$\Sat{M}{!T(M, w)}$, इसलिए $\Sat{M}{!E(M, w)}$। किंतु
+$\Sat{M}{!E(M, w)}$ तभी जब कोई $n \in \Domain{M} = \Nat$ ऐसा हो कि
+आगत~$w$ पर चलाई गई $M$, $n$ चरणों के बाद रुकने वाले विन्यास में हो।
+\end{explain}
+
+\begin{defn}
+$!C(M, w, n)$ को निम्न !!{sentence} मानें:
+\[
+\Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
+\land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land
+\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]
+\]
+जहाँ समय~$n$ पर $M$ की अवस्था $q$ है, समय~$n$ पर $M$ खाना~$m$ पढ़ रही
+है, समय~$n$ पर खाना~$i$ में प्रतीक~$\sigma_i$ है ($0 \le i \le k$),
+और $k$ समय~$0$ पर पट्टी का सबसे दायाँ अरिक्त खाना अथवा $n$ चरणों के बाद
+तक पट्टी-शीर्ष द्वारा देखा गया सबसे दायाँ खाना है---इन दोनों में जो भी
+अधिक दायाँ हो।
+\end{defn}
+
+\begin{lem}\ollabel{lem:halt-config-implies-halt}
+यदि आगत~$w$ पर चलाई गई $M$, $n$ चरणों के बाद रुकने वाले विन्यास में है,
+तो $!C(M, w, n) \Entails !E(M, w)$।
+\end{lem}
+
+\begin{proof}
+मान लें कि $M$ आगत~$w$ पर $n$ चरणों के बाद रुकती है। कोई अवस्था~$q$,
+खाना~$m$, और प्रतीक~$\sigma$ ऐसे हैं कि:
+\begin{enumerate}
+\item $n$ चरणों के बाद $M$, अवस्था~$q$ में है और खाना~$m$ पढ़ रही है,
+  जिस पर~$\sigma$ लिखा है।
+\item संक्रमण फलन $\delta(q, \sigma)$ अपरिभाषित है।
+\end{enumerate}
+$!C(M, w, n)$ इस विन्यास का वर्णन है और इसमें खंड
+$\Obj Q_{q}(\num{m}, \num{n})$ तथा
+$\Obj S_{\sigma}(\num{m}, \num{n})$ सम्मिलित होंगे। ये खंड मिलकर
+$!E(M, w)$ को फलित करते हैं:
+\[
+\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
+\]
+क्योंकि $\tuple{q',\sigma'} \in X$, अतः
+$\Obj Q_{q'}(\num{m}, \num{n}) \land S_{\sigma'}(\num{m},
+\num{n}) \Entails \bigvee_{\tuple{q, \sigma} \in X}
+(\Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m}, \num{n}))$।
+\end{proof}
+
+\begin{explain}
+इसलिए यदि $M$ आगत $w$ पर रुकती है, तो कोई~$n$ ऐसा है कि
+$!C(M, w, n) \Entails !E(M,w)$। अब हम दिखाएँगे कि किसी भी समय~$n$ के
+लिए $!T(M, w) \Entails !C(M, w, n)$।
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:config}
+प्रत्येक $n$ के लिए, यदि $M$, $n$ चरणों के बाद नहीं रुकी है, तो
+$!T(M, w) \Entails !C(M, w, n)$।
+\end{lem}
+
+\begin{proof}
+आगमन का आधार: यदि $n = 0$, तो $!C(M, w, 0)$ के संयोजक
+$!T(M, w)$ के भी संयोजक हैं और इसलिए उससे फलित होते हैं।
+
+आगमन-परिकल्पना: यदि $M$, $n$वें चरण से पहले नहीं रुकी है, तो
+$!T(M,w) \Entails !C(M, w, n)$। हमें दिखाना है कि (जब तक
+$!C(M, w, n)$ किसी रुकने वाले विन्यास का वर्णन न करे)
+$!T(M, w) \Entails !C(M, w, n+1)$।
+
+मान लें कि $n > 0$ और $w$ पर आरंभ की गई $M$, $n$ चरणों के बाद
+अवस्था~$q$ में है और खाना~$m$ पढ़ रही है। चूँकि $M$, $n$ चरणों के बाद
+नहीं रुकती, $M$ के प्रोग्राम में निम्न तीन रूपों में से किसी एक का निर्देश
+अवश्य होना चाहिए:
+
+\begin{enumerate}
+\item \ollabel{right} $\delta(q, \sigma) = \tuple{q', \sigma', \TMright}$
+
+\item \ollabel{left} $\delta(q, \sigma) = \tuple{q', \sigma', \TMleft}$
+
+\item \ollabel{stay} $\delta(q, \sigma) = \tuple{q', \sigma', \TMstay}$
+\end{enumerate}
+
+अब हम इन तीनों स्थितियों पर बारी-बारी से विचार करेंगे।
+
+\begin{enumerate}
+\item मान लें कि \olref{right} रूप का कोई निर्देश है।
+  \olref[rep]{defn:tm-descr}\olref[rep]{rep-right} के अनुसार इसका अर्थ
+  है कि
+\begin{align*}
+& \lforall[x][\lforall[y][((\Obj Q_{q}(x,
+  y) \land \Obj S_\sigma(x, y)) \lif {}]]\\
+& \qquad (\Obj Q_{q'}(x',
+  y') \land \Obj S_{\sigma'}(x, y') \land !A(x, y)))
+\intertext{$!T(M,w)$ का एक संयोजक है। इससे निम्न !!{sentence} फलित होता
+  है (सार्वत्रिक निदर्शन, $x$ के लिए~$\num{m}$ और $y$ के
+  लिए~$\num{n}$):}
+& (\Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
+\num{n})) \lif {}\\
+& \qquad (\Obj Q_{q'}(\num{m}', \num{n}') \land
+\Obj S_{\sigma'}(\num{m}, \num{n}') \land !A(\num{m}, \num{n})).
+\intertext{आगमन-परिकल्पना से $!T(M, w) \Entails !C(M, w, n)$, अर्थात्}
+& \Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
+\land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land \\
+& \qquad\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]\\
+\intertext{$n$ चरणों के बाद पट्टी के खाना~$m$ में~$\sigma$ है, इसलिए
+  संबंधित संयोजक $ \Obj S_\sigma(\num{m}, \num{n})$ है और इससे फलित
+  होता है:}
+& \Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
+   \num{n})
+\intertext{अब हमें मिलता है}
+& \Obj Q_{q'}(\num{m}', \num{n}') \land \Obj S_{\sigma'}(\num{m},
+  \num{n}') \land {}\\
+& \qquad\Obj S_{\sigma_0}(\num{0}, \num{n}') \land \dots \land
+  \Obj S_{\sigma_k}(\num{k}, \num{n}') \land {}\\
+& \qquad \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}'))]
+\end{align*}
+इस प्रकार: पहली पंक्ति पूर्ववर्ती सशर्त के परिणामांश से प्रत्यक्षतः,
+मोडस पोनेन्स द्वारा मिलती है। बीच की पंक्ति का प्रत्येक संयोजक---जिसमें
+$S_{\sigma_m}(\num{m},\num{n}')$ सम्मिलित नहीं है---$!C(M, w, n)$ के
+संबंधित संयोजक और $!A(\num{m}, \num{n})$ से मिलता है।
+
+यदि $m < k$, तो $!T(M,w) \Proves \num{m} < \num {k}$
+(\olref[rep]{prop:mlessk}), और $<$ की संक्रामकता से हमें
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$ मिलता है। यदि $m = k$,
+तो केवल तर्कशास्त्र से
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$। तब अंतिम पंक्ति
+$!C(M, w, n)$ के संबंधित संयोजक,
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$, और
+$!A(\num{m}, \num{n})$ से मिलती है। यदि $m<k$, तो यही पहले से
+$!C(M, w, n+1)$ है।
+
+अब मान लें कि $m=k$। उस दशा में $n+1$ चरणों के बाद पट्टी-शीर्ष ने
+खाना~$k+1$ भी देख लिया है, जो अब देखा गया सबसे दायाँ खाना है। इसलिए
+$!C(M, w, n+1)$ में एक नया संयोजक
+$\Obj S_\TMblank(\num{k}',\num{n}')$ है, और अंतिम संयोजक
+$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$ है।
+हमें सत्यापित करना है कि ये दोनों !!{sentence} भी फलित होते हैं।
+
+हमारे पास पहले से
+$\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}'))]$ है।
+विशेषतः इससे $\num{k} < \num{k}' \lif
+\Obj S_\TMblank(\num{k}', \num{n}')$ मिलता है। अभिगृहीत
+$\lforall[x][x < x']$ से हमें $\num{k} < \num{k}'$ मिलता है। मोडस
+पोनेन्स से $\Obj S_\TMblank(\num{k}',\num{n}')$ फलित होता है।
+
+साथ ही, चूँकि $!T(M,w) \Proves \num{k} < \num{k}'$, $<$ की
+संक्रामकता का अभिगृहीत हमें
+$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$ देता
+है। (इसका सत्यापन अभ्यास के रूप में छोड़ा जाता है।)
+
+\item मान लें कि \olref{left} रूप का कोई निर्देश है। तब
+  \olref[rep]{defn:tm-descr}\olref[rep]{rep-left} के अनुसार,
+\begin{align*}
+& \lforall[x][\lforall[y][((\Obj Q_{q}(x', y) \land \Obj
+    S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad (\Obj Q_{q'}(x, y') \land \Obj
+  S_{\sigma'}(x', y') \land !A(x, y))) \land {}\\
+& \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0}, y')
+  \land !A(\num{0}, y)))
+\intertext{$!T(M,w)$ का एक संयोजक है। यदि $m>0$, तो $l = m - 1$
+  (अर्थात् $m = l+1$) मानें। ऊपर के !!{sentence} के प्रथम संयोजक से
+  निम्न फलित होता है:}
+& (\Obj Q_{q}(\num{l}', \num{n}) \land \Obj S_{\sigma}(\num{l}', \num{n}))
+\lif {} \\
+& \qquad (\Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{l}',
+\num{n}') \land !A(\num{l}, \num{n}))
+\intertext{अन्यथा $l = m = 0$ मानें और दूसरे संयोजक से फलित निम्न
+  !!{sentence} पर विचार करें:}
+& ((\Obj Q_{q_i}(\num{0}, \num{n}) \land \Obj S_{\sigma}(\num{0}, \num{n})) \lif {}\\
+& \qquad   (\Obj Q_{q_j}(\num{0}, \num{n}') \land \Obj S_{\sigma'}(\num{0}, \num{n}') \land
+!A(\num{0}, \num{n})))
+\intertext{दोनों में से कोई भी वाक्य निम्न को फलित करता है:}
+&  \Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{m},
+  \num{n}') \land {}\\
+&\qquad  \Obj S_{\sigma_0}(\num{0}, \num{n}')\land \dots \land
+  \Obj S_{\sigma_k}(\num{k}, \num{n}')  \land {} \\
+& \qquad  \lforall[x][(\num{k} < x
+  \lif \Obj S_\TMblank(x, \num{n}'))]
+\end{align*}
+पहले की तरह। (ध्यान दें कि पहली दशा में
+$\num{l}' \ident \num{l+1} \ident \num{m}$, और दूसरी दशा में
+$\num{l} \ident \num{0}$।) किंतु यही $!C(M, w, n+1)$ है।
+
+\item स्थिति \olref{stay} को अभ्यास के रूप में छोड़ा जाता है।
+\end{enumerate}
+हमने दिखा दिया कि किसी भी~$n$ के लिए
+$!T(M, w) \Entails !C(M, w, n)$।
+\end{proof}
+
+\begin{prob}
+\olref[tur][und][ver]{lem:config} के प्रमाण की
+स्थिति~\olref[tur][und][ver]{stay} पूरी करें।
+\end{prob}
+
+\begin{prob}
+$\Obj S_{\sigma_i}(\num{i}, \num{n})$ और $!A(m, n)$ से
+$\Obj S_{\sigma_i}(\num{i}, \num{n}')$ की !!a{derivation} दें (मानते
+हुए कि $i \neq m$, अर्थात् या तो $i < m$ अथवा $m < i$)।
+\end{prob}
+
+\begin{prob}
+$\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}'))]$,
+$\lforall[x][x < x']$, और
+$\lforall[x][\lforall[y][\lforall[z][ ((x < y \land y < z) \lif x <
+      z)]]]$ से
+$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$ की
+!!a{derivation} दें।)
+\end{prob}
+
+
+\begin{lem}
+\ollabel{lem:valid-if-halt}
+यदि $M$ आगत~$w$ पर रुकती है, तो $!T(M, w) \lif !E(M, w)$ वैध है।
+\end{lem}
+
+\begin{proof}
+\olref{lem:config} से हम जानते हैं कि किसी भी समय~$n$ के लिए समय~$n$
+पर $M$ के विन्यास का वर्णन~$!C(M, w, n)$, $!T(M, w)$ से फलित होता है।
+मान लें कि $M$, $k$ चरणों के बाद रुकती है। उस समय वह किसी
+$m \in \Nat$ के लिए खाना~$m$ पढ़ रही होगी। तब $!C(M, w, k)$, $M$ के
+रुकने वाले विन्यास का वर्णन करता है, अर्थात् इसमें
+$\Obj Q_q(\num{m}, \num{k})$ और $\Obj S_\sigma(\num{m}, \num{k})$
+दोनों संयोजक होते हैं, जहाँ $\delta(q,\sigma)$ अपरिभाषित है। अतः
+\olref{lem:halt-config-implies-halt} के अनुसार
+$!C(M, w, k) \Entails !E(M, w)$। किंतु चूँकि
+$!T(M, w) \Entails !C(M, w, k)$, हमारे पास
+$!T(M, w) \Entails !E(M, w)$ है, और इसलिए
+$!T(M, w) \lif !E(M, w)$ वैध है।
+\end{proof}
+
+
+\begin{explain}
+अपने दावे का सत्यापन पूरा करने के लिए हमें विपरीत दिशा भी स्थापित करनी
+है: यदि $!T(M, w) \lif !E(M, w)$ वैध है, तो आगत~$w$ पर आरंभ किए जाने
+पर $M$ वास्तव में रुकती है।
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:halt-if-valid}
+यदि $\Entails !T(M, w) \lif !E(M, w)$, तो $M$ आगत~$w$ पर रुकती है।
+\end{lem}
+
+\begin{proof}
+प्रांत~$\Nat$ वाली $\Lang L_M$-!!{structure}~$\Struct M$ पर विचार
+करें, जो $\Obj 0$ की व्याख्या~$0$ के रूप में, $\prime$ की उत्तरवर्ती
+फलन के रूप में, और $<$ की लघुतर संबंध के रूप में करती है; और
+विधेयों $\Obj Q_q$ तथा~$\Obj S_\sigma$ की व्याख्या इस प्रकार करती
+है:
+\begin{align*}
+  \Assign{\Obj Q_q}{M} & =
+\Setabs{\tuple{m, n}}{\begin{array}{ll}\text{$w$ पर आरंभ करने के बाद, $n$ चरणों पश्चात्,}\\ \text{$M$ अवस्था $q$ में है
+  और खाना~$m$ पढ़ रही है}\end{array}} \\
+\Assign{\Obj S_\sigma}{M} & = \Setabs{\tuple{m, n}}{\begin{array}{ll}
+\text{$w$ पर आरंभ करने के बाद, $n$ चरणों पश्चात्,}\\ \text{$M$ के खाना~$m$ में
+  प्रतीक~$\sigma$ है}\end{array}}
+\end{align*}
+दूसरे शब्दों में, हम !!{structure}~$\Struct{M}$ की रचना इस तरह करते हैं
+कि वह आगत~$w$ पर आरंभ की गई $M$ के वास्तविक व्यवहार को चरण-दर-चरण
+वर्णित करे। स्पष्ट है कि $\Sat{M}{!T(M, w)}$। यदि
+$\Entails !T(M, w) \lif !E(M, w)$, तो $\Sat{M}{!E(M, w)}$ भी, अर्थात्
+\[
+\Sat{M}{\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]}.
+\]
+चूँकि $\Domain{M} = \Nat$, कोई $m$, $n \in \Nat$ ऐसे अवश्य हैं कि
+किसी ऐसे~$q$ और~$\sigma$ के लिए
+$\Sat{M}{\Obj Q_q(\num{m}, \num{n}) \land \Obj S_\sigma(\num{m},
+\num{n})}$, जिनके लिए $\delta(q, \sigma)$ अपरिभाषित है।
+$\Struct M$ की परिभाषा के अनुसार इसका अर्थ है कि आगत~$w$ पर आरंभ की
+गई $M$, $n$ चरणों के बाद अवस्था~$q$ में है और प्रतीक~$\sigma$ पढ़ रही
+है, तथा संक्रमण फलन अपरिभाषित है; अर्थात् $M$ रुक चुकी है।
+\end{proof}
+
+\end{document}

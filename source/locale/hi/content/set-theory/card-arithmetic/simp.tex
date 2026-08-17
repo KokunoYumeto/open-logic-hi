@@ -1,0 +1,141 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+\olfileid[hi]{sth}{card-arithmetic}{simp}
+
+\olsection{योग और गुणन का सरलीकरण}
+
+पता चलता है कि परिमितेतर कार्डिनल योग और गुणन \emph{अत्यंत} सरल हैं। यह इस
+तथ्य से निष्पन्न होता है कि कार्डिनल (कुछ) क्रमसूचक हैं, अतः सुव्यवस्थित हैं
+और इसलिए एक विशेष ढंग से उनका परिचालन किया जा सकता है। किंतु इसे दिखाना
+इतना सरल \emph{नहीं} है। आरंभ में हमें एक युक्तिपूर्ण परिभाषा चाहिए:
+
+\begin{defn}
+हम क्रमसूचकों के युग्मों पर एक \emph{विहित क्रम} $\canonord$ इस शर्त से
+परिभाषित करते हैं कि $\tuple{\alpha_1,\alpha_2}\canonord
+\tuple{\beta_1,\beta_2}$ तभी जब इनमें से कोई एक हो:
+\begin{enumerate}
+	\item $\max(\alpha_1, \alpha_2)<\max(\beta_1, \beta_2)$; अथवा
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ और
+	$\alpha_1 < \beta_1$; अथवा
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ और
+	$\alpha_1 = \beta_1$ और $\alpha_2 < \beta_2$
+\end{enumerate}
+\end{defn}
+
+\begin{lem}
+किसी भी क्रमसूचक $\alpha$ के लिए
+$\tuple{\alpha\times\alpha,\canonord}$ एक सुव्यवस्था है।
+\end{lem}
+
+\begin{proof}
+स्पष्टतः $\canonord$, $\alpha\times\alpha$ पर संबद्ध है। मान लें कि न
+$\tuple{\alpha_1,\alpha_2}$, $\tuple{\beta_1,\beta_2}$ से
+$\canonord$-लघुतर है, न दूसरा पहले से। तब
+$\max(\alpha_1,\alpha_2)=\max(\beta_1,\beta_2)$ और
+$\alpha_1=\beta_1$ और $\alpha_2=\beta_2$, इसलिए
+$\tuple{\alpha_1,\alpha_2}=\tuple{\beta_1,\beta_2}$।
+
+सुव्यवस्था दिखाने के लिए $X\subseteq\alpha\times\alpha$ को अरिक्त मानें।
+चूँकि $\alpha$ क्रमसूचक है, कोई $\delta$ समुच्चय
+$\Setabs{\max(\gamma_1,\gamma_2)}{\tuple{\gamma_1,\gamma_2}\in X}$ का
+लघुतम सदस्य है। अब
+$\Setabs{\tuple{\gamma_1,\gamma_2}\in X}{\max(\gamma_1,\gamma_2)=\delta}$
+से उन युग्मों को छोड़ दें जिनका पहला निर्देशांक लघुतम नहीं है; शेष युग्मों
+में लघुतम दूसरे निर्देशांक वाला युग्म $X$ का $\canonord$-लघुतम अवयव है।
+\end{proof}
+\noindent
+अब एक छोटा-सा सरल प्रेक्षण:
+
+\begin{prop}\ollabel{simplecardproduct}
+यदि $\cardeq{\alpha}{\beta}$, तो
+$\cardeq{\alpha\times\alpha}{\beta\times\beta}$।
+\end{prop}
+
+\begin{proof}
+बस $f\colon\alpha\to\beta$ से
+$\tuple{\gamma_1,\gamma_2}\mapsto\tuple{f(\gamma_1),f(\gamma_2)}$
+प्रेरित होने दें।
+\end{proof}
+\noindent
+अब हम इन सबका उपयोग एक महत्त्वपूर्ण लेम्मा सिद्ध करने में करेंगे:
+\begin{lem}\ollabel{alphatimesalpha}
+किसी भी अनंत क्रमसूचक $\alpha$ के लिए
+$\cardeq{\alpha}{\alpha\times\alpha}$।
+\end{lem}
+
+\begin{proof}
+विरोधाभास द्वारा $\alpha$ को वह लघुतम अनंत क्रमसूचक मानें जिसके लिए यह
+असत्य है। \olref[sfr][siz][zigzag]{natsquaredenumerable} दिखाता है कि
+$\cardeq{\omega}{\omega\times\omega}$, अतः $\omega\in\alpha$। इसके
+अतिरिक्त $\alpha$ एक कार्डिनल है: विरोधाभास के लिए अन्यथा मान लें; तब
+$\card{\alpha}\in\alpha$, इसलिए परिकल्पना से
+$\cardeq{\card{\alpha}}{\card{\alpha}\times\card{\alpha}}$; और परिभाषा से
+$\cardeq{\card{\alpha}}{\alpha}$; अतः \olref{simplecardproduct} से
+$\cardeq{\alpha}{\alpha\times\alpha}$।
+
+अब प्रत्येक $\tuple{\gamma_1,\gamma_2}\in\alpha\times\alpha$ के लिए इस
+खंड पर विचार करें:
+\begin{align*}
+	\text{Seg}(\gamma_1, \gamma_2) &= \Setabs{\tuple{\delta_1, \delta_2} \in \alpha \times \alpha}{\tuple{\delta_1, \delta_2} \canonord \tuple{\gamma_1, \gamma_2}}
+\end{align*}
+$\gamma=\max(\gamma_1,\gamma_2)$ रखते हुए ध्यान दें कि
+$\tuple{\gamma_1,\gamma_2}\canonord\tuple{\gamma+1,\gamma+1}$। अतः जब
+$\gamma$ अनंत हो, ध्यान दें:
+\begin{align*}
+	\text{Seg}(\gamma_1, \gamma_2) & 
+	\precsim ((\gamma \ordplus 1)\ordtimes (\gamma \ordplus 1))\\
+	&\approx (\gamma \ordtimes \gamma)
+	\text{, \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} और
+	\olref{simplecardproduct} से}\\
+	&\approx \gamma \text{, आगमन परिकल्पना से}\\
+	& \prec \alpha\text{, क्योंकि $\alpha$ एक कार्डिनल है}
+\end{align*}
+अतः $\ordtype{\alpha\times\alpha,\canonord}\leq\alpha$, और फलतः
+$\cardle{\alpha\times\alpha}{\alpha}$। चूँकि निस्संदेह
+$\cardle{\alpha}{\alpha\times\alpha}$, परिणाम श्रेडर--बर्नस्टीन से निष्पन्न
+होता है।
+\end{proof}
+
+अंततः हम अपने सरलीकरण परिणाम पर पहुँचते हैं:
+
+\begin{thm}\ollabel{cardplustimesmax}
+यदि $\cardfont{a},\cardfont{b}$ अनंत कार्डिनल हैं, तो:
+\[
+	\cardfont{a}
+\cardtimes \cardfont{b} = \cardfont{a} \cardplus \cardfont{b} =
+\text{max}(\cardfont{a}, \cardfont{b}).
+\]
+\end{thm}
+
+\begin{proof}
+व्यापकता खोए बिना मान लें $\cardfont{a}=\max(\cardfont{a},
+\cardfont{b})$। तब \olref{alphatimesalpha} का उपयोग करके,
+$\cardfont{a}\cardtimes\cardfont{a} = \cardfont{a} \leq \cardfont{a}
+\cardplus \cardfont{b} \leq \cardfont{a} \cardplus \cardfont{a} \leq
+\cardfont{a}\cardtimes\cardfont{a}$। \end{proof}\noindent इसी प्रकार,
+यदि $\cardfont{a}$ अनंत है, तो $\leq\cardfont{a}$ आकार वाले समुच्चयों के
+$\cardfont{a}$-आकार वाले सम्मिलन का आकार $\leq\cardfont{a}$ है:
+
+\begin{prop}\ollabel{kappaunionkappasize}
+$\cardfont{a}$ को एक अनंत कार्डिनल मानें। प्रत्येक क्रमसूचक
+$\beta\in\cardfont{a}$ के लिए $X_\beta$ ऐसा समुच्चय हो कि
+$\card{X_\beta}\leq\cardfont{a}$। तब
+$\card{\bigcup_{\beta\in\cardfont{a}}X_\beta}\leq\cardfont{a}$।
+\end{prop}
+
+\begin{proof}
+प्रत्येक $\beta\in\cardfont{a}$ के लिए कोई !!a{injection}
+$f_\beta\colon X_\beta\to\cardfont{a}$ नियत करें।\footnote{इन्हें
+``नियत'' कैसे किया गया है? \olref[sth][choice][countablechoice]{sec}
+देखें।} !!a{injection}
+$g\colon\bigcup_{\beta\in\cardfont{a}}X_\beta\to
+\cardfont{a}\times\cardfont{a}$ को
+$g(v)=\tuple{\beta,f_\beta(v)}$ से परिभाषित करें, जहाँ $v\in X_\beta$ और
+किसी $\gamma\in\beta$ के लिए $v\notin X_\gamma$। अब
+\olref{cardplustimesmax} से
+$\bigcup_{\beta\in\cardfont{a}}X_\beta\preceq
+\cardfont{a}\times\cardfont{a}\approx\cardfont{a}$।
+\end{proof}
+
+\end{document}

@@ -1,0 +1,107 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: coding-symbols
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{art}{cod}
+\olsection{चिह्नों का कूटलेखन}
+
+प्रथम-कोटि तर्कशास्त्र की मूल भाषा~$\Lang L$ निम्न चिह्नों का उपयोग करती है:
+\[
+\lfalse \quad \lnot \quad \lor \quad \land \quad \lif \quad \lforall
+\quad \lexists \quad \eq \quad ( \quad ) \quad ,
+\]
+और इनके साथ चरों तथा !!{constant} के !!{enumerable} समुच्चय और मनमानी
+स्थान-संख्या के !!{function} तथा !!{predicate} के !!{enumerable} समुच्चय।
+हम इन प्रत्येक चिह्न को ऐसे \emph{कूट} दे सकते हैं कि प्रत्येक चिह्न को उसके
+कूट के रूप में एक अद्वितीय संख्या मिले और किन्हीं दो भिन्न चिह्नों को समान
+संख्या न मिले। हम जानते हैं कि यह संभव है, क्योंकि सभी चिह्नों का समुच्चय
+!!{enumerable} है और इसलिए उसके तथा प्राकृतिक संख्याओं के समुच्चय के बीच
+!!a{bijection} है। किंतु हम यह भी सुनिश्चित करना चाहते हैं कि कूट से चिह्न
+(और उसके विषय में कुछ जानकारी, जैसे किसी !!a{function} की स्थान-संख्या)
+संगणनीय ढंग से पुनः प्राप्त हो सके। निस्संदेह, ऐसा करने के अनेक उपाय हैं। यहाँ
+आदिम पुनरावर्ती फलनों का उपयोग करने वाला एक उपाय दिया गया है। (स्मरण करें कि
+$\tuple{n_0, \dots, n_k}$ वह संख्या है जो संख्याओं $n_0$, \dots, $n_k$ के
+अनुक्रम को कूटित करती है।)
+
+\begin{defn}
+यदि $s$,~$\Lang L$ का चिह्न है, तो \emph{चिह्न-कूट}~$\scode s$ को निम्न
+प्रकार परिभाषित करें:
+\begin{enumerate}
+\item यदि $s$ तार्किक चिह्नों में है, तो $\scode s$ निम्न सारणी से मिलता है:
+\[
+\begin{array}{cccccccccc}
+  \lfalse & \lnot & \lor & \land & \lif & \lforall \\
+\tuple{0, 0} & \tuple{0, 1} & \tuple{0, 2} & \tuple{0, 3} &
+\tuple{0, 4} & \tuple{0, 5} \\
+\lexists & \eq & ( & ) & ,\\
+\tuple{0, 6} & \tuple{0, 7} &
+\tuple{0, 8} & \tuple{0, 9} & \tuple{0, 10}
+\end{array}
+\]
+\item यदि $s$, $i$-वाँ चर $\Obj v_i$ है, तो $\scode s = \tuple{1, i}$।
+\item यदि $s$, $i$-वाँ !!{constant}~$\Obj c_i$ है, तो
+  $\scode s = \tuple{2, i}$.
+\item यदि $s$, $i$-वाँ $n$-स्थानी !!{function}~$\Obj f_i^n$ है, तो
+  $\scode s = \tuple{3, n, i}$.
+\item यदि $s$, $i$-वाँ $n$-स्थानी !!{predicate}~$\Obj P_i^n$ है, तो
+  $\scode s = \tuple{4, n, i}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+निम्न संबंध आदिम पुनरावर्ती हैं:
+\begin{enumerate}
+\item $\fn{Fn}(x, n)$ यदि और केवल यदि किसी~$i$ के लिए $x$, $\Obj f^n_i$ का
+  कूट है; अर्थात् $x$ किसी $n$-स्थानी !!{function} का कूट है।
+\item $\fn{Pred}(x, n)$ यदि और केवल यदि किसी~$i$ के लिए $x$, $\Obj P^n_i$
+  का कूट है, अथवा $x$, $\eq$ का कूट और $n = 2$ है; अर्थात् $x$ किसी
+  $n$-स्थानी !!{predicate} का कूट है।
+\end{enumerate}
+\end{prop}
+
+\begin{defn}
+यदि $s_0, \dots, s_{n-1}$ चिह्नों का अनुक्रम है, तो उसकी \emph{ग्योडेल (G\"odel)
+   संख्या} $\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$ है।
+\end{defn}
+
+\begin{explain}
+ध्यान दें कि \emph{कूट} और \emph{ग्योडेल (G\"odel) संख्याएँ} भिन्न वस्तुएँ
+हैं। उदाहरणतः चर~$\Obj v_5$ का कूट~$\scode{\Obj v_5} = \tuple{1, 5} =
+2^2\cdot 3^6$ है। किंतु पद के रूप में देखा गया चर~$\Obj v_5$, चिह्नों का
+(लंबाई~$1$ वाला) अनुक्रम भी है। \emph{पद}~$\Obj v_5$ की \emph{ग्योडेल (G\"odel)
+ संख्या}~$\Gn{\Obj v_5}$, $\tuple{\scode{\Obj v_5}} =
+2^{\scode{\Obj v_5} + 1} = 2^{2^2\cdot 3^6 + 1}$ है।
+\end{explain}
+
+\begin{ex}
+स्मरण करें कि यदि $k_0$, \dots, $k_{n-1}$ संख्याओं का अनुक्रम है, तो
+अभाज्य-घात कूटलेखन में अनुक्रम $\tuple{k_0, \dots, k_{n-1}}$ का कूट है
+\[
+2^{k_0+1}\cdot3^{k_1+1}\cdot \dots \cdot p_{n-1}^{k_{n-1}+1},
+\]
+जहाँ $p_i$, $i$-वाँ अभाज्य है ($p_0 = 2$ से आरंभ करके)। अतः उदाहरणतः सूत्र
+$\eq[\Obj v_0][\Obj 0]$, अथवा अधिक स्पष्ट रूप में ${\eq}(\Obj v_0,\Obj
+c_0)$, की ग्योडेल (G\"odel) संख्या है
+\[
+\tuple{\scode{\eq},\scode{(},\scode{\Obj v_0},\scode{,}, \scode{\Obj
+    c_0},\scode{)}}.
+\]
+यहाँ $\scode{\eq}$, $\tuple{0,7} = 2^{0+1}\cdot 3^{7+1}$ है,
+$\scode{\Obj v_0}$, $\tuple{1,0} = 2^{1+1}\cdot3^{0+1}$ है, आदि। अतः
+$\Gn{=(\Obj v_0,\Obj c_0)}$ है
+\begin{multline*}
+2^{\scode{=} + 1}\cdot 3^{\scode{(}+1}\cdot 5^{\scode{\Obj v_0}+1}
+\cdot 7^{\scode{,} + 1} \cdot 11^{\scode{\Obj c_0}+1} \cdot
+13^{\scode{)}+1} = \\
+2^{2^1\cdot 3^8 + 1}\cdot 3^{2^1\cdot 3^9+1}\cdot 5^{2^2\cdot 3^1+1}
+\cdot 7^{2^1\cdot 3^{11} + 1} \cdot 11^{2^3\cdot3^1+1} \cdot
+13^{2^1\cdot3^{10}+1} = \\
+2^{13\,123}\cdot 3^{39\,367}\cdot 5^{13}\cdot 7^{354\,295}\cdot11^{25}\cdot13^{118\,099}.
+\end{multline*}
+\end{ex}
+
+\end{document}

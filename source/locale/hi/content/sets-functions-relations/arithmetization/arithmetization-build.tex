@@ -1,0 +1,55 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0040.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen identities outside this chapter. Empty destinations avoid inventing
+% links to absent chapters in this private integration build.
+\makeatletter
+\expandafter\def\csname r@sfr:rel:eqv:def:equivalenceclass\endcsname
+  {{rel.{11}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:eqv:def:equivalenceclass@cref\endcsname
+  {{[defn][11][0]rel.{11}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz::chap\endcsname
+  {{siz}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz::chap@cref\endcsname
+  {{[chapter][0][0]siz}{}{}{}{}}
+\expandafter\def\csname r@his:set:mythology:sec\endcsname
+  {{set.4}{}{}{}{}}
+\expandafter\def\csname r@his:set:mythology:sec@cref\endcsname
+  {{[section][4][0]set.4}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ref:sec\endcsname
+  {{rel.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ref:sec@cref\endcsname
+  {{[section][2][0]rel.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:imp:sec\endcsname
+  {{set.3}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:imp:sec@cref\endcsname
+  {{[section][3][0]set.3}{}{}{}{}}
+\expandafter\def\csname r@his:set:limits:sec\endcsname
+  {{set.2}{}{}{}{}}
+\expandafter\def\csname r@his:set:limits:sec@cref\endcsname
+  {{[section][2][0]set.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:def:linearorder\endcsname
+  {{rel.{16}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:def:linearorder@cref\endcsname
+  {{[defn][16][0]rel.{16}}{}{}{}{}}
+\makeatother
+\crefname{chapter}{अध्याय}{अध्याय}
+\Crefname{chapter}{अध्याय}{अध्याय}
+\pdfstringdefDisableCommands{\def\Nat{N}\def\Int{Z}\def\Rat{Q}\def\Real{R}}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{अंकगणितीकरण}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+% In the full OLP reader the import layer establishes this symbolic chapter
+% identifier before \olchapter runs.  This standalone integration wrapper must
+% do the same or memoir prints the package default `udf' in the chapter head.
+\renewcommand*{\theolchapter}{arith}
+
+\begin{document}
+\subfile{arithmetization}
+\end{document}

@@ -1,0 +1,144 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: standard-translation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{frd}{st}
+
+\olsection{द्वितीय-कोटि परिभाष्यता}
+
+मोडल सूत्रों से परिभाष्य प्रत्येक फ़्रेम-गुण प्रथम-कोटि परिभाष्य नहीं है।
+किंतु यदि हम एकस्थानिक विधेयों पर परिमाणीकरण (अर्थात् एकपदी द्वितीय-कोटि
+परिमाणीकरण) की अनुमति दें, तो सभी मोडलतः परिभाष्य फ़्रेम-गुणों को परिभाषित
+कर सकते हैं। युक्ति उस व्यवस्थित ढंग का उपयोग करना है जिसमें किसी मोडल
+!!{formula} के किसी जगत पर सत्य होने के प्रतिबंध प्रथम-कोटि !!{formula}ों से
+संबंधित होते हैं। यह मोडल सूत्रों का तथाकथित मानक अनुवाद है, ऐसी प्रथम-कोटि
+भाषा में जिसमें अभिगम्यता संबंध के लिए केवल द्विस्थानिक !!{predicate}~$Q$ ही
+नहीं, बल्कि $!A$ में आने वाले !!{propositional variable}ों~$\Obj p_i$ के लिए
+एकस्थानिक !!{predicate}~$P_i$ भी होता है।
+
+\begin{defn}
+  \emph{मानक अनुवाद}~$\ST_x(!A)$ आगमनात्मक रूप से इस प्रकार परिभाषित है:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\ST_x(\indfrm) = \lfalse$.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\lfalse}{$\ST_x(\indfrm) = \ltrue$.}}{}
+  \item \indcase{!A}{\Obj p_i}{$\ST_x(\indfrm) = \Atom{P_i}{x}$.}
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\ST_x(\indfrm) = \lnot \ST_x(!B)$.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \land \ST_x(!C))$.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \lor \ST_x(!C))$.}}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \lif \ST_x(!C))$.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \liff \ST_x(!C))}$.}{}
+  \tagitem{prvBox}{\indcase{!A}{\Box !B}{$\ST_x(\indfrm) =
+      \lforall[y][(\Atom{Q}{x,y} \lif \ST_y(!B))]$.}}{}
+  \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{$\ST_x(\indfrm) =
+      \lexists[y][(\Atom{Q}{x,y} \land \ST_y(!B))]$.}}{}
+  \end{enumerate}
+\end{defn}
+
+उदाहरणार्थ, $\ST_x(\Box p \lif p)$,
+$\lforall[y][(\Atom{Q}{x,y} \lif \Atom{P}{y})] \lif \Atom{P}{x}$ है।
+$\ST_x(!A)$ की भाषा की किसी !!{structure} के लिए एक प्रक्षेत्र, $Q$ को दिया
+गया द्विस्थानिक संबंध, और एकस्थानिक !!{predicate}ों~$P_i$ को दिए गए प्रक्षेत्र
+के उपसमुच्चय चाहिए। दूसरे शब्दों में, ऐसी !!{structure} के अवयव ठीक $!A$ के
+प्रतिरूप के अवयव हैं: प्रक्षेत्र जगतों का समुच्चय है, $Q$ को दिया द्विस्थानिक
+संबंध अभिगम्यता संबंध है, और $P_i$ को दिए उपसमुच्चय ठीक नियतन
+$V(\Obj p_i)$ हैं। इसलिए यह आश्चर्यजनक नहीं कि किसी मोडल प्रतिरूप में $!A$
+की संतुष्टि और संगत !!{structure} में $\ST_x(!A)$ की संतुष्टि सहमत होती हैं:
+
+\begin{prop}\ollabel{prop:st}
+  मान लें $\mModel{M} = \tuple{W, R, V}$; $\Struct{M'}$ वह प्रथम-कोटि
+  !!{structure} है जिसमें $\Domain{M'} = W$, $\Assign{Q}{M'} = R$ और
+  $\Assign{P_i}{M'} = V(\Obj p_i)$; तथा $s(x) = w$। तब
+  \[
+  \mSat{M}{!A}[w] \text{ तभी जब } \Sat{M'}{\ST_x(!A)}[s]
+  \]
+\end{prop}
+
+\begin{proof}
+  $!A$ पर आगमन द्वारा।
+\end{proof}
+
+\begin{prop}
+  मान लें $!A$ कोई मोडल !!{formula} और $\mModel{F} = \tuple{W, R}$ कोई फ़्रेम
+  है। $\Struct{F'}$ वह प्रथम-कोटि !!{structure} हो जिसमें $\Domain{F'} = W$
+  और $\Assign{Q}{F'} = R$, तथा $!A'$ यह द्वितीय-कोटि सूत्र हो:
+  \[
+  \lforall[X_1][\dots\lforall[X_n][\lforall[x][
+        \SSubst{\ST_x(!A)}{\subst{X_1}{P_1}, \dots,
+          \subst{X_n}{P_n}}]]],
+  \]
+  जहाँ $P_1$, \dots, $P_n$, $\ST_x(!A)$ के सभी एकस्थानिक !!{predicate} हैं। तब
+  \[
+  \mModel{F} \Entails !A \text{ तभी जब } \Sat{F'}{!A'}
+  \]
+\end{prop}
+
+\begin{proof}
+  $\Sat{F'}{!A'}$ तभी जब प्रत्येक ऐसी !!{structure}~$\mModel{M'}$ में जहाँ
+  $i = 1$, \dots,~$n$ के लिए $\Assign{P_i}{M'} \subseteq W$, और प्रत्येक
+  ऐसे $s$ के लिए जिसमें $s(x) \in W$, $\Sat{M'}{\ST_x(!A)}[s]$।
+  \olref{prop:st} से यह तभी है जब $\mModel{F}$ पर आधारित सभी
+  प्रतिरूपों~$\mModel{M}$ और प्रत्येक जगत~$w \in W$ के लिए
+  $\mSat{M}{!A}[w]$, अर्थात् $\mModel{F} \Entails !A$।
+\end{proof}
+
+\begin{defn}
+  फ़्रेमों का वर्ग~$\mClass{F}$ \emph{द्वितीय-कोटि परिभाष्य} है, यदि केवल
+  एक द्विस्थानिक !!{predicate}~$P$ और केवल एकपदी समुच्चय चरों पर परिमाणकों वाली
+  द्वितीय-कोटि भाषा में कोई !!{sentence}~$!A$ ऐसा हो कि $\Domain{M} = W$ और
+  $\Assign{P}{M} = R$ वाली !!{structure}~$\Struct{M}$ में $\Sat{M}{!A}$ तभी
+  जब $\mModel{F} = \tuple{W, R} \in \mClass{F}$।
+\end{defn}
+
+\begin{cor}
+  यदि फ़्रेमों का कोई वर्ग किसी !!{formula}~$!A$ से परिभाष्य है, तो अभिगम्यता
+  संबंधों का संगत वर्ग किसी एकपदी द्वितीय-कोटि वाक्य से परिभाष्य है।
+\end{cor}
+
+\begin{proof}
+  पूर्ववर्ती प्रमाण के एकपदी द्वितीय-कोटि वाक्य~$!A'$ में अपेक्षित गुण है।
+\end{proof}
+
+उदाहरण के लिए फिर !!{formula}~$\Box p \lif p$ पर विचार करें। यह
+स्वपरावर्तकता को परिभाषित करता है। निस्संदेह स्वपरावर्तकता
+!!{sentence}~$\lforall[x][\Atom{Q}{x,x}]$ से प्रथम-कोटि परिभाष्य है। पर यह इस
+एकपदी द्वितीय-कोटि !!{sentence} से भी परिभाष्य है:
+\[
+\lforall[X][\lforall[x][(\lforall[y][(\Atom{Q}{x,y} \lif \Atom{X}{y})]
+    \lif \Atom{X}{x})]].
+\]
+इसका निस्संदेह अर्थ है कि दोनों वाक्य तुल्य हैं। इसे सीधे इस प्रकार समझा जा
+सकता है। पहले मान लें द्वितीय-कोटि वाक्य किसी !!{structure}~$\Struct{M}$ में
+सत्य है। चूँकि $x$ और $X$ सार्विकतः परिमाणित हैं, शेष भाग किसी भी $x \in W$
+और समुच्चय~$X \subseteq W$ के लिए मान्य होना चाहिए, जैसे उस समुच्चय
+$\Setabs{z}{Rxz}$ के लिए जहाँ $R = \Assign{Q}{M}$। अतः किसी भी ऐसे~$s$ के
+लिए जिसमें $s(x) \in W$ और $s(X) = \Setabs{z}{Rxz}$, हमारे पास
+$\Sat{M}{\lforall[y][(\Atom{Q}{x,y} \lif \Atom{X}{y})] \lif
+\Atom{X}{x}}$। किंतु $s(X)$ के चुनाव से इसका अर्थ है
+$\Sat{M}{\lforall[y][(\Atom{Q}{x,y} \lif \Atom{Q}{x,y})] \lif
+\Atom{Q}{x,x}}[s]$, जो $\Atom{Q}{x,x}$ के तुल्य है क्योंकि पूर्ववर्ती मान्य
+है। चूँकि $s(x)$ स्वेच्छ है, $\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$।
+
+अब मान लें $\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$ और दिखाएँ कि
+$\Sat{M}{\lforall[X][\lforall[x][(\lforall[y][(\Atom{Q}{x,y} \lif
+        \Atom{X}{y})] \lif \Atom{X}{x})]]}$। कोई नियतन~$s$ चुनें और मान
+लें $\Sat{M}{\lforall[y][(\Atom{Q}{x,y} \lif \Atom{X}{y})]}[s]$। $s'$ को
+$s$ का ऐसा $y$-रूपांतर मानें जिसमें $s'(y)=s(x)$; तब
+$\Sat{M}{\Atom{Q}{x,y} \lif \Atom{X}{y}}[s']$, अर्थात्
+$\Sat{M}{\Atom{Q}{x,x} \lif \Atom{X}{x}}[s]$। चूँकि
+$\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$, पूर्ववर्ती सत्य है और हमारे पास
+$\Sat{M}{\Atom{X}{x}}[s]$ है, जो हमें दिखाना था।
+
+चूँकि फ़्रेमों के कुछ परिभाष्य वर्ग प्रथम-कोटि परिभाष्य नहीं हैं, इसलिए
+$!A'$ रूप का प्रत्येक एकपदी द्वितीय-कोटि !!{sentence} किसी प्रथम-कोटि
+!!{sentence} के तुल्य नहीं है। यह तय करने की कोई प्रभावी विधि नहीं कि कौन-से
+तुल्य हैं।
+
+\end{document}

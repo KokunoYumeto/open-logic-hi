@@ -1,0 +1,106 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: type-preservation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{pty}{tpr}
+
+\olsection{प्रकार-संरक्षण}
+
+विचार किए गए अपचयन और क्रम-विनिमय रूपांतरणों को प्रणालियों \Log{tN2i} और
+\Log{tN3i} के लिए भी सीधे परिभाषित किया जा सकता है। प्रणाली \Log{tN3i},
+प्रसंग~$\Gamma$ के सापेक्ष किसी $\lambd$-पद~$N$ के प्रकार को ऐसा
+!!{formula}~$!A$ परिभाषित करती है कि $\Gamma \Sequent N : !A$ का \Log{tN3i}
+में कोई !!a{proof} हो। $\lambd$-पदों के $\beta$-अपचयन नियमों का !!{proof}s के
+अपचयन और क्रम-विनिमय रूपांतरणों को ठीक प्रतिबिंबित करना एक महत्त्वपूर्ण परिणाम
+देता है: किसी प्रसंग~$\Gamma$ के सापेक्ष $\lambd$-पद का प्रकार
+$\beta$-रूपांतरण के बाद समान रहता है। इस गुण को \emph{प्रकार-संरक्षण} कहते हैं।
+
+\begin{prop}
+यदि $\Gamma$ के सापेक्ष $N$ का प्रकार~$!A$ और $N \redone N'$ है, तो $\Gamma$
+के सापेक्ष $N'$ का प्रकार~$!A$ है।
+\end{prop}
+
+\begin{proof}
+  ~ $N$ और $\Gamma \Sequent N : !A$ के !!{proof}s~$\delta$ की ऊँचाई पर आगमन
+  से निम्न आसानी से स्थापित कर सकते हैं: यदि $M$,~$N$ का उपपद है, तो $\delta$
+  में $\Gamma' \Sequent M : !B$ पर समाप्त होने वाला उप-!!{proof}~$\delta_1$
+  है। यदि $M$ अपचय्य है, तो~$\delta_1$ पर कोई रूपांतरण लागू होता है।~$\delta_1$
+  पर अपचयन लगाकर $\Gamma' \Sequent M' : !B$ का !!a{proof}~$\delta_1'$ मिलता
+  है। \Log{tN3i} के रूपांतरणों के निरीक्षण से $M'$,~$M$ का अपचयफल है।~$\delta$
+  में $\delta_1$ को $\delta_1'$ से बदलने पर $\Gamma \Sequent N' : !A$ का
+  !!a{proof}~$\delta'$ मिलता है, जहाँ $N'$ उपपद~$M$ को~$M'$ से बदलकर~$N$ से
+  प्राप्त होता है।
+
+  उदाहरणतः \Intro{\land} के बाद आने वाले \Elim{\land} का अपचयन रूपांतरण देखें:
+  \[
+  \bottomAlignProof
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_1 : !B_1$
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_2 : !B_2$
+  \RightLabel{\Intro{\land}}
+  \BinaryInf$\Gamma \fCenter \pair{N_1}{N_2} : !B_1 \land !B_2$
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInf$\Gamma \fCenter \proj{i}{\pair{N_1}{N_2}} : !B_i$
+  \DisplayProof
+  \quad\redone\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_i : !B_i$
+  \DisplayProof
+  \]
+  हम देखते हैं कि दाईं ओर के !!{proof}, अर्थात् $\delta_1'$, का प्रमाण पद
+  $N_i$ है। यह बाईं ओर के !!{proof}~($\delta_1$) के प्रमाण पद
+  $\proj{i}{\pair{N_1}{N_2}}$ पर $\beta$-रूपांतरण लगाने का ठीक परिणाम है।
+
+  अथवा \Intro{\lif} के बाद आने वाले \Elim{\lif} अनुमान और उस पर लगाए गए
+  अपचयन रूपांतरण को देखें:
+  \begin{multline*}
+  \bottomAlignProof
+  \AxiomC{$\delta_2$}
+  \Deduce$x: !B_1, \Gamma \fCenter N : !B_2$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter \lambd[\typeof{x}{!B_1}][N] : !B_1 \lif !B_2$
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \Deduce$\Gamma \fCenter M : !B_1$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$\Gamma \fCenter (\lambd[\typeof{x}{!B_1}][N] M) : !B_2$
+  \DisplayProof
+  \quad\redone\\
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \Deduce$\Gamma \fCenter M : !B_1$
+  \RightLabel{$\Subst{\delta_2}{\delta_3}{x:!B_1}$}
+  \Deduce$\Gamma \fCenter \Subst{N}{M}{x} : !B_2$
+  \DisplayProof
+  \end{multline*}
+  फिर दाईं ओर के !!{proof} का प्रमाण पद ठीक बाईं ओर के !!{proof} के प्रमाण पद
+  के $\beta$-अपचयन का परिणाम है। निश्चय ही~$\delta_2$ की ऊँचाई पर आगमन से
+  सावधानीपूर्वक सत्यापित करना होगा कि~$\delta_2$ में $\Gamma' \Sequent x:!B_1$
+  रूप के सभी अभिगृहीतों को $\Gamma \Sequent M:!B_1$ के !!{proof}~$\delta_3$
+  से बदलने पर वास्तव में $\Gamma \Sequent \Subst{N}{M}{x} : !B_2$ का
+  !!a{proof} $\Subst{\delta_2}{\delta_3}{x:!B_1}$ मिलता है।
+\end{proof}
+
+!!{proof}s और $\lambd$-पदों की सघन अनुरूपता का एक और परिणाम है। यदि $N$ किसी
+प्रसंग~$\Gamma$ के सापेक्ष प्रकार $!A$ का $\lambd$-पद है और उसमें कोई
+अपचय्य~$M$ है (अर्थात् वह प्रसामान्य रूप में नहीं है), तो $\Gamma \Sequent N
+: !A$ के संगत \Log{tN3i} प्रमाण~$\delta$ में ऐसा उप-!!{proof} ($\Gamma'
+\Sequent M: !B$ पर समाप्त होने वाला) है जिस पर कोई रूपांतरण लगाया जा सकता है।
+यदि $M$ को उसके अपचयफल से बदलकर $N \redone N'$, तो~$\delta$ पर अपचयन लगाने का
+संगत परिणाम $\Gamma \Sequent N' : !A$ का !!a{proof} है। अतः प्रसामान्य रूप में
+न आने वाला प्रत्येक $\lambd$-पद किसी अन्य पद में $\beta$-अपचयित होता है। इस
+गुण को \emph{प्रगति} कहते हैं।
+
+प्रगति और प्रकार-संरक्षण मिलकर सुनिश्चित करते हैं कि $\lambd$-पदों का
+$\beta$-अपचयन कभी ``अटकता'' नहीं: यदि कोई पद सुप्रकारित है और प्रसामान्य रूप
+में नहीं है, तो वह किसी दूसरे सुप्रकारित पद में अपचयित होता है (और उस पद का
+प्रकार समान है)।
+
+\end{document}

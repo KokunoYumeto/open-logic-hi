@@ -1,0 +1,329 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: reductions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nor}{red}
+
+\olsection{अपचयन रूपांतरण}
+
+यदि \Log{N1i} के किसी !!{proof} में कट की लंबाई~$1$ है, तो वह किसी एक
+!!{formula}-आवृत्ति वाला खंड है, और वह !!{formula} किसी !!a{introduction}
+अनुमान का निष्कर्ष तथा किसी !!a{elimination} अनुमान का मुख्य आधार-वाक्य दोनों
+है। प्रसामान्यीकरण प्रमाण में ऐसे कटों का ``अपचयन'' उस
+!!{introduction}/!!{elimination} युग्म पर समाप्त होने वाले उप-!!{proof} को ऐसे
+नए !!{proof} से बदलकर किया जाता है जिसमें अनुमानों का वह युग्म हटा दिया गया
+हो। ऐसे प्रतिस्थापन से नए कट बन सकते हैं। किंतु हम देख सकते हैं कि नए कटों की
+कोटि अपचयित किए जा रहे कट से कम होती है। अतः नए !!{proof} की या तो कट लंबाई
+कम है (क्योंकि लंबाई~$1$ वाला कोई महत्तम कट हट गया), या उसकी कट कोटि कम हो गई
+है (यदि संबंधित महत्तम कट ही एकमात्र महत्तम कट था)।
+
+उदाहरणतः यदि संबंधित अनुमान \Intro{\lif} और \Elim{\lif} हैं, $!A \ident !B
+\lif !C$, और कोई उप-!!{proof}~$\delta_1$ निम्न पर समाप्त होता है:
+\[
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$!C$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\]
+इस कट को हटाने के लिए हम~$\delta$ में उपप्रमाण~$\delta_1$ को निम्न से बदलते
+हैं:
+\[
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_2}{\delta_3}{!B^x}$}
+\DeduceC{$!C$}
+\DisplayProof
+\]
+$\Subst{\delta_2}{\delta_3}{!B^x}$ से हमारा आशय उस !!{proof} से है जो
+~$\delta_2$ में~$x$ से चिह्नित प्रत्येक मान्यता~$!B$ को पूरे
+!!{proof}~$\delta_3$ से बदलने पर प्राप्त होता है। इस !!{proof} में अब~$x$ से
+चिह्नित~$!B$ रूप की खुली मान्यताएँ नहीं हैं। इसमें~$x$ से चिह्नित कोई दूसरी
+मान्यता भी नहीं है, क्योंकि सदा की तरह हम मानते हैं कि कोई दो !!{formula}s
+एक ही चिह्न वाली मान्यताओं के रूप में नहीं आते। अतः नए !!{proof} की खुली
+मान्यताएँ~$\delta_1$ जैसी ही हैं;~$\delta_2$ का मान्यताएँ मुक्त करने वाला हर
+अनुमान $\Subst{\delta_2}{\delta_3}{!B^x}$ में उन्हीं मान्यताओं को मुक्त करता
+है; और~$\delta_3$ का मान्यताएँ मुक्त करने वाला हर अनुमान संभवतः अनेक प्रतियों
+में परिणत होता है, जो $\Subst{\delta_2}{\delta_3}{!B^x}$ में संगत मान्यताओं
+को मुक्त करती हैं।
+
+$\delta_2$, $\delta_3$ या $\delta_4$ के पूर्णतः भीतर, अथवा~$\delta$ में
+~$\delta_1$ के पूर्णतः बाहर स्थित कोई भी कट अपरिवर्तित रहता है: उसमें अब भी
+वही !!{formula}s और वही अनुमान सम्मिलित हैं, इसलिए विशेषतः उसकी कोटि और लंबाई
+~$\delta$ के संगत कट जैसी ही हैं। हमने लंबाई~$1$ का कोई महत्तम कट हटाया है;
+इसलिए या तो कट लंबाई कम हुई है, अथवा कट कोटि कम हुई है (यदि~$\delta$ की कट
+लंबाई~$1$ थी और यही एकमात्र महत्तम कट था)।
+
+किंतु दो बातें हो सकती हैं:
+\begin{enumerate}
+  \item सभी मान्यताओं $!B^x$ को $\delta_3$ से बदलने पर हमने~$\delta_3$ के
+  सभी कटों की प्रतियाँ बढ़ा दी हैं। यदि उनमें से कुछ महत्तम कट थे, तो नए
+  !!{proof} की कट लंबाई पुराने !!{proof} की कट लंबाई से अधिक हो सकती है। हमें
+  इसकी रोकथाम सुनिश्चित करनी है। इसके लिए अपचयन रूपांतरण केवल \emph{सबसे
+  दाएँ} महत्तम कटों पर लगाते हैं; अर्थात् ऐसे कटों पर जिनसे दाईं ओर~$\delta$
+  से गुजरती किसी शाखा पर कोई महत्तम कट न हो। यदि~$\delta_3$ में कोई कट होता,
+  तो वह यहाँ अपचयित किए जा रहे कट के दाईं ओर होता और हम सबसे दाएँ कट पर काम
+  नहीं कर रहे होते। सदा सबसे दाएँ कट चुनकर हम सुनिश्चित करते हैं कि या तो
+  !!{proof} की कट लंबाई घटेगी, या कट कोटि भी घट जाएगी।
+  \item यदि $\delta_2$ की कोई मान्यता $!B^x$ किसी !!a{elimination} अनुमान का
+  मुख्य आधार-वाक्य है, और~$\delta_3$ का अंतिम अनुमान \Elim{\lor},
+  \Elim{\lexists}, या कोई !!a{introduction} अनुमान है, तो ऐसी मान्यता पर
+  ~ $\delta_3$ को $\delta_2$ में कलम करके हमने नया कट बना दिया है। जो
+  ~ $\delta_2$ में केवल मान्यता थी वह अब लंबाई~$1$ का कट
+  (!!a{introduction} अनुमान का निष्कर्ष और !!a{elimination} अनुमान का मुख्य
+  आधार-वाक्य), अथवा किसी कट खंड की अंतिम !!{formula}-आवृत्ति
+  (!!a{elimination} अनुमान का मुख्य आधार-वाक्य और~\Elim{\lor} या
+  \Elim{\lexists} का निष्कर्ष) है। यदि $B^x$, \Elim{\lor} या
+  \Elim{\lexists} का गौण आधार-वाक्य था, तो वह पहले से किसी खंड, और संभवतः कट
+  खंड, की पहली !!{formula}-आवृत्ति था। नए !!{proof} में वह खंड अब अधिक लंबा
+  हो सकता है। किंतु ध्यान दें कि इस नए कट या विद्यमान कट खंड को बनाने वाला
+  !!{formula}~$!B$ है और $\depth{!B} < \depth{!B \lif !C}$। अतः यद्यपि हमने
+  संभवतः कट जोड़े या उनकी लंबाई बढ़ाई है, इनमें से कोई महत्तम कट नहीं है।
+  इसलिए या तो कट कोटि घटी है, या समान कोटि के कट शेष हों तो कट लंबाई घटी है।
+\end{enumerate}
+
+लंबाई~$1$ के कट के अपचयन की प्रक्रिया को \emph{अपचयन रूपांतरण} (या
+\emph{चक्कर रूपांतरण}) कहते हैं। कुछ नियम-युग्मों के प्रतिरूप
+\olref{tab:reduction-conversions} में दिए गए हैं। (शेष अभ्यास के लिए छोड़े गए
+हैं।)
+
+\begin{table}
+\begin{multline*}
+\bottomAlignProof
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!C$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\quad \longrightarrow\quad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_2}{\delta_3}{!B^x}$}
+\shortDeduce
+\DeduceC{$!C$}
+\DisplayProof}
+\\[4ex]
+\shoveleft{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\DisplayProof}\qquad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!C$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\DisplayProof}
+\\[4ex]
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{\Intro{\lor}[1]}
+\UnaryInfC{$!B \lor !C$}
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!D$}
+\AxiomC{$\Discharge{!C}{y}$}
+\RightLabel{$\delta_4$}
+\shortDeduce
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!D$}
+\DisplayProof
+\quad \longrightarrow\quad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_3}{\delta_2}{!B^x}$}
+\shortDeduce
+\DeduceC{$!D$}
+\DisplayProof}
+\\[2ex]
+\shoveleft{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(c)$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\Subst{\delta_2}{t}{c}$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\DisplayProof}
+\\[4ex]
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{x}$}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lexists}}{x}
+\BinaryInfC{$!D$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\RightLabel{$\Subst{\Subst{\delta_3}{t}{c}}{\delta_2}{!B(t)^x}$}
+\shortDeduce
+\DeduceC{$!D$}
+\DisplayProof}
+\end{multline*}
+\caption{\Log{N1i} के कुछ अपचयन रूपांतरण।}
+\ollabel{tab:reduction-conversions}
+\end{table}
+
+\begin{prob}
+\Intro{\lnot} के बाद आने वाले \Elim{\lnot} के लिए अपचयन रूपांतरण दीजिए।
+\end{prob}
+
+एक स्थिति पर अभी विचार शेष है। कट की परिभाषा में वह स्थिति भी है जहाँ कट की
+लंबाई~$1$ है और $!A$,~\FalseInt{} का निष्कर्ष तथा किसी !!a{elimination}
+अनुमान का मुख्य आधार-वाक्य दोनों है। इस स्थिति से उसी प्रकार निपटते हैं जैसे
+उस स्थिति से जिसमें $!A$ किसी !!a{introduction} नियम का निष्कर्ष हो। उदाहरणतः
+निम्न को बदलें
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\quad\text{से}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\UnaryInfC{$!C$}
+\DisplayProof
+\]
+उन स्थितियों में हमें थोड़ा सावधान रहना होगा जहाँ $!A \ident (!B \lor !C)$
+या $!A \ident \lexists[x][!B(x)]$। उदाहरणतः यदि हमने निम्न को
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B \lor !C$}
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!D$}
+\AxiomC{$\Discharge{!C}{x}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!D$}
+\RightLabel{\Elim{\lor}}
+\TrinaryInfC{$!D$}
+\DisplayProof
+\quad\text{से}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!D$}
+\DisplayProof
+\]
+बदला, तो हम कट !!{formula}~$!D$ वाला नया कट प्रस्तुत कर सकते हैं, और इसकी
+कोई गारंटी नहीं कि $\depth{!D} < \depth{!B \lor !C}$!{} इसलिए यहाँ भी हमें
+उसी प्रकार आगे बढ़ना चाहिए जैसे \Intro{\lor}/\Elim{\lor} अपचयन में बढ़े थे,
+और निम्न से बदलना चाहिए
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!D$}
+\DisplayProof
+\quad\text{अथवा}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!C$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!D$}
+\DisplayProof
+\]
+
+\end{document}

@@ -1,0 +1,236 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: midsequent
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{cut}{mid}
+
+\olsection{मध्य-अनुक्रम प्रमेय और हेरब्रांड प्रमेय}
+
+कट-विलोपन प्रमेय का एक महत्त्वपूर्ण परिणाम मध्य-अनुक्रम प्रमेय है। यह कहता है
+कि यदि~$\Gamma \Sequent \Delta$ का ऐसा !!a{proof}~$\pi$ है जिसमें प्रत्येक
+!!{formula} पूर्वबंध रूप में है, तो ऐसा !!a{proof}~$\pi'$ है जिसमें कोई अनुक्रम
+$S \ident \Pi \Sequent \Lambda$ (जिसे \emph{मध्य-अनुक्रम} कहते हैं) है और
+~$\pi'$ में $S$ के ऊपर के सभी अनुमान प्रतिज्ञप्तिपरक तथा~$S$ के नीचे के सभी
+अनुमान परिमाणक अनुमान हैं। (!!^a{formula}~$!A$ \emph{पूर्वबंध} (या
+\emph{पूर्वबंध रूप में}) है यदि उसका रूप
+\[\mathsf{Q}_1x_1\dots\mathsf{Q}_nx_n\,!B(x_1,\dots,x_n)\] है, जहाँ प्रत्येक
+$\mathsf{Q}_i$ या तो $\lforall$ या~$\lexists$ है।) मध्य-अनुक्रम प्रमेय का एक
+महत्त्वपूर्ण परिणाम हेरब्रांड प्रमेय है। उसकी सामान्य स्थिति का वर्णन कुछ
+कठिन है, पर बहुत व्यापक रूप में वह यह कहता है: प्रथम-कोटि तर्क के प्रत्येक
+!!{provable} !!{sentence}~$!A$ के लिए कोई प्रतिज्ञप्तिपरक सर्वतासत्य~$!A'$ है
+जिससे $!A$ को !!{prove} किया जा सकता है। यहाँ उस स्थिति का रूप है जहाँ
+!!{sentence}~$\lexists[x][!B(x)]$ है और $!B$ परिमाणक-मुक्त है:
+
+\begin{thm}[हेरब्रांड प्रमेय]
+मान लें $!B(x)$ परिमाणक-मुक्त है और $\Proves \lexists[x][!B(x)]$। तब ऐसे
+पद~$t_1$, \dots, $t_n$ हैं कि $\Proves !B(t_1) \lor \dots \lor !B(t_n)$।
+\end{thm}
+
+!!{formula}~$!B(t_1) \lor \dots \lor !B(t_n)$ को~$\lexists[x][!B(x)]$ का
+\emph{हेरब्रांड विकल्प} कहते हैं। चूँकि $!B$ परिमाणक-मुक्त है, यह विकल्प भी
+परिमाणक-मुक्त है। अतः यदि वह !!{provable} है, तो वह किसी कट-मुक्त प्रमाण से,
+और फलतः केवल प्रतिज्ञप्तिपरक अनुमानों का उपयोग करने वाले !!a{proof} से,
+!!{provable} है। इसलिए वह सर्वतासत्य है।
+
+हेरब्रांड प्रमेय का कठिन भाग यह दिखाना है कि प्रत्येक !!{provable}
+!!{formula}~$\lexists[x][!B(x)]$ के लिए कोई हेरब्रांड विकल्प विद्यमान है।
+इसका विलोम—यदि $\lexists[x][!B(x)]$ का कोई हेरब्रांड विकल्प है तो वह
+सिद्ध-योग्य है—सरल है। वास्तव में हेरब्रांड विकल्प, $\lexists[x][!B(x)]$ को
+निगमित करता है। उदाहरणतः $n=2$ वाली स्थिति का~$\Log{G3c}$ में !!a{proof} यह
+है:
+\[
+\Axiom$!B(t_1) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\Axiom$!B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)], !B(t_2)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)]$
+\DisplayProof
+\]
+
+~$\Sequent \lexists[x][!B(x)]$ के !!a{proof}~$\pi$ से हेरब्रांड विकल्प निकालने
+के लिए उस स्थिति पर विचार करें जहाँ कट-मुक्त !!{proof}~$\pi$ के सभी
+$\RightR{\lexists}$ अनुमान अंत में हैं:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$ \fCenter \lexists[x][!B(x)], !B(t_1), \dots, !B(t_n)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \fCenter \lexists[x][!B(x)], !B(t_2), \dots, !B(t_n)$
+\RightLabel{$(n-1) \times \RightR{\lexists}$}
+\Deduce$ \fCenter \lexists[x][!B(x)]$
+\DisplayProof
+\]
+यदि ये~$\pi$ के वे सभी $\RightR{\lexists}$ अनुमान हैं जिनमें
+$\lexists[x][!B(x)]$ सक्रिय है, तो~$\pi_1'$ में कोई अन्य परिमाणक अनुमान नहीं
+है। कारण यह है कि $!B(x)$ में कोई अन्य परिमाणक नहीं और अंतिम अनुक्रम की बाईं
+ओर कोई !!{formula} नहीं है। दूसरे शब्दों में, $ \fCenter
+\lexists[x][!B(x)], !B(t_1), \dots, !B(t_n)$,~$\pi$ का मध्य-अनुक्रम है। इसके
+अतिरिक्त, मध्य-अनुक्रम के ऊपर कोई परिमाणक अनुमान न होने से उसके ऊपर के सभी
+अनुक्रमों में $\lexists[x][!B(x)]$ है, और ये न सक्रिय हैं न प्रमुख। अतः इन्हें
+!!{proof}~$\pi_1$ से हटाया जा सकता है; इससे~$\fCenter !B(t_1), \dots, !B(t_n)$
+का !!a{proof}, और $\RightR{\lor}$ के $n-1$ अनुप्रयोगों से हेरब्रांड विकल्प
+~$\Sequent !B(t_1) \lor \dots \lor !B(t_n)$ का !!a{proof}, मिलता है।
+
+समस्या यह है कि हम यह नहीं मान सकते कि $\Sequent \lexists[x][!B(x)]$ के
+कट-मुक्त !!{proof} में भी सभी \RightR{\lexists} अनुमान अंत में एक ही खंड में
+होंगे। इन \RightR{\lexists} अनुमानों के बीच ऐसे अनुमान हो सकते हैं जिनमें कोई
+$!B(t_i)$ प्रमुख हो। इसलिए मध्य-अनुक्रम प्रमेय की आवश्यकता पड़ती है।
+
+\begin{thm}[मध्य-अनुक्रम प्रमेय]\ollabel{thm:midsequent} यदि $\Gamma \Sequent
+  \Delta$ का कोई \Log{G3c}-!!{proof}~$\pi$ है जिसमें $\Gamma$ और $\Delta$ के
+  सभी !!{formula}s पूर्वबंध हैं, तो ऐसा !!a{proof}~$\pi'$ है जिसमें कोई अनुक्रम
+  $\Pi \Sequent \Lambda$ है और उसके नीचे के सभी अनुमान परिमाणक अनुमान तथा
+  उसके ऊपर के सभी अनुमान प्रतिज्ञप्तिपरक अनुमान हैं।
+\end{thm}
+
+\begin{proof}
+  ~ $\pi$ में किसी परिमाणक अनुमान की \emph{कोटि} उसके नीचे के
+  प्रतिज्ञप्तिपरक अनुमानों की संख्या, और $\pi$ की कोटि~$o(\pi)$ उसके सभी
+  परिमाणक अनुमानों की कोटियों का योग परिभाषित करें। यदि $o(\pi) = 0$, तो किसी
+  परिमाणक अनुमान के नीचे कोई प्रतिज्ञप्तिपरक अनुमान नहीं है और काम पूरा हुआ:
+  सभी परिमाणक अनुमानों का एक आधार-वाक्य होने से केवल एक सर्वोच्च परिमाणक
+  अनुमान है। उसका आधार-वाक्य मध्य-अनुक्रम है।
+
+  यदि $o(\pi) > 0$, तो कोटि $>0$ वाला कोई सबसे निचला परिमाणक अनुमान चुनें।
+  उसकी कोटि $>0$ होने से उसके नीचे कोई प्रतिज्ञप्तिपरक अनुमान अवश्य है। उसके
+  सबसे निचला होने से उसका निष्कर्ष किसी परिमाणक अनुमान का आधार-वाक्य नहीं हो
+  सकता: अन्यथा उस दूसरे, अधिक नीचे वाले परिमाणक अनुमान के नीचे भी कोई
+  प्रतिज्ञप्तिपरक अनुमान होता। हमारे पास कौन-सा परिमाणक अनुमान है और उसके नीचे
+  कौन-सा प्रतिज्ञप्तिपरक अनुमान है, इसके अनुसार हम (बहुत-सी!) स्थितियों में
+  भेद करते हैं। अंतिम अनुक्रम में केवल पूर्वबंध सूत्र होने के कारण परिमाणक
+  अनुमान का प्रमुख सूत्र अगले प्रतिज्ञप्तिपरक अनुमान में सक्रिय नहीं हो सकता।
+  अन्यथा उस अनुमान के प्रमुख सूत्र में किसी प्रतिज्ञप्तिपरक संयोजक के प्रभाव
+  क्षेत्र में परिमाणक होता। उप-!!{formula} गुण से उसे अंतिम अनुक्रम के किसी
+  !!{formula} का उप-!!{formula} होना पड़ता। अतः परिमाणक अनुमान का प्रमुख
+  !!{formula}, नीचे वाले प्रतिज्ञप्तिपरक अनुमान के प्रसंग का !!a{element} है।
+
+  ये दो उदाहरण हैं:
+
+पहले मान लें कोई $\RightR{\lforall}$, $\LeftR{\lif}$ के दाएँ आधार-वाक्य पर
+समाप्त होता है। तब~$\pi$ का संबंधित उप-!!{proof}, उप-!!{proof}~$\pi_1$ पर
+समाप्त होता है।
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lforall[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!C, \Gamma' \fCenter \Delta', !A(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
+\DisplayProof
+\]
+हम $\pi$ को नियमित मान सकते हैं, इसलिए आइगेनचर~$c$,~$\pi_3$ के बाहर नहीं आता;
+विशेषतः वह $!B \lif !C$ या~$\pi_2$ में नहीं आता। अब प्रमाण~$\pi_1'$ पर विचार
+करें:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c), !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c)$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], \lforall[x][!A(x)]$
+\DisplayProof
+\]
+जहाँ $\pi_2'$ को~$\pi_2$ से दाईं ओर~$!A(c)$ द्वारा दुर्बलीकरण करके प्राप्त
+किया जाता है। (इससे कोई अनुमान नहीं जुड़ता, विशेषतः ऐसा कोई परिमाणक अनुमान
+नहीं जो कोटि को प्रभावित कर सके। इससे~$\pi_2$ की किसी आइगेनचर-शर्त का उल्लंघन
+भी नहीं होता, क्योंकि~$!A(c)$ का कोई अचर~$\pi_2$ में आइगेनचर के रूप में
+प्रयुक्त नहीं है।) \RightR{\lforall} की आइगेनचर-शर्त अब भी पूरी है, क्योंकि
+$c$,~$!B \lif !C$ में नहीं आता।
+
+संकुचन की ग्राह्यता का आह्वान करके हम $!B \lif !C, \Gamma' \fCenter \Delta',
+\lforall[x][!A(x)]$ का !!a{proof}~$\pi_1''$ प्राप्त करते हैं।
+$\lforall[x][!A(x)]$ के लिए $\RightR{\Contraction}$ की ग्राह्यता के प्रमाण और
+उसमें प्रयुक्त $\RightR{\lforall}$ की उत्क्रमणीयता के प्रमाण ने किसी अनुमान की
+कोटि नहीं बदली: उसने अधिक-से-अधिक अनुमान हटाए। अतः~$\pi_1''$ में परिमाणक
+अनुमानों की संख्या~$\pi_1$ से अधिक नहीं है, और~$\pi_1''$ के प्रत्येक परिमाणक
+अनुमान के नीचे प्रतिज्ञप्तिपरक अनुमानों की संख्या~$\pi_1$ के संगत अनुमान जैसी
+है—केवल अंतिम \RightR{\lforall} को छोड़कर:~$\pi$ में उसके नीचे एक
+\LeftR{\lif} था, जिसे हमने~$\pi_1''$ में उसके ऊपर पहुँचा दिया है।~$\pi$ में
+$\pi_1$ को $\pi_1''$ से बदलें। परिणामी !!{proof} की कोटि कम है, क्योंकि
+कम-से-कम $\RightR{\lforall}$ अनुमान की कोटि (कम-से-कम)~$1$ घटी है। अब आगमन
+परिकल्पना लगाएँ।
+
+जहाँ परिमाणक अनुमान \RightR{\lexists} है वे स्थितियाँ और भी सरल हैं, क्योंकि
+न संकुचन चाहिए, न किसी आइगेनचर-शर्त की चिंता। उदाहरणतः मान लें
+$\RightR{\lexists}$ के बाद $\RightR{\land}$ आता है (इस बार बाएँ आधार-वाक्य के
+रूप में)। संबंधित उप-!!{proof} $\pi_1$ है:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+~$\pi$ में $\pi_1$ को $\pi_1'$ से बदलें:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B \land !C$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+जहाँ $\pi_3'$ को $\pi_3$ से दाईं ओर~$!A(t)$ द्वारा दुर्बलीकरण करके प्राप्त
+किया जाता है। इस दुर्बलीकरण में केवल~$\pi_3$ के प्रत्येक अनुक्रम की दाईं ओर
+$!A(t)$ जोड़ना है, इसलिए किसी परिमाणक अनुमान की कोटि नहीं बदलती।~$\pi'$ में
+परिमाणक अनुमानों की कोटियाँ~$\pi$ जैसी हैं, केवल~\RightR{\land} के साथ
+क्रम-विनिमय किए गए \RightR{\lexists} अनुमान की कोटि~$1$ घटी है। आगमन
+परिकल्पना लागू होती है।
+\end{proof}
+
+\begin{prob}
+\olref{thm:midsequent} के प्रमाण की उन स्थितियों का वर्णन करें जहाँ
+\LeftR{\lexists},~\RightR{\lif} के आधार-वाक्य पर समाप्त होता है, और जहाँ
+\LeftR{\lforall},~\LeftR{\lor} के बाएँ आधार-वाक्य पर समाप्त होता है।
+\end{prob}
+
+\begin{proof}[हेरब्रांड प्रमेय का प्रमाण]
+मान लें $\pi$, $\Sequent \lexists[x][!A(x)]$ पर समाप्त होता है।
+\olref{thm:midsequent} से हम $\pi$ को किसी मध्य-अनुक्रम~$S$ वाले
+!!a{proof}~$\pi'$ में बदल सकते हैं, जिसका रूप अवश्य \[\Sequent
+\lexists[x][!A(x)], !A(t_1), \dots, !A(t_n)\] है। चूँकि $S$ के ऊपर के सभी
+अनुमान प्रतिज्ञप्तिपरक हैं, $\lexists[x][!A(x)]$,~$S$ के ऊपर किसी अनुमान में
+प्रमुख नहीं हो सकता। परमाण्विक न होने से वह किसी अभिगृहीत में प्रमुख नहीं हो
+सकता। चूँकि $\lexists[x][!A(x)]$, $!A(t_1)$ का उचित उपसूत्र नहीं हो सकता (याद
+रखें कि $!A(x)$ परिमाणक-मुक्त है), वह~$S$ के ऊपर सक्रिय भी नहीं हो सकता। अतः
+~$S$ पर समाप्त होने वाले उप-!!{proof} से $\lexists[x][!A(x)]$ हटाने पर
+$\Sequent !A(t_1), \dots, !A(t_n)$ का सही !!{proof} मिलता है; उससे $n-1$
+\RightR{\lor} अनुमानों द्वारा $\Sequent !A(t_1) \lor \dots \lor !A(t_n)$ का
+!!a{proof} प्राप्त होता है।
+\end{proof}
+
+% \begin{prob}
+% Find a Herbrand disjunction of $\lexists[x][\lforall[y][(!A(x) \lif
+% !A(y))]]$ by finding a cut-free !!{proof} of $\Sequent
+% \lexists[x][\lforall[y][(!A(x) \lif !A(y))]]$ and applying the
+% transformation in \olref{thm:midsequent} to find a midsequent (if
+% necessary).
+% \end{prob}
+
+\end{document}

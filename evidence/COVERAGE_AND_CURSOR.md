@@ -1,30 +1,13 @@
-# Coverage and continuation cursor
+# वर्तमान कवरेज और continuation cursor
 
-This checkpoint contains exactly 158 accepted Hindi TeX files, enumerated with
-source and target byte counts and SHA-256 hashes in `ACCEPTED_FILES.csv`.
+- स्थिति: **संपूर्ण, वर्तमान A4 पाठक प्रकाशित**
+- जमी हुई स्रोत-संगत फ़ाइलें: **722/722 (100%)**
+- शेष अनूदित की जाने वाली फ़ाइलें: **0**
+- पाठक: 842 A4 पृष्ठ
+- PDF SHA-256: `DB3018D15BC9AA597A3DCC71495A9C3D7E7071272BDCCBA85C3205FF17E93BE0`
+- स्रोत कमिट: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
+- संस्करण DOI: <https://doi.org/10.5281/zenodo.21987019>
 
-Measured cumulative coverage:
-
-- frozen source denominator: 722 content TeX files
-- accepted source files: 158
-- accepted English source words: 59,955
-- cumulative reader: 211 pages, including 207 translated-content pages
-- whole-work completion: **false**
-- remaining source files: 564
-
-The reader covers accepted material in sets, relations, functions, size and
-infinity, arithmetization, propositional syntax and semantics, and first-order
-syntax, proof systems, sequent calculus, natural deduction, tableaux,
-axiomatic deduction, and completeness.
-
-Exact continuation tranche:
-
-- batch: `HI-OLP-SEM-CHAPTER-0001`
-- driver: `content/first-order-logic/syntax-and-semantics/semantics.tex`
-- import graph: eight TeX files
-- source TeXcount: 4,914
-- acceptance gate: one integrated compiled PDF, literal invariance, extraction,
-  embedded-font checks, 300-dpi rendering, and every-page visual QA
-
-Those eight working files are not present in `ACCEPTED_FILES.csv` and are not
-claimed by this release.
+कोई अगला translation cursor नहीं है। पुरानी 158/722 या 902-पृष्ठीय स्थिति
+वर्तमान नहीं है। `REFLOW_ACCEPTANCE_20260818.json` typesetting सीमा नियंत्रित
+करती है; 722/722 translation audit अलग संरक्षित है।

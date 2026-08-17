@@ -1,0 +1,170 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: combining-machines
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{mac}{cmb}
+\olsection{ट्यूरिंग मशीनों का संयोजन}
+
+\begin{explain}
+अब तक देखे गए ट्यूरिंग मशीनों के उदाहरण स्वभावतः अपेक्षाकृत सरल रहे
+हैं। किंतु वास्तव में आधुनिक प्रोग्रामन की किसी भी भाषा से हल की जा सकने
+वाली प्रत्येक समस्या ट्यूरिंग मशीनों से भी हल की जा सकती है। अधिक जटिल
+ट्यूरिंग मशीनें बनाने के लिए यह स्थापित करना महत्त्वपूर्ण है कि हम उनका
+संयोजन कर सकते हैं, ताकि प्रक्रिया को सरल भागों में बाँटकर अधिक जटिल
+समस्याएँ हल करने वाली मशीनें बना सकें। यदि किसी जटिल समस्या को उसके घटक
+भागों में बाँटने की स्वाभाविक रीति मिल जाए, तो कई सरल ट्यूरिंग मशीनें
+बनाकर और उन्हें समस्या हल करने वाली एक मशीन में मिलाकर समस्या को कई
+चरणों में हल किया जा सकता है। अगले अनुभाग में विराम समस्या पर काम करते
+समय यह बात विशेष रूप से महत्त्वपूर्ण होगी।
+
+ट्यूरिंग मशीनों $M = \tuple{Q, \Sigma, q_0, \delta}$ और
+~$M' = \tuple{Q', \Sigma', q_0', \delta'}$ का संयोजन कैसे करें? अब हम
+$M$ के रुकने के बाद पट्टी के विन्यास को मशीन~$M'$ की किसी क्रिया के आगत
+विन्यास के रूप में लेते हैं। यह करने वाली एकल ट्यूरिंग मशीन
+$M \frown M'$ पाने के लिए निम्न कार्य करें:
+\begin{enumerate}
+    \item $Q'$ की सभी अवस्थाओं को, जो~$M'$ की हैं, पुनः संख्या (या पुनः नाम) दें,
+    ताकि $M$ और~$M'$ की कोई अवस्था समान न हो
+    ($Q \cap Q' = \emptyset$)।
+    \item $M \frown M'$ की अवस्थाएँ $Q \cup Q'$ हैं।
+    \item पट्टी की वर्णमाला $\Sigma \cup \Sigma'$ है।
+    \item आरंभिक अवस्था~$q_0$ है।
+    \item संक्रमण फलन निम्न फलन $\delta''$ है:
+    \[\delta''(q,\sigma) =
+    \begin{cases}
+      \delta(q,\sigma) & \text{यदि $q \in Q$}\\
+      \delta'(q,\sigma) & \text{यदि $q \in Q'$}\\
+      \tuple{q_0', \sigma, \TMstay} & \text{यदि $q \in Q$ और
+      $\delta(q,\sigma)$ अपरिभाषित है}
+    \end{cases}\]
+\end{enumerate}
+परिणामी मशीन~$M$ के निर्देशों का उपयोग तब करती है जब वह अवस्था $q \in Q$
+में हो, और~$M'$ के निर्देशों का उपयोग तब करती है जब वह अवस्था~$q \in
+Q'$ में हो। जब वह अवस्था
+$q \in Q$ में है और ऐसा प्रतीक~$\sigma$ पढ़ रही है जिसके लिए $M$ में
+कोई संक्रमण नहीं है (अर्थात् $M$ रुक जाती), तब वह~$M'$ की आरंभिक अवस्था
+में प्रवेश करती है (और पट्टी की सामग्री तथा शीर्ष की स्थिति को यथावत्
+छोड़ती है)।
+
+ध्यान दें कि यदि मशीन~$M$ अनुशासित नहीं है, तो $M$ के रुकते समय हमें
+नहीं पता कि पट्टी का शीर्ष कहाँ है; अतः आवश्यक नहीं कि~$M$ के अंतिम
+विन्यास में शीर्ष खाना~$1$ पढ़ रहा हो। मशीनों का संयोजन करते समय इसे
+ध्यान में रखना महत्त्वपूर्ण है।
+\end{explain}
+
+\begin{ex}
+\emph{मशीनों का संयोजन:} हम ऐसी मशीन की अभिकल्पना करेंगे जो~$\TMstroke$
+के दो खंडों के आगत पर आरंभ हो, जिनकी लंबाइयाँ क्रमशः $n$ और~$m$ हों, और पट्टी
+पर $2(m+n)$ $\TMstroke$ के एकल खंड के साथ रुके। इस मशीन को बनाने के लिए
+हम दो परिचित मशीनों का संयोजन कर सकते हैं: योग मशीन और द्विगुणक। योग
+मशीन का अवस्था आरेख बनाकर आरंभ करें।
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+            edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge [loop above] node {\TMtrans{\TMstroke}{\TMblank}{\TMstay}} (C);
+\end{tikzpicture}
+\]
+अवस्था~$q_2$ में रुकने के स्थान पर निर्गत को दुगुना करने के लिए क्रिया
+जारी रखना चाहते हैं। याद करें कि द्विगुणक मशीन आगत का पहला आघात मिटाकर
+अलग निर्गत में दो आघात लिखती है। यह सुनिश्चित करने वाला निर्देश जोड़ें
+कि पट्टी का शीर्ष योग मशीन के निर्गत का पहला आघात पढ़ रहा हो।
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (E) [below left of=D] {$q_4$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+            edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+            edge node[left, xshift=-2mm] {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (E);
+\end{tikzpicture}
+\]
+अब आगत को दुगुना करना सरल है---हमें केवल द्विगुणक मशीन को अवस्था~$q_4$
+पर जोड़ना है। इसके लिए द्विगुणक मशीन की अवस्थाओं का पुनर्नामकरण करना
+होगा, ताकि वे~$q_4$ से आरंभ हों, न कि~$q_0$ से---इस प्रकार दो
+आरंभिक अवस्थाएँ नहीं बनेंगी। अंतिम आरेख \olref{fig:combined} जैसा दिखना
+चाहिए।
+\begin{figure}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (E) [below left of=D] {$q_4$};
+  \node[state]         (2) [right of=E] {$q_5$};
+  \node[state]         (3) [right of=2] {$q_6$};
+  \node[state]         (4) [below of=3] {$q_7$};
+  \node[state]         (5) [left of=4]  {$q_8$};
+  \node[state]         (6) [left of=5]  {$q_9$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+            edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+            edge node[left, xshift=-2mm] {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (E)
+    (E) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMright}} (2)
+    (2) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (2)
+      edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (3)
+    (3) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (3)
+        edge node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (4)
+    (4) edge [loop below] node {\TMtrans{\TMblank}{\TMstroke}{\TMleft}} (4)
+        edge node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+    (5) edge [loop below]  node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (6)
+    (6) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (6)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (E);
+\end{tikzpicture}
+\]
+\caption{योग और द्विगुणक मशीनों का संयोजन}
+\ollabel{fig:combined}
+\end{figure}
+\end{ex}
+
+\begin{prop}
+    यदि $M$ और $M'$ अनुशासित हैं और क्रमशः फलनों $f\colon
+    \Nat^k \to \Nat$ और $f'\colon \Nat \to \Nat$ को संगणित करती हैं,
+    तो $M \frown M'$ अनुशासित है और~$\comp{f}{f'}$ को संगणित करती है।
+\end{prop}
+
+\begin{proof}
+    चूँकि $M$ अनुशासित है, इसलिए जब वह निर्गत
+    ~$f(n_1,\dots,n_k) = m$ के साथ रुकती है, तब शीर्ष खाना~$1$ पढ़ रहा
+    होता है। अब यदि हम~$M'$ की आरंभिक अवस्था में प्रवेश करें, तो मशीन
+    निर्गत $f'(m)$ के साथ और फिर से खाना~$1$ पढ़ते हुए रुकेगी।
+    \olref[dis]{defn:disciplined} की अन्य शर्तें भी पूरी होती हैं।
+\end{proof}
+
+\begin{prob}
+    $f(x) = x+2$ संगणित करने के लिए मशीन~$M$ को
+    \cref{tur:mac:dis:prob:disc-succ} से लें और $M \frown M$ बनाएँ; इस
+    प्रकार प्राप्त अनुशासित ट्यूरिंग मशीन दें।
+\end{prob}
+\end{document}

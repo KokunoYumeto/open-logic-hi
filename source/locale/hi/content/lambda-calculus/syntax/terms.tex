@@ -1,0 +1,48 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{syn}{trm}
+\olsection{पद}
+
+लैम्ब्डा कलन के पद चरों $\Obj{v_0}$, $\Obj{v_1}$, \dots{} के अनंत भंडार,
+चिह्न~``$\lambd$'' और कोष्ठकों से आगमनतः बनाए जाते हैं। चरों को दर्शाने के
+लिए हम $x$, $y$, $z$, \dots{} और पदों को दर्शाने के लिए $M$, $N$, $P$,
+\dots{} उपयोग करेंगे।
+
+\begin{defn}[पद] \ollabel{defn:term}
+लैम्ब्डा कलन के \emph{पदों} का समुच्चय आगमनतः इस प्रकार परिभाषित होता है:
+\begin{enumerate}
+  \item \ollabel{defn:term-var} यदि $x$ कोई चर है, तो $x$ पद है।
+  \item \ollabel{defn:term-abs} यदि $x$ कोई चर और $M$ कोई पद है, तो
+    $(\lambd[x][M])$ पद है।
+  \item \ollabel{defn:term-app} यदि $M$ और $N$ दोनों पद हैं, तो $(MN)$ पद
+    है।
+\end{enumerate}
+\end{defn}
+
+यदि पद $(\lambd[x][M])$ को \olref{defn:term-abs} के अनुसार बनाया गया है,
+तो हम उसे किसी \emph{अमूर्तन} का परिणाम कहते हैं और $\lambd[x]$ में $x$ को
+\emph{!!{parameter}} कहते हैं। \olref{defn:term-app} के अनुसार बनाया गया
+पद $(MN)$ किसी \emph{अनुप्रयोग} का परिणाम है।
+
+ऊपर परिभाषित पदों में सभी कोष्ठक लिखे गए हैं। यह काफी बोझिल हो सकता है,
+जैसा पद $(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ दिखाता है। हम
+कोष्ठकों से बचने के कुछ नियम प्रस्तुत करेंगे। फिर भी, औपचारिक परिभाषा से
+यह निर्धारित करना सरल है कि \olref{defn:term} के अनुसार कोई पद कैसे बना
+है। उदाहरणार्थ, पद $(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ को
+बनाने का अंतिम चरण ऐसा अमूर्तन होना चाहिए जिसका !!{parameter}~$x$ है। यह
+पद $((\lambd[x][x])(\lambd[x][(xx)]))$ से अमूर्तन द्वारा मिलता है, और वह
+दो पदों का अनुप्रयोग है। उन दोनों पदों में से प्रत्येक स्वयं किसी अमूर्तन
+का परिणाम है, और इसी प्रकार आगे।
+
+\begin{prob}
+$(\lambd[g][(\lambd[x][(g (x x))])
+  (\lambd[x][(g (x x))])])$ का निर्माण वर्णित करें।
+\end{prob}
+
+\end{document}

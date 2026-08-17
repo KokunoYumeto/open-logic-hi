@@ -1,0 +1,46 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: extra-operators
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{aml}{tl}{ext}
+
+\olsection{कालिक तर्कशास्त्र के अतिरिक्त संकारक}
+
+अतीत और भविष्य के एकस्थानी संकारकों के अतिरिक्त, कालिक तर्कशास्त्रों में
+कभी-कभी द्विस्थानी संकारक $\Since $ और~$\Until$ भी होते हैं, जिनका आशय
+क्रमशः ``जब से'' और ``जब तक'' को व्यक्त करना है। इसके लिए कालिक तर्कशास्त्र
+की भाषा में $\Since $ और~$\Until$ को जोड़ना तथा कालिक !!{formula} की परिभाषा
+में निम्नलिखित उपवाक्य सम्मिलित करना पड़ता है:
+
+\begin{itemize}
+\item[] यदि $!A$ और $!B$ !!{formula} हैं, तो $(\Since  !A !B)$ और
+  $(\Until !A !B)$ भी !!{formula} हैं।
+\end{itemize}
+
+इन संकारकों का अर्थविज्ञान इस प्रकार दिया जाता है:
+
+\begin{defn}\ollabel{defn:since-until}
+  \emph{प्रतिरूप~$\mModel M$ में $t$ पर किसी !!a{formula}~$!A$ की सत्यता}:
+  \begin{enumerate}
+  \item\ollabel{defn:sub:mmodels-since} \indcase{!A}{\Since  !B
+    !C}{$\mSat{M}{\indfrm}[t]$ तभी और केवल तभी, जब किसी ऐसे $t' \in
+    T$ के लिए $\mSat{M}{!B}[t']$ हो जिसके लिए $t' \prec t$, और प्रत्येक ऐसे
+    $s$ के लिए जिसके लिए $t' \prec s \prec t$ हो,
+    $\mSat{M}{!C}[s]$ हो}
+   \item\ollabel{defn:sub:mmodels-until} \indcase{!A}{\Until !B
+    !C}{$\mSat{M}{\indfrm}[t]$ तभी और केवल तभी, जब किसी ऐसे $t' \in
+    T$ के लिए $\mSat{M}{!B}[t']$ हो जिसके लिए $t \prec t'$, और प्रत्येक ऐसे
+    $s$ के लिए जिसके लिए $t \prec s \prec t'$ हो,
+    $\mSat{M}{!C}[s]$ हो}
+  \end{enumerate} 
+\end{defn}
+
+$\Since !B !C$ का सहज पठन है, ``जब से $!B$ सत्य था, तब से $!C$ सत्य रहा
+है।'' और $\Until !B !C$ का सहज पठन है, ``$!B$ के सत्य होने तक $!C$ सत्य
+रहेगा।''
+
+\end{document}

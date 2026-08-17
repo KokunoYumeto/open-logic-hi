@@ -1,0 +1,103 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nor}{seg}
+
+\olsection{खंड और कट}
+
+!!^a{introduction} नियम के बाद आने वाला !!a{elimination} नियम किसी !!{proof}
+में चक्कर है, और किसी !!{proof} का प्रसामान्यीकरण ऐसे चक्करों को हटाना है।
+किंतु \Elim{\lor} और \Elim{\lexists}, ``जिस चक्कर को हम हटाना चाहते हैं'' की
+परिभाषा को भी कुछ जटिल बना देते हैं। समस्या यह है: इन नियमों के कारण यह
+निश्चित नहीं कि किसी चक्कर में !!{elimination} नियम, !!{introduction} नियम के
+\emph{तुरंत} बाद ही आए। बीच में \Elim{\lor} या \Elim{\lexists} हो सकता है,
+उदाहरणतः
+\[
+\AxiomC{}
+\DeduceC{$\lexists[x][!C(x)]$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lexists}}{y}
+\BinaryInfC{$!A \lif !B$}
+\AxiomC{}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+वास्तव में \Elim{\lor} या \Elim{\lexists} के कितने ही अनुप्रयोग
+\Intro{\lif} को \Elim{\lif} से अलग कर सकते हैं, उदाहरणतः
+\[
+\AxiomC{}
+\DeduceC{$\lexists[x][!C(x)]$}
+\AxiomC{}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\RightLabel{\Elim{\lor}}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lexists}}{y}
+\BinaryInfC{$!A \lif !B$}
+\AxiomC{}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+यह उदाहरण दिखाता है कि एक ही \Elim{\lif} अनेक चक्करों में सम्मिलित हो सकता
+है, क्योंकि वह एक से अधिक~\Intro{\lif} के बाद आता है। इन सभी संभावनाओं को
+समेटने के लिए हम किसी \Log{N1i}-प्रमाण में !!{formula} की आवृत्तियों के कुछ
+विशेष प्रकार के अनुक्रमों द्वारा चक्करों को परिभाषित करते हैं; इन्हें
+\emph{खंड} कहते हैं। हमारे उदाहरण में यह~$!A \lif !B$ की आवृत्तियों का ऐसा
+अनुक्रम है जिसमें $\Elim{\lor}$ या $\Elim{\lexists}$ का गौण आधार-वाक्य उसके
+निष्कर्ष के बाद आता है। उदाहरण में ऐसे दो खंड हैं, और प्रत्येक में~$!A \lif
+!B$ की तीन आवृत्तियाँ हैं। औपचारिक परिभाषा यह है।
+
+\begin{defn}
+किसी \Log{N1i} !!{proof}~$\delta$ में \emph{खंड}, उसी !!{formula}~$!A$ की
+आवृत्तियों $!A_1$, \dots, $!A_n$ का ऐसा अनुक्रम है जिसमें
+\begin{enumerate}
+  \item $!A_1$, \Elim{\lor} या \Elim{\lexists} का निष्कर्ष नहीं है;
+  \item $!A_n$, \Elim{\lor} या \Elim{\lexists} का गौण आधार-वाक्य नहीं है;
+  \item $i = 1$, \dots,~$n-1$ के लिए $!A_i$, \Elim{\lor} या
+  \Elim{\lexists} का गौण आधार-वाक्य और $A_{i+1}$ उस अनुमान का निष्कर्ष है।
+\end{enumerate}
+उस खंड की \emph{लंबाई}~$n$ है।
+\end{defn}
+
+हर खंड विलोपन का लक्ष्य (चक्कर) नहीं होता। जो होते हैं उन्हें \emph{कट} कहते
+हैं।
+
+\begin{defn}
+\emph{कट} ऐसा खंड है जिसमें $!A_n$ किसी !!a{elimination} अनुमान का मुख्य
+आधार-वाक्य हो, और या तो $n=1$ तथा $!A_1 = !A_n$ किसी !!a{introduction}
+अनुमान या~\FalseInt का निष्कर्ष हो, अथवा~$n>1$ हो।
+\end{defn}
+
+ध्यान दें कि कट खंड का !!a{introduction} नियम के निष्कर्ष से आरंभ होना आवश्यक
+नहीं है। केवल यह आवश्यक है कि वह किसी !!a{elimination} नियम के मुख्य
+आधार-वाक्य पर समाप्त हो। किंतु लंबाई~$1$ के खंड को कट मानने के लिए उसका
+!!{introduction} नियम का निष्कर्ष होना आवश्यक है।
+
+\begin{defn}
+किसी कट की \emph{कोटि}~$\depth{!A}$ है। किसी !!{proof}~$\delta$ की
+\emph{कट कोटि}~$\cutrank{\delta}$,~$\delta$ के कटों की अधिकतम कोटि है। कोई
+कट~$\delta$ में \emph{महत्तम} है यदि उसकी कोटि~$\cutrank{\delta}$ है, अर्थात्
+उसकी कोटि अधिकतम है।~$\delta$ की \emph{कट लंबाई} उसके सभी महत्तम कटों की
+लंबाइयों का योग है।
+\end{defn}
+
+\end{document}

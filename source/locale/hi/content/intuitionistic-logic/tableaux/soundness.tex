@@ -1,0 +1,209 @@
+% Part: intuitionistic-logic
+% Chapter: tableaux
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{tab}{sou}
+
+\olsection{अंतःप्रज्ञावादी \usetoken{P}{tableau} की यथार्थता}
+
+\begin{explain}
+  अंतःप्रज्ञावादी !!{tableau} को यथार्थ दिखाने के लिए हमें दिखाना होगा कि यदि
+  \[
+  \sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1], \sFmla{\False}{!A}[1]
+  \]
+  का कोई संवृत !!{tableau} है, तो $!B_1, \dots, !B_n \Entails !A$। इसका
+  प्रतिधनात्मक रूप सिद्ध करना सरल है: यदि किसी $\mModel{M}$ और जगत~$w$ के
+  लिए सभी $i=1$, \dots,~$n$ हेतु $\mSat{M}{!B_i}[w]$, किंतु
+  $\mSat{M}{!A}[w]$, तो कोई !!{tableau} संवृत नहीं हो सकता। ऐसा प्रतिप्रतिरूप
+  दिखाता है कि !!{tableau} की आरंभिक मान्यताएँ संतोषणीय हैं। प्रमाण की रणनीति
+  यह दिखाना है कि जब भी किसी !!{tableau} शाखा के सभी उपसर्गयुक्त !!{formula}
+  संतोषणीय हों, तब किसी नियम का प्रयोग कम-से-कम एक ऐसी विस्तृत शाखा देता है
+  जो संतोषणीय भी है। चूँकि संवृत शाखाएँ असंतोषणीय हैं, उपसर्गयुक्त !!{formula}ों
+  के संतोषणीय समुच्चय के किसी भी !!{tableau} में कम-से-कम एक खुली शाखा अवश्य
+  होगी।
+
+  मोडल मामले में इस रणनीति को लागू करने के लिए हमें ``संतोषणीय'' की अपनी
+  परिभाषा को संबंधों और उपसर्गों तक विस्तृत करना होगा। ऐसा कर लेने पर प्रमाण
+  सीधा है।
+\end{explain}
+
+\begin{defn}
+  मान लें $P$ उपसर्गों का कोई समुच्चय है; अर्थात
+  $P \subseteq (\PosInt)^* \setminus \{\emptyseq\}$, और $\mModel{M}$ कोई
+  प्रतिरूप है। कोई फलन~$f\colon P \to W$,~$\mModel{M}$ में~$P$ की
+  \emph{व्याख्या} है, यदि जब भी $\sigma$ और $\sigma.n$ दोनों~$P$ में हों,
+  तब $Rf(\sigma)f(\sigma.n)$।
+
+  उपसर्गों~$P$ की किसी व्याख्या के सापेक्ष हम परिभाषित कर सकते हैं:
+  \begin{enumerate}
+  \item $\mModel{M}$, $\sFmla{\True}{!A}[\sigma]$ को तभी संतुष्ट करता है
+    जब $\mSat{M}{!A}[f(\sigma)]$।
+  \item $\mModel{M}$, $\sFmla{\False}{!A}[\sigma]$ को तभी संतुष्ट करता है
+    जब $\mSat/{M}{!A}[f(\sigma)]$।
+  \end{enumerate}
+\end{defn}
+
+ध्यान दें कि चूँकि $R$ स्वपरावर्ती और संक्रमणशील है तथा $\sigma.{*}$,
+$\sigma$, $\sigma.n_1$, $\sigma.n_1.n_2$, \dots को दर्शाता है, इसलिए
+$Rf(\sigma)f(\sigma.{*})$ भी।
+
+\begin{defn}
+  मान लें कि $\Gamma$ उपसर्गयुक्त !!{formula}ों का समुच्चय है और $P(\Gamma)$
+  उसमें आने वाले उपसर्गों का समुच्चय है। यदि $f$,~$\mModel{M}$ में
+  ~$P(\Gamma)$ की व्याख्या है, तो हम कहते हैं कि $\mModel{M}$,~$f$ के
+  सापेक्ष $\Gamma$ को संतुष्ट करता है, $\mSat{M}{\Gamma}[f]$, यदि
+  $\mModel{M}$,~$f$ के सापेक्ष~$\Gamma$ के प्रत्येक उपसर्गयुक्त !!{formula}
+  को संतुष्ट करता है। $\Gamma$ \emph{संतोषणीय} है, तभी जब कोई
+  प्रतिरूप~$\mModel{M}$ और $P(\Gamma)$ की कोई व्याख्या~$f$ ऐसी हो कि
+  $\mSat{M}{\Gamma}[f]$।
+\end{defn}
+
+\begin{prop}
+  यदि $\Gamma$ में किसी !!{formula}~$!A$ और उपसर्ग~$\sigma$ के लिए
+  $\sFmla{\True}{!A}[\sigma]$ तथा
+  $\sFmla{\False}{!A}[\sigma.{*}]$ दोनों हों, अथवा उसमें
+  $\sFmla{\True}{\lfalse}[\sigma]$ हो, तो $\Gamma$ असंतोषणीय है।
+\end{prop}
+
+\begin{proof}
+  चूँकि सदैव $\mSat/{M}{\lfalse}[f(\sigma)]$, इसलिए
+  $\sFmla{\True}{\lfalse}$ वाला कोई $\Gamma$ असंतोषणीय है।
+
+  ऐसा कोई प्रतिरूप~$\mModel{M}$ और $P(\Gamma)$ की व्याख्या~$f$ भी नहीं हो
+  सकती कि दोनों सत्य हों। यदि $\mSat{M}{!A}[f(\sigma)]$, तो
+  \olref[sem][rel]{prop:true-monotonic} से, चूँकि
+  $Rf(\sigma)(\sigma.{*})$, $\mSat{M}{!A}[f(\sigma)]$। अतः
+  $\mSat{M}{!A}[f(\sigma)]$ और
+  $\mSat/{M}{!A}[f(\sigma.{*})]$ दोनों नहीं हो सकते।
+\end{proof}
+
+\begin{thm}[यथार्थता]
+  \ollabel{thm:tableau-soundness}
+  यदि $\Gamma$ का कोई संवृत !!{tableau} है, तो $\Gamma$ असंतोषणीय है।
+\end{thm}
+
+\begin{proof}
+हम किसी !!{tableau} की शाखा को संतोषणीय तभी कहते हैं जब उस पर स्थित
+!!{signed formula}ों का समुच्चय संतोषणीय हो; और किसी !!{tableau} को संतोषणीय
+तब कहते हैं जब उसमें कम-से-कम एक संतोषणीय शाखा हो।
+
+हम निम्न बात दिखाते हैं: किसी संतोषणीय !!{tableau} को अनुमान के किसी नियम से
+विस्तृत करने पर सदैव संतोषणीय !!{tableau} मिलता है। इससे प्रमेय सिद्ध होगा:
+कोई भी संवृत !!{tableau}, केवल~$\Gamma$ की मान्यताओं वाले !!{tableau} पर
+अनुमान-नियम लगाकर मिलता है। अतः यदि $\Gamma$ संतोषणीय होता, तो उसका प्रत्येक
+!!{tableau} संतोषणीय होता। किंतु संवृत !!{tableau} स्पष्टतः संतोषणीय नहीं है,
+क्योंकि उसकी सभी शाखाएँ संवृत हैं और संवृत शाखाएँ असंतोषणीय हैं।
+
+मान लें हमारे पास कोई संतोषणीय !!{tableau}, अर्थात कम-से-कम एक संतोषणीय शाखा
+वाला !!{tableau}, है। अनुमान-नियम लगाने पर या तो किसी शाखा में !!{signed formula} जुड़ते हैं, अथवा शाखा दो भागों में विभक्त होती है। यदि !!{tableau} में
+कोई संतोषणीय शाखा ऐसी है जिसे संबंधित नियम-प्रयोग विस्तृत नहीं करता, तो वह
+विस्तृत !!{tableau} में संतोषणीय बनी रहती है; अतः विस्तृत टैब्लो संतोषणीय है।
+इसलिए हमें केवल उस मामले पर विचार करना है जिसमें नियम किसी संतोषणीय शाखा पर
+लगाया जाता है।
+
+उस शाखा के !!{signed formula}ों का समुच्चय $\Gamma$ और जिस !!{signed formula}
+पर नियम लगाया जाता है उसे $\sFmla{S}{!A}[\sigma] \in \Gamma$ मानें। यदि
+नियम शाखा को विभक्त नहीं करता, तो हमें दिखाना है कि विस्तृत शाखा---अर्थात
+$\Gamma$ के साथ नियम के निष्कर्ष---अब भी संतोषणीय है। यदि नियम शाखा को
+विभक्त करता है, तो हमें दिखाना है कि परिणामी दोनों शाखाओं में कम-से-कम एक
+संतोषणीय है।
+\begin{enumerate}
+\item शाखा को $\sFmla{\True}{\lnot !B}[\sigma] \in \Gamma$ पर
+  $\TRule{\True}{\lnot}$ लगाकर विस्तृत किया जाता है। तब विस्तृत शाखा में
+  !!{signed formula} $\Gamma \cup
+  \{\sFmla{\False}{!B}[\sigma.{*}]\}$ हैं। मान लें
+  $\mSat{M}{\Gamma}[f]$। विशेषतः $\mSat{M}{\lnot !B}[f(\sigma)]$। अतः
+  $Rf(\sigma)w$ वाले किसी भी $w$ के लिए $\mSat/{M}{!B}[w]$, और इसमें
+  $f(\sigma.{*})$ भी आता है। इसलिए $\mModel{M}$,~$f$ के सापेक्ष
+  $\sFmla{\False}{!B}[\sigma.{*}]$ को संतुष्ट करता है।
+\item शाखा को $\sFmla{\False}{\lnot !B}[\sigma] \in \Gamma$ पर
+  $\TRule{\False}{\lnot}$ लगाकर विस्तृत किया जाता है: अभ्यास।
+\item शाखा को $\sFmla{\True}{!B \land !C}[\sigma] \in \Gamma$ पर
+  $\TRule{\True}{\land}$ लगाकर विस्तृत किया जाता है, जिससे शाखा पर दो नए
+  !!{signed formula} $\sFmla{\True}{!B}[\sigma]$ और
+  $\sFmla{\True}{!C}[\sigma]$ मिलते हैं। मान लें
+  $\mSat{M}{\Gamma}[f]$, विशेषतः
+  $\mSat{M}{!B \land !C}[f(\sigma)]$। तब
+  $\mSat{M}{!B}[f(\sigma)]$ और $\mSat{M}{!C}[f(\sigma)]$। इसका अर्थ है कि
+  $\mModel{M}$,~$f$ के सापेक्ष $\sFmla{\True}{!B}[\sigma]$ तथा
+  $\sFmla{\True}{!C}[\sigma]$ दोनों को संतुष्ट करता है।
+\item शाखा को $\sFmla{\False}{!B \lor !C} \in \Gamma$ पर
+  $\TRule{\False}{\lor}$ लगाकर विस्तृत किया जाता है: अभ्यास।
+\item शाखा को $\sFmla{\False}{!B \lif !C}[\sigma] \in \Gamma$ पर
+  $\TRule{\False}{\lif}$ लगाकर विस्तृत किया जाता है। इससे शाखा पर दो नए
+  !!{signed formula} $\sFmla{\True}{!B}[\sigma.n]$ और
+  $\sFmla{\False}{!C}[\sigma.n]$ मिलते हैं, जहाँ $\sigma.n$ शाखा पर नया
+  उपसर्ग है; अर्थात $\sigma.n \notin P(\Gamma)$।
+  
+  चूँकि $\Gamma$ संतोषणीय है, कोई $\mModel{M}$ और $P(\Gamma)$ की
+  व्याख्या~$f$ ऐसी है कि $\mSat{M}{\Gamma}[f]$, विशेषतः
+  $\mSat/{M}{!B \lif !C}[f(\sigma)]$। हमें दिखाना है कि
+  $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$ संतोषणीय है।
+  इसके लिए हम $P(\Gamma) \cup \{\sigma.n\}$ की व्याख्या इस प्रकार
+  परिभाषित करते हैं:
+  
+  चूँकि $\mSat/{M}{!B \lif !C}[f(\sigma)]$, कोई $w \in W$ ऐसा है कि
+  $Rf(\sigma)w$, $\mSat{M}{!B}[w]$ और $\mSat/{M}{!C}[w]$। $f'$ को $f$
+  जैसा लें, केवल $f'(\sigma.n) = w$। चूँकि $f'(\sigma) = f(\sigma)$ और
+  $Rf(\sigma)w$, इसलिए $Rf'(\sigma)f'(\sigma.n)$; अतः $f'$,
+  $P(\Gamma) \cup \{\sigma.n\}$ की व्याख्या है। स्पष्टतः
+  $\mSat{M}{!B}[f'(\sigma.n)]$ और $\mSat/{M}{!C}[f'(\sigma.n)]$। सभी
+  उपसर्गों $\sigma' \in P(\Gamma)$ के लिए
+  $f(\sigma') = f'(\sigma')$, अतः $\mSat{M}{\Gamma}[f']$। इसलिए
+  $\mModel{M}, f'$,
+  $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$ को संतुष्ट करता
+  है।
+\end{enumerate}
+अब दो पूर्वाधारों वाले संभावित अनुमानों पर विचार करें।
+\begin{enumerate}
+\item शाखा को $\sFmla{\False}{!B \land !C}[\sigma] \in \Gamma$ पर
+  $\TRule{\False}{\land}$ लगाकर विस्तृत किया जाता है। इससे दो शाखाएँ मिलती
+  हैं: बायीं शाखा $\sFmla{\False}{!B}[\sigma]$ से और दायीं शाखा
+  $\sFmla{\False}{!C}[\sigma]$ से आगे बढ़ती है। मान लें
+  $\mSat{M}{\Gamma}[f]$, विशेषतः
+  $\mSat/{M}{!B \land !C}[f(\sigma)]$। तब
+  $\mSat/{M}{!B}[f(\sigma)]$ या $\mSat/{M}{!C}[f(\sigma)]$। पहले मामले
+  में $\mModel{M}, f$, $\sFmla{\False}{!B}[\sigma]$ को संतुष्ट करता है;
+  अर्थात बायीं शाखा संतोषणीय है। दूसरे में $\mModel{M}, f$,
+  $\sFmla{\False}{!C}[\sigma]$ को संतुष्ट करता है; अर्थात दायीं शाखा
+  संतोषणीय है।
+\item शाखा को $\sFmla{\True}{!B \lor !C}[\sigma] \in \Gamma$ पर
+    $\TRule{\True}{\lor}$ लगाकर विस्तृत किया जाता है: अभ्यास।
+\item शाखा को $\sFmla{\True}{!B \lif !C}[\sigma] \in \Gamma$ पर
+    $\TRule{\True}{\lif}$ लगाकर विस्तृत किया जाता है: अभ्यास।
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref[int][tab][sou]{thm:tableau-soundness} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+यदि $\Gamma \Proves !A$, तो $\Gamma \Entails !A$।
+\end{cor}
+
+\begin{proof}
+  यदि $\Gamma \Proves !A$, तो किन्हीं $!B_1$, \dots, $!B_n \in \Gamma$
+  के लिए
+  $\Delta = \{\sFmla{\False}{!A}[1], \sFmla{\True}{!B_1}[1],
+  \dots, \sFmla{\True}{!B_n}[1]\}$ का कोई संवृत !!{tableau} है। हमें
+  $\Gamma \Entails !A$ दिखाना है। विपरीत मान लें; तब किसी $\mModel{M}$
+  और $w$ के लिए $i=1$, \dots,~$n$ हेतु $\mSat{M}{!B_i}[w]$, किंतु
+  $\mSat/{M}{!A}[w]$। $f(1) = w$ लें; तब $f$,~$\mModel{M}$ में
+  ~$P(\Delta)$ की व्याख्या है और $\mModel{M}$,~$f$ के सापेक्ष~$\Delta$ को
+  संतुष्ट करता है। किंतु \olref{thm:tableau-soundness} से $\Delta$
+  असंतोषणीय है, क्योंकि उसका संवृत !!{tableau} है---एक विरोधाभास। अतः अंततः
+  $\Gamma \Proves !A$ होना चाहिए।
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+यदि $\Proves !A$, तो $!A$ सभी प्रतिरूपों में सत्य है।
+\end{cor}
+
+\end{document}

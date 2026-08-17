@@ -1,0 +1,53 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: pairs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{ldf}{pai}
+\olsection{युग्म और पूर्ववर्ती}
+
+\begin{defn}
+$M$ और $N$ का युग्म (जिसे $\tuple{M,N}$ लिखते हैं) इस प्रकार परिभाषित है:
+\[
+\tuple{M,N} \ident \lambd[f][fMN].
+\]
+\end{defn}
+  
+सहज रूप से यह ऐसा फलन है जो किसी फलन को स्वीकार करके उसे युग्म के दोनों
+अवयवों पर लागू करता है। इसी विचार से हमारे पास यह निर्माता है, जो दो पद
+लेकर उन्हें समाहित करने वाला युग्म लौटाता है:
+\[
+  \fn{Pair} \ident \lambd[mn][\lambd[f][fmn]]
+\]
+कोई युग्म दिए होने पर हम उसके अवयव भी पुनः प्राप्त करना चाहते हैं। इसके
+लिए दो अभिगम फलन चाहिए, जो युग्म को तर्क के रूप में स्वीकार करके उसका पहला
+या दूसरा अवयव लौटाते हैं:
+\begin{align*}
+  \fn{Fst} & \ident \lambd[p][p(\lambd[mn][m])]\\
+  \fn{Snd} & \ident \lambd[p][p(\lambd[mn][n])]
+\end{align*}
+
+\begin{prob}
+  समझाएँ कि अभिगम फलन $\fn{Fst}$ और $\fn{Snd}$ क्यों काम करते हैं।
+\end{prob}
+
+अब युग्मों से हम पूर्ववर्ती फलन को !!{lambda define} कर सकते हैं:
+\[
+  \fn{Pred} \ident \lambd[n][\fn{Fst}(n (\lambd[p][\tuple{\fn{Snd}\, {p}, \fn{Succ}(\fn{Snd}\, {p})}]) \tuple{\num 0, \num 0})]
+\]
+स्मरण करें कि $\num n\, f x$ अपचयित होकर $f^{n}(x)$ बनता है; इस स्थिति
+में $f$ ऐसा फलन है जो कोई युग्म $p$ स्वीकार करके ऐसा नया युग्म लौटाता है
+जिसमें $p$ का दूसरा घटक और उस दूसरे घटक का उत्तरवर्ती होता है; $x$ युग्म
+$\tuple{0,0}$ है। अतः $n=0$ के लिए परिणाम $\tuple{0,0}$ और अन्यथा
+$\tuple{\num{n-1}, \num n}$ है। फिर $\fn{Pred}$ परिणाम का पहला घटक लौटाता
+है।
+
+व्यवकलन को $a$ पर $\fn{Pred}$ को $b$ बार लागू करके परिभाषित किया जा सकता है:
+\[
+\fn{Sub} \ident \lambd[ab][b \fn{Pred}\, a].
+\]
+    
+\end{document}

@@ -1,0 +1,69 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: minimization
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{ldf}{min}
+\olsection{न्यूनीकरण}
+
+सामान्य पुनरावर्ती फलन वे हैं जिन्हें मूल फलनों $\Zero$, $\Succ$,
+$\Proj{n}{i}$ से संयोजन, आदिम पुनरावर्तन और नियमित न्यूनीकरण द्वारा प्राप्त
+किया जा सकता है। सभी सामान्य पुनरावर्ती फलनों को !!{lambda definable}
+दिखाने के लिए हमें दिखाना होगा कि किसी !!a{lambda definable} फलन से नियमित
+न्यूनीकरण द्वारा परिभाषित कोई भी फलन स्वयं !!{lambda definable} है।
+
+\begin{lem}
+  \ollabel{lem:min} यदि $f(x_1, \dots, x_k, y)$ नियमित और !!{lambda
+  definable} है, तो निम्न द्वारा परिभाषित~$g$
+  \[
+  g(x_1, \dots, x_k) = \umin{y}{f(x_1,\dots,x_k, y) = 0}
+  \]
+  भी !!{lambda definable} है।
+\end{lem}
+
+\begin{proof}
+  मान लें लैम्ब्डा पद~$F$ नियमित फलन $f(\vec x, y)$ को $\lambda$-परिभाषित
+  करता है। $h$ को !!{lambda define} करने के लिए हम खोज-फलन और अचल-बिंदु
+  संयोजक उपयोग करते हैं:
+  \begin{align*}
+    \fn{Search} & \ident \lambd[g][\lambd[f\,\vec{x}\,y][
+        \fn{IsZero} (f\, \vec{x}\, y)\, y\, (g\, \vec{x} (\fn{Succ}\, y)]]\\
+    H & \ident \lambd[\vec x][(Y \, \fn{Search}) F\, \vec{x}\, \num{0}],
+  \end{align*}
+  जहाँ $Y$ कोई भी अचल-बिंदु संयोजक है। अनौपचारिक रूप से $\fn{Search}$
+  स्वसंदर्भी फलन है: ~$y$ से आरंभ करके जाँचता है कि $f\, \vec x\, y$
+  शून्य है या नहीं; यदि हाँ तो~$y$ लौटाता है, अन्यथा $\fn{Succ}\, y$ के
+  साथ स्वयं को पुकारता है। अतः $(Y \, \fn{Search}) F
+  \num{n_1}\dots\num{n_k}\,\num{0}$ वह न्यूनतम~$m$ लौटाता है जिसके लिए
+  $f(n_1, \dots, n_k, m) = 0$।
+  
+  विशेषतः ध्यान दें कि
+  \begin{align*}
+    (Y \, \fn{Search}) F \num{n_1}
+    \dots\num{n_k}\, \num{m} & \red \num{m}
+    \intertext{यदि $f(n_1, \dots,
+      n_k, m) = 0$, अथवा}
+    & \red (Y \, \fn{Search}) F\, \num{n_1} \dots\num{n_k}\, \num{m+1}
+    \intertext{अन्यथा। चूँकि $f$ नियमित है, किसी $y$ के लिए $f(n_1,
+      \dots, n_k, y) = 0$, और इसलिए}
+    (Y \, \fn{Search}) F \num{n_1} \dots\num{n_k}\,\num{0}
+    & \red \num{h(n_1, \dots, n_k)}.
+    \end{align*}
+\end{proof}
+
+
+\begin{prop}
+  प्रत्येक सामान्य पुनरावर्ती फलन !!{lambda definable} है।
+\end{prop}
+
+\begin{proof}
+ \olref[prf]{lem:basic} से सभी मूल फलन !!{lambda definable} हैं; और
+ \olref[prf]{lem:comp}, \olref[prf]{lem:prim} तथा \olref{lem:min} से
+ !!{lambda definable} फलन संयोजन, आदिम पुनरावर्तन और नियमित न्यूनीकरण के
+ अधीन संवृत हैं।
+\end{proof}
+
+\end{document}

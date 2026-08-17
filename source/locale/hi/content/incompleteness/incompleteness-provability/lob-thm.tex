@@ -1,0 +1,157 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: lob-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{inp}{lob}
+
+\olsection{लोब (L\"ob) का प्रमेय}
+
+किसी सिद्धांत~$\Th{T}$ का ग्योडेल (G\"odel) वाक्य
+$\lnot \OProv[\Th{T}](y)$ का कोई नियत-बिंदु है; अर्थात् ऐसा
+!!a{sentence}~$!G$ कि
+\[
+\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G.
+\]
+वह !!{derivable} नहीं है, क्योंकि यदि $\Th{T} \Proves !G$, तो (क)
+!!{derivability} प्रतिबंध~(1) से
+$\Th{T} \Proves \OProv[\Th{T}](\gn{!G})$, और (ख)
+$\Th{T} \Proves !G$ को
+$\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G$ के साथ मिलाने
+पर $\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})$ मिलता है; अतः
+$\Th{T}$ असंगत होगा। अब $\OProv[\Th{T}](y)$ के किसी नियत-बिंदु की स्थिति
+के बारे में पूछना स्वाभाविक है; अर्थात् ऐसे !!a{sentence}~$!H$ के बारे में
+कि
+\[
+\Th{T} \Proves \OProv[\Th{T}](\gn{!H}) \liff !H.
+\]
+यदि वह !!{derivable} होता, तो प्रतिबंध~(1) से
+$\Th{T} \Proves \OProv[\Th{T}](\gn{!H})$; किंतु ऊपर की समतुल्यता पर मोडस
+पोनेन्स लगाने से भी यही निष्कर्ष मिलता है। अतः कम-से-कम ग्योडेल (G\"odel) वाक्य वाले
+तर्क से यह निष्कर्ष नहीं मिलता कि $\Th{T}$ असंगत है। निस्संदेह इससे यह
+नहीं दिखता कि $\Th{T}$,~$!H$ को !!{derive} \emph{करता} है।
+
+प्रश्न को थोड़ा व्यापक बनाकर हम आगे बढ़ सकते हैं। नियत-बिंदु समतुल्यता की
+बाएँ-से-दाएँ दिशा $\OProv[\Th{T}](\gn{!H}) \lif !H$ एक सामान्य योजना का
+उदाहरण है, जिसे \emph{प्रतिबिंबन सिद्धांत} कहते हैं:
+$\OProv[\Th{T}](\gn{!A}) \lif !A$। इसका यह नाम इसलिए है कि एक अर्थ में यह
+व्यक्त करता है कि $\Th{T}$ अपनी !!{derive} कर सकने वाली बातों पर
+``प्रतिबिंबित'' कर सकता है; मूलतः वह किसी भी~$!A$ के लिए कहता है, ``यदि
+$\Th{T}$,~$!A$ को !!{derive} कर सकता है, तो~$!A$ सत्य है।'' निस्संदेह यह
+केवल सुदृढ़ सिद्धांतों के लिए सत्य है, और इससे संकेत मिलता है कि सिद्धांत
+सामान्यतः इसके प्रत्येक उदाहरण को !!{derive} नहीं करेंगे। तो कोई
+(पर्याप्त प्रबल और !!{derivability} प्रतिबंधों को संतुष्ट करने वाला)
+सिद्धांत कौन-से उदाहरण !!{derive} कर सकता है? निश्चिततः वे सभी जिनमें
+$!A$ स्वयं !!{derivable} है। और बस वही, जैसा अगला परिणाम दिखाता है।
+
+\begin{thm}\ollabel{thm:lob}
+$\Th{T}$,~$\Th{Q}$ का कोई !!a{axiomatizable} विस्तार हो, और मान लें
+$\OProv[\Th{T}](y)$ कोई ऐसा सूत्र है जो \olref[2in]{sec} के प्रतिबंध
+P1--P3 को संतुष्ट करता है। यदि $\Th{T}$,
+$\OProv[\Th{T}](\gn{!A}) \lif !A$ को !!{derive} करता है, तो वास्तव में
+$\Th{T}$,~$!A$ को !!{derive} करता है।
+\end{thm}
+
+भिन्न शब्दों में, यदि $\Th{T} \Proves/ !A$, तो
+$\Th{T} \Proves/ \OProv[\Th{T}](\gn{!A}) \lif !A$। यह परिणाम लोब (L\"ob)
+ का प्रमेय कहलाता है।
+
+\begin{explain}
+लोब (L\"ob) के प्रमेय के प्रमाण की मार्गदर्शक कल्पना सांता क्लॉज़ के
+अस्तित्व का एक चतुर प्रमाण है। (यदि आपको वह निष्कर्ष पसंद न हो, तो अपनी
+पसंद का कोई भी दूसरा निष्कर्ष रख सकते हैं।) प्रमाण यह है:
+\begin{enumerate}
+\item $X$ वह वाक्य हो, ``यदि $X$ सत्य है, तो सांता क्लॉज़ का अस्तित्व है।''
+\item मान लें $X$ सत्य है।
+\item तब उसकी कही हुई बात लागू होती है; अर्थात् हमारे पास है: यदि $X$ सत्य
+  है, तो सांता क्लॉज़ का अस्तित्व है।
+\item चूँकि हम $X$ को सत्य मान रहे हैं, (2) और~(3) से मोडस पोनेन्स द्वारा
+  निष्कर्ष निकाल सकते हैं कि सांता क्लॉज़ का अस्तित्व है।
+\item हम मान्यता~(2), ``$X$ सत्य है,'' से (4), ``सांता क्लॉज़ का अस्तित्व
+  है,'' व्युत्पन्न करने में सफल हुए हैं। सप्रतिबंध प्रमाण से हमने दिखाया:
+  ``यदि $X$ सत्य है, तो सांता क्लॉज़ का अस्तित्व है।''
+\item किंतु यह केवल वाक्य~$X$ है। अतः हमने दिखाया कि $X$ सत्य है।
+\item किंतु तब ऊपर के तर्क (2)--(4) से सांता क्लॉज़ का अस्तित्व है।
+\end{enumerate}
+इस विचार को औपचारिक बनाकर, ``सत्य है'' के स्थान पर ``!!{derivable} है'' और
+``सांता क्लॉज़ का अस्तित्व है'' के स्थान पर~$!A$ रखने से लोब (L\"ob) के
+प्रमेय का प्रमाण मिलता है। युक्ति है नियत-बिंदु उपपत्ति को
+!!{formula}~$\OProv[\Th{T}](y) \lif !A$ पर लागू करना। उसका नियत-बिंदु ऊपर
+की रूपरेखा के वाक्य~$X$ के संगत है।
+\end{explain}
+
+\begin{proof}[\olref{thm:lob} का प्रमाण]
+मान लें $!A$ ऐसा !!a{sentence} है कि $\Th{T}$,
+$\OProv[\Th{T}](\gn{!A}) \lif !A$ को !!{derive} करता है। $!B(y)$ को
+!!{formula}~$\OProv[\Th{T}](y) \lif !A$ मानें और नियत-बिंदु उपपत्ति का
+उपयोग करके कोई !!a{sentence}~$!D$ ऐसा पाएँ कि $\Th{T}$,
+$!D \liff !B(\gn{!D})$ को !!{derive} करता है। तब निम्न में से प्रत्येक
+$\Th{T}$ में !!{derivable} है:
+\begin{align}
+  & !D \liff (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-1}\\
+  & \qquad \text{$!D$,~$!B(y)$ का नियत-बिंदु है}\notag \\
+  & !D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-2}\\
+  & \qquad\text{\olref{L-1} से}\notag\\
+  & \OProv[\Th{T}](\gn{!D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A)}) \ollabel{L-3}\\
+  & \qquad \text{\olref{L-2} से, प्रतिबंध P1 द्वारा}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D}) \lif !A})
+  \ollabel{L-4}\\
+  &\qquad \text{\olref{L-3} से, प्रतिबंध P2 द्वारा}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \lif (\OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \lif \OProv[\Th{T}](\gn{!A})) \ollabel{L-5}\\
+  &\qquad \text{\olref{L-4} से, फिर P2 का उपयोग करके} \notag\\
+& \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \ollabel{L-6}\\
+  & \qquad\text{!!{derivability} प्रतिबंध P3 से} \notag\\
+  & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{!A}) \ollabel{L-7} \\
+  &\qquad\text{\olref{L-5} और \olref{L-6} से}\notag\\
+  & \OProv[\Th{T}](\gn{!A}) \lif !A \ollabel{L-8}\\
+  &\qquad\text{प्रमेय की मान्यता से} \notag\\
+  & \OProv[\Th{T}](\gn{!D}) \lif !A \ollabel{L-9}\\
+  &\qquad\text{\olref{L-7} और \olref{L-8} से}\notag\\
+  & (\OProv[\Th{T}](\gn{!D}) \lif !A) \lif !D \ollabel{L-10}\\
+  & \qquad \text{\olref{L-1} से}\notag \\
+  & !D \ollabel{L-11}\\
+  & \qquad\text{\olref{L-9} और \olref{L-10} से}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \ollabel{L-12}\\
+  & \qquad\text{\olref{L-11} से, प्रतिबंध~P1 द्वारा}\notag \\
+  & !A \qquad\qquad\text{\olref{L-8} और \olref{L-12} से।}\notag
+\end{align}
+\end{proof}
+
+लोब (L\"ob) का प्रमेय उपलब्ध होने पर द्वितीय अपूर्णता-प्रमेय का छोटा प्रमाण
+मिलता है (उन सिद्धांतों के लिए जिनमें प्रतिबंध P1--P3 को संतुष्ट करने वाला
+!!a{derivability} विधेय है): यदि
+$\Th{T} \Proves \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, तो
+$\Th{T} \Proves \lfalse$। यदि $\Th{T}$ संगत है, तो
+$\Th{T} \Proves/ \lfalse$। अतः
+$\Th{T} \Proves/ \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, अर्थात्
+$\Th{T} \Proves/ \OCon[\Th{T}]$। हम इसे यह दिखाने के लिए भी लागू कर
+सकते हैं कि $\OProv[\Th{T}](x)$ का नियत-बिंदु~$!H$,~!!{derivable} है।
+क्योंकि
+\begin{align*}
+  \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \liff !H\\
+  \intertext{और विशेषतः}
+    \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \lif !H,
+\end{align*}
+इसलिए लोब (L\"ob) के प्रमेय से $\Th{T} \Proves !H$।
+
+% Going in the other direction, for homework I
+% may ask you to work through a short proof of L\"ob's theorem, using
+% the second incompleteness theorem instead of the fixed-point lemma.
+
+\begin{prob}
+$\Th{T}$ कोई संगणनीयतः अभिगृहीतीकृत सिद्धांत हो और
+$\OProv[\Th{T}]$,~$\Th{T}$ का कोई !!a{derivability} विधेय हो। निम्न चार
+कथनों पर विचार करें:
+\begin{enumerate}
+\item यदि $T \Proves !A$, तो $T \Proves \OProv[\Th{T}](\gn{!A})$।
+\item $T \Proves !A \lif \OProv[\Th{T}](\gn{!A})$।
+\item यदि $T \Proves \OProv[\Th{T}](\gn{!A})$, तो $T \Proves !A$।
+\item $T \Proves \OProv[\Th{T}](\gn{!A}) \lif !A$।
+\end{enumerate}
+इनमें से प्रत्येक कथन किन प्रतिबंधों में सत्य है?
+\end{prob}
+
+\end{document}

@@ -1,0 +1,23 @@
+% Target-only standalone build wrapper for HI-OLP-0022.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen predecessor-section identity; the cumulative reader supplies its
+% native destination.
+\makeatletter
+\expandafter\def\csname r@sfr:set:pai:sec\endcsname
+  {{set.5}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:pai:sec@cref\endcsname
+  {{[section][5][0]set.5}{}{}{}{}}
+\makeatother
+% \jobname is useful build metadata but is not reader-facing Hindi.
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{कैंटर की आड़ी-तिरछी विधि}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{zig-zag}
+\end{document}

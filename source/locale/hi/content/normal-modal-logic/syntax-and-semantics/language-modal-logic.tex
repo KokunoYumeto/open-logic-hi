@@ -1,0 +1,106 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: language-modal-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{lan}
+
+\olsection{मूल मोडल तर्कशास्त्र की भाषा}
+
+\begin{defn}
+मोडल तर्कशास्त्र की मूल भाषा में निम्नलिखित होते हैं:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} का प्रतिज्ञप्तिक अचर~$\lfalse$।}{}
+  \tagitem{prvTrue}{!!{truth} का प्रतिज्ञप्तिक अचर~$\ltrue$।}{}
+  \item !!{propositional variable}ों का !!{denumerable} समुच्चय: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item प्रतिज्ञप्तिक संयोजक: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}।
+  \tagitem{prvBox}{मोडल संकारक $\Box$।}{}
+  \tagitem{prvDiamond}{मोडल संकारक $\Diamond$।}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+मूल मोडल भाषा की \emph{!!{formula}ें} आगमनात्मक रूप से इस प्रकार परिभाषित
+होती हैं:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ एक परमाण्विक !!{formula} है।}{}
+
+\tagitem{prvTrue}{$\ltrue$ एक परमाण्विक !!{formula} है।}{}
+
+\item प्रत्येक !!{propositional variable} $\Obj p_i$ एक (परमाण्विक) !!{formula} है।
+
+\tagitem{prvNot}{यदि $!A$ एक !!{formula} है, तो $\lnot !A$ एक
+  !!{formula} है।}{}
+
+\tagitem{prvAnd}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \land
+  !B)$ एक !!{formula} है।}{}
+
+\tagitem{prvOr}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lor !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvIf}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lif !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvIff}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \liff !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvBox}{यदि $!A$ एक !!{formula} है, तो $\Box !A$ एक
+  !!{formula} है।}{}
+
+\tagitem{prvDiamond}{यदि $!A$ एक !!{formula} है, तो $\Diamond !A$ एक
+  !!{formula} है।}{}
+
+\tagitem{limitClause}{इसके अतिरिक्त कुछ भी !!{formula} नहीं है।}{}
+\end{enumerate}
+\end{defn}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defBox,defDiamond}
+\begin{defn}
+परिभाषित संकारकों से निर्मित सूत्रों को इस प्रकार समझना है:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defBox,defDiamond}
+
+\tagitem{defTrue}{$\ltrue$ इसका संक्षिप्त रूप है:
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$,
+  किसी नियत परमाण्विक !!{formula}~$!A$ के लिए}.}{}
+
+\tagitem{defFalse}{$\lfalse$ इसका संक्षिप्त रूप है:
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$,
+  किसी नियत परमाण्विक !!{formula}~$!A$ के लिए}.}{}
+
+\tagitem{defNot}{$\lnot !A$, $!A \lif \lfalse$ का संक्षिप्त रूप है।}{}
+
+\tagitem{defOr}{$!A \lor !B$ इसका संक्षिप्त रूप है:
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$}.}{}
+
+\tagitem{defAnd}{$!A \land !B$ इसका संक्षिप्त रूप है:
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$}.}{}
+
+\tagitem{defIf}{$!A \lif !B$ इसका संक्षिप्त रूप है:
+  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$}.}{}
+
+\tagitem{defIff}{$!A \liff !B$, $(!A \lif !B) \land (!B
+  \lif !A)$ का संक्षिप्त रूप है।}{}
+
+\tagitem{defBox}{$\Box !A$, $\lnot\Diamond\lnot !A$ का संक्षिप्त रूप है।}{}
+
+\tagitem{defDiamond}{$\Diamond !A$, $\lnot\Box\lnot !A$ का संक्षिप्त रूप है।}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+यदि किसी !!{formula}~$!A$ में $\Box$ या $\Diamond$ नहीं आता, तो हम उसे
+\emph{मोडल-मुक्त} कहते हैं।
+
+\end{document}

@@ -1,0 +1,131 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: language-epistemic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{aml}{tl}{sem}
+
+\olsection{कालिक तर्कशास्त्र का अर्थविज्ञान}
+
+\begin{defn}
+कालिक तर्कशास्त्र की मूल भाषा में निम्नलिखित होते हैं:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} का प्रतिज्ञप्तिक अचर~$\lfalse$।}{}
+  \tagitem{prvTrue}{!!{truth} का प्रतिज्ञप्तिक अचर~$\ltrue$।}{}
+  \item !!{propositional variable}ों का !!{denumerable} समुच्चय: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item प्रतिज्ञप्तिक संयोजक: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}।
+  \item अतीत के संकारक $\Ptemp$ और $\Htemp$।
+  \item भविष्य के संकारक $\Ftemp$ और $\Gtemp$।
+\end{enumerate}
+\end{defn}
+
+आगे हम अन्य प्रकार के मोडल संकारक जोड़ने की संभावना पर चर्चा करेंगे।
+
+\begin{defn}
+कालिक भाषा की \emph{!!{formula}ें} आगमनात्मक रूप से इस प्रकार परिभाषित होती
+हैं:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ एक परमाण्विक !!{formula} है।}{}
+
+\tagitem{prvTrue}{$\ltrue$ एक परमाण्विक !!{formula} है।}{}
+
+\item प्रत्येक प्रतिज्ञप्तिक चर $\Obj p_i$ एक (परमाण्विक) !!{formula} है।
+
+\tagitem{prvNot}{यदि $!A$ एक !!{formula} है, तो $\lnot !A$ एक
+  !!{formula} है।}{}
+
+\tagitem{prvAnd}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \land
+  !B)$ एक !!{formula} है।}{}
+
+\tagitem{prvOr}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lor !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvIf}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lif !B)$
+  एक !!{formula} है।}{}
+
+\tagitem{prvIff}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \liff !B)$
+  एक !!{formula} है।}{}
+
+\item यदि $!A$ एक !!{formula} है, तो $\Ptemp !A$, $\Htemp !A$, $F !A$ और
+  $\Gtemp !A$ सभी !!{formula} हैं।
+
+\tagitem{limitClause}{इसके अतिरिक्त कुछ भी !!{formula} नहीं है।}{}
+\end{enumerate}
+\end{defn}
+
+अन्य प्रकार के आशयात्मक तर्कशास्त्रों की तरह कालिक तर्कशास्त्रों का अर्थविज्ञान
+भी संबंधात्मक प्रतिरूपों के द्वारा दिया जाता है।
+
+\begin{defn}
+  कालिक भाषा का \emph{प्रतिरूप} एक त्रिक
+  $\mModel{M} = \tuple{T, \prec, V}$ है, जहाँ
+  \begin{enumerate}
+  \item $T$ एक अरिक्त समुच्चय है, जिसके अवयव समय-बिंदु माने जाते हैं।
+  \item $\prec$, $T$ पर एक द्विपदी संबंध है।
+  \item $V$ ऐसा फलन है जो प्रत्येक !!{propositional variable}~$p$ को समय-बिंदुओं
+    का समुच्चय $V(p)$ देता है।
+  \end{enumerate}
+  जब $t \prec t'$ हो, तो हम कहते हैं कि $t$, $t'$ से \emph{पहले} है।
+  जब $t \in V(p)$ हो, तो हम कहते हैं कि $p$, $t$ पर \emph{सत्य} है।
+\end{defn}
+
+फिलहाल हम अपने पूर्वता-संबंध $\prec$ पर कोई शर्त नहीं लगाते। इसका अर्थ है
+कि अभी हमारे कालिक प्रतिरूपों की संरचना पर कोई प्रतिबंध नहीं है; अतः हमारे
+पास ऐसे प्रतिरूप हो सकते हैं जिनमें समय रैखिक, शाखित, चक्रीय अथवा किसी भी
+अन्य संरचना वाला हो।
+
+सामान्य मोडल तर्कशास्त्र की ही तरह प्रत्येक कालिक प्रतिरूप निर्धारित करता
+है कि उसमें कौन-से !!{formula} किन बिंदुओं पर सत्य माने जाते हैं। संबंधात्मक
+अर्थविज्ञान की मूल धारणा के लिए हम वही संकेत-पद्धति---``प्रतिरूप
+$\mModel{M}$, !!{formula}~$!A$ को बिंदु~$t$ पर सत्य बनाता है''---अपनाते हैं।
+यह संबंध आगमनात्मक रूप से परिभाषित होता है और सभी गैर-मोडल संकारकों के लिए
+सामान्य मोडल मामले के समान है।
+
+\begin{defn}\ollabel{defn:tmodels}
+  किसी $\mModel M$ में \emph{!!{formula}~$!A$ की $t$ पर सत्यता}, जिसे
+  $\mSat{M}{!A}[t]$ से लिखते हैं, आगमनात्मक रूप से इस प्रकार परिभाषित है:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[t]$ कभी नहीं।}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[t]$ सदैव।}}{}
+  \item $\mSat{M}{p}[t]$ तभी जब $t \in V(p)$।
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $\mSat/{M}{!B}[t]$।}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $\mSat{M}{!B}[t]$ और $\mSat{M}{!C}[t]$।}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $\mSat{M}{!B}[t]$ या $\mSat{M}{!C}[t]$} (या दोनों)।}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $\mSat/{M}{!B}[t]$ या $\mSat{M}{!C}[t]$।}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    या तो $\mSat{M}{!B}[t]$ और $\mSat{M}{!C}[t]$ दोनों, या
+    न $\mSat{M}{!B}[t]$ न $\mSat{M}{!C}[t]$।}}{}
+  \item\ollabel{defn:sub:mmodels-p}
+    \indcase{!A}{\Ptemp  !B}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $t' \prec t$ वाले किसी $t' \in T$ के लिए $\mSat{M}{!B}[t']$।}
+\item\ollabel{defn:sub:mmodels-h}
+    \indcase{!A}{\Htemp  !B}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $t' \prec t$ वाले प्रत्येक $t' \in T$ के लिए $\mSat{M}{!B}[t']$।}
+   \item\ollabel{defn:sub:mmodels-f}
+    \indcase{!A}{\Ftemp  !B}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $t \prec t'$ वाले किसी $t' \in T$ के लिए $\mSat{M}{!B}[t']$।}
+\item\ollabel{defn:sub:mmodels-g}
+    \indcase{!A}{\Gtemp  !B}{$\mSat{M}{\indfrm}[t]$ तभी जब
+    $t \prec t'$ वाले प्रत्येक $t' \in T$ के लिए $\mSat{M}{!B}[t']$।}
+  \end{enumerate} 
+\end{defn}
+
+अर्थविज्ञान से देखा जा सकता है कि संकारक $\Ptemp$ और~$\Htemp$ एक-दूसरे के
+द्वैत हैं, और इसी प्रकार $\Ftemp$ तथा $\Gtemp$ भी। अतः हम $\Htemp !A$ को
+$\lnot \Ptemp \lnot !A$ से परिभाषित कर सकते थे, और $\Gtemp$ को भी
+$\Ftemp$ के द्वारा इसी तरह परिभाषित कर सकते थे।
+
+\end{document}

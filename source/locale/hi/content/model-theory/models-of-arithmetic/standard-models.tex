@@ -1,0 +1,191 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: standard-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{mar}{stm}
+\olsection{अंकगणित के मानक प्रतिरूप}
+
+अंकगणित की भाषा~$\Lang{L_A}$ स्पष्टतः संख्याओं के बारे में, और विशेष रूप से
+प्राकृत संख्याओं के बारे में, बात करने के लिए बनाई गई है। इसलिए “वह” मानक
+प्रतिरूप~$\Struct{N}$ विशेष है: हम इसी प्रतिरूप के बारे में बात करना चाहते
+हैं। किंतु तर्कशास्त्र में प्रायः हमारी रुचि केवल संरचनात्मक गुणों में होती है,
+और कोई भी दो समरूपी !!{structure}s उन गुणों को साझा करती हैं। अतः हम थोड़ा
+उदार होकर~$\Struct{N}$ की समरूपी किसी भी !!{structure} को “मानक” मान सकते
+हैं।
+
+\begin{defn}
+$\Lang{L_A}$ की कोई !!{structure} \emph{मानक} है, यदि वह~$\Struct{N}$ की
+समरूपी है।
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:standard-domain} यदि !!a{structure}~$\Struct{M}$ मानक है, तो
+उसका प्रांत मानक संख्यांकों के मानों का समुच्चय है, अर्थात्
+\[
+\Domain{M} = \Setabs{\Value{\num{n}}{M}}{n \in \Nat}
+\]
+\end{prop}
+
+\begin{proof}
+स्पष्टतः प्रत्येक $\Value{\num{n}}{M} \in \Domain{M}$ है। हमें केवल यह
+दिखाना है कि प्रत्येक $x \in \Domain{M}$, $\Value{\num{n}}{M}$ के बराबर है
+किसी~$n$ के लिए। चूँकि $\Struct{M}$ मानक है, वह
+~$\Struct{N}$ की समरूपी है। मान लें कि $g\colon \Nat \to \Domain{M}$
+एक समरूपता है। तब $g(n) = g(\Value{\num{n}}{N}) =
+\Value{\num{n}}{M}$। किंतु प्रत्येक $x \in \Domain{M}$ के लिए कोई
+$n
+\in \Nat$ ऐसा है कि $g(n) = x$, क्योंकि $g$ !!{surjective} है।
+\end{proof}
+
+\begin{explain}
+यदि कोई संरचना~$\Struct{M}$,~$\Lang{L_A}$ के लिए मानक है, तो उसके
+!!{domain} के
+सभी अवयवों को मानक संख्यांकों $\num{0}$, $\num{1}$, $\num{2}$, \dots,
+अर्थात् पदों $\Obj{0}$, $\Obj{0}'$, $\Obj{0}''$ इत्यादि से नाम दिया जा
+सकता है। निस्संदेह, इसका अर्थ यह नहीं कि $\Domain{M}$ के !!{element}s स्वयं
+संख्याएँ \emph{हैं}; केवल इतना कि हम उन्हें उसी प्रकार अलग-अलग पहचान सकते
+हैं जैसे~$\Domain{N}$ में संख्याओं को पहचानते हैं।
+\end{explain}
+
+\begin{prob}
+दिखाइए कि \olref[mod][mar][stm]{prop:standard-domain} का विलोम असत्य है;
+अर्थात् ऐसी !!a{structure}~$\Struct{M}$ का उदाहरण दीजिए जिसमें
+$\Domain{M} = \Setabs{\Value{\num{n}}{M}}{n \in \Nat}$ हो, पर जो
+~$\Struct{N}$ की समरूपी न हो।
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:thq-standard}
+यदि $\Sat{M}{\Th{Q}}$, और $\Domain{M} = \Setabs{\Value{\num{n}}{M}}{n
+  \in \Nat}$, तो $\Struct{M}$ मानक है।
+\end{prop}
+
+\begin{proof}
+हमें दिखाना है कि $\Struct{M}$,~$\Struct{N}$ की समरूपी है। उस फलन
+$g\colon \Nat \to \Domain{M}$ पर विचार करें जो
+$g(n) = \Value{\num{n}}{M}$ द्वारा परिभाषित है। परिकल्पना से $g$
+!!{surjective} है। वह !!{injective} भी है:
+$\Th{Q} \Proves
+\eq/[\num{n}][\num{m}]$, जब भी $n \neq m$। अतः $\Sat{M}{\Th{Q}}$ होने
+के कारण, $\Sat{M}{\eq/[\num{n}][\num{m}]}$, जब भी $n \neq
+m$। इसलिए यदि $n \neq m$, तो
+$\Value{\num{n}}{M} \neq
+\Value{\num{m}}{M}$,
+अर्थात् $g(n) \neq g(m)$।
+
+हमें यह भी सत्यापित करना है कि $g$ एक समरूपता है।
+\begin{enumerate}
+\item हमारे पास $g(\Assign{\Obj{0}}{N}) = g(0)$ है, क्योंकि
+  $\Assign{\Obj{0}}{N} = 0$। $g$ की परिभाषा से $g(0) =
+  \Value{\num{0}}{M}$। किंतु $\num{0}$ केवल $\Obj{0}$ ही है, और जो पद
+  !!a{constant} हो उसका मान वही होता है जो !!{structure} उस
+  !!{constant} को निर्दिष्ट करती है, अर्थात्
+  $\Value{\Obj{0}}{M} = \Assign{\Obj{0}}{M}$। इसलिए, जैसा अपेक्षित था,
+  $g(\Assign{\Obj{0}}{N}) = \Assign{\Obj{0}}{M}$।
+\item $g(\Assign{\prime}{N}(n)) = g(n+1)$, क्योंकि $\prime$,
+  ~$\Struct{N}$ में~$\Nat$ पर परवर्ती फलन है। फिर
+  $g(n+1) =
+  \Value{\num{n+1}}{M}$,~$g$ की परिभाषा से। किंतु $\num{n+1}$ और
+  $\num{n}'$ एक ही पद हैं, इसलिए
+  $\Value{\num{n+1}}{M} =
+  \Value{\num{n}'}{M}$। मान-फलन की
+  परिभाषा से यह $= \Assign{\prime}{M}(\Value{\num{n}}{M})$ है। चूँकि
+  $\Value{\num{n}}{M} = g(n)$, हमें $g(\Assign{\prime}{N}(n)) =
+  \Assign{\prime}{M}(g(n))$ मिलता है।
+\item $g(\Assign{+}{N}(n,m)) = g(n+m)$, क्योंकि $+$,
+  ~$\Struct{N}$ में~$\Nat$ पर योग-फलन है। फिर
+  $g(n+m) =
+  \Value{\num{n+m}}{M}$,~$g$ की परिभाषा से। किंतु $\Th{Q} \Proves
+  \num{n+m} = (\num{n} + \num{m})$, इसलिए $\Value{\num{n+m}}{M} =
+  \Value{\num{n}+\num{m}}{M}$। मान-फलन की परिभाषा से यह $=
+  \Assign{+}{M}(\Value{\num{n}}{M},\Value{\num{m}}{M})$ है। चूँकि
+  $\Value{\num{n}}{M} = g(n)$ और $\Value{\num{m}}{M} = g(m)$, हमें
+  $g(\Assign{+}{N}(n, m)) = \Assign{+}{M}(g(n), g(m))$ मिलता है।
+\item $g(\Assign{\times}{N}(n, m)) = \Assign{\times}{M}(g(n), g(m))$:
+  अभ्यास।
+\item $\tuple{n,m} \in \Assign{<}{N}$ तभी और केवल तभी जब $n < m$। यदि
+  $n < m$, तो $\Th{Q} \Proves \num{n} < \num{m}$, और
+  $\Sat{M}{\num{n} <
+  \num{m}}$ भी। अतः
+  $\tuple{\Value{\num{n}}{M}, \Value{\num{m}}{M}} \in
+  \Assign{<}{M}$, अर्थात् $\tuple{g(n), g(m)} \in \Assign{<}{M}$। यदि
+  $n
+  \not< m$, तो $\Th{Q} \Proves \lnot \num{n} < \num{m}$, और फलतः
+  $\Sat/{M}{\num{n} < \num{m}}$। इसलिए, पहले की तरह,
+  $\tuple{g(n), g(m)} \notin \Assign{<}{M}$। दोनों को मिलाकर हमें मिलता है:
+  $\tuple{n,m} \in \Assign{<}{N}$ तभी और केवल तभी जब
+  $\tuple{g(n), g(m)} \in
+  \Assign{<}{M}$।
+\end{enumerate}
+\end{proof}
+
+\begin{explain}
+फलन~$g$,~$\Nat$ से किसी अन्य !!{structure}~$\Struct{M}$ के प्रांत में, जो
+$\Lang{L_A}$ की है, प्रतिचित्रण परिभाषित करने का सबसे स्वाभाविक ढंग है,
+क्योंकि
+ऐसी प्रत्येक $\Struct{M}$ में $\num{0}$, $\num{1}$, $\num{2}$ इत्यादि
+से नामित !!{element}s होते हैं। इसलिए यह आश्चर्यजनक नहीं कि यदि
+$\Struct{M}$, $\num{n}$ के बारे में कम-से-कम कुछ मूल कथनों को उसी प्रकार
+सत्य बनाती है जैसे~$\Struct{N}$ बनाती है, और $g$ एकैकी तथा आच्छादक भी है,
+तो $g$ एक समरूपता बन जाता है। वस्तुतः, यदि $\Domain{M}$ में उन
+!!{element}s के अतिरिक्त कोई अवयव नहीं है जिन्हें $\num{n}$ नाम देते हैं,
+तो यह एकमात्र समरूपता है।
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:thq-unique-iso} यदि $\Struct{M}$ मानक है, तो
+\olref{prop:thq-standard} के प्रमाण में दिया गया $g$,~$\Struct{N}$ से
+~$\Struct{M}$ तक की एकमात्र समरूपता है।
+\end{prop}
+
+\begin{proof}
+मान लें कि $h\colon \Nat \to \Domain{M}$,~$\Struct{N}$ और
+~$\Struct{M}$ के बीच एक समरूपता है। हम दिखाते हैं कि $g = h$,~$n$ पर आगमन
+द्वारा। यदि $n = 0$, तो
+$g(0) = \Assign{\Obj{0}}{M}$,~$g$ की परिभाषा से। किंतु $h$ समरूपता है,
+इसलिए $h(0) =
+h(\Assign{\Obj{0}}{N}) =\Assign{\Obj{0}}{M}$, अतः $g(0) = h(0)$।
+
+अब $n+1$ की स्थिति पर विचार करें। हमारे पास
+\begin{align*}
+  g(n+1) & = \Value{\num{n+1}}{M} \text{ $g$ की परिभाषा से}\\
+  & = \Value{\num{n}'}{M} \text{ क्योंकि $\num{n+1}\ident \num{n}'$}\\
+  & = \Assign{\prime}{M}(\Value{\num{n}}{M}) 
+    \text{ $\Value{t'}{M}$ की परिभाषा से}\\
+  & = \Assign{\prime}{M}(g(n))  \text{ $g$ की परिभाषा से}\\
+  & = \Assign{\prime}{M}(h(n)) \text{ आगमन-परिकल्पना से}\\
+  & = h(\Assign{\prime}{N}(n)) \text{ क्योंकि $h$ एक समरूपता है}\\
+  & = h(n+1)
+\end{align*}
+\end{proof}
+
+\begin{explain}
+किसी भी !!{denumerable} समुच्चय~$M$ के लिए~$\Nat$ और $M$ के बीच
+!!a{bijection} होती है, इसलिए ऐसा प्रत्येक समुच्चय~$M$ किसी मानक
+प्रतिरूप~$\Struct{M}$ का संभावित !!{domain} है। वस्तुतः, जब हम किसी
+$z \in
+M$ और किसी उपयुक्त फलन $s$ को क्रमशः
+$\Assign{\Obj{0}}{M}$ और $\Assign{\prime}{M}$ के रूप में चुन लेते हैं,
+तो $+$, $\times$ और $<$ की व्याख्याएँ पहले ही निश्चित हो जाती हैं। मानक
+प्रतिरूप में केवल वे फलन~$s\colon M \to M \setminus \{z\}$, जो
+!!{injective} और !!{surjective} दोनों हों,~$\Assign{\prime}{M}$ के लिए
+उपयुक्त हैं। $s$ के परास में~$z$ नहीं हो सकता, क्योंकि अन्यथा
+$\lforall[x][\eq/[\Obj 0][x']]$ असत्य होता। वह !!{sentence}
+~$\Struct{N}$ में सत्य है, इसलिए $\Struct{M}$ को भी उसे सत्य बनाना होगा।
+फलन~$s$ को !!{injective} होना चाहिए, क्योंकि परवर्ती फलन
+$\Assign{\prime}{N}$,~$\Struct{N}$ में ऐसा है, और
+$\Assign{\prime}{N}$ का !!{injective} होना~$\Struct{N}$ में सत्य
+!!a{sentence} द्वारा व्यक्त होता है। उसे
+!!{surjective} भी होना चाहिए, क्योंकि अन्यथा कोई
+$x \in M \setminus \{z\}$ ऐसा होता जो~$s$ के परास में न होता, अर्थात्
+!!{sentence} $\lforall[x][(\eq[x][\Obj 0] \lor
+\lexists[y][\eq[y'][x]])]$,~$\Struct{M}$ में असत्य होता---जबकि वह
+~$\Struct{N}$ में सत्य है।
+\end{explain}
+
+
+\end{document}

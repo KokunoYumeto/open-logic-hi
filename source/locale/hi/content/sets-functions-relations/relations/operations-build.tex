@@ -1,0 +1,29 @@
+% Target-only standalone build wrapper for HI-OLP-0013.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% The standalone unit cites two already admitted propositions from orders.tex.
+% Seed their frozen cleveref identities without importing another build tree or
+% creating broken cross-document PDF links.
+\makeatletter
+\expandafter\def\csname r@sfr:rel:ord:prop:stricttopartial\endcsname
+  {{rel.{12}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:prop:stricttopartial@cref\endcsname
+  {{[prop][12][0]rel.{12}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:prop:partialtostrict\endcsname
+  {{rel.{13}}{}{}{}{}}
+\expandafter\def\csname r@sfr:rel:ord:prop:partialtostrict@cref\endcsname
+  {{[prop][13][0]rel.{13}}{}{}{}{}}
+\makeatother
+% \jobname is useful build metadata but is not reader-facing Hindi.  Give this
+% independently compiled section a localized running-footer label.
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{संबंध-संक्रियाएँ}}
+  \ifgitinfo\ 
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{operations}
+\end{document}

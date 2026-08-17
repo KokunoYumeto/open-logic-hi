@@ -1,0 +1,127 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: truth-at-w
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{trw}
+
+\olsection{किसी जगत पर सत्यता}
+
+प्रत्येक मोडल प्रतिरूप निर्धारित करता है कि उसमें कौन-से मोडल !!{formula} किन
+जगतों पर सत्य माने जाते हैं। ``प्रतिरूप $\mModel{M}$, !!{formula}~$!A$ को
+जगत~$w$ पर सत्य बनाता है'' संबंध, संबंधात्मक अर्थविज्ञान की मूल धारणा है।
+यह संबंध आगमनात्मक रूप से परिभाषित होता है और गैर-मोडल संकारकों के लिए
+सत्य-सारणियों से मिलने वाले सामान्य अभिलक्षण से मेल खाता है।
+
+\begin{defn}\ollabel{defn:mmodels}
+  किसी $\mModel M$ में \emph{!!{formula}~$!A$ की $w$ पर सत्यता}, जिसे
+  $\mSat{M}{!A}[w]$ से लिखते हैं, आगमनात्मक रूप से इस प्रकार परिभाषित है:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ कभी नहीं।}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ सदैव।}}{}
+  \item $\mSat{M}{p}[w]$ तभी जब $w \in V(p)$।
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat/{M}{!B}[w]$।}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$।}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ या $\mSat{M}{!C}[w]$} (या दोनों)।}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat/{M}{!B}[w]$ या $\mSat{M}{!C}[w]$।}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    या तो $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$ दोनों, या
+    न $\mSat{M}{!B}[w]$ न $\mSat{M}{!C}[w]$।}}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Box !B}{$\mSat{M}{\indfrm}[w]$ तभी जब $Rww'$ वाले
+    प्रत्येक $w' \in W$ के लिए $\mSat{M}{!B}[w']$।}
+  \item\ollabel{defn:sub:mmodels-diamond}
+    \indcase{!A}{\Diamond !B}{$\mSat{M}{\indfrm}[w]$ तभी जब $Rww'$ वाले
+    कम-से-कम एक $w' \in W$ के लिए $\mSat{M}{!B}[w']$।}
+  \end{enumerate}
+\end{defn}
+
+ध्यान दें कि उपवाक्य~\olref{defn:sub:mmodels-box} के अनुसार, जब $Rww'$ वाला
+कोई $w'$ न हो, तब !!{formula}~$\Box !B$, $w$ पर सत्य होता है। ऐसे मामले में
+$\Box !B$, $w$ पर \emph{रिक्ततः} सत्य है। इसके अतिरिक्त, $!B$ के $w$ पर
+संतुष्ट न होने पर भी $\Box !B$ वहाँ संतुष्ट हो सकता है। $!B$ की $w$ पर
+सत्यता, $\Diamond !B$ की $w$ पर सत्यता सुनिश्चित नहीं करती। किंतु $Rww$
+होने पर, जैसे $R$ स्वपरावर्ती हो, यह सत्यता सुनिश्चित होती है। यदि
+$Rww'$ वाला कोई $w'$ नहीं है, तो प्रत्येक $!A$ के लिए
+$\mSat/{M}{\Diamond !A}[w]$।
+
+\begin{prob}
+  \olref[nml][syn][rel]{fig:simple} के प्रतिरूप पर विचार कीजिए। निम्नलिखित
+  में से कौन-से कथन मान्य हैं?
+    \begin{enumerate}
+    \item $\mSat{M}{q}[w_1]$;
+    \item $\mSat{M}{\lnot q}[w_3]$;
+    \item $\mSat{M}{p \lor q}[w_1]$;
+    \item $\mSat{M}{\Box (p \lor q)}[w_1]$;
+    \item $\mSat{M}{\Box q}[w_3]$;
+    \item $\mSat{M}{\Box \bot}[w_3]$;
+    \item $\mSat{M}{\Diamond q}[w_1]$;
+    \item $\mSat{M}{\Box q}[w_1]$;
+    \item $\mSat{M}{\lnot \Box\Box \lnot q}[w_1]$।
+    \end{enumerate}
+\end{prob}
+
+% Prove duality of \Box and \Diamond
+\begin{tagblock}{prvDiamond}
+\begin{prop}\ollabel{prop:dual}
+  \begin{enumerate}
+  \item $\mSat{M}{\Box !A}[w]$ iff $\mSat{M}{\lnot\Diamond\lnot !A}[w]$.
+  \item $\mSat{M}{\Diamond !A}[w]$ iff $\mSat{M}{\lnot\Box\lnot !A}[w]$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ तभी जब
+      $\mSat/{M}{\Diamond\lnot !A}[w]$, जैसा $\mSat{M}{}[w]$ की परिभाषा से
+      मिलता है। $\mSat{M}{\Diamond\lnot !A}[w]$ तभी जब $Rww'$ वाले किसी
+      $w'$ के लिए $\mSat{M}{\lnot !A}[w']$। अतः
+      $\mSat/{M}{\Diamond\lnot !A}[w]$ तभी जब $Rww'$ वाले प्रत्येक $w'$ के
+      लिए $\mSat/{M}{\lnot !A}[w']$। हमारे पास
+      $\mSat/{M}{\lnot !A}[w']$ तभी जब $\mSat{M}{!A}[w']$ भी है। इन दोनों
+      से $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ तभी जब $Rww'$ वाले प्रत्येक
+      $w'$ के लिए $\mSat{M}{!A}[w']$। $\mSat{M}{}[w]$ की परिभाषा से यह ठीक
+      तभी है जब $\mSat{M}{\Box !A}[w]$।
+    \item \iftag{probDiamond}{अभ्यास।}{$\mSat{M}{\lnot\Box\lnot !A}[w]$ तभी जब
+      $\mSat/{M}{\Box\lnot !A}$। $\mSat{M}{\Box\lnot !A}[w]$ तभी जब
+      $Rww'$ वाले प्रत्येक $w'$ के लिए $\mSat{M}{\lnot !A}[w']$। अतः
+      $\mSat/{M}{\Box\lnot !A}[w]$ तभी जब $Rww'$ वाले किसी $w'$ के लिए
+      $\mSat/{M}{\lnot !A}[w']$। हमारे पास $\mSat/{M}{\lnot !A}[w']$ तभी
+      जब $\mSat{M}{!A}[w']$ भी है। इन दोनों से
+      $\mSat{M}{\lnot\Box\lnot !A}[w]$ तभी जब $Rww'$ वाले किसी $w'$ के लिए
+      $\mSat{M}{!A}[w']$। $\mSat{M}{}[w]$ की परिभाषा से यह ठीक तभी है जब
+      $\mSat{M}{\Diamond !A}[w]$।}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probDiamond}
+  \olref[nml][syn][trw]{prop:dual} का प्रमाण पूरा कीजिए।
+\end{probtag}
+\end{tagblock}
+
+\begin{prob}
+  मान लें कि $\mModel{M} = \tuple{W, R, V}$ एक प्रतिरूप है और
+  $w_1, w_2 \in W$ इस प्रकार हैं कि:
+  \begin{enumerate}
+  \item प्रत्येक !!{propositional variable} $p$ के लिए $w_1 \in V(p)$ तभी जब
+    $w_2 \in V(p)$; और
+  \item प्रत्येक $w \in W$ के लिए $Rw_1w$ तभी जब $Rw_2w$।
+  \end{enumerate}
+  !!{formula}ों पर आगमन का प्रयोग करके दिखाइए कि प्रत्येक !!{formula} $!A$ के
+  लिए $\mSat{M}{!A}[w_1]$ तभी जब $\mSat{M}{!A}[w_2]$।
+\end{prob}
+
+\begin{probtag}{prvDiamond}
+  मान लें $\mModel{M} = \tuple{W, R, V}$। दिखाइए कि
+  $\mSat{M}{\lnot\Diamond !A}[w]$ तभी जब
+  $\mSat{M}{\Box\lnot!A}[w]$।
+\end{probtag}
+
+\end{document}

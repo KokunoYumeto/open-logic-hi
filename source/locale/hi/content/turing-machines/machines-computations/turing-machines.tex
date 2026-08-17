@@ -1,0 +1,61 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: turing-machines
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{mac}{tur}
+\olsection{ट्यूरिंग मशीनें}
+
+\begin{explain}
+ट्यूरिंग मशीन किन वस्तुओं से बनती है, इसकी आकारिक परिभाषा अमूर्त दिखती
+है, किंतु वास्तव में सरल है: वह ट्यूरिंग मशीन की कार्यप्रणाली निर्दिष्ट
+करने के लिए आवश्यक सारी सूचना को केवल एक गणितीय संरचना में समेटती है।
+इसमें यह सम्मिलित है कि (1) मशीन किन अवस्थाओं में हो सकती है, (2) पट्टी
+पर किन प्रतीकों की अनुमति है, (3) मशीन को किस अवस्था में आरंभ होना चाहिए,
+और (4) मशीन का निर्देश-समुच्चय क्या है।
+\end{explain}
+
+\begin{defn}[ट्यूरिंग मशीन]
+एक \emph{ट्यूरिंग मशीन} $M$ एक टपल $\langle Q, \Sigma, q_0,
+\delta\rangle$ है, जिसमें होते हैं:
+\begin{enumerate}
+\item \emph{अवस्थाओं} का एक परिमित समुच्चय~$Q$,
+\item एक परिमित \emph{वर्णमाला} $\Sigma$, जिसमें $\TMendtape$ और
+  $\TMblank$ सम्मिलित हैं,
+\item एक \emph{आरंभिक अवस्था}~$q_0 \in Q$,
+\item एक परिमित \emph{निर्देश-समुच्चय}~$\delta\colon Q \times \Sigma
+  \pto Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$.
+\end{enumerate}
+आंशिक फलन~$\delta$ को $M$ का \emph{संक्रमण फलन} भी कहते हैं।
+\end{defn}
+
+\begin{explain}
+हम मानते हैं कि पट्टी केवल एक दिशा में अनंत है। इसलिए पट्टी के बाएँ अंत
+के चिह्नक के रूप में एक विशेष प्रतीक~$\TMendtape$ निर्दिष्ट करना उपयोगी
+है। इससे ट्यूरिंग मशीन के प्रोग्राम के लिए यह बताना सरल हो जाता है कि वह
+कब पट्टी से बाहर निकलने के ``संकट'' में है। हम मान सकते थे कि इस प्रतीक
+के ऊपर कभी नहीं लिखा जाता; अर्थात्
+$\delta(q,\TMendtape) = \tuple{q', \TMendtape, x}$, यदि
+$\delta(q,\TMendtape)$ परिभाषित हो। कुछ
+पाठ्यपुस्तकें ऐसा करती हैं; हम नहीं करते। अपनी ट्यूरिंग मशीन बनाते समय आप
+केवल इतना ध्यान रख सकते हैं कि वह~$\TMendtape$ के ऊपर कभी न लिखे। इसके
+अतिरिक्त, कुछ स्थितियों में इसके ऊपर लिखने की अनुमति सुविधाजनक लचीलापन
+देती है।
+\end{explain}
+
+\begin{ex}
+\emph{सम मशीन:} सम मशीन आकारिक रूप से चतुष्टय
+$\tuple{Q, \Sigma, q_0, \delta}$ है, जहाँ
+\begin{align*}
+Q & = \{ q_0, q_1 \} \\
+\Sigma & = \{ \TMendtape, \TMblank, \TMstroke \}, \\
+\delta(q_0, \TMstroke) & = \tuple{q_1, \TMstroke, \TMright},\\
+\delta(q_1, \TMstroke) & = \tuple{q_0, \TMstroke, \TMright},\\
+\delta(q_1, \TMblank)  & = \tuple{q_1, \TMblank, \TMright}.
+\end{align*}
+\end{ex}
+
+\end{document}

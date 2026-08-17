@@ -1,0 +1,110 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: Structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{str}
+
+\olsection{प्रथम-क्रम भाषाओं के लिए \printtoken{P}{structure}}
+
+\begin{explain}
+प्रथम-क्रम भाषाएँ अपने-आप में \emph{अनिर्वचित} होती हैं: !!{constant}s,
+!!{function}s और !!{predicate}s के साथ कोई विशिष्ट अर्थ जुड़ा नहीं होता।
+\article{structure} \emph{!!{structure}} निर्दिष्ट करके उन्हें अर्थ दिया
+जाता है। संरचना \emph{प्रांत} निर्दिष्ट करती है, अर्थात् वे वस्तुएँ जिन्हें
+!!{constant} चुनते हैं, जिन पर !!{function} कार्य करते हैं और जिन पर
+परिमाणक विचरण करते हैं। इसके अतिरिक्त, वह बताती है कि कौन-से !!{constant}
+कौन-सी वस्तुएँ चुनते हैं, कोई !!a{function} वस्तुओं को वस्तुओं पर किस प्रकार
+प्रतिचित्रित करता है, और !!{predicate} किन वस्तुओं पर लागू होते हैं।
+!!^{structure}s तर्कशास्त्र की \emph{अर्थगत} धारणाओं---जैसे तात्पर्य, वैधता और
+संतुष्टनीयता---का आधार हैं। साहित्य में इन्हें अलग-अलग जगह ``संरचनाएँ'',
+``निर्वचन'' या ``प्रतिरूप'' कहा जाता है।
+\end{explain}
+
+\begin{defn}[!!^{structure}s]
+\Article{structure} \emph{!!{structure}}~$\Struct M$, प्रथम-क्रम तर्क की
+भाषा~$\Lang{L}$ के लिए, निम्न अवयवों से बनी होती है:
+\begin{enumerate}
+\item \emph{प्रांत:} एक अरिक्त समुच्चय, $\Domain M$
+\item \emph{!!{constant}s का निर्वचन:} प्रत्येक !!{constant}~$c$ के लिए,
+  जो~$\Lang{L}$ में है, !!a{element} $\Assign{c}{M} \in \Domain M$
+\item \emph{!!{predicate}s का निर्वचन:} प्रत्येक $n$-स्थानी
+  !!{predicate}~$R$ के लिए, जो~$\Lang{L}$ में है ($\eq$ को छोड़कर), एक
+  $n$-स्थानी संबंध
+  $\Assign{R}{M} \subseteq \Domain{M}^n$
+\item \emph{!!{function}s का निर्वचन:} प्रत्येक $n$-स्थानी
+  !!{function}~$f$ के लिए, जो~$\Lang{L}$ में है, एक $n$-स्थानी फलन
+  $\Assign{f}{M}
+  \colon \Domain{M}^n \to \Domain{M}$
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+अंकगणित की भाषा के लिए !!^a{structure}~$\Struct M$ में एक समुच्चय, उस
+समुच्चय $\Domain M$ का एक अवयव $\Assign{\Obj 0}{M}$ जो
+!!{constant}~$\Obj 0$ का निर्वचन है, एक एक-स्थानी फलन
+$\Assign{\Obj \prime}{M} \colon \Domain{M} \to \Domain M$, दो दो-स्थानी
+फलन $\Assign{\Obj +}{M}$ और $\Assign{\Obj
+    \times}{M}$---दोनों
+$\Domain M^2 \to \Domain M$---और एक दो-स्थानी संबंध
+$\Assign{\Obj <}{M} \subseteq \Domain{M}^2$ होते हैं।
+
+ऐसी संरचना का एक सहज उदाहरण निम्न है:
+\begin{enumerate}
+\item $\Domain N = \Nat$
+\item $\Assign{\Obj 0}{N} = 0$
+\item $\Assign{\Obj \prime}{N}(n) = n + 1$, सभी $n \in \Nat$ के लिए
+\item $\Assign{\Obj +}{N}(n, m) = n + m$, सभी $n, m \in \Nat$ के लिए
+\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$, सभी $n, m \in \Nat$ के लिए
+\item $\Assign{\Obj <}{N} = \Setabs{\tuple{n, m}}{n \in \Nat, m \in
+  \Nat, n < m}$
+\end{enumerate}
+इस प्रकार परिभाषित संरचना~$\Struct N$ को,~$\Lang L_A$ के लिए,
+\emph{अंकगणित का मानक प्रतिरूप} कहते हैं, क्योंकि वह~$\Lang L_A$ के
+अतार्किक अचरों का निर्वचन ठीक अपेक्षित ढंग से करती है।
+
+फिर भी~$\Lang
+L_A$ के लिए अनेक अन्य !!{structure}s संभव हैं। उदाहरणतः पूर्णांकों का
+समुच्चय~$\Int$ प्रांत के रूप में,~$\Nat$ के स्थान पर लेकर हम $\Obj
+0$, $\Obj \prime$, $\Obj +$, $\Obj \times$, $\Obj <$ के निर्वचन उसी
+अनुसार परिभाषित कर सकते हैं। हम~$\Lang L_A$ के लिए ऐसी संरचनाएँ भी
+परिभाषित कर सकते हैं जिनका संख्याओं से दूर-दूर तक कोई संबंध न हो।
+\end{ex}
+
+\begin{ex}
+किसी संरचना~$\Struct M$ को, समुच्चय सिद्धांत की भाषा~$\Lang L_Z$ के लिए,
+केवल एक समुच्चय और एक दो-स्थानी संबंध चाहिए। अतः तकनीकी रूप से, उदाहरण के
+लिए, व्यक्तियों के समुच्चय के साथ ``$x$, $y$ से अधिक आयु का है'' संबंध को
+$\Lang L_Z$ की !!a{structure} बनाया जा सकता है; इसी प्रकार~$\Nat$ के साथ
+$n \ge m$ को भी, जहाँ $n, m \in \Nat$।
+
+$\Lang L_Z$ की एक विशेष रोचक !!{structure} वह है जिसमें प्रांत के
+!!{element}s वास्तव में समुच्चय हैं और $\Obj \in$ का निर्वचन सचमुच ``$x$,
+~$y$ का !!a{element} है'' संबंध है। यह \emph{आनुवंशिक रूप से परिमित
+समुच्चयों} की !!{structure}~$\Struct{{HF}}$ है:
+\begin{enumerate}
+\item $\Domain{{{HF}}} = \emptyset \cup \Pow{\emptyset} \cup
+  \Pow{\Pow{\emptyset}} \cup \Pow{\Pow{\Pow{\emptyset}}} \cup \dots$;
+\item $\Assign{\Obj \in}{{{HF}}} = \Setabs{\tuple{x, y}}{x, y \in
+  \Domain{{{HF}}}, x \in y}$.
+\end{enumerate}
+\end{ex}
+
+\begin{digress}
+किसे !!a{structure} मानना है, इस बारे में रखी गई शर्तें हमारे तर्क को
+प्रभावित करती हैं। उदाहरणतः, रिक्त प्रांतों को निषिद्ध करने से परिमाणित
+वाक्यों की संतुष्टि (या सत्यता) के सामान्य विवरण के अधीन यह सुनिश्चित होता
+है कि $\lexists[x][(!A(x) \lor \lnot !A(x))]$ वैध है---अर्थात् तार्किक सत्य
+है। और यह शर्त कि सभी !!{constant}s को प्रांत की किसी वस्तु का निर्देश करना
+ही चाहिए, सुनिश्चित करती है कि अस्तित्वपरक सामान्यीकरण एक उचित अनुमान-रूप
+है: $!A(a)$, अतः $\lexists[x][!A(x)]$। यदि हम नामों को प्रांत के बाहर की
+वस्तुओं का निर्देश करने, अथवा किसी का भी निर्देश न करने, देते तो हम
+\emph{मुक्त तर्क} की ओर बढ़ते। उसमें अस्तित्वपरक सामान्यीकरण के लिए एक
+अतिरिक्त आधारवाक्य चाहिए: $!A(a)$ और $\lexists[x][\eq[x][a]]$, अतः
+$\lexists[x][!A(x)]$।
+\end{digress}
+
+\end{document}

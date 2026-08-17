@@ -1,0 +1,123 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: public-announcement-logic-semantics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{aml}{el}{psm}
+
+\olsection{सार्वजनिक घोषणा तर्कशास्त्र का अर्थविज्ञान}
+
+सार्वजनिक घोषणा तर्कशास्त्र के संबंधात्मक प्रतिरूप वही हैं जो ज्ञानात्मक
+तर्कशास्त्र में थे। किंतु सार्वजनिक-घोषणा संकारक का अर्थविज्ञान नया है।
+
+\begin{defn}\ollabel{defn:mmodels} किसी
+  $\mModel M = \tuple{W, R, V}$ में \emph{!!{formula}~$!A$ की $w$ पर
+  सत्यता}, जिसे $\mSat{M}{!A}[w]$ से लिखते हैं, आगमनात्मक रूप से इस प्रकार
+  परिभाषित है:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ कभी नहीं।}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ सदैव।}}{}
+  \item $\mSat{M}{p}[w]$ तभी जब $w \in V(p)$।
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat/{M}{!B}[w]$।}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$।}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ या $\mSat{M}{!C}[w]$} (या दोनों)।}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat/{M}{!B}[w]$ या $\mSat{M}{!C}[w]$।}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    या तो $\mSat{M}{!B}[w]$ और $\mSat{M}{!C}[w]$ दोनों, या
+    न $\mSat{M}{!B}[w]$ न $\mSat{M}{!C}[w]$।}}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $R_a ww'$ वाले प्रत्येक $w' \in W$ के लिए $\mSat{M}{!B}[w']$।}
+  \item\ollabel{defn:sub:mmodels-pal}
+    \indcase{!A}{[!B] !C}{$\mSat{M}{\indfrm}[w]$ तभी जब
+    $\mSat{M}{!B}[w]$ से $\mSat{M \mid !B}{!C}[w]$ निष्कर्षित हो।}
+
+  
+  जहाँ $\mModel M \mid !B = \tuple{W', R', V'}$ इस प्रकार परिभाषित है:
+  \begin{enumerate}
+    \item $W' = \Setabs{u \in W}{\mSat{M}{!B}[u]}$। अतः
+      $\mModel M \mid !B$ के जगत, प्रतिरूप~$\mModel M$ के वे जगत हैं जिन
+      पर $!B$ सत्य है।
+    \item $R'_a = R_a \cap (W' \times W')$। प्रत्येक कर्ता का अभिगम्यता
+      संबंध केवल उन जगतों तक सीमित कर दिया जाता है जो~$W'$ में शेष रहते हैं।
+    \item $V'(p) = \Setabs{u \in W'}{u \in V(p)}$। इसी प्रकार जगतों पर
+      प्रतिज्ञप्तिक मूल्य-नियतन अपरिवर्तित रहते हैं। यह इस विचार को निरूपित
+      करता है कि सूचनात्मक घटनाएँ प्रतिज्ञप्तिक चरों के सत्य-मूल्य नहीं बदलेंगी।
+  \end{enumerate}
+  
+  \end{enumerate} 
+\end{defn}
+
+इस प्रकार सार्वजनिक घोषणा तर्कशास्त्रों की विशिष्टता यह है कि
+~$\mModel M$ पर किसी !!{formula} की सत्यता का निर्णय कभी-कभी स्वयं
+~$\mModel M$ से भिन्न किसी प्रतिरूप का उल्लेख करके ही किया जा सकता है।
+
+यह भी ध्यान दें कि हमारा अर्थविज्ञान घोषणा-संकारक को $\Box$ संकारक मानता
+है। अतः यदि किसी !!{formula}~$!A$ को किसी जगत पर सत्यतापूर्वक घोषित नहीं किया
+जा सकता, तो $[!A]B$ वहाँ सहजतः सत्य होगा, ठीक वैसे ही जैसे सभी $\Box$-सूत्र
+अंतिम बिंदुओं पर सत्य होते हैं।
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={below left:$p, \lnot q$}]{$w_1$}; 
+      \node[world] (w2) [left=of w1, label={left:$\lnot p, \lnot q$}]{$w_2$}; 
+      \node[world] (w3) [above=of w1, label={right:$p, q$}] {$w_3$};
+      \draw[<->] (w1) to [swap] node {$b$} (w2);
+      \draw[->,loop below] (w1) to node {$a, b$} (w1);
+      \draw[<->] (w1) to [swap] node {$a$} (w3);
+      \draw[->,loop above] (w2) to node {$a, b$} (w2) ;
+      \draw[->,loop above] (w3) to node {$a, b$} (w3) ;
+      
+      \node[world](v1)[right of=w1, xshift=1.25in, label={right:$p, \lnot q$}]{$w'_1$};
+      \node[world](v3)[above of=v1,label={right:$p,q$}]{$w'_3$};
+      \draw[<->] (v1) to node {$a$} (v3);
+      \draw[->,loop below] (v1) to node {$a,b$} (v1);
+      \draw[->,loop above] (v3) to node {$a,b$} (v3) ;
+      
+      \node(m)[below=of w1]{$\mModel M$};
+      \node(m')[below=of v1]{$\mModel M \mid p$}; 
+
+      \draw[-,dotted] (w1) to node {\footnotesize $p$ की घोषणा}(v1) ;
+     
+    \end{tikzpicture}
+  \end{center}
+  \caption{$p$ की सार्वजनिक घोषणा से पहले और बाद में।}
+  \ollabel{fig:announcement-example}
+\end{figure}
+
+हम किसी !!{formula} की सार्वजनिक घोषणा को प्रतिरूप को छोटा करने, अथवा उसे
+केवल उन जगतों तक सीमित करने, के रूप में देख सकते हैं जिन पर वह !!{formula}
+सत्य था। \olref{fig:announcement-example} में~$p$ की सार्वजनिक घोषणा के
+प्रभाव का उदाहरण दिया गया है। उस प्रतिरूप की एक उल्लेखनीय बात यह है कि
+घोषणा के परिणामस्वरूप कर्ता~$b$ जान लेता है कि~$p$, जबकि कर्ता~$a$ कुछ नया
+नहीं सीखता (क्योंकि $a$ पहले से जानता था कि~$p$ सत्य है)।
+
+अधिक औपचारिक रूप से, हमारे पास $\mSat{M}{\lnot \Knows_b p}[w_1]$ है,
+किंतु $\mSat{M \mid p}{\Knows_b p}[w'_1]$। इससे
+$\mSat{M}{[p] \Knows_b p}[w_1]$ निकलता है। पर घोषणा के परिणाम के बारे में
+हम इससे भी प्रबल दावे कर सकते हैं। वास्तव में
+$\mSat{M}{[p]\CKnows_{\{a,b\}} p}[w_1]$। दूसरे शब्दों में, $p$ घोषित होने
+के बाद वह \emph{सार्वज्ञान} बन जाता है।
+
+फिर भी हम पूछ सकते हैं कि क्या सामान्य स्थिति में भी ऐसा होता है और क्या
+~$!A$ की सत्य घोषणा से वह \emph{सदैव} सार्वज्ञान बन जाता है। शायद आश्चर्यजनक
+रूप से उत्तर नहीं है। वास्तव में ऐसे !!{formula}ों को सत्यतापूर्वक घोषित करना
+संभव है जो घोषणा के बाद सत्य नहीं रहते। उदाहरण के लिए,
+\olref{fig:announcement-example} में~$w_1$ पर
+$p \land \lnot \Knows_b p$ घोषित करने के प्रभाव पर विचार करें। वस्तुतः
+$\mModel M \mid p$ और $\mModel M \mid (p \land \lnot \Knows_b p)$ एक ही
+प्रतिरूप हैं। किंतु, जैसा हम देख चुके हैं,
+$\mSat{M \mid p}{\Knows_b p}[w'_1]$। अतः
+$\mSat{M \mid (p \land \lnot \Knows_b p)}{\lnot
+(p \land \lnot \Knows_b p)}[w'_1]$; इसलिए यह ऐसा !!{formula} है जो घोषित
+होते ही असत्य हो जाता है।
+
+\end{document}

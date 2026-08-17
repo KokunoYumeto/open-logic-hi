@@ -1,0 +1,47 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: inseparability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{tcp}{ins}
+
+\olsection{$\Th{Q}$ में सिद्ध और खंडनीय वाक्य संगणनीयतः अवियोज्य हैं}
+
+$\Th{\bar Q}$ को उन वाक्यों का समुच्चय मानें जिनके {\em निषेध}
+$\Th{Q}$ में सिद्ध होते हैं, अर्थात्
+$\Th{\bar Q} = \Setabs{!A}{\Th{Q} \Proves \lnot !A}$। याद करें कि
+असंयुक्त समुच्चय $A$ और $B$ संगणनीयतः अवियोज्य कहलाते हैं यदि ऐसा कोई
+संगणनीय समुच्चय $C$ न हो कि $A \subseteq C$ और
+$B \subseteq \Complement{C}$।
+
+\begin{lem}
+$\Th{Q}$ और $\Th{\bar Q}$ संगणनीयतः अवियोज्य हैं।
+\end{lem}
+
+\begin{proof}
+मान लें $C$ ऐसा संगणनीय समुच्चय है कि $\Th{Q} \subseteq C$ और
+$\Th{\bar Q} \subseteq \Complement{C}$। $R(x,y)$ को संबंध
+\begin{quote}
+$x$ किसी सूत्र $!D(u)$ का कूट है और $!D(\num y)$,~$C$ में है
+\end{quote}
+मानें। हम दिखाएँगे कि $R(x,y)$ कोई सार्वत्रिक संगणनीय संबंध है, जिससे
+विरोधाभास मिलेगा।
+
+मान लें $S(y)$ संगणनीय है और~$\Th{Q}$ में $!D_S(u)$ द्वारा निरूपित है। तब
+\begin{eqnarray*}
+S(\num n) & \lif & \Th{Q} \Proves !D_S(\num n) \\
+& \lif & !D_S(\num n) \in C
+\end{eqnarray*}
+और
+\begin{eqnarray*}
+\lnot S(\num n) & \lif & \Th{Q} \Proves \lnot !D_S(\num n) \\
+& \lif & !D_S(\num n) \in \Th{\bar Q} \\
+& \lif & !D_S(\num n) \not\in C।
+\end{eqnarray*}
+अतः $S(y)$,~$R(\#(!D_S(\num u)),y)$ के समतुल्य है।
+\end{proof}
+
+\end{document}

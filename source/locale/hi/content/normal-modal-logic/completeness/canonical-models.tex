@@ -1,0 +1,34 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: canonical-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{com}{cmd}
+
+\olsection{विहित प्रतिरूप}
+
+किसी मोडल तंत्र~$\Sigma$ का \emph{विहित प्रतिरूप} एक विशिष्ट
+प्रतिरूप~$\mModel{M^\Sigma}$ है जिसमें सभी जगत पूर्ण $\Sigma$-संगत
+समुच्चय हैं। उसका अभिगम्यता संबंध~$R^\Sigma$ और मूल्यांकन $V^\Sigma$ इस
+प्रकार परिभाषित होते हैं कि किसी जगत~$\Delta$ पर सत्य !!{formula} ठीक वही
+!!{formula} हों जिनसे $\Delta$ बना है।
+
+\begin{defn}
+  मान लें कि $\Sigma$ कोई सामान्य मोडल तर्कशास्त्र है। $\Sigma$ का
+  \emph{विहित प्रतिरूप} $\mModel{M}^\Sigma = \tuple{W^\Sigma,
+    R^\Sigma, V^\Sigma}$ है, जहाँ:
+  \begin{enumerate}
+  \item $W^\Sigma = \Setabs{ \Delta }{\Delta \text{
+      पूर्ण $\Sigma$-संगत है} }$।
+  \item $R^\Sigma \Delta\Delta'$ तभी सत्य है जब
+    \iftag{prvBox}{$\Box^{-1}\Delta \subseteq
+      \Delta'$}{$\Diamond\Delta' \subseteq \Delta$}.
+  \item $V^\Sigma(p) = \Setabs{\Delta}{p \in \Delta}$।
+  \end{enumerate}
+\end{defn}
+
+
+\end{document}

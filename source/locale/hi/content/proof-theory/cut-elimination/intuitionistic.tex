@@ -1,0 +1,70 @@
+यदि $!A \ident (!B \lif !C)$, तो $\pi$ निम्न पर समाप्त होता है
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B \lif !C, \Pi \fCenter \Lambda, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Pi \fCenter \Lambda$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Pi \fCenter \Lambda$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+\Cut पर समाप्त होने वाले !!{proof}
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B \lif !C, \Pi \fCenter \Lambda, !B$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda, !B$
+\DisplayProof
+\]
+की कट !!{height},~$\pi$ से कम है। आगमन परिकल्पना $\Gamma, \Pi \fCenter
+\Delta, \Lambda, !B$ का !!a{proof}~$\pi_1''$ देती है। \Cut पर समाप्त होने
+वाला !!{proof}
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$B!, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$!B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+जिसकी कट कोटि और कट !!{height} दोनों~$\pi$ की कट कोटि और !!{height} से कम
+हैं; अतः आगमन परिकल्पना $!B, \Gamma, \Pi, \Pi \fCenter \Delta, \Lambda,
+\Lambda$ का \Log{G3c}-!!{proof}~$\pi_2'''$ देती है। अब \Cut पर समाप्त होने
+वाले !!{proof}
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma, \Pi \fCenter \Delta, \Lambda, !B$
+\AxiomC{}
+\RightLabel{$\pi_2'''$}
+\Deduce$!B, \Gamma, \Pi, \Pi \fCenter \Delta, \Lambda,
+\Lambda$
+\RightLabel{\Cut}
+\BinaryInf$!B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+(जिसकी कट कोटि $< \cutr{\pi}$ है) पर आगमन परिकल्पना लगाकर $\Gamma, \Gamma,
+\Pi, \Pi, \Pi \fCenter \Delta, \Lambda, \Lambda, \Lambda$ का !!a{proof}
+प्राप्त करें। \olref[seq][inv]{prop:G3c-cont-adm} लगाकर हमें $\Gamma, \Pi
+\fCenter \Delta, \Lambda$ का !!{proof} $\pi'$ मिलता है।

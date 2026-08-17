@@ -1,0 +1,50 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: decidability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{dec}
+
+\olsection{निर्णेयता}
+ध्यान दें कि पूर्णता प्रमेय का प्रमाण प्रत्येक $\Gamma \Proves/ !A$ के लिए
+अनंत जगतों वाला ऐसा प्रतिरूप देता है जो $\Gamma \Entails/ !A$ का साक्षी है।
+निम्न प्रतिज्ञप्ति दिखाती है कि $\Entails !A$ सिद्ध करने के लिए सभी परिमित
+प्रतिरूपों (अर्थात जगतों के परिमित समुच्चय वाले प्रतिरूपों) के लिए
+$\mSat{M}{!A}$ सिद्ध करना पर्याप्त है।
+
+\begin{thm}\ollabel{thm:decidability}
+  यदि $\Entails/ !A$, तो कोई परिमित प्रतिरूप ऐसा है कि
+  $\mSat/{M'}{!A}$।
+\end{thm}
+
+\begin{proof}
+  मान लें $\mModel{M}=\tuple{W, R, V}$ ऐसा है कि $\mSat/{M}{!A}$, और
+  $P$,~$!A$ में आने वाले !!{propositional variable}ों का समुच्चय है।
+  $W' = \Setabs{[w]}{w \in W}$, जहाँ
+  $[w] = \Setabs{p \in P}{w \in V(p)}$, लेकर; $R'$ को उपसमुच्चय संबंध;
+  और $V'(p)=\Setabs{[w]}{p \in [w]}$ लेकर
+  $\mModel{M'}=\tuple{W', R', V'}$ परिभाषित करें। स्पष्ट होना चाहिए कि
+  $W'$ परिमित समुच्चय और $\mModel{M'}$ कोई !!{relational model} है।
+
+  ~$!A$ पर आगमन द्वारा दिखाया जा सकता है कि
+  \[
+    \mSat{M}{!A}[w] \text{ तभी जब } \mSat{M'}{!A}[{[w]}]
+  \]
+  ऐसे सभी !!{formula}ों $!A$ के लिए जिनमें केवल~$P$ के !!{propositional variable}
+  आते हैं। इसे पाठक के लिए अभ्यास के रूप में छोड़ा गया है।
+\end{proof}
+
+\begin{prob}
+यह दिखाकर \olref[int][sc][dec]{thm:decidability} का प्रमाण पूरा कीजिए कि
+केवल~$P$ के प्रतिज्ञप्तिक चर वाले सभी !!{formula}ों~$!A$ के लिए
+$\mSat{M,w}{!A}$ तभी जब $\mSat{M',[w]}{!A}$।
+\end{prob}
+
+\olref{thm:decidability} से निकलता है कि यह निर्णय करने के लिए कोई
+कलनविधि है कि~$\Entails !A$ है या नहीं।
+
+
+\end{document}

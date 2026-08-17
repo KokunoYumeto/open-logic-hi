@@ -1,0 +1,158 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: tautological-instances
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{syn}{tau}
+
+\olsection{सर्वसत्यतात्मक दृष्टांत}
+
+\begin{explain}
+कोई मोडल-मुक्त सूत्र तब सर्वसत्यता है जब वह प्रत्येक सत्य-मूल्य नियतन के
+अधीन सत्य हो। स्पष्ट है कि प्रत्येक सर्वसत्यता प्रत्येक प्रतिरूप के प्रत्येक
+जगत पर सत्य है। किंतु $\Box$ और~$\Diamond$ वाले !!{formula}ों के लिए
+सर्वसत्यता की धारणा परिभाषित नहीं है। उदाहरणार्थ, क्या
+$\Box p \lor \lnot \Box p$---अपवर्जित मध्य सिद्धांत का एक दृष्टांत---मान्य
+है? \emph{सर्वसत्यतात्मक दृष्टांत} की धारणा यहाँ सहायक है: ऐसा !!{formula} जो
+किसी (गैर-मोडल) सर्वसत्यता का प्रतिस्थापन-दृष्टांत हो। यह आश्चर्यजनक नहीं,
+पर फिर भी प्रमाण माँगता है, कि प्रत्येक सर्वसत्यतात्मक दृष्टांत मान्य है।
+\end{explain}
+
+\begin{defn}
+  कोई मोडल !!{formula}~$!B$ \emph{सर्वसत्यतात्मक दृष्टांत} तभी है जब
+  !!{propositional variable}ों $p_1$, \dots,~$p_n$ वाली कोई मोडल-मुक्त
+  सर्वसत्यता~$!A$ और !!{formula} $!D_1$, \dots,~$!D_n$ ऐसे हों कि
+  $!B \ident \SSubst{!A}{\subst{!D_1}{p_1},
+    \dots, \subst{!D_n}{p_n}}$।
+\end{defn}
+
+\begin{lem}\ollabel{lem:valid-taut}
+  मान लें $!A$ ऐसा मोडल-मुक्त !!{formula} है जिसके !!{propositional variable}
+  $p_1$, \dots, $p_n$ हैं, और $!D_1$, \dots, $!D_n$ मोडल !!{formula} हैं।
+  तब प्रत्येक ऐसे नियतन $\pAssign{v}$, प्रतिरूप
+  $\mModel{M} = \tuple{W, R, V}$ और $w \in W$ के लिए, जिसमें
+  $\pAssign{v}(p_i) = \True$ तभी जब $\mSat{M}{!D_i}[w]$, हमारे पास
+  $\pSat{v}{!A}$ तभी जब
+  $\mSat{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+      \subst{!D_n}{p_n}}}[w]$.
+\end{lem}
+
+\begin{proof}
+  $!A$ पर आगमन द्वारा।
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\pSat/{v}{\lfalse}$ और
+      $\mSat/{M}{\lfalse}[w]$ दोनों।}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\pSat{v}{\ltrue}$ और
+      $\mSat{M}{\ltrue}[w]$ दोनों।}}{}
+  \item \indcase{!A}{p_i}{%
+    \begin{align*}
+      \pSat{v}{p_i} \Leftrightarrow {} & \pAssign{v}(p_i) = \True \\
+      & \qquad \text{$\pSat{v}{p_i}$ की परिभाषा से}\\
+      \Leftrightarrow {} & \mSat{M}{!D_i}[w] \\
+      &\qquad \text{धारणा से}\\
+      \Leftrightarrow {} & \mSat{M}{\SSubst{p_i}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+      &\qquad \text{क्योंकि $\SSubst{p_i}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}} \ident !D_i$}.
+      \end{align*}}
+  \tagitem{prvFalse}{\indcase{!A}{\lnot !B}{%
+      \begin{align*}
+        \pSat{v}{\lnot !B} \Leftrightarrow {} & \pSat/{v}{!B}\\
+        &\qquad \text{$\pSat{v}{}$ की परिभाषा से};\\
+        \Leftrightarrow {} & \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{आगमन-परिकल्पना से}\\
+        \Leftrightarrow {} &
+        \mSat{M}{\SSubst{\lnot !B}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\pSat{v}{}$ की परिभाषा से}.
+      \end{align*}}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \land !C} \Leftrightarrow {} &
+        \pSat{v}{!B} \text{ और } \pSat{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ की परिभाषा से}\\
+        \Leftrightarrow {} &
+        \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ और } \\ 
+        & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{आगमन-परिकल्पना से}\\
+        \Leftrightarrow{} &
+        \mSat{M}{\SSubst{(!B \land !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ की परिभाषा से}.
+      \end{align*}}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \lor !C} \Leftrightarrow{} &
+        \pSat{v}{!B} \text{ या } \pSat{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ की परिभाषा से};\\
+        \Leftrightarrow{} & \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ या }\\
+        & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{आगमन-परिकल्पना से}\\
+        \Leftrightarrow{} &
+        \mSat{M}{\SSubst{(!B \lor !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ की परिभाषा से}.
+      \end{align*}}}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \lif !C} \Leftrightarrow{} &
+        \pSat/{v}{!B} \text{ या } \pSat{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ की परिभाषा से}\\
+        \Leftrightarrow{} &
+        \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ या }\\
+        & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{आगमन-परिकल्पना से}\\
+        \Leftrightarrow{} &
+        \mSat{M}{\SSubst{(!B \lif !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ की परिभाषा से}.
+      \end{align*}}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \lif !C} \Leftrightarrow {} &
+        \text{या तो } \pSat{v}{!B} \text{ और } \pSat{v}{!C}\\
+        & \text{या } \pSat/{v}{!B} \text{ और } \pSat/{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ की परिभाषा से}\\
+        \Leftrightarrow {} &
+        \text{या तो } \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ और }\\
+        & \qquad \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\ 
+        &  \text{ या } \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ और }\\
+        & \qquad \mSat/{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad\text{आगमन-परिकल्पना से}\\
+        \Leftrightarrow {} &
+        \mSat{M}{\SSubst{(!B \liff !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ की परिभाषा से}.
+      \end{align*}}}{}
+  \end{enumerate}
+  \end{proof}
+
+\begin{prop}\ollabel{prop:valid-taut}
+  सभी सर्वसत्यतात्मक दृष्टांत मान्य हैं।
+\end{prop}
+
+\begin{proof}
+  प्रतिधनात्मक रूप से, मान लें $!A$ ऐसा है कि
+  $\mSat/{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+  \subst{!D_n}{p_n}}}[w]$, किसी प्रतिरूप $\mModel{M}$ और जगत~$w$ के लिए।
+  ऐसा नियतन $\pAssign{v}$ परिभाषित करें कि $\pAssign{v}(p_i) = \True$ तभी
+  जब $\mSat{M}{!D_i}[w]$ (और $q \notin \{p_1, \dots, p_n \}$ को
+  $\pAssign{v}$ स्वेच्छ मूल्य देता है)। तब \olref{lem:valid-taut} से
+  $\pSat/{v}{!A}$, अतः $!A$ सर्वसत्यता नहीं है।
+\end{proof}
+
+\end{document}

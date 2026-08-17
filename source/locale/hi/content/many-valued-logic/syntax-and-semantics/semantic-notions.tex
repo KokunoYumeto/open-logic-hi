@@ -1,0 +1,68 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{syn}{sem}
+
+\olsection{अर्थवैज्ञानिक धारणाएँ}
+
+मान लें बहुमूल्य तर्कशास्त्र $\Log L$ किसी आव्यूह द्वारा दिया गया है। तब
+हम~$\Log L$ के लिए प्रचलित अर्थवैज्ञानिक धारणाएँ परिभाषित कर सकते हैं।
+
+\begin{defn} 
+\begin{enumerate}
+\item !!^a{formula}~$!A$ \emph{संतुष्ट्य} है यदि किसी~$\pAssign{v}$ के लिए
+  $\pSat{v}{!A}$; और \emph{असंतुष्ट्य} है यदि किसी भी $\pAssign{v}$ के लिए
+  $\pSat{v}{!A}$ न हो;
+\item !!^a{formula}~$!A$ \emph{सर्वसत्यता} है यदि सभी
+  !!{valuation}~$v$ के लिए $\pSat{v}{!A}$;
+\item यदि $\Gamma$ !!{formula} का कोई समुच्चय है, तो $\Gamma \Entails !A$
+  (``$\Gamma$ से $!A$ का अनुगमन होता है'') तभी और केवल तभी जब प्रत्येक
+  ऐसे !!{valuation}~$\pAssign{v}$ के लिए $\pSat{v}{!A}$ जिसके लिए
+  $\pSat{v}{\Gamma}$।
+\item यदि $\Gamma$ !!{formula} का कोई समुच्चय है, तो $\Gamma$
+  \emph{संतुष्ट्य} है यदि कोई ऐसा !!a{valuation}~$\pAssign{v}$ हो जिसके
+  लिए $\pSat{v}{\Gamma}$; अन्यथा $\Gamma$ \emph{असंतुष्ट्य} है।
+\end{enumerate} 
+\end{defn}
+
+इन धारणाओं के लिए हमारे पास चिरसम्मत तर्कशास्त्र वाली स्थिति के कुछ समान
+तथ्य हैं:
+
+\begin{prop}
+\ollabel{prop:semanticalfacts} 
+\begin{enumerate} 
+\item $!A$ सर्वसत्यता तभी और केवल तभी है जब $\emptyset \Entails !A$;
+\item यदि $\Gamma$ संतुष्ट्य है, तो $\Gamma$ का प्रत्येक परिमित उपसमुच्चय
+  भी संतुष्ट्य है;
+\item\ollabel{def:monotonicity}%
+एकदिष्टता: यदि $\Gamma \subseteq \Delta$ और $\Gamma \Entails !A$, तो
+  $\Delta \Entails !A$ भी;
+\item\ollabel{def:Cut}%
+संक्रामकता: यदि $\Gamma \Entails !A$ और $\Delta \cup \{ !A\} \Entails
+  !B$, तो $\Gamma \cup \Delta \Entails !B$;
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[mvl][syn][sem]{prop:semanticalfacts} सिद्ध करें।
+\end{prob}
+
+चिरसम्मत तर्कशास्त्र में हम अनुगमन और सप्रतिबंध को जोड़ सकते हैं।
+उदाहरणार्थ, \emph{मोदुस पोनेन्स} की वैधता है: यदि $\Gamma \Entails !A$ और
+$\Gamma \Entails !A \lif !B$, तो $\Gamma \Entails !B$। चिरसम्मत
+तर्कशास्त्र में $\Entails$ और $\lif$ का दूसरा महत्त्वपूर्ण संबंध
+अर्थवैज्ञानिक निगमन प्रमेय है: $\Gamma \Entails !A \lif !B$ तभी और केवल
+तभी जब $\Gamma \cup \{!A\} \Entails !B$। ये परिणाम बहुमूल्य तर्कशास्त्रों
+में सदा लागू \emph{नहीं} होते। उनका लागू होना सत्य-फलन~$\tf{\lif}$ पर निर्भर
+है।
+
+\end{document}

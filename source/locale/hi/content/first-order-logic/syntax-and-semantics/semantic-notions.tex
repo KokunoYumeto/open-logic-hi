@@ -1,0 +1,167 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: Semantic Notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{sem}
+\olsection{अर्थगत धारणाएँ}
+
+\begin{explain}
+प्रथम-क्रम भाषाओं के लिए !!{structure} की परिभाषा मिलने पर हम वाक्यों के
+कुछ मूल अर्थगत गुण और उनके बीच के संबंध परिभाषित कर सकते हैं। इनमें सबसे
+सरल किसी वाक्य की \emph{वैधता} की धारणा है। कोई वाक्य वैध है यदि वह प्रत्येक
+!!a{structure} में संतुष्ट है। वैध वाक्य इस बात से निरपेक्ष होकर संतुष्ट
+होते हैं कि उनमें आए अतार्किक चिह्नों का निर्वचन किस प्रकार किया गया है।
+इसलिए वैध वाक्यों को \emph{तार्किक सत्य} भी कहते हैं---वे किसी भी
+!!a{structure} में सत्य, अर्थात् संतुष्ट, होते हैं; अतः उनकी सत्यता केवल
+उनमें आए तार्किक चिह्नों और उनकी वाक्यविन्यासगत !!{structure} पर निर्भर करती
+है, अतार्किक चिह्नों अथवा उनके निर्वचन पर नहीं।
+\end{explain}
+
+\begin{defn}[वैधता]
+कोई वाक्य~$!A$ \emph{वैध} है, $\Entails !A$, तभी और केवल तभी जब
+$\Sat{M}{!A}$, प्रत्येक !!a{structure}~$\Struct M$ के लिए।
+\end{defn}
+
+\begin{defn}[तात्पर्य]
+वाक्यों का कोई समुच्चय~$\Gamma$, किसी वाक्य~$!A$ से \emph{तात्पर्य रखता
+है}, $\Gamma
+\Entails !A$, तभी और केवल तभी जब प्रत्येक ऐसी
+!!a{structure}~$\Struct M$ के लिए, जिसके लिए $\Sat{M}{\Gamma}$,
+$\Sat{M}{!A}$ भी।
+\end{defn}
+
+
+\begin{defn}[संतुष्टनीयता]
+वाक्यों का कोई समुच्चय~$\Gamma$ \emph{संतुष्टनीय} है यदि $\Sat{M}{\Gamma}$
+किसी !!a{structure}~$\Struct M$ के लिए। यदि~$\Gamma$
+संतुष्टनीय नहीं है, तो उसे \emph{असंतुष्टनीय} कहते हैं।
+\end{defn}
+
+\begin{prop}
+कोई वाक्य~$!A$ वैध है तभी और केवल तभी जब $\Gamma \Entails !A$,
+वाक्यों के प्रत्येक समुच्चय~$\Gamma$ के लिए।
+\end{prop}
+
+\begin{proof}
+अग्र दिशा के लिए मान लें कि~$!A$ वैध है, और~$\Gamma$ वाक्यों का कोई
+समुच्चय है। ऐसी !!a{structure}~$\Struct M$ लें कि $\Sat{M}{\Gamma}$।
+चूँकि~$!A$ वैध है, $\Sat{M}{!A}$; अतः $\Gamma
+\Entails !A$।
+
+विलोम दिशा के प्रतिपक्ष के लिए मान लें कि~$!A$ अवैध है; अतः कोई
+!!a{structure}~$\Struct M$ ऐसी है कि $\Sat/{M}{!A}$। जब $\Gamma
+= \{ \ltrue \}$, तब~$\ltrue$ के वैध होने से $\Sat{M}{\Gamma}$। अतः कोई
+!!a{structure}~$\Struct M$ ऐसी है कि $\Sat{M}{\Gamma}$ किंतु
+$\Sat/{M}{!A}$; इसलिए~$\Gamma$,~$!A$ से तात्पर्य नहीं रखता।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:entails-unsat}
+$\Gamma \Entails !A$ तभी और केवल तभी जब $\Gamma \cup \{\lnot !A\}$
+असंतुष्टनीय है।
+\end{prop}
+
+\begin{proof}
+अग्र दिशा के लिए मान लें कि~$\Gamma \Entails !A$, और इसके विपरीत मान लें
+कि कोई !!a{structure}~$\Struct M$ ऐसी है कि
+$\Sat{M}{\Gamma
+  \cup \{ \lnot !A \}}$। चूँकि $\Sat{M}{\Gamma}$ और $\Gamma \Entails
+!A$, इसलिए $\Sat{M}{!A}$। साथ ही, चूँकि
+$\Sat{M}{\Gamma\cup \{ \lnot !A \}}$, इसलिए $\Sat{M}{\lnot !A}$;
+अतः हमारे पास $\Sat{M}{!A}$ और $\Sat/{M}{!A}$ दोनों हैं, जो विरोधाभास है।
+इसलिए ऐसी कोई !!{structure}~$\Struct M$ नहीं हो सकती, और
+$\Gamma \cup \{ \lnot !A \}$ असंतुष्टनीय है।
+
+विलोम दिशा के लिए मान लें कि $\Gamma \cup \{ \lnot !A \}$
+असंतुष्टनीय है। अतः प्रत्येक !!a{structure}~$\Struct M$ के लिए या तो
+$\Sat/{M}{\Gamma}$ अथवा $\Sat{M}{!A}$। इसलिए प्रत्येक ऐसी !!{structure}
+$\Struct M$ के लिए, जिसके लिए $\Sat{M}{\Gamma}$, $\Sat{M}{!A}$; अतः
+$\Gamma \Entails
+!A$।
+\end{proof}
+
+\begin{prob}
+\begin{enumerate}
+\item दिखाइए कि $\Gamma \Entails \bot$ तभी और केवल तभी जब~$\Gamma$
+  असंतुष्टनीय है।
+\item दिखाइए कि $\Gamma \cup \{!A\} \Entails \bot$ तभी और केवल तभी जब
+  $\Gamma \Entails \lnot !A$।
+\item मान लें कि~$c$,~$!A$ अथवा~$\Gamma$ में नहीं आता। दिखाइए कि
+  $\Gamma \Entails \lforall[x][!A]$ तभी और केवल तभी जब $\Gamma \Entails
+  \Subst{!A}{c}{x}$।
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+यदि $\Gamma \subseteq \Gamma'$ और $\Gamma \Entails !A$, तो
+$\Gamma'
+\Entails !A$।
+\end{prop}
+
+\begin{proof}
+मान लें कि $\Gamma \subseteq \Gamma'$ और $\Gamma \Entails !A$। ऐसी
+संरचना~$\Struct M$ लें कि $\Sat{M}{\Gamma'}$; तब $\Sat{M}{\Gamma}$, और
+चूँकि $\Gamma \Entails !A$, हमें $\Sat{M}{!A}$ मिलता है। अतः जब भी
+$\Sat{M}{\Gamma'}$, तब $\Sat{M}{!A}$; इसलिए $\Gamma' \Entails !A$।
+\end{proof}
+
+
+\begin{thm}[अर्थगत निगमन प्रमेय]
+\ollabel{thm:sem-deduction}
+$\Gamma \cup \{!A\} \Entails !B$ तभी और केवल तभी जब
+$\Gamma \Entails !A \lif !B$।
+\end{thm}
+
+\begin{proof}
+अग्र दिशा के लिए मान लें कि $\Gamma \cup \{ !A \} \Entails !B$, और ऐसी
+!!a{structure}~$\Struct M$ लें कि $\Sat{M}{\Gamma}$। यदि $\Sat{M}{!A}$,
+  तो $\Sat{M}{\Gamma \cup \{ !A \} }$; अतः चूँकि $\Gamma
+\cup \{ !A \}$ से~$!B$ का तात्पर्य है, हमें $\Sat{M}{!B}$ मिलता है। इसलिए
+$\Sat{M}{!A \lif !B}$, और अतः $\Gamma \Entails !A \lif !B$।
+
+विलोम दिशा के लिए मान लें कि $\Gamma \Entails !A \lif !B$, और ऐसी
+!!a{structure}~$\Struct M$ लें कि $\Sat{M}{\Gamma \cup \{ !A
+  \}}$। तब
+$\Sat{M}{\Gamma}$, अतः $\Sat{M}{!A \lif !B}$; और चूँकि $\Sat{M}{!A}$,
+इसलिए $\Sat{M}{!B}$। अतः जब भी $\Sat{M}{\Gamma \cup \{
+  !A \} }$, तब
+$\Sat{M}{!B}$; इसलिए $\Gamma \cup \{ !A \} \Entails !B$।
+\end{proof}
+
+\begin{prop}\ollabel{prop:quant-terms}
+  मान लें कि~$\Struct{M}$ कोई !!a{structure},~$!A(x)$ एक मुक्त चर~$x$ वाला
+  कोई !!a{formula}, और~$t$ कोई बंद पद है। तब:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$!A(t) \Entails \lexists[x][!A(x)]$}{}
+    \tagitem{prvAll}{$\lforall[x][!A(x)] \Entails !A(t)$}{}
+  \end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{%
+      \iftag{probEx}{अभ्यास।}{मान लें कि $\Sat{M}{!A(t)}$। ऐसा चर-नियतन
+        ~$s$ लें कि $s(x) = \Value{t}{M}$। तब $\Sat{M}{!A(t)}[s]$, क्योंकि
+        $!A(t)$ कोई !!a{sentence} है।
+        \olref[ext]{prop:ext-formulas} से $\Sat{M}{!A(x)}[s]$।
+        \olref[ass]{prop:sat-quant} से
+        $\Sat{M}{\lexists[x][!A(x)]}$।}}{}
+    \tagitem{prvAll}{%
+      \iftag{probAll}{अभ्यास।}{मान लें कि
+        $\Sat{M}{\lforall[x][!A(x)]}$। ऐसा चर-नियतन~$s$ लें कि
+        $s(x) = \Value{t}{M}$। \olref[ass]{prop:sat-quant} से
+        $\Sat{M}{!A(x)}[s]$। \olref[ext]{prop:ext-formulas} से
+        $\Sat{M}{!A(t)}[s]$। \olref[ass]{prop:sentence-sat-true} से
+        $\Sat{M}{!A(t)}$, क्योंकि $!A(t)$ कोई !!a{sentence} है।}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\begin{probtag}{probEx,probAll}
+  \olref[fol][syn][sem]{prop:quant-terms} का प्रमाण पूरा कीजिए।
+\end{probtag}
+
+\end{document}

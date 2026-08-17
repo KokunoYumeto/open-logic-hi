@@ -1,0 +1,109 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{spine}{foundation}
+
+\olsection{आधारिता}
+
+हमारा काम केवल \emph{लगभग} पूरा है---\emph{पूर्णतः} समाप्त नहीं---क्योंकि
+$\ZFminus$ में कुछ भी यह गारंटी नहीं देता कि \emph{प्रत्येक} समुच्चय किसी
+$V_\alpha$ में है, अर्थात प्रत्येक समुच्चय किसी चरण पर बना है।
+
+एक काफ़ी सीधा (गणितीय) अर्थ है जिसमें हमें इसकी \emph{परवाह नहीं} कि
+पदानुक्रम के बाहर समुच्चय हैं या नहीं। (यदि वहाँ कोई हों, तो हम उन्हें बस
+अनदेखा कर सकते हैं।) किंतु हमने समुच्चय की अपनी \emph{संकल्पना} को इस विचार
+से प्रेरित किया है कि प्रत्येक समुच्चय किसी चरण पर बनता है
+(\olref[z][story]{sec} में \stageshier{} देखें)। इसलिए हम पदानुक्रम के बाहर
+पड़ने वाले समुच्चयों की संभावना रोकना चाहेंगे। तदनुसार हमें ऐसा नया अभिगृहीत
+जोड़ना होगा जो सुनिश्चित करे कि प्रत्येक समुच्चय पदानुक्रम में कहीं आता है।
+
+चूँकि $V_\alpha$ हमारे चरण हैं, हम बस निम्न को अभिगृहीत के रूप में जोड़ने
+पर विचार कर सकते हैं:
+
+\begin{defish}
+\emph{नियमितता।} $\forall A \exists \alpha\, A \subseteq V_\alpha$
+\end{defish}
+
+यह पूरी तरह उचित दृष्टिकोण होता। किंतु अगले अनुभाग में बताए जाने वाले कारणों
+से हम इसके बजाय एक वैकल्पिक अभिगृहीत अपनाएँगे:
+
+\begin{axiom}[आधारिता]
+$(\forall A \neq \emptyset)(\exists B \in A)A \cap B = \emptyset$.
+\end{axiom}
+
+कुछ प्रयास से हम ($\ZFminus$ में) दिखा सकते हैं कि आधारिता से नियमितता
+निष्पन्न होती है:
+\begin{defn}
+प्रत्येक समुच्चय $A$ के लिए रखें:
+\begin{align*}
+	\text{cl}_0(A) &= A,\\
+	\text{cl}_{n+1}(A) &= \bigcup \text{cl}_n(A),\\
+	\text{trcl}(A) &= \bigcup_{n < \omega} \text{cl}_{n}(A).
+\end{align*}
+हम $\text{trcl}(A)$ को $A$ की \emph{संक्रमणशील संवृति} कहते हैं।
+\end{defn}
+\noindent
+``संक्रमणशील संवृति'' नाम उपयुक्त है:
+\begin{prop}\ollabel{subsetoftrcl}
+$A \subseteq \trcl{A}$ और $\trcl{A}$ संक्रमणशील समुच्चय है।
+\end{prop}
+
+\begin{proof}
+स्पष्टतः $A = \text{cl}_0(A) \subseteq \text{trcl}(A)$। और यदि
+$x \in b \in \trcl{A}$, तो किसी $n$ के लिए $b \in \text{cl}_n(A)$,
+अतः $x \in \text{cl}_{n+1}(A) \subseteq \text{trcl}(A)$।
+\end{proof}
+
+\begin{lem}\ollabel{lem:TransitiveWellFounded}
+यदि $A$ संक्रमणशील समुच्चय है, तो कोई $\alpha$ ऐसा है कि
+$A \subseteq V_\alpha$।
+\end{lem}
+
+\begin{proof}
+\olref[ordinals][opps]{defsupstrict} से ``$\supstrict(X)$'' की परिभाषा याद
+करते हुए दो समुच्चय परिभाषित करें:
+\begin{align*}
+	D  &= \Setabs{x \in A}{\forall \delta\ x \nsubseteq V_\delta}\\
+	\alpha &= \supstrict\Setabs{\delta}{(\exists x \in A)
+	(x \subseteq V_\delta \land (\forall \gamma \in \delta)x \nsubseteq V_\gamma)}
+\end{align*}
+$D = \emptyset$ मान लें। अतः यदि $x \in A$, तो कोई $\delta$ ऐसा है कि
+$x \subseteq V_\delta$ और क्रमसूचकों की सुव्यवस्था से
+$(\forall \gamma \in \delta)x \nsubseteq V_\gamma$; फलतः
+$\delta \in \alpha$ और इसलिए
+\olref[spine][Valphabasic]{Valphabasicprops} से $x \in V_\alpha$। अतः
+अपेक्षानुसार $A \subseteq V_{\alpha}$।
+
+अतः $D = \emptyset$ दिखाना पर्याप्त है। विरोधाभास द्वारा प्रमाण के लिए
+अन्यथा मान लें। आधारिता से कोई $B \in D \subseteq A$ ऐसा है कि
+$D \cap B = \emptyset$। यदि $x \in B$, तो $A$ की संक्रमणशीलता से
+$x \in A$; और चूँकि $x \notin D$, इसलिए
+$\exists \delta\ x \subseteq V_\delta$। अब रखें:
+\[
+	\beta = \supstrict\Setabs{\delta}{(\exists x \in b)(x \subseteq V_\delta \land (\forall \gamma < \delta)x \nsubseteq V_\gamma)}.
+\]
+पहले की तरह $B \subseteq V_\beta$, जो $B \in D$ दावे के विरुद्ध है।
+\end{proof}
+
+\begin{thm}\ollabel{zfentailsregularity}
+नियमितता लागू होती है।
+\end{thm}
+
+\begin{proof}
+$A$ को नियत करें; अब \olref{subsetoftrcl} से
+$A \subseteq \trcl{A}$, जो संक्रमणशील है। अतः
+\olref{lem:TransitiveWellFounded} से कोई $\alpha$ ऐसा है कि
+$A \subseteq \trcl{A} \subseteq V_\alpha$।
+\end{proof}
+
+ये परिणाम दिखाते हैं कि $\ZFminus$ सशर्त
+$\emph{आधारिता}\Rightarrow\emph{नियमितता}$ को सिद्ध करता है।
+\olref[spine][rank]{zfminusregularityfoundation} में हम दिखाएँगे कि
+$\ZFminus$, $\emph{नियमितता}\Rightarrow\emph{आधारिता}$ को सिद्ध करता है।
+अतः आधारिता और नियमितता ($\ZFminus$ के सापेक्ष) \emph{समतुल्य} हैं। इसका
+अर्थ है कि $\ZFminus$ को मानकर हम नियमितता से उसकी समतुल्यता देखकर आधारिता
+का औचित्य दे सकते हैं। और \stageshier{} के आधार पर नियमितता का औचित्य तुरंत
+दे सकते हैं।
+
+\end{document}

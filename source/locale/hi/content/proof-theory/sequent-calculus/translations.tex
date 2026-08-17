@@ -1,0 +1,98 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: translations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{seq}{tr}
+
+\olsection{\Log{G1c} और \Log{G3c} के बीच रूपांतरण}
+
+हमने कहा था कि \Log{G1c} और \Log{G3c} दोनों चिरसम्मत तर्क के लिए निर्दोष और
+पूर्ण हैं, अर्थात प्रत्येक ठीक उन्हीं सभी अनुक्रमों को सिद्ध करता है जो हर
+!!{structure} में सत्य हैं। विशेषतः वे समान अनुक्रम सिद्ध करते हैं। अब हम इस
+तथ्य को निर्दोषता और पूर्णता प्रमेयों का चक्कर लगाए बिना, विशुद्ध
+प्रमाण-सैद्धांतिक ढंग से सिद्ध कर सकते हैं। ऐसा प्रमाण \Log{G1c} के
+!!{proof}s को \Log{G3c} के !!{proof}s में, और इसके विपरीत, बदलने के
+\emph{रूपांतरण} देता है।
+
+\begin{prop}
+यदि $\Log{G1c} \Proves S$, तो $\Log{G3c} \Proves S$।
+\end{prop}
+
+\begin{proof}
+  हम दिखाते हैं कि यदि $\pi$, \Log{G1c} में !!a{proof} है, तो \Log{G3c}
+  में~$S$ का कोई !!a{proof}~$\pi'$ है। इसे हम $n = \pheight{\pi}$ पर आगमन
+  द्वारा करते हैं।
+
+  यदि $n = 0$, तो $\pi$ अभिगृहीति है। अभिगृहीति $\lfalse \Sequent \quad$
+  भी \Log{G3c} की अभिगृहीति है (प्रसंग $\Gamma$, $\Delta$ को रिक्त लें)।
+  \Log{G3c} में केवल परमाण्विक ही नहीं, मनमाने~$!A$ के साथ अभिगृहीतियाँ
+  $!A \Sequent !A$ अनुमत हैं। किंतु हमने \olref[ex]{prop:G3c-axioms} में
+  सिद्ध किया कि ऐसे सभी अनुक्रम \Log{G3c} में !!{provable} हैं।
+  
+  यदि $n>0$, तो $\pi$ किसी नियम~$R$ पर समाप्त होता है। आगमन परिकल्पना
+  प्रत्याभूत करती है कि उस नियम के आधार-वाक्यों के \Log{G3c} में !!{proof}s
+  हैं, अर्थात निकटस्थ उप-!!{proof}s के \Log{G3c} में रूपांतरण हैं। यदि नियम
+  ~$R$ भी \Log{G3c} का नियम है, तो हम उसे आधार-वाक्यों के रूपांतरित
+  !!{proof}s पर लागू करते हैं। जो नियम \Log{G3c} के भी नियम नहीं हैं, उन्हें
+  हम पहले ही कम-से-कम ग्राह्य दिखा चुके हैं। अतः यदि नियम~$R$
+  $\LeftR{\land}$ या $\RightR{\lor}$ था, तो
+  \olref[adm]{prop:lor-G3-adm} लगाएँ। यदि वह दुर्बलीकरण नियम था, तो
+  \olref[adm]{prop:weak-G3c-adm} लगाएँ। यदि वह संकुचन नियम था, तो
+  \olref[inv]{prop:G3c-cont-adm} लगाएँ।
+\end{proof}
+
+\begin{prop}
+यदि $\Log{G3c} \Proves S$, तो $\Log{G1c} \Proves S$।
+\end{prop}
+
+\begin{proof}
+  हम फिर $S$ के !!a{proof}~$\pi$ की !!{height} पर आगमन करते हैं। \Log{G3c}
+  की प्रत्येक अभिगृहीति को किसी अभिगृहीति तथा \LeftR{\Weakening} और
+  \RightR{\Weakening} नियमों के कई अनुप्रयोगों से \Log{G1c} में !!{prove}
+  किया जा सकता है:
+  \[
+  \Axiom$!C \fCenter !C$
+  \RightLabel{\LeftR{\Weakening}}
+  \Deduce$!C, \Gamma \fCenter !C$
+  \RightLabel{\RightR{\Weakening}}
+  \Deduce$!C, \Gamma \fCenter \Delta, !C$
+  \DisplayProof
+\qquad
+  \Axiom$\lfalse \fCenter$
+  \RightLabel{\LeftR{\Weakening}}
+  \Deduce$\lfalse, \Gamma \fCenter$
+  \RightLabel{\RightR{\Weakening}}
+  \Deduce$\lfalse, \Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  यदि $\pi$ किसी नियम~$R$ पर समाप्त होता है, तो आगमन परिकल्पना आधार-वाक्यों
+  के \Log{G1c} में !!{proof}s देती है, और हम उन !!{proof}s पर वही नियम~$R$
+  लागू कर सकते हैं। अपवाद \LeftR{\land} और \RightR{\lor} नियम हैं, जो
+  \Log{G1c} और~\Log{G3c} में भिन्न हैं। \Log{G3c} के रूप \Log{G1c} में इस
+  प्रकार व्युत्पाद्य हैं:
+  \[
+  \Axiom$!A, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B, !A \land !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+\qquad
+  \Axiom$\Gamma \fCenter \Delta, !A, !B$
+  \RightLabel{\RightR{\lor}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B, !B$
+  \RightLabel{\RightR{\lor}}
+  \UnaryInf$\Gamma \fCenter \Delta, , !A \lor !B, !A \lor !B$
+  \RightLabel{\RightR{\Contraction}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
+    \DisplayProof
+  \]
+\end{proof}
+
+\end{document}

@@ -1,0 +1,105 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: composition-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{req}{cmp}
+\olsection{संयोजन $\Th{Q}$ में निरूपणीय है}
+
+मान लें कि $h$ इस प्रकार परिभाषित है:
+\[
+h(x_0,\dots,x_{l-1}) = f(g_0(x_0,\dots,x_{l-1}), \dots,
+g_{k-1}(x_0,\dots,x_{l-1})).
+\]
+और हम पहले ही ऐसे !!{formula}s $!A_f, !A_{g_0}, \dots,
+!A_{g_{k-1}}$ पा चुके हैं जो क्रमशः फलनों $f$ और $g_0$,
+\dots,~$g_{k-1}$ का निरूपण करते हैं। हमें $h$ का निरूपण करने वाला कोई
+!!a{formula}~$!A_h$ खोजना है।
+
+एक सरल मामले से आरंभ करें जिसमें सभी फलन $1$-स्थानीय हैं, अर्थात्
+$h(x) = f(g(x))$ पर विचार करें। यदि $!A_f(y, z)$,~$f$ का और
+$!A_g(x, y)$,~$g$ का निरूपण करता है, तो हमें~$h$ का निरूपण करने वाला कोई
+!!a{formula}~$!A_h(x, z)$ चाहिए। ध्यान दें कि $h(x) = z$ तभी और केवल तभी
+जब कोई~$y$ ऐसा हो कि $z = f(y)$ और $y = g(x)$ दोनों हों। (यदि
+$h(x) = z$, तो $g(x)$ ऐसा~$y$ है; और यदि ऐसा कोई~$y$ मौजूद है, तो
+$y = g(x)$ तथा $z = f(y)$ होने से $z = f(g(x))$।) इससे संकेत मिलता है कि
+$\lexists[y][(!A_g(x, y) \land !A_f(y, z))]$,~$!A_h(x, z)$ के लिए अच्छा
+प्रत्याशी है। हमें केवल यह सत्यापित करना है कि $\Th{Q}$ संबद्ध
+!!{formula}s को सिद्ध करता है।
+
+\begin{prop}
+\ollabel{prop:rep1}
+यदि $h(n) = m$, तो $\Th{Q} \Proves !A_h(\num{n}, \num{m})$।
+\end{prop}
+
+\begin{proof}
+मान लें $h(n) = m$, अर्थात् $f(g(n)) = m$। मानें $k = g(n)$। तब
+\begin{align*}
+  \Th{Q} & \Proves !A_g(\num{n}, \num{k})
+  \intertext{क्योंकि $!A_g$,~$g$ का निरूपण करता है, और}
+  \Th{Q} & \Proves !A_f(\num{k}, \num{m})
+  \intertext{क्योंकि $!A_f$,~$f$ का निरूपण करता है। अतः}
+  \Th{Q} & \Proves !A_g(\num{n}, \num{k}) \land !A_f(\num{k}, \num{m})
+  \intertext{और फलतः}
+  \Th{Q} & \Proves \lexists[y][(!A_g(\num{n}, y) \land !A_f(y, \num{m}))],
+\end{align*}
+अर्थात् $\Th{Q} \Proves !A_h(\num{n}, \num{m})$।
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep2}
+यदि $h(n) = m$, तो $\Th{Q} \Proves \lforall[z][(!A_h(\num{n}, z) \lif
+  z = \num{m})]$।
+\end{prop}
+
+\begin{proof}
+मान लें $h(n) = m$, अर्थात् $f(g(n)) = m$। मानें $k = g(n)$। तब
+\begin{align*}
+  \Th{Q} & \Proves \lforall[y][(!A_g(\num{n}, y) \lif \eq[y][\num{k}])]
+  \intertext{क्योंकि $!A_g$,~$g$ का निरूपण करता है, और}
+  \Th{Q} & \Proves \lforall[z][(!A_f(\num{k}, z) \lif \eq[z][\num{m}])]
+  \intertext{क्योंकि $!A_f$,~$f$ का निरूपण करता है। थोड़े-से तर्क का उपयोग
+    करके हम यह भी दिखा सकते हैं कि}
+  \Th{Q} & \Proves \lforall[z][(\lexists[y][(!A_g(\num{n}, y) \land
+      !A_f(y, z))] \lif \eq[z][\num{m}])].
+\end{align*}
+अर्थात् $\Th{Q} \Proves \lforall[y][(!A_h(\num n, y) \lif
+\eq[y][\num m])]$।
+\end{proof}
+
+यही विचार उस अधिक जटिल मामले में भी काम करता है जिसमें $f$ और~$g_i$ की
+स्थानिकता~$1$ से अधिक है।
+
+\begin{prop}
+\ollabel{prop:rep-composition}
+यदि $!A_f(y_0, \dots, y_{k-1}, z)$,~$\Th{Q}$ में
+$f(y_0, \dots, y_{k-1})$ का निरूपण करता है, और
+$!A_{g_i}(x_0, \dots, x_{l-1}, y)$,~$\Th{Q}$ में
+$g_i(x_0, \dots, x_{l-1})$ का निरूपण करता है, तो
+\begin{multline*}
+  \lexists[y_0\dots][\lexists[y_{k-1}][(!A_{g_0}(x_0,\dots,x_{l-1},y_0) \land
+      \dots \land {}]]\\
+  !A_{g_{k-1}}(x_0,\dots,x_{l-1},y_{k-1}) \land !A_f(y_0,\dots,y_{k-1},z))
+\end{multline*}
+फलन
+\[
+h(x_0, \dots, x_{l-1}) = f(g_0(x_0, \dots, x_{l-1}), \dots, g_{k-1}(x_0,
+\dots, x_{l-1})).
+\]
+का निरूपण करता है।
+\end{prop}
+
+\begin{proof}
+अभ्यास।
+\end{proof}
+
+\begin{prob}
+\olref[inc][req][cmp]{prop:rep2} और
+\olref[inc][req][cmp]{prop:rep2} के प्रमाणों को मार्गदर्शक बनाकर
+\olref[inc][req][cmp]{prop:rep-composition} का प्रमाण विस्तार से पूरा करें।
+\end{prob}
+
+\end{document}

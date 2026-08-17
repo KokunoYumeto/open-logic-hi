@@ -1,0 +1,132 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: complete-consistent-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{com}{ccs}
+
+\olsection{पूर्ण $\Sigma$-संगत समुच्चय}
+
+मान लें कि $\Sigma$ मोडल !!{formula}ों का समुच्चय है---इन्हें किसी सामान्य
+मोडल तर्कशास्त्र के अभिगृहीत या परिभाषक सिद्धांत समझें। कोई समुच्चय
+$\Gamma$, $\Sigma$-संगत तभी है जब $\Gamma \Proves/[\Sigma] \lfalse$,
+अर्थात् जब $\Sigma$ से $!A_1 \lif (!A_2 \lif \cdots (!A_n \lif
+\lfalse)\dots)$ की कोई !!{derivation} न हो, जहाँ प्रत्येक $!A_i \in
+\Gamma$। हम ऐसा ``विहित'' प्रतिरूप बनाएँगे जिसमें हर जगत एक विशेष प्रकार
+का $\Sigma$-संगत समुच्चय होगा: ऐसा समुच्चय जो केवल $\Sigma$-संगत ही नहीं,
+बल्कि इस अर्थ में अधिकतम भी हो कि वह प्रत्येक मोडल !!{formula} का सत्यता-मूल्य
+निर्धारित करता है---हर $!A$ के लिए या तो $!A \in \Gamma$, या $\lnot !A
+\in \Gamma$:
+
+\begin{defn}
+  कोई समुच्चय $\Gamma$ \emph{पूर्ण $\Sigma$-संगत} तभी है जब वह
+  $\Sigma$-संगत हो और प्रत्येक~$!A$ के लिए या तो $!A \in \Gamma$, या
+  $\lnot !A \in \Gamma$ हो।
+\end{defn}
+
+पूर्ण $\Sigma$-संगत समुच्चयों $\Gamma$ के अनेक उपयोगी गुण हैं। एक तो वे
+निगमनतः संवृत हैं, अर्थात् यदि $\Gamma \Proves[\Sigma] !A$, तो $!A \in
+\Gamma$। विशेषतः इसका अर्थ है कि किसी !!a{formula}~$!A \in \Sigma$ का हर
+दृष्टांत $\Gamma$ में भी है। इसके अतिरिक्त, $\Gamma$ में सदस्यता
+प्रतिज्ञप्तिक संयोजकों की सत्यता-शर्तों को प्रतिबिंबित करती है। ``विहित
+प्रतिरूप'' परिभाषित करते समय यह महत्त्वपूर्ण होगा।
+
+\begin{prop}\ollabel{prop:ccs-properties}
+  मान लें कि $\Gamma$ पूर्ण $\Sigma$-संगत है। तब:
+  \begin{enumerate}
+  \item \ollabel{prop:ccs-closed}%
+    $\Gamma$, $\Sigma$ में निगमनतः संवृत है।
+  \item \ollabel{prop:ccs-sigma}%
+    $\Sigma \subseteq \Gamma$.
+  \tagitem{prvFalse}{\ollabel{prop:ccs-lfalse}%
+    $\lfalse \notin \Gamma$}{}
+  \tagitem{prvTrue}{\ollabel{prop:ccs-ltrue}%
+    $\ltrue \in \Gamma$}{}
+  \item \ollabel{prop:ccs-lnot}%
+    $\lnot!A \in \Gamma$ तभी जब $!A \notin \Gamma$।
+  \tagitem{prvAnd}{\ollabel{prop:ccs-land}%
+    $!A \land !B \in \Gamma$ तभी जब $!A \in \Gamma$ और $!B \in \Gamma$}{}
+  \tagitem{prvOr}{\ollabel{prop:ccs-lor}%
+    $!A \lor !B \in \Gamma$ तभी जब $!A \in \Gamma$ या $!B \in \Gamma$}{}
+  \tagitem{prvIf}{\ollabel{prop:ccs-lif}%
+    $!A \lif !B \in \Gamma$ तभी जब $!A \notin \Gamma$ या $!B \in \Gamma$}{}
+  \tagitem{prvIff}{\ollabel{prop:ccs-liff}%
+    $!A \liff !B \in \Gamma$ तभी जब या तो $!A \in \Gamma$ और $!B \in
+    \Gamma$, या $!A \notin \Gamma$ और $!B \notin \Gamma$}{}
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item मान लें कि $\Gamma \Proves[\Sigma] !A$, किंतु $!A \notin
+    \Gamma$। चूँकि $\Gamma$ पूर्ण $\Sigma$-संगत है, $\lnot!A \in
+    \Gamma$। इससे $\Gamma$ असंगत होगा, क्योंकि $!A, \lnot !A
+    \Proves[\Sigma] \lfalse$।
+    
+  \item यदि $!A \in \Sigma$, तो $\Gamma \Proves[\Sigma] !A$, और
+    निगमनात्मक संवृत्ति, अर्थात् स्थिति~\olref{prop:ccs-closed}, से
+    $!A \in \Gamma$।
+    
+  \tagitem{prvFalse}{यदि $\lfalse \in \Gamma$, तो $\Gamma
+    \Proves[\Sigma] \lfalse$, इसलिए $\Gamma$, $\Sigma$-असंगत होगा।}{}
+  
+  \tagitem{prvTrue}{$\Gamma \Proves[\Sigma] \ltrue$, अतः निगमनात्मक
+    संवृत्ति, अर्थात् स्थिति~\olref{prop:ccs-closed}, से $\ltrue \in
+    \Gamma$।}{}
+
+\item यदि $\lnot!A \in \Gamma$, तो संगति से $!A \notin \Gamma$; और यदि
+    $!A \notin \Gamma$, तो $!A \in \Gamma$, क्योंकि $\Gamma$ पूर्ण
+    $\Sigma$-संगत है।
+    
+  \tagitem{prvAnd}{\iftag{probAnd}{अभ्यास।}{मान लें $!A \land !B \in
+      \Gamma$। चूँकि $(!A \land !B) \lif !A$ सर्वसत्यतात्मक दृष्टांत है,
+      निगमनात्मक संवृत्ति, अर्थात् स्थिति~\olref{prop:ccs-closed}, से
+      $!A \in \Gamma$। इसी प्रकार $!B \in \Gamma$। दूसरी ओर, मान लें कि
+      $!A \in \Gamma$ और $!B \in \Gamma$, दोनों। तब निगमनात्मक संवृत्ति
+      से $(!A \land !B) \in \Gamma$, क्योंकि $!A \lif (!B \lif (!A
+      \land !B))$ सर्वसत्यतात्मक दृष्टांत है।}}{}
+
+  \tagitem{prvOr}{\iftag{probOr}{अभ्यास।}{मान लें $!A \lor !B \in
+      \Gamma$, तथा $!A \notin \Gamma$ और $!B \notin \Gamma$। चूँकि
+      $\Gamma$ पूर्ण $\Sigma$-संगत है, $\lnot!A \in \Gamma$ और $\lnot
+      !B \in \Gamma$। तब $\lnot(!A \lor !B) \in \Gamma$, क्योंकि
+      $\lnot !A \lif (\lnot !B \lif \lnot (!A \lor !B))$
+      सर्वसत्यतात्मक दृष्टांत है। इसका अर्थ होगा कि $\Gamma$,
+      $\Sigma$-असंगत है, जो विरोधाभास है।}}{}
+  
+  \tagitem{prvIf}{\iftag{probIf}{अभ्यास।}{मान लें $!A \lif !B \in
+      \Gamma$ और $!A \in \Gamma$; तब $\Gamma \Proves[\Sigma] !B$, और
+      इसलिए निगमनात्मक संवृत्ति से $!B \in \Gamma$। विलोमतः, यदि $!A
+      \lif !B \notin \Gamma$, तो $\Gamma$ के पूर्ण $\Sigma$-संगत होने
+      से $\lnot (!A \lif !B) \in \Gamma$। चूँकि $\lnot(!A \lif !B)
+      \lif !A$ सर्वसत्यतात्मक दृष्टांत है, निगमनात्मक संवृत्ति से $!A
+      \in \Gamma$। चूँकि $\lnot(!A \lif !B) \lif \lnot !B$
+      सर्वसत्यतात्मक दृष्टांत है, $\lnot !B \in \Gamma$। तब $\Gamma$ के
+      $\Sigma$-संगत होने से $!B \notin \Gamma$।}}{}
+  
+  \tagitem{prvIff}{\iftag{probIff}{अभ्यास।}{मान लें $!A \liff !B \in
+      \Gamma$। यदि $!A \in \Gamma$, तो $!B \in \Gamma$, क्योंकि $(!A
+      \liff !B) \lif (!A \lif !B)$ सर्वसत्यतात्मक दृष्टांत है। इसी प्रकार,
+      यदि $!B \in \Gamma$, तो $!A \in \Gamma$। अतः या तो $!A \in
+      \Gamma$ और $!B \in \Gamma$, दोनों, अथवा न $!A \in \Gamma$ और न
+      $!B \in \Gamma$।
+      
+      विलोमतः, मान लें $!A \lif !B \notin \Gamma$। चूँकि $\Gamma$ पूर्ण
+      $\Sigma$-संगत है, $\lnot (!A \liff !B) \in \Gamma$। चूँकि
+      $\lnot(!A \liff !B) \lif (!A \lif \lnot !B)$ सर्वसत्यतात्मक
+      दृष्टांत है, यदि $!A \in \Gamma$, तो $\lnot !B \in \Gamma$; और
+      $\Gamma$ के $\Sigma$-संगत होने से $!B \notin \Gamma$। इसी प्रकार,
+      यदि $!B \in \Gamma$, तो $!A \notin \Gamma$। अतः न तो $!A \in
+      \Gamma$ और $!B \in \Gamma$, और न ही $!A \notin \Gamma$ और $!B
+      \notin \Gamma$।}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probAnd,probOr,probIf,probIff}
+  \olref[nml][com][ccs]{prop:ccs-properties} का प्रमाण पूरा कीजिए।
+\end{probtag}
+
+\end{document}

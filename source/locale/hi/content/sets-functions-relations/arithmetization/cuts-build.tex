@@ -1,0 +1,22 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0036.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen cross-reference identity required by this standalone section.
+\makeatletter
+\expandafter\def\csname r@sfr:arith:check:sec\endcsname
+  {{arith.6}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:check:sec@cref\endcsname
+  {{[section][6][0]arith.6}{}{}{}{}}
+\makeatother
+\pdfstringdefDisableCommands{\def\Rat{Q}\def\Real{R}}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{डेडेकिंड विच्छेद}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{cuts}
+\end{document}

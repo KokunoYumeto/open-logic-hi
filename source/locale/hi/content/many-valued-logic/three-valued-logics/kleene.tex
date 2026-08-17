@@ -1,0 +1,191 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: kleene
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{thr}{skl}
+
+\olsection{क्लिनी तर्कशास्त्र}
+
+स्टीफन क्लिनी ने ऐसे दृष्टिकोण से प्रेरित दो त्रिमूल्य तर्कशास्त्र प्रस्तुत
+किए जिसमें सत्य-मानों को संगणनात्मक प्रक्रियाओं के परिणाम माना जाता है:
+कोई प्रक्रिया $\True$ अथवा $\False$ दे सकती है, पर समाप्त होने में विफल भी
+हो सकती है। उस स्थिति में अनुरूप सत्य-मान अपरिभाषित है, जिसे सत्य-मान
+~$\Undef$ से दर्शाते हैं।
+
+किसी प्रतिज्ञप्ति~$!A$ का निषेध संगणित करने के लिए पहले~$!A$ का मान संगणित
+करके परिणाम का विपरीत लौटाएँगे। यदि $!A$ की संगणना समाप्त नहीं होती, तो
+पूरी प्रक्रिया भी समाप्त नहीं होती; अतः $\Undef$ का निषेध $\Undef$ है।
+
+संयोजन $!A \land !B$ संगणित करने के दो विकल्प हैं: पहले~$!A$, फिर $!B$
+संगणित करें; दोनों का परिणाम~$\True$ होने पर परिणाम $\True$, और अन्यथा
+$\False$ होगा। यदि कोई एक संगणना रुकने में विफल हो, तो पूरी प्रक्रिया भी
+विफल होती है। अतः इस स्थिति में यदि कोई एक संयोज्य अपरिभाषित है, तो संयोजन
+भी अपरिभाषित है। वियोजन के लिए भी यही बात लागू होती है।
+
+किंतु यदि हम $!A$ और $!B$ का मूल्यांकन समांतर रूप से कर सकें, तो बेहतर कर
+सकते हैं। तब यदि दोनों प्रक्रियाओं में से कोई रुककर $\False$ लौटाए, तो हम
+रुक सकते हैं, क्योंकि उत्तर असत्य ही होगा। अतः उस स्थिति में एक असत्य
+संयोज्य वाला संयोजन असत्य है, चाहे दूसरा संयोज्य अपरिभाषित हो। इसी प्रकार,
+वियोजन को समांतर संगणित करते समय किसी एक वियोज्य की प्रक्रिया के सत्य
+लौटाते ही हम रुक सकते हैं; तब वियोजन सत्य ही होगा। अतः इस स्थिति में कोई
+घटक अपरिभाषित होने पर भी हम संयुक्त कथन का परिणाम जान सकते हैं। इस
+निर्वचन में $\Undef$ को ``अपरिभाषित'' के बदले ``अज्ञात'' पढ़ सकते हैं।
+
+दोनों निर्वचनों से क्लिनी के प्रबल और दुर्बल तर्कशास्त्र मिलते हैं।
+सप्रतिबंध को $\lnot !A \lor !B$ के तुल्य परिभाषित किया जाता है।
+
+\begin{defn}
+\emph{प्रबल क्लिनी तर्कशास्त्र}~$\LogKs$ इस आव्यूह से परिभाषित है:
+\begin{enumerate}
+  \item मानक प्रतिज्ञप्तिपरक भाषा $\Lang L_0$, जिसमें
+  $\lnot$, $\land$, $\lor$, $\lif$.
+  \item सत्य-मानों का समुच्चय $V = \{\True, \Undef, \False\}$।
+  \item $\True$ एकमात्र निर्दिष्ट मान है, अर्थात् $V^+ = \{\True\}$।
+  \item सत्य-फलन निम्न सारणियों से दिए जाते हैं:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
+      $\False$ & $\False$ & $\False$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$  \\ 
+      $\False$ & $\True$ & $\True$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+\emph{दुर्बल क्लिनी तर्कशास्त्र}~$\LogKw$ इस आव्यूह से परिभाषित है:
+\begin{enumerate}
+  \item मानक प्रतिज्ञप्तिपरक भाषा $\Lang L_0$, जिसमें
+  $\lnot$, $\land$, $\lor$, $\lif$.
+  \item सत्य-मानों का समुच्चय $V = \{\True, \Undef, \False\}$।
+  \item $\True$ एकमात्र निर्दिष्ट मान है, अर्थात् $V^+ = \{\True\}$।
+  \item सत्य-फलन निम्न सारणियों से दिए जाते हैं:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$\\ 
+      $\False$ & $\False$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\True$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$  \\ 
+      $\False$ & $\True$ & $\Undef$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+  $\LogKs$ और $\LogKw$ की कोई सर्वसत्यता नहीं है।
+\end{prop}
+
+\begin{proof}
+  यदि सभी !!{propositional variable}~$p$ के लिए $\pAssign v(p) =
+  \Undef$, तो किसी भी सूत्र~$!A$ का सत्य-मान~$\pValue v(!A) = \Undef$
+  होगा, क्योंकि
+  \[
+    \tf{\lnot}(\Undef) = \tf{\lor}(\Undef, \Undef) = \tf{\land}(\Undef,
+  \Undef) = \tf{\lif}(\Undef, \Undef) = \Undef
+  \]
+  दोनों तर्कशास्त्रों में। चूँकि $\LogKs$ और $\LogKw$ दोनों के लिए $\Undef
+  \notin V^+$, इसलिए इस !!{valuation} में $!A$ निर्दिष्ट नहीं होगा।
+\end{proof}
+
+यद्यपि दुर्बल और प्रबल दोनों क्लिनी तर्कशास्त्रों की कोई सर्वसत्यता नहीं,
+उनके परिणाम-संबंध अतुच्छ हैं।
+
+\begin{prob}
+  निम्न में से कौन-से संबंध (क) प्रबल और (ख) दुर्बल क्लिनी तर्कशास्त्र में
+  लागू होते हैं? प्रत्येक के लिए सत्य-सारणी दें।
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $p \lor q, \lnot p \Entails q$
+    \item $p \land q \Entails p$
+    \item $p \Entails p \land p$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+
+दिमित्री बोचवार ने $\Undef$ का निर्वचन ``अर्थहीन'' के रूप में किया और यह
+नियम रखकर मिथ्यावादी विरोधाभास जैसे विरोधाभासों को हल करने का प्रयास किया
+कि विरोधाभासी वाक्य~$\Undef$ मान लें। उन्होंने ऐसा तर्कशास्त्र प्रस्तुत
+किया जो मूलतः अतिरिक्त संयोजकों से विस्तारित दुर्बल क्लिनी तर्कशास्त्र है;
+इनमें दो हैं ``बाह्य निषेध'' और ``अपरिभाषित है'' संक्रियक:
+\begin{center}
+  \begin{tabular}{c|c} 
+    $\tf{\sim}$ & \\ 
+    \hline  
+    $\True$ & $\False$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\True$ 
+  \end{tabular}
+\quad
+  \begin{tabular}{c|c} 
+    $\tf{+}$ & \\ 
+    \hline  
+    $\True$ & $\False$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$ 
+  \end{tabular}
+\end{center}
+
+\begin{prob}
+  क्या आप बोचवार के तर्कशास्त्र में $\sim$ को $\lnot$ और~$+$ के पदों में
+  परिभाषित कर सकते हैं? अर्थात् केवल !!{propositional variable}~$p$ वाला,
+  $\sim$ रहित ऐसा !!a{formula} खोजें जो सदा~$\mathord{\sim}p$ वाला ही
+  सत्य-मान ले। अपनी बात दिखाने के लिए सत्य-सारणी दें।
+\end{prob}
+
+
+\end{document}

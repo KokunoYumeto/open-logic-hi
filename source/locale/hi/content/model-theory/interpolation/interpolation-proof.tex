@@ -1,0 +1,204 @@
+% Part: model-theory
+% Chapter: interpolation
+% Section: interpolation-proof
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{int}{prf}
+
+\olsection{क्रेग का अंतर्वेशन प्रमेय}
+
+\begin{thm}[क्रेग का अंतर्वेशन प्रमेय]
+\ollabel{thm:interpol} 
+यदि $\Entails !A \lif !B$, तो ऐसा !!a{sentence} $!C$ है कि
+$\Entails !A \lif !C$ और $\Entails !C \lif !B$, और प्रत्येक
+!!{constant}, !!{function} और !!{predicate} ($\eq$ के अतिरिक्त), जो
+$!C$ में आता है, $!A$ और~$!B$ दोनों में आता है। !!{sentence} $!C$ को
+$!A$ और~$!B$ का
+\emph{अंतर्वेशक} कहते हैं।
+\end{thm}
+
+\begin{proof}
+मान लें कि $\Lang{L}_1$, $!A$ की भाषा है और $\Lang{L}_2$, $!B$ की भाषा
+है। $\Lang{L}_0 = \Lang{L}_1 \cap \Lang{L}_2$ मानें। प्रत्येक
+$i \in \{0, 1, 2 \}$ के लिए, $\Lang{L}'_i$ को $\Lang{L}_i$ में अनंततः
+अनेक नए !!{constant}s $\Obj c_0,
+\Obj c_1, \Obj c_2, \dots$ जोड़कर
+प्राप्त करें।
+
+यदि $!A$ असंतुष्टनीय है, तो $\lexists[x][\eq/[x][x]]$ एक अंतर्वेशक है।
+यदि $\lnot !B$ असंतुष्टनीय है (और इसलिए $!B$ वैध है), तो
+$\lexists[x][\eq[x][x]]$ एक अंतर्वेशक है। अतः हम यह भी मान सकते हैं कि
+$!A$ और $\lnot !B$ दोनों संतुष्टनीय हैं।
+
+अंतर्वेशन प्रमेय का प्रतिपक्ष सिद्ध करने के लिए मान लें कि $!A$ और $!B$
+का कोई अंतर्वेशक नहीं है। दूसरे शब्दों में, मान लें कि $\{!A\}$ और
+$\{\lnot !B\}$, $\Lang{L}_0$ में अपृथक्करणीय हैं।
+
+हमारा लक्ष्य युग्म $(\{ !A \}, \{\lnot!B\})$ को किसी अधिकतम
+अपृथक्करणीय युग्म $(\Gamma^*, \Delta^*)$ तक विस्तृत करना है। $!A_0$,
+$!A_1$, $!A_2$, \dots को $\Lang{L}_1$ के !!{sentence}s की गणना और
+$!B_0$, $!B_1$, $!B_2$, \dots को $\Lang{L}_2$ के !!{sentence}s की
+गणना मानें। हम !!{sentence}s के समुच्चयों के दो वर्धमान अनुक्रम
+$(\Gamma_n, \Delta_n)$, जहाँ $n \ge 0$, निम्न प्रकार परिभाषित करते हैं।
+$\Gamma_0 = \{ !A\}$ और $\Delta_0 = \{\lnot !B \}$ रखें। मान लें कि
+$(\Gamma_n, \Delta_n)$ पहले से परिभाषित हैं; तब $\Gamma_{n+1}$ और
+$\Delta_{n+1}$ को इस प्रकार परिभाषित करें:
+\begin{enumerate}
+\item यदि $\Gamma_n \cup \{!A_n \}$ और $\Delta_n$, $\Lang{L}'_0$ में
+  अपृथक्करणीय हैं, तो $!A_n$ को $\Gamma_{n+1}$ में रखें। इसके अतिरिक्त,
+  यदि $!A_n$ कोई अस्तित्ववाची !!{formula} $\lexists[x][!S]$ है, तो ऐसा
+  नया !!{constant} $c$ चुनें जो $\Gamma_n$, $\Delta_n$, $!A_n$ या
+  $!B_n$ में नहीं आता, और $\Subst{!S}{c}{x}$ को $\Gamma_{n+1}$ में रखें।
+\item यदि $\Gamma_{n+1}$ और $\Delta_n \cup \{!B_n \}$,
+  $\Lang{L}'_0$ में अपृथक्करणीय हैं, तो $!B_n$ को $\Delta_{n+1}$ में
+  रखें। इसके अतिरिक्त, यदि $!B_n$ कोई अस्तित्ववाची !!{formula}
+  $\lexists[x][!S]$ है, तो ऐसा नया !!{constant} $c$ चुनें जो
+  $\Gamma_{n+1}$, $\Delta_n$, $!A_n$ या $!B_n$ में नहीं आता, और
+  $\Subst{!S}{c}{x}$ को $\Delta_{n+1}$ में रखें।
+\end{enumerate}
+अंत में, परिभाषित करें:
+\begin{align*}
+  \Gamma^* & = \bigcup_{n\ge 0} \Gamma_n, & 
+  \Delta^* & = \bigcup_{n\ge 0} \Delta_n.
+\end{align*}
+अब $n$ पर समकालिक आगमन द्वारा हम सिद्ध कर सकते हैं:
+\begin{enumerate}
+\item\ollabel{part-a} $\Gamma_n$ और $\Delta_n$, $\Lang{L}'_0$ में
+  अपृथक्करणीय हैं;
+\item\ollabel{part-b} $\Gamma_{n+1}$ और $\Delta_n$, $\Lang{L}'_0$ में
+    अपृथक्करणीय हैं।
+\end{enumerate}
+\olref{part-a} का आधार \olref[sep]{lem:sep1} से मिलता है। भाग
+\olref{part-b} के लिए हमें तीन स्थितियाँ अलग करनी होंगी:
+\begin{enumerate}
+\item यदि $\Gamma_0 \cup \{!A_0 \}$ और $\Delta_0$ पृथक्करणीय हैं, तो
+  $\Gamma_1 = \Gamma_0$ और \olref{part-b}, \olref{part-a} ही है;
+\item यदि $\Gamma_1 = \Gamma_0 \cup\{ !A_0\}$, तो रचना से $\Gamma_1$
+  और $\Delta_0$ अपृथक्करणीय हैं।
+\item वह स्थिति शेष है जिसमें $!A_0$ अस्तित्ववाची है, अतः
+  $\Gamma_1 = \Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x}
+  \}$। रचना से $\Gamma_0 \cup \{ \lexists[x][!S]\}$ और $\Delta_0$
+  अपृथक्करणीय हैं, इसलिए \olref[sep]{lem:sep2} द्वारा
+  $\Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x} \}$ और
+  $\Delta_0$ भी अपृथक्करणीय हैं।
+\end{enumerate}
+इससे ऊपर के \olref{part-a} और \olref{part-b} के लिए आगमन का आधार पूरा
+होता है। अब आगमन-चरण लें। \olref{part-a} के लिए, यदि
+$\Delta_{n+1} = \Delta_n \cup \{ !B_n \}$, तो रचना से
+$\Gamma_{n+1}$ और $\Delta_{n+1}$ अपृथक्करणीय हैं ($!B_n$ के
+अस्तित्ववाची होने पर भी, \olref[sep]{lem:sep2} द्वारा); यदि
+$\Delta_{n+1} = \Delta_n$ (क्योंकि $\Gamma_{n+1}$ और
+$\Delta_n \cup \{!B_n\}$ पृथक्करणीय हैं), तो हम \olref{part-b} पर
+आगमन-परिकल्पना का उपयोग करते हैं। \olref{part-b} के आगमन-चरण के लिए, यदि
+$\Gamma_{n+2} = \Gamma_{n+1} \cup
+\{!A_{n+1} \}$, तो रचना से
+$\Gamma_{n+2}$ और $\Delta_{n+1}$ अपृथक्करणीय हैं ($!A_{n+1}$ के
+अस्तित्ववाची होने पर भी, \olref[sep]{lem:sep2} द्वारा); और यदि
+$\Gamma_{n+2} = \Gamma_{n+1}$, तो हम अभी सिद्ध किए गए
+\olref{part-a} के आगमन-विषयक मामले का उपयोग करते हैं। इससे
+\olref{part-a} और \olref{part-b} पर आगमन पूरा होता है।
+
+इससे $\Gamma^*$ और $\Delta^*$ के अपृथक्करणीय होने का निष्कर्ष निकलता
+है; अन्यथा संहतता से कोई $n \ge 0$ होता जो $\Gamma_n$ और $\Delta_n$
+को पृथक करता, जो \olref{part-a} के विरुद्ध है। विशेषतः, $\Gamma^*$ और
+$\Delta^*$ संगत हैं: क्योंकि यदि पहला या दूसरा असंगत होता, तो उन्हें
+क्रमशः $\lexists[x][\eq/[x][x]]$ या $\lforall[x][\eq[x][x]]$ पृथक
+करते।
+
+अब हम दिखाते हैं कि $\Gamma^*$, $\Lang{L}'_1$ में अधिकतम संगत है और इसी
+प्रकार $\Delta^*$, $\Lang{L}'_2$ में अधिकतम संगत है। पहले के लिए मान लें
+कि $!A_n \notin \Gamma^*$ और $\lnot !A_n
+\notin \Gamma^*$, किसी $n \ge 0$ के लिए। यदि $!A_n \notin \Gamma^*$, तो
+$\Gamma_n \cup \{!A_n \}$, $\Delta_n$ से पृथक्करणीय है, और इसलिए ऐसा
+$!C \in \Lang{L}'_0$ है कि दोनों:
+\begin{align*}
+  \Gamma^* & \Entails !A_n \lif !C, & 
+  \Delta^* & \Entails \lnot !C.
+\end{align*}
+इसी प्रकार, यदि $\lnot !A_n \notin \Gamma^*$, तो ऐसा
+$!C' \in
+\Lang{L}'_0$ है कि दोनों:
+\begin{align*}
+  \Gamma^* & \Entails \lnot !A_n \lif !C', & 
+  \Delta^* & \Entails \lnot !C'.
+\end{align*}
+प्रतिज्ञप्तिक तर्क से $\Gamma^* \Entails !C \lor !C'$ और
+$\Delta^* \Entails \lnot (!C \lor !C')$, इसलिए $!C \lor
+!C'$, $\Gamma^*$ और $\Delta^*$ को पृथक करता है। ऐसा ही तर्क स्थापित
+करता है कि $\Delta^*$ अधिकतम है।
+
+अंततः हम दिखाते हैं कि $\Gamma^* \cap \Delta^*$, $\Lang{L}'_0$ में
+अधिकतम संगत है। वह स्पष्टतः संगत है, क्योंकि वह संगत समुच्चयों का
+सर्वनिष्ठ है। अधिकतमता दिखाने के लिए $!S \in
+\Lang{L}'_0$ लें। अब $\Gamma^*$, $\Lang{L'_1}
+\supseteq \Lang{L'_0}$ में अधिकतम है और इसी
+प्रकार $\Delta^*$, $\Lang{L'_2} \supseteq \Lang{L'_0}$ में अधिकतम है।
+इससे या तो $!S \in \Gamma^*$ या $\lnot !S \in \Gamma^*$, और या तो
+$!S \in \Delta^*$ या $\lnot !S \in \Delta^*$। यदि $!S \in
+\Gamma^*$ और $\lnot !S \in \Delta^*$, तो $!S$, $\Gamma^*$ और
+$\Delta^*$ को पृथक करता; और यदि $\lnot !S \in
+\Gamma^*$ और $!S \in \Delta^*$, तो $\Gamma^*$ और $\Delta^*$ को
+$\lnot !S$ पृथक करता। अतः या तो $!S \in
+\Gamma^* \cap \Delta^*$ या $\lnot !S \in \Gamma^* \cap \Delta^*$,
+और $\Gamma^* \cap \Delta^*$ अधिकतम है।
+
+चूँकि $\Gamma^*$ अधिकतम संगत है, उसका ऐसा प्रतिरूप $\Struct{M}'_1$ है
+जिसका !!{domain} $\Domain{M'_1}$ ठीक उन अवयवों $\Assign{c}{M'_1}$ से
+बना है जो !!{constant}s की व्याख्या करते हैं---ठीक पूर्णता प्रमेय के
+प्रमाण की तरह (\olref[fol][com][cth]{thm:completeness})। इसी प्रकार,
+$\Delta^*$ का ऐसा प्रतिरूप $\Struct{M}'_2$ है जिसका !!{domain}
+$\Domain{M'_2}$, !!{constant}s की व्याख्याओं $\Assign{c}{M'_2}$ से
+दिया जाता है।
+
+$\Struct{M_1}$ को $\Struct{M'_1}$ से $\Lang{L'_1} \setminus \Lang{L'_0}$
+के !!{constant}s, !!{function}s और !!{predicate}s की
+व्याख्याएँ हटाकर प्राप्त करें, और $\Struct{M_2}$ के लिए भी ऐसा ही करें।
+तब प्रतिचित्र $h \colon M_1 \to M_2$, जिसे
+$h(\Assign{c}{M'_1}) = \Assign{c}{M'_2}$ द्वारा परिभाषित किया गया है,
+$\Lang{L}'_0$ में एक समरूपता है, क्योंकि जैसा
+दिखाया गया है, $\Gamma^* \cap \Delta^*$, $\Lang{L}'_0$ में अधिकतम संगत
+है। यह इसलिए निकलता है कि कोई भी $\Lang{L}'_0$-!!{sentence} या तो
+$\Gamma^*$ और $\Delta^*$ दोनों में है या दोनों में नहीं है: इसलिए
+$\Assign{c}{M'_1} \in
+\Assign{P}{M'_1}$ तभी और केवल तभी जब
+$\Atom{P}{c} \in \Gamma^*$, तभी और केवल तभी जब
+$\Atom{P}{c} \in \Delta^*$, और तभी और केवल तभी जब
+$\Assign{c}{M'_2} \in
+\Assign{P}{M'_2}$। समरूपताओं द्वारा संतुष्ट की
+जाने वाली अन्य शर्तें भी इसी प्रकार स्थापित की जा सकती हैं।
+
+अब एक प्रतिरूप $\Struct{M}$ को !!{language}
+$\Lang{L_1} \cup \Lang{L_2}$ के लिए निम्न प्रकार परिभाषित करें:
+\begin{enumerate}
+\item !!{domain} $\Domain{M}$ ठीक $\Domain{M_2}$ है, अर्थात् सभी अवयवों
+  $\Assign{c}{M'_2}$ का समुच्चय;
+\item यदि !!a{predicate}~$P$, $\Lang{L_2} \setminus
+  \Lang{L_1}$ में
+  है, तो $\Assign{P}{M} = \Assign{P}{M'_2}$;
+\item यदि कोई विधेय $P$, $\Lang{L}_1\setminus \Lang{L}_2$ में है, तो
+  $\Assign{P}{M} = h(\Assign{P}{M'_2})$, अर्थात्
+  $\tuple{\Assign{c_1}{M'_2}, \dots, \Assign{c_n}{M'_2}} \in
+  \Assign{P}{M}$ तभी और केवल तभी जब
+  $\tuple{\Assign{c_1}{M'_1}, \dots,
+  \Assign{c_n}{M'_1}} \in \Assign{P}{M'_1}$।
+\item यदि !!a{predicate} $P$, $\Lang{L}_0$ में है, तो
+  $\Assign{P}{M} =
+  \Assign{P}{M'_2} = h(\Assign{P}{M'_1})$।
+\item $\Lang{L}_1 \cup \Lang{L}_2$ के !!^{function}s, जिनमें
+  !!{constant}s भी सम्मिलित हैं, इसी प्रकार सँभाले जाते हैं।
+\end{enumerate}
+
+अंततः !!{formula}s पर आगमन द्वारा दिखाया जाता है कि $\Struct{M}$,
+$\Struct{M'_1}$ से $\Lang{L'_1}$ के सभी !!{formula}s पर और
+$\Struct{M'_2}$ से $\Lang{L'_2}$ के सभी !!{formula}s पर सहमत है।
+विशेषतः, $\Struct{M} \Entails \Gamma^* \cup \Delta^*$, जिससे
+$\Struct{M}
+\Entails !A$ और $\Struct{M} \Entails \lnot!B$, और
+$\not\Entails !A \lif !B$। इससे क्रेग के अंतर्वेशन प्रमेय का प्रमाण
+पूरा होता है।
+\end{proof}
+
+\end{document}

@@ -1,0 +1,62 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: completeness-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{com}{cmk}
+
+\olsection{\Log{K} के लिए निर्धारण और पूर्णता}
+
+अब हम पूर्णता स्थापित करने के लिए विहित प्रतिरूप का उपयोग करने को तैयार
+हैं। पूर्णता इस तथ्य से निकलती है कि $\Sigma$ के विहित प्रतिरूप में सत्य
+!!{formula} ठीक वही हैं जो $\Sigma$ में !!{derivable} हैं। इस गुण वाले
+प्रतिरूपों को $\Sigma$ को \emph{निर्धारित करने वाला} कहा जाता है।
+
+\begin{defn}
+  कोई प्रतिरूप $\mModel{M}$ किसी सामान्य मोडल तर्कशास्त्र~$\Sigma$ को
+  ठीक तभी \emph{निर्धारित करता है} जब प्रत्येक !!{formula}~$!A$ के लिए
+  $\mSat{M}{!A}$ तभी जब $\Sigma \Proves !A$।
+\end{defn}
+
+\begin{thm}[निर्धारण]\ollabel{thm:determination}
+   $\mSat{M^\Sigma}{!A}$ तभी जब $\Sigma \Proves !A$।
+\end{thm}
+
+\begin{proof}
+  यदि $\mSat{M^\Sigma}{!A}$, तो प्रत्येक पूर्ण $\Sigma$-संगत $\Delta$
+  के लिए $\mSat{M^\Sigma}{!A}[\Delta]$। अतः सत्यता लेम्मा से प्रत्येक
+  पूर्ण $\Sigma$-संगत $\Delta$ के लिए $!A \in \Delta$; और इसलिए
+  \olref[lin]{cor:provability-characterization} ($\Gamma = \emptyset$
+  रखकर) से $\Sigma \Proves !A$।
+
+  विलोमतः, यदि $\Sigma \Proves !A$, तो
+  \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-closed} से प्रत्येक
+  पूर्ण $\Sigma$-संगत $\Delta$ में $!A$ है; और इसलिए सत्यता लेम्मा से
+  प्रत्येक~$\Delta \in W^\Sigma$ के लिए
+  $\mSat{M^\Sigma}{!A}[\Delta]$, अर्थात् $\mSat{M^\Sigma}{!A}$।
+\end{proof}
+
+चूँकि \Log{K} का विहित प्रतिरूप \Log{K} को निर्धारित करता है, हमें तुरंत
+उपप्रमेय के रूप में \Log{K} की पूर्णता मिलती है:
+
+\begin{cor}\ollabel{cor:Kcomplete}
+  आधारभूत मोडल तर्कशास्त्र \Log{K}, सभी प्रतिरूपों के वर्ग के सापेक्ष
+  पूर्ण है; अर्थात् यदि $\Entails !A$, तो $\Log{K} \Proves !A$।
+\end{cor}
+
+\begin{proof}
+  प्रतिधनात्मक रूप से, यदि $\Log{K} \Proves/ !A$, तो निर्धारण से
+  $\mSat/{M^{\Log{K}}}{!A}$, अतः $!A$ मान्य नहीं है।
+\end{proof}
+
+प्रतिरूपों के किसी वर्ग के सापेक्ष किसी तंत्र $\Sigma$ की पूर्णता की
+सामान्य स्थिति में---जैसे स्वपरावर्ती, सममित, संक्रमणशील प्रतिरूपों के
+वर्ग के सापेक्ष \Log{KTB4} की पूर्णता---केवल निर्धारण पर्याप्त नहीं है।
+हमें यह भी दिखाना होगा कि तंत्र $\Sigma$ का विहित प्रतिरूप उस वर्ग का
+सदस्य है। यह विहित प्रतिरूप के निर्माण से स्पष्टतः नहीं निकलता---और सदा
+सत्य भी नहीं है!
+
+\end{document}

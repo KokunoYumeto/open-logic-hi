@@ -1,0 +1,26 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0031.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen cross-reference identities required by this standalone alternate.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:enm-alt:sec\endcsname
+  {{siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:sec@cref\endcsname
+  {{[section][11][0]siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:defn:enumerable\endcsname
+  {{siz.{27}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:defn:enumerable@cref\endcsname
+  {{[defn][27][0]siz.{27}}{}{}{}{}}
+\makeatother
+\pdfstringdefDisableCommands{\def\printtoken#1#2{अगणनीय}}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{वैकल्पिक-अगणनीयता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{non-enumerability-alt}
+\end{document}

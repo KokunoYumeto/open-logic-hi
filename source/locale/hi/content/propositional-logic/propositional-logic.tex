@@ -1,0 +1,50 @@
+% Part: propositional-logic
+
+\documentclass[../../include/open-logic-part]{subfiles}
+
+\begin{document}
+
+\olpart{pl}{प्रतिज्ञप्ति तर्कशास्त्र}
+
+\begin{editorial}
+  इस भाग में शास्त्रीय प्रतिज्ञप्ति तर्कशास्त्र की सामग्री है। पहला अध्याय
+  अपेक्षाकृत प्रारंभिक है और केवल परिभाषाएँ तथा परिणाम सूचीबद्ध करता है;
+  अनेक प्रमाण पूरे करने के स्थान पर अभ्यास के रूप में छोड़े गए हैं। प्रमाण
+  प्रणालियों और पूर्णता प्रमेय की सामग्री प्रथम-क्रम तर्कशास्त्र वाले भाग से,
+  ``FOL'' टैग को असत्य रखकर, सम्मिलित की गई है। इससे विधेयों, पदों और परिमाणकों
+  से संबंधित सब कुछ बाहर हो जाता है तथा !!{structure}s~$\Struct{M}$ की चर्चा
+  को !!{valuation}s~$\pAssign{v}$ की चर्चा से बदल दिया जाता है।
+
+  इस भाग में अधिक विवरण जोड़कर विस्तार करने और सत्यता-फलनीय पूर्णता जैसे अन्य
+  विषय तथा परिणाम जोड़ने की योजना है।
+\end{editorial}
+
+\olimport[syntax-and-semantics]{syntax-and-semantics}
+
+\tagfalse{FOL}
+
+\olimport[../first-order-logic/proof-systems]{proof-systems}
+
+\iftag{prfSC}{%
+  \olimport[../first-order-logic/sequent-calculus]{sequent-calculus}
+}{}
+
+\iftag{prfND}{%
+  \olimport[../first-order-logic/natural-deduction]{natural-deduction}
+}{}
+
+\iftag{prfTab}{%
+  \olimport[../first-order-logic/tableaux]{tableaux}
+}{}
+
+\iftag{prfAX}{%
+  \olimport[../first-order-logic/axiomatic-deduction]{axiomatic-deduction}
+}{}
+
+\olimport[../first-order-logic/completeness]{completeness}
+
+\tagtrue{FOL}
+
+\OLEndPartHook
+
+\end{document}

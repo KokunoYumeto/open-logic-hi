@@ -1,0 +1,135 @@
+% Part: first-order-logic
+% Chapter: lindstrom
+% Section: abstract-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{lin}{alg}
+\olsection{अमूर्त तर्क}
+
+\begin{defn}
+कोई \emph{अमूर्त तर्क} एक युग्म $\tuple{L, \models_L}$ है, जहाँ $L$ ऐसा
+फलन है जो प्रत्येक !!{language}~$\Lang{L}$ को !!{sentence}s का एक समुच्चय
+$L(\Lang{L})$ निर्दिष्ट करता है, और $\models_L$, !!{language}~$\Lang{L}$
+की !!{structure}s तथा $L(\Lang{L})$ के !!{element}s के बीच एक संबंध है।
+विशेषतः, $\tuple{F, \models}$ सामान्य प्रथम-कोटि तर्कशास्त्र है, अर्थात्
+$F$ वह फलन है जो !!{language}~$\Lang{L}$ को $\Lang{L}$ के अचरों से बने
+प्रथम-कोटि !!{sentence}s का समुच्चय निर्दिष्ट करता है, और $\models$
+प्रथम-कोटि तर्कशास्त्र का संतुष्टि-संबंध है।
+\end{defn}
+
+ध्यान दें कि किसी दी हुई !!{language} के लिए हम अभी भी !!{structure} की
+वही धारणा ले रहे हैं जो प्रथम-कोटि तर्कशास्त्र में ली जाती है; किंतु हम यह
+पूर्वधारणा नहीं करते कि !!{sentence}s, $\Lang{L}$ के मूल चिह्नों से सामान्य
+ढंग से बने हैं, न यह कि संबंध $\models_L$ को प्रथम-कोटि तर्कशास्त्र की तरह
+ही पुनरावर्ती रूप से परिभाषित किया गया है। मसलन, यह सर्वथा सामान्य परिभाषा
+उस स्थिति को भी समेटने के लिए है जिसमें $\tuple{L,\models_L}$ के
+!!{sentence}s में अनंत लंबे संयोजन या वियोजन हों, अथवा $\lexists$ और
+$\lforall$ के अतिरिक्त परिमाणक हों (जैसे, ``ऐसे अनंततः अनेक~$x$ हैं कि
+\dots''), अथवा शायद अनंत लंबे परिमाणक-उपसर्ग हों। यह बल देने के लिए कि
+$L(\Lang{L})$ के ``!!{sentence}s'' प्रथम-कोटि तर्कशास्त्र के सामान्य
+!!{sentence}s होना आवश्यक नहीं, इस अध्याय में हम उनके लिए !!{variable}s
+$!E$, $!F$,~\dots का प्रयोग करते हैं, और सामान्य प्रथम-कोटि !!{formula}s
+के लिए $!A$, $!B$,~\dots सुरक्षित रखते हैं।
+
+\begin{defn}
+$\Mod(L){!E}$ से वर्ग $\Setabs{\Struct{M}}{\Struct{M}
+  \models_L !E}$ निरूपित करें। यदि !!{language} को स्पष्ट करना आवश्यक हो,
+तो हम $\Mod[L](L){!E}$ लिखते हैं। दो !!{structure}s $\Struct{M}$ और
+$\Struct{N}$, $\Lang{L}$ के लिए, $\tuple{L, \models_L}$ में
+\emph{प्राथमिकतः तुल्य} हैं, जिसे $\Struct{M} \elemequiv[L] \Struct{N}$ लिखते हैं, यदि $L(\Lang{L})$ के ठीक वही !!{sentence}s दोनों
+में सत्य हों।
+\end{defn}
+
+\begin{defn}
+कोई अमूर्त तर्क $\tuple{L,\models_L}$, !!{language} $\Lang{L}$ के लिए,
+\emph{प्रसामान्य} है, यदि वह निम्नलिखित गुणों को संतुष्ट करता है:
+\begin{enumerate}
+\item (\emph{$L$-एकदिशता}) !!{language}s $\Lang{L}$ और
+  $\Lang{L'}$ के लिए, यदि $\Lang{L} \subseteq \Lang{L'}$, तो
+  $L(\Lang{L}) \subseteq L(\Lang{L'})$.
+\item (\emph{विस्तार गुण}) प्रत्येक $!E \in L(\Lang{L})$ के लिए
+  कोई \emph{परिमित} उपसमुच्चय $\Lang{L'}$, $\Lang{L}$ का, ऐसा है कि
+  संबंध $\Struct{M} \models_L !E$, $\Struct{M}$ के केवल $\Lang{L'}$ तक
+  न्यूनीकृत रूप पर निर्भर करता है; अर्थात् यदि $\Struct{M}$ और
+  $\Struct{N}$ के $\Lang{L'}$ तक न्यूनीकृत रूप समान हों, तो
+  $\Struct{M}
+  \models_L !E$ तभी और केवल तभी जब $\Struct{N} \models_L !E$।
+\item (\emph{समरूपता गुण}) यदि $\Struct{M} \models_L !E$ और
+  $\Struct{M} \simeq \Struct{N}$, तो $\Struct{N} \models_L
+  !E$ भी।
+\item (\emph{पुनर्नामकरण गुण}) संबंध $\models_L$ पुनर्नामकरण के अधीन
+  सुरक्षित रहता है: यदि !!{language} $\Lang{L}'$, $\Lang{L}$ के प्रत्येक
+  चिह्न $P$ को उसी स्थान-संख्या वाले चिह्न $P'$ से और प्रत्येक अचर $c$ को
+  किसी अलग अचर $c'$ से बदलकर प्राप्त की गई हो, तो प्रत्येक
+  !!{structure}~$\Struct{M}$ और !!{sentence}~$!E$ के लिए $\Struct{M}
+  \models_L !E$ तभी और केवल तभी जब $\Struct{M}' \models_L !E'$,
+  जहाँ $\Struct{M}'$, $\Lang{L}'$-!!{structure} है जो $\Lang{L}$ से संगत है और
+  $!E' \in L(\Lang{L}')$।
+\item (\emph{बूलीय गुण}) अमूर्त तर्क $\tuple{L,
+  \models_L}$ बूलीय
+  संयोजकों के अधीन इस अर्थ में संवृत है कि प्रत्येक $!E \in L(\Lang{L})$ के लिए कोई~$!F \in
+  L(\Lang{L})$ ऐसा है कि
+  $\Struct{M} \models_L !F$ तभी और केवल तभी जब $\Struct{M} \not\models_L !E$, और प्रत्येक $!E$ तथा $!F$ के लिए कोई $!G$ ऐसा है कि
+  $\Mod(L){!G} = \Mod(L){!E} \cap
+  \Mod(L){!F}$। परमाण्विक
+  !!{formula}s और अन्य संयोजकों के लिए भी इसी प्रकार।
+\item (\emph{परिमाणक गुण}) प्रत्येक अचर $c$, $\Lang{L}$ में, और
+  $!E \in L(\Lang{L})$ के लिए कोई $!F \in L(\Lang{L})$ ऐसा है कि
+  \[
+  \Mod[L'](L){!F} = \Setabs{\Struct{M}}{\Expan{M}{a} \in
+  \Mod[L](L){!E} \text{ जहाँ कोई } a \in \Domain{M}},
+  \]
+  जहाँ $\Lang{L'} = \Lang{L} \setminus \{c\}$ और $\Expan{M}{a}$,
+  $\Struct{M}$ का $\Lang{L}$ तक वह विस्तार है जो~$a$ को~$c$ का मान
+  निर्दिष्ट करता है।
+\item (\emph{सापेक्षीकरण गुण}) मान लें कि !!a{sentence} $!E \in
+  L(\Lang{L})$ है और चिह्न $R$, $c_1$, \dots, $c_n$, $\Lang{L}$ में नहीं
+  हैं। तब कोई !!a{sentence} $!F \in L(\Lang{L} \cup \{R,c_1,\ldots,c_n\})$ है जिसे $!E$ का $\Atom{R}{x, c_1, \dots c_n}$
+  तक \emph{सापेक्षीकरण} कहते हैं, और प्रत्येक
+  !!{structure}~$\Struct{M}$ के लिए:
+  \[
+  \Expan{M}{X, b_1, \ldots, b_n} \models_L !F \text{ तभी और
+    केवल तभी जब } \Struct{N} \models_L !E,
+  \]
+  जहाँ $\Struct{N}$, $\Struct{M}$ की वह उपसंरचना है जिसका !!{domain}
+  $\Domain{N} = \Setabs{a\in \Domain{M}}{\Assign{R}{M}(a, b_1, \dots, b_n)}$
+  है (देखें \olref[bas][sub]{rem:substructure}), और
+  $\Expan{M}{X, b_1, \ldots,
+    b_n}$, $\Struct{M}$ का वह विस्तार है जो
+  $R$, $c_1$, \dots, $c_n$ की व्याख्या क्रमशः $X$, $b_1,$ \dots,
+  $b_n$ से करता है (जहाँ $X
+  \subseteq M^{n+1}$)।
+\end{enumerate}
+\end{defn}
+ 
+\begin{defn}
+दो अमूर्त तर्कों $\tuple{L_1, \models_{L_1}}$ और
+$\tuple{L_2, \models_{L_2}}$ के दिए होने पर हम कहते हैं कि दूसरा, पहले से
+\emph{कम-से-कम उतना ही अभिव्यंजक} है, जिसे $\tuple{L_1, \models_{L_1}}
+\leq \tuple{L_2, \models_{L_2}}$ लिखते हैं, यदि प्रत्येक
+!!{language} $\Lang{L}$ और !!{sentence} $!E \in L_1(\Lang{L})$ के लिए
+कोई !!a{sentence} $!F
+\in L_2(\Lang{L})$ ऐसा है कि
+$\Mod[L](L_1){!E} =
+\Mod[L](L_2){!F}$। तर्क $\tuple{L_1, \models_{L_1}}$ और $\tuple{L_2, \models_{L_2}}$ \emph{तुल्य} हैं, यदि
+$\tuple{L_1,
+  \models_{L_1}} \leq \tuple{L_2, \models_{L_2}}$ और
+$\tuple{L_2,
+  \models_{L_2}} \leq \tuple{L_1, \models_{L_1}}$।
+\end{defn}
+
+\begin{rem}
+  प्रथम-कोटि तर्कशास्त्र, अर्थात् अमूर्त तर्क $\tuple{F, \models}$,
+  प्रसामान्य है। वास्तव में, प्रथम-कोटि तर्कशास्त्र के लिए ऊपर के अधिकांश
+  गुण सीधे हैं। हम केवल यह उल्लेख करते हैं कि विस्तार गुण विस्तारात्मकता
+  में परिणत होता है, और !!a{sentence} $!E$ का
+  $\Atom{R}{x, c_1, \dots, c_n}$ तक सापेक्षीकरण, प्रत्येक !!{subformula}
+  $\lforall[x][!F]$ को $\lforall[x][(\Atom{R}{x, c_1, \dots, c_n} \lif \ !F)]$ से बदलकर प्राप्त होता है। इसके अतिरिक्त, यदि $\tuple{L, \models_L}$ प्रसामान्य है, तो $\tuple{F, \models} \leq \tuple{L, \models_{L}}$; इसे प्रथम-कोटि !!{formula}s पर आगमन द्वारा दिखाया जा सकता
+  है। अतः व्यापकता खोए बिना हम मान सकते हैं कि प्रत्येक प्रथम-कोटि
+  !!{sentence}, प्रत्येक प्रसामान्य तर्क में आता है।
+\end{rem}
+
+\end{document}

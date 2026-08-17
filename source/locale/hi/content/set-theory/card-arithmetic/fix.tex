@@ -1,0 +1,162 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{card-arithmetic}{fix}
+\olsection{$\aleph$-नियत बिंदु}
+
+\olref[spine][]{chap} में हमने सुझाया था कि प्रतिस्थापन के लिए औचित्य की
+आवश्यकता है, क्योंकि वह पदानुक्रम को बहुत ऊँचा होने के लिए बाध्य करता है।
+अब कुछ कार्डिनल अंकगणित कर लेने के बाद हम पदानुक्रम की ऊँचाई का एक छोटा
+चित्रण दे सकते हैं।
+
+स्पष्टतः $0<\aleph_0$, और $1<\aleph_1$, और $2<\aleph_2$\ldots और वास्तव
+में आकार का अंतर प्रत्येक चरण के साथ केवल \emph{बढ़ता} जाता है। अतः यह
+अनुमान लगाना आकर्षक है कि प्रत्येक क्रमसूचक $\kappa$ के लिए
+$\kappa<\aleph_\kappa$।
+
+किंतु $\ZFC$ दिए होने पर यह अनुमान \emph{असत्य} है। वास्तव में हम सिद्ध कर
+सकते हैं कि \emph{$\aleph$-नियत बिंदु} हैं, अर्थात् ऐसे कार्डिनल $\kappa$
+जिनके लिए $\kappa=\aleph_\kappa$।
+
+\begin{prop}\ollabel{alephfixed}
+कोई $\aleph$-नियत बिंदु है।
+\end{prop}
+
+\begin{proof}
+पुनरावर्तन का उपयोग करके परिभाषित करें:
+\begin{align*}
+	\kappa_0 &= 0\\
+	\kappa_{n+1} &= \aleph_{\kappa_n}\\
+	\kappa&= \bigcup_{n < \omega}\kappa_n
+\end{align*}
+अब \olref[cardinals][classing]{unioncardinalscardinal} से $\kappa$ एक
+कार्डिनल है। किंतु अब:
+\[
+	\kappa= \bigcup_{n < \omega} \kappa_{n+1} = 
+	\bigcup_{n < \omega}\aleph_{\kappa_n} = 
+	\bigcup_{\alpha < \kappa}\aleph_\alpha = \aleph_\kappa
+\]
+%	By construction, $\kappa$ is the least cardinal greater than each
+%	$\kappa_n$. So $\aleph_\kappa$ is the least cardinal greater than
+%	each $\aleph_{\kappa_n}$, and hence greater than each
+%	$\kappa_{n+1}$. But equally $\kappa$ is the least cardinal greater
+%	than each $\kappa_{n+1} = \aleph_{\kappa_n}$. So $\kappa=
+%	\aleph_\kappa$.
+\end{proof}
+
+बूलोस ने एक बार ठीक उसी $\aleph$-नियत बिंदु के बारे में लेख लिखा जिसे हमने
+अभी निर्मित किया है। अपने लेख के आरंभ में $\kappa$ के अस्तित्व पर ध्यान
+दिलाने के बाद उन्होंने कहा:
+\begin{quote}
+	[$\kappa$] उन लोगों की दृष्टि में, जिनका समुच्चय सिद्धांत से पहले कोई
+	परिचय नहीं रहा है, एक \emph{बहुत बड़ी} संख्या [है]---मेरे विचार में इतनी
+	बड़ी कि वह किसी भी ऐसे सिद्धांत की सत्यता पर प्रश्न उठाती है जिसका एक
+	कथन यह दावा हो कि कम-से-कम $\kappa$ वस्तुएँ हैं।
+	\citep[p.~257]{Boolos2000}
+\end{quote}
+और अंततः उन्होंने अपना लेख इस प्रश्न के साथ समाप्त किया:
+\begin{quote}
+	[क्या] हमें संदेह है कि कहानी के आरंभ में स्थिति चाहे जैसी भी रही हो,
+	यहाँ तक पहुँचते-पहुँचते पहिए व्यर्थ घूम रहे हैं और हम अब किसी वास्तविक
+	स्थिति का वर्णन नहीं सुन रहे हैं?
+	\citep[p.~268]{Boolos2000}
+\end{quote}
+यदि हम वास्तव में ``किसी वास्तविक स्थिति'' से आगे निकल गए हैं, तो दोष सीधे
+प्रतिस्थापन पर लगाना होगा। क्योंकि यही वह अभिगृहीत है जो हमारे प्रमाण को
+काम करने देता है। ऐसी स्थिति में, संभवतः बूलोस को कुछ दशक पहले किया अपना
+यह दावा फिर देखना होगा कि प्रतिस्थापन के ``कोई अवांछनीय'' परिणाम नहीं हैं
+(\olref[replacement][extrinsic]{sec} देखें)।
+
+किंतु क्या $\kappa$ का अस्तित्व इतना बुरा है? यहाँ रसेल के
+\emph{ट्रिस्ट्रम शैंडी विरोधाभास} पर विचार करना सहायक हो सकता है। ट्रिस्ट्रम
+शैंडी अपने जीवन का विवरण डायरी में लिखता है, किंतु एक दिन दर्ज करने में उसे
+एक वर्ष लगता है। प्रत्येक बीतते वर्ष के साथ ट्रिस्ट्रम और पीछे रह जाता है:
+एक वर्ष बाद उसने केवल एक दिन दर्ज किया और 364 दिन बिना दर्ज किए जी चुका है;
+दो वर्ष बाद उसने केवल दो दिन दर्ज किए और 728 दिन बिना दर्ज किए जी चुका है;
+तीन वर्ष बाद उसने केवल तीन दिन दर्ज किए और 1092 दिन बिना दर्ज किए जी चुका
+है\dots\footnote{अधिवर्षों को भूलते हुए।} फिर भी यदि ट्रिस्ट्रम
+\emph{अमर} है, तो वह प्रत्येक दिन दर्ज कर लेगा, क्योंकि वह अपने जीवन के
+$n$वें वर्ष में $n$वाँ दिन दर्ज करेगा। इसलिए ``समय के अंत में'' ट्रिस्ट्रम
+के पास पूरी डायरी होगी।
+
+अब: यह उस विचार से इतना भिन्न क्यों है कि $\kappa$ तक $\alpha$,
+$\aleph_\alpha$ से छोटा---और वास्तव में निरंतर, अत्यधिक छोटा---है, और
+$\kappa$ पर हम बराबरी पा लेते हैं तथा $\kappa=\aleph_\kappa$?
+
+इसे अलग रखते हुए और यह मानते हुए कि हम $\ZFC$ को स्वीकार करते हैं, आइए
+नियत-बिंदु निर्माणों के विषय में कुछ और रोचक परिणामों के साथ समाप्त करें।
+अगले तीन परिणाम सहज रूप से स्थापित करते हैं कि कोई (अतुच्छ) बिंदु है जहाँ
+पदानुक्रम जितना ऊँचा है उतना ही चौड़ा भी है:
+
+\begin{prop}\ollabel{bethfixed}
+कोई $\beth$-नियत बिंदु है, अर्थात् कोई ऐसा $\kappa$ कि
+$\kappa=\beth_\kappa$।
+\end{prop}
+
+\begin{proof}
+\olref{alephfixed} की तरह, ``$\aleph$'' के स्थान पर ``$\beth$'' का उपयोग
+करके।
+\end{proof}
+
+\begin{prop}\ollabel{stagesize}
+$\card{V_{\omega+\alpha}}=\beth_{\alpha}$। यदि
+$\omega\ordtimes\omega\leq\alpha$, तो $\card{V_\alpha}=\beth_\alpha$।
+\end{prop}
+
+\begin{proof}
+पहला दावा सरल परिमितेतर आगमन से सिद्ध होता है। दूसरा दावा इसलिए निष्पन्न
+होता है कि यदि $\omega\ordtimes\omega\leq\alpha$, तो
+$\omega+\alpha=\alpha$। इसे स्थापित करने के लिए हम
+\olref[ord-arithmetic][]{chap} के क्रमसूचक अंकगणित संबंधी तथ्यों का उपयोग
+करते हैं। पहले ध्यान दें कि
+$\omega\ordtimes\omega=\omega\ordtimes(1\ordplus\omega)=
+(\omega\ordtimes1)\ordplus(\omega\ordtimes\omega)=
+\omega\ordplus(\omega\ordtimes\omega)$। अब यदि
+$\omega\ordtimes\omega\leq\alpha$, अर्थात् किसी $\beta$ के लिए
+$\alpha=(\omega\ordtimes\omega)\ordplus\beta$, तो
+$\omega\ordplus\alpha=\omega\ordplus((\omega\ordtimes\omega)\ordplus
+\beta)=(\omega\ordplus(\omega\ordtimes\omega))\ordplus\beta=
+(\omega\ordtimes\omega)\ordplus\beta=\alpha$।
+\end{proof}
+
+\begin{cor}
+कोई ऐसा $\kappa$ है कि $\card{V_\kappa}=\kappa$।
+\end{cor}
+
+\begin{proof}
+$\kappa$ को \olref{bethfixed} द्वारा दिया कोई $\beth$-नियत बिंदु मानें।
+स्पष्टतः $\omega\ordtimes\omega<\kappa$। अतः \olref{stagesize} से
+$\card{V_\kappa}=\beth_\kappa=\kappa$।
+\end{proof}
+
+$V_\kappa$ के नीचे उतने ही चरण हैं जितने $V_\kappa$ के !!{element}। अतः
+सहज रूप से $V_\kappa$ जितना ऊँचा है उतना ही चौड़ा है। यह बहुत
+ट्रिस्ट्रम-शैंडी जैसा है: हम \emph{घात समुच्चय} लेकर एक चरण से अगले चरण तक
+जाते हैं और इस प्रकार प्रत्येक कदम पर अपने पदानुक्रम को \emph{कहीं} बड़ा
+बनाते हैं। किंतु ``अंत में'', अर्थात् चरण $\kappa$ पर, पदानुक्रम की चौड़ाई
+उसकी ऊँचाई को पकड़ लेती है।
+
+कोई पूछ सकता है: \emph{पदानुक्रम की चौड़ाई उसकी ऊँचाई के बराबर कितनी बार
+होती है?} उत्तर है: \emph{जितनी बार क्रमसूचक हैं।} किंतु इसके लिए कुछ
+व्याख्या चाहिए।
+
+हम एक पद $\tau$ इस प्रकार परिभाषित करते हैं। किसी भी $A$ के लिए रखें:
+\begin{align*}
+	\tau_0(A) & \defis \card{A}\\
+	\tau_{n+1}(A) & \defis \beth_{\tau_n(A)}\\
+	\tau(A) & \defis \bigcup_{n < \omega}\tau_n(A)
+\intertext{\olref{bethfixed} की तरह किसी भी $A$ के लिए $\tau(A)$ एक
+$\beth$-नियत बिंदु है, और तुच्छतः $\card{A}<\tau(A)$। अब इस पुनरावर्ती
+परिभाषा पर विचार करें:}
+	W_0 &\defis 0\\
+	W_{\alpha + 1} & \defis \tau(W_\alpha)\\
+	W_\alpha & \defis \bigcup_{\beta < \alpha} W_\beta
+	\text{, जब $\alpha$ सीमा क्रमसूचक हो}
+\end{align*}
+यह निर्माण सभी क्रमसूचकों के लिए परिभाषित है। अतः सहज रूप से $W$
+क्रमसूचकों से $\beth$-नियत बिंदुओं तक ``!!a{injection}'' है। और ठीक पहले
+की तरह किसी भी $\alpha$ के लिए $V_{W_\alpha}$ जितना ऊँचा है उतना ही चौड़ा
+है।
+
+\end{document}

@@ -1,0 +1,81 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: language-epistemic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{aml}{el}{pal}
+
+\olsection{सार्वजनिक घोषणा तर्कशास्त्र}
+
+गतिक ज्ञानात्मक तर्कशास्त्र हमें उन विधियों को निरूपित करने देते हैं जिनसे
+समय के साथ, अथवा नई सूचना मिलने पर, कर्ताओं का ज्ञान बदलता है। इनमें से कई
+तर्कशास्त्र ज्ञान के परिवर्तनों को सूचनात्मक \emph{घटनाओं} या
+\emph{अद्यतनों} के द्वारा निरूपित करते हैं। अद्यतन का सबसे मूल प्रकार
+सार्वजनिक घोषणा है, जिसमें कोई सूत्र सत्यतापूर्वक घोषित किया जाता है और सभी
+कर्ता उस घटना को एक साथ देखते हैं। इसके लिए हम भाषा को निम्न प्रकार विस्तृत
+करते हैं।
+
+\begin{defn}
+मान लें कि $G$ कर्ता-संकेतों का समुच्चय है। सार्वजनिक घोषणाओं वाले बहु-कर्ता
+ज्ञानात्मक तर्कशास्त्र की मूल भाषा में निम्नलिखित होते हैं:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} का प्रतिज्ञप्तिक अचर~$\lfalse$।}{}
+  \tagitem{prvTrue}{!!{truth} का प्रतिज्ञप्तिक अचर~$\ltrue$।}{}
+  \item !!{propositional variable}ों का !!{denumerable} समुच्चय: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item प्रतिज्ञप्तिक संयोजक: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (निषेध)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (संयोजन)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (वियोजन)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \item प्रत्येक $a \in G$ के लिए ज्ञान-संकारक $\Knows_a$।
+  \item प्रत्येक !!{formula}~$!B$ के लिए सार्वजनिक-घोषणा संकारक $[!B]$।
+\end{enumerate}
+\end{defn}
+
+सार्वजनिक-घोषणा संकारक बॉक्स संकारक की तरह कार्य करता है, अतः भाषा की हमारी
+आगमनात्मक परिभाषा इसी के अनुरूप दी जाती है:
+
+\begin{defn}
+  ज्ञानात्मक भाषा की \emph{!!{formula}ें} आगमनात्मक रूप से इस प्रकार
+  परिभाषित होती हैं:
+  \begin{enumerate}
+  \tagitem{prvFalse}{$\lfalse$ एक परमाण्विक !!{formula} है।}{}
+
+  \tagitem{prvTrue}{$\ltrue$ एक परमाण्विक !!{formula} है।}{}
+
+  \item प्रत्येक प्रतिज्ञप्तिक चर $\Obj p_i$ एक (परमाण्विक) !!{formula} है।
+
+  \tagitem{prvNot}{यदि $!A$ एक !!{formula} है, तो $\lnot !A$ एक
+  !!{formula} है।}{}
+
+  \tagitem{prvAnd}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \land
+  !B)$ एक !!{formula} है।}{}
+
+  \tagitem{prvOr}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lor !B)$
+  एक !!{formula} है।}{}
+
+  \tagitem{prvIf}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \lif !B)$
+  एक !!{formula} है।}{}
+
+  \tagitem{prvIff}{यदि $!A$ और $!B$ !!{formula} हैं, तो $(!A \liff !B)$
+  एक !!{formula} है।}{}
+
+  \item यदि $!A$ एक !!{formula} और $a \in G$ है, तो $\Knows_a !A$ एक
+  !!{formula} है।
+  
+  \item यदि $!A$ और $!B$ !!{formula} हैं, तो $[!A] !B$ एक !!{formula} है।
+
+  \tagitem{limitClause}{इसके अतिरिक्त कुछ भी !!{formula} नहीं है।}{}
+\end{enumerate}
+\end{defn}
+
+!!{formula} $[!A] !B$ का अभिप्रेत पठन है, ``$!A$ को सत्यतापूर्वक घोषित किए
+जाने के बाद $!B$ सत्य है।'' सार्वजनिक घोषणाओं के संदर्भ में कभी-कभी
+सार्वज्ञान की बात करना भी उपयोगी होगा, अतः भाषा में सार्वज्ञान संकारक
+~$\CKnows_G !A$ भी सम्मिलित हो सकता है।
+
+\end{document}

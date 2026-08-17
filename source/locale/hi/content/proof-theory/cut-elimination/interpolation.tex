@@ -1,0 +1,564 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: interpolation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{cut}{itp}
+
+\olsection{माएहारा प्रमेय और क्रेग अंतर्वेशन प्रमेय}
+
+विलियम क्रेग का अंतर्वेशन प्रमेय कहता है कि यदि $!A \Entails !B$, तो ऐसा
+!!a{sentence}~$!C$ (\emph{अंतर्वेशक}) है कि $!A \Entails !C$ और $!C \Entails
+!B$। महत्त्वपूर्ण बात यह है कि अंतर्वेशक~$!C$ को इस प्रकार चुना जा सकता है कि
+उसमें आने वाले सभी !!{constant}s और !!{predicate}s,~$!A$ और~$!B$ दोनों में
+आएँ। (हम मानते हैं कि कोई !!{function} सम्मिलित नहीं है।) इस प्रतिबंध के बिना
+$!A$ और $!B$ तुच्छ रूप से अंतर्वेशक बन सकते थे।
+
+अंतर्वेशन प्रमेय चिरसम्मत प्रथम-कोटि तर्क के लिए सत्य है और इसे खोजा गया
+``प्रथम-कोटि तर्क का अंतिम महत्त्वपूर्ण गुण'' कहा गया है। निदर्श सिद्धांत और
+स्वचालित तर्कणा में इसके महत्त्वपूर्ण अनुप्रयोग हैं। इसकी मूल प्रेरणा और
+अनुप्रयोग विज्ञान-दर्शन में था, क्योंकि इससे उन आदिम पदों का अध्ययन किया जा
+सकता है जिनके द्वारा किसी सिद्धांत को अभिगृहीतबद्ध किया जा सकता है या नहीं।
+इससे बेथ का परिभाष्यता प्रमेय भी मिलता है, जो कहता है कि यदि कोई सिद्धांत किसी
+संकल्पना को परोक्ष रूप से परिभाषित कर सकता है, तो वह उसे प्रत्यक्ष रूप से भी
+परिभाषित कर सकता है।
+
+गणितीय तर्क के अनेक परिणामों की तरह अंतर्वेशन प्रमेय को निदर्श सिद्धांत और
+प्रमाण सिद्धांत दोनों की विधियों से सिद्ध किया जा सकता है। प्रमाण-सैद्धांतिक
+विधियों का लाभ यह है कि वे अंतर्वेशक का अस्तित्व ही नहीं दिखातीं, बल्कि $!A
+\Entails !B$ के किसी !!{proof}—जैसे $!A \Sequent !B$ के~\Log{G3c} में किसी
+!!{proof}—से अंतर्वेशक की गणना करने वाली कलन-विधि भी देती हैं।
+
+$\Lang L(!A)$ को~$!A$ के !!{constant}s और !!{predicate}s का समुच्चय, और
+$\Lang L(\Gamma) = \bigcup \Setabs{\Lang L(!A)}{!A \in \Gamma}$ मानें। इस
+पूरे अनुभाग में हम मानते हैं कि संबंधित !!{formula}s में कोई !!{function} नहीं
+है।
+
+\begin{thm}[क्रेग अंतर्वेशन प्रमेय]\ollabel{thm:interpolation}
+~$!A$ की !!{language} $\Lang L(!A)$ और $!B$ की $\Lang L(!B)$ हो। यदि
+$\Log{G3c} \Proves !A \Sequent !B$, तो !!{language}~$\Lang L(!C) \subseteq
+\Lang L(!A) \cap \Lang L(!B)$ में ऐसा !!a{formula}~$!C$ है कि $\Log{G3c}
+\Proves !A \Sequent !C$ और $\Log{G3c} \Proves !C \Sequent !B$।
+\end{thm}
+
+~\Log{G3c} के !!{proof}s की संरचना का उपयोग करने के लिए हम अंतर्वेशन प्रमेय
+का सामान्यीकरण सिद्ध करते हैं। इसके लिए अनुक्रमों के पूर्वपक्ष और अनुवर्ती,
+दोनों को दो-दो भागों में विभक्त मानें। $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+\maeh{\Delta_1}{\Delta_2}$ लिखकर बताते हैं कि $\Gamma_1$ और $\Delta_1$ पहले
+भाग तथा $\Gamma_2$ और $\Delta_2$ दूसरे भाग में हैं। तब अंतर्वेशन प्रमेय निम्न
+प्रमेय से तुरंत मिलता है।
+
+\begin{lem}[माएहारा प्रमेय]\ollabel{lem:maehara} यदि $\Log{G3c} \Proves
+\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$, तो
+!!{language}~$\Lang L(!C) \subseteq \Lang L(\Gamma_1, \Delta_1) \cap \Lang
+L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log{G3c} \Proves
+\Gamma_1 \Sequent \Delta_1, !C$ और $\Log{G3c} \Proves !C, \Gamma_2 \Sequent
+\Delta_2$।
+\end{lem}
+
+\begin{proof}
+  मान लें $\pi \Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$। हम कथन को $n=\pheight{\pi}$ पर आगमन से सिद्ध
+  करते हैं।
+
+  यदि $n=0$, तो $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ अभिगृहीत है और कोई परमाण्विक !!{formula}~$!A$,
+  $\Gamma_1, \Gamma_2$ और $\Delta_1, \Delta_2$ दोनों में आता है। बाईं ओर
+  $!A$ के पहले या दूसरे भाग में और दाईं ओर पहले या दूसरे भाग में होने के
+  अनुसार चार स्थितियाँ हैं।
+  \begin{enumerate}
+    \item $!A \in \Gamma_1$ और $!A \in \Delta_1$। हमें ऐसा~$!C$ चाहिए कि
+    $\Gamma_1 \Sequent \Delta_1, !C$ तथा $!C, \Gamma_2 \Sequent \Delta_2$
+    दोनों !!{provable} हों। $!A$ बाएँ और दाएँ दोनों ओर आने से पहला अनुक्रम
+    ~ $!C$ के किसी भी चुनाव पर पहले से अभिगृहीत है। $!C, \Gamma_2 \Sequent
+    \Delta_2$ की !!{provable}ता सुनिश्चित करने का एकमात्र विकल्प $!C \ident
+    \lfalse$ लेना है।
+    \item $!A \in \Gamma_1$ और $!A \in \Delta_2$। तब $\Gamma_1 \Sequent
+    \Delta_1, !A$ और $!A, \Gamma_2 \Sequent \Delta_2$ दोनों अभिगृहीत हैं,
+    इसलिए $!C \ident !A$ चुन सकते हैं।
+    \item $!A \in \Gamma_2$ और $!A \in \Delta_1$। तब $!A, \Gamma_1
+    \Sequent \Delta_1$ तथा $\Gamma_2 \Sequent \Delta_2, !A$ अभिगृहीत होते,
+    पर उनमें~$!A$ गलत पक्षों पर है। इसलिए $!A$ अंतर्वेशक नहीं है। किंतु
+    $\RightR{\lnot}$ और $\LeftR{\lnot}$ से हम $\Gamma_1 \Sequent \Delta_1,
+    \lnot!A$ तथा $\lnot !A, \Gamma_2 \Sequent \Delta_2$ को !!{prove} कर सकते
+    हैं।
+    \item $!A \in \Gamma_2$ और $!A \in \Delta_2$। अभ्यास।
+  \end{enumerate}
+  वे स्थितियाँ अभ्यास के लिए छोड़ी जाती हैं जहाँ
+  $\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$ इसलिए
+  अभिगृहीत है कि $\lfalse \in \Gamma_1$ या $\lfalse \in \Gamma_2$।
+
+  यदि $n>0$, तो $\pi$ किसी तार्किक अनुमान पर समाप्त होता है। प्रयुक्त नियम
+  और प्रमुख सूत्र के भाग के अनुसार स्थितियों में भेद करना होगा। प्रत्येक
+  स्थिति में हम आगमन परिकल्पना का उपयोग कर सकते हैं: प्रमेय उन सभी
+  !!{proof}s~$\pi_1$ के लिए सत्य है जिनमें $\pheight{\pi_1} < n$, और चाहे
+  ~$\pi_1$ का अंतिम अनुक्रम दो भागों में किसी भी तरह विभाजित हो। कुछ विशेष
+  स्थितियों पर विचार करें।
+  \begin{enumerate}
+    \item $\pi$, प्रमुख सूत्र~$\lnot !A$ वाले $\RightR{\lnot}$ पर समाप्त होता
+    है। दो स्थितियाँ हैं: $\lnot !A$ के पहले या दूसरे भाग में होने के अनुसार
+    $\pi$ निम्न में से किसी एक पर समाप्त होता है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{!A, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lnot !A}{\Delta_2}$
+    \DisplayProof
+    \]
+    अथवा
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{!A, \Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, \lnot !A}$
+    \DisplayProof
+    \]
+    ध्यान दें कि यदि प्रमुख !!{formula}~$\lnot !A$ पहले भाग में है, तो हमने
+    सक्रिय !!{formula}~$!A$ को भी आधार-वाक्य के पहले भाग में रखा है। यह चुनाव
+    हम कर सकते हैं। यदि सक्रिय सूत्र को दूसरे भाग में रखते, तो आगमन परिकल्पना
+    फिर भी लागू होती, किंतु तब हम कोई अंतर्वेशक न खोज पाते (अभ्यास: प्रयास
+    करें)।
+
+    पहले उस स्थिति पर विचार करें जहाँ $\lnot !A$ पहले भाग में है। आगमन
+    परिकल्पना से~$\pi_1$ के अंतिम अनुक्रम का कोई अंतर्वेशक, अर्थात् ऐसा
+    !!a{formula}~$!C_1$, है कि निम्न दोनों
+    \begin{align*}
+    !A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{सिद्ध-योग्य हैं। हमें ऐसा !!a{formula}~$!C$ चाहिए कि निम्न
+    दोनों !!{provable} हों:}
+    \Gamma_1 & \Sequent \Delta_1, \lnot !A, !C &&\text{और} &
+    !C, \Gamma_2 & \Sequent \Delta_2
+    \end{align*}
+    स्पष्टतः हम $!C \ident !C_1$ ले सकते हैं: आगमन परिकल्पना पहले ही बताती
+    है कि दायाँ अनुक्रम !!{provable} है, और बायाँ अनुक्रम आगमन परिकल्पना से
+    मिले अनुक्रम पर~$\RightR{\lnot}$ लगाने से मिलता है। आगमन परिकल्पना यह भी
+    बताती है कि $\Lang L(!C_1) \subseteq \Lang L(!A, \Gamma_1, \Delta_1)
+    \cap \Lang L(\Gamma_2, \Delta_2)$। चूँकि $\Lang L(\lnot !A) = \Lang
+    L(!A)$ और $\Lang L(!C) = \Lang L(!C_1)$, हमें $\Lang L(!C_1) \subseteq
+    \Lang L(\Gamma_1, \Delta_1, \lnot !A) \cap \Lang L(\Gamma_2, \Delta_2)$
+    मिलता है।
+
+    दूसरी परिस्थिति में स्थिति थोड़ी भिन्न है, क्योंकि $\lnot !A$ दूसरे भाग
+    में है। आधार-वाक्य के सक्रिय !!{formula} को भी दूसरे भाग में रखते हैं और
+    आगमन परिकल्पना निम्न पर लगाते हैं
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
+    !C_1, !A, \Gamma_2 & \Sequent \Delta_2
+    \intertext{सिद्ध-योग्य हैं। यदि हम इनमें से दूसरे पर फिर
+    \RightR{\lnot} नियम लगाएँ, तो निम्न के !!{proof}s मिलते हैं}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2, \lnot !A
+    \end{align*}
+    यदि $!C_1$ अंतर्वेशक हो तो ठीक इन्हीं अनुक्रमों को !!{provable} होना चाहिए;
+    हम फिर $!C \ident !C_1$ लेते हैं। पहले की तरह $\Lang L(!C_1) \subseteq
+    \Lang L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2, \lnot
+    !A)$।
+    \item $\pi$, प्रमुख !!{formula}~$!A \lif !B$ वाले $\RightR{\lif}$ पर
+    समाप्त होता है। $!A \lif !B$ के पहले या दूसरे भाग में होने के अनुसार फिर
+    दो स्थितियाँ हैं। !!{proof}~$\pi$ निम्न में से किसी एक पर समाप्त होता है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{!A, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !B}{\Delta_2}$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !A \lif !B}{\Delta_2}$
+    \DisplayProof
+    \]
+    अथवा
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{!A, \Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !B}$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !A \lif !B}$
+    \DisplayProof
+    \]
+    हमने फिर आधार-वाक्य के सक्रिय !!{formula}s को उसी भाग में रखा है जिसमें
+    निष्कर्ष का प्रमुख !!{formula} है। पहली परिस्थिति में आगमन परिकल्पना लगाकर
+    निम्न के !!{proof}s पाते हैं
+    \begin{align*}
+    !A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&\text{और} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{बायाँ अनुक्रम \RightR{\lif} का उपयुक्त आधार-वाक्य है। अतः
+    निम्न अनुक्रम !!{provable} हैं:}
+    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&\text{और} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \end{align*}
+    इसका अर्थ है कि $!C_1$,~$\pi$ के अंतिम अनुक्रम का भी अंतर्वेशक है, और हम
+    एक बार फिर $!C \ident !C_1$ ले सकते हैं।
+    
+    दूसरी परिस्थिति का उपचार उसी प्रकार होता है।
+    \item $\pi$, प्रमुख !!{formula}~$!A \lif !B$ वाले $\LeftR{\lif}$ पर
+    समाप्त होता है। यदि $!A \lif !B$ पहले भाग में है, तो !!{proof}~$\pi$
+    निम्न पर समाप्त होता है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !A}{\Delta_2}$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\maeh{!B, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \BinaryInf$\maeh{!A \lif !B, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना अब हमें चार !!{provable} अनुक्रम देती है: दो बाएँ
+    आधार-वाक्य के अंतर्वेशक $!C_1$ के लिए और दो दूसरे आधार-वाक्य के अंतर्वेशक
+    $!C_2$ के लिए:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !A, !C_1 &&\text{(1)} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2 && \text{(2)}\\
+    !B, \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    !C_2, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
+    \end{align*}
+    यदि हम दुर्बलीकरण लगाकर (1) की दाईं ओर $!C_2$ और (3) की दाईं ओर $!C_1$
+    जोड़ें, तो अनुक्रम (1) और (3),~\LeftR{\lif} के आधार-वाक्य बन सकते हैं:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !A, !C_1, !C_2$
+    \AxiomC{}
+    \Deduce$!B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
+    \DisplayProof
+    \]
+    $\RightR{\lor}$ लगाने से अनुक्रम मिलता है
+    \[
+    !A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1 \lor !C_2
+    \]
+    इससे संकेत मिलता है कि इस स्थिति में $!C_1 \lor !C_2$ हमारा अंतर्वेशक हो
+    सकता है। और वास्तव में शेष अनुक्रमों (2) और~(4) से दूसरे आवश्यक अनुक्रम
+    को !!{prove} किया जा सकता है:
+    \[
+    \AxiomC{}
+    \Deduce$!C_1, \Gamma_2 \fCenter \Delta_2$
+    \AxiomC{}
+    \Deduce$!C_2, \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lor}}
+    \BinaryInf$!C_1 \lor !C_2, \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    यह सत्यापित करना शेष है कि $!C_1 \lor !C_2$ सही भाषा में है। आगमन
+    परिकल्पना देती है कि
+    \begin{align*}
+    \Lang L(!C_1) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A) \cap \Lang L(\Gamma_2, \Delta_2) &\text{और}\\
+    \Lang L(!C_2) & \subseteq
+    \Lang L(!B, \Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)
+    \intertext{चूँकि}
+    \Lang L(!A) & \subseteq \Lang L(!A \lif !B) &\text{और}\\
+    \Lang L(!B) & \subseteq \Lang L(!A \lif !B)
+    \intertext{हमें दोनों मिलते हैं}
+    \Lang L(!C_1) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2) &\text{और}\\
+    \Lang L(!C_2) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2)
+    \intertext{और फलतः $\Lang L (!C_1 \lor !C_2) = {}$}
+    \Lang L(!C_1) \cup \Lang L(!C_2) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2),
+    \end{align*}
+    जो वांछित है।
+
+    जहाँ $!A \lif !B$ दूसरे भाग में है वहाँ स्थिति भिन्न है, किंतु उसका उपचार
+    इसी प्रकार होता है। आगमन परिकल्पना फिर चार !!{provable} अनुक्रम देती है:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{(1)} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2, !A && \text{(2)}\\
+    \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    !C_2, !B, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
+    \end{align*}
+    अब अनुक्रम (2) और (4)—कुछ दुर्बल किए गए !!{formula}s सहित—~\LeftR{\lif}
+    के आधार-वाक्य बनते हैं:
+    \[
+    \AxiomC{}
+    \Deduce$!C_1, !C_2, \Gamma_2 \fCenter \Delta_2, !A$
+    \AxiomC{}
+    \Deduce$!B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    हम फिर इसे ऐसे अनुक्रम में बदलना चाहते हैं जिसमें $!C_1$ और $!C_2$ से बना
+    एक ही !!{formula} हो, किंतु इस बार वह पूर्वपक्ष में चाहिए (क्योंकि अब हम
+    दूसरे भाग से निपट रहे हैं)। $\LeftR{\land}$ लगाने से काम बनता है; हमें
+    अंतर्वेशक $!C \ident (!C_1 \land !C_2)$ लेना चाहिए। सौभाग्य से शेष
+    अनुक्रमों (1) और (3) से दूसरे भाग के संगत अनुक्रम को !!{prove} कर सकते हैं:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !C_1$
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !C_2$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma_1 \fCenter \Delta_1, !C_1 \land !C_2$
+    \DisplayProof
+    \]
+    पहले की तरह $\Lang L(!C_1 \land !C_2) \subseteq \Lang L(\Gamma_1,
+    \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2, !A \lif !B)$।
+
+    \item $\pi$, प्रमुख !!{formula}~$\lforall[x][!A(x)]$ वाले
+    $\RightR{\lforall}$ पर समाप्त होता है:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+    \maeh{\Delta_1, !A(c)}{\Delta_2}$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lforall[x][!A(x)]}{\Delta_2}$
+    \DisplayProof
+    \]
+    अथवा
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !A(c)}$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, \lforall[x][!A(x)]}$
+    \DisplayProof
+    \]
+    पहली परिस्थिति में आगमन परिकल्पना $\Gamma_1 \Sequent \Delta_1, !A(c),
+    !C_1$ और $!C_1, \Gamma_2 \Sequent \Delta_2$ के !!{proof}s देती है। पहले
+    पर $\RightR{\lforall}$ लगाकर $\Gamma_1 \Sequent \Delta_1,
+    \lforall[x][!A(x)], !C_1$ मिलता है। (आइगेनचर-शर्त पूरी है, क्योंकि वह
+    ~ $\pi$ के अंत में $\RightR{\lforall}$ नियम में पहले से पूरी थी।) अतः यदि
+    $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1,
+    \lforall[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ की शर्त पूरी हो, तो
+    $!C_1$ अंतर्वेशक होगा। आगमन परिकल्पना से $\Lang L(!C_1) \subseteq \Lang
+    L(\Gamma_1, \Delta_1, !A(c)) \cap \Lang L(\Gamma_2, \Delta_2)$। इसलिए
+    हमें~$c$ की चिंता करनी है—क्या $c$,~$!C_1$ में आ सकता है? नहीं। यदि $c$,
+    $!C_1$ में आता, तो $c \in \Lang L(\Gamma_1, \Delta_1, !A(c))$ (जो सत्य
+    है) और $c \in \Lang L(\Gamma_2, \Delta_2)$ दोनों होते। किंतु तब $c$,
+    ~ $\pi$ के $\RightR{\lforall}$ अनुमान के निष्कर्ष में आता और आइगेनचर-शर्त
+    का उल्लंघन होता।
+    
+    दूसरी परिस्थिति समान है।
+
+    \item $\pi$, प्रमुख !!{formula}~$\lexists[x][!A(x)]$ वाले
+    $\RightR{\lexists}$ पर समाप्त होता है। फिर दो परिस्थितियाँ हैं। हम उस
+    परिस्थिति पर विचार करते हैं जहाँ $\lexists[x][!A(x)]$ पहले भाग में है और
+    दूसरी को अभ्यास के लिए छोड़ते हैं।
+
+    पहली परिस्थिति में $\pi$ निम्न पर समाप्त होता है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lexists[x][!A(x)], !A(t)}{\Delta_2}$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lexists[x][!A(x)]}{\Delta_2}$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना $\Gamma_1 \Sequent \Delta_1, \lexists[x][!A(x)], !A(t),
+    !C_1$ और $!C_1, \Gamma_2 \Sequent \Delta_2$ के !!{proof}s देती है। पहले
+    पर $\RightR{\lexists}$ लगाकर $\Gamma_1 \Sequent \Delta_1,
+    \lexists[x][!A(x)], !C_1$ मिलता है। अतः यदि $\Lang L(!C_1) \subseteq
+    \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2,
+    \Delta_2)$ की शर्त पूरी हो, तो $!C_1$ फिर अंतर्वेशक होगा। यहाँ आगमन
+    परिकल्पना $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1,
+    \lexists[x][!A(x)], !A(t)) \cap \Lang L(\Gamma_2, \Delta_2)$ देती है।
+    याद रखें कि हमने माना है कि कोई !!{function} नहीं है। इसका अर्थ है कि
+    पद~$t$ केवल !!a{constant} हो सकता है, अर्थात् $t \ident b$। यदि $b \notin
+    \Lang L(!C_1)$, अथवा $b \in \Lang L(\Gamma_1, \Delta_1,
+    \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$, तो चिंता की बात
+    नहीं: $!C_1$ को अंतर्वेशक ले सकते हैं। किंतु यदि $b \in \Lang L(!C_1)$
+    और $b \notin \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap \Lang
+    L(\Gamma_2, \Delta_2)$ तो? सबसे पहले~$!C_1$ में~$b$ की सभी आवृत्तियाँ
+    !!a{variable}~$y$ से बदलकर $!C_1 \ident \Subst{!C_1'}{b}{y}$ लिख सकते
+    हैं, जहाँ~$!C_1'$ में~$b$ नहीं है। इसके अतिरिक्त या तो $b \notin \Lang
+    L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$ या $b \notin \Lang
+    L(\Gamma_2, \Delta_2)$। क्रमशः $!C \ident \lforall[y][!C_1'(y)]$ या $!C
+    \ident \lexists[y][!C_1'(y)]$ ले सकते हैं। पहली स्थिति में हमें मिलता है:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], !A(b), !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter \Delta_1, \lexists[x][!A(x)], !C_1'(b)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lforall[y][!C_1'(y)]$
+    \DisplayProof
+    \]
+    और
+    \[
+    \AxiomC{}
+    \Deduce$!C_1'(b), \lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    ऊपर के अनुक्रमों के !!{proof}s आगमन परिकल्पना से हैं (दूसरे में हम
+    पूर्वपक्ष में $\lforall[y][!C_1'(y)]$ द्वारा दुर्बलीकरण की ग्राह्यता लगाते
+    हैं)। पहले !!{proof} में \RightR{\lforall} की आइगेनचर-शर्त पूरी है, क्योंकि
+    $b \notin \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$, और $!C_1'$
+    को इस प्रकार परिभाषित किया गया है कि उसमें~$b$ न हो।
+    
+    दूसरी स्थिति में हमें (आगमन परिकल्पना और~$\lexists[y][!C_1'(y)]$ द्वारा
+    दुर्बलीकरण की ग्राह्यता से) मिलता है:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], !A(b), \lexists[y][!C_1'(y)], !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)], !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)]$
+    \DisplayProof
+    \]
+    और
+    \[
+    \AxiomC{}
+    \Deduce$!C_1'(b), \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lexists}}
+    \UnaryInf$\lexists[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    दूसरे !!{proof} में \LeftR{\lexists} की आइगेनचर-शर्त पूरी है, क्योंकि $b
+    \notin \Lang L(\Gamma_2, \Delta_2)$, और $!C_1'$ को इस प्रकार परिभाषित
+    किया गया है कि उसमें~$b$ न हो।
+  \end{enumerate}
+  अन्य स्थितियाँ समान हैं; उन्हें अभ्यास के लिए छोड़ते हैं।
+\end{proof}
+
+\begin{prob}
+मान लें हमारे पास निम्न नियमों वाला संयोजक $\lnand$ हो
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$\Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\lnand}}
+\BinaryInf$!A \lnand !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\quad
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\lnand}}
+\UnaryInf$\Gamma \fCenter \Delta, !A \lnand !B$
+\DisplayProof
+\]
+\olref{lem:maehara} के प्रमाण की उन स्थितियों को पूरा करके दिखाएँ कि माएहारा
+प्रमेय अब भी सत्य है जिनमें $\pi$ इन नियमों में से किसी एक पर समाप्त होता है।
+\end{prob}
+
+माएहारा प्रमेय स्थापित कर लेने के बाद हम उससे क्रेग अंतर्वेशन प्रमेय सिद्ध कर
+सकते हैं।
+
+\begin{proof}[\olref{thm:interpolation} का प्रमाण]
+  मान लें $!A \Sequent !B$ !!{provable} है। अंतर्वेशक~$!C$ पाने के लिए
+  $\maeh{!A}{\ } \Sequent \maeh{\ }{!B}$ पर \olref{lem:maehara} लगाएँ। हमें
+  $\Proves !A \Sequent !C$ और $\Proves !C \Sequent !B$ मिलता है।
+\end{proof}
+
+मान लें $\Gamma$, किसी !!{language}~$\Lang L$ में !!{sentence}s का सिद्धांत
+है जिसमें कोई $n$-स्थानी {predicate}~$R$ है। हम कहते हैं कि $\Gamma$,~$R$ को
+\emph{परोक्ष रूप से परिभाषित करता है}, तभी और केवल तभी जब
+\begin{align*}
+\Gamma, \Gamma'
+& \Entails \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff
+R'(x_1, \dots, x_n))]],
+\intertext{जहाँ $\Gamma'$,~$\Gamma$ में~$R$ की सभी आवृत्तियों को $R' \notin
+\Lang L$ से बदलकर मिला है। $\Gamma$,~$R$ को \emph{प्रत्यक्ष रूप से परिभाषित
+करता है}, तभी और केवल तभी जब~$R$ से रहित कोई~$!A(x_1, \dots, x_n)$ ऐसा हो कि}
+\Gamma &\Entails
+\lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1,
+\dots, x_n))]].
+\end{align*}
+स्पष्टतः यदि $\Gamma$, $R$ को प्रत्यक्ष रूप से परिभाषित करता है, तो वह~$R$ को
+परोक्ष रूप से भी परिभाषित करता है। विलोम स्पष्ट नहीं है, किंतु फिर भी सत्य है:
+
+\begin{lem}[बेथ परिभाष्यता प्रमेय]
+  यदि $\Gamma$,~$R$ को परोक्ष रूप से परिभाषित करता है, तो वह उसे प्रत्यक्ष रूप
+  से भी परिभाषित करता है।
+\end{lem}
+
+\begin{proof}
+  मान लें $\Gamma$,~$R$ को परोक्ष रूप से परिभाषित करता है। $R'$, $\Gamma'$
+  ऊपर जैसे हों और $\Lang L' = \Lang L(\Gamma') = \Lang L \setminus \{R\}
+  \cup \{R'\}$। परिकल्पना से हमें मिलता है
+  \begin{align*}
+    \Gamma, \Gamma' & 
+    \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) 
+    \liff R'(x_1, \dots, x_n))]]
+  \intertext{$c_1$, \dots,~$c_n$ ऐसे !!{constant}s हों जो~$\Gamma$ में नहीं
+  आते। उत्क्रमणीयता प्रमेय से हमें मिलता है}
+    \Gamma, \Gamma', R(c_1,\dots,c_n) & \Sequent  R'(c_1, \dots, c_n)
+  \intertext{माएहारा प्रमेय को निम्न पर लगाएँ}
+    \maeh{\Gamma, R(c_1,\dots,c_n)}{\Gamma'} & \Sequent
+      \maeh{\ }{R'(c_1, \dots, c_n)}
+  \intertext{जिससे ऐसा~$!A \ident !A(x_1, \dots, x_n)$ मिलता है कि}
+    \Gamma, R(c_1,\dots,c_n) & \Sequent !A(c_1, \dots, c_n) \\
+    !A(c_1, \dots, c_n), \Gamma' & \Sequent R'(c_1, \dots, c_n)
+  \intertext{के !!{proof}s हैं। चूँकि $\Lang L(!A) = \Lang L_1 \cap \Lang
+  L_2 = \Lang L(\Gamma) \setminus \{R\}$,~$!A$ में~$R$ नहीं है। दूसरे अनुक्रम
+  के !!{proof} में हर जगह $R'$ को~$R$ से बदलकर निम्न का !!a{proof} पाएँ}
+    !A(c_1, \dots, c_n), \Gamma & \Sequent R(c_1, \dots, c_n)
+  \end{align*}
+  निम्न का !!a{proof} पाने के लिए \RightR{\lif} और \RightR{\lforall} लगाएँ
+  \[
+    \Gamma \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1, \dots, x_n))]].
+  \]
+  इससे दिखता है कि $!A(x_1, \dots, x_n)$,~$\Gamma$ में $!R$ को प्रत्यक्ष रूप
+  से परिभाषित करता है।
+\end{proof}
+
+अंतर्वेशन के समतुल्य तीसरा परिणाम (जिसे उसकी तरह माएहारा प्रमेय से सिद्ध किया
+जा सकता है) यह है: यदि दो संगत सिद्धांत~$\Gamma_1$, $\Gamma_2$ किसी पूर्ण
+सिद्धांत $\Gamma$ को समाहित करते हैं, जिसकी भाषा~$\Lang L(\Gamma) \subseteq
+\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ है, तो $\Gamma_1 \cup \Gamma_2$
+संगत है।
+
+याद रखें कि पूर्ण सिद्धांत वह है जिसकी भाषा के प्रत्येक !!{sentence}~$!A$ के
+लिए या तो $\Gamma \Proves !A$ या $\Gamma \Proves \lnot !A$। चूँकि $\Gamma_1$
+और~$\Gamma_2$,~$\Gamma$ के संगत विस्तार हैं, $\Gamma$ को संगत होना चाहिए।
+फलतः यदि $!A$, भाषा $\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ में कोई
+!!a{sentence} है, तो $\Gamma_1 \Entails !A$ और $\Gamma_2 \Entails \lnot !A$
+दोनों नहीं हो सकते। इसे देखने के लिए मान लें ऐसा कोई~$!A$ है। यदि $\Gamma_1
+\Entails !A$, तो $\Gamma \Entails !A$। अन्यथा~$\Gamma$ की पूर्णता से $\Gamma
+\Entails \lnot !A$; और $\Gamma \subseteq \Gamma_1$ होने से $\Gamma_1
+\Entails \lnot !A$, जिससे $\Gamma_1$ असंगत हो जाता। अतः $\Gamma \Entails
+!A$; और $\Gamma \subseteq \Gamma_2$ होने से $\Gamma_2 \Entails !A$। इसलिए
+$\Gamma \Entails/ \lnot !A$, अन्यथा $\Gamma_2$ असंगत होता।
+
+प्रमाण के लिए संयुक्त !!{language}~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$
+में ऐसे !!a{sentence}~$!A$ का न होना ही पर्याप्त है जिसके लिए $\Gamma_1
+\Entails !A$ और $\Gamma_2 \Entails \lnot !A$। यहाँ हम माएहारा प्रमेय का
+उपयोग करके इसका प्रमाण-सैद्धांतिक प्रमाण देते हैं।
+
+\begin{thm}[रॉबिन्सन संयुक्त संगति प्रमेय]
+मान लें $\Gamma_1$, $\Gamma_2$ संगत सिद्धांत हैं, और !!{language} $\Lang
+L(\Gamma_1) \cap \Lang L(\Gamma_2)$ में कोई~$!A$ ऐसा नहीं है जिसके लिए
+$\Gamma_1 \Entails !A$ और $\Gamma_2 \Entails \lnot !A$। तब $\Gamma_1 \cup
+\Gamma_2$ संगत है।
+\end{thm}
+
+\begin{proof}
+  इसके विपरीत मान लें कि $\Gamma_1 \cup \Gamma_2$ असंगत है। तब अनुक्रम
+  $\Gamma_1, \Gamma_2 \Sequent \ $ का कोई !!a{proof} है।
+  $\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\ }{\ }$ पर माएहारा प्रमेय लगाकर
+  !!{language}~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ में ऐसा
+  !!a{sentence}~$!A$ पाएँ कि $\Proves \Gamma_1 \Sequent !A$ और $\Proves !A,
+  \Gamma_2 \Sequent \quad$। दूसरे से $\Proves \Gamma_2 \Sequent \lnot !A$
+  मिलता है। किंतु हमने माना था कि ऐसा कोई !!{sentence} नहीं है।
+\end{proof}
+
+ऊपर हमने अप्रकट रूप से माना है कि सिद्धांत $\Gamma$, $\Gamma_1$, $\Gamma_2$
+सीमित हैं। संहतता से परिणाम अनंत सिद्धांतों के लिए भी सत्य हैं।
+
+\end{document}

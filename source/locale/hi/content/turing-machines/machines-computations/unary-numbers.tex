@@ -1,0 +1,237 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: unary-numbers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{tur}{mac}{una}
+\olsection{संख्याओं का एकाधारी निरूपण}
+
+\begin{explain}
+ट्यूरिंग मशीनें अपनी पट्टी पर लिखे प्रतीकों के अनुक्रमों पर काम करती
+हैं। ट्यूरिंग मशीन द्वारा प्रयुक्त वर्णमाला के अनुसार ये प्रतीक-अनुक्रम
+विभिन्न आगतों और निर्गतों को निरूपित कर सकते हैं। निश्चय ही, प्राकृतिक
+संख्याओं के फलनों अर्थात् \emph{अंकगणितीय} फलनों को संगणित करने वाली
+ट्यूरिंग मशीनें विशेष रुचि की हैं। धन पूर्णांकों को निरूपित करने की एक
+सरल रीति उन्हें एक ही प्रतीक~$\TMstroke$ के अनुक्रमों के रूप में कूटबद्ध
+करना है। यदि $n \in \Nat$, तो $\TMstroke^n$ को, $n = 0$ होने पर, रिक्त
+अनुक्रम और अन्यथा ठीक $n$ $\TMstroke$ वाला अनुक्रम मानें।
+\end{explain}
+
+\begin{defn}[संगणना]
+ट्यूरिंग मशीन~$M$, फलन $f\colon \Nat^k \to \Nat$ को \emph{संगणित करती
+है}, तभी और केवल तभी जब $M$ आगत
+\[
+\TMstroke^{n_1} \TMblank \TMstroke^{n_2} \TMblank \dots \TMblank \TMstroke^{n_k}
+\]
+पर निर्गत $\TMstroke^{f(n_1, \dots, n_k)}$ के साथ रुकती है।
+\end{defn}
+
+\begin{prob}
+  ट्यूरिंग मशीन~$M$, फलन $f\colon \Nat^k \to \Nat^m$ को कब संगणित
+  करती है, इसकी परिभाषा दें।
+\end{prob}
+
+\begin{ex}\ollabel{ex:adder}
+\emph{योग:}
+फलन $f(n,m) = n + m$ को संगणित करने वाली मशीन बनाएँ। इसके लिए ऐसी मशीन
+चाहिए जो पट्टी पर $\TMstroke$ के दो खंडों से आरंभ हो, जिनकी लंबाइयाँ
+क्रमशः $n$ और~$m$ हों, और $n+m$~$\TMstroke$ वाले एक खंड के साथ रुके। आगत में
+~$\TMstroke$ के दोनों खंडों के बीच एक~$\TMblank$ है; अतः एक रीति यह होगी
+कि $\TMblank$ वाले खाने पर एक आघात लिख दें और अंतिम~$\TMstroke$ मिटा
+दें।
+\begin{figure}\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+           edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge [loop above] node {\TMtrans{\TMstroke}{\TMblank}{\TMstay}} (C);
+\end{tikzpicture}
+\]\caption{$f(x,y) = x+y$ संगणित करने वाली मशीन}
+\ollabel{fig:adder}
+\end{figure}
+\end{ex}
+
+\begin{prob}
+आगत~$\tuple{3,2}$ के लिए \olref[tur][mac][una]{ex:adder} की मशीन के
+विन्यासों का क्रम निकालें। यदि मशीन $0+0$ संगणित करे, तो क्या होता है?
+\end{prob}
+
+\begin{explain}
+\olref[rep]{ex:doubler} में हमने ऐसी ट्यूरिंग मशीन का उदाहरण दिया था जो
+~$\TMstroke$ के अनुक्रम को आगत के रूप में लेती है और पट्टी पर उससे दुगुने
+~$\TMstroke$ के अनुक्रम के साथ रुकती है---द्विगुणक मशीन। किंतु निर्गत में
+$\TMblank$ भी हैं, जो~$\TMstroke$ के दुगुने खंड के बाईं ओर हैं; इसलिए आपकी
+संभावित धारणा के विपरीत, वह वास्तव में फलन $f(x) = 2x$ को संगणित नहीं
+करती। इसे ठीक करने की दो रीतियाँ बताएँगे।
+\end{explain}
+
+\begin{ex}
+\olref{fig:doubler-disc} की मशीन फलन $f(x) =
+2x$ को संगणित करती है।
+\olref[rep]{ex:doubler} की मशीन की तरह आगत मिटाकर उसके प्रत्येक
+$\TMstroke$ के लिए दूर दाईं ओर दो $\TMstroke$ लिखने के स्थान पर यह मशीन
+आगत के प्रत्येक~$\TMstroke$ के लिए दाईं ओर एक~$\TMstroke$ जोड़ती है। इसे
+लेखा रखना होता है कि आगत कहाँ समाप्त होता है; इसलिए वह आगत और जोड़े गए
+आघातों के बीच एक~$\TMblank$ छोड़ती है और सबसे अंत में उसे~$\TMstroke$
+से भर देती है। हमें यह भी ``याद'' रखना होता है कि हम आगत में कहाँ हैं;
+इसलिए आगत-खंड के एक~$\TMstroke$ को अस्थायी रूप से~$\TMblank$ से बदलते
+हैं।
+  \begin{figure}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (0)              {$q_0$};
+  \node[state]         (1) [above of=0] {$q_1$};
+  \node[state]         (2) [above of=1] {$q_2$};
+  \node[state]         (3) [right of=2] {$q_3$};
+  \node[state]         (4) [below of=3] {$q_4$};
+  \node[state]         (5) [below of=4] {$q_5$};
+  \node[state]         (6) [above right of=4] {$q_6$};
+  \node[state]         (7) [below of=6] {$q_7$};
+  \node[state]         (8) [below of=7] {$q_8$};
+
+  \path (0) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMright}} (1)
+%    (0) edge node {\TMtrans{\TMblank}{\TMblank}{\TMstay}} (h)
+    (1) edge [loop left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (1)
+      edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (2)
+    (2) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (2)
+        edge node {\TMtrans{\TMblank}{\TMstroke}{\TMleft}} (3)
+    (3) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (3)
+        edge node[left] {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (4)
+    (4) edge        node[left] {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+    (5) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+        edge              node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (0)
+    (4) edge      node[sloped] {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (6)
+    (6) edge              node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (7)
+    (7) edge [loop right] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (7)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (8)
+    (8) edge [loop right] node {\TMtrans{\TMstroke}{\TMblank}{\TMstay}} (8);
+    \end{tikzpicture}
+\]
+\caption{$f(x) = 2x$ संगणित करने वाली मशीन}
+\ollabel{fig:doubler-disc}
+\end{figure}
+\end{ex}
+
+\begin{ex}\ollabel{ex:mover}
+$f(x) = 2x$ संगणित करने की दूसरी संभावना यह है कि मूल द्विगुणक मशीन को
+रखें, किंतु अंत में ऐसी अवस्थाएँ और निर्देश जोड़ें जो आघातों के दुगुने
+खंड को पट्टी के दूर बाएँ सिरे पर ले जाएँ। \olref{fig:mover} की मशीन
+केवल यही अंतिम भाग करती है: ~$\TMblank$ के एक खंड और उसके बाद
+~$\TMstroke$ के एक खंड वाली पट्टी पर आरंभ करने पर (और शीर्ष को
+~$\TMblank$ के खंड में कहीं भी रखने पर), वह $\TMstroke$ को एक-एक करके
+मिटाती है और उन्हें पट्टी के आरंभ में लिखती है। काम पूरा होने का पता
+लगाने के लिए वह पहले $\TMstroke$ के खंड के अंत को एक~$\TMendtape$ प्रतीक
+से चिह्नित करती है, जिसे अंत में मिटा दिया जाता है। हमने अवस्थाओं की
+संख्या~$q_6$ से आरंभ की है ताकि इन्हें द्विगुणक मशीन में जोड़ा जा सके।
+आपको केवल एक अतिरिक्त निर्देश $\delta(q_0,
+\TMblank) = \tuple{q_6,\TMblank,\TMstay}$ चाहिए; अर्थात्~$q_0$ से~$q_6$ तक
+~$\TMtrans{\TMblank}{\TMblank}{\TMstay}$ अंकित एक तीर। (एक सूक्ष्म
+समस्या है: परिणामी मशीन आगत~$x=0$ के लिए काम नहीं करती। इसे अभ्यास के
+लिए छोड़ते हैं।)
+\begin{figure}
+  \[
+  \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                      semithick]
+    \tikzstyle{every state}=[fill=none,draw=black,text=black]
+    \node[initial,state] (6)              {$q_6$};
+    \node[state]         (7) [right of=6] {$q_7$};
+    \node[state]         (8) [right of=7] {$q_8$};
+    \node[state]         (9) [below of=8] {$q_9$};
+    \node[state]         (10) [left of=9] {$q_{10}$};
+    \node[state]         (11) [left of=10]  {$q_{11}$};
+    \node[state]         (12) [below of=11]  {$q_{12}$};
+    \node[state]         (13) [right of=12] {$q_{13}$};
+    \node[state]         (14) [right of=13] {$q_{14}$};
+    \path
+    (6)  edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (7)
+    (7)  edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (7)
+         edge node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (8)
+    (8)  edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (8)
+         edge node {\TMtrans{\TMblank}{\TMendtape}{\TMleft}} (9)
+    (9)  edge [loop right] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (9)
+         edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (10)
+    (10) edge node[above] {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (11)
+    (11) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (11)
+         edge node[left] {\begin{tabular}{@{}l@{}}
+          \TMtrans{\TMendtape}{\TMendtape}{\TMright}\\
+          \TMtrans{\TMstroke}{\TMstroke}{\TMright}
+         \end{tabular}} (12)
+    (12) edge node[] {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (13)
+    (13) edge [loop below] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (13)
+         edge node[sloped] {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (11)
+    (13) edge node {\TMtrans{\TMendtape}{\TMblank}{\TMstay}} (14);
+  \end{tikzpicture}
+  \]
+  \caption{$\TMstroke$ के एक खंड को बाईं ओर ले जाना}
+  \ollabel{fig:mover}
+\end{figure}
+\end{ex}
+
+\begin{prob}
+\olref[tur][mac][una]{ex:mover} में हमने ऐसी मशीन बताई जो
+\olref[tur][mac][una]{fig:doubler-disc} की द्विगुणक मशीन और
+\olref[tur][mac][una]{fig:mover} की स्थानांतरक मशीन का संयोजन है। यदि
+इस संयुक्त मशीन को आगत~$x=0$, अर्थात् रिक्त पट्टी पर आरंभ करें, तो क्या
+होता है? मशीन को कैसे ठीक करेंगे ताकि इस स्थिति में वह निर्गत~$2x=0$
+के साथ रुके? (यह एक अवस्था और एक संक्रमण जोड़कर किया जा सकना चाहिए।)
+\end{prob}
+
+\begin{prob}
+\emph{घटाव:} ऐसी ट्यूरिंग मशीन की अभिकल्पना करें जो क्रमशः $n$ और~$m$
+लंबाई वाली आघातों की दो अरिक्त अक्षर-शृंखलाएँ आगत के रूप में मिलने पर,
+जहाँ $n >
+m$, फलन $f(n,m) = n - m$ संगणित करे।
+\end{prob}
+
+\begin{prob}
+\emph{समानता:} निम्न फलन को संगणित करने वाली ट्यूरिंग मशीन की अभिकल्पना
+करें:
+\[
+\fn{equality}(n,m) = 
+\begin{cases}
+  \text{१} & \text{यदि~$n = m$} \\
+  \text{०} & \text{यदि~$n \neq m$}
+\end{cases}
+\]
+जहाँ~$n$ और~$m \in \PosInt$।
+\end{prob}
+
+\begin{prob}
+फलन $\min(x,y)$ को संगणित करने वाली ट्यूरिंग मशीन की अभिकल्पना करें,
+जहाँ $x$ और $y$ ऐसे धन पूर्णांक हैं जिन्हें पट्टी पर $\TMstroke$ की
+अक्षर-शृंखलाओं द्वारा निरूपित किया गया है और जो एक $\TMblank$ से अलग हैं। मशीन की
+वर्णमाला में अतिरिक्त प्रतीकों का उपयोग कर सकते हैं।
+
+फलन $\min$ अपने तर्कों में सबसे छोटा मान चुनता है; अतः
+$\min(3,5)=3$, $\min(20,16)=16$, और $\min(4,4)=4$, इत्यादि।
+\end{prob}
+
+\begin{defn}
+  ट्यूरिंग मशीन~$M$, आंशिक फलन $f\colon \Nat^k
+  \pto \Nat$ को संगणित
+  करती है, तभी और केवल तभी जब
+  \begin{enumerate}
+    \item $M$ आगत $\TMstroke^{n_1}\concat\TMblank\concat
+    \dots \concat\TMblank\concat\TMstroke^{n_k}$ पर निर्गत
+    $\TMstroke^{m}$ के साथ रुकती है, यदि $f(n_1, \dots, n_k) = m$।
+    \item $M$ बिल्कुल नहीं रुकती, अथवा ऐसे निर्गत के साथ रुकती है
+    जो~$\TMstroke$ का एकल खंड नहीं है, यदि $f(n_1, \dots, n_k)$
+    अपरिभाषित है।
+  \end{enumerate}
+\end{defn}
+
+\end{document}

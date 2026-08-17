@@ -1,0 +1,165 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: derived-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{der}
+
+\olsection{व्युत्पन्न नियम}
+
+!!{derivation}याँ खोजना और लिखना स्पष्टतः कठिन, बोझिल और पुनरावृत्तिपूर्ण
+है। उदाहरणार्थ, हम बहुत बार $!A \lif !B$ से
+$\Box !A \lif \Box !B$ तक जाना, अर्थात् नियम~\RK{} लागू करना चाहते हैं।
+इसके लिए पहले \Nec{} का अनुप्रयोग, फिर~\Ax{K} का उचित दृष्टांत दर्ज करना,
+फिर~\MP{} लागू करना पड़ता है। $!A \lif !B$ और $!B \lif !C$ से
+$!A \lif !C$ तक जाने के लिए यह (लंबा) सर्वसत्यतात्मक दृष्टांत दर्ज करना
+पड़ता है:
+\[
+(!A \lif !B) \lif ((!B \lif !C) \lif (!A \lif !C))
+\]
+और \MP{} दो बार लागू करना पड़ता है। हम प्रायः किसी उप-!!{formula} को ऐसे
+सूत्र से बदलना चाहते हैं जिसे हम उसके तुल्य जानते हैं, जैसे
+\iftag{prvDiamond}{$\Diamond !A$ को $\lnot\Box\lnot !A$ से}{$\Box !A$ को
+$\lnot\Diamond\lnot !A$ से}, या $\lnot\lnot !A$ को $!A$ से। इसलिए वास्तविक
+!!{derivation} लिखने के स्थान पर केवल यह दर्ज करना अधिक सुविधाजनक है कि
+मध्यवर्ती चरण क्यों !!{derivable} हैं। इस उद्देश्य से !!{derivability} के
+कुछ तथ्य एकत्र करें।
+
+\begin{prop}
+  यदि $\Log{K} \Proves !A_1$, \dots, $\Log{K} \Proves !A_n$, और $!B$,
+  $!A_1$, \dots, $!A_n$ से प्रतिज्ञप्तिक तर्कशास्त्र द्वारा निकलता है, तो
+  $\Log{K} \Proves !B$।
+\end{prop}
+
+\begin{proof}
+  यदि $!B$, $!A_1$, \dots,~$!A_n$ से प्रतिज्ञप्तिक तर्कशास्त्र द्वारा
+  निकलता है, तो
+  \[
+  !A_1 \lif (!A_2 \lif \cdots (!A_n \lif !B)\dots)
+  \]
+  एक सर्वसत्यतात्मक दृष्टांत है। \MP{} को $n$ बार लागू करने से~$!B$ की
+  !!{derivation} मिलती है।
+\end{proof}
+
+इस प्रतिज्ञप्ति के उपयोग को हम~\PL{} से दर्शाएँगे।
+
+\begin{prop}
+  यदि $\Log{K} \Proves !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif
+  !A_n)\dots)$, तो $\Log{K} \Proves \Box !A_1 \lif (\Box !A_2 \lif
+  \cdots (\Box !A_{n-1} \lif \Box !A_n)\dots)$।
+\end{prop}
+
+\begin{proof}
+  $n$ पर आगमन से, ठीक \olref[nor]{prop:rk} के प्रमाण की तरह।
+\end{proof}
+
+इस प्रतिज्ञप्ति के उपयोग को हम~\RK{} से दर्शाएँगे। देखें कि ये परिणाम
+!!{derivability} के परिणाम अधिक आसानी से स्थापित करने में कैसे सहायक हैं।
+
+\begin{prop}
+  $\Log{K} \Proves (\Box!A \land \Box!B) \lif \Box (!A \land !B)$
+\end{prop}
+
+\begin{proof}
+  \begin{derivation}
+    1. & $\Log{K} \Proves !A \lif (!B \lif (!A \land !B))$ & \Taut \\
+    2. & $\Log{K} \Proves \Box!A \lif (\Box !B \lif \Box(!A \land !B)))$ & \RK, 1\\
+    3. & $\Log{K} \Proves (\Box!A \land \Box!B) \lif \Box(!A \land !B)$ & \PL, 2
+  \end{derivation}
+\end{proof}
+
+\begin{prop}\ollabel{prop:rewriting}
+  यदि $\Log{K} \Proves !A \liff !B$ और $\Log{K} \Proves
+  \Subst{!C}{!A}{q}$, तो $\Log{K} \Proves \Subst{!C}{B}{q}$
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  $!C$ की जटिलता पर आगमन से यह सिद्ध करके
+  \olref[nml][prf][der]{prop:rewriting} सिद्ध कीजिए कि यदि
+  $\Log{K} \Proves !A \liff !B$, तो
+  $\Log{K} \Proves \Subst{!C}{!A}{q} \liff \Subst{!C}{!B}{q}$।
+\end{prob}
+
+यह प्रतिज्ञप्ति विशेष रूप से तब उपयोगी है जब हम $\Diamond$ को $\Box$ में
+(या इसके विपरीत) बदलना, या किसी !!{formula} के भीतर द्विनिषेध हटाना चाहते
+हैं। आगे जब भी हम !!{formula}~$!C(!A)$ को~$!C(!B)$ के रूप में पुनर्लिखेंगे,
+\olref{prop:rewriting} के अनुप्रयोग को ``$!B$ के स्थान पर $!A$'' से चिह्नित
+करेंगे। दूसरे शब्दों में, ``$!B$ के स्थान पर $!A$'' इसका संक्षिप्त रूप है:
+  \begin{derivation}
+    & $\Proves !C(!A)$ \\
+    & $\Proves !A \liff !B$\\
+    & $\Proves !C(!B)$ & \olref{prop:rewriting} से
+  \end{derivation}
+उदाहरणार्थ:
+
+\begin{prop}
+  $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$
+\end{prop}
+
+\begin{proof}
+  \iftag{prvDiamond}{% Diamond is primitive
+  \begin{derivation}
+    1. & $\Log{K} \Proves \Diamond \lnot p \liff \lnot\Box\lnot\lnot p$ &
+    \Dual\\
+    2. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \PL, 1\\
+    3. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $\lnot\lnot p$ के स्थान पर $p$\\
+  \end{derivation}
+  }{% Diamond is defined
+  \begin{derivation}
+    1. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \Taut\\
+    2. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $\lnot\lnot p$ के स्थान पर $p$\\
+  \end{derivation}
+  पंक्ति~$1$ का सूत्र $\lnot q \lif \lnot q$ का वह दृष्टांत है जिसमें
+  $q$ के स्थान पर $\Box\lnot\lnot p$ रखा गया है। $\Diamond\lnot p$ और
+  $\lnot\Box\lnot\lnot p$ सर्वसम हैं, क्योंकि $\Diamond$ को
+  $\lnot\Box\lnot$ के रूप में परिभाषित किया गया है।}
+\end{proof}
+
+ऊपर की !!{derivation} में अंतिम चरण ``$\lnot\lnot p$ के स्थान पर $p$''
+इसका संक्षिप्त रूप है:
+  \begin{derivation}
+    & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot
+    p$\\
+    & $\Log{K} \Proves \lnot\lnot p \liff p$ & \Taut\\
+    & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & \olref{prop:rewriting} से
+  \end{derivation}
+\olref{prop:rewriting} के $!C(q)$, $!A$ और $!B$ की भूमिकाएँ यहाँ क्रमशः
+$\lnot \Box q \lif \Diamond \lnot p$, $\lnot\lnot p$ और~$p$ निभाते हैं।
+
+जब किसी !!{formula} में उप-!!{formula} $\lnot\Diamond !A$ हो, तो हम
+\olref{prop:rewriting} से उसे $\Box\lnot !A$ द्वारा बदल सकते हैं, क्योंकि
+$\Log{K} \Proves \lnot\Diamond !A \liff \Box\lnot !A$। इसे और ऐसे ही
+प्रतिस्थापनों को हम केवल ``$\lnot\Diamond$ के स्थान पर $\Box\lnot$'' से
+दर्शाएँगे।
+
+निम्न प्रतिज्ञप्ति यह उचित ठहराती है कि हम !!{derivability} के परिणाम
+स्कीमागत रूप से स्थापित कर सकते हैं। उदाहरणार्थ, पूर्ववर्ती प्रतिज्ञप्ति
+केवल $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ नहीं, बल्कि
+स्वेच्छ~$!A$ के लिए
+$\Log{K} \Proves \lnot\Box !A \lif \Diamond\lnot !A$ स्थापित करती है।
+
+\begin{prop}
+  यदि $!A$, $!B$ का प्रतिस्थापन-दृष्टांत है और $\Log{K} \Proves !B$, तो
+  $\Log{K} \Proves !A$।
+\end{prop}
+
+\begin{proof}
+  यह जाँचना श्रमसाध्य पर नियमित है ($!B$ की !!{derivation} की लंबाई पर
+  आगमन से) कि पूरी !!{derivation} पर प्रतिस्थापन लागू करने से भी सही
+  !!{derivation} मिलती है। विशेषतः, सर्वसत्यतात्मक दृष्टांतों के
+  प्रतिस्थापन-दृष्टांत स्वयं सर्वसत्यतात्मक दृष्टांत हैं;
+  \iftag{prvDiamond}{\Dual{} और~}{}\Ax{K} के दृष्टांतों के
+  प्रतिस्थापन-दृष्टांत स्वयं \iftag{prvDiamond}{\Dual{} और~}{}\Ax{K} के
+  दृष्टांत हैं; और आधारवाक्य(यों) तथा निष्कर्ष दोनों में !!{propositional variable}ों
+  के स्थान पर !!{formula} रखने पर \MP{} और~\Nec{} के अनुप्रयोग सही रहते हैं।
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,138 @@
+% Part: lambda-calculus
+% Chapter: lambda-definablity
+% Section: arithmetical-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{rep}{arf}
+\olsection{\usetoken{S}{lambda definable} अंकगणितीय फलन}
+
+\begin{prop}
+  \ollabel{prop:succ-ld}
+  उत्तरवर्ती फलन~$\Succ$ !!{lambda definable} है।
+\end{prop}
+
+\begin{proof}
+उत्तरवर्ती फलन को !!{lambda define} करने वाला पद है:
+\begin{align*}
+  \fn{Succ} & \ident \lambd[a][\lambd[fx][f ({a} f x)]].
+  \intertext{हमारे नियमों के अनुसार यह इसका संक्षिप्त रूप है:}
+  \fn{Succ} & \ident \lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]].
+  \intertext{$\fn{Succ}$ ऐसा फलन है जो संख्या~$a$ को तर्क के रूप में
+    स्वीकार करता और दूसरे फलन $\lambd[fx][f ({a} f x)]$ में मूल्यांकित
+    होता है। वह फलन स्वयं चर्च अंक नहीं है। किंतु यदि तर्क $a$ चर्च अंक
+    हो, तो वह अपचयित होकर चर्च अंक बनता है। विचार करें:}
+   (\lambd[a][\lambd[fx][f ({a} f x)]])\,\num{n} & \redone
+   \lambd[fx][f ({\num{n}} f x)].
+   \intertext{अंतर्निहित पद $\num{n}fx$ रिडेक्स है, क्योंकि $\num{n}$,
+     ~$\lambd[fx][f^nx]$ है। अतः $\num{n}fx \redone f^nx$ और पूरे पद के
+     लिए}
+   \fn{Succ}\, \num n & \red \lambd[fx][f(f^n(x))],
+\end{align*}
+अर्थात् $\num{n+1}$।
+\end{proof}
+
+\begin{ex}
+  देखें कि $\fn{Succ}$ को~$\num{0}$, अर्थात् $\lambd[fx][x]$, पर लागू
+  करने से क्या होता है। हम पदों को पूर्ण रूप में लिखेंगे:
+  \begin{align*}
+    \fn{Succ}\, \num{0} & \ident (\lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]])(\lambd[f][\lambd[x][x]])\\
+    & \redone \lambd[f][\lambd[x][(f (({(\lambd[f][\lambd[x][x]])} f) x))]] \\
+    & \redone \lambd[f][\lambd[x][(f ({(\lambd[x][x])} x))]] \\
+    & \redone \lambd[f][\lambd[x][(f x)]] \ident \num{1}\\
+  \end{align*}
+\end{ex}
+
+\begin{prob}
+  पद
+  \begin{align*}
+    \fn{Succ}' & \ident \lambd[{n}][\lambd[fx][{n} f (f x)]]
+  \end{align*}
+  उत्तरवर्ती फलन को !!{lambda define} करता है। समझाएँ कि क्यों।
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:add-ld}
+  योग-फलन~$\Add$ !!{lambda definable} है।
+\end{prop}
+
+\begin{proof}
+योग को इन पदों द्वारा !!{lambda define} किया जाता है:
+\begin{align*}
+  \fn{Add} & \ident \lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]]
+\intertext{अथवा वैकल्पिक रूप से,}
+  \fn{Add}' & \ident \lambd[{a}{b}][{a}\, \fn{Succ} \, {b}].
+\intertext{पहला योग इस प्रकार काम करता है: $\fn{Add}$ पहले दो संख्याएँ
+  ${a}$ और ${b}$ स्वीकार करता है। परिणाम ऐसा फलन है जो $f$ और $x$
+  स्वीकार करके $af(bfx)$ लौटाता है। यदि $a$ और $b$ चर्च अंक $\num{n}$ और
+  $\num{m}$ हों, तो यह अपचयित होकर $f^{n+m}(x)$ बनता है, जो
+  $f^{n}(f^{m}(x))$ के समान है। अथवा धीरे-धीरे:}
+  (\lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]])\num n\,\num m & \redone
+  \lambd[fx][\num{n}\, f (\num {m}\, f x)] \\
+  & \redone \lambd[fx][\num{n}\, f (f^m x)] \\
+  & \redone \lambd[fx][f^n (f^m x)] \ident \num {n+m}.
+\intertext{योग का दूसरा निरूपण $\fn{Add'}$ अलग ढंग से काम करता है: दो
+  चर्च अंकों $\num{n}$ और $\num{m}$ पर लागू करने पर,}
+\fn{Add}' \num n \,\num m
+& \redone \num{n}\, \fn{Succ}\, \num{m}.
+\intertext{किंतु $\num{n} f x$ सदा अपचयित होकर $f^n(x)$ बनता है। अतः,}
+  \num{n}\,  \fn{Succ}\, \num{m} & \red \fn{Succ}^n(\num{m}).
+\end{align*}
+और चूँकि $\fn{Succ}$ उत्तरवर्ती फलन को !!{lambda define} करता है तथा~$m$
+पर उत्तरवर्ती फलन को $n$ बार लागू करने से $n+m$ मिलता है, इसलिए यह बदले
+में अपचयित होकर~$\num{n+m}$ बनता है।
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:mult-ld}
+  गुणन निम्न पद द्वारा !!{lambda definable} है:
+  \[
+  \fn{Mult} \ident \lambd[ab][\lambd[fx][a (b f) x]]
+  \]
+\end{prop}
+
+\begin{proof}
+  यह कैसे काम करता है, देखने के लिए मान लें हम $\fn{Mult}$ को चर्च अंकों
+  $\num{n}$ और $\num{m}$ पर लागू करते हैं: $\fn{Mult} \, \num{n} \,
+  \num{m}$ अपचयित होकर $\lambd[fx][\num{n}(\num{m}\, f)x]$ बनता है। पद
+  $\num{m} f$ ऐसे फलन को परिभाषित करता है जो अपने तर्क पर $f$ को $m$ बार
+  लागू करता है। फलतः $\num{n} (\num{m} f) x$, ``$f$ को $m$ बार लागू करो''
+  फलन को स्वयं~$x$ पर $n$ बार लागू करता है। दूसरे शब्दों में, हम $f$ को
+  $x$ पर $n\cdot m$ बार लागू करते हैं। परिणामी प्रसामान्य पद केवल चर्च अंक
+  $\num{nm}$ है।
+\end{proof}
+
+\begin{editorial}
+हम वास्तव में इस पद को $\eta$-अपचयन से और सरल कर सकते हैं:
+\[
+  \fn{Mult} \ident \lambd[ab][\lambd[f][a (b f)]].
+\]
+
+किंतु तब हमें पहले $\eta$-अपचयन समझाना होगा।
+\end{editorial}
+
+\begin{prob}
+गुणन को इस पद द्वारा !!{lambda define} किया जा सकता है:
+\[
+  \fn{Mult}' \ident \lambd[ab][a (\fn{Add}\, a) \num{0}].
+\]
+समझाएँ कि यह क्यों काम करता है।
+\end{prob}
+
+घातांक को $\lambd$-पद के रूप में परिभाषित करना आश्चर्यजनक रूप से सरल है:
+\[
+  \fn{Exp} \ident \lambd[be][e b].
+\]
+पहला तर्क $b$ आधार और दूसरा~$e$ घातांक है। संख्याओं के हमारे कूटन से सहज
+रूप से $e f$, ~$f^e$ है। यदि इसे समझना कठिन लगे, तो घातांक को पुनरावर्तित
+गुणन द्वारा भी परिभाषित कर सकते हैं:
+\[
+  \fn{Exp}' \ident \lambd[be][e (\fn{Mult}\, b) \num{1}].
+\]
+
+चर्च अंकों पर पूर्ववर्ती और व्यवकलन उतने सरल नहीं जितना हम सोच सकते हैं:
+इसके लिए युग्मों का कूटन आवश्यक है।
+
+\end{document}

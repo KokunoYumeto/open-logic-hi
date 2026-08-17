@@ -1,0 +1,73 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{seq}{rul}
+
+\olsection{नियम और \usetoken{P}{derivation}}
+
+आगे $\Gamma, \Delta, \Pi, \Lambda$ को !!{sentence}ों के परिमित अनुक्रम मानें।
+
+\begin{defn}[सीक्वेंट]
+\emph{$n$-पक्षीय सीक्वेंट} इस रूप का व्यंजक है:
+\[
+\Gamma_1 \nSequent \dots \nSequent \Gamma_n,
+\]
+जहाँ प्रत्येक $\Gamma_1$, भाषा~$\Lang L$ के !!{sentence}ों का कोई परिमित
+(संभवतः रिक्त) अनुक्रम है।
+\end{defn}
+
+\begin{defn}[आरंभिक सीक्वेंट]
+किसी भी !!{sentence}~$!A$ के लिए $!A \nSequent \dots \nSequent !A$ रूप का
+$n$-पक्षीय सीक्वेंट \emph{$n$-पक्षीय आरंभिक सीक्वेंट} कहलाता है।
+
+यदि भाषा में कोई $0$-स्थानिक संयोजक~$\star$, अर्थात् कोई प्रतिज्ञप्तिक
+अचर, हो, तो हम सीक्वेंट $\dots \nSequent \star \nSequent \dots$ को भी
+आरंभिक मानते हैं। इसमें $\star$ उस सत्य-मूल्य से जुड़े स्थान में आता है जो
+$\tf{\star} \in V$ के संगत है, और अन्य स्थान रिक्त रहते हैं।
+\end{defn}
+
+किसी $n$-मूल्य तर्कशास्त्र~$\Log{L}$ के प्रत्येक संयोजक के लिए उस संयोजक
+द्वारा $\Log{L}$ में लिए जा सकने वाले प्रत्येक सत्य-मूल्य का एक तार्किक
+नियम होता है। $\Log{L}$ के $n$-पक्षीय सीक्वेंट कलन में !!{derivation}याँ
+सीक्वेंटों के वृक्ष होती हैं। इनके सबसे ऊपर के सीक्वेंट आरंभिक सीक्वेंट होते
+हैं; और यदि कोई सीक्वेंट एक या अधिक अन्य सीक्वेंटों के नीचे आता है, तो उसे
+$\Log{L}$ के संयोजकों के किसी अनुमान-नियम से सही ढंग से निकलना चाहिए।
+
+\begin{defn}[प्रमेय]
+कोई !!{sentence}~$!A$, $n$-मूल्य तर्कशास्त्र~$\Log{L}$ का \emph{प्रमेय} है,
+यदि उस $n$-सीक्वेंट की कोई !!{derivation} हो जिसमें $\Log{L}$ के प्रत्येक
+निर्दिष्ट सत्य-मूल्य के संगत स्थान पर $!A$ आता हो। यदि $!A$ प्रमेय है तो हम
+$\Proves[\Log{L}] !A$ लिखते हैं, और यदि नहीं है तो
+$\Proves/[\Log{L}] !A$।
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+कोई !!{sentence}~$!A$, $n$-मूल्य तर्कशास्त्र~$\Log{L}$ में !!{sentence}ों के
+समुच्चय~$\Gamma$ से \emph{!!{derivable}} है,
+$\Gamma \Proves[\Log{L}] !A$, तभी जब कोई परिमित उपसमुच्चय
+$\Gamma_0 \subseteq \Gamma$ और $\Gamma_0$ के !!{sentence}ों का कोई अनुक्रम
+$\Gamma_0'$ ऐसा हो कि निम्न सीक्वेंट की कोई !!{derivation} हो:
+\[
+\Lambda_1 \nSequent \dots \nSequent \Lambda_n,
+\]
+जहाँ स्थान $i$ किसी निर्दिष्ट सत्य-मूल्य के संगत हो तो $\Lambda_i$, $!A$
+है, और अन्यथा $\Gamma_0'$ है। यदि $!A$, $\Gamma$ से !!{derivable} नहीं
+है, तो हम $\Gamma \Proves/ !A$ लिखते हैं।
+\end{defn}
+
+उदाहरणार्थ, त्रिमूल्य लुकासिएविच तर्कशास्त्र का $3$-पक्षीय सीक्वेंट कलन
+होता है। किसी $3$-पक्षीय सीक्वेंट
+$\Gamma \nSequent \Pi \nSequent \Delta$ में $\Gamma$, $\False$ के;
+$\Delta$, $\True$ के; और $\Pi$, $\Undef$ के संगत होता है। अभिगृहीत
+$!A \nSequent !A \nSequent !A$ हैं। चूँकि केवल $\True$ निर्दिष्ट है,
+$\Gamma \Proves[\LogLuk[3]] !A$ तभी जब सीक्वेंट
+$\Gamma \nSequent \Gamma \nSequent !A$ की कोई !!{derivation} हो।
+(यदि $\Undef$ भी निर्दिष्ट होता, तो हमें
+$\Gamma \nSequent !A \nSequent !A$ की !!{derivation} चाहिए होती।)
+
+\end{document}

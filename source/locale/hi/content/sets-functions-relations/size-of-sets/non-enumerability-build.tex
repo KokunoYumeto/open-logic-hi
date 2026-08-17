@@ -1,0 +1,34 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0025.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen predecessor identities needed by this standalone section.  Empty
+% destinations avoid inventing local hyperlinks to sections not in this PDF.
+% The definition label also selects the primary (rather than alternative)
+% proof branch used by the frozen chapter graph.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:enm:sec\endcsname
+  {{siz.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:sec@cref\endcsname
+  {{[section][2][0]siz.2}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:sec\endcsname
+  {{siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm-alt:sec@cref\endcsname
+  {{[section][11][0]siz.11}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:defn:enumerable\endcsname
+  {{siz.{4}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:enm:defn:enumerable@cref\endcsname
+  {{[defn][4][0]siz.{4}}{}{}{}{}}
+\makeatother
+% Keep the translated token readable in the PDF outline as well as on-page.
+\pdfstringdefDisableCommands{\def\printtoken#1#2{अगणनीय}}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{अगणनीय-समुच्चय}}
+  \ifgitinfo\ 
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{non-enumerability}
+\end{document}

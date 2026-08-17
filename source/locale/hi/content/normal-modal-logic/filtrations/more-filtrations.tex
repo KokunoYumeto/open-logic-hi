@@ -1,0 +1,134 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: more-filtrations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{fil}{acc}
+
+\olsection{निस्यंदन और अभिगम्यता के गुण}
+
+जैसा कहा गया, सार्विक, सीरियल और स्वपरावर्ती प्रतिरूपों के निस्यंदन सदा
+क्रमशः सार्विक, सीरियल या स्वपरावर्ती भी होते हैं। किंतु किसी सममित या
+संक्रमणशील प्रतिरूप का हर निस्यंदन क्रमशः सममित या संक्रमणशील नहीं होता।
+फिर भी कुछ स्थितियों में निस्यंदन इस प्रकार परिभाषित करना संभव है कि यह
+सत्य हो। ऐसा करने के लिए हम स्थूलतम निस्यंदन की परिभाषा की तरह आगे बढ़ते
+हैं, किंतु $R^*$ की परिभाषा में अतिरिक्त शर्तें जोड़ते हैं। मान लें कि
+$\Gamma$ उप-!!{formula}ों के अधीन संवृत है। प्रतिरूप $\mModel{M}
+=\tuple{W, R, V}$ के जगतों $u$, $v$ के बीच
+\olref{tab:Cn-filtrations} के संबंधों~$C_i(u,v)$ पर विचार करें। हम इन
+शर्तों के संयोजनों के आधार पर $R^*[u][v]$ परिभाषित कर सकते हैं।
+उदाहरणार्थ, यदि हम अनुबंध करें कि $R^*[u][v]$ तभी जब शर्त $C_1(u,v)$
+सत्य हो, तो ठीक स्थूलतम निस्यंदन मिलता है। यदि हम अनुबंध करें कि
+$R^*[u][v]$ तभी जब $C_1(u,v)$ और $C_2(u, v)$, दोनों सत्य हों, तो भिन्न
+निस्यंदन मिलता है। वह स्थूलतम से ``सूक्ष्मतर'' है, क्योंकि केवल $C_1(u,v)$
+की अपेक्षा $C_1(u,v)$ और $C_2(u,v)$ को जगतों के कम युग्म संतुष्ट करते हैं।
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|ll|}
+    \hline
+    \multirow{2}{*}{$C_1(u,v)$:}
+    \iftag{prvBox}{&
+      यदि $\Box!A \in \Gamma$ और $\mSat{M}{\Box!A}[u]$,
+      तो $\mSat{M}{!A}[v]$;\iftag{prvDiamond}{ और}{}\\}{}
+    \iftag{prvDiamond}{&
+      यदि $\Diamond!A \in \Gamma$ और $\mSat{M}{!A}[v]$,
+      तो $\mSat{M}{\Diamond!A}[u]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_2(u,v)$:} 
+    \iftag{prvBox}{&
+      यदि $\Box!A \in \Gamma$ और $\mSat{M}{\Box!A}[v]$,
+      तो $\mSat{M}{!A}[u]$;\iftag{prvDiamond}{ और}{}\\}{}
+    \iftag{prvDiamond}{&
+      यदि $\Diamond!A \in \Gamma$ और $\mSat{M}{!A}[u]$,
+      तो $\mSat{M}{\Diamond!A}[v]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_3(u,v)$:}
+    \iftag{prvBox}{&
+      यदि $\Box!A \in \Gamma$ और $\mSat{M}{\Box!A}[u]$,
+      तो $\mSat{M}{\Box!A}[v]$;\iftag{prvDiamond}{ और}{}\\}{}
+    \iftag{prvDiamond}{&
+      यदि $\Diamond!A \in \Gamma$ और $\mSat{M}{\Diamond!A}[v]$,
+      तो $\mSat{M}{\Diamond!A}[u]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_4(u,v)$:}
+    \iftag{prvBox}{&
+      यदि $\Box!A \in \Gamma$ और $\mSat{M}{\Box!A}[v]$,
+      तो $\mSat{M}{\Box!A}[u]$;\iftag{prvDiamond}{ और}{}\\}{}
+    \iftag{prvDiamond}{&
+      यदि $\Diamond!A \in \Gamma$ और $\mSat{M}{\Diamond!A}[u]$,
+      तो $\mSat{M}{\Diamond!A}[v]$; \\}{}
+    \hline
+    \end{tabular}
+  \caption{निस्यंदन परिभाषित करने के लिए संभव जगतों पर शर्तें।}
+  \ollabel{tab:Cn-filtrations}
+\end{table}
+
+\begin{thm}\ollabel{thm:more-filtrations}
+  $\mModel{M} =\tuple{W,R,V}$ कोई प्रतिरूप हो और $\Gamma$
+  उप-!!{formula}ों के अधीन संवृत हो। $W^*$ और $V^*$ को
+  \olref[fil]{defn:filtration} की तरह परिभाषित करें। तब:
+  \begin{enumerate}
+  \item मान लें $R^*[u][v]$ तभी जब $C_1(u, v) \land C_2(u,v)$। तब
+    $R^*$ सममित है; और यदि $\mModel{M}$ सममित है, तो $\mModel{M^*} =
+    \tuple{W^*,R^*,V^*}$ एक निस्यंदन है।
+  \item मान लें $R^*[u][v]$ तभी जब $C_1(u, v) \land C_3(u,v)$। तब
+    $R^*$ संक्रमणशील है; और यदि $\mModel{M}$ संक्रमणशील है, तो
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ एक निस्यंदन है।
+  \item मान लें $R^*[u][v]$ तभी जब $C_1(u, v) \land C_2(u,v) \land
+    C_3(u,v) \land C_4(u,v)$। तब $R^*$ सममित और संक्रमणशील है; और यदि
+    $\mModel{M}$ सममित और संक्रमणशील है, तो
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ एक निस्यंदन है।
+  \item मान लें $R^*$ को इस प्रकार परिभाषित किया गया है: $R^*[u][v]$
+    तभी जब $C_1(u, v) \land C_3(u,v) \land C_4(u,v)$। तब $R^*$
+    संक्रमणशील और यूक्लिडीय है; और यदि $\mModel{M}$ संक्रमणशील और
+    यूक्लिडीय है, तो $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ एक निस्यंदन है।
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $R^*$ का सममित होना तुरंत मिलता है, क्योंकि $C_1(u,v)
+      \Leftrightarrow C_2(v,u)$ और $C_2(u,v) \Leftrightarrow
+      C_1(v,u)$। अतः यह दिखाना शेष है कि यदि $\mModel{M}$ सममित है, तो
+      $\mModel{M^*}$, $\Gamma$ के माध्यम से एक निस्यंदन है। शर्त
+      $C_1(u,v)$ प्रत्याभूत करती है कि
+      \iftag{prvBox}{%
+        \iftag{prvDiamond}{%
+          \olref[fil]{defn:filtration-R2} और
+          \olref[fil]{defn:filtration-R3} of
+          \olref[fil]{defn:filtration} संतुष्ट हैं}{%
+          \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R2} संतुष्ट है}}{%
+        \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R3} संतुष्ट है}।
+      अतः हमें केवल
+      \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1},
+      अर्थात् $Ruv$ से $R^*[u][v]$, सत्यापित करना है।
+
+      अतः $Ruv$ मान लें। $R^*[u][v]$ दिखाने के लिए हमें $C_1(u,v)$ और
+      $C_2(u,v)$ स्थापित करने हैं। $C_1$ के लिए:
+      \iftag{prvBox}{यदि $\Box!A \in\Gamma$ और
+        $\mSat{M}{\Box!A}[u]$, तो $\mSat{M}{!A}[v]$ भी (क्योंकि
+        $Ruv$)।\iftag{prvDiamond}{ इसी प्रकार, }{}}{}
+      \iftag{prvDiamond}{यदि $\Diamond!A \in \Gamma$ और
+        $\mSat{M}{!A}[v]$, तो $Ruv$ के कारण
+        $\mSat{M}{\Diamond!A}[u]$।}{} $C_2$ के लिए:
+      \iftag{prvBox}{यदि $\Box!A \in \Gamma$ और
+        $\mSat{M}{\Box!A}[v]$, तो $Ruv$ से सममिति द्वारा $Rvu$, अतः
+        $\mSat{M}{!A}[u]$।\iftag{prvDiamond}{ इसी प्रकार, }{}}{}
+      \iftag{prvDiamond}{यदि $\Diamond!A \in\Gamma$ और
+        $\mSat{M}{!A}[u]$, तो $\mSat{M}{\Diamond!A}[v]$ (क्योंकि
+        सममिति से $Rvu$)।}{}
+    \item अभ्यास।
+    \item अभ्यास।
+    \item अभ्यास।
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[nml][fil][acc]{thm:more-filtrations} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\end{document}

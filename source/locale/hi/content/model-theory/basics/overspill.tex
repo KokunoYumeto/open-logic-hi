@@ -1,0 +1,42 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: overspill
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{ove}
+\olsection{अतिप्रवाह}
+
+\begin{thm}
+\ollabel{overspill} यदि वाक्यों के किसी समुच्चय $\Gamma$ के मनमाने रूप से
+बड़े परिमित प्रतिरूप हैं, तो उसका एक अनंत प्रतिरूप भी है।
+\end{thm}
+
+\begin{proof}
+$\Gamma$ की भाषा में गणनीय रूप से अनेक नए नियतांक $c_0$, $c_1$, \dots
+जोड़कर उसे विस्तारित करें और समुच्चय $\Gamma \cup \{c_i \neq c_j :
+i \neq j\}$ पर विचार करें। यह कहना कि $\Gamma$ के मनमाने रूप से बड़े परिमित
+प्रतिरूप हैं, इसका अर्थ है कि प्रत्येक $m >0$ के लिए कोई $n\ge m$ ऐसा है कि
+$\Gamma$ के किसी प्रतिरूप के प्रांत में~$n$ अवयव हैं। इससे $\Gamma \cup \{c_i \neq
+c_j : i \neq j\}$ परिमिततः संतुष्टनीय है। संहतता के अनुसार, $\Gamma
+\cup \{c_i \neq c_j : i \neq j\}$ का कोई प्रतिरूप $\Struct M$ है जिसका प्रांत
+अनंत होना ही चाहिए, क्योंकि वह सभी असमानताओं $c_i \neq c_j$ को संतुष्ट करता
+है।
+\end{proof}
+
+\begin{prop}
+\ollabel{inf-not-fo} 
+किसी भी प्रथम-कोटि भाषा का कोई ऐसा वाक्य $!A$ नहीं है जो किसी
+!!a{structure}~$\Struct M$ में तभी और केवल तभी सत्य हो जब उस !!{structure}
+का प्रांत $\Domain{M}$ अनंत हो।
+\end{prop}
+
+\begin{proof}
+यदि ऐसा कोई $!A$ होता, तो उसका निषेध $\lnot !A$ सभी और केवल परिमित
+!!{structure}s में सत्य होता। अतः उसके मनमाने रूप से बड़े परिमित प्रतिरूप
+होते, किंतु कोई अनंत प्रतिरूप न होता; यह \olref{overspill} के विरुद्ध है।
+\end{proof}
+
+\end{document}

@@ -1,0 +1,20 @@
+% Target-only first-order-logic profile build wrapper for HI-OLP-0090.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{needspace}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\setlength{\emergencystretch}{2em}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{व्युत्पन्नता और संगतता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\AtBeginEnvironment{prop}{\Needspace{6\baselineskip}}
+\AtBeginEnvironment{proof}{\Needspace{5\baselineskip}}
+\AtBeginEnvironment{prob}{\Needspace{5\baselineskip}}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{provability-consistency}
+\end{document}

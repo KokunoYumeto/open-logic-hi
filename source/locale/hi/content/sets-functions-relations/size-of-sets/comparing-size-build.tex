@@ -1,0 +1,36 @@
+% Target-only standalone defect-check wrapper for HI-OLP-0028.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\hyphenation{Man-nig-fal-tig-keits-leh-re}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen external identities needed by this standalone section. Empty
+% destinations avoid inventing local hyperlinks to absent predecessor units.
+% These labels select the primary non-enumerability proof branch.
+\makeatletter
+\expandafter\def\csname r@sfr:siz:nen:sec\endcsname
+  {{siz.6}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen:sec@cref\endcsname
+  {{[section][6][0]siz.6}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:sec\endcsname
+  {{siz.12}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen-alt:sec@cref\endcsname
+  {{[section][12][0]siz.12}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen:thm:nonenum-pownat\endcsname
+  {{siz.{18}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:nen:thm:nonenum-pownat@cref\endcsname
+  {{[thm][18][0]siz.{18}}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:rus:thm:russells-paradox\endcsname
+  {{set.{29}}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:rus:thm:russells-paradox@cref\endcsname
+  {{[thm][29][0]set.{29}}{}{}{}{}}
+\makeatother
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{कैंटर-प्रमेय}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+
+\begin{document}
+\subfile{comparing-size}
+\end{document}

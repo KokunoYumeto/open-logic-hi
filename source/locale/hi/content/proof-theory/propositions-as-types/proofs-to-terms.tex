@@ -1,0 +1,91 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: proofs-to-terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{pty}{pt}
+
+\olsection{\usetoken{P}{derivation} को प्रमाण पदों में बदलना}
+
+प्राकृतिक निगमन के !!{proof}s को प्रमाण पदों में बदलने की प्रक्रिया, अर्थात्
+~\Log{N2i} के !!{proof}s का~\Log{tN2i} के !!{proof}s में अनुवाद, अत्यंत सीधा
+है। इसमें केवल !!{derivation} के किसी अनुक्रम की दाईं ओर प्रत्येक !!{formula}
+के बाईं ओर प्रमाण पद लिखना है, जिससे $\Gamma \Sequent M : !A$ रूप के अनुक्रम
+मिलते हैं। तब हम कहेंगे कि प्रसंग~$\Gamma$ में $M$,~$!A$ का \emph{साक्षी} है।
+कौन-सा प्रमाण पद लिखना है, यह पूर्णतः \Log{tN2i} के नियम निर्धारित करते हैं।
+
+\begin{prop}
+\Log{N2i} में $\Gamma \Sequent !A$ का प्रत्येक !!{proof}~$\delta$,
+\Log{tN2i} में $\Gamma \Sequent N : !A$ के किसी !!a{proof}~$\delta'$ के अनुरूप
+है। प्रमाण पद $N$,~$\delta$ से अद्वितीय रूप से निर्धारित होता है।
+\end{prop}
+
+\begin{proof}
+हम~$\delta$ की ऊँचाई पर आगमन से आगे बढ़ते हैं। यदि $\delta$ अभिगृहीत $x:!A
+\Sequent !A$ है, तो $\delta'$ अभिगृहीत~$x:!A \Sequent x:!A$ है। यदि $\delta$
+किसी अनुमान-नियम पर समाप्त होता है, तो आगमन परिकल्पना प्रत्येक आधार-वाक्य का
+प्रमाण पद और प्रत्येक आधार-वाक्य के अनुरूप, उन प्रमाण पदों वाले अनुक्रमों के
+\Log{tN2i}-!!{proof}s देती है। हम \Log{tN2i} का संगत नियम लगाते हैं; संगत
+प्रमाण पद \Log{tN2i} का अनुमान-नियम निर्धारित करता है।
+\end{proof}
+
+\begin{ex}
+  $(!A \land !B) \lif (!B \land !A)$ के \Log{N1i} में इस अत्यंत सरल
+  !!{proof} पर विचार करें:
+  \[
+  \AxiomC{$\Discharge{!A\land !B}{x}$}
+  \RightLabel{\Elim\land[2]}
+  \UnaryInfC{$!B$}
+  \AxiomC{$\Discharge{!A\land !B}{x}$}
+  \RightLabel{\Elim\land[1]}
+  \UnaryInfC{$!A$}
+  \RightLabel{\Intro\land}
+  \BinaryInfC{$!B \land !A$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
+  \DisplayProof
+  \]
+  \Log{N2i} में इसका रूप यह है:
+  \[
+  \Axiom$x : !A\land !B \fCenter !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter !B$
+  \Axiom$x : !A\land !B \fCenter !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+  हम ऊपर से नीचे की ओर प्रमाण पद देते हैं। अभिगृहीतों के प्रमाण पद प्रसंग के
+  चर~$x$ ही हैं। $\Elim\land[i]$ से संबंधित प्रमाण पद क्रमशः $\proj{2}{x}$
+  और~$\proj{1}{x}$ निर्धारित होते हैं। \Intro{\land} लगाने पर इन दोनों प्रमाण
+  पदों को मिलाते हैं: $\pair{\proj{2}{x}}{\proj{1}{x}}$। अंत में
+  \Intro{\lif} नियम कोई $\lambd$-अमूर्तन लगाता है,~$x$ को आबद्ध करता है और
+  दर्ज करता है कि $x$ ने मान्यता~$!A \land !B$ को चिह्नित किया था:
+  $\lambd[\typeof{x}{!A \land !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]$। तब
+  \Log{tN2i} में !!{proof} है:
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !B$
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+\end{ex}
+
+
+\end{document}

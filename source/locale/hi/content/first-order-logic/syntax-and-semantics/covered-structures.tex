@@ -1,0 +1,73 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: covered-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{fol}{syn}{cov}
+
+\olsection{प्रथम-क्रम भाषाओं के लिए आच्छादित \printtoken{P}{structure}}
+
+\begin{explain}
+स्मरण करें कि यदि किसी पद में कोई !!{variable} न हो तो वह \emph{बंद} है।
+\end{explain}
+
+\begin{defn}[बंद पदों का !!^{value}]
+यदि $t$, भाषा~$\Lang L$ का कोई बंद पद है और $\Struct M$,~$\Lang L$ की
+!!{structure} है, तो \emph{!!{value}}~$\Value{t}{M}$ निम्न प्रकार परिभाषित
+है:
+\begin{enumerate}
+\item यदि $t$ केवल !!{constant}~$c$ है, तो $\Value{c}{M} = \Assign{c}{M}$।
+\item यदि $t$ का रूप $\Atom{f}{t_1, \ldots, t_n}$ है, तो
+  \[
+  \Value{t}{M} = \Assign{f}{M}(\Value{t_1}{M}, \ldots,
+  \Value{t_n}{M}).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[आच्छादित !!{structure}]
+कोई !!{structure} \emph{आच्छादित} है यदि प्रांत का प्रत्येक अवयव किसी बंद
+पद का !!{value} है।
+\end{defn}
+
+\begin{ex}
+मान लें कि~$\Lang L$ वह भाषा है जिसमें !!{constant} $\Obj{zero}$,
+$\Obj{one}$, $\Obj{two}$, \dots, दो-स्थानी !!{predicate}~$<$, और दो-स्थानी
+!!{function} $+$ तथा $\times$ हैं। तब !!a{structure}~$\Struct
+M$,~$\Lang L$ के लिए, ऐसी लें जिसका प्रांत $\Domain M = \{0, 1, 2, \ldots
+\}$ है और नियतन
+$\Assign{\Obj{zero}}{M} = 0$, $\Assign{\Obj{one}}{M} = 1$,
+$\Assign{\Obj{two}}{M} = 2$, इत्यादि हैं। दो-स्थानी संबंध-चिह्न $<$ के लिए
+$\Assign{<}{M}$ उन सभी युग्मों $\tuple{c_1, c_2} \in \Domain{M}^2$ का
+समुच्चय है जिनमें $c_1$,~$c_2$ से छोटा है: उदाहरणतः $\tuple{1, 3} \in
+\Assign{<}{M}$, किंतु $\tuple{2, 2} \notin \Assign{<}{M}$। दो-स्थानी
+!!{function} $+$ के लिए $\Assign{+}{M}$ को सामान्य ढंग से परिभाषित करें---
+उदाहरणतः $\Assign{+}{M}(2,3)$ का मान~$5$ है---और दो-स्थानी
+!!{function}~$\times$ के लिए भी ऐसा ही करें। अतः $\Obj{four}$ का !!{value}
+केवल~$4$ है, और $\times(\Obj{two},
++(\Obj{three},\Obj{zero}))$ का !!{value} (अथवा मध्यस्थ संकेतन में
+$\Obj{two} \times
+(\Obj{three} + \Obj{zero})$) यह है:
+\begin{multline*}
+\Value{\times(\Obj{two}, +(\Obj{three},\Obj{zero}))}{M} =\\
+\begin{aligned}
+& =\Assign{\times}{M}(\Value{\Obj{two}}{M}, \Value{+(\Obj{three}, \Obj{zero})}{M})\\
+& = \Assign{\times}{M}(\Value{\Obj{two}}{M}, \Assign{+}{M}(\Value{\Obj{three}}{M},
+\Value{\Obj{zero}}{M})) \\
+& = \Assign{\times}{M}(\Assign{\Obj{two}}{M}, \Assign{+}{M}(\Assign{\Obj{three}}{M},
+\Assign{\Obj{zero}}{M})) \\
+& = \Assign{\times}{M}(2, \Assign{+}{M}(3, 0)) \\
+& = \Assign{\times}{M}(2, 3) \\
+& = 6
+\end{aligned}
+\end{multline*}
+\end{ex}
+
+\begin{prob}
+क्या अंकगणित का मानक प्रतिरूप $\Struct N$ आच्छादित है? स्पष्ट कीजिए।
+\end{prob}
+
+\end{document}

@@ -1,0 +1,184 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: properties-accessibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{frd}{acc}
+
+\olsection{अभिगम्यता संबंधों के गुण}
+
+अनेक मोडल !!{formula} अभिगम्यता संबंध के सरल, यहाँ तक कि परिचित, गुणों के
+अभिलाक्षणिक निकलते हैं। एक दिशा में इसका अर्थ है कि कोई दिया हुआ गुण रखने
+वाला प्रत्येक प्रतिरूप किसी संगत !!{formula} (और उसके सभी
+प्रतिस्थापन-दृष्टांतों) को सत्य बनाता है। हम अभिगम्यता संबंधों के पाँच
+शास्त्रीय प्रकारों और उन सूत्रों के उदाहरणों से आरंभ करते हैं जिनकी सत्यता
+वे सुनिश्चित करते हैं।
+
+\begin{thm}\ollabel{thm:soundschemas}
+  मान लें $\mModel{M} = \tuple{W, R, V}$ एक प्रतिरूप है। यदि $R$ में
+  \olref{tab:five} के बाएँ पक्ष का गुण है, तो दाएँ पक्ष के !!{formula} का
+  प्रत्येक दृष्टांत $\mModel{M}$ में सत्य है।
+\end{thm}
+
+\begin{table}[t]
+    \begin{tabular}{| l || l |}
+      \hline
+      {\emph{यदि $R$ \dots है}} & {\emph{तो \dots $\mModel{M}$ में सत्य है:}} \\
+      \hline \hline
+      \emph{सीरियल}: $\forall u \exists v Ruv$ & \hbox to.43\textwidth
+           {$\Box p \lif \Diamond p$ \hfill (\Ax{D})} \\
+      \hline
+      \emph{स्वपरावर्ती}: $\forall w Rww$  
+      & \hbox to.43\textwidth
+          {$\Box p \lif p$ \hfill (\Ax{T})} \\
+      \hline
+      \emph{सममित}: &  \hbox to .43\textwidth
+           {$p \lif \Box\Diamond p$ \hfill (\Ax{B})} \\
+           $\forall u\forall v(Ruv \lif Rvu)$ & \\
+      \hline
+      \emph{संक्रमणशील}: & \hbox to.43\textwidth
+           {$\Box p \lif \Box \Box p$ \hfill (\Ax{4})} \\
+      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & \\
+      \hline 
+      \emph{यूक्लिडीय}: & \hbox to .43\textwidth
+        {$\Diamond p \lif \Box\Diamond p$ \hfill (\Ax{5})} \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &\\
+      \hline
+    \end{tabular}
+    \caption{अनुरूपता के पाँच तथ्य।}
+    \ollabel{tab:five}
+  \end{table} 
+
+
+\begin{proof}
+  \Ax{B} का मामला यह है: स्कीमा की किसी प्रतिरूप में सत्यता दिखाने के लिए
+  हमें दिखाना है कि उसके सभी दृष्टांत प्रतिरूप के सभी जगतों पर सत्य हैं।
+  अतः $!A \lif \Box\Diamond !A$ को \Ax{B} का कोई दृष्टांत और $w \in W$
+  को स्वेच्छ जगत मानें। $\Box \Diamond !A$ की $w$ पर सत्यता दिखाने के लिए
+  मान लें कि पूर्ववर्ती $!A$, $w$ पर सत्य है। हमें दिखाना है कि
+  $\Diamond !A$, $w$ से अभिगम्य सभी $w'$ पर सत्य है। अब किसी भी $Rww'$ वाले
+  $w'$ के लिए सममिति की परिकल्पना से $Rw'w$ भी (देखें
+  \olref{fig:Bsymm})। चूँकि $\mSat{M}{!A}[w]$, इसलिए
+  $\mSat{M}{\Diamond !A}[w']$। चूँकि $w'$ कोई स्वेच्छ $Rww'$ वाला जगत था,
+  हमारे पास $\mSat{M}{\Box\Diamond!A}[w]$ है।
+
+  अन्य मामले अभ्यास के लिए छोड़े गए हैं।
+\end{proof}
+
+\begin{prob}
+  \olref[nml][frd][acc]{thm:soundschemas} का प्रमाण पूरा कीजिए।
+\end{prob}
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={below:$\mSat{{}}{\formula{A}}$\\
+          $\mSat{{}}{\Box\Diamond \formula{A}}$}] {$w$}; 
+      \node[world] (w2) [label=below:{$\mSat{{}}{\Diamond \formula{A}}$},
+        right=of w1] {$w'$}; 
+      \draw[->, bend left] (w1) to (w2); 
+      \draw[->, bend left] (w2) to (w1); 
+    \end{tikzpicture}
+  \end{center}
+\caption{सममिति से तर्क।}
+\ollabel{fig:Bsymm}
+\end{figure}
+
+ध्यान दें कि \olref{thm:soundschemas} के विलोम निहितार्थ मान्य नहीं हैं:
+यह सत्य नहीं कि यदि कोई प्रतिरूप किसी स्कीमा को सत्य बनाता है, तो उस प्रतिरूप
+के अभिगम्यता संबंध में संगत गुण होता है। \Ax{T} और स्वपरावर्ती प्रतिरूपों के
+मामले में ऐसे प्रतिरूप का उदाहरण देना आसान है जिसमें स्वयं \Ax{T} विफल हो:
+$W = \{w\}$ और $V(p) = \emptyset$ लें। तब $R$ स्वपरावर्ती नहीं है, पर
+$\mSat{M}{\Box p}[w]$ और $\mSat/{M}{p}[w]$। किंतु यहाँ \Ax{T} का केवल एक
+दृष्टांत $\mModel{M}$ में विफल है; अन्य दृष्टांत, जैसे
+$\Box \lnot p \lif \lnot p$, सत्य हैं। ऐसे उदाहरण देना कठिन है जिनमें
+\Ax{T} का \emph{प्रत्येक प्रतिस्थापन-दृष्टांत} $\mModel{M}$ में सत्य हो और
+$\mModel{M}$ स्वपरावर्ती न हो। किंतु ऐसे प्रतिरूप भी हैं:
+
+\begin{prop}\ollabel{prop:reflexive}
+  मान लें $\mModel{M} = \tuple{W, R, V}$ ऐसा प्रतिरूप है कि
+  $W = \{u, v\}$, जहाँ जगत $u$ और $v$, $R$ से जुड़े हैं: अर्थात् $Ruv$ और
+  $Rvu$ दोनों। मान लें कि प्रत्येक $p$ के लिए
+  $u \in V(p) \Leftrightarrow v \in V(p)$। तब:
+  \begin{enumerate}
+  \item प्रत्येक $!A$ के लिए $\mSat{M}{!A}[u]$ तभी जब
+    $\mSat{M}{!A}[v]$ ($!A$ पर आगमन का प्रयोग करें)।
+  \item \Ax{T} का प्रत्येक दृष्टांत $\mModel{M}$ में सत्य है।
+  \end{enumerate}
+  चूँकि $\mModel{M}$ स्वपरावर्ती नहीं है (वास्तव में वह
+  \emph{अस्वपरावर्ती} है), \Ax{T} के मामले में
+  \olref{thm:soundschemas} का विलोम विफल होता है
+  (\olref{thm:soundschemas} में उल्लिखित कुछ---पर सभी नहीं---अन्य स्कीमाओं
+  के लिए भी ऐसे तर्क दिए जा सकते हैं)।
+\end{prop}
+
+\begin{prob}
+  \olref[nml][frd][acc]{prop:reflexive} के दावे सिद्ध कीजिए।
+\end{prob}
+
+यद्यपि हम पाँच शास्त्रीय !!{formula}ों \Ax{D}, \Ax{T}, \Ax{B}, \Ax{4} और
+\Ax{5} पर ध्यान देंगे, फिर भी \olref{tab:anotherfive} में अभिगम्यता संबंधों
+के कुछ और गुण दर्ज हैं। यदि प्रत्येक जगत से अधिकतम एक जगत अभिगम्य हो, तो
+अभिगम्यता संबंध~$R$ आंशिक फलनीय है। यदि प्रत्येक जगत से ठीक एक जगत अभिगम्य
+हो, तो हम उसे फलनीय कहते हैं। (अतः फलनीय संबंध ठीक वे हैं जो सीरियल और
+आंशिक फलनीय दोनों हों।) इन्हें ``फलनीय'' इसलिए कहते हैं कि अभिगम्यता संबंध
+किसी (आंशिक) फलन की तरह काम करता है। कोई संबंध दुर्बलतः सघन है यदि जब भी
+$Ruv$, तब $u$ और~$v$ के ``बीच'' कोई~$w$ हो। इसलिए दुर्बलतः सघन संबंध एक
+अर्थ में संक्रमणशील संबंधों के विपरीत हैं: संक्रमणशील संबंध में जब भी आप
+$w$ से घूमकर $u$ से~$v$ तक पहुँच सकते हैं, तब $u$ से $v$ तक सीधे भी पहुँच
+सकते हैं; दुर्बलतः सघन संबंध में जब भी आप $u$ से~$v$ तक सीधे पहुँच सकते
+हैं, तब किसी~$w$ से घूमकर भी पहुँच सकते हैं। कोई संबंध दुर्बलतः दिष्ट है
+यदि जब भी किसी जगत~$w$ से जगतों $u$ और~$v$ तक पहुँचा जा सके, तब $u$ और
+$v$ दोनों से किसी एक जगत~$t$ तक पहुँचा जा सके---इसे कभी-कभी ``हीरक गुण''
+या ``संगमन'' कहते हैं।
+
+\begin{table}[t]
+    \begin{tabular}{| p{.50\textwidth} || p{.43\textwidth} |}
+      \hline
+      {\emph{यदि $R$ \dots है}} & {\emph{तो \dots $\mModel{M}$ में सत्य है:}} \\
+      \hline \hline
+      \emph{आंशिक फलनीय}: & 
+      \multirow{2}{*}{$\Diamond p \lif \Box p$} \\
+      $ \forall w \forall u \forall v ((Rwu \land Rwv) \lif u =v )$ & \\
+      \hline
+      \multirow{2}{*}{\emph{फलनीय}: $\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $} 
+      & \multirow{2}{*}{$\Diamond p \liff \Box p$} \\
+      & \\
+      \hline
+      \emph{दुर्बलतः सघन}: &  \multirow{2}{*}{$\Box \Box p \lif
+        \Box p$} \\
+      $\forall u\forall v(Ruv \lif \exists w(Ruw \land Rwv))$ & \\
+      \hline
+      \emph{दुर्बलतः संबद्ध}: &
+      \multirow{3}{*}{\hbox to.43\textwidth{$
+        \begin{array}{@{}l@{}}
+          \Box ((p \land \Box p) \lif q) \lor {} \\
+          \qquad \Box ((q \land \Box q) \lif p)
+        \end{array}$ \hfill (\Ax{L})}
+      } \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ &\\
+      \qquad $(Ruv \lor u=v \lor Rvu))$ & \\
+      \hline 
+      \emph{दुर्बलतः दिष्ट}: & \multirow{3}{*}{\hbox to .43\textwidth
+        {$\Diamond\Box p \lif \Box\Diamond p$\hfill (\Ax{G})}} \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ & \\
+      \qquad $\exists t (Rut \land Rvt))$ & \\
+      \hline
+    \end{tabular}
+    \caption{अनुरूपता के पाँच और तथ्य।}
+    \ollabel{tab:anotherfive}
+  \end{table} 
+
+\begin{prob}
+  मान लें $\mModel{M} = \tuple{W, R, V}$ एक प्रतिरूप है। दिखाइए कि यदि
+  $R$, \olref[nml][frd][acc]{tab:anotherfive} के बाएँ पक्ष के गुणों को
+  संतुष्ट करता है, तो दाएँ पक्ष के संगत सूत्र का प्रत्येक दृष्टांत
+  $\mModel{M}$ में सत्य है।
+\end{prob}
+
+
+
+\end{document}

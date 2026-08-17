@@ -1,0 +1,104 @@
+% Part: counterfactuals
+% Chapter: introduction
+% Section: strict-conditional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cnt}{int}{str}
+
+\olsection{कठोर सशर्त}
+
+लुईस ने \emph{कठोर सशर्त}~$\strictif$ प्रस्तुत किया और तर्क दिया कि
+निहितार्थ के अनुरूप भौतिक सशर्त नहीं, बल्कि यही है। सत्यात्मक मोडल तर्कशास्त्र
+में $!A \strictif !B$ को $\Box(!A \lif !B)$ से परिभाषित किया जा सकता है।
+अतः कोई कठोर सशर्त (किसी जगत पर) तभी सत्य है जब संगत भौतिक सशर्त आवश्यक हो।
+
+भौतिक सशर्त के विरोधाभासों की तुलना में कठोर सशर्त कैसा रहता है? असत्य
+पूर्ववर्ती वाला कठोर सशर्त, और सत्य परिणामांश वाला कठोर सशर्त, सत्य भी हो
+सकता है और असत्य भी। इसके अतिरिक्त
+$(!A \strictif !B) \lor (!B \strictif !A)$ मान्य नहीं है। कठोर सशर्त
+$!A \strictif !B$, $\lnot !A \lor !B$ के समतुल्य भी नहीं है, अतः वह
+सत्य-फलनीय नहीं है।
+
+हमारे पास है:
+\begin{align}
+  !A \strictif !B & \Entails \lnot !A \lor !B
+  \text{ किंतु:}\\
+  \lnot !A \lor !B & \Entails/ !A \strictif !B\\
+  !B & \Entails/ !A \strictif !B\\
+  \lnot !A & \Entails/ !A \strictif !B\\
+  \lnot(!A \lif !B) & \Entails/ !A \land \lnot !B
+  \text{ किंतु:}\\
+  !A \land \lnot !B & \Entails \lnot(!A \strictif !B)
+  \intertext{फिर भी कठोर सशर्त मोडस पोनेन्स को मान्य करता है:}
+  !A, !A \strictif !B & \Entails !B
+  \intertext{कठोर सशर्त समुच्चित होता है:}
+  !A \strictif !B,  !A \strictif !C & \Entails !A \strictif (!B \land !C)
+  \intertext{कठोर सशर्त के लिए पूर्ववर्ती का प्रबलीकरण मान्य है:}
+  !A \strictif !B & \Entails (!A \land !C) \strictif !B
+  \intertext{कठोर सशर्त संक्रमणशील भी है:}
+  !A \strictif !B, !B \strictif !C & \Entails !A \strictif !C
+  \intertext{अंततः कठोर सशर्त अपने प्रतिधनात्मक के समतुल्य है:}
+  !A \strictif !B & \Entails \lnot !B \strictif \lnot !A\\
+  \lnot !B \strictif \lnot !A & \Entails !A \strictif !B
+\end{align}
+
+\begin{prob}
+  कठोर सशर्त के लिए अमान्य निष्कर्षण-संबंधों के \Log{S5}-प्रतिदृष्टांत
+  दीजिए; अर्थात निम्न के लिए:
+  \begin{enumerate}
+  \item $\lnot p \Entails/ \Box(p \lif q)$
+  \item $q \Entails/ \Box(p \lif q)$
+  \item $\lnot\Box(p \lif q) \Entails/ p \land \lnot q$
+  \item $\Entails/ \Box(p \lif q) \lor \Box(q \lif p)$
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  निम्न के \Log{S5}-प्रमाण देकर दिखाइए कि मान्य निष्कर्षण-संबंध कठोर सशर्त
+  के लिए सत्य हैं:
+  \begin{enumerate}
+  \item  $\Box(!A \lif !B) \Entails \lnot !A \lor !B$
+  \item $!A \land \lnot !B \Entails \lnot\Box(!A \lif !B)$
+  \item $!A, \Box(!A \lif !B) \Entails !B$
+  \item $\Box(!A \lif !B), \Box(!A \lif !C) \Entails \Box(!A \lif (!B
+    \land !C))$
+  \item $\Box(!A \lif !B) \Entails \Box((!A \land !C) \lif !B)$
+  \item $\Box(!A \lif !B), \Box(!B \lif !C) \Entails \Box(!A
+    \lif !C)$
+  \item $\Box(!A \lif !B) \Entails \Box(\lnot !B \lif \lnot !A)$
+  \item $\Box(\lnot !B \lif \lnot !A) \Entails \Box(!A \lif !B)$
+  \end{enumerate}
+  \end{prob}
+
+फिर भी कठोर सशर्त के अपने ``विरोधाभास'' हैं। जिस प्रकार असत्य पूर्ववर्ती या
+सत्य परिणामांश वाला भौतिक सशर्त सत्य होता है, उसी प्रकार \emph{आवश्यकतः}
+असत्य पूर्ववर्ती या आवश्यकतः सत्य परिणामांश वाला कठोर सशर्त सत्य होता है।
+इसके अतिरिक्त प्रत्येक सत्य कठोर सशर्त आवश्यकतः सत्य, और प्रत्येक असत्य
+कठोर सशर्त आवश्यकतः असत्य है। दूसरे शब्दों में, हमारे पास है:
+\begin{align}
+  \Box \lnot !A & \Entails !A \strictif !B\\
+  \Box !B & \Entails !A \strictif !B\\
+  !A \strictif !B& \Entails \Box(!A \strictif !B)\\
+  \lnot(!A \strictif !B) & \Entails \Box\lnot(!A \strictif !B)
+\end{align}
+यदि $\strictif$ को ``निहित करता है'' समझें, तो ये समस्याएँ नहीं हैं। आखिर
+तार्किक निष्कर्षण-संबंध गणितीय तथ्य हैं, अतः आकस्मिक नहीं हो सकते। किंतु यदि
+$\strictif$ को ``यदि \dots तो \dots'' ग्रहण करने वाला तार्किक संयोजक बनाना
+हो, तो ये, विशेषतः अंतिम दो, समस्याएँ उठाते हैं। निश्चय ही ``यदि \dots तो
+\dots'' के कुछ कथन आकस्मिकतः सत्य या आकस्मिकतः असत्य होते हैं---वास्तव में
+वे सामान्यतः न आवश्यक होते हैं, न असंभव।
+
+\begin{prob}
+  \Log{S5} में निम्न के प्रमाण दीजिए:
+  \begin{enumerate}
+    \item  $\Box \lnot !A \Entails !A \strictif !B$
+    \item $!A \strictif !B \Entails \Box(!A \strictif !B)$
+    \item $\lnot(!A \strictif !B)  \Entails \Box\lnot(!A \strictif !B)$
+  \end{enumerate}
+  इसके लिए $\strictif$ की परिभाषा का उपयोग कीजिए।
+\end{prob}
+
+\end{document}

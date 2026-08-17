@@ -1,0 +1,69 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ordinals}{wo}
+\olsection{सुव्यवस्थाएँ}
+
+मूल धारणा यह है:
+
+\begin{defn}
+संबंध $<$, $A$ को \emph{सुव्यवस्थित} करता है तभी और केवल तभी जब वह इन दो
+शर्तों को पूरा करे:
+\begin{enumerate}
+	\item $<$ संबद्ध है; अर्थात सभी $a, b \in A$ के लिए या तो $a < b$,
+	या $a = b$, या $b < a$;
+	\item $A$ के प्रत्येक रिक्तेतर उपसमुच्चय का कोई $<$-न्यूनतम
+	!!{element} है; अर्थात यदि $\emptyset \neq X \subseteq A$, तो
+	$(\exists m \in X)(\forall z \in X)z \nless m$।
+\end{enumerate}
+\end{defn}
+
+यह देखना सरल है कि अभी विचार किए तीनों उदाहरण वास्तव में सुव्यवस्था संबंध
+थे।
+
+\begin{prob}
+\Olref[sth][ordinals][idea]{sec} में प्राकृतिक संख्याओं पर तीन उदाहरण क्रम
+दिए गए। जाँचिए कि प्रत्येक सुव्यवस्था है।
+\end{prob}
+
+सुव्यवस्था के विषय में कुछ प्राथमिक किंतु अत्यंत महत्त्वपूर्ण प्रेक्षण ये हैं।
+
+\begin{prop}\ollabel{wo:strictorder}
+यदि $<$, $A$ को सुव्यवस्थित करता है, तो $A$ के प्रत्येक रिक्तेतर उपसमुच्चय
+का अद्वितीय $<$-लघुतम सदस्य है, और $<$ स्व-अप्रतिवर्ती, असममित तथा
+संक्रमणशील है।
+\end{prop}
+
+\begin{proof}
+यदि $X$, $A$ का रिक्तेतर उपसमुच्चय है, तो उसका कोई $<$-न्यूनतम
+!!{element} $m$ है; अर्थात $(\forall z \in X)z \nless m$। चूँकि $<$
+संबद्ध है, $(\forall z \in X)m \leq z$। अतः $m$, $X$ का $<$-लघुतम
+!!{element} है।
+
+स्व-अप्रतिवर्तिता के लिए $a \in A$ को नियत करें; $\{a\}$ का $<$-लघुतम
+!!{element} $a$ है, अतः $a \nless a$। संक्रमणशीलता के लिए, यदि
+$a < b < c$, तो चूँकि $\{a, b, c\}$ का कोई $<$-लघुतम !!{element} है,
+$a < c$। असममिति स्व-अप्रतिवर्तिता और संक्रमणशीलता से निष्पन्न होती है।
+\end{proof}
+
+\begin{prop}\ollabel{propwoinduction}
+यदि $<$, $A$ को सुव्यवस्थित करता है, तो किसी भी सूत्र $\phi(x)$ के लिए:
+\[
+	\text{यदि }(\forall a \in A)((\forall b < a)\phi(b) \lif
+		\phi(a))\text{, तो }(\forall a \in A)\phi(a).
+\]
+\end{prop}
+
+\begin{proof}
+हम प्रतिधनात्मक सिद्ध करेंगे। मान लें $\lnot(\forall a \in A)\phi(a)$;
+अर्थात $X = \Setabs{x \in A}{\lnot\phi(x)} \neq \emptyset$। तब $X$ का
+कोई $<$-न्यूनतम !!{element} $a$ है। अतः $(\forall b < a)\phi(b)$, किंतु
+$\lnot \phi(a)$। \end{proof}\noindent यह अंतिम गुण आपको प्राकृतिक
+संख्याओं पर प्रबल आगमन के सिद्धांत की याद दिलाएगा; अर्थात यदि
+$(\forall n \in \omega)((\forall m < n)\phi(m) \lif \phi(n))$, तो
+$(\forall n \in \omega)\phi(n)$। और यह गुण सुव्यवस्था को अत्यंत
+\emph{सुदृढ़} धारणा बनाता है।\footnote{स्मरण रहे: सभी सूत्रों में प्राचल हो
+सकते हैं (जब तक स्पष्टतः अन्यथा न कहा गया हो)।}
+
+\end{document}

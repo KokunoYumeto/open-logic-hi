@@ -1,0 +1,152 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{seq}{qua}
+
+\olsection{नियमित प्रमाण और प्रतिस्थापन}
+
+परिमाणकों के नियमों में कुछ जटिलताएँ उन ``आइगेनचर प्रतिबंधों'' के कारण आती
+हैं जो \LeftR{\lexists} और~\RightR{\lforall} नियमों पर लागू होते हैं। इन
+जटिलताओं में से अधिकांश को यह सुनिश्चित करके सँभाला जा सकता है कि इन
+निगमनों में !!{constant}~$a$ का पुनः उपयोग कभी न हो। निम्न परिभाषा प्रस्तुत
+करें।
+
+\begin{defn}
+\Log{G1c} या \Log{G3c} में !!^a{proof}~$\pi$ \emph{नियमित} है यदि
+\begin{enumerate}
+  \item कोई आइगेनचर~$a$, एक से अधिक \LeftR{\lexists} या
+  ~\RightR{\lforall} निगमन के आइगेनचर के रूप में उपयोग नहीं होता, और
+  \item यदि $a$ किसी \LeftR{\lexists} या~\RightR{\lforall} निगमन का
+  आइगेनचर है, तो वह $\pi$ में केवल उस निगमन के ऊपर आता है।
+\end{enumerate}
+\end{defn}
+
+\begin{lem}\ollabel{lem:subst-regular} यदि $\pi$ नियमित है, $\Gamma
+\Sequent \Delta$ पर समाप्त होता है, $c$ ऐसा !!a{constant} है जिसका $\pi$
+में आइगेनचर के रूप में उपयोग नहीं हुआ, और $t$ ऐसा पद है जिसमें $\pi$ का कोई
+आइगेनचर नहीं है, तो $\pi$ में $c$ की प्रत्येक उपस्थिति को $t$ से बदलकर मिला
+$\Subst{\pi}{t}{c}$ एक नियमित !!{proof} है। $\Subst{\pi}{t}{c}$ का अंतिम
+अनुक्रम $\Subst{\Gamma}{t}{c} \Sequent \Subst{\Delta}{t}{c}$ है, जहाँ
+$\Subst{\Gamma}{t}{c} = \Setabs{!A(t)}{!A(c) \in \Gamma}$।
+\end{lem}
+
+\begin{proof}
+  $\pheight{\pi}$ पर आगमन द्वारा। यदि $\pheight{\pi} = 0$, तो वह केवल एक
+  अभिगृहीति है। तब $\Subst{\pi}{t}{c}$ भी अभिगृहीति है, क्योंकि उसमें कोई
+  भी !!{formula}~$!A(c)$ बदलकर $!A(t)$ बन जाता है।
+
+  यदि $\pheight{\pi} > 0$, तो हम $\pi$ के अंतिम निगमन के अनुसार स्थितियाँ
+  अलग करते हैं। संरचनात्मक नियमों (\Log{G1c} में) और प्रतिज्ञप्तिपरक संयोजकों
+  के तार्किक नियमों की स्थितियाँ सरल हैं और अभ्यास के लिए छोड़ी जाती हैं।
+  हम उन स्थितियों पर विचार करते हैं जहाँ $\pi$ किसी परिमाणक निगमन पर समाप्त
+  होता है।
+  \begin{enumerate}
+    \item यदि अंतिम निगमन $\RightR{\lforall}$ है, तो $\pi$ का रूप है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi'$}
+    \Deduce$\Gamma(c) \fCenter \Delta'(c), !A(a,c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma(c) \fCenter \Delta'(c), \lforall[x][!A(x,c)]$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $\Subst{\pi'}{t}{c}$, $\Gamma(t) \fCenter
+    \Delta'(t), !A(a,t)$ का नियमित !!{proof} है। चूँकि $a$, $\pi$ का
+    आइगेनचर है, इसलिए $a$, $t$ में नहीं आता। अतः $\Subst{\pi}{t}{c}$ का
+    अंतिम निगमन,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi'}{t}{c}$}
+    \Deduce$\Gamma(t) \fCenter \Delta'(t), !A(a,t)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma(t) \fCenter \Delta'(t), \lforall[x][!A(x,t)]$
+    \DisplayProof
+    \]
+    सही है: निष्कर्ष में~$a$ नहीं आता।
+    \item यदि \Log{G3c} में अंतिम निगमन $\LeftR{\lforall}$ है, तो $\pi$ का
+    रूप है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi'$}
+    \Deduce$!A(s(c),c), \lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
+    \DisplayProof
+    \]
+    आगमन परिकल्पना से $\Subst{\pi'}{t}{c}$, $!A(s(t),t),
+    \lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$ का नियमित
+    !!{proof} है। $\Subst{\pi}{t}{c}$ का अंतिम निगमन,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi'}{t}{c}$}
+    \Deduce$!A(s(t),t), \lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
+    \DisplayProof
+    \]
+    सही है। \Log{G1c} में \LeftR{\lforall} की स्थिति समान, किंतु थोड़ी कम
+    जटिल है।
+    \item अंतिम निगमन \RightR{\lexists} या \LeftR{\lexists} है: अभ्यास।
+  \end{enumerate}
+  प्रत्येक स्थिति में हमने किसी नियमित !!{proof} के अंत में एक अनुक्रम जोड़ा
+  (या दो आधार-वाक्यों वाले नियमों की स्थिति में दो नियमित !!{proof}s के अंत
+  में)। नया अनुक्रम $\pi$ के अंतिम अनुक्रम से केवल इतना भिन्न है कि $c$ को
+  पद~$t$ से बदला गया है। इसके अतिरिक्त, $\pi$ और
+  $\Subst{\pi}{t}{c}$ के आइगेनचर समान हैं। चूँकि मान लिया गया था कि $t$ में
+  $\pi$ का कोई आइगेनचर नहीं है, नया अंतिम अनुक्रम $\Subst{\pi}{t}{c}$ का कोई
+  आइगेनचर नहीं रखता। फलतः $\Subst{\pi}{t}{c}$ नियमित है।
+\end{proof}
+
+\begin{prop}
+यदि $\pi$, \Log{G1c} या \Log{G3c} में !!a{proof} है, तो समान संरचना
+(विशेषतः समान !!{height}) वाला कोई नियमित !!{proof}~$\pi'$ है, जो $\pi$ से
+केवल आइगेनचरों के प्रतिस्थापन में भिन्न है।
+\end{prop}
+
+\begin{proof}
+केवल इस प्रमाण के लिए, $\pi$ के किसी आइगेनचर निगमन को \emph{स्वच्छ} कहें
+यदि उसका आइगेनचर न तो किसी अन्य निगमन का आइगेनचर हो, न ही उस निगमन के
+निकटस्थ उप-!!{proof} के बाहर $\pi$ में कहीं आए; अन्यथा उसे \emph{अस्वच्छ}
+कहें। मान लें कि $\pi$ में अस्वच्छ आइगेनचर निगमनों की संख्या $n$ है। हम $n$
+पर आगमन द्वारा दिखाते हैं कि $\pi$ को अपेक्षित नियमित !!{proof}~$\pi'$ में
+बदला जा सकता है। यदि $n=0$, तो $\pi$ के सभी आइगेनचर निगमन स्वच्छ हैं, अतः
+$\pi$ नियमित है और कुछ सिद्ध नहीं करना। अन्यथा सबसे ऊपर का कोई आइगेनचर
+निगमन चुनें, मान लें \RightR{\lforall}। उस पर समाप्त होने वाले $\pi$ के
+उप-!!{proof}~$\pi_1$ का रूप है
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma \fCenter \Delta, !A(c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+    \DisplayProof
+    \]
+ध्यान दें कि $c$ आइगेनचर है, इसलिए वह~$\Gamma$, $\Delta$ या
+$\lforall[x][!A(x)]$ में नहीं आता। प्रमाण $\pi_2$ नियमित है, क्योंकि उसमें
+कोई आइगेनचर निगमन है ही नहीं। $a$ ऐसा !!a{constant} हो जो~$\pi$ में न आता
+हो। \olref{lem:subst-regular} से $\Subst{\pi_2}{a}{c}$, $\Gamma \fCenter
+\Delta, !A(a)$ का नियमित प्रमाण है, जिस पर हम~$\RightR{\lforall} लागू कर
+सकते हैं। यदि हम $\pi$ में $\pi_1$ को प्रमाण $\pi_1'$ से बदल दें,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi_2}{a}{c}$}
+    \Deduce$\Gamma \fCenter \Delta, !A(a)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+    \DisplayProof
+    \]
+तो हमने एक अस्वच्छ आइगेनचर निगमन को स्वच्छ निगमन से बदल दिया है, और एकमात्र
+अंतर आइगेनचर $c$ को~$a$ से बदलना है। परिणामी प्रमाण में $n-1$ अस्वच्छ
+आइगेनचर निगमन हैं, और परिणाम आगमन परिकल्पना से मिलता है।
+\end{proof}
+
+हम अभी सिद्ध किए गए प्रतिज्ञान का स्पष्टतः आह्वान नहीं करेंगे, किंतु मानेंगे
+कि विचाराधीन सभी !!{proof}s नियमित हैं---यदि वे नियमित न हों, तो हम आइगेनचर
+बदलकर उन्हें सदैव नियमित बना सकते हैं।
+
+\end{document}

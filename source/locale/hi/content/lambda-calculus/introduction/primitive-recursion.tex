@@ -1,0 +1,142 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: primitive-recursion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{lam}{int}{pr}
+\olsection{\usetoken{S}{lambda definable} फलन आदिम पुनरावर्तन के अधीन संवृत हैं}
+
+आदिम पुनरावर्तन के लिए अंततः हमें कुछ काम करना पड़ेगा। हमें चरणों में आगे
+बढ़ना होगा। पहले की तरह मान लें कि हमारे पास पहले से ऐसे पद $G$ और $H$ हैं
+जो क्रमशः फलनों $g$ और~$h$ को !!{lambda define} करते हैं; हम ऐसा पद $H$
+चाहते हैं जो निम्न प्रकार परिभाषित फलन~$f$ को !!{lambda define} करे:
+\begin{align*}
+f(0, \vec z) & = g(\vec z) \\
+f(x+1, \vec z) & = h(z, f(x,\vec z), \vec z).
+\end{align*}
+अतः सामान्यतः, लैम्ब्डा पद $G'$ और~$H'$ दिए होने पर ऐसा पद~$F$ खोजना
+पर्याप्त है कि
+\begin{align*}
+F(\num{0}, \vec z) & \equiv G(\vec z) \\
+F(\overline{n+1}, \vec z) & \equiv H(\num{n}, F(\num{n}, \vec z), \vec z)
+\end{align*}
+प्रत्येक प्राकृतिक संख्या~$n$ के लिए; $G'$ और~$H'$ द्वारा $g$ और~$h$ को
+!!{lambda define} करने का अर्थ है कि जब भी हम $\vec z$ के स्थान पर अंक
+$\num{\vec m}$ रखें, तो $F(\num{n+1}, \num{\vec m})$ प्रसामान्य होकर सही
+उत्तर बनेगा।
+
+किंतु इसके लिए ऐसा पद~$F$ खोजना पर्याप्त है जो
+\begin{align*}
+F(\num 0) & \equiv G \\
+F(\overline {n+1}) & \equiv H(\num{n},F(\num{n}))
+\intertext{प्रत्येक प्राकृतिक संख्या $n$ के लिए संतुष्ट करे, जहाँ}
+G & = \lambd[\vec z][G'(\vec z)] \text{ और}\\
+H(u,v) & = \lambd[\vec z][H'(u,v(u,\vec z),\vec z)].
+\end{align*}
+दूसरे शब्दों में, लैम्ब्डा की इस युक्ति से हम अतिरिक्त प्राचलों $\vec z$
+की चिंता से बच सकते हैं---वे लैम्ब्डा संकेत-लिपि में समाहित हो जाते हैं।
+
+पद $F$ को परिभाषित करने से पहले हमें क्रमित युग्मों को सँभालने की कोई
+विधि चाहिए। अगला लेम्मा यही देता है।
+
+\begin{lem}
+कोई ऐसा लैम्ब्डा पद $D$ है कि लैम्ब्डा पदों $M$ और~$N$ के प्रत्येक युग्म
+के लिए $D(M,N)(\num{0}) \red M$ और $D(M,N)(\num{1}) \red N$।
+\end{lem}
+
+\begin{proof}
+पहले लैम्ब्डा पद $K$ को इस प्रकार परिभाषित करें:
+\[
+K(y) = \lambd[x][y].
+\]
+दूसरे शब्दों में, $K$ पद $\lambd[y][\lambd[x][y]]$ है। दूसरे ढंग से देखें
+तो प्रत्येक $M$ के लिए $K(M)$ ऐसा अचर फलन है जो किसी भी निवेश पर~$M$
+लौटाता है।
+
+अब $D(x,y,z)$ को $D(x,y,z) = z (K(y))x$ द्वारा परिभाषित करें। तब
+\begin{align*}
+D(M,N,\num 0) & \red \num 0 (K(N)) M \red M \text{ और}\\
+D(M,N,\num 1) & \red \num 1 (K(N)) M \red K(N) M \red N,
+\end{align*}
+जैसा अपेक्षित था।
+\end{proof}
+
+विचार यह है कि $D(M,N)$ युग्म $\tuple{M, N}$ को निरूपित करता है; और यदि
+$P$ को ऐसा युग्म निरूपित करने वाला माना जाए, तो $P(\num 0)$ और $P(\num 1)$
+बाएँ और दाएँ प्रक्षेपों $(P)_0$ और $(P)_1$ को निरूपित करते हैं। हम बाद वाली
+संकेत-लिपि उपयोग करेंगे।
+
+\begin{lem}
+!!{lambda definable} फलन आदिम पुनरावर्तन के अधीन संवृत हैं।
+\end{lem}
+
+\begin{proof}
+हमें दिखाना है कि कोई भी पद $G$ और $H$ दिए होने पर हम ऐसा पद $F$ खोज सकते
+हैं कि
+\begin{align*}
+F(\num{0}) & \equiv G \\
+F(\num{n+1}) & \equiv H(\num{n}, F(\num{n}))
+\end{align*}
+प्रत्येक प्राकृतिक संख्या~$n$ के लिए। मोटे तौर पर विचार यह है कि अंकों को
+पुनरावर्तक बनाकर \emph{युग्मों} के अनुक्रम
+\[
+\tuple{\num 0, F(\num 0)}, \tuple{\num 1, F(\num 1)}, \dots,
+\]
+की संगणना की जाए। ध्यान दें कि पहला युग्म केवल $\tuple{\num 0, G}$ है।
+युग्म $\tuple{\num{n}, F(\num{n})}$ दिए होने पर अगला युग्म
+$\tuple{\num{n+1}, F(\num{n+1})}$, ~$\tuple{\num{n+1}, H(\num{n},
+F(\num{n}))}$ के तुल्य होना चाहिए। हम ऐसा लैम्ब्डा पद~$T$ बनाएँगे जो यह
+एक-चरणीय संक्रमण करता है।
+
+विवरण इस प्रकार है। $T(u)$ को परिभाषित करें:
+\[
+T(u) = \tuple{S((u)_0), H((u)_0,(u)_1)}.
+\]
+अब किसी भी संख्या~$n$ के लिए यह जाँचना सरल है कि
+\[
+T(\tuple{\num{n}, M}) \red \tuple{\num{n+1}, H(\num{n}, M)}.
+\]
+ऊपर दिए संकेत के अनुसार, $G$ और $H$ दिए होने पर~$F(u)$ को परिभाषित करें:
+\[
+F(u) = (u(T,\tuple{\num 0, G}))_1.
+\]
+दूसरे शब्दों में, निवेश~$\num{n}$ पर $F$, ~$\tuple{\num 0, G}$ पर $T$ को
+$n$ बार पुनरावर्तित करता है और फिर दूसरा घटक लौटाता है। आरंभ में हमारे पास
+है:
+\begin{enumerate}
+\item $\num{0} (T, \tuple{\num 0, G}) \equiv \tuple{\num{0}, G}$
+\item $F(\num{0}) \equiv G$
+\end{enumerate}
+~$n$ पर आगमन द्वारा हम दिखा सकते हैं कि प्रत्येक प्राकृतिक संख्या के लिए
+निम्न बातें लागू होती हैं:
+\begin{enumerate}
+\item $\num{n+1}(T, \tuple{\num{0}, G}) \equiv \tuple{\num{n+1}, F(\num{n+1})}$
+\item $F(\num{n+1}) \equiv H(\num{n}, F(\num{n}))$
+\end{enumerate}
+दूसरे खंड के लिए,
+\begin{align*}
+F(\num{n+1}) & \red (\num{n+1}(T, \tuple{\num 0, G}))_1 \\
+& \equiv (T(\num{n} (T, \tuple{\num 0, G})))_1 \\
+& \equiv (T(\tuple{\num{n}, F(\num{n})}))_1 \\
+& \equiv (\tuple{\num{n+1}, H(\num{n}, F(\num{n}))})_1 \\
+& \equiv H(\num{n}, F(\num{n})).
+\end{align*}
+यहाँ अंतिम से पहले वाली पंक्ति में हमने आगमन-परिकल्पना का उपयोग किया है।
+पहले खंड के लिए,
+\begin{align*}
+\num{n+1} (T, \tuple{\num 0, G}) &
+\equiv T(\num{n} (T, \tuple{\num 0, G})) \\
+& \equiv T( \tuple{\num{n}, F(\num{n})}) \\
+& \equiv \tuple{\num{n+1}, H(\num{n}, F(\num{n}))} \\
+& \equiv \tuple{\num{n+1}, F(\num{n+1})}.
+\end{align*}
+यहाँ अंतिम पंक्ति में हमने दूसरे खंड का उपयोग किया है। इस प्रकार हमने
+$F(\num 0) \equiv G$ और प्रत्येक $n$ के लिए $F(\num {n+1}) \equiv H(\num
+n, F(\num{n}))$ दिखा दिया, और हमें ठीक यही चाहिए था।
+\end{proof}
+
+\end{document}
+

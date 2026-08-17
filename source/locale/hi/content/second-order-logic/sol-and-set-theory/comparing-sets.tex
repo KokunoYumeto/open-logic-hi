@@ -1,0 +1,82 @@
+% Part: second-order-logic
+% Chapter: sol-and-sets
+% Section: comparing-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sol}{set}{cmp}
+
+\olsection{समुच्चयों की तुलना}
+
+\begin{prop}
+!!{formula} $\lforall[x][(X(x) \lif Y(x))]$ उपसमुच्चय-संबंध को परिभाषित
+करता है, अर्थात् $\Sat{M}{\lforall[x][(X(x) \lif Y(x))]}[s]$ तभी और केवल
+तभी जब $s(X) \subseteq s(Y)$।
+\end{prop}
+
+\begin{prop}
+!!{formula} $\lforall[x][(X(x) \liff Y(x))]$ समुच्चयों पर तादात्म्य-संबंध
+को परिभाषित करता है, अर्थात्
+$\Sat{M}{\lforall[x][(X(x) \liff Y(x))]}[s]$ तभी और केवल तभी जब $s(X) =
+s(Y)$।
+\end{prop}
+
+\begin{prop}
+!!{formula} $\lexists[x][X(x)]$ अरिक्त होने के गुण को परिभाषित करता है,
+अर्थात् $\Sat{M}{\lexists[x][X(x)]}[s]$ तभी और केवल तभी जब $s(X) \neq
+\emptyset$।
+\end{prop}
+
+समुच्चय~$X$ का आकार समुच्चय~$Y$ से अधिक नहीं है, $\cardle{X}{Y}$, तभी और
+केवल तभी जब कोई !!a{injective} फलन $f\colon X \to Y$ हो। चूँकि हम व्यक्त
+कर सकते हैं कि कोई फलन अंतःक्षेपी है, और यह भी कि~$X$ के अवयवों पर उसके
+मान~$Y$ में हैं, इसलिए हम प्रांत के उपसमुच्चयों पर ``आकार में अधिक न होने''
+के संबंध को भी परिभाषित कर सकते हैं।
+
+\begin{prop}
+यह सूत्र
+\[
+\lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land \lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif
+      \eq[x][y])]])]
+\]
+आकार में अधिक न होने के संबंध को परिभाषित करता है।
+\end{prop}
+
+दो समुच्चय समान आकार के, अथवा ``समसंख्यक'', $\cardeq{X}{Y}$, तभी और केवल
+तभी होते हैं जब कोई !!a{bijective} फलन~$f\colon X \to Y$ हो।
+
+\begin{prop}
+यह सूत्र
+\begin{multline*}
+  \lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land {}\\
+    \lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
+  \land {} \\\lforall[y][(Y(y) \lif \lexists[x][(X(x)
+      \land \eq[y][u(x)])])])]
+\end{multline*}
+समसंख्यकता के संबंध को परिभाषित करता है।
+\end{prop}
+
+हम इन !!{formula} को क्रमशः $X \subseteq Y$, $X = Y$, $X \neq
+\emptyset$, $\cardle{X}{Y}$ और $\cardeq{X}{Y}$ से संक्षिप्त करेंगे। (यह
+कुछ भ्रम उत्पन्न कर सकता है, क्योंकि समुच्चयों $X$ और $Y$ की अनौपचारिक
+चर्चा में भी हम यही संकेत-लिपि उपयोग करते हैं---पर यहाँ यह संकेत-लिपि
+एक-स्थानी संबंध-चरों $X$ और~$Y$ वाले द्वितीय-कोटि तर्कशास्त्र के !!{formula}
+का संक्षिप्त रूप है।)
+
+\begin{prop}
+!!{sentence} $\lforall[X][\lforall[Y][((\cardle{X}{Y} \land
+    \cardle{Y}{X}) \lif \cardeq{X}{Y})]]$ वैध है।
+\end{prop}
+
+\begin{proof}
+यह !!{sentence} किसी !!a{structure}~$\Struct{M}$ में तब संतुष्ट होता है
+जब किन्हीं उपसमुच्चयों $X \subseteq \Domain{M}$ और $Y \subseteq
+\Domain{M}$ के लिए, यदि $\cardle{X}{Y}$ और $\cardle{Y}{X}$, तो
+$\cardeq{X}{Y}$। किंतु यह \emph{किन्हीं भी} समुच्चयों $X$ और $Y$ के लिए
+लागू होता है---यही श्रेडर--बर्नस्टाइन प्रमेय है।
+\end{proof}
+
+
+\end{document}

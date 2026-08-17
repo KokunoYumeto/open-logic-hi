@@ -1,0 +1,134 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{spine}{rank}
+\olsection{रैंक}
+
+अब हमने चरणों को $V_\alpha$ के रूप में परिभाषित कर लिया है और जानते हैं कि
+प्रत्येक समुच्चय किसी चरण का उपसमुच्चय है, इसलिए किसी समुच्चय की \emph{रैंक}
+परिभाषित कर सकते हैं। सहजतः $A$ की रैंक वह पहला क्षण है जिस पर $A$ बनता
+है। अधिक सटीक रूप में:
+
+\begin{defn}\ollabel{defnsetrank}
+प्रत्येक समुच्चय $A$ के लिए $\setrank{A}$ ऐसा लघुतम क्रमसूचक $\alpha$ है
+कि $A \subseteq V_\alpha$।
+\end{defn}
+\begin{prop}\ollabel{ranksexist}
+	किसी भी $A$ के लिए $\setrank{A}$ का अस्तित्व है।
+\end{prop}
+\begin{proof}
+	अभ्यास के लिए छोड़ा गया।
+\end{proof}
+\begin{prob}
+	\olref[sth][spine][rank]{ranksexist} सिद्ध कीजिए।
+\end{prob}
+\noindent 
+रैंकों की सुव्यवस्था हमें कुछ महत्त्वपूर्ण परिणाम सिद्ध करने देती है:
+\begin{prop}\ollabel{valphalowerrank}
+किसी भी क्रमसूचक $\alpha$ के लिए
+$V_\alpha = \Setabs{x}{\setrank{x} \in \alpha}$।
+\end{prop}
+
+\begin{proof}
+यदि $\setrank{x} \in \alpha$, तो
+$x \subseteq V_{\setrank{x}} \in V_\alpha$; अतः $V_\alpha$ की सामर्थ्यता
+से $x \in V_\alpha$ (\olref[Valphabasic]{Valphabasicprops} का कई बार
+उपयोग करके)। इसके विपरीत यदि $x \in V_\alpha$, तो
+$x \subseteq V_\alpha$, अतः $\setrank{x} \leq \alpha$; अब सरल परिमितेतर
+आगमन दिखाता है कि $x \notin V_\alpha$।
+\end{proof}
+\begin{prob}
+	\olref[sth][spine][rank]{valphalowerrank} में उल्लिखित सरल परिमितेतर
+	आगमन पूर्ण कीजिए।
+\end{prob}
+
+\begin{prop}\ollabel{rankmemberslower}
+यदि $B \in A$, तो $\setrank{B} \in \setrank{A}$।
+\end{prop}
+
+\begin{proof}
+\olref{valphalowerrank} से
+$A \subseteq V_{\setrank{A}} = \Setabs{x}{\setrank{x} \in
+\setrank{A}}$।
+\end{proof}
+\noindent
+इस तथ्य का उपयोग करके हम ऐसा परिणाम स्थापित कर सकते हैं जो आगमन के एक रूप
+से \emph{सभी समुच्चयों} के विषय में बातें सिद्ध करने देता है:
+
+\begin{thm}[$\in$-आगमन योजना]
+किसी भी सूत्र $\phi$ के लिए:
+\[
+	\forall A((\forall x \in A)\phi(x) \lif \phi(A)) \lif \forall A \phi(A).
+\]
+\end{thm}
+
+\begin{proof}
+हम प्रतिधनात्मक सिद्ध करेंगे। मान लें $\lnot \forall A \phi(A)$। परिमितेतर
+आगमन (\olref[ordinals][basic]{ordinductionschema}) से लघुतम संभव रैंक वाली
+कोई गैर-$\phi$ वस्तु है; अर्थात कोई $A$ ऐसा है कि $\lnot \phi(A)$ और
+$\forall x(\setrank{x} \in \setrank{A} \lif \phi(x))$। अब यदि $x \in A$,
+तो \olref{rankmemberslower} से $\setrank{x} \in \setrank{A}$, जिससे
+$\phi(x)$; अर्थात $(\forall x \in A)\phi(x) \land \lnot \phi(A)$।
+\end{proof}\noindent
+इस शक्तिशाली परिणाम को अनौपचारिक रूप से समझने का एक ढंग यह है। कहें कि
+$\phi$ \emph{वंशानुगत} है तभी और केवल तभी जब किसी समुच्चय का प्रत्येक
+!!{element} $\phi$ होने पर वह समुच्चय स्वयं $\phi$ हो। तब $\in$-आगमन बताता
+है: यदि $\phi$ वंशानुगत है, तो प्रत्येक समुच्चय $\phi$ है।
+
+रैंकों की चर्चा को (अभी के लिए) पूरा करने हेतु हम कुछ ऐसे दावे सिद्ध करेंगे
+जिनका कई बार पूर्वसंकेत दे चुके हैं।
+
+\begin{prop}\ollabel{ranksupstrict}
+$\setrank{A} = \supstrict_{x \in A}\setrank{x}$.
+\end{prop}
+
+\begin{proof}
+$\alpha = \supstrict_{x \in A}\setrank{x}$ रखें।
+\olref{rankmemberslower} से $\alpha \leq \setrank{A}$। किंतु यदि
+$x \in A$, तो $\setrank{x} \in \alpha$, इसलिए
+\olref{valphalowerrank} से $x \in V_\alpha$ और फलतः
+$A \subseteq V_\alpha$, अर्थात $\setrank{A} \leq \alpha$। अतः
+$\setrank{A} = \alpha$।
+\end{proof}
+
+\begin{cor}\ollabel{ordsetrankalpha}
+किसी भी क्रमसूचक $\alpha$ के लिए $\setrank{\alpha} = \alpha$।
+\end{cor}
+
+\begin{proof}
+परिमितेतर आगमन के लिए मान लें कि सभी $\beta \in \alpha$ के लिए
+$\setrank{\beta} = \beta$। अब \olref{ranksupstrict} से
+$\setrank{\alpha} = \supstrict_{\beta \in \alpha}\setrank{\beta}
+= \supstrict_{\beta \in \alpha}\beta = \alpha$।
+%	First note that $\setrank{\alpha} \neq \beta$ for any $\beta \in
+%	\alpha$. For otherwise we would have $\beta = \setrank{\beta} \in
+%	\setrank{\alpha} = \beta$ by \olref{rankmemberslower}, i.e.,
+%	$\beta \in \beta$, a contradiction. 
+%
+%	Now note that $\alpha \subseteq V_\alpha$. For $\alpha =
+%	\Setabs{\beta}{\beta \in \alpha}$ by
+%	\olref[sfr][ordinals][basic]{ordissetofsmallerord}. And if
+%	$\beta \in \alpha$ then $\beta \subseteq V_{\setrank{\beta}} =
+%	V_\beta \in V_\alpha$, hence $\beta \in V_\alpha$, by
+%	\olref[sfr][spine][Valphabasic]{Valphabasicprops} twice. 
+\end{proof}
+
+अंततः \olref[foundation]{sec} के अंत में वचन दिए परिणाम का त्वरित प्रमाण
+यह है कि $\ZFminus$ सशर्त
+$\emph{नियमितता} \Rightarrow \emph{आधारिता}$ को सिद्ध करता है। (ध्यान दें
+कि ``रैंक'' की धारणा और \olref{rankmemberslower} इस प्रमाण में उपयोग के लिए
+उपलब्ध हैं, क्योंकि---जैसा इस अनुभाग के आरंभ में कहा गया---उन्हें
+$\ZFminus + \text{नियमितता}$ का उपयोग करके प्रस्तुत किया जा सकता है।)
+
+\begin{prop}[$\ZFminus + \text{नियमितता}$ में काम करते हुए]\ollabel{zfminusregularityfoundation}
+आधारिता लागू होती है।
+\end{prop}
+
+\begin{proof}
+$A \neq \emptyset$ और लघुतम संभव रैंक वाले किसी $B \in A$ को नियत करें।
+यदि $c \in B$, तो \olref{rankmemberslower} से
+$\setrank{c} \in \setrank{B}$, अतः $B$ के चयन से $c \notin A$।
+\end{proof}
+
+\end{document}

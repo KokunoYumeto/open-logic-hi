@@ -1,0 +1,238 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mvl}{thr}{luk}
+
+\olsection{लुकासिएविच तर्कशास्त्र}
+
+बहुमूल्य तर्कशास्त्र के आरंभिक प्रकाशित और सुविकसित प्रस्तावों में से एक
+पोलिश दार्शनिक यान लुकासिएविच ने 1921 में प्रस्तुत किया था। लुकासिएविच को
+अरस्तू की समुद्री युद्ध की समस्या ने प्रेरित किया था: ऐसा लगता है कि
+\emph{आज} यह वाक्य, ``कल समुद्री युद्ध होगा'', न तो सत्य है और न असत्य:
+उसका सत्य-मूल्य अभी निर्धारित नहीं हुआ है। लुकासिएविच ने ऐसे
+``भविष्यगत आपातिक'' वाक्यों के लिए एक तीसरा सत्य-मूल्य जोड़ने का प्रस्ताव
+रखा।
+\begin{quote}
+मैं बिना किसी विरोधाभास के यह मान सकता हूँ कि अगले वर्ष के किसी निश्चित
+क्षण में, उदाहरणार्थ 21 दिसंबर को दोपहर के समय, वारसा में मेरी उपस्थिति
+वर्तमान समय में न तो सकारात्मक रूप से और न नकारात्मक रूप से निर्धारित है।
+अतः यह संभव है, किंतु आवश्यक नहीं, कि मैं दिए हुए समय पर वारसा में उपस्थित
+रहूँगा। इस धारणा पर यह प्रतिज्ञप्ति, ``मैं अगले वर्ष 21 दिसंबर को दोपहर में
+वारसा में रहूँगा'', वर्तमान समय में न तो सत्य हो सकती है और न असत्य। क्योंकि
+यदि वह अभी सत्य होती, तो वारसा में मेरी भावी उपस्थिति आवश्यक होनी चाहिए थी,
+जो धारणा के विरुद्ध है। दूसरी ओर, यदि वह अभी असत्य होती, तो वारसा में मेरी
+भावी उपस्थिति असंभव होनी चाहिए थी, जो भी धारणा के विरुद्ध है। अतः विचाराधीन
+प्रतिज्ञप्ति इस समय न सत्य है न असत्य और उसका कोई तीसरा मूल्य होना चाहिए, जो
+``0'' अर्थात् असत्यता और ``1'' अर्थात् सत्यता से भिन्न हो। इस मूल्य को हम
+``$\frac{1}{2}$'' से निर्दिष्ट कर सकते हैं। यह ``संभव'' को निरूपित करता है
+और तीसरे मूल्य के रूप में ``सत्य'' तथा ``असत्य'' के साथ जुड़ता है।
+\end{quote}
+लुकासिएविच के तीसरे सत्य-मूल्य के लिए हम $\Undef$ का प्रयोग करेंगे।
+\footnote{यहाँ लुकासिएविच ``संभव'' शब्द का प्रयोग आज के प्रचलित अर्थ से
+भिन्न अर्थ में करते हैं, अर्थात् संभव किंतु आवश्यक नहीं।}
+
+इस व्याख्या पर संयोजकों $\lnot$, $\land$ और $\lor$ के सत्य-फलन आसानी से
+निर्धारित किए जा सकते हैं: किसी भविष्यगत आपातिक वाक्य का निषेध भी भविष्यगत
+आपातिक वाक्य होता है, अतः $\tf{\lnot}(\Undef) = \Undef$। यदि किसी संयोजन
+का एक संयोज्य अनिर्धारित और दूसरा सत्य हो, तो संयोजन भी अनिर्धारित होता
+है---अंततः, भविष्यगत आपातिक संयोज्य का परिणाम कैसा निकलता है, उसके अनुसार
+संयोजन सत्य भी निकल सकता है और असत्य भी। अतः
+\[
+    \tf{\land}(\True, \Undef) =
+\tf{\land}(\Undef, \True) =
+\Undef.
+\]
+परंतु यदि दूसरा संयोज्य असत्य हो, तो संयोजन सत्य नहीं निकल सकता, अतः
+\[\tf{\land}(\False, \Undef) =
+\tf{\land}(\False, \Undef) = \False.\]
+अन्य मानों के लिए (जब तर्क निर्धारित सत्य-मूल्य, $\True$ या $\False$, हों)
+परिणाम शास्त्रीय तर्कशास्त्र जैसे होते हैं।
+
+सशर्त के मामले में स्थिति कुछ अधिक जटिल है। मान लें कि $q$ एक भविष्यगत
+आपातिक कथन है। यदि $p$ असत्य है, तो $q$ का परिणाम चाहे जो हो, $p \lif q$
+सत्य होगा, अतः हमें $\tf{\lif}(\False, \Undef) = \True$ रखना चाहिए। और यदि
+$p$ सत्य है, तो $q$ का परिणाम चाहे जो हो, $q \lif p$ सत्य होगा, अतः
+$\tf{\lif}(\Undef, \True) = \True$। यदि $p$ सत्य है, तो $p \lif q$ सत्य
+या असत्य निकल सकता है, अतः $\tf{\lif}(\True, \Undef) = \Undef$। इसी तरह,
+यदि $p$ असत्य है, तो $q \lif p$ सत्य या असत्य निकल सकता है, अतः
+$\tf{\lif}(\Undef, \False) = \Undef$। अब वह स्थिति बचती है जिसमें $p$ और
+$q$ दोनों भविष्यगत आपातिक हैं। प्रेरक विचार के आधार पर हमें इस स्थिति में
+वास्तव में $\Undef$ देना चाहिए। किंतु इससे $!A \lif !A$ सर्वसत्यता
+\emph{नहीं} रहेगा। लुकासिएविच को $!A \lor \lnot !A$ और
+$\lnot(!A \land \lnot !A)$ छोड़ने में कठिनाई नहीं हुई, पर $!A \lif !A$
+छोड़ने पर वे हिचक गए। इसलिए उन्होंने निर्धारित किया कि
+$\tf{\lif}(\Undef, \Undef) = \True$।
+
+\begin{defn}\ollabel{def:lukasiewicz}
+त्रिमूल्य लुकासिएविच तर्कशास्त्र निम्नलिखित आव्यूह से परिभाषित होता है:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ वाली मानक प्रतिज्ञप्तिक भाषा
+  $\Lang L_0$।
+  \item सत्य-मूल्यों का समुच्चय $V = \{\True, \Undef, \False\}$।
+  \item $\True$ एकमात्र निर्दिष्ट मूल्य है, अर्थात् $V^+ = \{\True\}$।
+  \item सत्य-फलन निम्नलिखित सारणियों से दिए जाते हैं:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
+      $\False$ & $\False$ & $\False$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\True$ & $\True$ & $\Undef$  \\ 
+      $\False$ & $\True$ & $\True$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+आसानी से देखा जा सकता है कि केवल $\lnot$, $\land$ और $\lor$ वाली कोई भी
+!!{formula}~$!A$, यदि उसके सभी !!{propositional variable}ों को $\Undef$ दिया गया
+हो, तो सत्य-मूल्य $\Undef$ लेगी। इसलिए, उदाहरण के लिए, शास्त्रीय
+सर्वसत्यताएँ $p \lor \lnot p$ और $\lnot(p \land \lnot p)$
+$\LogLuk[3]$ में सर्वसत्यताएँ नहीं हैं, क्योंकि $\pAssign v(p) = \Undef$
+होने पर $\pValue{v}(!A) = \Undef$ होता है।
+
+जिन !!{valuation} में $\pAssign v(p) = \True$ या $\False$ हो, उनमें
+$\pValue v(!A)$ अपने शास्त्रीय सत्य-मूल्य के समान होगा।
+
+\begin{prop}
+  यदि $!A$ में आने वाले प्रत्येक $p$ के लिए $\pAssign v(p) \in
+  \{\True, \False\}$, तो $\pValue v(!A)[\LogLuk[3]] =
+  \pValue v(!A)[\LogCL]$।
+\end{prop}
+
+\begin{prob}\label{mvl:thr:luk:prob:luk-iff} मान लें कि हम $\LogLuk[3]$
+  में $\pValue v(!A \liff !B) = \pValue v((!A \lif !B) \land
+  (!B \lif !A))$ परिभाषित करते हैं। तब $\liff$ की सत्य-सारणी क्या होगी?
+\end{prob}
+
+बहुत-सी शास्त्रीय सर्वसत्यताएँ $\LogLuk[3]$ में भी सर्वसत्यताएँ
+\emph{हैं}, जैसे $\lnot p \lif (p \lif q)$। शास्त्रीय तर्कशास्त्र की ही
+तरह, हम सत्य-सारणी से इसकी जाँच कर सकते हैं:
+\begin{center}
+\begin{tabular}{cc|cccccc}
+  $p$ & $q$ & $\lnot$ & $p$ & $\lif$ & $\smash{(}p$ & $\lif$ & $q\smash{)}$ \\ \hline
+  \True & \True & \False & \True & \True & \True & \True & \True \\
+  \True & \Undef & \False & \True & \True & \True & \Undef & \Undef \\
+  \True & \False & \False & \True & \True & \True & \False & \False \\
+  \Undef & \True & \Undef & \Undef & \True & \Undef & \True & \True \\
+  \Undef & \Undef & \Undef & \Undef & \True & \Undef & \True & \Undef \\
+  \Undef & \False & \Undef & \Undef & \True & \Undef & \Undef & \False \\
+  \False & \True & \True & \False & \True & \False & \True & \True \\
+  \False & \Undef & \True & \False & \True & \False & \True & \Undef \\
+  \False & \False & \True & \False & \True & \False & \True & \False \\  
+\end{tabular}
+\end{center}
+
+\begin{prob}
+  दिखाइए कि निम्नलिखित $\LogLuk[3]$ में सर्वसत्यताएँ हैं:
+  \begin{enumerate}
+    \item $p \lif (q \lif p)$
+    \item\label{mvl:thr:luk:prob:luk-taut-2} $\lnot(p \land q) \liff (\lnot p \lor \lnot q)$
+    \item\label{mvl:thr:luk:prob:luk-taut-3} $\lnot(p \lor q) \liff (\lnot p \land \lnot q)$
+  \end{enumerate}
+  (\olref[mvl][thr][luk]{prob:luk-taut-2} और
+  \olref[mvl][thr][luk]{prob:luk-taut-3} में $!A \liff !B$ को
+  $(!A \lif !B) \land (!B \lif !A)$ का संक्षिप्त रूप मानें, या
+  \olref[mvl][thr][luk]{prob:luk-iff} के अपने हल का उपयोग करें।)
+\end{prob}
+
+\begin{prob}
+  दिखाइए कि निम्नलिखित शास्त्रीय सर्वसत्यताएँ $\LogLuk[3]$ में
+  सर्वसत्यताएँ नहीं हैं:
+  \begin{enumerate}
+    \item $(\lnot p \land p) \lif q)$
+    \item $((p \lif q) \lif p) \lif p$
+    \item $(p \lif (p \lif q)) \lif (p \lif q)$
+  \end{enumerate}
+\end{prob}
+
+इसलिए शायद यह सोचा जा सकता है कि यद्यपि सभी शास्त्रीय सर्वसत्यताएँ
+$\LogLuk[3]$ में सर्वसत्यताएँ नहीं हैं, फिर भी प्रत्येक !!{valuation} पर
+उन्हें कम-से-कम $\True$ या $\Undef$ मूल्य लेना चाहिए। किंतु ऐसा नहीं है।
+इसका एक प्रतिदृष्टांत है
+\[
+  \lnot(p \lif \lnot p) \lor \lnot(\lnot p \lif p),
+\]
+जो $p$ का मूल्य $\Undef$ होने पर $\False$ है।
+
+\begin{prob}
+  निम्नलिखित में से कौन-से संबंध लुकासिएविच तर्कशास्त्र में मान्य हैं?
+  प्रत्येक के लिए सत्य-सारणी दीजिए।
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $\lnot\lnot p \Entails p$
+    \item $p \land q \Entails p$
+    \item $p \Entails p \land p$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+
+लुकासिएविच ने अपनी त्रिमूल्य प्रणाली के आधार पर संभावना का तर्कशास्त्र
+बनाने की आशा की थी। इसके लिए उन्होंने एक-स्थानिक संयोजक $\Diamond !A$
+(जिसका अर्थ है ``$!A$ संभव है'') और संगत $\Box !A$ (जिसका अर्थ है
+``$!A$ आवश्यक है'') प्रस्तुत किए:
+\begin{center}
+  \begin{tabular}{c|c} 
+    $\tf{\Diamond}$ & \\ 
+    \hline  
+    $\True$ & $\True$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$ 
+  \end{tabular}
+  \quad
+  \begin{tabular}{c|c} 
+    $\tf{\Box}$ & \\ 
+    \hline  
+    $\True$ & $\True$ \\ 
+    $\Undef$ & $\False$ \\
+    $\False$ & $\False$ 
+  \end{tabular}
+\end{center}
+दूसरे शब्दों में, $p$ तभी संभव है जब वह पहले से असत्य के रूप में निर्धारित
+न हो; और $p$ तभी आवश्यक है जब वह पहले से सत्य के रूप में निर्धारित हो।
+
+\begin{prob}
+  दिखाइए कि $\Box p \liff \lnot\Diamond \lnot p$ और $\Diamond p \liff
+  \lnot \Box \lnot p$, $\Box$ और $\Diamond$ की सत्य-सारणियों से विस्तारित
+  $\LogLuk[3]$ में सर्वसत्यताएँ हैं।
+\end{prob}
+
+किंतु इस प्रस्तावित मोडल तर्कशास्त्र की कमियाँ शीघ्र ही स्पष्ट हो गईं:
+परिस्थितियाँ चाहे जैसी निकलें, $p \land \lnot p$ कभी सत्य नहीं निकल सकता।
+इसलिए, भले ही अभी उसका निश्चय न हुआ हो (और इस कारण वह अनिर्धारित हो), उसे
+असंभव माना जाना चाहिए; अर्थात् $\lnot \Diamond(p \land \lnot p)$ एक
+सर्वसत्यता होनी चाहिए। किंतु यदि $\pAssign v(p) = \Undef$, तो
+$\pValue v(\lnot \Diamond(p \land \lnot p)) = \Undef$। लुकासिएविच का यह
+कहना सही था कि संभावना और आवश्यकता जैसे मोडल भेदों को समायोजित करने के लिए
+दो सत्य-मूल्य पर्याप्त नहीं होंगे, पर तीसरा सत्य-मूल्य जोड़ना भी पर्याप्त
+नहीं है।
+
+\end{document}

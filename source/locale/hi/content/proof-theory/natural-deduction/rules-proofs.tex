@@ -1,0 +1,280 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: rules-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{pt}{nat}{rp}
+
+\olsection{नियम और \usetoken{P}{proof}}
+
+हम कुछ परिभाषाएँ देकर और कुछ शब्दावली नियत करके आरंभ करते हैं।
+
+\Log{N1c} और~\Log{N1i} के उन दो नियमों पर विचार करें जिनमें $!A \lif !B$
+आता है।
+\[
+\bottomAlignProof
+\AxiomC{$\Discharge{!A}{x}$}
+\shortDeduce
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\DisplayProof
+\qquad
+\bottomAlignProof
+\AxiomC{$!A \lif !B$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+\Elim{\lif} नियम पर्याप्त सरल है। रेखा के ऊपर के !!{formula}s
+\emph{आधार-वाक्य} हैं। बाईं ओर का !!{formula}, \emph{प्रमुख}
+!!{formula}~$!A \lif !B$ है। सभी !!{elimination} नियमों में ऐसा एक आधार-वाक्य
+होता है, सदा सबसे बाईं ओर। इसे अनुमान का \emph{मुख्य} आधार-वाक्य कहते हैं।
+यदि अन्य हों, जैसा इस मामले में है, तो उन्हें \emph{गौण} आधार-वाक्य कहते
+हैं। !!{introduction} नियमों के आधार-वाक्य को भी मुख्य आधार-वाक्य कहते हैं।
+रेखा के नीचे का !!{formula}, \emph{निष्कर्ष} है।
+
+\Intro{\lif} नियम का केवल एक आधार-वाक्य है और यहाँ निष्कर्ष प्रमुख सूत्र~$!A
+\lif !B$ है। सभी !!{introduction} नियम ऐसे ही हैं: निष्कर्ष प्रमुख सूत्र है;
+उसका मुख्य संकारक वही है जिसे ``प्रस्तुत'' किया जा रहा है।
+
+संकेतन $\Discharge{!A}{x}$ का निम्न अर्थ है। किसी !!a{proof} में
+\Intro{\lif} अनुमान को आधार-वाक्य के रूप में किसी !!a{formula}~$!B$ पर लागू
+किया जाता है।~$!B$ पर समाप्त होने वाले उप-!!{proof} में कई आरंभिक
+!!{formula}s हैं। इन्हें \emph{मान्यताएँ} कहते हैं।~$!A$ रूप की एक या अधिक
+मान्यताओं से~$!B$ का !!^a{proof}, ऐसा !!a{proof} है कि $!A$ से~$!B$ का
+तात्पर्य है। जब हम \Intro{\lif} नियम लागू करते हैं, तो~$!A \lif !B$
+निष्कर्षित करते हैं और निष्कर्ष अब मान्यता~$!A$ पर निर्भर नहीं रहता। इसे
+बताने के लिए~\Intro{\lif} अनुमान सहित !!{proof} में~$!A$ रूप की मान्यताओं को
+\emph{मुक्त} या \emph{बंद} किया जाता है। नियम बताता है कि कौन-सी मान्यताएँ
+मुक्त की जा सकती हैं। निष्कर्ष $!A \lif !B$ वाले \Intro{\lif} के मामले में
+वे~$!A$ रूप की मान्यताएँ हैं, अर्थात् सशर्त के पूर्ववर्ती से मेल खाती हैं।
+कभी-कभी यह बताना महत्त्वपूर्ण होता है कि किस नियम पर कौन-सी मान्यताएँ मुक्त
+की गईं, और यह मुक्तिकरण चिह्न~$x$ से किया जाता है। महत्त्वपूर्ण है कि
+मान्यताएँ मुक्त करने वाले नियमों को अपेक्षित रूप की \emph{सभी} मान्यताएँ,
+बल्कि वास्तव में कोई भी मान्यता, मुक्त करना \emph{आवश्यक नहीं}। उदाहरणतः
+निम्न सही है, यद्यपि पहला \Intro{\lif} कोई मान्यता मुक्त नहीं करता:
+\[
+\AxiomC{$\Discharge{!A}{y}$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !A$}
+\DischargeRule{\Intro{\lif}}{y}
+\UnaryInfC{$!A \lif (!B \lif !A)$}
+\DisplayProof
+\]
+जब कोई नियम किसी मान्यता को मुक्त नहीं करता, तो हम मुक्तिकरण चिह्न छोड़ देते
+हैं (जैसा यहाँ किया)।
+
+!!{proof} में
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\AxiomC{$\Discharge{!A}{y}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !A$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !A$}
+\DischargeRule{\Intro{\lif}}{y}
+\UnaryInfC{$!A \lif (!A \lif !A)$}
+\DisplayProof
+\]
+पहला \Intro{\lif} अनुमान बाईं मान्यता $!A^x$ को और दूसरा दाईं
+मान्यता~$!A^y$ को मुक्त करता है। अर्थात्~$x$ से चिह्नित सभी मान्यताएँ,
+चिह्न~$x$ वाले \Intro{\lif} द्वारा और~$y$ चिह्न वाली सभी मान्यताएँ, चिह्न
+~$y$ वाले द्वारा मुक्त की जाती हैं। इसके काम करने के लिए यह महत्त्वपूर्ण है
+कि समान चिह्न वाली सभी मान्यताएँ समान !!{formula} भी हों।
+
+परिमाणक नियम कुछ अधिक जटिल हैं। उदाहरणतः \Log{N1i} में $\lexists$ के नियम
+हैं:
+\[
+\bottomAlignProof
+\AxiomC{$!A(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A(x)]$}
+\DisplayProof
+\qquad
+\bottomAlignProof
+\AxiomC{$\lexists[x][!A(x)]$} 
+\AxiomC{$\Discharge{!A(c)}{x}$}
+\shortDeduce
+\DeduceC{$!B$}
+\DischargeRule{\Elim{\lexists}}{x}
+\BinaryInfC{$!B$} \DisplayProof 
+\bottomAlignProof
+\] \Intro{\lexists} नियम में आधार-वाक्य~$!A(t)$ है, जहाँ $t$ कोई बंद पद,
+अर्थात् चरों से रहित पद, है। ऐसा अनुमान सही है---अर्थात् वह योजनाबद्ध नियम
+\Intro{\lexists} से मेल खाता है---यदि कोई !!{formula}~$!A$, कोई चर~$x$ और
+कोई बंद पद~$t$ ऐसा हो कि निष्कर्ष $\lexists[x][!A]$ और आधार-वाक्य
+~$\Subst{!A}{t}{x}$ हो। \Elim{\lexists} हमें~$!A(c)$ रूप की मान्यताएँ मुक्त
+करने देता है, अर्थात् प्रत्येक अनुमान के लिए कोई !!{constant}~$c$ है और
+$\Subst{!A}{c}{x}$ रूप की मान्यताएँ मुक्त की जा सकती हैं। किसी एक अनुमान की
+सभी मुक्त मान्यताओं में वही~$c$ प्रयुक्त होना चाहिए। इस अचर को
+\Elim{\lexists} अनुमान का \emph{आइगेनचर} कहते हैं। अनुमान तभी सही है जब~$c$
+मुक्त की गई~$!A(c)$ के अतिरिक्त किसी खुली मान्यता में न आए,~$!B$ में न आए
+और~$!A$ में न आए। इसे \emph{आइगेनचर शर्त} कहते हैं।
+
+\Log{N1c} और~\Log{N1i} में !!^{proof}, अनुक्रमों के परिमित वृक्ष हैं जिन्हें
+अनुमान नियमों से अभिगृहीतों से आगमनात्मक रूप से उत्पन्न किया जाता है। प्रत्येक
+पत्ती एक मान्यता है, संभवतः मुक्तिकरण चिह्न से चिह्नित, और प्रत्येक अन्य
+!!{formula} अपने ठीक ऊपर के !!{formula}s से प्रणाली के किसी अनुमान नियम
+द्वारा निष्पन्न होता है। यदि किसी अनुमान के ऊपर वृक्ष में मान्यता के रूप में
+किसी !!{formula} की उपस्थिति को उसके ऊपर के किसी अनुमान ने मुक्त नहीं किया,
+तो उसे (उस अनुमान पर) \emph{खुला} कहते हैं।
+
+\begin{defn}\ollabel{defn:proof}
+\Log{N1c} और~\Log{N1i} में \emph{!!^{proof}}, निम्न प्रकार आगमनात्मक रूप से
+!!{formula}s के परिमित वृक्ष हैं:
+\begin{enumerate}
+  \item\ollabel{defn:prf:assumption} $x$ या $y$ जैसे मुक्तिकरण चिह्न से
+  चिह्नित प्रत्येक !!{formula} अपने आप में !!a{proof} है। एक ही !!{formula}
+  से बने !!a{proof} में वह !!{formula} खुली मान्यता गिना जाता है।
+  \item\ollabel{defn:prf:one-prem} यदि $R$ ऐसा नियम है जिसके एक, दो या तीन
+  आधार-वाक्य $!A_1$, $!A_2$, $!A_3$, निष्कर्ष~$!A$ हैं, और $\delta_1$,
+  $\delta_2$, $\delta_3$ क्रमशः $!A_1$, $!A_2$, $!A_3$ पर समाप्त होने वाले
+  !!{proof}s हैं, तो
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \RightLabel{$R$}
+  \UnaryInfC{$!A$}
+  \DisplayProof
+\qquad
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$R$}
+  \BinaryInfC{$!A$}
+  \DisplayProof
+\qquad
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$R$}
+  \TrinaryInfC{$!A$}
+  \DisplayProof
+  \]
+  क्रमशः !!a{proof} है, बशर्ते !!{proof}s में मान्यता-चिह्न संगत हों (दो
+  भिन्न !!{formula}s का समान मुक्तिकरण चिह्न न हो) और अनुमान~$R$ के सही
+  अनुप्रयोग हों।
+  \item नए !!{proof} में सबसे ऊपर की !!{formula} उपस्थितियाँ, यदि वे
+  $\delta_1$, $\delta_2$ या~$\delta_3$ की खुली मान्यताएँ हैं, तो नियम द्वारा
+  मुक्त उपस्थितियों को छोड़कर !!{proof} की \emph{खुली मान्यताएँ} गिनी जाती
+  हैं। यदि नियम~$x$ (या $x\, y$) से चिह्नित है, तो \Intro{\lif}
+  और~\Intro{\lnot} के लिए ये~$\delta_1$ में~$x$ से चिह्नित सभी खुली
+  मान्यताएँ हैं; \Elim{\lexists} के लिए~$\delta_2$ में~$x$ से चिह्नित सभी
+  खुली मान्यताएँ; और \Elim{\lor} के लिए~$\delta_2$ में~$x$ से चिह्नित तथा
+  ~ $\delta_3$ में~$y$ से चिह्नित सभी खुली मान्यताएँ।
+\end{enumerate}
+\end{defn}
+
+किसी !!a{proof} के आगमनात्मक निर्माण में प्रयुक्त !!{proof}s को उसके
+\emph{उप-!!{proof}s} कहते हैं। किसी अनुमान के आधार-वाक्यों पर समाप्त होने
+वाले उप-!!{proof}s को उस अनुमान के \emph{निकटस्थ उप-!!{proof}s} कहते हैं।
+\Log{N2c} और \Log{N2i} के नियम \olref{tab:N1} में दिए गए हैं।
+
+\subfile{rules-N1}
+
+\begin{defn}
+किसी !!a{proof}~$\delta$ की \emph{!!{height}}~$\pheight{\delta}$ इस प्रकार
+आगमनात्मक रूप से परिभाषित है।
+\begin{enumerate}
+  \item यदि $\delta$ किसी मान्यता से बना है, तो $\pheight{\delta} = 0$।
+  \item यदि $\delta$ एक आधार-वाक्य वाले अनुमान पर समाप्त होता है जिसका
+  निकटस्थ उप-!!{proof}~$\delta_1$ है, तो $\pheight{\delta} =
+  \pheight{\delta_1} + 1$।
+  \item यदि $\delta$ दो आधार-वाक्यों वाले अनुमान पर समाप्त होता है जिसके
+  निकटस्थ उप-!!{proof}s~$\delta_1$ और~$\delta_2$ हैं, तो $\pheight{\delta} =
+  \max(\pheight{\delta_1}, \pheight{\delta_2}) + 1$।
+  \item यदि $\delta$, \Elim{\lor} पर समाप्त होता है जिसके निकटस्थ
+  उप-!!{proof}s~$\delta_1$, $\delta_2$ और~$\delta_3$ हैं, तो
+  $\pheight{\delta} = \max(\pheight{\delta_1}, \pheight{\delta_2},
+  \pheight{\delta_3}) + 1$।
+\end{enumerate}
+यदि किसी अनुक्रम~$S$ का ऊँचाई $\le n$ वाला !!a{proof} है, तो हम $\Proves[n]
+S$ लिखते हैं।
+\end{defn}
+
+\begin{ex}
+\Log{N1i} में कोई भी !!{formula}, खुली मान्यता के रूप में स्वयं से
+!!a{proof} गिना जाता है। अतः
+\[
+!A \land !B^x
+\]
+एक !!a{proof}~$\delta_1$ है। उसकी ऊँचाई~$0$ है। $\delta_1$ से हम
+~\Elim{\land} के दो रूपों में से एक लागू करके दो !!{proof}s~$\delta_2$
+और~$\delta_3$ प्राप्त कर सकते हैं
+\[
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\qquad
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\DisplayProof
+\]
+~$\delta_2$ और~$\delta_3$ के अंतिम अनुमान का निकटस्थ उप-!!{proof} समान है:
+$!A \land !B$। दोनों !!{proof}s में $!A\land !B$ की उपस्थिति खुली मान्यता
+है। हमारे पास $\pheight{\delta_1} = \pheight{\delta_2} = 1$ है।
+
+नियम \Intro{\land} को~$!B \land !A$ रूप के निष्कर्ष को उचित ठहराने के लिए
+$!B$ और $!A$ रूप के दो आधार-वाक्य चाहिए। अतः निम्न एक !!a{proof}~$\delta_4$
+है:
+\[
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\LeftSubproofLabel{$\delta_2$}
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\RightSubproofLabel{$\delta_3$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !A$}
+\DisplayProof
+\]
+उसकी ऊँचाई $\pheight{\delta_4} = \max(\pheight{\delta_2},
+\pheight{\delta_3})+1 = \max(1,1) + 1 = 2$ है। उसमें मान्यताओं के रूप में
+$!A \land !B$ की दो उपस्थितियाँ हैं और दोनों खुली हैं।
+
+अंततः हम $\delta_5$ पाने के लिए \Intro{\lif} लागू कर सकते हैं:
+\[
+\AxiomC{$\Discharge{!A \land !B}{x}$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\LeftSubproofLabel{$\delta_2$}
+\AxiomC{$\Discharge{!A \land !B}{x}$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\RightSubproofLabel{$\delta_3$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
+\DisplayProof
+\]
+उसकी ऊँचाई $\pheight{\delta_4} + 1 = 3$ है। \Intro{\lif} अनुमान~$x$ से
+चिह्नित $!A \land !B$ रूप की सभी मान्यता-उपस्थितियों को मुक्त करता है,
+अर्थात् निकटस्थ उपप्रमाण की दोनों पहले खुली मान्यताओं को। चूँकि वे ही
+$\delta_5$ की एकमात्र मान्यताएँ हैं, उसकी कोई खुली मान्यता नहीं है और इसलिए
+वह अपने अंतिम-!!{formula} $(!A \land !B) \lif (!B \land !A)$ \emph{का}
+!!a{proof} है।
+\end{ex}
+
+\end{document}

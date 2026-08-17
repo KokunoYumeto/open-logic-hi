@@ -1,29 +1,24 @@
 cff-version: 1.2.0
-message: "Please cite this exact Hindi working edition using the metadata below."
-title: "Open Logic Project — Hindi Working Edition (158 of 722 Source Files)"
-type: dataset
+message: "कृपया इस संपूर्ण हिंदी संस्करण को नीचे दिए metadata से उद्धृत करें।"
+title: "ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण"
+type: book
 authors:
-  - name: "Open Logic Project contributors"
-  - name: "Translation and Transcription Project"
-    affiliation: "Independent"
-version: "2026-08-15 working edition — 158/722"
-date-released: 2026-08-15
-doi: 10.5281/zenodo.21940471
+  - name: "Open Logic Project"
+version: "2026-08-18 — A4 पुनर्प्रवाह सहित संपूर्ण हिंदी अनुवाद, 722/722"
+date-released: 2026-08-18
+doi: 10.5281/zenodo.21987019
 license: CC-BY-4.0
 repository-code: "https://github.com/KokunoYumeto/open-logic-hi"
 url: "https://doi.org/10.5281/zenodo.21920511"
 abstract: >-
-  Machine-assisted Hindi (hi-Deva-IN) working edition of 158 accepted frozen
-  Open Logic Project source files, representing 59,955 source words and built
-  as a 211-page searchable, rendered, and visually checked reader. This is not
-  a completed 722-file translation or a claim of human review.
+  जमे हुए Open Logic Project स्रोत-वृक्ष की सभी 722 स्रोत-संगत सामग्री-TeX
+  फ़ाइलों का 842-पृष्ठीय A4, खोजयोग्य हिंदी (hi-Deva-IN) अनुवाद।
 keywords:
-  - Hindi
+  - हिंदी
   - hi-Deva-IN
   - Open Logic Project
   - mathematical logic
   - proof theory
-  - LaTeX
   - open textbook
 references:
   - type: software

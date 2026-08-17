@@ -1,0 +1,39 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: complete-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{inc}{tcp}{cdc}
+
+\olsection{\printtoken{S}{axiomatizable} पूर्ण सिद्धांत निर्णेय हैं}
+
+कोई सिद्धांत {\em पूर्ण} कहलाता है यदि प्रत्येक वाक्य $!A$ के लिए या तो
+$!A$ अथवा $\lnot !A$ सिद्ध हो।
+
+\begin{lem}
+मान लें कोई सिद्धांत $\Th{T}$ पूर्ण और !!{axiomatizable} है। तब $\Th{T}$
+निर्णेय है।
+\end{lem}
+
+\begin{proof}
+मान लें $\Th{T}$ पूर्ण है और $A$ अभिगृहीतों का संगणनीय समुच्चय है। यदि
+$\Th{T}$ असंगत है, तो स्पष्टतः वह संगणनीय है। (कलन-विधि: ``बस हाँ कहें।'')
+अतः हम मान सकते हैं कि $\Th{T}$ संगत भी है।
+
+यह तय करने के लिए कि कोई वाक्य $!A$,~$\Th{T}$ में है या नहीं,~$\Th{T}$
+से~$!A$ की किसी !!a{derivation} और~$\lnot !A$ की किसी !!a{derivation} की
+एक साथ खोज करें। $\Th{T}$ पूर्ण है, इसलिए दोनों में से कोई एक अवश्य
+मिलेगी; और $\Th{T}$ संगत है, इसलिए यदि आपको~$\lnot !A$ की
+!!a{derivation} मिले, तो~$!A$ की कोई !!{derivation} नहीं है।
+
+भिन्न शब्दों में, हम पहले ही जानते हैं कि $\Th{T}$,~!!{c.e.} है; इसलिए
+पहले सिद्ध किए गए एक प्रमेय के अनुसार इतना दिखाना पर्याप्त है कि
+$\Th{T}$ का पूरक भी~!!{c.e.} है। किंतु कोई !!a{formula}~$!A$,
+$\Th{\bar T}$ में तभी और केवल तभी है जब $\lnot !A$,~$\Th{T}$ में हो;
+अतः $\Th{\bar T} \leq_m \Th{T}$।
+\end{proof}
+
+\end{document}

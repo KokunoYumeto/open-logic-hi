@@ -1,0 +1,60 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: total
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{cmp}{thy}{tot}
+\olsection{पूर्णता अनिर्णेय है}
+
+किसी वस्तु को असंगणनीय दिखाने के लिए $s$-$m$-$n$ प्रमेय के उपयोग का एक
+और उदाहरण देखें। $\fn{Tot}$ को पूर्ण संगणनीय फलनों के सूचकांकों का
+समुच्चय मानें, अर्थात्
+\[
+\fn{Tot} = \Setabs{x}{\text{प्रत्येक $y$ के लिए, $\cfind{x}(y)\fdefined$}}.
+\]
+
+\begin{prop}
+\ollabel{prop:total}
+$\fn{Tot}$ संगणनीय नहीं है।
+\end{prop}
+
+\begin{proof}
+$\fn{Tot}$ को असंगणनीय देखने के लिए यह दिखाना पर्याप्त है कि $K$ उसमें
+अपचयनीय है। $h(x,y)$ को परिभाषित करें:
+\[
+h(x,y) \simeq
+\begin{cases}
+0 & \text{यदि $x \in K$} \\
+\fundefined & \text{अन्यथा}
+\end{cases}
+\]
+ध्यान दें कि $h(x,y)$ तनिक भी $y$ पर निर्भर नहीं है। यह देखना कठिन नहीं
+कि $h$~आंशिक संगणनीय है: आगत $x, y$ पर~$h$ को संगणित करने के लिए पहले
+फलन~$\cfind{x}$ का आगत~$x$ पर अनुकरण करते हैं; यदि यह संगणना रुकती है,
+तो $h(x,y)$, $0$ निर्गत करके रुक जाता है। अतः $h(x,y)$ केवल
+$\Zero(\umin{s}{T(x,x,s)})$ है, जहाँ $\Zero$ अचर शून्य फलन है।
+
+$s$-$m$-$n$ प्रमेय से कोई आदिम पुनरावर्ती फलन~$k(x)$ ऐसा है कि प्रत्येक
+$x$ और~$y$ के लिए
+\[
+\cfind{k(x)}(y) =
+\begin{cases}
+0 & \text{यदि $x \in K$} \\
+\fundefined & \text{अन्यथा}
+\end{cases}
+\]
+अतः $\cfind{k(x)}$ पूर्ण है यदि $x \in K$, और अन्यथा अपरिभाषित।
+इसलिए $k$, $K$ से~$\fn{Tot}$ में एक अपचयन है।
+\end{proof}
+
+\begin{digress}
+वास्तव में $\fn{Tot}$ संगणनीयतः परिगणनीय तक नहीं है---उसकी जटिलता
+``अंकगणितीय पदानुक्रम'' में और ऊपर स्थित है। किंतु यहाँ हम इस प्रबलतर
+परिणाम की चिंता नहीं करेंगे।
+\end{digress}
+
+\end{document}
+

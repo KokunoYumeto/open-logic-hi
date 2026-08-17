@@ -1,0 +1,214 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{ordinals}{basic}
+\olsection{क्रमसूचकों के मूल गुण}
+
+हमने देखा कि पहले कुछ क्रमसूचक प्राकृतिक संख्याएँ हैं। क्रमसूचक सिद्धांत
+विकसित करने का मुख्य कारण प्राकृतिक संख्याओं पर लागू आगमन के सिद्धांत का
+विस्तार करना है। प्राथमिक परिणामों की एक शृंखला से हम वहाँ तक पहुँचेंगे।
+
+\begin{lem}\ollabel{ordmemberord}
+क्रमसूचक का प्रत्येक !!{element} क्रमसूचक है।
+\end{lem}
+
+\begin{proof}
+$\alpha$ को ऐसा क्रमसूचक मानें कि $b \in \alpha$। चूँकि $\alpha$
+संक्रमणशील है, $b \subseteq \alpha$। अतः जैसे $\in$, $\alpha$ को
+सुव्यवस्थित करता है, वैसे ही वह $b$ को भी सुव्यवस्थित करता है।
+
+$b$ की संक्रमणशीलता देखने के लिए मान लें $x \in c \in b$। चूँकि
+$b \subseteq \alpha$, इसलिए $c \in \alpha$। फिर, चूँकि $\alpha$
+संक्रमणशील है, $c \subseteq \alpha$, जिससे $x \in \alpha$। अतः
+$x, c, b \in \alpha$। किंतु $\in$, $\alpha$ को सुव्यवस्थित करता है,
+इसलिए \olref[sth][ordinals][wo]{wo:strictorder} से $\in$, $\alpha$ पर
+संक्रमणशील संबंध है। अतः $x \in c \in b$ से $x \in b$। सामान्यीकरण करने
+पर $c \subseteq b$।
+\end{proof}
+
+\begin{cor}\ollabel{ordissetofsmallerord}
+किसी भी क्रमसूचक~$\alpha$ के लिए
+$\alpha = \Setabs{\beta \in \alpha}{\beta \text{ क्रमसूचक है}}$।
+\end{cor}
+
+\begin{proof}
+\olref{ordmemberord} से तत्काल।
+\end{proof}
+
+अगले दो मुख्य परिणामों, \olref{ordinductionschema} और
+\olref{ordtrichotomy}, का मोटा आशय यह है कि स्वयं क्रमसूचक सदस्यता द्वारा
+सुव्यवस्थित हैं:
+
+\begin{thm}[परिमितेतर आगमन]\ollabel{ordinductionschema}
+किसी भी सूत्र $\phi(x)$ के लिए:
+\[
+	\text{यदि }\exists \alpha \phi(\alpha)\text{, तो }\exists \alpha(\phi(\alpha)
+	\land  (\forall \beta \in \alpha) \lnot \phi(\beta))
+\]
+जहाँ प्रदर्शित परिमाणक निहित रूप से क्रमसूचकों तक सीमित हैं।
+\end{thm}
+
+\begin{proof}
+%\olref{ordinductionschema1}. 
+किसी क्रमसूचक $\alpha$ के लिए $\phi(\alpha)$ मान लें। यदि
+$(\forall \beta \in \alpha) \lnot \phi(\beta)$, तो काम पूरा है। अन्यथा,
+चूँकि $\alpha$ क्रमसूचक है, उसका कोई $\in$-लघुतम !!{element} है जो $\phi$
+को संतुष्ट करता है; और \olref{ordmemberord} से वह क्रमसूचक है।
+%	\olref{ordinductionschema2}. Suppose there is some ordinal
+%	$\gamma$ such that $\lnot\phi(\gamma)$. Then by
+%	\olref{ordinductionschema1}, there is an $\in$-minimal ordinal
+%	$\alpha$ for which $\lnot\phi(\alpha)$. So $(\forall \beta <
+%	\alpha) \phi(\beta)$, rendering the antecedent of the conditional
+%	false.
+\end{proof}
+\noindent
+ध्यान दें कि हम \olref{ordinductionschema} को समान रूप से इस योजना में
+व्यक्त कर सकते हैं:
+\[
+\text{यदि }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif
+\phi(\alpha))\text{, तो }\forall \alpha\phi(\alpha)
+\]
+इसके लिए \olref{ordinductionschema} में बस $\lnot\phi(\alpha)$ लेकर प्राथमिक
+तार्किक रूपांतरण करने होते हैं।
+
+\begin{thm}[त्रिकोटी]\ollabel{ordtrichotomy}
+किन्हीं क्रमसूचकों $\alpha$ और $\beta$ के लिए
+$\alpha \in \beta \lor \alpha = \beta \lor \beta \in \alpha$।
+\end{thm}
+
+\begin{proof}
+प्रमाण दोहरे आगमन द्वारा है, अर्थात \olref{ordinductionschema} का दो बार
+उपयोग करके। कहें कि $x$, $y$ से \emph{तुलनीय} है तभी और केवल तभी जब
+$x \in y \lor x = y \lor y \in x$।
+
+आगमन के लिए मान लें कि $\alpha$ में प्रत्येक क्रमसूचक \emph{प्रत्येक}
+क्रमसूचक से तुलनीय है। आगे के आगमन के लिए मान लें कि $\alpha$, $\beta$ में
+प्रत्येक क्रमसूचक से तुलनीय है। हम दिखाएँगे कि $\alpha$, $\beta$ से तुलनीय
+है। $\beta$ पर आगमन से निष्पन्न होगा कि $\alpha$ प्रत्येक क्रमसूचक से तुलनीय
+है; और फिर $\alpha$ पर आगमन से \emph{प्रत्येक} क्रमसूचक \emph{प्रत्येक}
+क्रमसूचक से तुलनीय है, जैसा अपेक्षित था। $\alpha \notin \beta$ और
+$\beta \notin \alpha$ मानकर $\alpha = \beta$ दिखाना पर्याप्त है।
+
+$\alpha \subseteq \beta$ दिखाने के लिए $\gamma \in \alpha$ को नियत करें;
+\olref{ordmemberord} से यह क्रमसूचक है। अतः पहली आगमन परिकल्पना से $\gamma$,
+$\beta$ से तुलनीय है। किंतु यदि या तो $\gamma = \beta$ या
+$\beta \in \gamma$, तो (आवश्यक होने पर $\alpha$ की संक्रमणशीलता का उपयोग
+करके) $\beta \in \alpha$, जो हमारी मान्यता के विरुद्ध है; इसलिए
+$\gamma \in \beta$। सामान्यीकरण करने पर $\alpha \subseteq \beta$।
+
+दूसरी आगमन परिकल्पना का उपयोग करने वाला ठीक समान तर्क
+$\beta \subseteq \alpha$ दिखाता है। अतः $\alpha = \beta$।
+\end{proof}\noindent
+इसलिए हम कभी-कभी $\alpha \in \beta$ के बजाय $\alpha <\beta$ लिखेंगे,
+क्योंकि $\in$ क्रम संबंध जैसा व्यवहार कर रहा है। परिचय और यह तथ्य कि
+$\alpha \in \beta \lor \alpha = \beta$ की अपेक्षा $\alpha \leq \beta$
+लिखना सरल है, इसके अतिरिक्त कोई गहरा कारण नहीं।\footnote{हम
+$\alpha \mathrel{\underline{\in}} \beta$ लिख सकते थे; किंतु वह पूरी तरह
+अमानक होता।}
+
+हमारे पिछले परिणामों के दो त्वरित परिणाम ये हैं, जिनमें पहला हमारे नए
+संकेतन को काम में लाता है:
+
+\begin{cor}\ollabel{ordordered}
+यदि $\exists \alpha\phi(\alpha)$, तो $\exists \alpha(\phi(\alpha)
+\land \forall \beta(\phi(\beta) \lif \alpha \leq \beta))$.
+इसके अतिरिक्त किन्हीं क्रमसूचकों $\alpha, \beta, \gamma$ के लिए
+$\alpha \notin \alpha$ और
+$\alpha \in \beta \in \gamma \lif \alpha \in \gamma$, दोनों।
+\end{cor}
+
+\begin{proof}
+ठीक \olref[wo]{wo:strictorder} की तरह।
+\end{proof}
+
+\begin{prob}
+\olref[sth][ordinals][basic]{ordtrichotomy} के प्रमाण का ``ठीक समान तर्क''
+पूर्ण कीजिए।
+\end{prob}
+
+\begin{cor}\ollabel{corordtransitiveord}
+$A$ क्रमसूचक तभी और केवल तभी है जब $A$ क्रमसूचकों का संक्रमणशील समुच्चय है।
+\end{cor}
+
+\begin{proof}
+\emph{बाएँ से दाएँ।} \olref{ordmemberord} से। \emph{दाएँ से बाएँ।}
+यदि $A$ क्रमसूचकों का संक्रमणशील समुच्चय है, तो
+\olref{ordinductionschema} और \olref{ordtrichotomy} से $\in$, $A$ को
+सुव्यवस्थित करता है।
+\end{proof}
+
+हमने \olref{ordinductionschema} और \olref{ordtrichotomy} का आशय यह बताया
+कि $\in$ क्रमसूचकों को सुव्यवस्थित करता है। किंतु निम्न परिणाम के कारण ऐसे
+दावे के विषय में हमें \emph{बहुत सावधान} रहना होगा:
+
+\begin{thm}[बुराली--फ़ोर्टी विरोधाभास]\ollabel{buraliforti}
+समस्त क्रमसूचकों का कोई समुच्चय नहीं है।
+\end{thm}
+
+\begin{proof}
+विरोधाभास द्वारा प्रमाण के लिए मान लें कि $O$ समस्त क्रमसूचकों का समुच्चय
+है। यदि $\alpha \in \beta \in O$, तो \olref{ordmemberord} से $\alpha$
+क्रमसूचक है, अतः $\alpha \in O$। इसलिए $O$ संक्रमणशील है और इस प्रकार
+\olref{corordtransitiveord} से $O$ क्रमसूचक है। फलतः $O \in O$, जो
+\olref{ordordered} के विरुद्ध है।
+\end{proof}
+\noindent
+इस परिणाम का नाम \citeauthor{Burali-Forti1897} पर है। किंतु 1899 में
+डेडेकिंड को लिखे पत्र में कैंटर ने पहली बार स्पष्टतः वह \emph{विरोधाभास}
+देखा जो समस्त क्रमसूचकों का समुच्चय मानने से उत्पन्न होता है। वैन हेयेनॉर्ट
+के शब्दों में:
+\begin{quote}
+  स्वयं बुराली--फ़ोर्टी ने माना कि विरोधाभास \emph{असंगति तक अपचय} द्वारा
+  यह परिणाम स्थापित करता है कि क्रमसूचकों का स्वाभाविक क्रम केवल एक आंशिक
+  क्रम है।
+  \citep[p.~105]{Heijenoort1967}
+\end{quote}
+बुराली--फ़ोर्टी की भूल को अलग रखकर पिछले विवेचन का सार इस प्रकार है।
+क्रमसूचक ऐसे समुच्चय हैं जो अलग-अलग सदस्यता द्वारा सुव्यवस्थित हैं और सामूहिक
+रूप से भी सदस्यता द्वारा सुव्यवस्थित हैं (बिना सामूहिक रूप से कोई समुच्चय
+बनाए)।
+
+इसे पूर्ण करने के लिए क्रमसूचकों के कुछ और मूल गुण ये हैं, जो
+\olref{ordinductionschema} और \olref{ordtrichotomy} से निष्पन्न होते हैं।
+
+\begin{prop}
+क्रमसूचकों का प्रत्येक कड़ाई से अवरोही अनुक्रम परिमित है।
+\end{prop}
+
+\begin{proof}
+क्रमसूचकों के किसी अनंत कड़ाई से अवरोही अनुक्रम
+$\alpha_0 > \alpha_1 > \alpha_2 > \ldots$ का कोई $<$-न्यूनतम सदस्य नहीं
+है, जो \olref{ordinductionschema} के विरुद्ध है।
+\end{proof}
+
+\begin{prop}\ollabel{ordinalsaresubsets}
+किन्हीं क्रमसूचकों $\alpha, \beta$ के लिए
+$\alpha \subseteq \beta \lor \beta \subseteq \alpha$।
+\end{prop}
+
+\begin{proof}
+यदि $\alpha \in \beta$, तो $\beta$ की संक्रमणशीलता से
+$\alpha \subseteq \beta$। इसी प्रकार यदि $\beta \in \alpha$, तो
+$\beta \subseteq \alpha$। और यदि $\alpha = \beta$, तो
+$\alpha \subseteq \beta$ और $\beta \subseteq \alpha$। अतः
+\olref{ordtrichotomy} से काम पूरा है।
+\end{proof}
+
+\begin{prop}\ollabel{ordisoidentity}
+किन्हीं क्रमसूचकों $\alpha, \beta$ के लिए $\alpha = \beta$ तभी और केवल
+तभी जब $\ordeq{\alpha}{\beta}$।
+\end{prop}
+
+\begin{proof}
+क्रमसूचक सुव्यवस्थाएँ हैं; अतः यह त्रिकोटी
+(\olref[basic]{ordtrichotomy}) और \olref[iso]{wellordnotinitial} से तत्काल
+मिलता है।
+\end{proof}
+
+\begin{prob}\ollabel{probunionordinalsordinal}
+सिद्ध कीजिए कि यदि $X$ का प्रत्येक सदस्य क्रमसूचक है, तो $\bigcup X$
+क्रमसूचक है।
+\end{prob}
+
+\end{document}

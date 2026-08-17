@@ -1,0 +1,51 @@
+% Target-only first-order-logic profile build wrapper for HI-OLP-0093.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\usepackage{needspace}
+\usepackage{xr-hyper}
+% Import only the six frozen cross-file labels used by this standalone
+% defect-check reader. Values are copied verbatim from the complete English
+% control build at commit 9620cc7; the translated source itself stays intact.
+\externaldocument{soundness-external-labels}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\setlength{\emergencystretch}{2em}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{स्वाभाविक निगमन: सुदृढ़ता}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\firmlists
+% Seven lines are sufficient for the compact cases.  The second item of the
+% main induction (the second enumerate environment) needs a larger reservation
+% so its introductory sentence and proof tree cannot be split across pages.
+% Scope the hook to enumerate environments: proof/theorem internals also call
+% \item, and must not participate in this pagination rule.
+\newcount\hisoundnessenumcount
+\newif\ifhisoundnessenumactive
+\AtBeginEnvironment{enumerate}{%
+  \global\advance\hisoundnessenumcount by 1\relax
+  \hisoundnessenumactivetrue
+}
+\AtEndEnvironment{enumerate}{\hisoundnessenumactivefalse}
+\pretocmd{\item}{%
+  \ifhisoundnessenumactive
+    \ifnum\hisoundnessenumcount=2
+      \ifnum\value{enumi}=1
+        \Needspace{12\baselineskip}%
+      \else
+        \Needspace{7\baselineskip}%
+      \fi
+    \else
+      \Needspace{7\baselineskip}%
+    \fi
+  \fi
+}{}{}
+\AtBeginEnvironment{thm}{\Needspace{7\baselineskip}}
+\AtBeginEnvironment{prob}{\Needspace{6\baselineskip}}
+\AtBeginEnvironment{cor}{\Needspace{5\baselineskip}}
+
+\begin{document}
+\tagtrue{FOL}
+\subfile{soundness}
+\end{document}

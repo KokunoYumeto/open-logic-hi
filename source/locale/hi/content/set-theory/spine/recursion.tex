@@ -1,0 +1,149 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{sth}{spine}{recursion}
+\olsection{परिमितेतर पुनरावर्तन प्रमेय}
+
+सबसे पहले हमें यह पुष्टि करनी होगी कि \olref[valpha]{defValphas} एक सफल
+परिभाषा है। अधिक सामान्यतः हमें सिद्ध करना है कि (परिमितेतर) पुनरावर्तन
+द्वारा परिमितेतर परिभाषा देने का प्रत्येक प्रयास सफल होगा। यही इस अनुभाग का
+उद्देश्य है।
+
+\emph{चेतावनी: यह कठिन सामग्री है।} फिर भी व्यापक शिक्षा काफ़ी सरल है:
+परिमितेतर आगमन और प्रतिस्थापन मिलकर परिमितेतर पुनरावर्तन के (कई रूपों की)
+वैधता की गारंटी देते हैं।\footnote{स्मरण रहे: सभी सूत्रों और पदों में प्राचल
+हो सकते हैं (जब तक स्पष्टतः अन्यथा न कहा गया हो)।}
+
+\begin{defn}
+	$\tau(x)$ को पद, $f$ को फलन और $\alpha$ को क्रमसूचक मानें। हम $f$ को
+	$\tau$ का \emph{$\alpha$-सन्निकटन} तभी और केवल तभी कहते हैं जब
+	$\dom{f} = \alpha$ और
+	$(\forall \beta \in \alpha)f(\beta) =
+	\tau(\funrestrictionto{f}{\beta})$, दोनों हों।
+\end{defn}
+
+\begin{lem}[परिबद्ध पुनरावर्तन]\ollabel{transrecursionfun}
+किसी भी पद $\tau(x)$ और किसी भी क्रमसूचक $\alpha$ के लिए $\tau$ का एक
+अद्वितीय $\alpha$-सन्निकटन है।
+\end{lem}
+\begin{proof}
+हम दिखाएँगे कि किसी भी $\gamma \leq \alpha$ के लिए एक अद्वितीय
+$\gamma$-सन्निकटन है।
+
+पहले अद्वितीयता स्थापित करें। $g$ और $h$ को क्रमशः $\gamma$- और
+$\delta$-सन्निकटन मानें। उनके निवेशों पर परिमितेतर आगमन दिखाता है कि किसी भी
+$\beta \in \dom{g} \cap \dom{h} = \gamma \cap \delta =
+\min(\gamma, \delta)$ के लिए $g(\beta) = h(\beta)$। अतः हमारे सन्निकटन
+(यदि उनका अस्तित्व है) अद्वितीय हैं और सभी मानों पर सहमत हैं।
+
+अस्तित्व स्थापित करने के लिए अब हम क्रमसूचकों $\delta \leq \alpha$ पर सरल
+परिमितेतर आगमन (\olref[ordinals][opps]{simpletransrecursion}) का उपयोग करते
+हैं।
+
+रिक्त फलन तुच्छतः $\emptyset$-सन्निकटन है।
+
+यदि $g$ कोई $\gamma$-सन्निकटन है, तो
+$g \cup \{\tuple{\gamma, \tau(g)}\}$ कोई
+$\ordsucc{\gamma}$-सन्निकटन है।
+
+यदि $\gamma$ सीमा क्रमसूचक है और सभी $\delta < \gamma$ के लिए $g_\delta$
+कोई $\delta$-सन्निकटन है, तो $g = \bigcup_{\delta \in \gamma} g_\delta$
+रखें। यह फलन है, क्योंकि हमारे विभिन्न $g_\delta$ सभी मानों पर सहमत हैं।
+और यदि $\delta \in \gamma$, तो
+$g(\delta) = g_{\ordsucc{\delta}}(\delta) =
+\tau(\funrestrictionto{g_{\ordsucc{\delta}}}{\delta}) =
+\tau(\funrestrictionto{g}{\delta})$।
+
+इससे परिमितेतर आगमन द्वारा प्रमाण पूर्ण होता है।
+\end{proof}
+
+यदि हम किसी फलन के बजाय \emph{पद} को परिभाषित करने की अनुमति लें, तो पिछले
+परिणाम से परिबंध $\alpha$ हटाया जा सकता है। निम्न परिणाम के कथन और प्रमाण
+में, जब $\sigma$ पद हो, हम
+$\funrestrictionto{\sigma}{\alpha} = \Setabs{\tuple{\beta,
+\sigma(\beta)}}{\beta \in \alpha}$ रखते हैं।
+
+\begin{thm}[सामान्य पुनरावर्तन]\ollabel{transrecursionschema}
+किसी भी पद $\tau(x)$ के लिए हम स्पष्टतः ऐसा पद $\sigma(x)$ परिभाषित कर सकते
+हैं कि किसी भी क्रमसूचक~$\alpha$ के लिए
+$\sigma(\alpha) = \tau(\funrestrictionto{\sigma}{\alpha})$।
+\end{thm}
+
+\begin{proof}
+प्रत्येक $\alpha$ के लिए \olref{transrecursionfun} से~$\tau$ का अद्वितीय
+$\alpha$-सन्निकटन $f_\alpha$ है। $\sigma(\alpha)$ को
+$f_{\ordsucc{\alpha}}(\alpha)$ के रूप में परिभाषित करें। अब:
+	\begin{align*}
+		\sigma(\alpha) &= 
+		f_{\ordsucc{\alpha}}(\alpha) \\&= 
+		\tau(\funrestrictionto{f_{\ordsucc{\alpha}}}{\alpha}) \\&= 
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\alpha}}(\beta)}}{\beta \in \alpha}) \\&= 
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\beta}}(\beta)}}{\beta \in \alpha})\\&=
+		\tau(\funrestrictionto{\sigma}{\alpha})
+	\end{align*}
+यह ध्यान रखते हुए कि \olref{transrecursionfun} की तरह सभी
+$\beta < \alpha$ के लिए
+$f_{\ordsucc{\beta}}(\beta) = f_{\ordsucc{\alpha}}(\beta)$।
+\end{proof}
+\noindent 
+ध्यान दें कि \olref{transrecursionschema} एक \emph{योजना} है। निर्णायक रूप
+से हम $\sigma$ से किसी फलन, अर्थात किसी विशेष प्रकार के \emph{समुच्चय}, को
+परिभाषित करने की अपेक्षा नहीं कर सकते; क्योंकि तब $\dom{\sigma}$ समस्त
+क्रमसूचकों का समुच्चय होता, जो बुराली--फ़ोर्टी विरोधाभास
+(\olref[ordinals][basic]{buraliforti}) के विरुद्ध है।
+
+फिर भी यह दिखाना शेष है कि \olref{transrecursionschema}, $V_\alpha$ की
+हमारी परिभाषा का औचित्य सिद्ध करता है। यह तुरंत स्पष्ट न हो, पर परिमितेतर
+पुनरावर्तन के एक अंतिम सरल रूप से स्पष्ट हो जाएगा।
+
+\begin{thm}[सरल पुनरावर्तन]\ollabel{simplerecursionschema}
+किन्हीं पदों $\tau(x)$ और $\theta(x)$ तथा किसी भी समुच्चय $A$ के लिए हम
+स्पष्टतः ऐसा पद $\sigma(x)$ परिभाषित कर सकते हैं कि:
+\begin{align*}
+	\sigma(\emptyset) &= A\\
+	\sigma(\ordsucc{\alpha}) &= \tau(\sigma(\alpha)) &&
+		\text{किसी भी क्रमसूचक }\alpha\text{ के लिए}\\
+	\sigma(\alpha) &= \theta(\ran{\funrestrictionto{\sigma}{\alpha}})&&
+	\text{जब }\alpha\text{ सीमा क्रमसूचक हो}
+\end{align*}
+\end{thm}
+
+\begin{proof}
+हम पद $\xi(x)$ को इस प्रकार परिभाषित करने से आरंभ करते हैं:
+%t $\xi(x) = A$ if $x$ is not a function whose domain is an ordinal;
+%otherwise let:
+\[
+	\xi(x) = 
+	\begin{cases}
+			A &\text{यदि $x$ ऐसा फलन नहीं जिसका}\\
+			&\hspace{1em}\text{प्रांत क्रमसूचक हो; अन्यथा:}\\
+			\tau(x(\alpha)) & \text{यदि $\dom{x} = \ordsucc{\alpha}$}\\
+			\theta(\ran{x}) & \text{यदि $\dom{x}$ सीमा क्रमसूचक हो}
+	\end{cases}
+\]
+\olref{transrecursionschema} से ऐसा पद $\sigma(x)$ है कि प्रत्येक क्रमसूचक
+$\alpha$ के लिए
+$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha})$; इसके अतिरिक्त
+$\funrestrictionto{\sigma}{\alpha}$ प्रांत $\alpha$ वाला फलन है। सरल
+परिमितेतर आगमन (\olref[ordinals][opps]{simpletransrecursion}) से हम दिखाते
+हैं कि $\sigma$ में अपेक्षित गुण हैं।
+
+पहले, $\sigma(\emptyset) = \xi(\emptyset) = A$।
+
+अगला,
+$\sigma(\ordsucc{\alpha}) = \xi(\funrestrictionto{\sigma}{\ordsucc{\alpha}})
+= \tau(\funrestrictionto{\sigma}{\ordsucc{\alpha}}(\alpha))
+= \tau(\sigma(\alpha))$।
+
+अंत में, जब $\alpha$ सीमा हो, तब
+$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha})
+= \theta(\ran{\funrestrictionto{\sigma}{\alpha}})$।
+\end{proof}
+\noindent
+अब \olref[valpha]{defValphas} का औचित्य सिद्ध करने के लिए बस
+$A = \emptyset$, $\tau(x) = \Pow{x}$ और $\theta(x) = \bigcup x$ लें।
+अंततः इससे $V_\alpha$ की परिभाषा का औचित्य सिद्ध होता है!{}
+
+
+\end{document}

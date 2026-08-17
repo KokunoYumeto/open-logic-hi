@@ -1,0 +1,220 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: more-soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{tab}{msn}
+      
+\olsection{अतिरिक्त नियमों के लिए यथार्थता}
+
+हम किसी नियम को प्रतिरूपों के किसी वर्ग के लिए यथार्थ कहते हैं यदि, जब भी
+किसी !!a{tableau} की कोई शाखा उस वर्ग के किसी प्रतिरूप में संतोषणीय हो, तब
+नियम लगाने से मिली शाखा भी उस वर्ग के किसी प्रतिरूप में संतोषणीय हो।
+
+\begin{prop}
+  \ollabel{prop:soundness-T} 
+  \iftag{prvBox}{\Ax{T}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ और }%
+  \iftag{prvDiamond}{\Ax{T}$\Diamond$}{}
+  स्वपरावर्ती प्रतिरूपों के लिए यथार्थ
+  \iftag{notprvBox,notprvDiamond}{है}{हैं}।
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{शाखा को $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$
+  पर T$\Box$ लगाकर विस्तृत किया जाता है:
+  \iftag{probBox}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\True}{!B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat{M}{\Box !B}[f(\sigma)]$। चूँकि $R$ स्वपरावर्ती है, हम जानते हैं
+    कि $Rf(\sigma)f(\sigma)$। अतः $\mSat{M}{!B}[f(\sigma)]$, अर्थात्
+    $\mModel{M}, f$, $\sFmla{\True}{!B}[\sigma]$ को संतुष्ट करते हैं।}}{}
+\tagitem{prvDiamond}{शाखा को $\sFmla{\False}{\Diamond !B}[\sigma] \in
+  \Gamma$ पर T$\Diamond$ लगाकर विस्तृत किया जाता है:
+  \iftag{probDiamond}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\False}{!B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$। चूँकि $R$ स्वपरावर्ती है, हम
+    जानते हैं कि $Rf(\sigma)f(\sigma)$। अतः
+    $\mSat/{M}{!B}[f(\sigma)]$, अर्थात् $\mModel{M}, f$,
+    $\sFmla{\False}{!B}[\sigma]$ को संतुष्ट करते हैं।}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-T} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-D} 
+  \iftag{prvBox}{\Ax{D}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ और }%
+  \iftag{prvDiamond}{\Ax{D}$\Diamond$}{}
+  सीरियल प्रतिरूपों के लिए यथार्थ
+  \iftag{notprvBox,notprvDiamond}{है}{हैं}।
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{शाखा को $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$
+  पर D$\Box$ लगाकर विस्तृत किया जाता है:
+  \iftag{probBox}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\True}{\Diamond !B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः $\mSat{M}{\Box !B}[f(\sigma)]$।
+    चूँकि $R$ सीरियल है, ऐसा $w \in W$ है कि $Rf(\sigma)w$। तब
+    $\mSat{M}{!B}[w]$, अतः $\mSat{M}{\Diamond !B}[f(\sigma)]$। इसलिए
+    $\mModel{M}, f$, $\sFmla{\True}{\Diamond!B}[\sigma]$ को संतुष्ट करते
+    हैं।}}{}
+\tagitem{prvDiamond}{शाखा को $\sFmla{\False}{\Diamond !B}[\sigma] \in
+  \Gamma$ पर D$\Diamond$ लगाकर विस्तृत किया जाता है:
+  \iftag{probDiamond}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\False}{\Box !B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$। चूँकि $R$ सीरियल है, ऐसा $w \in
+    W$ है कि $Rf(\sigma)w$। तब $\mSat/{M}{!B}[w]$, अतः
+    $\mSat/{M}{\Box !B}[f(\sigma)]$। इसलिए $\mModel{M}, f$,
+    $\sFmla{\False}{\Box!B}[\sigma]$ को संतुष्ट करते हैं।}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-D} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-B} 
+  \iftag{prvBox}{\Ax{B}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ और }%
+  \iftag{prvDiamond}{\Ax{B}$\Diamond$}{}
+  सममित प्रतिरूपों के लिए यथार्थ
+  \iftag{notprvBox,notprvDiamond}{है}{हैं}।
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{शाखा को $\sFmla{\True}{\Box !B}[\sigma.n] \in
+  \Gamma$ पर B$\Box$ लगाकर विस्तृत किया जाता है:
+  \iftag{probBox}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\True}{!B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$। चूँकि $f$, शाखा के उपसर्गों की
+    $\mModel{M}$ में व्याख्या है, हम जानते हैं कि
+    $Rf(\sigma)f(\sigma.n)$। चूँकि $R$ सममित है,
+    $Rf(\sigma.n)f(\sigma)$। चूँकि $\mSat{M}{\Box !B}[f(\sigma.n)]$,
+    इसलिए $\mSat{M}{!B}[f(\sigma)]$। अतः $\mModel{M}, f$,
+    $\sFmla{\True}{!B}[\sigma]$ को संतुष्ट करते हैं।}}{}
+\tagitem{prvDiamond}{शाखा को $\sFmla{\False}{\Diamond !B}[\sigma.n]
+  \in \Gamma$ पर B$\Diamond$ लगाकर विस्तृत किया जाता है:
+  \iftag{probDiamond}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\False}{!B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$। चूँकि $f$, शाखा के उपसर्गों
+    की $\mModel{M}$ में व्याख्या है, हम जानते हैं कि
+    $Rf(\sigma)f(\sigma.n)$। चूँकि $R$ सममित है,
+    $Rf(\sigma.n)f(\sigma)$। चूँकि
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$, इसलिए
+    $\mSat/{M}{!B}[f(\sigma)]$। अतः $\mModel{M}, f$,
+    $\sFmla{\False}{!B}[\sigma]$ को संतुष्ट करते हैं।}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-B} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-4} 
+  \iftag{prvBox}{\Ax{4}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ और }%
+  \iftag{prvDiamond}{\Ax{4}$\Diamond$}{}
+  संक्रमणशील प्रतिरूपों के लिए यथार्थ
+  \iftag{notprvBox,notprvDiamond}{है}{हैं}।
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{शाखा को $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$
+  पर 4$\Box$ लगाकर विस्तृत किया जाता है:
+  \iftag{probBox}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\True}{\Box!B}[\sigma.n]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः $\mSat{M}{\Box !B}[f(\sigma)]$।
+    चूँकि $f$, शाखा के उपसर्गों की $\mModel{M}$ में व्याख्या है और
+    $\sigma.n$ प्रयुक्त होना चाहिए, हम जानते हैं कि
+    $Rf(\sigma)f(\sigma.n)$। अब $w$ कोई ऐसा जगत हो कि
+    $Rf(\sigma.n)w$। चूँकि $R$ संक्रमणशील है, $Rf(\sigma)w$। चूँकि
+    $\mSat{M}{\Box !B}[f(\sigma)]$, इसलिए $\mSat{M}{!B}[w]$। अतः
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$, और $\mModel{M}, f$,
+    $\sFmla{\True}{\Box !B}[\sigma.n]$ को संतुष्ट करते हैं।}}{}
+\tagitem{prvDiamond}{शाखा को $\sFmla{\False}{\Diamond !B}[\sigma] \in
+  \Gamma$ पर 4$\Diamond$ लगाकर विस्तृत किया जाता है:
+  \iftag{probDiamond}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\False}{\Diamond!B}[\sigma.n]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$। चूँकि $f$, शाखा के उपसर्गों की
+    $\mModel{M}$ में व्याख्या है और $\sigma.n$ प्रयुक्त होना चाहिए, हम
+    जानते हैं कि $Rf(\sigma)f(\sigma.n)$। अब $w$ कोई ऐसा जगत हो कि
+    $Rf(\sigma.n)w$। चूँकि $R$ संक्रमणशील है, $Rf(\sigma)w$। चूँकि
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$, इसलिए
+    $\mSat/{M}{!B}[w]$। अतः $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$, और
+    $\mModel{M}, f$, $\sFmla{\False}{\Diamond !B}[\sigma.n]$ को संतुष्ट
+    करते हैं।}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-4} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-4r} 
+  \iftag{prvBox}{\Ax{4r}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ और }%
+  \iftag{prvDiamond}{\Ax{4r}$\Diamond$}{}
+  यूक्लिडीय प्रतिरूपों के लिए यथार्थ
+  \iftag{notprvBox,notprvDiamond}{है}{हैं}।
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{शाखा को $\sFmla{\True}{\Box !B}[\sigma.n] \in
+  \Gamma$ पर 4r$\Box$ लगाकर विस्तृत किया जाता है:
+  \iftag{probBox}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\True}{\Box!B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$। चूँकि $f$, शाखा के उपसर्गों की
+    $\mModel{M}$ में व्याख्या है, हम जानते हैं कि
+    $Rf(\sigma)f(\sigma.n)$। अब $w$ कोई ऐसा जगत हो कि $Rf(\sigma)w$।
+    चूँकि $R$ यूक्लिडीय है, $Rf(\sigma.n)w$। चूँकि
+    $\mSat{M}{\Box !B}[f(\sigma).n]$, इसलिए $\mSat{M}{!B}[w]$। अतः
+    $\mSat{M}{\Box !B}[f(\sigma)]$, और $\mModel{M}, f$,
+    $\sFmla{\True}{\Box !B}[\sigma]$ को संतुष्ट करते हैं।}}{}
+\tagitem{prvDiamond}{शाखा को $\sFmla{\False}{\Diamond !B}[\sigma.n]
+  \in \Gamma$ पर 4r$\Diamond$ लगाकर विस्तृत किया जाता है:
+  \iftag{probDiamond}{अभ्यास।}{इससे शाखा पर नया !!{signed formula}~$\sFmla{\True}{\Box!B}[\sigma]$ मिलता है। मान लें
+    $\mSat{M}{\Gamma}[f]$, विशेषतः
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$। चूँकि $f$, शाखा के उपसर्गों
+    की $\mModel{M}$ में व्याख्या है, हम जानते हैं कि
+    $Rf(\sigma)f(\sigma.n)$। अब $w$ कोई ऐसा जगत हो कि $Rf(\sigma)w$।
+    चूँकि $R$ यूक्लिडीय है, $Rf(\sigma.n)w$। चूँकि
+    $\mSat/{M}{\Diamond !B}[f(\sigma).n]$, इसलिए
+    $\mSat/{M}{!B}[w]$। अतः $\mSat/{M}{\Diamond !B}[f(\sigma)]$, और
+    $\mModel{M}, f$, $\sFmla{\False}{\Diamond !B}[\sigma]$ को संतुष्ट
+    करते हैं।}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-4r} का प्रमाण पूरा कीजिए।
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:soundness-logics} \olref[mru]{tab:logics-rules} में दिए
+!!{tableau} तंत्र अपने-अपने प्रतिरूप-वर्गों के लिए यथार्थ हैं।
+\end{cor}
+
+\end{document}

@@ -1,0 +1,129 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: isomorphism
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{mod}{bas}{iso}
+\olsection{समरूपी संरचनाएँ}
+
+प्रथम-कोटि !!{structure}s दो प्रकार से एक जैसी हो सकती हैं। एक प्रकार से वे
+तब एक जैसी होती हैं जब उन्हीं !!{sentence}s को सत्य करती हैं। ऐसी
+!!{structure}s को हम \emph{प्राथमिकतः तुल्य} कहते हैं। किंतु संरचनाएँ बहुत
+भिन्न होकर भी उन्हीं !!{sentence}s को सत्य कर सकती हैं---उदाहरणतः एक
+!!{enumerable} हो सकती है और दूसरी नहीं। इसका कारण यह है कि किसी
+!!a{structure} के अनेक लक्षण प्रथम-कोटि भाषाओं में व्यक्त नहीं किए जा सकते:
+या तो भाषा पर्याप्त समृद्ध नहीं होती, या ल्योवेनहाइम--स्कोलेम
+(L\"owenheim--Skolem) प्रमेय जैसी
+प्रथम-कोटि तर्कशास्त्र की मूलभूत सीमाएँ आड़े आती हैं। अतः !!{structure}s एक
+दूसरे जैसी होने का एक और, अधिक कठोर अर्थ यह है कि वे मूलतः एक ही हों: उन्हें
+बनाने वाली वस्तुएँ तो अलग हों, पर उनके संरचनात्मक लक्षण नहीं। इस बात को सटीक
+बनाने का एक साधन \emph{समरूपता} की संकल्पना है।
+
+\begin{defn}
+\ollabel{defn:elem-equiv} 
+दो !!{structure}s $\Struct{M}$ और $\Struct M'$ एक ही
+!!{language}~$\Lang{L}$ की दी गई हों। हम कहते हैं कि $\Struct{M}$ और $\Struct M'$
+\emph{प्राथमिकतः तुल्य} हैं, और इसे $\Struct{M} \equiv \Struct M'$ लिखते
+हैं, तभी और केवल तभी जब प्रत्येक !!{sentence}~$!A$, जो~$\Lang{L}$ का है,
+$\Sat{M}{!A}$ तभी और केवल तभी जब $\Sat{M'}{!A}$।
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:isomorphism} दो !!{structure}s $\Struct{M}$ और
+$\Struct M'$ एक ही !!{language}~$\Lang L$ की दी गई हों। हम कहते हैं कि
+$\Struct{M}$ और $\Struct M'$ \emph{समरूपी} हैं, और इसे $\Struct{M}
+\simeq \Struct M'$ लिखते हैं, तभी और केवल तभी जब कोई फलन $h \colon
+\Domain{M} \to \Domain{M'}$ ऐसा हो कि:
+\begin{enumerate}
+\item $h$ !!{injective} है: यदि $h(x) =
+  h(y)$, तो $x = y$;
+\item $h$ !!{surjective} है: प्रत्येक $y \in \Domain{M'}$ के लिए कोई
+  $x \in \Domain{M}$ ऐसा है कि $h(x) = y$;
+\item \ollabel{defn:iso-const}प्रत्येक !!{constant} $c$ के लिए:
+  $h(\Assign{c}{M}) = \Assign{c}{M'}$;
+\item \ollabel{defn:iso-pred}प्रत्येक $n$-स्थानीय !!{predicate}~$P$ के लिए:
+  \[
+  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{तभी और केवल तभी जब}\quad
+  \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
+  \]
+\item \ollabel{defn:iso-func}प्रत्येक $n$-स्थानीय !!{function} $f$ के लिए:
+  \[
+  h(\Assign{f}{M}(a_1, \dots, a_n)) =
+  \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:isom}
+यदि $\Struct{M} \iso \Struct M'$, तो $\Struct{M} \elemequiv
+\Struct{M'}$।
+\end{thm}
+
+\begin{proof}
+मान लें कि $h$, $\Struct{M}$ से $\Struct M'$ पर कोई समरूपता है। किसी भी
+नियतन~$s$ के लिए $h \circ s$, $h$ और $s$ का संयोजन है, अर्थात्
+$\Struct{M'}$ में वह नियतन जिसके लिए $(h \circ s)(x) = h(s(x))$। $t$ और
+$!A$ पर आगमन द्वारा निम्न अधिक प्रबल दावे सिद्ध किए जा सकते हैं:
+\begin{enumerate}
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
+  \item[b.] $\Sat{M}{!A}[s]$ तभी और केवल तभी जब $\Sat{M'}{!A}[h \circ s]$।
+\end{enumerate}
+पहला दावा~$t$ की जटिलता पर आगमन द्वारा सिद्ध होता है।
+\begin{enumerate}
+\item यदि $t \ident c$, तो $\Value{c}{M}[s] = \Assign{c}{M}$ और
+  $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$। अतः
+  $h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$
+  (\olref{defn:isomorphism} के \olref{defn:iso-const} से) $=
+  \Value{t}{M'}[h \circ s]$.
+\item यदि $t \ident x$, तो $\Value{x}{M}[s] = s(x)$ और
+  $\Value{x}{M'}[h \circ s] = h(s(x))$। अतः $h(\Value{x}{M}[s]) =
+  h(s(x)) = \Value{x}{M'}[h \circ s]$।
+\item यदि $t \ident f(t_1, \dots, t_n)$, तो
+  \begin{align*}
+    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \quad\text{और}\\
+  \Value{t}{M'}[h \circ s] & = \Assign{f}{M}(\Value{t_1}{M'}[h \circ
+    s], \dots, \Value{t_n}{M'}[h \circ s]).
+  \end{align*}
+  आगमन-परिकल्पना है कि प्रत्येक $i$ के लिए $h(\Value{t_i}{M}[s])
+  = \Value{t_i}{M'}[h\circ s]$। इसलिए,
+  \begin{align}
+    h(\Value{t}{M}[s]) 
+    & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \notag\\
+    & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
+    h(\Value{t_n}{M}[s])) \ollabel{iso-1}\\
+    & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ s], \dots,
+    \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
+    & = \Value{t}{M'}[h\circ s] \notag
+  \end{align}
+  यहाँ \olref{iso-1}, \olref{defn:isomorphism} के
+  \olref{defn:iso-func} से और \olref{iso-2} आगमन-परिकल्पना से मिलता है।
+\end{enumerate}
+भाग (b) को अभ्यास के लिए छोड़ा गया है।
+
+यदि $!A$ कोई वाक्य है, तो नियतन~$s$ और $h \circ s$ अप्रासंगिक हैं, और
+$\Sat{M}{!A}$ तभी और केवल तभी जब $\Sat{M'}{!A}$।
+\end{proof}
+
+\begin{prob}
+\olref[mod][bas][iso]{thm:isom} के भाग (b) का प्रमाण विस्तार से दीजिए। यह
+अवश्य बताइए कि \olref[mod][bas][iso]{defn:isomorphism} में समरूपताओं को
+अभिलक्षित करने वाले पाँच गुणों में से प्रत्येक का उपयोग कहाँ हुआ है।
+\end{prob}
+
+\begin{defn}
+किसी संरचना $\Struct{M}$ की \emph{स्वसमरूपता}, $\Struct{M}$ से स्वयं उसी
+पर कोई समरूपता है।
+\end{defn}
+
+\begin{prob}
+दिखाइए कि किसी भी संरचना $\Struct{M}$ के लिए, यदि $X$, $\Struct{M}$ का
+परिभाष्य उपसमुच्चय है और $h$, $\Struct{M}$ की स्वसमरूपता है, तो $X
+= \Setabs{h(x)}{x \in X}$ (अर्थात् $X$, $h$ के अधीन अचर रहता है)।
+\end{prob}
+
+
+\end{document}

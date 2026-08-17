@@ -1,0 +1,51 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: propositions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sem}{pro}
+
+\olsection{प्रतिज्ञप्तियाँ}
+
+कभी-कभी संबंधात्मक प्रतिरूप~$\mModel{M}$ के उन जगतों के समुच्चय का नाम
+होना उपयोगी है जहाँ कोई !!{formula}~$!A$ सत्य है। हम इसे~$!A$ द्वारा परिभाषित
+\emph{प्रतिज्ञप्ति} कहते हैं और $\Prop{M}{!A}$ लिखते हैं।
+
+\begin{defn}
+  हम फलन $V$ को फलन $\Prop{M}{!A} \colon \Frm \to \Pow{W}$ तक
+  आगमनात्मक रूप से इस प्रकार विस्तृत करते हैं:
+  \begin{enumerate}
+  \item $\Prop{M}{\lfalse} = \emptyset$
+  \item $\Prop{M}{p} = V(p)$
+  \item $\Prop{M}{\lnot !B} = {}$
+    \[
+      \Setabs{w \in W}{\text{$Rww'$ वाले प्रत्येक $w'$ के लिए $w'
+          \notin \Prop{M}{!B}$}}.
+    \]
+  \item $\Prop{M}{!B \land !C} = \Prop{M}{!B} \cap \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \lor !C} = \Prop{M}{!B} \cup \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \lif !C} = {}$
+    \[
+      \Setabs{w \in W}{\text{$Rww'$ वाले प्रत्येक $w'$ के लिए, यदि $w'
+          \in \Prop{M}{!B}$ तो $w' \in \Prop{M}{!C}$}}.
+    \]
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+  \ollabel{prop:propositions-true}
+  $\mModel{M}{!A}[w]$ iff $w \in \Prop{M}{!A}$
+\end{prop}
+
+\begin{proof}
+  अभ्यास।
+\end{proof}
+
+\begin{prob}
+  \olref[int][sem][pro]{prop:propositions-true} सिद्ध कीजिए।
+\end{prob}
+
+\end{document}

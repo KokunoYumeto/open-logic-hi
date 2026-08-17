@@ -1,0 +1,72 @@
+% part: intuitionistic-logic
+% chapter: introduction
+% section: axiomatic-derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{int}{axd}
+
+\olsection{अभिगृहीतीय \usetoken{P}{derivation}}
+
+अंतःप्रज्ञावादी प्रतिज्ञप्तिक तर्कशास्त्र की अभिगृहीतीय !!{derivation}याँ
+संकल्पनात्मक रूप से सबसे सरल और ऐतिहासिक रूप से सबसे पहली
+!!{derivation}-प्रणालियाँ हैं। वे ठीक शास्त्रीय प्रतिज्ञप्तिक तर्कशास्त्र की
+तरह कार्य करती हैं।
+
+\begin{defn}[!!{derivability}]
+यदि $\Gamma$, $\Lang L$ के !!{formula}ों का समुच्चय है, तो $\Gamma$ से कोई
+\emph{!!{derivation}}, !!{formula}ों का ऐसा परिमित अनुक्रम $!A_1$,
+\dots,~$!A_n$ है जिसमें प्रत्येक $i \le n$ के लिए निम्न में से कोई एक
+शर्त पूरी होती है:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; अथवा
+\item $!A_i$ कोई अभिगृहीत है; अथवा
+\item $!A_i$, किन्हीं $!A_j$ और $!A_k$ से, जहाँ $j < i$ और $k < i$,
+  मोडस पोनेन्स द्वारा मिलता है; अर्थात $!A_k \ident !A_j \lif !A_i$।
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[अभिगृहीत]
+अंतःप्रज्ञावादी प्रतिज्ञप्तिक तर्कशास्त्र के \emph{अभिगृहीतों} का समुच्चय
+$\PAx$, निम्न रूपों वाले सभी !!{formula}ों से बनता है:
+\begin{align}
+  & (!A \land !B) \lif !A \ollabel{ax:land1}\\
+  & (!A \land !B) \lif !B \ollabel{ax:land2}\\
+  & !A \lif (!B \lif (!A \land !B)) \ollabel{ax:land3}\\
+  & !A \lif (!A \lor !B) \ollabel{ax:lor1}\\
+  & !A \lif (!B \lor !A) \ollabel{ax:lor2}\\
+  & (!A \lif !C) \lif ((!B \lif !C) \lif ((!A \lor !B) \lif !C)) \ollabel{ax:lor3}\\
+  & !A \lif (!B \lif !A) \ollabel{ax:lif1}\\
+  & (!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C)) \ollabel{ax:lif2}\\
+  & \lfalse \lif !A \ollabel{ax:lfalse1}
+\end{align}
+\end{defn}
+
+\begin{defn}[!!{derivability}]
+कोई !!{formula}~$!A$, $\Gamma$ से \emph{!!{derivable}} है, जिसे
+$\Gamma \Proves !A$ लिखते हैं, यदि $\Gamma$ से ऐसी कोई !!{derivation} है
+जो $!A$ पर समाप्त होती है।
+\end{defn}
+
+\begin{defn}[प्रमेय]
+कोई !!{formula}~$!A$ \emph{प्रमेय} है, यदि रिक्त समुच्चय से~$!A$ की कोई
+!!{derivation} है। यदि $!A$ प्रमेय है तो हम $\Proves !A$, और यदि नहीं है
+तो $\Proves/ !A$ लिखते हैं।
+\end{defn}
+
+\begin{prop}
+  यदि अंतःप्रज्ञावादी तर्कशास्त्र की अभिगृहीतीय !!{derivation}-प्रणाली में
+  $\Gamma \Proves !A$, तो शास्त्रीय तर्कशास्त्र में भी
+  $\Gamma \Proves !A$। विशेषतः, यदि $!A$ अंतःप्रज्ञावादी प्रमेय है, तो वह
+  शास्त्रीय प्रमेय भी है।
+\end{prop}
+
+\begin{proof}
+  प्रत्येक अंतःप्रज्ञावादी अभिगृहीत शास्त्रीय अभिगृहीत भी है; अतः
+  अंतःप्रज्ञावादी तर्कशास्त्र की प्रत्येक !!{derivation}, शास्त्रीय
+  तर्कशास्त्र की भी !!{derivation} है।
+\end{proof}
+
+\end{document}

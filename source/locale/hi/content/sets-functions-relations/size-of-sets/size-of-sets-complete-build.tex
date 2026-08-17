@@ -1,0 +1,30 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0052.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+% Frozen reference into the Sets chapter, absent from this chapter-only PDF.
+\makeatletter
+\expandafter\def\csname r@sfr:set:rus:thm:russells-paradox\endcsname
+  {{1.{29}}{}{}{}{}}
+\expandafter\def\csname r@sfr:set:rus:thm:russells-paradox@cref\endcsname
+  {{[thm][29][1]1.{29}}{}{}{}{}}
+\makeatother
+\AtBeginEnvironment{thebibliography}{\raggedright}
+\pdfstringdefDisableCommands{%
+  \def\usetoken#1#2{गणनीय}%
+  \def\printtoken#1#2{अगणनीय}%
+}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{समुच्चयों का आकार}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+\renewcommand*{\theolchapter}{siz}
+
+\begin{document}
+\nocite{Frege1953}
+\subfile{size-of-sets-complete}
+\end{document}

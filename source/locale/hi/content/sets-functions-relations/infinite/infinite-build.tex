@@ -1,0 +1,49 @@
+% Target-only integrated chapter defect-check wrapper for HI-OLP-0046.
+\documentclass[../../../include/open-logic-section]{subfiles}
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize संशोधन~9620cc7}
+\renewcommand*{\photocredits}{}
+% Frozen identities outside this chapter. Empty destinations avoid inventing
+% links to absent chapters in this private integration build.
+\makeatletter
+\expandafter\def\csname r@sth:::part\endcsname
+  {{sth}{}{}{}{}}
+\expandafter\def\csname r@sth:::part@cref\endcsname
+  {{[part][0][0]sth}{}{}{}{}}
+\expandafter\def\csname r@sth:ord-arithmetic::chap\endcsname
+  {{ord-arithmetic}{}{}{}{}}
+\expandafter\def\csname r@sth:ord-arithmetic::chap@cref\endcsname
+  {{[chapter][0][0]ord-arithmetic}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:ref:sec\endcsname
+  {{arith.5}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith:ref:sec@cref\endcsname
+  {{[section][5][0]arith.5}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith::chap\endcsname
+  {{arith}{}{}{}{}}
+\expandafter\def\csname r@sfr:arith::chap@cref\endcsname
+  {{[chapter][0][0]arith}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:sb:thm:schroder-bernstein\endcsname
+  {{siz.{25}}{}{}{}{}}
+\expandafter\def\csname r@sfr:siz:sb:thm:schroder-bernstein@cref\endcsname
+  {{[thm][25][0]siz.{25}}{}{}{}{}}
+\makeatother
+\crefname{part}{भाग}{भाग}
+\Crefname{part}{भाग}{भाग}
+\crefname{chapter}{अध्याय}{अध्याय}
+\Crefname{chapter}{अध्याय}{अध्याय}
+\crefname{section}{खंड}{खंड}
+\Crefname{section}{खंड}{खंड}
+\pdfstringdefDisableCommands{\def\Nat{N}\def\Real{R}}
+\renewcommand*{\bibname}{संदर्भ}
+\renewcommand*{\refname}{संदर्भ}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{अनंत समुच्चय}}
+  \ifgitinfo\
+  #1 द्वारा /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\RenewDocumentCommand \oldebugnote { s o m } {}
+% The full OLP import layer establishes this symbolic chapter identifier.
+\renewcommand*{\theolchapter}{infinite}
+
+\begin{document}
+\subfile{infinite}
+\end{document}

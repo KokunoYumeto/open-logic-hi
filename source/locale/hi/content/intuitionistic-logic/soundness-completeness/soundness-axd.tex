@@ -1,0 +1,58 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: soundness-axd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{int}{sc}{sax}
+
+\olsection{अभिगृहीतीय \usetoken{P}{derivation} की यथार्थता}
+
+\begin{editorial}
+  यथार्थता-प्रमाण इस तथ्य पर निर्भर है कि सभी अभिगृहीत अंतःप्रज्ञावादी रूप
+  से मान्य हैं; इसे अभी सिद्ध करना शेष है, उदाहरणार्थ अर्थविज्ञान अध्याय में।
+\end{editorial}
+
+\begin{thm}[यथार्थता]
+  \ollabel{thm:soundness}
+  यदि $\Gamma \Proves !A$, तो $\Gamma \Entails !A$।
+\end{thm}
+
+\begin{proof}
+  हम सिद्ध करते हैं कि यदि $\Gamma \Proves !A$, तो
+  $\Gamma \Entails !A$। प्रमाण,~$\Gamma$ से~$!A$ की !!{derivation} में
+  !!{formula}ों की संख्या~$n$ पर आगमन द्वारा है। हम दिखाते हैं कि यदि
+  $!A_1$, \dots, $!A_n = !A$,~$\Gamma$ से कोई !!{derivation} है, तो
+  $\Gamma \Entails !A_n$। ध्यान दें कि यदि $!A_1$, \dots, $!A_n$ कोई
+  !!{derivation} है, तो प्रत्येक $k<n$ के लिए $!A_1$, \dots, $!A_k$ भी
+  !!{derivation} है।
+
+  लंबाई~$0$ की कोई !!{derivation} नहीं है, अतः $n=0$ के लिए दावा रिक्ततः
+  सत्य है। मान लें कि दावा लंबाई~$<n$ वाली सभी !!{derivation}यों के लिए
+  सत्य है। हम~$!A_n$ के औचित्य के अनुसार मामलों में भेद करते हैं।
+  
+  \begin{enumerate}
+  \item $!A_n$ कोई अभिगृहीत है। सभी अभिगृहीत मान्य हैं, अतः किसी भी
+    ~$\Gamma$ के लिए $\Gamma \Entails !A_n$।
+  \item $!A_n \in \Gamma$। तब किसी भी $\mModel{M}$ और $w$ के लिए, यदि
+    $\mSat{M}{\Gamma}[w]$, तो स्पष्टतः
+    $\mSat{M}{\Gamma}{!A_n}[w]$; अर्थात $\Gamma \Entails !A$।
+  \item $!A_n$,~$!A_i$ और $!A_j \ident !A_i \lif !A_n$ से \MP{} द्वारा
+    मिलता है। $!A_1$, \dots, $!A_i$ और $!A_1$, \dots, $!A_j$,~$\Gamma$
+    से !!{derivation}याँ हैं, इसलिए आगमन-परिकल्पना से
+    $\Gamma \Entails !A_i$ और $\Gamma \Entails !A_i \lif !A_n$।
+    
+    मान लें $\mSat{M}{\Gamma}[w]$। चूँकि $\mSat{M}{\Gamma}[w]$ और
+    $\Gamma \Entails !A_i \lif !A_n$, इसलिए
+    $\mSat{M}{!A_i \lif !A_n}[w]$। परिभाषा से इसका अर्थ है कि $Rww'$ वाले
+    सभी $w'$ के लिए, यदि $\mSat{M}{!A_i}[w']$ तो
+    $\mSat{M}{!A_n}[w']$। चूँकि $R$ स्वपरावर्ती है, $w$ भी उन $w'$ में है
+    जिनके लिए $Rww'$; अर्थात यदि $\mSat{M}{!A_i}[w]$ तो
+    $\mSat{M}{!A_n}[w]$। चूँकि $\Gamma \Entails !A_i$,
+    $\mSat{M}{!A_i}[w]$। अतः $\mSat{M}{!A_n}[w]$, जैसा हमें दिखाना था।
+  \end{enumerate}
+\end{proof}
+
+\end{document}

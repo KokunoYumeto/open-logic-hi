@@ -1,0 +1,93 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: logics-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[hi]{nml}{prf}{prf}
+
+\olsection{\usetoken{P}{derivation} और मोडल तंत्र}
+
+पहले हम परिभाषित करते हैं कि सामान्य मोडल तर्कशास्त्रों के लिए
+!!{derivation} क्या है। मोटे तौर पर, !!{derivation} !!{formula}ों का ऐसा
+अनुक्रम है जिसमें प्रत्येक !!{element} या तो अनेक \emph{अभिगृहीतों} में से
+किसी एक का (प्रतिस्थापन-दृष्टांत) है, या कुछ अनुमान-नियमों में से किसी नियम
+से पूर्ववर्ती !!{element}ों से निकलता है। सामान्य मोडल तर्कशास्त्रों के लिए
+सर्वसत्यताओं\iftag{prvDiamond}{, \Ax{K} और~\Dual{}}{ और~\Ax{K}} के सभी
+दृष्टांत अभिगृहीत माने जाते हैं। इससे सबसे छोटा सामान्य मोडल तर्कशास्त्र,
+मोडल तंत्र~$\Log{K}$, मिलता है। अन्य तंत्र पाने के लिए हम अतिरिक्त अभिगृहीत
+जोड़ सकते हैं। नियम सदैव मोडस पोनेन्स~\MP{} और आवश्यकीकरण~\Nec{} हैं।
+
+\begin{defn}
+  कोई मोडल तंत्र $\Log{K} !A_1 \dots !A_n$ और !!{formula}~$!B$ दिए होने पर
+  हम कहते हैं कि $!B$, $\Log{K} !A_1 \dots !A_n$ में
+  \emph{!!{derivable}} है, जिसे $\Log{K} !A_1 \dots !A_n \Proves !B$
+  लिखते हैं, तभी जब ऐसे !!{formula} $!C_1$, \dots, $!C_k$ हों कि $!C_k=!B$
+  और प्रत्येक $!C_i$ या तो कोई सर्वसत्यतात्मक दृष्टांत हो, या $\Ax{K}$,
+  \iftag{prvDiamond}{$\Dual$,}{} $!A_1$, \dots, $!A_n$ में से किसी का
+  दृष्टांत हो, या नियम \MP{} अथवा~\Nec{} से पूर्ववर्ती !!{formula}ों से निकले।
+\end{defn}
+
+निम्न प्रतिज्ञप्ति हमें $!B$ की कोई $\Sigma$-!!{derivation} प्रस्तुत करके
+$!B \in \Sigma$ दिखाने देती है।
+
+\begin{prop}
+  $\Log{K} !A_1 \dots !A_n = \Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B}$.
+\end{prop}
+
+\begin{proof}
+  हम !!{derivation}यों की लंबाई पर आगमन से दिखाते हैं कि
+  $\Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B} \subseteq
+  \Log{K} !A_1 \dots !A_n$.
+
+  यदि $!B$ की !!{derivation} की लंबाई~$1$ है, तो उसमें एक ही !!{formula} है।
+  वह !!{formula} \MP{} या \Nec{} से पूर्ववर्ती सूत्रों से नहीं निकल सकता,
+  इसलिए वह कोई सर्वसत्यतात्मक दृष्टांत, \Ax{K},
+  \iftag{prvDiamond}{$\Dual$,}{} या $!A_1$, \dots,~$!A_n$ में से किसी का
+  दृष्टांत होना चाहिए। $\Log{K}!A_1\dots!A_n$ में ये भी हैं, अतः
+  $!B \in \Log{K}!A_1 \dots !A_n$।
+
+  यदि $!B$ की !!{derivation} की लंबाई~$>1$ है, तो $!B$ इसके अतिरिक्त
+  !!{derivation} की अंतिम पंक्ति से पहले आने वाले !!{formula}ों से \MP{} या
+  \Nec{} द्वारा मिल सकता है। यदि $!B$, $!C$ और $!C \lif !B$ से (\MP{} द्वारा)
+  निकलता है, तो आगमन-परिकल्पना से $!C$ और
+  $!C \lif !B \in \Log{K}!A_1 \dots !A_n$। प्रत्येक मोडल तर्कशास्त्र मोडस
+  पोनेन्स के अधीन संवृत है, अतः $!B \in \Log{K}!A_1 \dots !A_n$। यदि
+  $!B \equiv \Box !C$, $!C$ से \Nec{} द्वारा निकलता है, तो आगमन-परिकल्पना
+  से $!C \in \Log{K}!A_1 \dots !A_n$। प्रत्येक सामान्य मोडल तर्कशास्त्र
+  $\Nec$ के अधीन संवृत है, अतः $!B \in \Log{K}!A_1\dots!A_n$।
+
+  विलोम समावेशन यह दिखाने से मिलता है कि
+  $\Sigma = \Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B }$
+  ऐसा सामान्य मोडल तर्कशास्त्र है जिसमें $!A_1$, \dots, $!A_n$ के सभी
+  दृष्टांत हैं, और यह देखने से कि परिभाषा से $\Log{K} !A_1 \dots !A_n$
+  ऐसा सबसे छोटा तर्कशास्त्र है।
+  \begin{enumerate}
+    \item प्रत्येक सर्वसत्यता~$!B$ सर्वसत्यतात्मक दृष्टांत है, अतः
+      $\Log{K}!A_1\dots!A_n \Proves !B$; फलतः
+      $\Sigma$ में सभी सर्वसत्यताएँ हैं।
+    \item यदि $\Log{K}!A_1\dots!A_n \Proves !C$ और
+      $\Log{K}!A_1\dots!A_n \Proves !C \lif !B$, तो
+      $\Log{K}!A_1\dots!A_n \Proves !B$: $!C$ की !!{derivation} को
+      $!C \lif !B$ की !!{derivation} से मिलाएँ और पंक्ति~$!B$ जोड़ें। अंतिम
+      पंक्ति \MP{} से उचित है। अतः $\Sigma$ मोडस पोनेन्स के अधीन संवृत है।
+    \item यदि $!B$ की कोई !!{derivation} है, तो $!B$ के प्रत्येक
+      प्रतिस्थापन-दृष्टांत की भी !!{derivation} है: प्रतिस्थापन को
+      !!{derivation} के प्रत्येक !!{formula} पर लागू करें। (अभ्यास:
+      !!{derivation} की लंबाई पर आगमन से सिद्ध करें कि परिणाम भी सही
+      !!{derivation} है।) अतः $\Sigma$ एकरूप प्रतिस्थापन के अधीन संवृत है।
+      (अब हमने स्थापित किया है कि $\Sigma$ मोडल तर्कशास्त्र की सभी शर्तें
+      संतुष्ट करता है।)
+    \item हमारे पास $\Log{K}!A_1\dots!A_n \Proves \Ax{K}$, अतः
+      $K \in \Sigma$।
+    \tagitem{prvDiamond}{हमारे पास
+      $\Log{K}!A_1\dots!A_n \Proves \Dual$, अतः $\Dual \in \Sigma$।}{}
+    \item यदि $\Log{K}!A_1\dots!A_n \Proves !C$, तो अतिरिक्त
+      पंक्ति~$\Box !C$, \Nec{} से उचित है। फलतः $\Sigma$, \Nec{} के अधीन
+      संवृत है। अतः $\Sigma$ सामान्य है।
+  \end{enumerate}
+\end{proof}
+
+\end{document}
