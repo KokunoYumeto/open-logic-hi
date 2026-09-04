@@ -1,5 +1,7 @@
 # ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण
 
+> यह संस्करण [ओपन लॉजिक अनुवादों की केंद्रीय सूची](https://github.com/KokunoYumeto/OpenLogic-translations) में दर्ज है; सूची अनूदित स्रोतों की पूर्णता और स्वतंत्र पाठक की पूर्णता को अलग-अलग बताती है।
+
 *Open Logic Project — Complete Hindi Edition*
 
 ## अभी पढ़ें
@@ -18,7 +20,7 @@
 है। अनुवाद-स्रोत पूर्ण हैं; शेष स्रोत फ़ाइलें शून्य हैं।
 
 मूल कृति और लेखक: **Open Logic Project**। हिंदी रूपांतरण और टाइपसेटिंग:
-**AI typesetting & translation**, Floris के निर्देश पर OpenAI 5.6 Sol (Ultra
+**AI typesetting & translation**, परियोजना-संपादक के निर्देश पर OpenAI 5.6 Sol (Ultra
 mode) द्वारा। इसे मानव-समीक्षित, सहकर्मी-समीक्षित, आलोचनात्मक संस्करण,
 आधिकारिक Open Logic Project संस्करण या PDF/UA-प्रमाणित नहीं बताया गया है।
 
