@@ -126,7 +126,7 @@ $M$ का विन्यास क्या है।
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
 &\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
-!A(x, y)))
+{}!A(x, y)))
 \end{align*}
 यह कहता है कि यदि~$y$ चरणों के बाद मशीन अवस्था~$q_i$ में है और
 प्रतीक~$\sigma$ रखने वाला खाना~$x$ पढ़ रही है, तो $y+1$ चरणों के बाद वह
@@ -140,7 +140,7 @@ $M$ का विन्यास क्या है।
 & \lforall[x][\lforall[y][
     ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
 & \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
-!A(x, y))) \land {}\\
+{}!A(x, y))) \land {}\\
 & \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
     y)) \lif {}]\\
 & \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
@@ -166,7 +166,7 @@ $M$ का विन्यास क्या है।
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
 &\qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
-!A(x, y)))
+{}!A(x, y)))
 \end{align*}
 \end{enumerate}
 \end{enumerate}

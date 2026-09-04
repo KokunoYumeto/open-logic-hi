@@ -1,0 +1,234 @@
+{
+  "schema": "hindi-reader-release-acceptance/v1",
+  "status": "ACCEPTED_FOR_RELEASE",
+  "accepted_utc": "2026-09-04T14:26:03.852645+00:00",
+  "pdf_sha256": "91279E723A58ACDEDCDF85432D59C6CEFD17D954FBD6F342A70BFF31C1AA5253",
+  "pdf_pages": 975,
+  "pdf_bytes": 7501574,
+  "source_paths_in_reader": 722,
+  "formerly_absent_paths_now_accounted_for": 80,
+  "alternate_wrappers_shared_children_not_duplicated": 4,
+  "coverage_evidence": "INTEGRATED_READER_EVIDENCE.json",
+  "build_receipt": "BUILD-20260904T141500900Z.json",
+  "correction_ledger": "TARGET_CORRECTIONS.json",
+  "shared_config_ledger": "HELPER_CORRECTIONS.json",
+  "visual_pages": [
+    {
+      "physical_pdf_page": 1,
+      "render_sha256": "9184C62C01583CA41FD9A93C7EC95D012A2E2E3C455AD0A580ECDFFDF1EA64AD",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 23,
+      "render_sha256": "8AD8F3D7A5929672AE21B85FEA8614A1BBB315821CA5EA3F7A8A87AEBD1F8E93",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 303,
+      "render_sha256": "E0AEF0073BB95674435BAE8F707FE159BD6B4F60905F83CDB07A2ECA21C1C8D1",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 850,
+      "render_sha256": "FB7D560DC51B0D433EC9302EE8796F82E630920274135DE513A23FC60C4785AF",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 864,
+      "render_sha256": "C1CE8C573C33A62BB4F063A27F73A4B61222D0FA36E6EAA763878C2AB26A1C7E",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 890,
+      "render_sha256": "0CDC8A4C4964145E00B9EA1154B75D7D1C97D97532096F792DE76BBFBFFDE977",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 898,
+      "render_sha256": "EF2DB04B162BF62AAD66ABEE173192584A923BF54896B007F7C970B91A00C1A5",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 904,
+      "render_sha256": "C618294EF3AB932ECAF60FCA8845CA369FA7801A624A777C0B97215040CA67BB",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 918,
+      "render_sha256": "D28FEB726A4B3FAC4FDFDE35D35E3DBFCEB5724FA7B7DB93F0B429A0DE6A9530",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 924,
+      "render_sha256": "088421959A36AAFE828DBF7E1CB3CEDB6F5C8BA46EE7154362C675CD70AC4BA5",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 926,
+      "render_sha256": "43DBDCC69A97345487AE0643034CCD98AA4101D3817FED4C3EA0C0A5E1999274",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 931,
+      "render_sha256": "4718C0E6670A040CD3A245613B1768279CF45D994E7CE1A5862EE436994E6495",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 934,
+      "render_sha256": "4224EF73A82C5A2069BEBE5AFE3BAF75B0E619CD9A0BF55B828299A5A6A1A62A",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 942,
+      "render_sha256": "5F6DF307B9027BCE0504A93FC4AD796EE8E646A34892E9838766301D6F0DD414",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 945,
+      "render_sha256": "8D3ED3F08B9A737044D463DAA6601422AAB5BCB33DDEDDBF9F6614BF11F5BD52",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 951,
+      "render_sha256": "CAD8F3113106E5C092CBE54E3AF7BE03F26C55640318A60150C58D99A3CD431B",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 954,
+      "render_sha256": "F2AC888D78BA256D412EA4FAD892024634E6AC66F9F1B29EF58D59A582DF687B",
+      "render_dpi": 300,
+      "basis": "earlier visual inspection; final PNG byte-identical",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 839,
+      "render_sha256": "88E746328D88D495FEC19997EC197AEC6A2B6742907A2F9BCBAD81EBD20E391B",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 841,
+      "render_sha256": "37EA6D40337C29BE340791572CB9B6F2208781B3CD54FD89F72F7766E1760882",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 875,
+      "render_sha256": "E9E083AE35404FA1B584544B3F82A9560803056C45CEAA3FEB13B8F2CA7F333B",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 957,
+      "render_sha256": "9485107D3DFE1FCF7910564D1BE07B8486A51F7298F537D6823404AF55F29BED",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 959,
+      "render_sha256": "B5CB569616BF0DEB69B74E81EDA6F0D02490E48047900BE3F1B142D16539C73D",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 960,
+      "render_sha256": "D94D5CE98EA7429831A7154AC7B09BA0C67B4E9C34761A9A0820FC2FFF17510A",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 961,
+      "render_sha256": "DC356D93F7C9BA503A6FBD50BFB4552392CB38AA345C1FB28338404FA7F0CD9B",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 963,
+      "render_sha256": "ADE86739C5F203A229F5AEE6A9F056D5BCBD65B40E6E725BBCA54234AB692ED7",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 964,
+      "render_sha256": "EAC2933AE4E2DBE304B5D1715A76E17BF63AD11BE12DCCB944ECA851EE9043C5",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 965,
+      "render_sha256": "4D40738DB4989D3ABBE441197C216AE1DD86A6918968FA59744B7C46B1967C52",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    },
+    {
+      "physical_pdf_page": 966,
+      "render_sha256": "FCDBC266B1E13D4D3CDAEEA72C9ADB7F043C8C9146D643DFBC005B6105A0B2D4",
+      "render_dpi": 300,
+      "basis": "final PNG visually inspected",
+      "display_caveat": "Original-detail requested; tool may resize the full-page preview. Not an every-pixel certification."
+    }
+  ],
+  "visual_page_count": 28,
+  "every_page_visually_reviewed": false,
+  "independent_ai_replay": false,
+  "human_reviewed": false,
+  "peer_reviewed": false,
+  "pdf_ua_certified": false,
+  "semantic_review": "Same-writer source/target reread and literal-formula difference review of reconstructed material, as recorded in the checkpoint/logbook; not a new independent whole-corpus certification.",
+  "findings": "Dollar delimiters, inherited algebra/macro errors, stale references, three English rule introductions, iff wording, Hindi shared terms and alignment-cell macro expansion repaired. Final inspected formulas, Hindi shaping, headings and links are legible and unclipped.",
+  "limitations": [
+    "Frozen source experimental and incomplete proof fragments remain explicitly marked; complete translation does not mean those source proofs are complete.",
+    "Stable formal rule/code identifiers and bibliographic titles remain in their source notation.",
+    "Sparse final chapter/credits page is preserved; no claim of a uniquely canonical Hindi layout.",
+    "Historical structural audit and word-token count are not a mathematical correctness proof or prose word count."
+  ],
+  "evidence_hashes": {
+    "INTEGRATED_READER_EVIDENCE.json": "241802A8A446617095666BBF24CBE084BA16023C2BE248D73A8E37C34781E940",
+    "INCLUSION_GRAPH.json": "9A2A66DCF8AD7DD6BA9CE3F38DF09FEE07F154011E716D385120245ACF3EFB83",
+    "TARGET_CORRECTIONS.json": "6F69B65A60957B5C970C82D718B7E56F92C48E7833029928005AB39E0C665804",
+    "HELPER_CORRECTIONS.json": "0F82CDEE2D8741CF4750B6CE7F4D978D752A45F2C70D10A511B5165EA13D9A01",
+    "LITERAL_MATH_DIFFERENCES.json": "D1A077AE879B04C83D2824ADBBADAE4BDB7C345E592B7FA446854A0958ED14EA"
+  }
+}

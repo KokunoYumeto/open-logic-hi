@@ -32,28 +32,28 @@ $\pSat{v}{!B}$। इस अर्थविज्ञान वाले सं�
 \end{align}
 यह सत्य-फलनीय है: $!A \lif !B$ और $\lnot !A \lor !B$ समतुल्य हैं:
 \begin{align}
-  !A \lif !B & \Entails \lnot !A \lor !B\\
+  {}!A \lif !B & \Entails \lnot !A \lor !B\\
   \lnot !A \lor !B & \Entails !A \lif !B
   \intertext{भौतिक सशर्त अपने परिणामांश और अपने पूर्ववर्ती के निषेध, दोनों
     से निष्पन्न होता है:}
-  !B & \Entails !A \lif !B\\
+  {}!B & \Entails !A \lif !B\\
   \lnot !A & \Entails !A \lif !B
   \intertext{असत्य भौतिक सशर्त अपने पूर्ववर्ती और परिणामांश के निषेध के
     संयोजन के समतुल्य है: यदि $!A \lif !B$ असत्य है, तो
     $!A \land \lnot !B$ सत्य है, और विलोमतः:}
   \lnot(!A \lif !B) & \Entails !A \land \lnot !B\\
-  !A \land \lnot !B & \Entails \lnot(!A \lif !B)
+  {}!A \land \lnot !B & \Entails \lnot(!A \lif !B)
   \intertext{भौतिक सशर्त मोडस पोनेन्स को मान्य करता है:}
-  !A, !A \lif !B & \Entails !B
+  {}!A, !A \lif !B & \Entails !B
   \intertext{भौतिक सशर्त समुच्चित होता है:}
-  !A \lif !B,  !A \lif !C & \Entails !A \lif (!B \land !C)
+  {}!A \lif !B,  !A \lif !C & \Entails !A \lif (!B \land !C)
   \intertext{हम पूर्ववर्ती को सदैव प्रबल कर सकते हैं; अर्थात सशर्त
     \emph{एकदिष्ट} है:}
-  !A \lif !B & \Entails (!A \land !C) \lif !B
+  {}!A \lif !B & \Entails (!A \land !C) \lif !B
   \intertext{भौतिक सशर्त संक्रमणशील है; अर्थात शृंखला-नियम मान्य है:}
-  !A \lif !B, !B \lif !C & \Entails !A \lif !C
+  {}!A \lif !B, !B \lif !C & \Entails !A \lif !C
   \intertext{भौतिक सशर्त अपने प्रतिधनात्मक के समतुल्य है:}
-  !A \lif !B & \Entails \lnot !B \lif \lnot !A\\
+  {}!A \lif !B & \Entails \lnot !B \lif \lnot !A\\
   \lnot !B \lif \lnot !A & \Entails !A \lif !B
 \end{align}
 

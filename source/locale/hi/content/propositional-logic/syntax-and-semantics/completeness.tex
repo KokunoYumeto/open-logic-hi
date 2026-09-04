@@ -33,7 +33,7 @@
 \begin{enumerate}
 \item मान लें $!A \in \Gamma$। यदि $\lnot !A \in \Gamma$ भी, तो $\Gamma$
   असंगत है; और यदि न $!A$ न $\lnot!A$, $\Gamma$ में है, तो
-  \olref[axd]{prop:phi} से $\Gamma\cup\{!A\}$ और $\Gamma \cup \{\lnot
+  \olref[pl][axd][prv]{prop:provability-exhaustive} से $\Gamma\cup\{!A\}$ और $\Gamma \cup \{\lnot
   !A\}$ में से कोई एक संगत है, जिसका अर्थ है कि $\Gamma$ अधिकतम नहीं है।
   दूसरी दिशा भी इसी प्रकार सिद्ध होती है।
 \item यदि $!A \in \Gamma$, तो निस्संदेह $\Gamma \Proves !A$। दूसरी ओर
@@ -76,7 +76,7 @@ $\Gamma_1$,~\dots निम्न प्रकार पुनरावर्त
 अब प्रमाण बारी-बारी से निम्नलिखित तथ्य स्थापित करके आगे बढ़ता है:
 \begin{enumerate}
 \item प्रत्येक $n$ के लिए समुच्चय $\Gamma_n$ संगत है ($n$ पर आगमन और
-  \olref[axd]{prop:phi} के उपयोग से);
+  \olref[pl][axd][prv]{prop:provability-exhaustive} के उपयोग से);
 \item $\Gamma^*$ संगत है;
 \item $\Gamma^*$ अधिकतम है।
 \end{enumerate}
@@ -93,7 +93,7 @@ $p_i \in \Gamma^*$। इसके बाद $!A$ पर आगमन से द
 \end{cor}
 
 \begin{proof}
-यदि $\Gamma\Proves/ !A$, तो \olref[axd]{prop:prov-incons} से $\Gamma \cup
+यदि $\Gamma\Proves/ !A$, तो \olref[pl][axd][prv]{prop:prov-incons} से $\Gamma \cup
 \{\lnot !A\}$ संगत है। अतः पूर्णता प्रमेय से $\Gamma \cup \{\lnot !A\}$
 संतुष्टनीय है और $\Gamma \Entails/ !A$।
 \end{proof}

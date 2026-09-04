@@ -132,12 +132,12 @@ L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log
     परिकल्पना से~$\pi_1$ के अंतिम अनुक्रम का कोई अंतर्वेशक, अर्थात् ऐसा
     !!a{formula}~$!C_1$, है कि निम्न दोनों
     \begin{align*}
-    !A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
-    !C_1, \Gamma_2 & \Sequent \Delta_2
+    {}!A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
+    {}!C_1, \Gamma_2 & \Sequent \Delta_2
     \intertext{सिद्ध-योग्य हैं। हमें ऐसा !!a{formula}~$!C$ चाहिए कि निम्न
     दोनों !!{provable} हों:}
     \Gamma_1 & \Sequent \Delta_1, \lnot !A, !C &&\text{और} &
-    !C, \Gamma_2 & \Sequent \Delta_2
+    {}!C, \Gamma_2 & \Sequent \Delta_2
     \end{align*}
     स्पष्टतः हम $!C \ident !C_1$ ले सकते हैं: आगमन परिकल्पना पहले ही बताती
     है कि दायाँ अनुक्रम !!{provable} है, और बायाँ अनुक्रम आगमन परिकल्पना से
@@ -153,11 +153,11 @@ L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log
     आगमन परिकल्पना निम्न पर लगाते हैं
     \begin{align*}
     \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
-    !C_1, !A, \Gamma_2 & \Sequent \Delta_2
+    {}!C_1, !A, \Gamma_2 & \Sequent \Delta_2
     \intertext{सिद्ध-योग्य हैं। यदि हम इनमें से दूसरे पर फिर
     \RightR{\lnot} नियम लगाएँ, तो निम्न के !!{proof}s मिलते हैं}
     \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{और} &
-    !C_1, \Gamma_2 & \Sequent \Delta_2, \lnot !A
+    {}!C_1, \Gamma_2 & \Sequent \Delta_2, \lnot !A
     \end{align*}
     यदि $!C_1$ अंतर्वेशक हो तो ठीक इन्हीं अनुक्रमों को !!{provable} होना चाहिए;
     हम फिर $!C \ident !C_1$ लेते हैं। पहले की तरह $\Lang L(!C_1) \subseteq
@@ -191,10 +191,10 @@ L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log
     निष्कर्ष का प्रमुख !!{formula} है। पहली परिस्थिति में आगमन परिकल्पना लगाकर
     निम्न के !!{proof}s पाते हैं
     \begin{align*}
-    !A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&\text{और} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    {}!A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&\text{और} & {}!C_1, \Gamma_2 & \Sequent \Delta_2
     \intertext{बायाँ अनुक्रम \RightR{\lif} का उपयुक्त आधार-वाक्य है। अतः
     निम्न अनुक्रम !!{provable} हैं:}
-    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&\text{और} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&\text{और} & {}!C_1, \Gamma_2 & \Sequent \Delta_2
     \end{align*}
     इसका अर्थ है कि $!C_1$,~$\pi$ के अंतिम अनुक्रम का भी अंतर्वेशक है, और हम
     एक बार फिर $!C \ident !C_1$ ले सकते हैं।
@@ -221,9 +221,9 @@ L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log
     $!C_2$ के लिए:
     \begin{align*}
     \Gamma_1 & \Sequent \Delta_1, !A, !C_1 &&\text{(1)} &
-    !C_1, \Gamma_2 & \Sequent \Delta_2 && \text{(2)}\\
-    !B, \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
-    !C_2, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
+    {}!C_1, \Gamma_2 & \Sequent \Delta_2 && \text{(2)}\\
+    {}!B, \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    {}!C_2, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
     \end{align*}
     यदि हम दुर्बलीकरण लगाकर (1) की दाईं ओर $!C_2$ और (3) की दाईं ओर $!C_1$
     जोड़ें, तो अनुक्रम (1) और (3),~\LeftR{\lif} के आधार-वाक्य बन सकते हैं:
@@ -277,9 +277,9 @@ L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log
     इसी प्रकार होता है। आगमन परिकल्पना फिर चार !!{provable} अनुक्रम देती है:
     \begin{align*}
     \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{(1)} &
-    !C_1, \Gamma_2 & \Sequent \Delta_2, !A && \text{(2)}\\
+    {}!C_1, \Gamma_2 & \Sequent \Delta_2, !A && \text{(2)}\\
     \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
-    !C_2, !B, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
+    {}!C_2, !B, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
     \end{align*}
     अब अनुक्रम (2) और (4)—कुछ दुर्बल किए गए !!{formula}s सहित—~\LeftR{\lif}
     के आधार-वाक्य बनते हैं:
@@ -467,7 +467,7 @@ L(\Gamma_2, \Delta_2)$ में ऐसा !!a{formula}~$!C$ है कि $\Log
 \end{proof}
 
 मान लें $\Gamma$, किसी !!{language}~$\Lang L$ में !!{sentence}s का सिद्धांत
-है जिसमें कोई $n$-स्थानी {predicate}~$R$ है। हम कहते हैं कि $\Gamma$,~$R$ को
+है जिसमें कोई $n$-स्थानी !!{predicate}~$R$ है। हम कहते हैं कि $\Gamma$,~$R$ को
 \emph{परोक्ष रूप से परिभाषित करता है}, तभी और केवल तभी जब
 \begin{align*}
 \Gamma, \Gamma'
@@ -504,11 +504,11 @@ R'(x_1, \dots, x_n))]],
       \maeh{\ }{R'(c_1, \dots, c_n)}
   \intertext{जिससे ऐसा~$!A \ident !A(x_1, \dots, x_n)$ मिलता है कि}
     \Gamma, R(c_1,\dots,c_n) & \Sequent !A(c_1, \dots, c_n) \\
-    !A(c_1, \dots, c_n), \Gamma' & \Sequent R'(c_1, \dots, c_n)
+    {}!A(c_1, \dots, c_n), \Gamma' & \Sequent R'(c_1, \dots, c_n)
   \intertext{के !!{proof}s हैं। चूँकि $\Lang L(!A) = \Lang L_1 \cap \Lang
   L_2 = \Lang L(\Gamma) \setminus \{R\}$,~$!A$ में~$R$ नहीं है। दूसरे अनुक्रम
   के !!{proof} में हर जगह $R'$ को~$R$ से बदलकर निम्न का !!a{proof} पाएँ}
-    !A(c_1, \dots, c_n), \Gamma & \Sequent R(c_1, \dots, c_n)
+    {}!A(c_1, \dots, c_n), \Gamma & \Sequent R(c_1, \dots, c_n)
   \end{align*}
   निम्न का !!a{proof} पाने के लिए \RightR{\lif} और \RightR{\lforall} लगाएँ
   \[

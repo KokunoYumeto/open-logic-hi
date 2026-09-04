@@ -24,24 +24,24 @@ $!A \strictif !B$, $\lnot !A \lor !B$ के समतुल्य भी नह
 
 हमारे पास है:
 \begin{align}
-  !A \strictif !B & \Entails \lnot !A \lor !B
+  {}!A \strictif !B & \Entails \lnot !A \lor !B
   \text{ किंतु:}\\
   \lnot !A \lor !B & \Entails/ !A \strictif !B\\
-  !B & \Entails/ !A \strictif !B\\
+  {}!B & \Entails/ !A \strictif !B\\
   \lnot !A & \Entails/ !A \strictif !B\\
   \lnot(!A \lif !B) & \Entails/ !A \land \lnot !B
   \text{ किंतु:}\\
-  !A \land \lnot !B & \Entails \lnot(!A \strictif !B)
+  {}!A \land \lnot !B & \Entails \lnot(!A \strictif !B)
   \intertext{फिर भी कठोर सशर्त मोडस पोनेन्स को मान्य करता है:}
-  !A, !A \strictif !B & \Entails !B
+  {}!A, !A \strictif !B & \Entails !B
   \intertext{कठोर सशर्त समुच्चित होता है:}
-  !A \strictif !B,  !A \strictif !C & \Entails !A \strictif (!B \land !C)
+  {}!A \strictif !B,  !A \strictif !C & \Entails !A \strictif (!B \land !C)
   \intertext{कठोर सशर्त के लिए पूर्ववर्ती का प्रबलीकरण मान्य है:}
-  !A \strictif !B & \Entails (!A \land !C) \strictif !B
+  {}!A \strictif !B & \Entails (!A \land !C) \strictif !B
   \intertext{कठोर सशर्त संक्रमणशील भी है:}
-  !A \strictif !B, !B \strictif !C & \Entails !A \strictif !C
+  {}!A \strictif !B, !B \strictif !C & \Entails !A \strictif !C
   \intertext{अंततः कठोर सशर्त अपने प्रतिधनात्मक के समतुल्य है:}
-  !A \strictif !B & \Entails \lnot !B \strictif \lnot !A\\
+  {}!A \strictif !B & \Entails \lnot !B \strictif \lnot !A\\
   \lnot !B \strictif \lnot !A & \Entails !A \strictif !B
 \end{align}
 
@@ -81,7 +81,7 @@ $!A \strictif !B$, $\lnot !A \lor !B$ के समतुल्य भी नह
 \begin{align}
   \Box \lnot !A & \Entails !A \strictif !B\\
   \Box !B & \Entails !A \strictif !B\\
-  !A \strictif !B& \Entails \Box(!A \strictif !B)\\
+  {}!A \strictif !B& \Entails \Box(!A \strictif !B)\\
   \lnot(!A \strictif !B) & \Entails \Box\lnot(!A \strictif !B)
 \end{align}
 यदि $\strictif$ को ``निहित करता है'' समझें, तो ये समस्याएँ नहीं हैं। आखिर

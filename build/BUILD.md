@@ -1,11 +1,3 @@
-# संपूर्ण हिंदी पाठक बनाना
+# संकलन
 
-आवश्यकताएँ: TeX Live जिसमें `latexmk`, XeLaTeX, BibTeX और Noto Serif
-Devanagari उपलब्ध हों। Repository root से PowerShell में चलाएँ:
-
-```powershell
-./build/build.ps1
-```
-
-आउटपुट `build/out/open-logic-complete-hi-build.pdf` होगा। जमी हुई bibliography
-के लिए script `BIBINPUTS` और `BSTINPUTS` को केवल command के दौरान सेट करती है।
+वर्तमान चालक: source/locale/hi/open-logic-complete-hi-reconciled.tex। `powershell -File build/build.ps1 -Mode full` चलाएँ। पूर्ण स्रोत, फ़ॉन्ट और इतिहास release ZIP में हैं।

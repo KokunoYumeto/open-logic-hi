@@ -182,3 +182,77 @@
 \definetoken{A}{axiomatizability}{}
 \definetoken{a}{represents}{}
 \definetoken{A}{represents}{}
+
+% Proof-theory token keys are independent of the similarly named derivation
+% keys above. Their inherited English defaults were exposed by inclusion of
+% the previously omitted proof-theory graph. Localize every switch, including
+% capitalized heading forms and the English indefinite articles.
+\settexttoken{proof}{प्रमाण}{प्रमाण}[प्रमाण][प्रमाण]
+\settexttoken{prove}{सिद्ध}{सिद्ध}[सिद्ध][सिद्ध]
+\settexttoken{proving}{सिद्ध}{सिद्ध}[सिद्ध][सिद्ध]
+\settexttoken{provable}{सिद्ध-योग्य}{सिद्ध-योग्य}[सिद्ध-योग्य][सिद्ध-योग्य]
+\settexttoken{provability}{सिद्धता}{सिद्धता}[सिद्धता][सिद्धता]
+\settexttoken{nonprovability}{असिद्धता}{असिद्धता}[असिद्धता][असिद्धता]
+\settexttoken{height}{ऊँचाई}{ऊँचाइयाँ}[ऊँचाई][ऊँचाइयाँ]
+\settexttoken{depth}{गहराई}{गहराइयाँ}[गहराई][गहराइयाँ]
+\settexttoken{hp}{ऊँ.सं.}{ऊँ.सं.}[ऊँ.सं.][ऊँ.सं.]
+\settexttoken{introduction}{प्रवेशन}{प्रवेशन}[प्रवेशन][प्रवेशन]
+\settexttoken{elimination}{विलोपन}{विलोपन}[विलोपन][विलोपन]
+\definetoken{a}{proof}{}
+\definetoken{A}{proof}{}
+\definetoken{a}{prove}{}
+\definetoken{A}{prove}{}
+\definetoken{a}{proving}{}
+\definetoken{A}{proving}{}
+\definetoken{a}{provable}{}
+\definetoken{A}{provable}{}
+\definetoken{a}{provability}{}
+\definetoken{A}{provability}{}
+\definetoken{a}{nonprovability}{}
+\definetoken{A}{nonprovability}{}
+\definetoken{a}{height}{}
+\definetoken{A}{height}{}
+\definetoken{a}{depth}{}
+\definetoken{A}{depth}{}
+\definetoken{a}{hp}{}
+\definetoken{A}{hp}{}
+\definetoken{a}{introduction}{}
+\definetoken{A}{introduction}{}
+\definetoken{a}{elimination}{}
+\definetoken{A}{elimination}{}
+
+% Remaining reader-facing defaults found by checking token keys in all 722
+% registered source-matched targets. These change prose, never diagram colors
+% or mathematical/operator identifiers.
+\settexttoken{relational model}{संबंधपरक निदर्श}{संबंधपरक निदर्श}[संबंधपरक निदर्श][संबंधपरक निदर्श]
+\settexttoken{parameter}{प्राचल}{प्राचल}[प्राचल][प्राचल]
+\settexttoken{lambda define}{लैम्ब्डा-परिभाषित}{लैम्ब्डा-परिभाषित}[लैम्ब्डा-परिभाषित][लैम्ब्डा-परिभाषित]
+\settexttoken{lambda defined}{लैम्ब्डा-परिभाषित}{लैम्ब्डा-परिभाषित}[लैम्ब्डा-परिभाषित][लैम्ब्डा-परिभाषित]
+\settexttoken{lambda definable}{लैम्ब्डा-परिभाष्य}{लैम्ब्डा-परिभाष्य}[लैम्ब्डा-परिभाष्य][लैम्ब्डा-परिभाष्य]
+\settexttoken{colorC}{लाल}{लाल}[लाल][लाल]
+\settexttoken{colorD}{नीले}{नीले}[नीले][नीले]
+\settexttoken{colorE}{हरा}{हरे}[हरा][हरे]
+\definetoken{a}{relational model}{}
+\definetoken{A}{relational model}{}
+\definetoken{a}{parameter}{}
+\definetoken{A}{parameter}{}
+\definetoken{a}{lambda define}{}
+\definetoken{A}{lambda define}{}
+\definetoken{a}{lambda defined}{}
+\definetoken{A}{lambda defined}{}
+\definetoken{a}{lambda definable}{}
+\definetoken{A}{lambda definable}{}
+\definetoken{a}{colorC}{}
+\definetoken{A}{colorC}{}
+\definetoken{a}{colorD}{}
+\definetoken{A}{colorD}{}
+\definetoken{a}{colorE}{}
+\definetoken{A}{colorE}{}
+
+% Hindi names for chapter/part cross-references, after cleveref setup.
+\AtBeginDocument{%
+  \crefname{chapter}{अध्याय}{अध्याय}%
+  \Crefname{chapter}{अध्याय}{अध्याय}%
+  \crefname{part}{भाग}{भाग}%
+  \Crefname{part}{भाग}{भाग}%
+}

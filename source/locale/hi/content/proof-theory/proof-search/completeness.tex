@@ -14,8 +14,8 @@
 जाती है या कभी समाप्त नहीं होती, तो आरंभिक अनुक्रम~$\Gamma \Sequent \Delta$
 का कोई !!{proof} नहीं है। इसके लिए हम ऐसी !!a{structure}~$\Struct M$
 परिभाषित करते हैं कि प्रत्येक $!A \in \Gamma$ के लिए $\Sat{M}{!A}$ और
-प्रत्येक~$! \in \Delta$ के लिए $\Sat/{M}{!A}$ हो। दूसरे शब्दों में,
-\Struct M में~$\Gamma$ के सभी !!{formula}s सत्य और~$\Delta$ के सभी
+प्रत्येक~$!A \in \Delta$ के लिए $\Sat/{M}{!A}$ हो। दूसरे शब्दों में,
+$\Struct M$ में~$\Gamma$ के सभी !!{formula}s सत्य और~$\Delta$ के सभी
 !!{formula}s असत्य हैं; अर्थात् $\Gamma \Sequent \Delta$ वैध नहीं है। चूँकि
 \Log{G3c} निर्दोष है, $\Gamma \Sequent \Delta$ का कोई !!{proof} नहीं है।
 
@@ -28,7 +28,7 @@ $\Struct{M}$ को परिभाषित करते हैं। $\Theta, 
 \Sequent \Lambda_{n+1}$, चरण~$n+1$ में $\Pi_n \Sequent \Lambda_n$ से उत्पन्न
 ऐसा आधार-वाक्य है जिसका कलन-विधि कोई !!a{proof} नहीं खोजती। प्रत्येक~$n$ के
 लिए ऐसा आधार-वाक्य स्पष्टतः होना चाहिए, अन्यथा कलन-विधि !!a{proof} खोज चुकी
-होती। $C_n$ को~$\Pi_n \Sequent \Delta_n$ से संबद्ध !!{constant}s का समुच्चय
+होती। $C_n$ को~$\Pi_n \Sequent \Lambda_n$ से संबद्ध !!{constant}s का समुच्चय
 मानते हैं।
 
 यदि कलन-विधि केवल परमाण्विक !!{formula}s वाले किसी सर्वोच्च अनुक्रम पर बीच में
@@ -53,11 +53,16 @@ $\Struct{M}$ को परिभाषित करते हैं। $\Theta, 
 \item यदि $c \in \Domain{M}$, तो $\Assign{c}{M} = c$।
 \item यदि $f$, $\Gamma \Sequent \Delta$ में कोई $m$-स्थानी !!{function} है और
 $t_1$, \dots, $t_m \in \Domain{M}$, तो $\Assign{f}{M}(t_1, \dots, t_m) =
-f(t_1, \dots, t_n)$।
+f(t_1, \dots, t_m)$।
 \item यदि $R$, $\Gamma \Sequent \Delta$ में कोई $m$-स्थानी !!{predicate} है,
 तो $\Assign{R}{M} = \Setabs{\tuple{t_1, \dots, t_m} \in
-\Domain{M}^n}{R(t_1, \dots, t_n) \in \Theta}$।
+\Domain{M}^m}{R(t_1, \dots, t_m) \in \Theta}$।
 \end{enumerate}
+\footnote{अनुवादकीय टिप्पणी: स्रोत में आरंभिक परिमाणन का सूत्र-अक्षर छूटा है।
+ऊपर उसे जोड़ा गया है; विफलता शाखा के दाएँ पक्ष के लिए स्रोत का
+$\Delta_n$ बदलकर परिभाषानुसार $\Lambda_n$ किया गया है। इसी प्रकार
+$m$-स्थानी फलन और विधेय की इन दो परिभाषाओं में स्रोत के असंगत
+$n$ को $m$ किया गया है।}
 $\Struct{M}$ इस अर्थ में \emph{पद निदर्श} है कि उसका प्रांत पदों का समुच्चय
 है, और !!{constant}s तथा !!{function}s की व्याख्या इस प्रकार की जाती है कि
 $\Value{t}{M} = t$ सुनिश्चित हो।~$\Theta$ के परमाण्विक !!{formula}s का उपयोग
@@ -81,7 +86,7 @@ $\Sat{M}{R(t_1, \dots, t_n)}$ तभी और केवल तभी हो ज
 
 चूँकि $\Pi_n \Sequent \Lambda_n$ विफलता शाखा है, कोई $\Pi_n$, $\lfalse$ को
 समाहित नहीं कर सकता (अन्यथा $\Pi_n \Sequent \Lambda_n$ अभिगृहीत होता)।
-\Struct{M} की परिभाषा से $\Sat{M}{R(t_1, \dots, t_m)}$ तभी और केवल तभी है
+$\Struct{M}$ की परिभाषा से $\Sat{M}{R(t_1, \dots, t_m)}$ तभी और केवल तभी है
 जब $R(t_1, \dots, t_m) \in \Theta$। दोनों को मिलाकर: यदि $!A \in \Theta$,
 तो $\Sat{M}{!A}$।
 
@@ -92,7 +97,7 @@ $!A \in \Lambda_n$, तो $!A \in \Lambda_{n+1}$। (यह प्रमाण-
 इसका अर्थ है कि $\Pi_n \Sequent \Lambda_n$ अभिगृहीत है, जबकि विफलता शाखा में
 कोई अभिगृहीत नहीं हो सकता। इसलिए रचना से परमाण्विक~$!A$ के लिए $!A \notin
 \Theta \cap \Xi$; फलतः यदि $!A \in \Xi$, तो $!A \notin \Theta$।
-\Struct{M} की परिभाषा से इसका अर्थ है कि यदि $!A \in \Xi$, तो
+$\Struct{M}$ की परिभाषा से इसका अर्थ है कि यदि $!A \in \Xi$, तो
 $\Sat/{M}{!A}$।
 
 आगमन चरण के लिए मान लें कि (1) और (2),~$!A$ से कम !!{depth} वाले सभी

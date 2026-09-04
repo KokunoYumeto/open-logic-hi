@@ -1,27 +1,11 @@
 cff-version: 1.2.0
-message: "कृपया इस संपूर्ण हिंदी संस्करण को नीचे दिए metadata से उद्धृत करें।"
-title: "ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण"
+message: "कृपया मूल लेखक और हिंदी संस्करण दोनों का उल्लेख करें।"
 type: book
+title: "ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण"
 authors:
   - name: "Open Logic Project"
-version: "2026-08-18 — A4 पुनर्प्रवाह सहित संपूर्ण हिंदी अनुवाद, 722/722"
-date-released: 2026-08-18
-doi: 10.5281/zenodo.21987019
+version: "2026-09-04"
+date-released: "2026-09-04"
+doi: "10.5281/zenodo.21920511"
+url: "https://github.com/KokunoYumeto/open-logic-hi"
 license: CC-BY-4.0
-repository-code: "https://github.com/KokunoYumeto/open-logic-hi"
-url: "https://doi.org/10.5281/zenodo.21920511"
-abstract: >-
-  जमे हुए Open Logic Project स्रोत-वृक्ष की सभी 722 स्रोत-संगत सामग्री-TeX
-  फ़ाइलों का 842-पृष्ठीय A4, खोजयोग्य हिंदी (hi-Deva-IN) अनुवाद।
-keywords:
-  - हिंदी
-  - hi-Deva-IN
-  - Open Logic Project
-  - mathematical logic
-  - proof theory
-  - open textbook
-references:
-  - type: software
-    title: "Open Logic Project source authority"
-    repository-code: "https://github.com/OpenLogicProject/OpenLogic"
-    version: "commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0"

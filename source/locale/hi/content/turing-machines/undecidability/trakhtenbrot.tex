@@ -111,7 +111,7 @@
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
 &\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
-!A(x, y) \land !B(y')))
+{}!A(x, y) \land !B(y')))
 \end{align*}
 \item \ollabel{rep-left} प्रत्येक निर्देश
   $\delta(q_i, \sigma) = \tuple{q_j, \sigma', \TMleft}$ के लिए
@@ -120,7 +120,7 @@
 & \lforall[x][\lforall[y][
     ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
 & \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
-!A(x, y))) \land {}\\
+{}!A(x, y))) \land {}\\
 & \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
     y)) \lif {}]\\
 & \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
@@ -133,7 +133,7 @@
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
 &\qquad (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
-!A(x, y) \land !B(y')))
+{}!A(x, y) \land !B(y')))
 \end{align*}
 \end{enumerate}
 जैसा आप देख सकते हैं, $M$ के संक्रमणों का वर्णन करने वाले !!{sentence},

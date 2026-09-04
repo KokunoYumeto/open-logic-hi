@@ -183,20 +183,20 @@
     मोडल तर्कशास्त्र में !!{derivable} है, हम निम्न प्रकार तर्क करते हैं,
     जिससे $\Delta_2$ की संगति के साथ विरोधाभास मिलता है:
     \begin{align*}
-      !A_1, \dots, !A_n, & \Diamond!B_1, \dots,
+      {}!A_1, \dots, !A_n, & \Diamond!B_1, \dots,
       \Diamond!B_m \Proves[\Sigma] \lfalse \\
-      !A_1, \dots,!A_n & \Proves[\Sigma] (\Diamond!B_1 \land
+      {}!A_1, \dots,!A_n & \Proves[\Sigma] (\Diamond!B_1 \land
       \dots \land \Diamond!B_m) \lif \lfalse\\
       & \qquad\text{निगमन प्रमेय से}\\
       & \qquad\text{\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-deduction}, और \Taut} \\
-      !A_1, \dots,!A_n & \Proves[\Sigma]
+      {}!A_1, \dots,!A_n & \Proves[\Sigma]
       \Diamond(!B_1 \land
       \dots \land !B_m) \lif \lfalse\\
       & \qquad \text{क्योंकि $\Sigma$ सामान्य है} \\
-      !A_1, \dots,!A_n & \Proves[\Sigma]
+      {}!A_1, \dots,!A_n & \Proves[\Sigma]
       \lnot\Diamond (!B_1 \land \dots \land !B_m)\\
       & \qquad\text{\PL{} से} \\
-      !A_1, \dots,!A_n & \Proves[\Sigma]
+      {}!A_1, \dots,!A_n & \Proves[\Sigma]
       \Box\lnot (!B_1 \land \dots \land !B_m)\\
       & \qquad\text{$\lnot\Diamond$ के स्थान पर $\Box\lnot$} \\
       \Box!A_1, \dots,\Box!A_n

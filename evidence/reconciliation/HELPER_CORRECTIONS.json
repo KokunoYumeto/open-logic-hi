@@ -1,0 +1,27 @@
+[
+  {
+    "path": "05_translation/openlogic_hi_9620cc7/locale/hi/open-logic-config.sty",
+    "before_sha256": "3C64BAE478B598885D318291F9DA8300EC5E1DC11F2B87D5CB5378E3BB9B1F89",
+    "after_sha256": "BECE005FCBC473C0A28D9213127A0DE2E68E55CED6AAF6A0CFF625D2F1D9515B",
+    "reason": "The compiled reader and bookmarks still printed Derivations and a derivation for the independent proof token key. Add Hindi values for proof/prove/proving/provable/provability/nonprovability, height/depth/hp, and introduction/elimination. Suppress English indefinite articles and define explicit Hindi capitalized/plural forms. Mathematical macros are untouched.",
+    "register": "proof=प्रमाण; provable=सिद्ध-योग्य; height=ऊँचाई; depth=गहराई; hp=ऊँ.सं.; introduction=प्रवेशन; elimination=विलोपन. Distinct derivation=व्युत्पत्ति remains as previously translated. विलोपन agrees with the adjacent source-derived Hindi explanation; hp abbreviates ऊँचाई-संरक्षक.",
+    "evidence": "976-page build 864BE1EDB61EA64B8BA87ED904DD9189356BE6F3D0EE17068C9BCE5988DB9EE1, page927 extraction and proof-theory bookmarks; base open-logic-config.sty lines880,887,1482-1487 define independent English defaults.",
+    "review": "same-writer rendered-text/bookmark and source-definition check; not independent replay"
+  },
+  {
+    "path": "05_translation/openlogic_hi_9620cc7/locale/hi/open-logic-config.sty",
+    "before_sha256": "3C64BAE478B598885D318291F9DA8300EC5E1DC11F2B87D5CB5378E3BB9B1F89",
+    "intermediate_previous_sha256": "BECE005FCBC473C0A28D9213127A0DE2E68E55CED6AAF6A0CFF625D2F1D9515B",
+    "after_sha256": "88D04B55A218C3E2E68E6EBFB385F3539A672A3CA23809058FE398A20496E578",
+    "reason": "Check all 722 target files for remaining token keys without Hindi definitions. Localize eight remaining keys: relational model, parameter, lambda define/defined/definable, and colorC/D/E. No diagram color definitions or math identifiers change. ColorD is नीले for its oblique triangle context; colorE is हरा for the nominative triangle; the two feminine line contexts are translated explicitly in hilbert-curve.tex.",
+    "review": "bounded complete registered-file token-key check and direct local context/source-default inspection; same writer"
+  },
+  {
+    "path": "05_translation/openlogic_hi_9620cc7/locale/hi/open-logic-config.sty",
+    "before_sha256": "3C64BAE478B598885D318291F9DA8300EC5E1DC11F2B87D5CB5378E3BB9B1F89",
+    "intermediate_previous_sha256": "88D04B55A218C3E2E68E6EBFB385F3539A672A3CA23809058FE398A20496E578",
+    "after_sha256": "94E5662E376C55E14ABDA8F932F939F662A06B5C05FD0FF49FA9621E0017432D",
+    "reason": "All three proving contexts already supply करने, so set the shared stem to सिद्ध. Add Hindi chapter/part cleveref names; Chapter/Chapters remained in rendered cross-references. Formal identifiers unchanged.",
+    "review": "All three token-use contexts and page841/reference extraction; same writer."
+  }
+]

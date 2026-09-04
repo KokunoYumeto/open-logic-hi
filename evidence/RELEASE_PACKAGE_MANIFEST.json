@@ -1,35 +1,30 @@
 {
-  "schema": "openlogic-hi-release-package-manifest-v3",
-  "release_id": "HI-OLP-PUB-0005",
-  "locale": "hi-Deva-IN",
-  "frozen_source_commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
-  "frozen_source_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
-  "source_denominator_files": 722,
-  "translated_source_matched_files": 722,
-  "source_english_word_tokens": 444479,
-  "reader_pages": 842,
-  "layout": "A4 reflow superseding 902-page US-Letter edition",
-  "complete_translation": true,
+  "release_id": "HI-OLP-PUB-0006",
+  "reader_pages": 975,
+  "source_paths_in_reader": 722,
+  "zip_entries": 3057,
+  "zip_uncompressed_bytes": 61739356,
+  "zip_verified_every_entry_sha256": true,
+  "public_redactions": 52,
   "assets": [
     {
-      "name": "00_OpenLogic_Project_Hindi_COMPLETE_722-of-722.pdf",
-      "bytes": 6584887,
-      "sha256": "DB3018D15BC9AA597A3DCC71495A9C3D7E7071272BDCCBA85C3205FF17E93BE0",
-      "md5": "29b30297d016ba3d6756d391c33ce027",
-      "pages": 842
+      "name": "00_OpenLogic_hi-Deva-IN_reader.pdf",
+      "bytes": 7501574,
+      "sha256": "91279E723A58ACDEDCDF85432D59C6CEFD17D954FBD6F342A70BFF31C1AA5253",
+      "md5": "c799ab3dc0f9c67856561e4e6d925027"
     },
     {
-      "name": "01_OpenLogic_Project_Hindi_COMPLETE_PROVENANCE.zip",
-      "bytes": 22070911,
-      "sha256": "9337C8FE89A875C68F288E0B4AD4ACB084BFF33C72589895204679AD770BE333",
-      "md5": "c48589667b484ecb5202a0a23d95fc78",
-      "members": 2974
+      "name": "01_OpenLogic_hi-Deva-IN_sources_and_provenance.zip",
+      "bytes": 31317558,
+      "sha256": "F902A71E2D2E135F9DCEFEA14630ED35E53CDB3815CAC38502F946E3D1E0AA86",
+      "md5": "51cafc551ae08818831b7a69681a47b4"
     },
     {
       "name": "02_SHA256SUMS.txt",
-      "bytes": 234,
-      "sha256": "CEE11537CDD3EBD249C4DA25BF53A043A7AEE6BCAD2A3FF22DE3A4C77F23717F",
-      "md5": "479cf87bce023e02836360106a52a742"
+      "bytes": 220,
+      "sha256": "EBD8CDE0260AD0014A86175D600EC7843899495D21C04B075D7D61C57F5E6FBA",
+      "md5": "f1b39a75fa48ba95dceb6f6cc0feffe5"
     }
-  ]
+  ],
+  "publication_status": "LOCAL_PACKAGE_NOT_YET_PUBLISHED"
 }

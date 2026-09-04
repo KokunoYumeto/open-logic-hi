@@ -1,0 +1,308 @@
+[
+  {
+    "path": "proof-theory/sequent-calculus/quantifiers.tex",
+    "before_sha256": "E960A6629A8AD4B6E32A4064402D0CD2E863E0C5BB28C5EA220F566C7CE7CAC9",
+    "after_sha256": "8B86881C6AE7ED5EC8301786135E19205FB9EB2020440E5C9AAEAB1361D5FB34",
+    "reason": "Restore closing math delimiter after RightR{lforall}; exact English source retains it. Hindi-only delimiter omission caused Missing $ inserted and missing Devanagari glyphs in math font.",
+    "review": "direct same-writer source comparison; not independent certification"
+  },
+  {
+    "path": "proof-theory/natural-deduction/sequents.tex",
+    "before_sha256": "2AE2D96CDCAE41053FB03D986E78D6FE2FFABD02BF6B07F679BEE1BED405DB16",
+    "after_sha256": "8D311F7BBA42E5734D8379118AF5FB164301ABB7CD950A3AE265D976A03EB4D3",
+    "reason": "Restore opening math delimiter before delta_1; exact English source retains it. Odd dollar count exposed the Hindi omission before the next compile.",
+    "review": "direct same-writer source comparison; not independent certification"
+  },
+  {
+    "path": "intuitionistic-logic/semantics/propositions.tex",
+    "before_sha256": "ED405E017EC2C7E97FC8205379C6584D2F7866AFF78406FE97AF311B8530315A",
+    "after_sha256": "0374CD19ED69794178CC2F51149FDC3244E08D99A03B9DF0746F284F9D42CFE9",
+    "reason": "Translate leftover reader-facing 'iff' as 'तभी और केवल तभी जब'; mathematical tokens unchanged. Frozen-source notation remains as given.",
+    "review": "direct same-writer source comparison; not independent certification"
+  },
+  {
+    "path": "normal-modal-logic/syntax-and-semantics/normal-modal-logics.tex",
+    "before_sha256": "0DA7582FB5218E676403F478527A142B4DA7E5453131B3A8FD425B1099982D87",
+    "after_sha256": "D2106F277183AE8E31FDDB13A247B4DEF0750DD4A91604FF2B60B69B50DA27F3",
+    "reason": "Make both directions of the frozen-source 'iff' explicit: तभी और केवल तभी जब.",
+    "review": "same-writer exact source comparison; not independent reviewer"
+  },
+  {
+    "path": "sets-functions-relations/inductive-defs-proofs/introduction.tex",
+    "before_sha256": "497E9AB09068FC22B9DE833D0BB7C5B2D43B5DCC3E9B2D355E937DFADB307F22",
+    "after_sha256": "315054F5B22E4F0FA4298C8E5B23571FA252AF955779583D620288236157F3C5",
+    "reason": "Correct inherited frozen-source algebra typo 2k to k^2 in expansion k(k+1)+2(k+1); disclosed in a Hindi translator footnote preserving the original reading. Elementary multiplication independently checked directly; not theorem formalization.",
+    "review": "same-writer exact source comparison; not independent reviewer"
+  },
+  {
+    "path": "intuitionistic-logic/semantics/propositions.tex",
+    "before_sha256": "ED405E017EC2C7E97FC8205379C6584D2F7866AFF78406FE97AF311B8530315A",
+    "after_sha256": "FE65CCDCDAD8378EAD7026384F8B1AB40F85C15F3E6B93EF27D08BF2838C766A",
+    "reason": "Retains the iff translation correction; additionally repairs inherited source command mModel to mSat. Frozen open-logic-config.sty:784 gives mModel one argument only, while :791-802 defines mSat as model/formula/world satisfaction. The source proposition concerns truth at a world, so mSat is the intended relation. Hindi translator footnote discloses this change.",
+    "review": "direct source/config comparison, same writer; not independent reviewer",
+    "intermediate_previous_sha256": "0374CD19ED69794178CC2F51149FDC3244E08D99A03B9DF0746F284F9D42CFE9"
+  },
+  {
+    "path": "first-order-logic/completeness/maximally-consistent-sets.tex",
+    "before_sha256": "077698482604179B2EF422A9DCEEB264702F54F21156498916C30E71EBB2F5A5",
+    "after_sha256": "67C9506AAA20EEC273F6A90DD3DC338B598BE445B5284B3A2181565E4B0E8A22",
+    "reason": "Correct reversed scope of 'without' in maximal-consistency explanation. Replace malformed/conditional tag references by explicit references to both proof systems in the complete reader: consistency facts under prv; connective facts under ppr; disjunction cites its labeled two-item proposition; modus ponens and implication introduction cite lif-left/right. Direct defining-source and local AUX verification required at final build; no dummy labels.",
+    "review": "direct same-writer source/target comparison; final integrated reference verification pending"
+  },
+  {
+    "path": "propositional-logic/syntax-and-semantics/soundness.tex",
+    "before_sha256": "94EBC999522F82028239A8C21BB7AEBD3A803C4424A136FBA318C7A803E8185F",
+    "after_sha256": "EDA5BA750AF1FC74D30F6066CE88BFC7AC1E89FBCE1A5E71726799166C73F259",
+    "reason": "Expand inherited underspecified semantic-facts reference to exact pl:syn:sem defining unit semantic-notions.tex. Mathematical statement unchanged.",
+    "review": "direct same-writer source/target comparison; final integrated reference verification pending"
+  },
+  {
+    "path": "propositional-logic/syntax-and-semantics/completeness.tex",
+    "before_sha256": "C158832CB5C097BC8A2DDC1AB55624198133848D9C2B9A82DF97E46403A16F55",
+    "after_sha256": "FAD3E824AF9CF2574359EDCAF1574B7A63D4A5931E85F5EAEA4AD4E11B59AB94",
+    "reason": "Replace stale source references prop:phi and underspecified prov-incons with the actual consistency/exhaustiveness propositions under pl:axd:prv, verified in provability-consistency.tex. No proof proposition is fabricated.",
+    "review": "direct same-writer source/target comparison; final integrated reference verification pending"
+  },
+  {
+    "path": "first-order-logic/axiomatic-deduction/provability.tex",
+    "before_sha256": "4C17C6D19123516C374C3229F0689E91519D0617AB28BAFE9CF6406FF3769941",
+    "after_sha256": "07FD3E4A64A4E01A1AE7A81E889255C4D2DE3C8A7322CFEFF003CC0E6FE4F868",
+    "reason": "Retained alternative provability presentation shares prv IDs and labels with already included provability-consistency.tex. Namespace only this alternative as prv-alt; existing canonical labels and mathematical contents remain unchanged.",
+    "review": "direct same-writer source/target comparison; final integrated reference verification pending"
+  },
+  {
+    "path": "propositional-logic/syntax-and-semantics/soundness.tex",
+    "before_sha256": "94EBC999522F82028239A8C21BB7AEBD3A803C4424A136FBA318C7A803E8185F",
+    "after_sha256": "8752D9315BBB641C6DD5FCE1CA40DEE3BD4BF7306C5E514B227B3132D61A056B",
+    "reason": "Retains exact pl:syn:sem reference repair; additionally corrects inherited item number third to second. Directly read semantic-notions.tex:47 onward: item 2 is semantic modus ponens, item 3 is finite-subset satisfiability. Hindi translator note discloses the source correction.",
+    "review": "direct same-writer source/target comparison; final integrated reference verification pending",
+    "intermediate_previous_sha256": "EDA5BA750AF1FC74D30F6066CE88BFC7AC1E89FBCE1A5E71726799166C73F259"
+  },
+  {
+    "path": "proof-theory/sequent-calculus/admissible-derivable.tex",
+    "before_sha256": "D2B6D9FE2D52431AA417F64D9A14BCB931F120E71E489B41E7F006E3EC4DCC08",
+    "after_sha256": "28DCA2805262C10C1D83D90D40C0F68CA0CE563FA66772FA404D00D69238DA18",
+    "reason": "Translate both remaining reader-facing A rule phrases as कोई नियम. Formal rule unchanged.",
+    "review": "direct source/target reread, same writer"
+  },
+  {
+    "path": "proof-theory/sequent-calculus/invertibility.tex",
+    "before_sha256": "D5BB4D3330600611BEC2D4FA4D633CA7D11CC894BA581D05E67C5A2F7DFDB6F3",
+    "after_sha256": "6F0760FB4410F166A00C9840E21FB4CBA4A2F371F0406A65BA45D88E7486C301",
+    "reason": "Translate remaining reader-facing A rule phrase as कोई नियम. Formal rule unchanged.",
+    "review": "direct source/target reread, same writer"
+  },
+  {
+    "path": "proof-theory/proof-search/completeness.tex",
+    "before_sha256": "E5F765FEEF2B3B663C864BC1E00741488396FC8B42CA5921A7B196CB47CBCB6B",
+    "after_sha256": "22FC24DA5A5F71FCB963FCEE62B6DFC5CE53C2BADD48667FE54B51A99765FCC6",
+    "reason": "Disclosed inherited typos: ! in Delta -> !A in Delta; failure-branch Pi_n Sequent Delta_n -> Lambda_n; m-place function RHS t_n -> t_m; m-place predicate Domain^n and t_n -> Domain^m and t_m. Hindi footnote explains each class. Restore three explicit math delimiters around Struct M. Frozen source unchanged.",
+    "review": "complete source/target section reread and direct arity/definition comparison, same writer; not independent certification"
+  },
+  {
+    "path": "many-valued-logic/sequent-calculus/proof-theoretic-notions.tex",
+    "before_sha256": "2027D556B84CE5A2815F77F459342002535507B602F76BBE431BA9454CBEC55A",
+    "after_sha256": "552EF5BD6F8E925CAC4094EA1F3EB951AF69F04A50C7D6F9EDD8B02B9D4A70E9",
+    "reason": "Make both directions of source iff explicit in derivability definition: तभी और केवल तभी जब.",
+    "review": "direct source/target definition reread, same writer"
+  },
+  {
+    "path": "sets-functions-relations/inductive-defs-proofs/introduction.tex",
+    "before_sha256": "497E9AB09068FC22B9DE833D0BB7C5B2D43B5DCC3E9B2D355E937DFADB307F22",
+    "intermediate_previous_sha256": "315054F5B22E4F0FA4298C8E5B23571FA252AF955779583D620288236157F3C5",
+    "after_sha256": "3253B95F08148A344AC7BB15C3A396D7CD04F3920893A895CF516D6F78CA6E91",
+    "reason": "Retains algebra correction. Repairs inherited malformed formula marker !!^a to !A throughout the formula-induction illustration. Frozen source lines93-98 and subsequent template literally contain the broken marker; diagnostic BUILD-20260904T134144578Z fails with undefined token $ and Missing } at target90. The first formula is conventionally A paired with B; explicit Hindi footnote discloses the correction. Original source unchanged.",
+    "review": "direct source/target and concrete failed-build comparison, same writer"
+  },
+  {
+    "path": "history/set-theory/hilbert-curve.tex",
+    "before_sha256": "B23E59CB45D6C5B85FCD86B1A00B069E00D46ABD72758B13F9BB78E51D6E8681",
+    "after_sha256": "F36B8195816C27DC4C63D5AAA0A25DF22D99F61F033D487F9FF8C9E126E6F596",
+    "reason": "Translate two green-line colorE references directly as हरी रेखाओं to preserve feminine agreement while the shared green token serves a masculine triangle elsewhere. Diagram code and geometry unchanged.",
+    "review": "direct source/default-color/context comparison; same writer"
+  },
+  {
+    "path": "counterfactuals/introduction/material-conditional.tex",
+    "before_sha256": "0E268ED2D92625E30630847A7416AD2B02765B40A2331E06CB0B7BD44C6F33CB",
+    "intermediate_previous_sha256": "0E268ED2D92625E30630847A7416AD2B02765B40A2331E06CB0B7BD44C6F33CB",
+    "after_sha256": "F97D2D5D443C9A391F144483B45612E41479923F95C8C9085D7E266886E50558",
+    "reason": "Protect 8 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "counterfactuals/introduction/strict-conditional.tex",
+    "before_sha256": "B43CD2D47E61783EB31B43516767DF2C7A5D6360ACDBE2A3995A90E53E508242",
+    "intermediate_previous_sha256": "B43CD2D47E61783EB31B43516767DF2C7A5D6360ACDBE2A3995A90E53E508242",
+    "after_sha256": "221A352A87464AD8BD2849C32386F0946AEE7185898227D5051799E197DB3564",
+    "reason": "Protect 9 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "first-order-logic/axiomatic-deduction/identity.tex",
+    "before_sha256": "03D63D578BB7E4DAF9168ED6B09BFFAA9710A6BD9C9494573AC9653F54713D6D",
+    "intermediate_previous_sha256": "03D63D578BB7E4DAF9168ED6B09BFFAA9710A6BD9C9494573AC9653F54713D6D",
+    "after_sha256": "15B2023FB25DEBFB30BEF6F90858FF48AA51A8E551D93983D0F669DAE19CF807",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "first-order-logic/beyond/intuitionistic-logic.tex",
+    "before_sha256": "62ADADED44746418C10E848F21CDE9D0961C5C42568B6BC58DFA8CB6DF33DC81",
+    "intermediate_previous_sha256": "62ADADED44746418C10E848F21CDE9D0961C5C42568B6BC58DFA8CB6DF33DC81",
+    "after_sha256": "D9F9F2FAB4E47CA17CD057D470246EEBF53CCE5E321B26E8709441A12D2070B2",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "first-order-logic/models-theories/size-of-structures.tex",
+    "before_sha256": "A061F4CC1BE27D229E8E1BE644B060EDEB8581394112BC1EF0F37099B447AE00",
+    "intermediate_previous_sha256": "A061F4CC1BE27D229E8E1BE644B060EDEB8581394112BC1EF0F37099B447AE00",
+    "after_sha256": "618C869E0D78E610080F6CDD303384D1D34864843B9AFB1D00231D9460F5A8A3",
+    "reason": "Protect 2 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/incompleteness-provability/fixed-point-lemma.tex",
+    "before_sha256": "F9BA0917B771A0E24435CF3C4AF3AE90915081A0FF84BBA9C64BA4F9D782AE88",
+    "intermediate_previous_sha256": "F9BA0917B771A0E24435CF3C4AF3AE90915081A0FF84BBA9C64BA4F9D782AE88",
+    "after_sha256": "D56094D7AAFB2C246A60F4C8DB1EC26EF93964BDD5C84451D2F4730B1F25DAA0",
+    "reason": "Protect 2 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/incompleteness-provability/lob-thm.tex",
+    "before_sha256": "743FDC2060CB30880E3BC96F7BEC83A54F2B4B05D45D06A8FFDAD8FFAFDC09C1",
+    "intermediate_previous_sha256": "743FDC2060CB30880E3BC96F7BEC83A54F2B4B05D45D06A8FFDAD8FFAFDC09C1",
+    "after_sha256": "D2C43995B508502DFB4C08077C80BE2EC4625A70266C4A27DDAA89563D385935",
+    "reason": "Protect 4 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/incompleteness-provability/second-incompleteness-thm.tex",
+    "before_sha256": "E6F90EEA9C7AE4225C0973277D7753871F4CC3B74909AA6B4F5AAA7E1EF0D747",
+    "intermediate_previous_sha256": "E6F90EEA9C7AE4225C0973277D7753871F4CC3B74909AA6B4F5AAA7E1EF0D747",
+    "after_sha256": "86552471F784662F934787813484D6CEDEC779ECD685BF9A7A1D84057151A3DA",
+    "reason": "Protect 4 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/representability-in-q/c-representable.tex",
+    "before_sha256": "AD10B11941DEF2D2E1950F769B061CA982F7CDC61461CA0DF6D1B4EA9F6660FE",
+    "intermediate_previous_sha256": "AD10B11941DEF2D2E1950F769B061CA982F7CDC61461CA0DF6D1B4EA9F6660FE",
+    "after_sha256": "55D26F0AA809B986C4C55E8D209BC8E2F7B16BDA1265C47B1A49BBF010FF00F9",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/representability-in-q/composition-representable.tex",
+    "before_sha256": "AAAC599A98C6CB7906B6BBEC8A17A92C512E260D0EA3CB12BA9FD1CF54F00AF2",
+    "intermediate_previous_sha256": "AAAC599A98C6CB7906B6BBEC8A17A92C512E260D0EA3CB12BA9FD1CF54F00AF2",
+    "after_sha256": "1736F124D0F7849A283A79496526E7FAAF1A4F04FD5845EB4ED5587CECCE48F6",
+    "reason": "Protect 2 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/representability-in-q/minimization-representable.tex",
+    "before_sha256": "2A3F1516C759CE7FBA6BCAAD6A6ADE1FF7E1EA082AF2E8349B98EDD94244D0EC",
+    "intermediate_previous_sha256": "2A3F1516C759CE7FBA6BCAAD6A6ADE1FF7E1EA082AF2E8349B98EDD94244D0EC",
+    "after_sha256": "9ED5DE768ADDB13EBCB9950958CF7E7F8709A14CC6D86F8F6A3700D3EC32C0F1",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "incompleteness/theories-computability/inseparability.tex",
+    "before_sha256": "300F205B90034A2917F31E79FC8A276D766171CDC91B62F816A2E9A398A50BC8",
+    "intermediate_previous_sha256": "300F205B90034A2917F31E79FC8A276D766171CDC91B62F816A2E9A398A50BC8",
+    "after_sha256": "B4D7E86C042DA589382E9B18438B857ED6E0D31055CEF0C2111214C3FC5B9F6E",
+    "reason": "Protect 3 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "intuitionistic-logic/introduction/axiomatic-derivations.tex",
+    "before_sha256": "8B29EE027D146335D8A6F79D6EA678FCE52EA9D9F6BD75CEA02F79D2711CA9F6",
+    "intermediate_previous_sha256": "8B29EE027D146335D8A6F79D6EA678FCE52EA9D9F6BD75CEA02F79D2711CA9F6",
+    "after_sha256": "0B721E812D9DED7767A3250E7F48D6BD98B44F2D1AE79F8B0F2E1F7CB38A5713",
+    "reason": "Protect 4 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "many-valued-logic/sequent-calculus/introduction.tex",
+    "before_sha256": "B9770124F22417FE0078B51AA9EDE3A6B38C7D68DC63800AA8F53CF55671A339",
+    "intermediate_previous_sha256": "B9770124F22417FE0078B51AA9EDE3A6B38C7D68DC63800AA8F53CF55671A339",
+    "after_sha256": "31063C114DC16B0C22242AE1AC538E7DED4B8157D68F264ADBDF8147BF973192",
+    "reason": "Protect 2 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "model-theory/interpolation/definability.tex",
+    "before_sha256": "9D0651133F89B8C253923A9C3B780C79612C889E1915181D987E48CABDAC5192",
+    "intermediate_previous_sha256": "9D0651133F89B8C253923A9C3B780C79612C889E1915181D987E48CABDAC5192",
+    "after_sha256": "0BE14E9535243447BEAD751C6CE9CC782E3837FCC9D28502C72EDF06B5C56B28",
+    "reason": "Protect 2 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "model-theory/interpolation/separation.tex",
+    "before_sha256": "DBA827CFD5F04CE3EB9E472EF74908521C71E4DFDCB8BCDDAE95D0728F582646",
+    "intermediate_previous_sha256": "DBA827CFD5F04CE3EB9E472EF74908521C71E4DFDCB8BCDDAE95D0728F582646",
+    "after_sha256": "8A4B7431E623D6C006F4ACDA2097F70D14ECEF2D070ADFC60EB2F420866646B3",
+    "reason": "Protect 2 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "normal-modal-logic/axioms-systems/normal-logics.tex",
+    "before_sha256": "1C000F103E6B13A128ABE7CC53C64EB172614673C454B91B039DD6CCE9191FFB",
+    "intermediate_previous_sha256": "1C000F103E6B13A128ABE7CC53C64EB172614673C454B91B039DD6CCE9191FFB",
+    "after_sha256": "4A8E087F981517C65B11622E7EEB53ECC925C81A0F42C0CD544D680B3270A794",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "normal-modal-logic/completeness/frame-completeness.tex",
+    "before_sha256": "4F59D4B81EEC5E780C88CA8774E52B920950DA489EDC2F756D8F456584161C96",
+    "intermediate_previous_sha256": "4F59D4B81EEC5E780C88CA8774E52B920950DA489EDC2F756D8F456584161C96",
+    "after_sha256": "E955CB8875711109F5FEE4056FC76B4E56850EAED56A9CFFA1EE9C9115FF1941",
+    "reason": "Protect 5 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "proof-theory/cut-elimination/interpolation.tex",
+    "before_sha256": "D5C6BEC04322B23FA14FF486294291C157D45B9EE99D793AAC1A67D76F180D08",
+    "intermediate_previous_sha256": "D5C6BEC04322B23FA14FF486294291C157D45B9EE99D793AAC1A67D76F180D08",
+    "after_sha256": "B8F7D063C4BA908D2089A92EAA99DF0A2C68FB4730A6D95E4CE089D4E861F05B",
+    "reason": "Protect 15 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added. Restore missing !! on reader-facing predicate token.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "second-order-logic/syntax-and-semantics/expressive-power.tex",
+    "before_sha256": "8BEEA70133A92DE66E9FF165BB477BF38C80CA92311DFBC242AB662364B2271A",
+    "intermediate_previous_sha256": "8BEEA70133A92DE66E9FF165BB477BF38C80CA92311DFBC242AB662364B2271A",
+    "after_sha256": "C6B4E10ED9BE2CBB606ED2FC4F5D07336EA7C9E209E31A82EABE55742DA5F2B2",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "turing-machines/undecidability/representing-tms.tex",
+    "before_sha256": "57FDE99B1F364BD7A1BCCF5F7F1B0AC2922ABAA5BE21B179702B60E78EC5CA78",
+    "intermediate_previous_sha256": "57FDE99B1F364BD7A1BCCF5F7F1B0AC2922ABAA5BE21B179702B60E78EC5CA78",
+    "after_sha256": "73C47E8F4478C54C72D96C9660FA84690FC151F77A5DE227E85EE6AEAEED10B1",
+    "reason": "Protect 3 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "turing-machines/undecidability/trakhtenbrot.tex",
+    "before_sha256": "09CEF228FC41D73052BBFC6B6A20564DCD0830E666E294CB1BCD9F4F3F3B00C7",
+    "intermediate_previous_sha256": "09CEF228FC41D73052BBFC6B6A20564DCD0830E666E294CB1BCD9F4F3F3B00C7",
+    "after_sha256": "E4B2EFA0787C00199D1EEA628FFAD9536446286DE5038831FAE5F1CE10A50FA3",
+    "reason": "Protect 3 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  },
+  {
+    "path": "turing-machines/undecidability/verification.tex",
+    "before_sha256": "5B910EDFE645055A3F3BD7227C6C0352871ACE7443C767CBE97461E2F3D172AD",
+    "intermediate_previous_sha256": "5B910EDFE645055A3F3BD7227C6C0352871ACE7443C767CBE97461E2F3D172AD",
+    "after_sha256": "1017D32213024E648450D80D6343D237269B009DC003A8A07F109BF452B3EB44",
+    "reason": "Protect 1 leading aligned-cell formula shorthands with an empty TeX group. Babel lookahead previously printed literal !A/!C instead of their configured formula symbols. All formula macros/operators/arguments remain; only empty groups added.",
+    "review": "Rendered page875 and whole-reader literal marker search, then bounded registered-target cell inspection; same writer."
+  }
+]
