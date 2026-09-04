@@ -1,0 +1,32 @@
+{
+  "generated": "2026-09-04",
+  "decision_records": 400,
+  "terminology_records": 357,
+  "provisional_records": 20,
+  "target_correction_events": 40,
+  "helper_events": 3,
+  "source_paths_searched": 722,
+  "target_paths_searched": 722,
+  "files": {
+    "SUBSTANTIVE_DECISION_LOG.jsonl": {
+      "bytes": 4388403,
+      "sha256": "D124B3850AB0A1E02C674F421726CF6F4DD9129991DE1160E53E1AA43A2E12F1"
+    },
+    "DECISION_LOG_GUIDE.md": {
+      "bytes": 2097,
+      "sha256": "8D89DC60A02D5E812099F5662E07D03D69B5139C82ABE98AB1B1BD6474141E7B"
+    },
+    "PROVISIONAL_REVIEW_QUEUE.md": {
+      "bytes": 6566,
+      "sha256": "4C28B60C4298AB7A98B118279E83D924ADECAD6A8B38F5332A9673CE89A2A602"
+    },
+    "TERM_WEB.tsv": {
+      "bytes": 88498,
+      "sha256": "C9A92EA3AAA2FC6D67BA3CFD895F2A9297AE7331F12CD0E7B2809832839815AE"
+    },
+    "SOURCE_NOTES.md": {
+      "bytes": 32721,
+      "sha256": "57C59F320FA9B52D764E270462890C862C7B1F7122463E033B1FDC78FAC0C45C"
+    }
+  }
+}
