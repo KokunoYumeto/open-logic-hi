@@ -2,6 +2,8 @@
 
 *Open Logic Project — Complete Hindi Edition*
 
+अन्य भाषाओं के संस्करण और साझा अनुवाद मानक [Open Logic translations hub](https://github.com/KokunoYumeto/OpenLogic-translations) में सूचीबद्ध हैं।
+
 मुख्य पुस्तक `00_OpenLogic_hi-Deva-IN_reader.pdf` है: 975 A4 पृष्ठ, हिंदी और देवनागरी।
 यह जमी हुई स्रोत प्रति की सभी 722 सामग्री-TeX फ़ाइलों को सम्मिलित करती है।
 इस संख्या में अध्याय-चालक भी हैं; यह शब्द-गणना नहीं है। पुराने 842-पृष्ठीय
