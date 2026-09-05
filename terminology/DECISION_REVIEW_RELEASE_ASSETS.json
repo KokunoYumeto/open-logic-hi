@@ -1,0 +1,19 @@
+{
+  "release_tag": "HI-OLP-PUB-0008",
+  "release_url": "https://github.com/KokunoYumeto/open-logic-hi/releases/tag/HI-OLP-PUB-0008",
+  "note": "Large canonical CSV/JSON are GitHub release assets; hashes below bind those assets to the Zenodo copy and local package.",
+  "assets": [
+    {
+      "name": "DECISION_OCCURRENCES.csv",
+      "bytes": 47493469,
+      "sha256": "FC0C7AEBB08051D30DA36EC1683C95769761BF26E5185079B6E6B574B6FBEBC3",
+      "url": "https://github.com/KokunoYumeto/open-logic-hi/releases/download/HI-OLP-PUB-0008/DECISION_OCCURRENCES.csv"
+    },
+    {
+      "name": "DECISIONS.json",
+      "bytes": 61372885,
+      "sha256": "E1169A7384035D771A8256FFE22DC76A65ADE83C0C708C57F63CDA5E20C64478",
+      "url": "https://github.com/KokunoYumeto/open-logic-hi/releases/download/HI-OLP-PUB-0008/DECISIONS.json"
+    }
+  ]
+}

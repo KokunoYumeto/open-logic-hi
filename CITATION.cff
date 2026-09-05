@@ -4,8 +4,8 @@ type: book
 title: "ओपन लॉजिक परियोजना — संपूर्ण हिंदी संस्करण"
 authors:
   - name: "Open Logic Project"
-version: "2026-09-04"
-date-released: "2026-09-04"
+version: "2026-09-05"
+date-released: "2026-09-05"
 doi: "10.5281/zenodo.21920511"
 url: "https://github.com/KokunoYumeto/open-logic-hi"
 license: CC-BY-4.0

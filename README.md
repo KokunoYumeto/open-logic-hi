@@ -2,8 +2,6 @@
 
 *Open Logic Project — Complete Hindi Edition*
 
-अन्य भाषाओं के संस्करण और साझा अनुवाद मानक [Open Logic translations hub](https://github.com/KokunoYumeto/OpenLogic-translations) में सूचीबद्ध हैं।
-
 मुख्य पुस्तक `00_OpenLogic_hi-Deva-IN_reader.pdf` है: 975 A4 पृष्ठ, हिंदी और देवनागरी।
 यह जमी हुई स्रोत प्रति की सभी 722 सामग्री-TeX फ़ाइलों को सम्मिलित करती है।
 इस संख्या में अध्याय-चालक भी हैं; यह शब्द-गणना नहीं है। पुराने 842-पृष्ठीय
@@ -45,14 +43,16 @@ Windows पर MiKTeX/XeLaTeX और latexmk स्थापित होने 
 स्थायी DOI: https://doi.org/10.5281/zenodo.21920511
 GitHub: https://github.com/KokunoYumeto/open-logic-hi
 
+## अनुवाद-निर्णय और समीक्षा-सामग्री
 
-## Terminology and difficult decisions
+`terminology/canonical/START_HERE.md` से आरम्भ करें। `TRANSLATION_DECISIONS_FULL.md`
+400 सार्थक विवेकाधीन निर्णयों की हिंदी-मुखी पठनीय सूची है। इनमें 357 शब्दावली-निर्णय,
+40 अनुवाद/अक्षर-संयोजन सुधार और 3 साझा विन्यास-निर्णय हैं। `PRIORITY_REVIEW.md`
+में P1/P2 के 270 मामले हैं, जिनमें सभी 20 स्पष्टतः अस्थायी पद सम्मिलित हैं।
 
-`terminology/SUBSTANTIVE_DECISION_LOG.jsonl` contains 400 traceable records:
-357 terminology choices, 40 translation/typesetting corrections, and 3 shared
-configuration decisions. It records exact literal source/target locations,
-authority statements, rationales, alternatives, uncertainty, and precise
-questions for asynchronous expert correction. Retrospective reconstructions
-are labelled retrospective. The 20 provisional terms are summarized in
-`terminology/PROVISIONAL_REVIEW_QUEUE.md`. Missing expertise is not a gap or
-publication hold; the current wording remains a documented, correctable choice.
+`DECISION_OCCURRENCES.csv` में 26,942 पंक्तियाँ हैं: 26,861 शाब्दिक लक्ष्य उदाहरण,
+43 सुधार/विन्यास उदाहरण और पुस्तक में शून्य प्रयोग वाले 38 पदों की सटीक
+शब्दावली-पंजी पंक्तियाँ। अंतिम 38 को पुस्तक या पाठक-पृष्ठ नहीं बताया गया।
+`DECISIONS.json` वही सामग्री साझा OpenLogic स्कीमा में रखती है। सटीक PDF पृष्ठ,
+संभावित पृष्ठ और अमानचित्रित विन्यास अलग चिह्नित हैं; अनुमान को सटीक प्रमाण नहीं
+कहा गया। समीक्षा आमंत्रित है, पर प्रकाशन की रोक नहीं।

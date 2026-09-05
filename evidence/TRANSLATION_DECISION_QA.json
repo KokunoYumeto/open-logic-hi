@@ -1,0 +1,92 @@
+{
+  "schema": "openlogic-translation-decision-qa/1.0.0",
+  "generated_utc": "2026-09-05T14:46:51.444702+00:00",
+  "status": "PASS",
+  "edition_id": "openlogic-hi",
+  "coverage_state": "complete",
+  "normative_schema": {
+    "source_uri": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-translations/811091d54be4989918864732073279a588340e6f/catalogue/translation-decisions/translation-decision.schema.json",
+    "frozen_commit": "811091d54be4989918864732073279a588340e6f",
+    "bytes": 10787,
+    "sha256": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90",
+    "metaschema_validation": "PASS",
+    "instance_validation": "PASS"
+  },
+  "counts": {
+    "source_units": 722,
+    "reader_units": 722,
+    "decisions": 400,
+    "occurrences": 26942,
+    "book_or_correction_occurrences": 26904,
+    "registry_only_zero_use_terms": 38,
+    "unique_decision_ids": 400,
+    "unique_occurrence_ids": 26942,
+    "priority_urgent_or_high": 270,
+    "provisional": 20,
+    "reader_locator_status": {
+      "available": 24607,
+      "pending": 2294,
+      "not_applicable": 41
+    }
+  },
+  "projection_checks": {
+    "json_schema": "PASS",
+    "csv_rows_equal_json_occurrences": "PASS",
+    "full_markdown_all_decisions_once": "PASS",
+    "priority_markdown_matches_urgent_high_ids": "PASS",
+    "source_target_hashes_bound_to_frozen_or_accepted_bytes": "PASS",
+    "zero_use_terms_bound_to_exact_registry_rows_not_fabricated_reader_loci": "PASS",
+    "unknown_reader_pages_remain_pending_not_guessed": "PASS",
+    "generated_placeholders_or_silent_omissions": 0
+  },
+  "reader_evidence": {
+    "artifact_filename": "00_OpenLogic_hi-Deva-IN_reader.pdf",
+    "sha256": "91279e723a58acdedcdf85432d59c6cefd17d954fbd6f342a70bff31c1aa5253",
+    "pages": 975,
+    "accepted_graph": {
+      "path": "qa/reconciliation/INTEGRATED_READER_EVIDENCE.json",
+      "bytes": 622060,
+      "sha256": "241802a8a446617095666bbf24cbe084ba16023c2be248d73a8e37c34781e940"
+    },
+    "formula_citation_identifier_link_hierarchy_unicode_script_checks": "See accepted reader evidence and reconciliation receipts in the provenance ZIP; the adapter did not rebuild or change reader bytes."
+  },
+  "variant_assessment": {
+    "semantic_editions_recommended": 1,
+    "current": "hi-Deva-IN / Deva / standard modern Hindi",
+    "roman_hinglish": "not warranted as a separate semantic edition on current evidence",
+    "urdu": "separate language edition, not a Hindi script projection",
+    "regional_variants": "none manufactured without evidence"
+  },
+  "outputs": {
+    "START_HERE.md": {
+      "bytes": 4279,
+      "sha256": "d5b9ad412d6b58252eecc581b2d175415b386f944bbe74b7a5c6ed95c8450d6c"
+    },
+    "TRANSLATION_DECISIONS_FULL.md": {
+      "bytes": 259305,
+      "sha256": "80798fb1a933d562dd83326d92cdabc8c4d95bed89ebe615541dd8017c7443f8"
+    },
+    "PRIORITY_REVIEW.md": {
+      "bytes": 117315,
+      "sha256": "a8d178ee8758baa0fae867361cddfb93f48f553ad6e4849577f3df3703d459ae"
+    },
+    "DECISION_OCCURRENCES.csv": {
+      "bytes": 47493469,
+      "sha256": "fc0c7aebb08051d30da36ec1683c95769761bf26e5185079b6e6b574b6fbebc3"
+    },
+    "DECISIONS.json": {
+      "bytes": 61372885,
+      "sha256": "e1169a7384035d771a8256ffe22dc76a65ade83c0c708c57f63cda5e20c64478"
+    },
+    "translation-decision.schema.json": {
+      "bytes": 10787,
+      "sha256": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90"
+    }
+  },
+  "limitations": [
+    "External terminology citations are preserved verbatim but were not newly authenticated by this adapter.",
+    "Derived source pairing is labelled in locator context and is not asserted as one-to-one semantic alignment.",
+    "Thirty-eight controlled terms have zero reader uses; canonical occurrences point to exact bilingual registry rows and are not represented as book occurrences.",
+    "Human review is useful but never a completion or release gate."
+  ]
+}
