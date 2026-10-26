@@ -1,8 +1,8 @@
 {
   "schema": "interlanguage.openlogic-hi-complete-audit/v2",
   "source_commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
-  "source_root": "C:\\Users\\Floris\\Documents\\interlanguage\\03_projects\\language_management\\south_asian\\hindi_complete_open_math_20260812\\02_source_snapshot\\openlogic_en_9620cc7\\content",
-  "target_root": "C:\\Users\\Floris\\Documents\\interlanguage\\03_projects\\language_management\\south_asian\\hindi_complete_open_math_20260812\\05_translation\\openlogic_hi_9620cc7\\locale\\hi\\content",
+  "source_root": "C:\\Users\\user\\Documents\\interlanguage\\03_projects\\language_management\\south_asian\\hindi_complete_open_math_20260812\\02_source_snapshot\\openlogic_en_9620cc7\\content",
+  "target_root": "C:\\Users\\user\\Documents\\interlanguage\\03_projects\\language_management\\south_asian\\hindi_complete_open_math_20260812\\05_translation\\openlogic_hi_9620cc7\\locale\\hi\\content",
   "source_tex_files": 722,
   "matched_target_tex_files": 722,
   "source_only": [],
